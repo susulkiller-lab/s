@@ -1,0 +1,16 @@
+{
+  "common": {
+    "_n": 3,
+    "chars_min": 3801,
+    "chars_max": 6727,
+    "title_len_min": 49,
+    "title_len_max": 60,
+    "subheadings_min": 8,
+    "subheadings_max": 9,
+    "kw_per_1000_min": 1.33,
+    "kw_per_1000_max": 4.02,
+    "sentence_max_chars": 99,
+    "para_max_sentences": 4,
+    "provisional": false
+  }
+}

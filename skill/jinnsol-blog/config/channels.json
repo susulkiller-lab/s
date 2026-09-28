@@ -1,0 +1,48 @@
+{
+  "_note": "채널별 합격 기준. corpus_stats.py 실행 시 baseline.json이 생성되면 그 값이 우선한다. 아래는 코퍼스 수집 전 임시값이며, naver 값은 legal-blog-writer 스킬 기준을 따른다.",
+  "naver": {
+    "label": "네이버 블로그",
+    "chars_min": 3000,
+    "chars_max": 5000,
+    "kw_per_1000_min": 1.0,
+    "kw_per_1000_max": 2.2,
+    "title_len_min": 25,
+    "title_len_max": 35,
+    "subheadings_min": 4,
+    "subheadings_max": 9,
+    "sentence_max_chars": 70,
+    "para_max_sentences": 4,
+    "lead_chars": 150,
+    "provisional": true
+  },
+  "lawtalk": {
+    "label": "로톡 포스트",
+    "chars_min": 2000,
+    "chars_max": 4000,
+    "kw_per_1000_min": 1.0,
+    "kw_per_1000_max": 2.5,
+    "title_len_min": 15,
+    "title_len_max": 40,
+    "subheadings_min": 3,
+    "subheadings_max": 8,
+    "sentence_max_chars": 70,
+    "para_max_sentences": 4,
+    "lead_chars": 150,
+    "provisional": true
+  },
+  "tistory": {
+    "label": "티스토리",
+    "chars_min": 2500,
+    "chars_max": 5000,
+    "kw_per_1000_min": 0.8,
+    "kw_per_1000_max": 2.0,
+    "title_len_min": 20,
+    "title_len_max": 45,
+    "subheadings_min": 4,
+    "subheadings_max": 10,
+    "sentence_max_chars": 80,
+    "para_max_sentences": 5,
+    "lead_chars": 160,
+    "provisional": true
+  }
+}
