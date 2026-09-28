@@ -54,8 +54,8 @@ def check(path, channel, kw, lsi, compare_dirs):
             pos = re.sub(r"\s", "", t).find(re.sub(r"\s", "", kw))
             if pos < 0:
                 add("fail", "제목 키워드", f"대표 키워드 '{kw}'가 제목에 없음")
-            elif pos > 10:
-                add("warn", "제목 키워드", f"대표 키워드가 제목 앞부분이 아님(위치 {pos})")
+            elif pos > len(re.sub(r"\s", "", t)) // 2:
+                add("warn", "제목 키워드", f"대표 키워드가 제목 뒤쪽 절반에 있음(위치 {pos})")
             else:
                 add("ok", "제목 키워드", "앞부분 배치")
 
@@ -108,23 +108,24 @@ def check(path, channel, kw, lsi, compare_dirs):
     long_s = [s for s in sents if nospace_len(s) > spec["sentence_max_chars"]]
     if long_s:
         add("warn", "긴 문장", f"{len(long_s)}개 ({spec['sentence_max_chars']}자 초과). 예: {long_s[0][:40]}...")
-    long_p = [p for p in doc["paragraphs"] if len(sentences(p)) > spec["para_max_sentences"]]
+    # 목록·표 행은 문장으로 세지 않도록 종결부호 개수로 센다
+    long_p = [p for p in doc["paragraphs"] if len(re.findall(r"[.?!](?=\s|$)", p)) > spec["para_max_sentences"]]
     if long_p:
         add("warn", "긴 문단", f"{len(long_p)}개 ({spec['para_max_sentences']}문장 초과). 예: {long_p[0][:30]}...")
-    # 문말 단조로움: 같은 종결어미 5연속
-    ends = [re.sub(r"[.?!\s]+$", "", s)[-3:] for s in sents]
+    # 문말 단조: 끝 6글자(예: '수 있습니다')가 같은 문장 4연속
+    ends = [re.sub(r"[.?!\s]+$", "", s)[-6:] for s in sents if re.search(r"[.?!]$", s)]
     run, worst = 1, (1, "")
     for a, b in zip(ends, ends[1:]):
         run = run + 1 if a == b else 1
         if run > worst[0]:
             worst = (run, b)
-    if worst[0] >= 5:
+    if worst[0] >= 4:
         add("warn", "문말 단조", f"'~{worst[1]}' 종결 {worst[0]}연속")
 
-    # 7. 반복 어구(어절 3-gram 3회 이상)
+    # 7. 반복 어구(어절 3-gram 5회 이상)
     toks = re.findall(r"\S+", body)
     grams = Counter(" ".join(toks[i:i + 3]) for i in range(len(toks) - 2))
-    reps = [(g, k) for g, k in grams.most_common(10) if k >= 3]
+    reps = [(g, k) for g, k in grams.most_common(10) if k >= 5]
     if reps:
         add("warn", "반복 어구", "; ".join(f"'{g}' {k}회" for g, k in reps[:5]))
     dup_sents = [s for s, k in Counter(sents).items() if k > 1 and nospace_len(s) > 15]

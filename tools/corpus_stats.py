@@ -38,8 +38,13 @@ def title_keyword(title, body):
 def measure(f):
     d = parse_doc(f.read_text(encoding="utf-8"))
     n = nospace_len(d["body"])
-    kw, c = title_keyword(d["title"], d["body"])
-    sents = sentences(d["body"])
+    if d["meta"].get("main_kw"):  # 편집자가 지정한 대표 키워드 우선
+        kw = d["meta"]["main_kw"]
+        c = count_kw(d["body"], kw)
+    else:
+        kw, c = title_keyword(d["title"], d["body"])
+    # 목록·표 행을 빼고 종결부호로 끝나는 서술 문장만 문장 길이 통계에 쓴다
+    sents = [s for s in sentences(d["body"]) if re.search(r"[.?]$", s) and not s.startswith(("Q", "A."))]
     return {
         "file": str(f.relative_to(ROOT)),
         "title": d["title"],
@@ -81,15 +86,17 @@ def main():
             continue
         b = {
             "_n": len(rows),
-            "chars_min": q([r["chars"] for r in rows], 0.2),
-            "chars_max": q([r["chars"] for r in rows], 0.8),
+            # 표본이 적을 때 범위가 지나치게 좁아지지 않도록 양쪽에 여유를 둔다
+            "chars_min": int(q([r["chars"] for r in rows], 0.2) * 0.85),
+            "chars_max": int(q([r["chars"] for r in rows], 0.8) * 1.15),
             "title_len_min": q([r["title_len"] for r in rows], 0.1),
             "title_len_max": q([r["title_len"] for r in rows], 0.9),
             "subheadings_min": q([r["subheads"] for r in rows], 0.1),
             "subheadings_max": q([r["subheads"] for r in rows], 0.9),
-            "kw_per_1000_min": q([r["kw_per_1000"] for r in rows], 0.2),
-            "kw_per_1000_max": q([r["kw_per_1000"] for r in rows], 0.8),
-            "sentence_max_chars": max(60, q([r["sent_p90"] for r in rows], 0.5)),
+            "kw_per_1000_min": round(q([r["kw_per_1000"] for r in rows], 0.2) * 0.8, 2),
+            "kw_per_1000_max": round(q([r["kw_per_1000"] for r in rows], 0.8) * 1.2, 2),
+            "sentence_max_chars": max(60, q([r["sent_p90"] for r in rows], 1.0)),
+            "para_max_sentences": 4,
             "provisional": False,
         }
         baseline[ch_dir.name] = b

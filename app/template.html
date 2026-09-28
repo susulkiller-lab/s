@@ -1,0 +1,890 @@
+<title>진앤솔 원고실</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F3F5F2; --surface:#FFFFFF; --surface-2:#F8FAF7; --ink:#1A2320; --muted:#5B6863; --faint:#8A958F;
+  --line:#D9DFDA; --line-strong:#BFC8C2;
+  --accent:#1E5A48; --accent-hover:#174839; --accent-ink:#FFFFFF; --accent-soft:#E3EEE9;
+  --ok:#2C7A4B; --ok-soft:#E4F2E8; --warn:#9A6210; --warn-soft:#FBF0DC; --fail:#B02A20; --fail-soft:#FBE6E3;
+  --focus:#2F7FBF;
+  --serif:"Noto Serif KR","Nanum Myeongjo",serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121715; --surface:#1A201E; --surface-2:#151A18; --ink:#E6ECE8; --muted:#A3AFA9; --faint:#76827C;
+    --line:#2B3431; --line-strong:#3A4541;
+    --accent:#5FB397; --accent-hover:#76C4AA; --accent-ink:#0E1A15; --accent-soft:#1F3029;
+    --ok:#6CC08C; --ok-soft:#1C2E23; --warn:#E0A94A; --warn-soft:#33291A; --fail:#EE7F74; --fail-soft:#3A1F1C;
+    --focus:#7BB6E6;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121715; --surface:#1A201E; --surface-2:#151A18; --ink:#E6ECE8; --muted:#A3AFA9; --faint:#76827C;
+  --line:#2B3431; --line-strong:#3A4541;
+  --accent:#5FB397; --accent-hover:#76C4AA; --accent-ink:#0E1A15; --accent-soft:#1F3029;
+  --ok:#6CC08C; --ok-soft:#1C2E23; --warn:#E0A94A; --warn-soft:#33291A; --fail:#EE7F74; --fail-soft:#3A1F1C;
+  --focus:#7BB6E6;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--sans);font-size:14px;line-height:1.6;padding-inline:16px;padding-block:0 32px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1440px;margin:0 auto}
+
+/* 상단 */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding-block:16px 12px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand h1{font-family:var(--serif);font-size:20px;font-weight:700;margin:0;letter-spacing:-.01em}
+.brand span{color:var(--muted);font-size:12px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{border:1px solid transparent;background:none;padding:6px 12px;border-radius:999px;cursor:pointer;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--line);font-weight:600}
+.status{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);white-space:nowrap}
+.pill.on{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.pill.off{color:var(--warn)}
+
+/* 작성 화면 3단 */
+.grid{display:grid;grid-template-columns:320px minmax(0,1fr) 360px;gap:16px;margin-top:16px;align-items:start}
+@media (max-width:1180px){.grid{grid-template-columns:300px minmax(0,1fr)}.side-right{grid-column:1 / -1}}
+@media (max-width:780px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.panel-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.panel-h h2{font-size:13px;font-weight:600;margin:0;letter-spacing:.02em}
+.panel-b{padding:14px;display:grid;gap:12px}
+label.f{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+label.f > span b{color:var(--ink);font-weight:600}
+input[type=text],select,textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+textarea{resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hint{font-size:12px;color:var(--faint);margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line-strong);background:var(--surface);padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+
+/* 편집장 진행표 */
+.stages{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.stage{display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start;font-size:13px}
+.dot{width:10px;height:10px;border-radius:50%;margin-top:6px;border:2px solid var(--line-strong);background:var(--surface)}
+.stage[data-s="run"] .dot{border-color:var(--accent);background:var(--accent-soft);animation:pulse 1.2s ease-in-out infinite}
+.stage[data-s="done"] .dot{border-color:var(--ok);background:var(--ok)}
+.stage[data-s="warn"] .dot{border-color:var(--warn);background:var(--warn)}
+.stage[data-s="fail"] .dot{border-color:var(--fail);background:var(--fail)}
+.stage small{display:block;color:var(--muted);font-size:12px}
+@keyframes pulse{50%{opacity:.4}}
+@media (prefers-reduced-motion:reduce){.stage[data-s="run"] .dot{animation:none}}
+
+/* 원고 */
+.editor{width:100%;min-height:640px;border:0;background:var(--surface);padding:18px 20px;font-size:15px;line-height:1.85;border-radius:0 0 var(--r) var(--r);resize:vertical}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta b{color:var(--ink);font-weight:600}
+.notice{font-size:12px;color:var(--warn);background:var(--warn-soft);border-radius:6px;padding:8px 10px;margin:0}
+.kwbox{display:grid;gap:6px;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line)}
+.chip.miss{color:var(--faint);text-decoration:line-through}
+.titles{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.titles button{text-align:left;width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+
+/* 검수 */
+.verdict{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:6px;font-weight:600}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.warn{background:var(--warn-soft);color:var(--warn)}
+.verdict.fail{background:var(--fail-soft);color:var(--fail)}
+.verdict.idle{background:var(--surface-2);color:var(--muted);font-weight:500}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.checks li{display:grid;grid-template-columns:44px 1fr;gap:8px;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.lv{font-size:11px;font-weight:600;text-align:center;border-radius:4px;padding:1px 0;height:fit-content}
+.lv.ok{color:var(--ok);background:var(--ok-soft)}
+.lv.warn{color:var(--warn);background:var(--warn-soft)}
+.lv.fail{color:var(--fail);background:var(--fail-soft)}
+.checks b{font-weight:600}
+.refs{display:grid;gap:6px;font-size:12.5px}
+.ref{border-left:3px solid var(--line-strong);padding:2px 0 2px 8px}
+.ref.v{border-color:var(--ok)}
+.ref.x{border-color:var(--fail)}
+.rules{font-size:12px;color:var(--muted);margin:0;padding-left:18px}
+
+/* 주제·원고함 */
+.single{margin-top:16px;display:grid;gap:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:8px;align-content:start}
+.card h3{font-family:var(--serif);font-size:16px;margin:0;line-height:1.45}
+.card dl{margin:0;display:grid;grid-template-columns:72px 1fr;gap:4px 8px;font-size:12.5px}
+.card dt{color:var(--muted)}
+.card dd{margin:0}
+.dup{font-size:12px;border-radius:4px;padding:2px 8px;width:fit-content}
+.dup.strong{background:var(--fail-soft);color:var(--fail)}
+.dup.mid{background:var(--warn-soft);color:var(--warn)}
+.dup.none{background:var(--ok-soft);color:var(--ok)}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{font-size:11px;padding:1px 6px;border-radius:4px;border:1px solid var(--line)}
+.tag.pub{color:var(--ok);border-color:var(--ok)}
+.empty{color:var(--muted);font-size:13px;padding:16px;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px;font-size:13px;z-index:10}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+details summary{cursor:pointer;font-size:12px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>진앤솔 원고실</h1><span>블로그·로톡·티스토리 원고 작성과 검수</span></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-write" aria-selected="true" data-view="write">새 글 작성</button>
+      <button class="tab" role="tab" id="tab-topic" aria-selected="false" data-view="topic">주제 추천</button>
+      <button class="tab" role="tab" id="tab-box" aria-selected="false" data-view="box">원고함</button>
+      <button class="tab" role="tab" id="tab-set" aria-selected="false" data-view="set">설정</button>
+    </nav>
+    <div class="status">
+      <span class="pill" id="st-claude">Claude 확인 중</span>
+      <span class="pill" id="st-law">법령 검증 확인 중</span>
+      <span class="pill" id="st-db">원고함 확인 중</span>
+    </div>
+  </header>
+
+  <!-- 새 글 작성 -->
+  <section id="view-write" class="grid">
+    <div class="side-left" style="display:grid;gap:16px">
+      <div class="panel">
+        <div class="panel-h"><h2>작성 조건</h2></div>
+        <form class="panel-b" id="form" autocomplete="off">
+          <div class="row2">
+            <label class="f"><span><b>플랫폼</b></span>
+              <select id="platform">
+                <option value="naver">네이버 블로그</option>
+                <option value="tistory">티스토리</option>
+                <option value="lawtalk">로톡</option>
+                <option value="homepage">홈페이지</option>
+              </select></label>
+            <label class="f"><span><b>분야</b></span>
+              <select id="field"></select></label>
+          </div>
+          <label class="f"><span><b>주제</b> 또는 제목안</span>
+            <input type="text" id="topic" placeholder="예: 연인 대신 내준 월세·카드값 반환"></label>
+          <label class="f"><span><b>대표 키워드</b> 1개</span>
+            <input type="text" id="kw" placeholder="예: 대납금 반환"></label>
+          <label class="f"><span>독자 상황·질문 메모</span>
+            <textarea id="memo" rows="3" placeholder="의뢰인이 실제로 묻는 질문, 다루고 싶은 쟁점"></textarea></label>
+          <label class="f"><span>참고 법령·판례 (붙여넣기)</span>
+            <textarea id="refs" rows="4" placeholder="조문 원문, 판례 번호와 요지. 여기에 넣은 것과 법령 검증에서 확인된 것만 원고에 인용합니다."></textarea></label>
+          <label class="f" style="grid-template-columns:auto 1fr;align-items:center;gap:8px"><input type="checkbox" id="use-law" checked><span>법령mcp로 조문·판례 원문 확인</span></label>
+          <div class="btns">
+            <button class="btn primary" type="submit" id="run">생성하기</button>
+            <button class="btn" type="button" id="stop" hidden>중지</button>
+          </div>
+          <p class="hint">Claude 호출은 접속한 사람의 Claude 계정 사용량으로 처리됩니다. 한 편에 5~9회 호출합니다.</p>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>편집장 진행</h2><span class="hint" id="loop-note"></span></div>
+        <div class="panel-b"><ol class="stages" id="stages"></ol></div>
+      </div>
+    </div>
+
+    <div class="panel" style="min-width:0">
+      <div class="panel-h">
+        <div class="meta" id="meta"><span>공백 제외 <b>0</b>자</span></div>
+        <div class="btns">
+          <button class="btn" type="button" id="check">검수</button>
+          <button class="btn" type="button" id="rephrase" title="법률 내용은 두고 표현만 바꿔 기존 글과의 유사도를 낮춥니다">리프레이즈</button>
+          <button class="btn" type="button" id="copy">본문 복사</button>
+          <button class="btn" type="button" id="copy-sig">서명 포함 복사</button>
+          <button class="btn primary" type="button" id="save">원고함 저장</button>
+        </div>
+      </div>
+      <p class="notice" id="trunc" hidden style="margin:10px 14px 0"></p>
+      <label class="sr" for="editor">원고</label>
+      <textarea class="editor" id="editor" spellcheck="false" placeholder="생성하기를 누르면 원고가 여기에 작성됩니다. 직접 쓴 글을 붙여넣고 검수만 돌려도 됩니다.&#10;&#10;형식: 첫 줄 '제목: …', 소제목 줄은 '## '로 시작, 문단은 빈 줄로 구분."></textarea>
+    </div>
+
+    <div class="side-right" style="display:grid;gap:16px">
+      <div class="panel">
+        <div class="panel-h"><h2>검수 결과</h2><span class="hint" id="spec-note"></span></div>
+        <div class="panel-b">
+          <div class="verdict idle" id="verdict">검수 전입니다</div>
+          <ul class="checks" id="checks"></ul>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>키워드 설계</h2></div>
+        <div class="panel-b kwbox" id="kwbox"><p class="hint">생성하기를 누르면 제목 후보와 LSI·롱테일 키워드가 여기에 나옵니다.</p></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>인용 가능 목록</h2></div>
+        <div class="panel-b refs" id="reflist"><p class="hint">확인된 조문·판례만 원고에 쓸 수 있습니다.</p></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>변호사 광고 기준</h2></div>
+        <div class="panel-b">
+          <ul class="rules">
+            <li>업무 결과에 부당한 기대를 갖게 하는 광고 금지 (변호사법 제23조 제2항 제4호)</li>
+            <li>다른 변호사를 비방하거나 자신의 입장에서 비교하는 광고 금지 (같은 항 제5호)</li>
+            <li>법적 근거 없는 자격·명칭 표방 금지 (같은 항 제2호)</li>
+            <li>객관적 사실 과장, 소비자 오도 금지 (같은 항 제3호)</li>
+          </ul>
+          <p class="hint">대한변호사협회 광고규정 세부 조항은 이 목록에 아직 대조되지 않았습니다. 게시 전 담당 변호사 검토가 필요합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주제 추천 -->
+  <section id="view-topic" class="single" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>주제 추천</h2></div>
+      <form class="panel-b" id="topic-form" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:end">
+        <label class="f"><span><b>분야</b></span><select id="t-field"></select></label>
+        <label class="f"><span><b>플랫폼</b></span>
+          <select id="t-platform"><option value="naver">네이버 블로그</option><option value="tistory">티스토리</option><option value="lawtalk">로톡</option><option value="homepage">홈페이지</option></select></label>
+        <label class="f"><span>편수</span><select id="t-n"><option>3</option><option selected>5</option><option>8</option></select></label>
+        <label class="f" style="grid-column:1 / -1"><span>시기·이슈 메모 (선택)</span><input type="text" id="t-memo" placeholder="예: 추석 연휴 직후, 최근 상담 많은 유형"></label>
+        <div class="btns"><button class="btn primary" type="submit" id="t-run">주제 받기</button></div>
+      </form>
+    </div>
+    <p class="hint">검색량은 이 프로그램에서 확인할 수 없습니다. 후보를 고른 뒤 네이버 검색광고 키워드 도구로 검색량을 확인하십시오. 중복 표시는 원고함의 발행·초안 기록과 비교한 결과입니다.</p>
+    <div class="cards" id="topic-cards"></div>
+  </section>
+
+  <!-- 원고함 -->
+  <section id="view-box" class="single" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>팀 원고함</h2>
+        <div class="btns">
+          <select id="box-filter" aria-label="보기"><option value="all">전체</option><option value="mine">내 원고</option><option value="draft">초안</option><option value="pub">발행</option></select>
+        </div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>상태</th><th>제목</th><th>플랫폼</th><th>대표 키워드</th><th>작성자</th><th>수정일</th><th></th></tr></thead>
+        <tbody id="box-rows"><tr><td colspan="7" class="empty">원고함을 불러오는 중입니다</td></tr></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- 설정 -->
+  <section id="view-set" class="single" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>팀 공통 설정</h2><span class="hint" id="set-note">편집 권한자만 저장할 수 있습니다</span></div>
+      <form class="panel-b" id="set-form" style="max-width:720px">
+        <div class="row2">
+          <label class="f"><span><b>사무소명</b> (본문 CTA 문단에 사용)</span><input type="text" id="s-firm" value="진앤솔 법률사무소"></label>
+          <label class="f"><span><b>지역</b> (제목 꼬리표에 사용)</span><input type="text" id="s-region" value="창원"></label>
+        </div>
+        <label class="f"><span><b>서명 문구</b> (서명 포함 복사 때 본문 끝에 붙습니다. 생성·검수 대상이 아닙니다)</span>
+          <textarea id="s-sig" rows="6" placeholder="사무소 소개·구성원 안내 문단을 붙여넣으십시오"></textarea></label>
+        <div class="btns"><button class="btn primary" type="submit" id="s-save">설정 저장</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h2>사용 안내</h2></div>
+      <div class="panel-b" style="font-size:13px">
+        <p style="margin:0">1. 새 글 작성에서 플랫폼, 분야, 주제, 대표 키워드를 넣고 생성하기를 누릅니다. 편집장이 설계, 법리 확인, 집필, 검수, 수정 순서로 진행합니다.</p>
+        <p style="margin:0">2. 검수에서 '불가' 항목이 0건이어야 발행할 수 있습니다. '경고'는 판단해서 고칩니다.</p>
+        <p style="margin:0">3. 발행하면 원고함에서 상태를 발행으로 바꾸고 주소를 넣습니다. 다음 주제 추천 때 중복 판정에 쓰입니다.</p>
+        <p style="margin:0">4. 법령 검증은 claude.ai 설정의 커넥터에 '법령mcp'를 추가한 사람만 쓸 수 있습니다. 없으면 참고 법령·판례 칸에 넣은 자료만 인용합니다.</p>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+"use strict";
+/* ───────── 고정 데이터 ───────── */
+const CORPUS = __CORPUS__;
+const SEED_LEDGER = [
+  {date:"2026-09-23",platform:"lawtalk",title:"동업채무의 대외책임과 내부 손실부담 기준",kw:"동업채무"},
+  {date:"2026-09-23",platform:"lawtalk",title:"오래된 대여금의 소멸시효 및 회수 절차",kw:"대여금 소멸시효"},
+  {date:"2026-09-23",platform:"naver",title:"온라인 폭파·살해 예고글의 공중협박죄 성립 기준",kw:"공중협박죄"},
+  {date:"2026-09-23",platform:"naver",title:"부양의무 위반 상속인의 상속권 상실 기준",kw:"상속권 상실"},
+  {date:"2026-09-23",platform:"tistory",title:"2인 동업관계 탈퇴 시 조합재산 귀속과 정산",kw:"동업 탈퇴 정산"},
+  {date:"2026-09-23",platform:"tistory",title:"차용금 사기죄의 성립 기준과 민사상 대여금 청구",kw:"차용금 사기"},
+  ...CORPUS.map(c => ({date:"",platform:"",title:c.title,kw:c.kw}))
+];
+const FIELDS = [
+  ["divorce","가사·이혼","이혼"],["inherit","상속","상속"],["civil","민사(대여금·손해배상)","민사"],
+  ["realty","부동산·임대차","부동산"],["corp","기업·동업","기업"],["criminal","형사","형사"],
+  ["sex","성범죄","형사"],["traffic","교통사고","교통사고"],["admin","행정","행정"],
+  ["labor","노동","노동"],["exec","민사집행·채권추심","민사"],["etc","기타","법률"]
+];
+const PLATFORMS = {
+  naver:{label:"네이버 블로그",angle:"사례와 질문으로 시작해 법적 기준, 판단 요소, 준비 자료, 자주 묻는 질문 순서로 가는 정보형. 모바일에서 읽기 좋게 문단을 짧게 끊는다."},
+  tistory:{label:"티스토리",angle:"구글 검색 유입을 고려한 법리 해설형. 개념 정의와 요건을 소제목 단위로 명확히 정리하고 조문·판례 해설 비중을 높인다."},
+  lawtalk:{label:"로톡",angle:"질문에 먼저 답하는 결론 선행형. 절차, 기간, 준비 서류, 비용이 드는 지점을 실무 중심으로 정리한다."},
+  homepage:{label:"홈페이지",angle:"사무소 업무 분야 소개를 겸한 해설형. 과장 없이 쟁점과 검토 방식 위주로 쓴다."}
+};
+/* 팀 글 3편 실측(corpus_stats.py). 로톡·티스토리 채널별 실측이 쌓이면 교체 */
+const SPEC = {chars_min:3800,chars_max:6700,kw_min:1.33,kw_max:4.02,title_min:40,title_max:62,sub_min:7,sub_max:10,sent_max:99,para_max:4,lead:160,
+  note:"팀 글 3편 기준(채널 구분 전)"};
+const BANNED = [
+  {cat:"광고규정",lv:"fail",basis:"변호사법 제23조 제2항 제4호",p:["승소 보장","승소를 보장","100% 승소","무조건 승소","무조건 이길","반드시 승소","반드시 이길","확실히 이길","확실한 승소","책임지고 해결","전액 회수 보장","무혐의 보장","집행유예 보장"]},
+  {cat:"광고규정",lv:"fail",basis:"변호사법 제23조 제2항 제5호",p:["업계 최고","최고의 변호사","국내 최초","국내 1위","1위 로펌","유일한 변호사","가장 잘하는","타 법률사무소와 달리","다른 변호사와 달리"]},
+  {cat:"광고규정",lv:"fail",basis:"변호사법 제23조 제2항 제2호",p:["국제변호사","전문 1인자"]},
+  {cat:"과장 표현",lv:"warn",basis:"팀 문체 규칙",p:["충격적인","충격!","놀라운","반드시 알아야 할","모르면 손해","지금 바로 연락","절대 놓치지"]},
+  {cat:"AI 문투",lv:"warn",basis:"AI 글 패턴",p:["결론적으로","요약하자면","종합적으로 살펴보면","다양한 측면에서","중요한 역할을 합니다","에 대해 알아보겠습니다","에 대해 자세히 알아보","도움이 되셨기를 바랍니다","이 글에서는","첫째,","둘째,","셋째,"]},
+  {cat:"금지 맥락",lv:"fail",basis:"내부 규칙",p:["강정한"]}
+];
+const NEGATED = /^\S{0,2}\s?(없|않|아닙|못)/;
+const LAW_SERVER = "법령mcp";
+
+/* ───────── 상태 ───────── */
+const S = {sample:null, tools:false, mcp:null, law:false, db:null, user:null, me:null, canEdit:false,
+  posts:[], settings:{firm:"진앤솔 법률사무소",region:"창원",sig:""},
+  design:null, refs:{verified:[],unverified:[],disputed:[]}, openId:null, ctl:null, busy:false};
+const $ = id => document.getElementById(id);
+
+/* ───────── 공용 ───────── */
+function toast(msg){const t=$("toast");t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2600);}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+const nospace = s => s.replace(/\s/g,"");
+function countKw(text,kw){ if(!kw) return 0; const t=nospace(text),k=nospace(kw); if(!k) return 0; let n=0,i=0; while((i=t.indexOf(k,i))!==-1){n++;i+=k.length;} return n; }
+function sentences(text){return text.split(/(?<=[.?!])\s+|\n+/).map(s=>s.trim()).filter(s=>s.length>1);}
+function shingles(text,n=5){const t=nospace(text),set=new Set();for(let i=0;i+n<=t.length;i++)set.add(t.slice(i,i+n));return set;}
+function jaccard(a,b){if(!a.size||!b.size)return 0;let inter=0;const [s,l]=a.size<b.size?[a,b]:[b,a];for(const x of s)if(l.has(x))inter++;return inter/(a.size+b.size-inter);}
+function parseDoc(text){
+  const lines=text.replace(/\r/g,"").replace(/^\s+/,"").split("\n");
+  let title="";
+  if(lines[0]&&/^제목\s*:/.test(lines[0])){title=lines.shift().replace(/^제목\s*:\s*/,"").trim();}
+  const subheads=lines.filter(l=>l.startsWith("## ")).map(l=>l.slice(3).trim());
+  const body=lines.filter(l=>!l.startsWith("## ")).join("\n").trim();
+  const paragraphs=body.split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean);
+  return {title,subheads,body,paragraphs};
+}
+function fieldInfo(key){return FIELDS.find(f=>f[0]===key)||FIELDS[FIELDS.length-1];}
+
+/* ───────── 인용 추출(검증 목록 대조용) ───────── */
+const LAW_RE=/((?:[가-힣]+\s?)?(?:법|법률|시행령|시행규칙|규칙))?\s*제\s?(\d+)조(?:의\s?(\d+))?/g;
+const CASE_RE=/(?<!\d)(\d{2,4})(가합|가단|가소|고합|고단|구합|구단|드합|드단|느합|느단|헌마|헌바|헌가|다|도|두|므|스|누|나|노|마|카|르|브)(\d{2,7})/g;
+function extractCites(text){
+  const laws=[],cases=[];
+  for(const m of text.matchAll(LAW_RE)){laws.push({raw:m[0].trim(),law:(m[1]||"").replace(/\s/g,""),jo:m[2]+(m[3]?"의"+m[3]:"")});}
+  for(const m of text.matchAll(CASE_RE)){cases.push({raw:m[0],no:m[1]+m[2]+m[3]});}
+  return {laws,cases};
+}
+function citeVerified(c,kind){
+  const vs=S.refs.verified.map(v=>nospace(v.cite||""));
+  if(kind==="case") return vs.some(v=>v.includes(c.no));
+  return vs.some(v=>v.includes("제"+c.jo+"조")&&(!c.law||c.law==="같은법"||v.includes(c.law)));
+}
+
+/* ───────── 검수(tools/seo_check.py 이식) ───────── */
+function runChecks(text,kw,lsi,platform){
+  const d=parseDoc(text), n=nospace(d.body).length, items=[];
+  const add=(lv,item,detail)=>items.push({lv,item,detail});
+  if(!text.trim()) return {items:[{lv:"fail",item:"원고",detail:"원고가 비어 있습니다"}],pass:false};
+  // 분량
+  if(n<SPEC.chars_min||n>SPEC.chars_max) add("warn","분량",`본문 ${n.toLocaleString()}자(공백 제외). 기준 ${SPEC.chars_min.toLocaleString()}~${SPEC.chars_max.toLocaleString()}자`);
+  else add("ok","분량",`본문 ${n.toLocaleString()}자`);
+  // 제목
+  if(!d.title) add("fail","제목","첫 줄에 '제목:'이 없습니다");
+  else{
+    const tl=d.title.length;
+    if(tl<SPEC.title_min||tl>SPEC.title_max) add("warn","제목 길이",`${tl}자. 팀 기준 ${SPEC.title_min}~${SPEC.title_max}자`);
+    if(kw){const pos=nospace(d.title).indexOf(nospace(kw));
+      if(pos<0) add("fail","제목 키워드",`대표 키워드 '${kw}'가 제목에 없습니다`);
+      else if(pos>nospace(d.title).length/2) add("warn","제목 키워드","대표 키워드가 제목 뒤쪽 절반에 있습니다");
+      else add("ok","제목 키워드","앞쪽 배치");}
+  }
+  // 키워드 밀도·분포
+  if(kw){
+    const c=countKw(d.body,kw), per=c/Math.max(n,1)*1000;
+    let lv="ok"; if(per>SPEC.kw_max*1.5) lv="fail"; else if(per>SPEC.kw_max||per<SPEC.kw_min) lv="warn";
+    add(lv,"키워드 밀도",`'${kw}' ${c}회, 1,000자당 ${per.toFixed(2)}회. 기준 ${SPEC.kw_min}~${SPEC.kw_max}`);
+    if(countKw(nospace(d.body).slice(0,SPEC.lead),kw)===0) add("warn","도입부 키워드",`첫 ${SPEC.lead}자 안에 대표 키워드가 없습니다`);
+    const flat=nospace(d.body), q=Math.max(Math.floor(flat.length/4),1);
+    const dist=[0,1,2,3].map(i=>countKw(flat.slice(i*q,i<3?(i+1)*q:undefined),kw));
+    add(dist.filter(x=>x===0).length>=2?"warn":"ok","키워드 분포",`4등분 구간별 ${dist.join(" / ")}회`);
+    if(d.subheads.length&&d.subheads.every(s=>countKw(s,kw))) add("warn","소제목 키워드","모든 소제목에 대표 키워드가 반복됩니다. 절반 이하로 줄이십시오");
+  }
+  // LSI
+  if(lsi.length){
+    const full=[d.title,...d.subheads,d.body].join("\n");
+    const miss=lsi.filter(w=>countKw(full,w)===0);
+    const heavy=lsi.filter(w=>countKw(d.body,w)/Math.max(n,1)*1000>SPEC.kw_max*1.5);
+    add((lsi.length-miss.length)/lsi.length>=0.7?"ok":"warn","LSI 반영",`${lsi.length-miss.length}/${lsi.length}`+(miss.length?` · 누락: ${miss.join(", ")}`:""));
+    if(heavy.length) add("warn","LSI 과다",heavy.join(", "));
+  }
+  // 소제목
+  const sh=d.subheads.length;
+  if(sh<SPEC.sub_min||sh>SPEC.sub_max) add("warn","소제목 수",`${sh}개. 팀 기준 ${SPEC.sub_min}~${SPEC.sub_max}개`);
+  const dupSh=d.subheads.filter((s,i,a)=>a.indexOf(s)!==i);
+  if(dupSh.length) add("fail","소제목 중복",dupSh.join(", "));
+  // 호흡
+  const sents=sentences(d.body);
+  const longS=sents.filter(s=>/[.?!]$/.test(s)&&nospace(s).length>SPEC.sent_max);
+  if(longS.length) add("warn","긴 문장",`${longS.length}개(${SPEC.sent_max}자 초과). 예: ${longS[0].slice(0,36)}…`);
+  const longP=d.paragraphs.filter(p=>(p.match(/[.?!](?=\s|$)/g)||[]).length>SPEC.para_max && !/^Q\d/.test(p));
+  if(longP.length) add("warn","긴 문단",`${longP.length}개(${SPEC.para_max}문장 초과). 예: ${longP[0].slice(0,30)}…`);
+  const ends=sents.filter(s=>/[.?!]$/.test(s)).map(s=>s.replace(/[.?!\s]+$/,"").slice(-6));
+  let run=1,worst=[1,""];for(let i=1;i<ends.length;i++){run=ends[i]===ends[i-1]?run+1:1;if(run>worst[0])worst=[run,ends[i]];}
+  if(worst[0]>=4) add("warn","문말 단조",`'…${worst[1]}' ${worst[0]}문장 연속`);
+  // 반복 어구
+  const toks=d.body.split(/\s+/).filter(Boolean),g={};
+  for(let i=0;i<toks.length-2;i++){const k=toks.slice(i,i+3).join(" ");g[k]=(g[k]||0)+1;}
+  const reps=Object.entries(g).filter(([,v])=>v>=5).sort((a,b)=>b[1]-a[1]).slice(0,4);
+  if(reps.length) add("warn","반복 어구",reps.map(([k,v])=>`'${k}' ${v}회`).join("; "));
+  const sc={};sents.forEach(s=>{if(nospace(s).length>15)sc[s]=(sc[s]||0)+1;});
+  const dupS=Object.keys(sc).filter(k=>sc[k]>1);
+  if(dupS.length) add("fail","중복 문장",`${dupS.length}개. 예: ${dupS[0].slice(0,36)}`);
+  // 금지 표현
+  const full=[d.title,...d.subheads,d.body].join("\n");
+  for(const r of BANNED){
+    const hits=r.p.filter(p=>{let i=0;while((i=full.indexOf(p,i))!==-1){if(!NEGATED.test(full.slice(i+p.length,i+p.length+6)))return true;i+=p.length;}return false;});
+    if(hits.length) add(r.lv,r.cat,`${hits.join(", ")} (${r.basis})`);
+  }
+  if(/\*\*|__|~~/.test(text)) add("fail","형식","마크다운 강조 기호가 있습니다");
+  if(/<\/?[a-zA-Z][^>]*>/.test(text)) add("fail","형식","HTML 태그가 있습니다");
+  // 인용 대조
+  const cites=extractCites(full);
+  const badLaw=cites.laws.filter(c=>!citeVerified(c,"law")), badCase=cites.cases.filter(c=>!citeVerified(c,"case"));
+  if(badCase.length) add("fail","판례 인용",`확인 안 된 사건번호: ${[...new Set(badCase.map(c=>c.raw))].join(", ")}`);
+  if(badLaw.length) add("fail","조문 인용",`확인 안 된 조문: ${[...new Set(badLaw.map(c=>c.raw))].slice(0,6).join(", ")}`);
+  if(!badLaw.length&&!badCase.length&&(cites.laws.length||cites.cases.length)) add("ok","인용 대조",`조문 ${cites.laws.length}건, 판례 ${cites.cases.length}건 모두 확인 목록에 있음`);
+  const precedentTalk=sents.filter(s=>/대법원|판례/.test(s)).length;
+  if(precedentTalk&&!S.refs.verified.some(v=>v.type==="판례")) add("warn","판례 취지 서술",`'대법원·판례' 언급 문장 ${precedentTalk}개가 있으나 확인된 판례가 없습니다. 법령 검증 또는 삭제가 필요합니다`);
+  // 유사문서
+  const me=shingles(d.body); let best=[0,""];
+  const pool=[...CORPUS.map(c=>({t:c.title,x:c.text})),...S.posts.filter(p=>p.id!==S.openId&&p.text).map(p=>({t:p.title,x:p.text}))];
+  const selfKey=nospace(d.body);
+  for(const o of pool){const ob=parseDoc(o.x).body; if(nospace(ob)===selfKey) continue; // 같은 글 자체는 비교에서 뺀다
+    const j=jaccard(me,shingles(ob));if(j>best[0])best=[j,o.t];}
+  if(pool.length){const lv=best[0]>=0.35?"fail":best[0]>=0.2?"warn":"ok";add(lv,"유사문서",`최대 유사도 ${best[0].toFixed(2)}${best[1]?` (${best[1].slice(0,24)}…)`:""}. 경고 0.20 / 불가 0.35`);}
+  const order={fail:0,warn:1,ok:2}; items.sort((a,b)=>order[a.lv]-order[b.lv]);
+  return {items,pass:!items.some(i=>i.lv==="fail")};
+}
+function renderChecks(r){
+  const v=$("verdict"), f=r.items.filter(i=>i.lv==="fail").length, w=r.items.filter(i=>i.lv==="warn").length;
+  v.className="verdict "+(f?"fail":w?"warn":"ok");
+  v.textContent=f?`발행 불가 ${f}건 · 경고 ${w}건`:w?`발행 가능 · 경고 ${w}건`:"발행 가능";
+  $("checks").innerHTML=r.items.map(i=>`<li><span class="lv ${i.lv}">${{ok:"통과",warn:"경고",fail:"불가"}[i.lv]}</span><span><b>${esc(i.item)}</b> ${esc(i.detail)}</span></li>`).join("");
+  $("spec-note").textContent=SPEC.note;
+}
+function currentKw(){return $("kw").value.trim()||S.design?.main_kw||"";}
+function currentLsi(){return S.design?.lsi||[];}
+function doCheck(){const r=runChecks($("editor").value,currentKw(),currentLsi(),$("platform").value);renderChecks(r);return r;}
+
+/* ───────── 원고 메타 ───────── */
+function updateMeta(){
+  const t=$("editor").value, d=parseDoc(t);
+  const kw=currentKw();
+  $("meta").innerHTML=`<span>공백 제외 <b>${nospace(d.body).length.toLocaleString()}</b>자</span><span>공백 포함 <b>${d.body.length.toLocaleString()}</b>자</span><span>소제목 <b>${d.subheads.length}</b>개</span>`+(kw?`<span>'${esc(kw)}' <b>${countKw(d.body,kw)}</b>회</span>`:"");
+}
+
+/* ───────── 편집장 진행표 ───────── */
+const STAGES=[["design","설계","주제 기획 담당: 제목·키워드·목차"],["law","법리 확인","법리 검증 담당: 조문·판례 원문 확인"],["write","집필","집필 담당: 팀 문체로 원고 작성"],["audit","검수","검수 담당: 수치 검수와 문맥 점검"],["revise","수정","집필 담당: 검수 지시 반영(최대 2회)"],["final","최종 확인","편집장: 불가 0건 확인"]];
+function resetStages(){$("stages").innerHTML=STAGES.map(([k,t,d])=>`<li class="stage" id="sg-${k}" data-s="wait"><span class="dot"></span><span>${t}<small>${d}</small></span></li>`).join("");$("loop-note").textContent="";}
+function stage(k,s,note){const el=$("sg-"+k);if(!el)return;el.dataset.s=s;if(note!==undefined)el.querySelector("small").textContent=note;}
+
+/* ───────── 프롬프트 ───────── */
+const STYLE_RULES=`[팀 문체 규칙 — 진앤솔 법률사무소 블로그 실측]
+- 제목: 독자 질문형 또는 상황 제시 뒤에 쉼표·물음표, 이어 핵심 정리어, 끝에 대괄호 꼬리표 "[지역 분야 변호사]". 40~60자. 대표 키워드는 제목 앞쪽 절반 안에 넣는다.
+- 도입: 의뢰인이 실제로 할 법한 질문 2개를 “ ”로 인용해 한 줄씩 쓴다. 이어서 상황 설명 → "단순히 ~만으로 ~인정되는 것은 아닙니다" 식의 균형 문장 → "그렇다면 ~ 살펴보겠습니다" 또는 "결론부터 말하면"으로 본론 전환.
+- 소제목 8~9개. 질문형("~될 수 있을까?", "~해야 할까요?")과 서술형("~는 다릅니다")을 섞는다. 번호를 붙이지 않는다. 소제목 줄은 "## "로 시작한다.
+- 문단은 1~2문장, 문단 사이 빈 줄. 한 문장은 대체로 40~90자.
+- 법적 근거 문형: "민법 제○조 제○호는 ~라고 규정하고 있습니다", "대법원은 ~라고 보고 있습니다/판단했습니다". 조문·판례 번호는 [인용 가능 목록]에 있는 것만 쓴다.
+- 보수적 서술: "~될 수 있습니다", "단정하기는 어렵습니다", "다만", "반면", "따라서"로 양쪽을 함께 보여 준다. 결과를 약속하지 않는다.
+- 목록은 "- " 또는 "· ", 증거·자료 항목은 ①②③ 뒤에 항목명 한 줄, 설명 문단. 비교표는 표 대신 '항목명 줄 / 내용 줄'을 번갈아 쓴다.
+- 반드시 들어가는 구간: 판단 기준 설명, 사례 대비(같은 상황이라도 결론이 달라지는 경우), 준비할 자료·증거, "○○, 자주 묻는 질문" 소제목 아래 Q1.~Q5.(각 Q 한 줄, "A." 답 2~3문장), 핵심 명제형 마무리 소제목과 요약 문단 4~6개.
+- 마지막 문단 2개: "{FIRM}는 ~ 자료를 검토하여 ~을 살펴보고 있습니다." 한 문단, "~ 상황이라면 ~ 구체적으로 살펴볼 필요가 있습니다." 한 문단. 사무소 소개·구성원·연락처 문단은 쓰지 않는다(서명은 따로 붙인다).
+- 금지: 굵게·기울임 같은 마크다운 강조, HTML, 이모지, 해시태그, "결론적으로/요약하자면/첫째·둘째", 결과 보장·비교 광고·과장 표현, 특정 변호사 이름.`;
+function styleSample(){const t=CORPUS[0].text; return t.slice(0, t.indexOf("## 명절에 한 번"));}
+
+function designPrompt(inp){
+  return `당신은 법률사무소 마케팅팀의 주제 기획 담당입니다. 아래 조건으로 블로그 원고 설계를 JSON 하나로만 답하십시오.
+
+[조건]
+플랫폼: ${PLATFORMS[inp.platform].label} — 각도: ${PLATFORMS[inp.platform].angle}
+분야: ${inp.fieldLabel}
+제목 꼬리표: [${inp.region} ${inp.fieldTag} 변호사]
+주제: ${inp.topic||"(미정 — 분야 안에서 검색 수요가 있을 주제로 정하십시오)"}
+대표 키워드(지정): ${inp.kw||"(미지정 — 정하십시오)"}
+독자 메모: ${inp.memo||"(없음)"}
+참고자료 요약: ${inp.refs?inp.refs.slice(0,1500):"(없음)"}
+
+${STYLE_RULES.replace("{FIRM}",inp.firm)}
+
+[출력 JSON 형식]
+{"titles":["제목안1","제목안2","제목안3"],
+ "main_kw":"대표 키워드(2~4어절 명사구)",
+ "lsi":["같은 법률관계를 설명할 때 자연히 나오는 용어 5~8개(대표 키워드의 띄어쓰기 변형 금지)"],
+ "longtail":["독자가 검색창에 칠 질문형 표현 2~3개"],
+ "questions":["도입부 인용 질문 1","도입부 인용 질문 2"],
+ "outline":[{"h":"소제목","point":"이 구간에서 답할 내용 1~2문장"}],
+ "issues":[{"issue":"법적 근거가 필요한 쟁점","need":"조문|판례","query":"법령·판례 검색어"}]}
+outline은 8~9개, issues는 2~5개. 사실관계를 지어내지 마십시오.`;
+}
+function lawPrompt(inp,design){
+  return `당신은 법리 검증 담당입니다. 목표는 틀린 법률 정보가 원고에 들어가지 않게 하는 것입니다.
+주제: ${design.titles?.[0]||inp.topic}
+쟁점: ${JSON.stringify(design.issues||[])}
+팀원이 준 참고자료:
+${inp.refs||"(없음)"}
+
+도구 사용법: search_law(query)로 법령을 찾아 mst를 얻고, get_law_text(mst, jo)로 조문 원문을 확인합니다. 판례는 search_decisions(query)로 찾고 결과 원문에 사건번호와 요지가 있는 것만 채택합니다. 쟁점마다 도구로 원문을 확인하십시오. 원문을 보지 못한 것은 verified에 넣지 마십시오. 기억에 의존한 번호는 unverified로 보냅니다.
+
+마지막 답은 JSON 하나:
+{"verified":[{"type":"조문|판례","cite":"민법 제840조 제3호 / 대법원 2020. 1. 1. 선고 2019다12345 판결","summary":"원문 기준 요지 1~2문장","use":"원고에서 쓸 지점"}],
+ "unverified":[{"cite":"","reason":""}],
+ "disputed":[{"point":"해석이 갈리는 지점","note":""}]}`;
+}
+function refsOnlyPrompt(inp){
+  return `아래 참고자료에 실제로 적혀 있는 조문과 판례만 목록으로 뽑으십시오. 자료에 없는 번호를 보태지 마십시오.
+참고자료:
+${inp.refs}
+
+JSON 하나로만: {"verified":[{"type":"조문|판례","cite":"","summary":"자료 기준 요지","use":""}],"unverified":[],"disputed":[]}`;
+}
+function writePrompt(inp,design,refs){
+  return `당신은 법률 블로그 집필 담당입니다. 아래 설계와 인용 가능 목록만 재료로 ${PLATFORMS[inp.platform].label} 원고 전문을 쓰십시오.
+
+${STYLE_RULES.replace("{FIRM}",inp.firm)}
+
+[플랫폼 각도] ${PLATFORMS[inp.platform].angle}
+
+[설계]
+제목(첫 번째 안을 쓰되 다듬어도 됨): ${design.titles?.[0]}
+대표 키워드: ${design.main_kw} — 본문에 8~15회, 첫 160자 안에 1회, 소제목에는 절반 이하. 억지로 넣지 말고 문맥상 자연스러운 자리에만.
+LSI: ${(design.lsi||[]).join(", ")} — 70% 이상을 설명 맥락에서 사용. 나열 금지.
+롱테일(FAQ 질문에 반영): ${(design.longtail||[]).join(" / ")}
+도입 질문: ${(design.questions||[]).join(" / ")}
+목차: ${(design.outline||[]).map((o,i)=>`${i+1}) ${o.h} — ${o.point}`).join("\n")}
+독자 메모: ${inp.memo||"(없음)"}
+
+[인용 가능 목록 — 여기 있는 조문·판례만 번호를 적을 수 있음]
+${refs.verified.length?refs.verified.map(v=>`- ${v.cite}: ${v.summary}`).join("\n"):"(없음 — 조문·판례 번호와 '대법원은 ~' 식의 판례 취지 서술을 쓰지 말고, 일반적인 법률관계 설명과 판단 요소 중심으로 쓰십시오)"}
+${refs.disputed?.length?"[해석이 갈리는 지점 — 양쪽을 모두 적을 것]\n"+refs.disputed.map(d=>"- "+d.point).join("\n"):""}
+
+[문체 견본 — 리듬과 구성만 참고하고 문장을 베끼지 말 것]
+${styleSample()}
+
+[출력 형식]
+첫 줄 "제목: …". 소제목 줄은 "## "로 시작. 문단 사이 빈 줄. 본문 공백 제외 4,500~6,000자. 원고 외의 설명, 머리말, 코드블록을 붙이지 말고 원고만 출력하십시오.`;
+}
+function auditPrompt(text,design,refs,fails){
+  return `당신은 발행 전 품질 검수 담당입니다. 네이버·구글이 저품질로 볼 신호와 법률 서술 오류를 찾습니다. 원고를 고치지 말고 수정 지시만 JSON으로 답하십시오.
+
+대표 키워드: ${design?.main_kw||""}
+인용 가능 목록: ${refs.verified.map(v=>v.cite).join(" / ")||"(없음)"}
+자동 검수에서 나온 불가·경고: ${fails.map(i=>i.item+": "+i.detail).join(" | ")||"(없음)"}
+
+점검 항목: 1) 제목이 약속한 질문에 본문이 실제로 답하는가 2) 키워드를 억지로 넣은 문장 3) LSI 나열 4) 채우기용 문단(일반론 반복, 막연한 "상황에 따라 다릅니다") 5) AI 글 티(기계적 병렬, 과잉 접속사, 뜻 없는 요약) 6) 결과 보장·비교·과장 표현 7) 인용 가능 목록에 없는 조문·판례·수치, 단정적 법률 서술.
+
+JSON 하나: {"issues":[{"where":"소제목명 또는 문단 첫 어절","problem":"","fix":"무엇을 어떻게 고칠지"}],"verdict":"발행 가능|수정 필요"}
+issues는 중요한 것 최대 8개.
+
+[원고]
+${text}`;
+}
+function revisePrompt(text,issues,design,refs){
+  return `당신은 법률 블로그 집필 담당입니다. 아래 원고를 수정 지시대로 고친 전문을 출력하십시오. 지시받지 않은 부분의 표현과 용어는 그대로 둡니다.
+
+[수정 지시]
+${issues.map((x,i)=>`${i+1}. [${x.where||"-"}] ${x.problem} → ${x.fix}`).join("\n")}
+
+[지켜야 할 것] 대표 키워드 '${design?.main_kw||""}' 밀도 유지. 조문·판례 번호는 다음 목록에 있는 것만: ${refs.verified.map(v=>v.cite).join(" / ")||"(없음 — 번호와 판례 취지 서술 삭제)"}. 첫 줄 "제목: …", 소제목 "## ". 원고만 출력.
+
+[원고]
+${text}`;
+}
+function rephrasePrompt(text){
+  return `아래 법률 블로그 원고를 기존 글과의 유사도를 낮추도록 다시 쓰십시오. 법률 내용, 조문·판례 번호, 대표 키워드 횟수, 소제목 개수와 순서는 유지하고 문장 구조, 어순, 예시 표현, 연결어를 바꿉니다. 새로운 법률 사실을 보태지 마십시오. 첫 줄 "제목: …", 소제목 "## ". 원고만 출력하십시오.
+
+${text}`;
+}
+function topicPrompt(field,platform,n,memo,ledger){
+  return `당신은 법률사무소 블로그 주제 기획 담당입니다. ${field} 분야에서 ${PLATFORMS[platform].label}에 올릴 주제 ${n}개를 제안하십시오.
+시기·이슈 메모: ${memo||"(없음)"}
+이미 발행하거나 작성 중인 글(겹치지 않게): ${ledger.map(l=>l.title).join(" / ")}
+플랫폼 각도: ${PLATFORMS[platform].angle}
+의뢰인이 실제로 검색하는 구체적 상황 단위로 쪼개십시오(예: '이혼' 대신 '명절 시가 폭언이 이혼사유가 되는지'). 검색량 수치는 쓰지 마십시오. 판례·조문 번호를 적지 마십시오.
+
+JSON 배열 하나: [{"topic":"주제","title":"제목안(팀 형식: 질문형 + 정리어 + [지역 분야 변호사])","main_kw":"대표 키워드","lsi":["5~8개"],"longtail":["2~3개"],"intent":"정보 탐색|절차 확인|비용 확인|대응 방법","why":"이 주제를 고른 이유 1문장","risk":"법리 다툼·광고규정 등 주의점 또는 없음"}]`;
+}
+
+/* ───────── 중복 판정 ───────── */
+function overlap(kw,title){
+  const k=nospace(kw||""); const out=[];
+  const ledger=[...SEED_LEDGER,...S.posts.map(p=>({title:p.title,kw:p.kw,platform:p.platform,date:(p.updatedAt||"").slice(0,10),status:p.status}))];
+  for(const r of ledger){
+    const t=nospace(r.title||""), m=nospace(r.kw||"");
+    if(k&&(k===m||t.includes(k)||(m&&k.includes(m)))){out.push(["strong",r]);continue;}
+    const toks=(kw||"").match(/[가-힣A-Za-z0-9]{2,}/g)||[];
+    const hit=toks.filter(w=>(r.title||"").includes(w)||(r.kw||"").includes(w));
+    if(toks.length&&hit.length/toks.length>=0.5) out.push(["mid",r]);
+  }
+  return out;
+}
+
+/* ───────── 파이프라인 ───────── */
+function readInputs(){
+  const f=fieldInfo($("field").value);
+  return {platform:$("platform").value,field:f[0],fieldLabel:f[1],fieldTag:f[2],topic:$("topic").value.trim(),kw:$("kw").value.trim(),
+    memo:$("memo").value.trim(),refs:$("refs").value.trim(),region:S.settings.region||"창원",firm:S.settings.firm||"진앤솔 법률사무소",useLaw:$("use-law").checked};
+}
+function sampleErr(e){
+  const m={not_granted:"Claude 사용이 허용되지 않았습니다. 페이지를 새로 열어 허용해 주십시오.",sampling_disabled:"이 계정에서는 Claude 호출을 쓸 수 없습니다.",rate_limited:"Claude 사용량 한도에 걸렸습니다. 잠시 뒤 다시 시도하십시오.",session_expired:"claude.ai에 다시 로그인해 주십시오.",refused:"Claude가 이 요청을 처리하지 않았습니다. 주제 표현을 바꿔 보십시오.",prompt_too_large:"입력이 너무 깁니다. 참고자료를 줄여 주십시오.",invalid_json:"응답 형식이 맞지 않았습니다. 다시 시도하십시오.",cancelled:"중지했습니다."};
+  return m[e?.code]||"Claude 호출에 실패했습니다. 다시 시도하십시오.";
+}
+function lawTools(signal){
+  const call=async(tool,input)=>{
+    const r=await S.mcp.callTool(LAW_SERVER,tool,input,{signal});
+    let p=r.payload; if(typeof p!=="string") p=JSON.stringify(p);
+    return (p||"").slice(0,24000);
+  };
+  return [
+    {name:"search_law",description:"법령명 키워드로 법령을 검색해 법령ID와 MST를 돌려줍니다. 조문을 보기 전에 먼저 호출합니다.",inputSchema:{type:"object",properties:{query:{type:"string",description:"법령명, 예: 민법"}},required:["query"]},execute:i=>call("search_law",{query:String(i.query||""),display:10})},
+    {name:"get_law_text",description:"조문 원문을 돌려줍니다. search_law에서 얻은 mst와 '제840조' 같은 조문 번호를 넣습니다.",inputSchema:{type:"object",properties:{mst:{type:"string"},jo:{type:"string",description:"예: 제840조"}},required:["mst"]},execute:i=>call("get_law_text",{mst:String(i.mst||""),...(i.jo?{jo:String(i.jo)}:{})})},
+    {name:"search_decisions",description:"대법원 등 판례를 키워드로 검색해 사건번호·선고일·요지를 돌려줍니다.",inputSchema:{type:"object",properties:{query:{type:"string"}},required:["query"]},execute:i=>call("search_decisions",{domain:"precedent",query:String(i.query||""),display:8})}
+  ];
+}
+async function probeLaw(){
+  S.lawProbed=true;
+  try{await S.mcp.callTool(LAW_SERVER,"search_law",{query:"민법",display:1});pill("st-law",true,"법령mcp 연결됨");}
+  catch(e){S.law=false;pill("st-law",false,e?.code==="server_not_connected"?"법령mcp 미연결":"법령 검증 불가");}
+}
+function renderDesign(d){
+  if(!d){return;}
+  $("kwbox").innerHTML=`<div><span class="hint">제목 후보 (눌러서 원고 제목에 적용)</span><ul class="titles">${(d.titles||[]).map(t=>`<li><button type="button" data-title="${esc(t)}">${esc(t)}</button></li>`).join("")}</ul></div>
+    <div><span class="hint">대표 키워드</span><div class="chips"><span class="chip">${esc(d.main_kw)}</span></div></div>
+    <div><span class="hint">LSI</span><div class="chips" id="lsi-chips">${(d.lsi||[]).map(w=>`<span class="chip">${esc(w)}</span>`).join("")}</div></div>
+    <div><span class="hint">롱테일</span><div class="chips">${(d.longtail||[]).map(w=>`<span class="chip">${esc(w)}</span>`).join("")}</div></div>`;
+}
+function refreshLsiChips(){
+  const box=$("lsi-chips"); if(!box||!S.design) return;
+  const t=$("editor").value;
+  box.innerHTML=(S.design.lsi||[]).map(w=>`<span class="chip ${countKw(t,w)?"":"miss"}">${esc(w)}</span>`).join("");
+}
+function renderRefs(){
+  const r=S.refs, el=$("reflist");
+  if(!r.verified.length&&!r.unverified?.length){el.innerHTML=`<p class="hint">확인된 조문·판례가 없습니다. 원고에는 번호 없는 일반 설명만 들어갑니다.</p>`;return;}
+  el.innerHTML=r.verified.map(v=>`<div class="ref v"><b>${esc(v.cite)}</b><br>${esc(v.summary||"")}</div>`).join("")+
+    (r.unverified||[]).map(v=>`<div class="ref x"><b>${esc(v.cite)}</b> 확인 실패 — 사용 금지<br><span class="hint">${esc(v.reason||"")}</span></div>`).join("")+
+    (r.disputed||[]).map(v=>`<div class="ref"><b>해석 대립</b> ${esc(v.point)}</div>`).join("");
+}
+function setBusy(b){S.busy=b;["run","check","rephrase","save"].forEach(id=>$(id).disabled=b);$("stop").hidden=!b;}
+
+async function pipeline(){
+  if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  const inp=readInputs();
+  if(!inp.topic&&!inp.kw){toast("주제나 대표 키워드 중 하나는 넣어 주십시오");return;}
+  if(inp.topic||inp.kw){const dup=overlap(inp.kw||inp.topic,inp.topic).filter(x=>x[0]==="strong");if(dup.length)toast(`기존 글과 키워드가 겹칩니다: ${dup[0][1].title.slice(0,30)}…`);}
+  resetStages();setBusy(true);S.ctl=new AbortController();const signal=S.ctl.signal;
+  $("trunc").hidden=true; S.openId=null;
+  try{
+    // 1 설계
+    stage("design","run");
+    const d=await S.sample.json(designPrompt(inp),{signal,cache:false});
+    if(!d||!Array.isArray(d.outline)) throw {code:"invalid_json"};
+    if(inp.kw) d.main_kw=inp.kw;
+    S.design=d; renderDesign(d); stage("design","done",`소제목 ${d.outline.length}개, LSI ${d.lsi?.length||0}개`);
+    if(!inp.kw) $("kw").value=d.main_kw||"";
+    // 2 법리
+    stage("law","run");
+    if(inp.useLaw&&S.law&&S.tools&&!S.lawProbed) await probeLaw();
+    let refs={verified:[],unverified:[],disputed:[]};
+    const canLaw=inp.useLaw&&S.law&&S.tools;
+    if(canLaw){
+      try{ refs=await S.sample.json(lawPrompt(inp,d),{signal,tools:lawTools(signal)}); stage("law","done",`확인 ${refs.verified?.length||0}건 · 실패 ${refs.unverified?.length||0}건`); }
+      catch(e){ if(e?.code==="cancelled") throw e; stage("law","warn","법령 검증 실패 — 참고자료만 사용"); if(inp.refs) refs=await S.sample.json(refsOnlyPrompt(inp),{signal,cache:false}); }
+    }else if(inp.refs){
+      refs=await S.sample.json(refsOnlyPrompt(inp),{signal,cache:false});
+      stage("law","warn",`참고자료에서 ${refs.verified?.length||0}건 (원문 대조 없음)`);
+    }else stage("law","warn","검증 수단 없음 — 번호 없는 일반 설명으로 작성");
+    refs.verified=(refs.verified||[]).filter(v=>v&&v.cite); refs.unverified=refs.unverified||[]; refs.disputed=refs.disputed||[];
+    S.refs=refs; renderRefs();
+    // 3 집필
+    stage("write","run","원고 작성 중");
+    const ed=$("editor"); ed.value="";
+    const w=await S.sample(writePrompt(inp,d,refs),{signal,cache:false,modelTier:"complex",onText:({text})=>{ed.value=text;updateMeta();}});
+    ed.value=w.text.trim(); updateMeta();
+    if(w.truncated){$("trunc").textContent="원고가 길이 한도에서 끊겼습니다. 끝부분을 확인하고 필요하면 이어서 써 주십시오.";$("trunc").hidden=false;}
+    stage("write","done",`본문 ${nospace(parseDoc(ed.value).body).length.toLocaleString()}자`);
+    // 4~5 검수·수정 루프
+    let loops=0;
+    for(;;){
+      stage("audit","run");
+      const r=runChecks(ed.value,d.main_kw,d.lsi||[],inp.platform); renderChecks(r);
+      const flagged=r.items.filter(i=>i.lv!=="ok");
+      const a=await S.sample.json(auditPrompt(ed.value,d,refs,flagged),{signal,cache:false});
+      const issues=[...r.items.filter(i=>i.lv==="fail").map(i=>({where:i.item,problem:i.detail,fix:"기준에 맞게 고치거나 해당 표현·인용을 삭제"})),...(a?.issues||[])];
+      stage("audit",r.pass?"done":"fail",`불가 ${r.items.filter(i=>i.lv==="fail").length}건 · 지시 ${issues.length}건`);
+      if(!issues.length||loops>=2){break;}
+      loops++; $("loop-note").textContent=`수정 ${loops}회차`;
+      stage("revise","run",`${loops}회차 수정 중`);
+      const rv=await S.sample(revisePrompt(ed.value,issues.slice(0,10),d,refs),{signal,cache:false,onText:({text})=>{ed.value=text;updateMeta();}});
+      ed.value=rv.text.trim(); updateMeta(); stage("revise","done",`${loops}회차 반영`);
+    }
+    if(loops===0) stage("revise","done","수정 불필요");
+    // 6 최종
+    const fin=doCheck(); refreshLsiChips();
+    stage("final",fin.pass?"done":"fail",fin.pass?"불가 0건 — 담당 변호사 검토 후 게시":"불가 항목이 남았습니다. 검수 결과를 보고 직접 고치십시오");
+  }catch(e){
+    const msg=sampleErr(e); toast(msg);
+    const running=[...document.querySelectorAll('.stage[data-s="run"]')]; running.forEach(el=>{el.dataset.s="fail";el.querySelector("small").textContent=msg;});
+    if(e?.text&&!$("editor").value) $("editor").value=e.text;
+  }finally{setBusy(false);updateMeta();}
+}
+
+async function rephrase(){
+  const t=$("editor").value.trim(); if(!t){toast("원고가 없습니다");return;}
+  if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  setBusy(true);S.ctl=new AbortController();const before=t;
+  try{const r=await S.sample(rephrasePrompt(t),{signal:S.ctl.signal,cache:false,onText:({text})=>{$("editor").value=text;updateMeta();}});
+    $("editor").value=r.text.trim();doCheck();toast("리프레이즈를 마쳤습니다");}
+  catch(e){toast(sampleErr(e));$("editor").value=e?.text||before;}
+  finally{setBusy(false);updateMeta();}
+}
+
+/* ───────── 주제 추천 ───────── */
+async function topics(ev){
+  ev.preventDefault(); if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  const f=fieldInfo($("t-field").value), platform=$("t-platform").value, n=+$("t-n").value;
+  const ledger=[...SEED_LEDGER,...S.posts.map(p=>({title:p.title}))].slice(-60);
+  $("t-run").disabled=true; $("topic-cards").innerHTML=`<div class="empty">주제를 고르는 중입니다</div>`;
+  try{
+    const list=await S.sample.json(topicPrompt(f[1],platform,n,$("t-memo").value.trim(),ledger),{cache:false});
+    if(!Array.isArray(list)) throw {code:"invalid_json"};
+    $("topic-cards").innerHTML=list.map((t,i)=>{
+      const ov=overlap(t.main_kw,t.title); const strong=ov.find(o=>o[0]==="strong"), mid=ov.find(o=>o[0]==="mid");
+      const dup=strong?`<span class="dup strong">겹침: ${esc(strong[1].title.slice(0,28))}</span>`:mid?`<span class="dup mid">일부 겹침: ${esc(mid[1].title.slice(0,28))}</span>`:`<span class="dup none">기존 글과 겹침 없음</span>`;
+      return `<article class="card"><h3>${esc(t.title||t.topic)}</h3>${dup}<dl>
+        <dt>대표 키워드</dt><dd>${esc(t.main_kw)}</dd><dt>LSI</dt><dd>${esc((t.lsi||[]).join(", "))}</dd>
+        <dt>롱테일</dt><dd>${esc((t.longtail||[]).join(" / "))}</dd><dt>검색 의도</dt><dd>${esc(t.intent||"")}</dd>
+        <dt>이유</dt><dd>${esc(t.why||"")}</dd><dt>주의</dt><dd>${esc(t.risk||"")}</dd></dl>
+        <div class="btns"><button class="btn primary" type="button" data-use="${i}">이 주제로 작성</button></div></article>`;}).join("");
+    topics._list=list; topics._field=f[0]; topics._platform=platform;
+  }catch(e){$("topic-cards").innerHTML=`<div class="empty">${esc(sampleErr(e))}</div>`;}
+  finally{$("t-run").disabled=false;}
+}
+$("topic-cards").addEventListener("click",e=>{
+  const b=e.target.closest("[data-use]"); if(!b) return; const t=topics._list[+b.dataset.use];
+  $("field").value=topics._field; $("platform").value=topics._platform; $("topic").value=t.topic||t.title; $("kw").value=t.main_kw||"";
+  $("memo").value=[t.why,(t.longtail||[]).join(" / ")].filter(Boolean).join("\n");
+  show("write"); toast("작성 조건에 옮겼습니다. 생성하기를 누르십시오");
+});
+
+/* ───────── 원고함(db) ───────── */
+async function savePost(){
+  const text=$("editor").value.trim(); if(!text){toast("원고가 없습니다");return;}
+  if(!S.db){toast("원고함을 쓸 수 없는 화면입니다");return;}
+  const d=parseDoc(text), r=runChecks(text,currentKw(),currentLsi(),$("platform").value), now=new Date().toISOString();
+  const id=S.openId||("p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+  const prev=S.posts.find(p=>p.id===id);
+  const data={title:d.title||"(제목 없음)",platform:$("platform").value,field:$("field").value,kw:currentKw(),lsi:currentLsi(),text,
+    refs:S.refs.verified.map(v=>v.cite),fails:r.items.filter(i=>i.lv==="fail").length,status:prev?.status||"draft",url:prev?.url||"",
+    author:prev?.author||S.me||"",createdAt:prev?.createdAt||now,updatedAt:now};
+  try{await S.db.doc("posts/"+id).set(data);S.openId=id;toast("원고함에 저장했습니다");}
+  catch(e){toast(e?.code==="permission_denied"?"저장 권한이 없습니다. 원고실 소유자에게 참여자 권한을 요청하십시오":"저장에 실패했습니다");}
+}
+async function renderBox(){
+  const f=$("box-filter").value; let rows=S.posts.slice();
+  if(f==="mine") rows=rows.filter(p=>p.author&&p.author===S.me);
+  if(f==="draft") rows=rows.filter(p=>p.status!=="published");
+  if(f==="pub") rows=rows.filter(p=>p.status==="published");
+  if(!S.db){$("box-rows").innerHTML=`<tr><td colspan="7" class="empty">원고함을 쓸 수 없는 화면입니다</td></tr>`;return;}
+  if(!rows.length){$("box-rows").innerHTML=`<tr><td colspan="7" class="empty">저장된 원고가 없습니다</td></tr>`;return;}
+  let names={}; try{ if(S.user) { const ids=[...new Set(rows.map(p=>p.author).filter(Boolean))]; if(ids.length) names=await S.user.profiles(ids);} }catch(_){}
+  $("box-rows").innerHTML=rows.map(p=>`<tr>
+    <td>${p.status==="published"?`<span class="tag pub">발행</span>`:`<span class="tag">초안</span>`}${p.fails?` <span class="tag" style="color:var(--fail)">불가 ${p.fails}</span>`:""}</td>
+    <td>${esc(p.title)}${p.url?`<br><a href="${esc(p.url)}" target="_blank" rel="noopener" class="hint">${esc(p.url.slice(0,48))}</a>`:""}</td>
+    <td>${esc(PLATFORMS[p.platform]?.label||"")}</td><td>${esc(p.kw||"")}</td>
+    <td>${esc(names[p.author]?.name||"팀원")}</td><td class="num">${esc((p.updatedAt||"").slice(0,10))}</td>
+    <td><div class="btns"><button class="btn" type="button" data-open="${esc(p.id)}">열기</button>${p.status!=="published"?`<button class="btn" type="button" data-pub="${esc(p.id)}">발행 처리</button>`:""}</div>
+      <div data-pubform="${esc(p.id)}" hidden style="margin-top:6px;display:grid;gap:6px"><input type="text" placeholder="게시 주소" aria-label="게시 주소"><button class="btn primary" type="button" data-pubok="${esc(p.id)}">발행으로 기록</button></div></td></tr>`).join("");
+}
+$("box-rows").addEventListener("click",async e=>{
+  const o=e.target.closest("[data-open]"), pb=e.target.closest("[data-pub]"), ok=e.target.closest("[data-pubok]");
+  if(o){const p=S.posts.find(x=>x.id===o.dataset.open); if(!p) return;
+    $("editor").value=p.text; $("platform").value=p.platform||"naver"; $("field").value=p.field||"etc"; $("kw").value=p.kw||"";
+    S.openId=p.id; S.design={main_kw:p.kw,lsi:p.lsi||[],titles:[p.title]}; S.refs={verified:(p.refs||[]).map(c=>({cite:c,type:/\d{2,4}(다|도|두|므|스|누|나|노)/.test(c)?"판례":"조문"})),unverified:[],disputed:[]};
+    renderDesign(S.design); renderRefs(); updateMeta(); doCheck(); show("write");}
+  if(pb){const box=document.querySelector(`[data-pubform="${pb.dataset.pub}"]`); box.hidden=!box.hidden;}
+  if(ok){const id=ok.dataset.pubok, url=document.querySelector(`[data-pubform="${id}"] input`).value.trim();
+    try{await S.db.doc("posts/"+id).update({status:"published",url,publishedAt:new Date().toISOString(),updatedAt:new Date().toISOString()});toast("발행으로 기록했습니다");}
+    catch(_){toast("기록에 실패했습니다. 권한을 확인하십시오");}}
+});
+$("box-filter").addEventListener("change",renderBox);
+
+/* ───────── 설정 ───────── */
+$("set-form").addEventListener("submit",async e=>{
+  e.preventDefault(); if(!S.db){toast("설정을 저장할 수 없는 화면입니다");return;}
+  const data={firm:$("s-firm").value.trim(),region:$("s-region").value.trim(),sig:$("s-sig").value,updatedAt:new Date().toISOString()};
+  try{await S.db.doc("settings/main").set(data);toast("설정을 저장했습니다");}catch(_){toast("편집 권한이 있는 사람만 저장할 수 있습니다");}
+});
+
+/* ───────── 복사 ───────── */
+async function copyText(withSig){
+  const d=parseDoc($("editor").value); if(!d.body){toast("원고가 없습니다");return;}
+  const lines=[d.title,"",...$("editor").value.replace(/^\s*제목\s*:.*\n?/,"").split("\n").map(l=>l.startsWith("## ")?"\n"+l.slice(3):l)];
+  let out=lines.join("\n").trim(); if(withSig&&S.settings.sig) out+="\n\n\n"+S.settings.sig.trim();
+  try{await navigator.clipboard.writeText(out);toast(withSig&&!S.settings.sig?"서명 문구가 비어 있어 본문만 복사했습니다":"복사했습니다. 소제목은 '## ' 표시를 빼고 앞에 빈 줄을 하나 더 둡니다");}
+  catch(_){const ed=$("editor");ed.focus();ed.select();toast("자동 복사가 막혀 원고 전체를 선택했습니다. Ctrl+C로 복사하십시오");}
+}
+
+/* ───────── 화면 전환 ───────── */
+function show(v){["write","topic","box","set"].forEach(k=>{$("view-"+k).hidden=k!==v;$("tab-"+k).setAttribute("aria-selected",String(k===v));});
+  try{localStorage.setItem("wk.view",v);}catch(_){}
+  if(v==="box") renderBox();}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>show(t.dataset.view)));
+
+/* ───────── 초기화 ───────── */
+function fillFields(){const o=FIELDS.map(f=>`<option value="${f[0]}">${f[1]}</option>`).join("");$("field").innerHTML=o;$("t-field").innerHTML=o;}
+function saveDraft(){try{localStorage.setItem("wk.draft",JSON.stringify({p:$("platform").value,f:$("field").value,t:$("topic").value,k:$("kw").value,m:$("memo").value,r:$("refs").value,e:$("editor").value}));}catch(_){}}
+function loadDraft(){try{const d=JSON.parse(localStorage.getItem("wk.draft")||"null");if(!d)return;$("platform").value=d.p||"naver";$("field").value=d.f||"divorce";$("topic").value=d.t||"";$("kw").value=d.k||"";$("memo").value=d.m||"";$("refs").value=d.r||"";$("editor").value=d.e||"";}catch(_){}}
+function pill(id,on,txt){const p=$(id);p.textContent=txt;p.className="pill "+(on?"on":"off");}
+
+fillFields(); resetStages(); loadDraft(); updateMeta();
+if(!$("editor").value){ // 첫 화면 예시: 팀 글 1편을 불러와 검수 결과를 보여 준다
+  $("editor").value="제목: "+CORPUS[1].title+"\n\n"+CORPUS[1].text; $("kw").value=CORPUS[1].kw; $("topic").value="연인 대신 내준 월세·카드값 반환"; $("field").value="civil";
+  S.refs={verified:[],unverified:[],disputed:[]}; updateMeta();
+  $("trunc").textContent="예시로 팀 글 한 편을 불러왔습니다. 생성하기를 누르면 새 원고로 바뀝니다."; $("trunc").hidden=false;
+}
+doCheck();
+try{const v=localStorage.getItem("wk.view");if(v&&v!=="write")show(v);}catch(_){}
+
+$("form").addEventListener("submit",e=>{e.preventDefault();if(!S.busy)pipeline();});
+$("stop").addEventListener("click",()=>S.ctl?.abort());
+$("check").addEventListener("click",()=>{doCheck();refreshLsiChips();});
+$("rephrase").addEventListener("click",rephrase);
+$("copy").addEventListener("click",()=>copyText(false));
+$("copy-sig").addEventListener("click",()=>copyText(true));
+$("save").addEventListener("click",savePost);
+$("topic-form").addEventListener("submit",topics);
+$("kwbox").addEventListener("click",e=>{const b=e.target.closest("[data-title]");if(!b)return;const ed=$("editor");ed.value=ed.value.replace(/^\s*제목\s*:.*$/m,"제목: "+b.dataset.title);if(!/^\s*제목\s*:/.test(ed.value))ed.value="제목: "+b.dataset.title+"\n\n"+ed.value;updateMeta();});
+let _t;$("editor").addEventListener("input",()=>{updateMeta();clearTimeout(_t);_t=setTimeout(()=>{saveDraft();refreshLsiChips();},600);});
+["platform","field","topic","kw","memo","refs"].forEach(id=>$(id).addEventListener("change",saveDraft));
+
+(async()=>{
+  const C=window.claude; if(!C||!C.use){pill("st-claude",false,"Claude 연결 없음");pill("st-law",false,"법령 검증 없음");pill("st-db",false,"원고함 없음");return;}
+  C.use("sample").then(async s=>{S.sample=s; if(!s){pill("st-claude",false,"Claude 연결 없음");return;}
+    try{const l=await s.limits();S.tools=!!l?.tools;}catch(_){S.tools=false;}
+    pill("st-claude",true,"Claude 연결됨");
+    C.use("mcp").then(async m=>{S.mcp=m;
+      if(!m||!S.tools){pill("st-law",false,"법령 검증 꺼짐");return;}
+      S.law=true; pill("st-law",true,"법령mcp 사용 가능"); // 연결 여부는 첫 호출에서 확인
+    });
+  });
+  C.use("user").then(async u=>{S.user=u; if(!u) return; try{S.me=await u.id();S.canEdit=await u.canEdit();}catch(_){}
+    $("s-save").disabled=!S.canEdit; $("set-note").textContent=S.canEdit?"저장하면 팀 전체에 적용됩니다":"편집 권한자만 저장할 수 있습니다";});
+  C.use("db").then(db=>{S.db=db; if(!db){pill("st-db",false,"원고함 없음");return;}
+    pill("st-db",true,"원고함 연결됨");
+    db.doc("settings/main").onSnapshot(snap=>{const d=snap.exists?snap.data():null; if(d){S.settings={firm:d.firm||S.settings.firm,region:d.region||S.settings.region,sig:d.sig||""};$("s-firm").value=S.settings.firm;$("s-region").value=S.settings.region;$("s-sig").value=S.settings.sig;}},()=>{});
+    db.collection("posts").orderBy("updatedAt","desc").limit(300).onSnapshot(snap=>{S.posts=snap.docs.map(d=>({id:d.id,...d.data()}));if(!$("view-box").hidden)renderBox();},()=>pill("st-db",false,"원고함 연결 끊김"));
+  });
+})();
+</script>

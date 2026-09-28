@@ -16,7 +16,9 @@ def channel_spec(channel):
     spec = load_json("channels.json")[channel].copy()
     base_path = CONFIG / "baseline.json"
     if base_path.exists():
-        base = json.loads(base_path.read_text(encoding="utf-8")).get(channel, {})
+        all_base = json.loads(base_path.read_text(encoding="utf-8"))
+        # 채널별 실측이 없으면 채널 미상 팀 글(common) 실측을 쓴다
+        base = all_base.get(channel) or all_base.get("common", {})
         spec.update({k: v for k, v in base.items() if not k.startswith("_")})
     return spec
 

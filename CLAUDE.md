@@ -2,6 +2,12 @@
 
 이 저장소는 마케팅팀이 네이버 블로그·로톡·티스토리용 법률 글을 뽑아내는 작업 공간이다. 최종 산출물은 글 텍스트뿐이다(게시·이미지 제작은 범위 밖).
 
+## 팀원용 프로그램(원고실)
+팀원은 이 저장소 대신 claude.ai 아티팩트 '진앤솔 원고실'(https://claude.ai/artifact/36MK8kgL2Mm99Z1aYsRjtp)에 접속해 쓴다. 원본은 `app/template.html`이고 `python3 app/build.py`로 팀 글 코퍼스를 넣어 `app/wonkosil.html`을 만든 뒤 같은 URL로 재게시한다. 원고실은 아래 역할 구조와 검수 기준(`tools/seo_check.py` 이식)을 그대로 따른다. 규칙을 바꾸면 두 곳을 함께 고친다.
+- Claude 호출: 접속한 팀원 본인 계정 사용량(아티팩트 sample 기능)
+- 법령 확인: 팀원 claude.ai 커넥터의 '법령mcp'(없으면 참고자료 칸의 조문·판례만 인용)
+- 원고함·설정: 아티팩트 공용 DB(`posts`, `settings/main`). 설정은 편집 권한자만 저장
+
 ## 역할 구조
 이 대화의 메인 세션이 편집장(총괄 감독)이다. 편집장은 직접 글을 쓰지 않고, 아래 담당에게 지시서를 넘겨 일을 시키고 결과를 검수한다. 담당끼리는 서로 호출하지 못하므로 모든 전달은 편집장을 거친다.
 
@@ -54,7 +60,9 @@ C. "이 글 검수해줘"(원고 제공) → 4단계만 수행한다.
 - `style/house-style.md`: 팀 문체 규칙
 - `config/channels.json`: 채널별 기준치(임시값). `config/baseline.json`: 코퍼스 실측 기준치(생성되면 우선)
 - `config/banned.json`: 금지 표현 사전
-- `corpus/posts/<채널>/`: 팀 기존 글 원문(문체·유사도 기준). `corpus/lawrewrite/`: 참고 사이트 수집본
+- `corpus/posts/<채널>/`: 팀 기존 글 원문(문체·유사도 기준). 채널 미상 글은 `common/`. 사무소 소개·서명 문단은 빼고 저장한다
+- `corpus/lawrewrite/ANALYSIS.md`: 로리라이트 화면 분석
+- `app/`: 팀원용 원고실 아티팩트 원본과 빌드 스크립트
 - `data/published.csv`: 발행 기록
 - `output/`: 원고 저장 위치
 - `tools/seo_check.py`, `tools/corpus_stats.py`, `tools/ledger.py`: 사용법은 각 파일 머리 주석 참조
