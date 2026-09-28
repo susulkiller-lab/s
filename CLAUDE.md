@@ -6,7 +6,7 @@
 팀원은 이 저장소 대신 claude.ai 아티팩트 '진앤솔 원고실'(https://claude.ai/artifact/36MK8kgL2Mm99Z1aYsRjtp)에 접속해 쓴다. 원본은 `app/template.html`이고 `python3 app/build.py`로 팀 글 코퍼스를 넣어 `app/wonkosil.html`을 만든 뒤 같은 URL로 재게시한다. 원고실은 아래 역할 구조와 검수 기준(`tools/seo_check.py` 이식)을 그대로 따른다. 규칙을 바꾸면 두 곳을 함께 고친다.
 - Claude 호출: 접속한 팀원 본인 계정 사용량(아티팩트 sample 기능)
 - 법령 확인: 팀원 claude.ai 커넥터의 '법령mcp'(없으면 참고자료 칸의 조문·판례만 인용)
-- 원고함·설정: 아티팩트 공용 DB(`posts`, `settings/main`). 설정은 편집 권한자만 저장
+- 원고함·설정: 아티팩트 공용 DB(`posts`, `settings/main`). 접근 규칙은 읽기 view(외부 이메일 초대자 포함), 쓰기 interact, settings 쓰기 admin. 조직 밖 이메일 초대자는 참여자로 초대해도 view라 저장하려면 편집자로 초대해야 한다
 
 ## 역할 구조
 이 대화의 메인 세션이 편집장(총괄 감독)이다. 편집장은 직접 글을 쓰지 않고, 아래 담당에게 지시서를 넘겨 일을 시키고 결과를 검수한다. 담당끼리는 서로 호출하지 못하므로 모든 전달은 편집장을 거친다.
