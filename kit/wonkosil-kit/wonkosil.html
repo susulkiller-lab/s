@@ -1,0 +1,892 @@
+<title>진앤솔 원고실</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F3F5F2; --surface:#FFFFFF; --surface-2:#F8FAF7; --ink:#1A2320; --muted:#5B6863; --faint:#8A958F;
+  --line:#D9DFDA; --line-strong:#BFC8C2;
+  --accent:#1E5A48; --accent-hover:#174839; --accent-ink:#FFFFFF; --accent-soft:#E3EEE9;
+  --ok:#2C7A4B; --ok-soft:#E4F2E8; --warn:#9A6210; --warn-soft:#FBF0DC; --fail:#B02A20; --fail-soft:#FBE6E3;
+  --focus:#2F7FBF;
+  --serif:"Noto Serif KR","Nanum Myeongjo",serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121715; --surface:#1A201E; --surface-2:#151A18; --ink:#E6ECE8; --muted:#A3AFA9; --faint:#76827C;
+    --line:#2B3431; --line-strong:#3A4541;
+    --accent:#5FB397; --accent-hover:#76C4AA; --accent-ink:#0E1A15; --accent-soft:#1F3029;
+    --ok:#6CC08C; --ok-soft:#1C2E23; --warn:#E0A94A; --warn-soft:#33291A; --fail:#EE7F74; --fail-soft:#3A1F1C;
+    --focus:#7BB6E6;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121715; --surface:#1A201E; --surface-2:#151A18; --ink:#E6ECE8; --muted:#A3AFA9; --faint:#76827C;
+  --line:#2B3431; --line-strong:#3A4541;
+  --accent:#5FB397; --accent-hover:#76C4AA; --accent-ink:#0E1A15; --accent-soft:#1F3029;
+  --ok:#6CC08C; --ok-soft:#1C2E23; --warn:#E0A94A; --warn-soft:#33291A; --fail:#EE7F74; --fail-soft:#3A1F1C;
+  --focus:#7BB6E6;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--sans);font-size:14px;line-height:1.6;padding-inline:16px;padding-block:0 32px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1440px;margin:0 auto}
+
+/* 상단 */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding-block:16px 12px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand h1{font-family:var(--serif);font-size:20px;font-weight:700;margin:0;letter-spacing:-.01em}
+.brand span{color:var(--muted);font-size:12px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{border:1px solid transparent;background:none;padding:6px 12px;border-radius:999px;cursor:pointer;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--line);font-weight:600}
+.status{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);white-space:nowrap}
+.pill.on{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.pill.off{color:var(--warn)}
+
+/* 작성 화면 3단 */
+.grid{display:grid;grid-template-columns:320px minmax(0,1fr) 360px;gap:16px;margin-top:16px;align-items:start}
+@media (max-width:1180px){.grid{grid-template-columns:300px minmax(0,1fr)}.side-right{grid-column:1 / -1}}
+@media (max-width:780px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.panel-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.panel-h h2{font-size:13px;font-weight:600;margin:0;letter-spacing:.02em}
+.panel-b{padding:14px;display:grid;gap:12px}
+label.f{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+label.f > span b{color:var(--ink);font-weight:600}
+input[type=text],select,textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+textarea{resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hint{font-size:12px;color:var(--faint);margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line-strong);background:var(--surface);padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+
+/* 편집장 진행표 */
+.stages{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.stage{display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start;font-size:13px}
+.dot{width:10px;height:10px;border-radius:50%;margin-top:6px;border:2px solid var(--line-strong);background:var(--surface)}
+.stage[data-s="run"] .dot{border-color:var(--accent);background:var(--accent-soft);animation:pulse 1.2s ease-in-out infinite}
+.stage[data-s="done"] .dot{border-color:var(--ok);background:var(--ok)}
+.stage[data-s="warn"] .dot{border-color:var(--warn);background:var(--warn)}
+.stage[data-s="fail"] .dot{border-color:var(--fail);background:var(--fail)}
+.stage small{display:block;color:var(--muted);font-size:12px}
+@keyframes pulse{50%{opacity:.4}}
+@media (prefers-reduced-motion:reduce){.stage[data-s="run"] .dot{animation:none}}
+
+/* 원고 */
+.editor{width:100%;min-height:640px;border:0;background:var(--surface);padding:18px 20px;font-size:15px;line-height:1.85;border-radius:0 0 var(--r) var(--r);resize:vertical}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta b{color:var(--ink);font-weight:600}
+.notice{font-size:12px;color:var(--warn);background:var(--warn-soft);border-radius:6px;padding:8px 10px;margin:0}
+.kwbox{display:grid;gap:6px;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line)}
+.chip.miss{color:var(--faint);text-decoration:line-through}
+.titles{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.titles button{text-align:left;width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+
+/* 검수 */
+.verdict{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:6px;font-weight:600}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.warn{background:var(--warn-soft);color:var(--warn)}
+.verdict.fail{background:var(--fail-soft);color:var(--fail)}
+.verdict.idle{background:var(--surface-2);color:var(--muted);font-weight:500}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.checks li{display:grid;grid-template-columns:44px 1fr;gap:8px;font-size:12.5px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.lv{font-size:11px;font-weight:600;text-align:center;border-radius:4px;padding:1px 0;height:fit-content}
+.lv.ok{color:var(--ok);background:var(--ok-soft)}
+.lv.warn{color:var(--warn);background:var(--warn-soft)}
+.lv.fail{color:var(--fail);background:var(--fail-soft)}
+.checks b{font-weight:600}
+.refs{display:grid;gap:6px;font-size:12.5px}
+.ref{border-left:3px solid var(--line-strong);padding:2px 0 2px 8px}
+.ref.v{border-color:var(--ok)}
+.ref.x{border-color:var(--fail)}
+.rules{font-size:12px;color:var(--muted);margin:0;padding-left:18px}
+
+/* 주제·원고함 */
+.single{margin-top:16px;display:grid;gap:16px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:8px;align-content:start}
+.card h3{font-family:var(--serif);font-size:16px;margin:0;line-height:1.45}
+.card dl{margin:0;display:grid;grid-template-columns:72px 1fr;gap:4px 8px;font-size:12.5px}
+.card dt{color:var(--muted)}
+.card dd{margin:0}
+.dup{font-size:12px;border-radius:4px;padding:2px 8px;width:fit-content}
+.dup.strong{background:var(--fail-soft);color:var(--fail)}
+.dup.mid{background:var(--warn-soft);color:var(--warn)}
+.dup.none{background:var(--ok-soft);color:var(--ok)}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12px}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{font-size:11px;padding:1px 6px;border-radius:4px;border:1px solid var(--line)}
+.tag.pub{color:var(--ok);border-color:var(--ok)}
+.empty{color:var(--muted);font-size:13px;padding:16px;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px;font-size:13px;z-index:10}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+details summary{cursor:pointer;font-size:12px;color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>진앤솔 원고실</h1><span>블로그·로톡·티스토리 원고 작성과 검수</span></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-write" aria-selected="true" data-view="write">새 글 작성</button>
+      <button class="tab" role="tab" id="tab-topic" aria-selected="false" data-view="topic">주제 추천</button>
+      <button class="tab" role="tab" id="tab-box" aria-selected="false" data-view="box">원고함</button>
+      <button class="tab" role="tab" id="tab-set" aria-selected="false" data-view="set">설정</button>
+    </nav>
+    <div class="status">
+      <span class="pill" id="st-claude">Claude 확인 중</span>
+      <span class="pill" id="st-law">법령 검증 확인 중</span>
+      <span class="pill" id="st-db">원고함 확인 중</span>
+    </div>
+  </header>
+
+  <!-- 새 글 작성 -->
+  <section id="view-write" class="grid">
+    <div class="side-left" style="display:grid;gap:16px">
+      <div class="panel">
+        <div class="panel-h"><h2>작성 조건</h2></div>
+        <form class="panel-b" id="form" autocomplete="off">
+          <div class="row2">
+            <label class="f"><span><b>플랫폼</b></span>
+              <select id="platform">
+                <option value="naver">네이버 블로그</option>
+                <option value="tistory">티스토리</option>
+                <option value="lawtalk">로톡</option>
+                <option value="homepage">홈페이지</option>
+              </select></label>
+            <label class="f"><span><b>분야</b></span>
+              <select id="field"></select></label>
+          </div>
+          <label class="f"><span><b>주제</b> 또는 제목안</span>
+            <input type="text" id="topic" placeholder="예: 연인 대신 내준 월세·카드값 반환"></label>
+          <label class="f"><span><b>대표 키워드</b> 1개</span>
+            <input type="text" id="kw" placeholder="예: 대납금 반환"></label>
+          <label class="f"><span>독자 상황·질문 메모</span>
+            <textarea id="memo" rows="3" placeholder="의뢰인이 실제로 묻는 질문, 다루고 싶은 쟁점"></textarea></label>
+          <label class="f"><span>참고 법령·판례 (붙여넣기)</span>
+            <textarea id="refs" rows="4" placeholder="조문 원문, 판례 번호와 요지. 여기에 넣은 것과 법령 검증에서 확인된 것만 원고에 인용합니다."></textarea></label>
+          <label class="f" style="grid-template-columns:auto 1fr;align-items:center;gap:8px"><input type="checkbox" id="use-law" checked><span>법령mcp로 조문·판례 원문 확인</span></label>
+          <div class="btns">
+            <button class="btn primary" type="submit" id="run">생성하기</button>
+            <button class="btn" type="button" id="stop" hidden>중지</button>
+          </div>
+          <p class="hint">Claude 호출은 접속한 사람의 Claude 계정 사용량으로 처리됩니다. 한 편에 5~9회 호출합니다.</p>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>편집장 진행</h2><span class="hint" id="loop-note"></span></div>
+        <div class="panel-b"><ol class="stages" id="stages"></ol></div>
+      </div>
+    </div>
+
+    <div class="panel" style="min-width:0">
+      <div class="panel-h">
+        <div class="meta" id="meta"><span>공백 제외 <b>0</b>자</span></div>
+        <div class="btns">
+          <button class="btn" type="button" id="check">검수</button>
+          <button class="btn" type="button" id="rephrase" title="법률 내용은 두고 표현만 바꿔 기존 글과의 유사도를 낮춥니다">리프레이즈</button>
+          <button class="btn" type="button" id="copy">본문 복사</button>
+          <button class="btn" type="button" id="copy-sig">서명 포함 복사</button>
+          <button class="btn primary" type="button" id="save">원고함 저장</button>
+        </div>
+      </div>
+      <p class="notice" id="trunc" hidden style="margin:10px 14px 0"></p>
+      <label class="sr" for="editor">원고</label>
+      <textarea class="editor" id="editor" spellcheck="false" placeholder="생성하기를 누르면 원고가 여기에 작성됩니다. 직접 쓴 글을 붙여넣고 검수만 돌려도 됩니다.&#10;&#10;형식: 첫 줄 '제목: …', 소제목 줄은 '## '로 시작, 문단은 빈 줄로 구분."></textarea>
+    </div>
+
+    <div class="side-right" style="display:grid;gap:16px">
+      <div class="panel">
+        <div class="panel-h"><h2>검수 결과</h2><span class="hint" id="spec-note"></span></div>
+        <div class="panel-b">
+          <div class="verdict idle" id="verdict">검수 전입니다</div>
+          <ul class="checks" id="checks"></ul>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>키워드 설계</h2></div>
+        <div class="panel-b kwbox" id="kwbox"><p class="hint">생성하기를 누르면 제목 후보와 LSI·롱테일 키워드가 여기에 나옵니다.</p></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>인용 가능 목록</h2></div>
+        <div class="panel-b refs" id="reflist"><p class="hint">확인된 조문·판례만 원고에 쓸 수 있습니다.</p></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h"><h2>변호사 광고 기준</h2></div>
+        <div class="panel-b">
+          <ul class="rules">
+            <li>업무 결과에 부당한 기대를 갖게 하는 광고 금지 (변호사법 제23조 제2항 제4호)</li>
+            <li>다른 변호사를 비방하거나 자신의 입장에서 비교하는 광고 금지 (같은 항 제5호)</li>
+            <li>법적 근거 없는 자격·명칭 표방 금지 (같은 항 제2호)</li>
+            <li>객관적 사실 과장, 소비자 오도 금지 (같은 항 제3호)</li>
+          </ul>
+          <p class="hint">대한변호사협회 광고규정 세부 조항은 이 목록에 아직 대조되지 않았습니다. 게시 전 담당 변호사 검토가 필요합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주제 추천 -->
+  <section id="view-topic" class="single" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>주제 추천</h2></div>
+      <form class="panel-b" id="topic-form" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));align-items:end">
+        <label class="f"><span><b>분야</b></span><select id="t-field"></select></label>
+        <label class="f"><span><b>플랫폼</b></span>
+          <select id="t-platform"><option value="naver">네이버 블로그</option><option value="tistory">티스토리</option><option value="lawtalk">로톡</option><option value="homepage">홈페이지</option></select></label>
+        <label class="f"><span>편수</span><select id="t-n"><option>3</option><option selected>5</option><option>8</option></select></label>
+        <label class="f" style="grid-column:1 / -1"><span>시기·이슈 메모 (선택)</span><input type="text" id="t-memo" placeholder="예: 추석 연휴 직후, 최근 상담 많은 유형"></label>
+        <div class="btns"><button class="btn primary" type="submit" id="t-run">주제 받기</button></div>
+      </form>
+    </div>
+    <p class="hint">검색량은 이 프로그램에서 확인할 수 없습니다. 후보를 고른 뒤 네이버 검색광고 키워드 도구로 검색량을 확인하십시오. 중복 표시는 원고함의 발행·초안 기록과 비교한 결과입니다.</p>
+    <div class="cards" id="topic-cards"></div>
+  </section>
+
+  <!-- 원고함 -->
+  <section id="view-box" class="single" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>팀 원고함</h2>
+        <div class="btns">
+          <select id="box-filter" aria-label="보기"><option value="all">전체</option><option value="mine">내 원고</option><option value="draft">초안</option><option value="pub">발행</option></select>
+        </div>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>상태</th><th>제목</th><th>플랫폼</th><th>대표 키워드</th><th>작성자</th><th>수정일</th><th></th></tr></thead>
+        <tbody id="box-rows"><tr><td colspan="7" class="empty">원고함을 불러오는 중입니다</td></tr></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- 설정 -->
+  <section id="view-set" class="single" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>팀 공통 설정</h2><span class="hint" id="set-note">편집 권한자만 저장할 수 있습니다</span></div>
+      <form class="panel-b" id="set-form" style="max-width:720px">
+        <div class="row2">
+          <label class="f"><span><b>사무소명</b> (본문 CTA 문단에 사용)</span><input type="text" id="s-firm" value="진앤솔 법률사무소"></label>
+          <label class="f"><span><b>지역</b> (제목 꼬리표에 사용)</span><input type="text" id="s-region" value="창원"></label>
+        </div>
+        <label class="f"><span><b>서명 문구</b> (서명 포함 복사 때 본문 끝에 붙습니다. 생성·검수 대상이 아닙니다)</span>
+          <textarea id="s-sig" rows="6" placeholder="사무소 소개·구성원 안내 문단을 붙여넣으십시오"></textarea></label>
+        <div class="btns"><button class="btn primary" type="submit" id="s-save">설정 저장</button></div>
+      </form>
+    </div>
+    <div class="panel">
+      <div class="panel-h"><h2>사용 안내</h2></div>
+      <div class="panel-b" style="font-size:13px">
+        <p style="margin:0">1. 새 글 작성에서 플랫폼, 분야, 주제, 대표 키워드를 넣고 생성하기를 누릅니다. 편집장이 설계, 법리 확인, 집필, 검수, 수정 순서로 진행합니다.</p>
+        <p style="margin:0">2. 검수에서 '불가' 항목이 0건이어야 발행할 수 있습니다. '경고'는 판단해서 고칩니다.</p>
+        <p style="margin:0">3. 발행하면 원고함에서 상태를 발행으로 바꾸고 주소를 넣습니다. 다음 주제 추천 때 중복 판정에 쓰입니다.</p>
+        <p style="margin:0">4. 법령 검증은 claude.ai 설정의 커넥터에 '법령mcp'를 추가한 사람만 쓸 수 있습니다. 없으면 참고 법령·판례 칸에 넣은 자료만 인용합니다.</p>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+"use strict";
+/* ───────── 고정 데이터 ───────── */
+const CORPUS = [{"title": "명절 시가·처가의 폭언도 이혼사유가 될까? 배우자 방관과 증거 확보 [창원 이혼 변호사]", "kw": "이혼사유", "text": "“명절마다 시어머니에게 모욕적인 말을 듣는데 남편은 그냥 참으라고만 합니다. 이런 일도 이혼사유가 될 수 있나요?”\n“장인·장모가 계속 폭언을 하는데 배우자까지 부모님 편을 들며 함께 저를 비난합니다. 이혼소송에서 이런 사정도 인정될까요?”\n\n명절을 앞두고 시가나 처가 방문, 제사와 가사노동 등을 둘러싸고 부부 사이에 갈등이 생기는 경우가 있습니다.\n\n단순히 명절을 어디에서 보낼지 의견이 달랐거나 가족 사이에 한두 번 말다툼을 했다는 이유만으로 재판상 이혼사유가 인정되는 것은 아닙니다.\n\n그러나 배우자의 부모로부터 지속적으로 폭언이나 모욕, 학대 등을 당했고 그 정도가 혼인생활을 계속하도록 요구하기 어려울 만큼 심각하다면 이야기가 달라질 수 있습니다.\n\n특히 배우자가 자신의 부모가 상대방에게 부당한 대우를 하고 있다는 사실을 알면서도 이를 방관하거나 오히려 부모와 함께 상대방을 비난했다면, 시가·처가와의 갈등만이 아니라 부부 사이의 신뢰가 훼손되고 혼인관계가 파탄된 과정까지 함께 살펴볼 필요가 있습니다.\n\n그렇다면 명절에 시부모나 장인·장모로부터 들은 폭언은 어느 정도여야 이혼사유가 될 수 있을까요? 배우자가 이를 알고도 방관했다면 어떤 점이 문제될 수 있는지, 이혼소송을 준비할 때 어떤 자료를 확인해야 하는지 살펴보겠습니다.\n\n## 시부모·장인·장모의 폭언도 재판상 이혼사유가 될 수 있을까?\n\n민법 제840조 제3호는 배우자 또는 그 직계존속으로부터 ‘심히 부당한 대우’를 받은 경우 재판상 이혼을 청구할 수 있도록 규정하고 있습니다.\n\n여기서 배우자의 직계존속에는 시부모나 장인·장모 등이 포함될 수 있습니다.\n\n따라서 시부모가 며느리에게 또는 장인·장모가 사위에게 폭언이나 학대 등을 한 경우에도 그 정도에 따라 재판상 이혼사유가 문제될 수 있습니다.\n\n다만 가족 사이에 언쟁이 있었다거나 기분 나쁜 말을 들었다는 사실만으로 곧바로 민법에서 정한 ‘심히 부당한 대우’에 해당하는 것은 아닙니다.\n\n대법원은 민법 제840조 제3호의 ‘심히 부당한 대우’와 관련해 혼인관계의 지속을 강요하는 것이 가혹하다고 여겨질 정도의 폭행이나 학대 또는 중대한 모욕을 받은 경우를 의미한다고 판단해 왔습니다.\n\n따라서 실제 사건에서는 단순히 폭언이 있었는지만 볼 것이 아니라 어떤 말을 어떤 상황에서 했는지, 그러한 행위가 반복됐는지, 폭행이나 위협 등 다른 행위가 함께 있었는지, 이로 인해 혼인생활에 어떠한 영향을 미쳤는지 등을 구체적으로 확인해야 합니다.\n\n## 명절에 한 번 다퉜다는 사실만으로는 부족할 수 있습니다\n\n예를 들어 명절 식사 준비나 제사 문제로 시부모와 며느리 사이에 의견 충돌이 있었고 그 과정에서 서로 언성이 높아졌다는 사정만으로 곧바로 재판상 이혼사유가 인정된다고 단정하기는 어렵습니다.\n\n반면 특정 가족 구성원을 지속적으로 비하하거나 인격을 깎아내리는 발언을 반복하고, 가족들이 모인 자리에서 심각한 모욕을 주거나 폭행·위협까지 이어지는 상황이라면 그 정도가 달라질 수 있습니다.\n\n중요한 것은 ‘명절에 싸웠다’는 사실 자체보다 실제로 어떠한 대우를 받았는지입니다.\n\n대법원 판례도 부부 사이에 다소 모욕적인 언사나 약간의 폭행이 있었다는 사정만으로는 혼인관계를 계속하도록 하는 것이 심히 가혹한 정도라고 볼 수 없다고 판단한 사례가 있습니다.\n\n따라서 시가·처가와의 갈등 역시 각각의 발언을 따로 떼어 보기보다 폭언이나 모욕의 내용과 반복성, 당사자 사이의 관계, 갈등이 발생한 경위와 그 이후의 상황 등을 전체적으로 살펴볼 필요가 있습니다.\n\n## 배우자가 폭언을 알고도 계속 방관했다면?\n\n시부모나 장인·장모의 폭언이 문제되는 사건에서는 배우자가 당시 어떤 태도를 보였는지도 중요할 수 있습니다.\n\n민법은 부부가 서로 동거하며 부양하고 협조할 의무가 있다고 정하고 있고, 대법원도 부부가 애정과 신의 및 인내를 바탕으로 상대방을 이해하고 보호하며 혼인생활 유지를 위해 노력해야 한다고 보고 있습니다.\n\n따라서 배우자가 자신의 부모가 상대방에게 반복적으로 폭언하거나 부당하게 대우한다는 사실을 알고 있었음에도 아무런 조치를 하지 않았거나, 오히려 부모와 함께 상대방을 비난하고 갈등을 키웠다면 이러한 사정은 부부 사이의 신뢰가 훼손되고 혼인관계가 파탄된 경위를 판단하는 요소가 될 수 있습니다.\n\n다만 배우자가 부모의 폭언을 막지 못했다는 이유만으로 언제나 별도의 이혼사유가 성립하는 것은 아닙니다.\n\n배우자가 당시 상황을 알고 있었는지, 상대방이 도움을 요청했는지, 이후 갈등을 해결하기 위해 어떠한 노력을 했는지, 오히려 폭언에 동조하거나 상대방을 비난했는지 등을 함께 살펴봐야 합니다.\n\n시가·처가의 부당한 대우가 민법 제840조 제3호의 ‘심히 부당한 대우’에 해당하는지가 문제될 수 있고, 배우자의 방관·동조를 포함한 여러 사정으로 부부 사이의 애정과 신뢰가 무너져 공동생활관계가 회복하기 어려울 정도로 파탄됐다면 제6호의 ‘기타 혼인을 계속하기 어려운 중대한 사유’에 해당하는지도 함께 검토할 수 있습니다.\n\n## 시가·처가의 폭언 때문에 부부관계까지 파탄됐다면?\n\n민법 제840조 제6호는 ‘기타 혼인을 계속하기 어려운 중대한 사유가 있을 때’를 별도의 재판상 이혼사유로 규정하고 있습니다.\n\n대법원은 이에 대해 부부공동생활관계가 회복할 수 없을 정도로 파탄되고 혼인생활을 계속하도록 강제하는 것이 일방 배우자에게 참을 수 없는 고통이 되는 경우라고 보고 있습니다.\n\n이를 판단할 때는 혼인을 계속하려는 의사가 있는지, 혼인 파탄의 원인과 책임이 누구에게 있는지, 혼인생활의 기간과 자녀 유무, 당사자의 연령, 이혼 후 생활보장 등 혼인관계에 관한 여러 사정을 종합적으로 고려합니다.\n\n따라서 명절마다 같은 갈등이 반복됐고 배우자가 이를 해결하기보다 부모의 폭언에 동조하거나 상대방에게 일방적으로 참을 것을 요구하면서 부부 사이의 신뢰까지 무너졌다면, 전체적인 혼인 파탄 과정이 중요한 판단 대상이 될 수 있습니다.\n\n반대로 시가·처가와 일시적인 갈등이 있었더라도 배우자가 적극적으로 중재하고 이후 관계가 회복됐다면 판단은 달라질 수 있습니다.\n\n결국 ‘명절에 시부모와 다퉜다’ 또는 ‘장인·장모에게 폭언을 들었다’는 하나의 사실만으로 이혼사유 여부를 판단하기보다 그 갈등이 부부의 혼인관계에 어떠한 영향을 미쳤는지를 함께 살펴봐야 합니다.\n\n## 폭언과 배우자의 방관을 입증하려면 어떤 자료를 확인해야 할까?\n\n가족 사이에서 발생하는 폭언이나 모욕은 집이나 가족 모임처럼 외부인이 없는 장소에서 이루어지는 경우가 많습니다.\n\n따라서 재판에서 이러한 사실을 주장하려면 당시 상황을 확인할 수 있는 자료를 가능한 범위에서 정리해 두는 것이 중요합니다.\n\n① 문자메시지·메신저·가족 대화방\n시부모나 장인·장모가 직접 보낸 문자메시지나 메신저 내용, 가족 단체대화방의 대화 등은 실제 발언과 갈등의 경위를 확인하는 자료가 될 수 있습니다.\n\n특히 사건이 발생한 직후 배우자에게 “오늘 부모님이 이런 말을 했다”고 알렸고 배우자가 이를 인정하거나 사과한 대화가 있다면, 배우자가 당시 상황을 알고 있었다는 점을 확인하는 자료로 활용될 수 있습니다.\n\n② 당시 상황이 담긴 녹음\n폭언이나 모욕이 이루어진 당시의 대화가 녹음돼 있다면 구체적인 발언의 내용과 당시 상황을 확인하는 자료가 될 수 있습니다.\n\n다만 녹음의 증거 활용 가능성은 녹음자가 해당 대화의 당사자인지 등 구체적인 녹음 방식에 따라 달라질 수 있으므로, 타인 사이의 대화를 몰래 녹음하는 방식과 자신이 참여한 대화를 녹음하는 경우를 동일하게 보아서는 안 됩니다.\n\n③ 진료·상담 기록\n지속적인 폭언이나 가족 갈등으로 정신적 어려움을 겪어 병원 진료나 심리상담을 받았다면 관련 기록도 당시 피해 상황과 그 영향을 확인하는 자료가 될 수 있습니다.\n\n다만 진료·상담 기록이 있다는 사실만으로 상대방의 구체적인 폭언이나 이혼사유가 곧바로 증명되는 것은 아니므로 다른 자료와 함께 살펴볼 필요가 있습니다.\n\n④ 사건 직후 작성한 기록과 주변인의 진술\n폭언이 언제, 어디에서, 어떤 내용으로 이루어졌는지 당시 상황을 구체적으로 정리해 둔 기록이나 현장에 함께 있었던 가족·지인의 진술도 사실관계를 확인하는 데 활용될 수 있습니다.\n\n특히 같은 유형의 폭언이 여러 차례 반복됐다면 날짜와 장소, 발언 내용, 당시 함께 있었던 사람, 배우자의 대응 등을 시간 순서대로 정리해 두면 전체적인 갈등의 경위를 파악하는 데 도움이 됩니다.\n\n## 시부모·장인·장모에게 위자료를 청구할 수도 있을까?\n\n시가·처가의 부당한 대우가 이혼의 원인이 됐다면 이혼 여부와 별도로 위자료 책임도 검토할 수 있습니다.\n\n다만 시부모나 장인·장모와 사이가 좋지 않았다는 이유만으로 곧바로 위자료 책임이 인정되는 것은 아닙니다.\n\n구체적으로 어떠한 폭언·폭행·모욕 등의 행위가 있었는지, 그 행위가 위법한 정도에 이르렀는지, 해당 행위가 부부의 혼인관계 파탄에 어떠한 영향을 미쳤는지 등을 확인해야 합니다.\n\n배우자 역시 자신의 부모의 행위에 적극적으로 동조하거나 스스로 폭언·모욕을 하는 등 혼인 파탄에 책임 있는 행위를 했다면 그 책임 정도가 위자료 판단에서 함께 문제될 수 있습니다.\n\n따라서 이혼사유가 인정되는지와 시부모·장인·장모 또는 배우자에게 위자료 책임을 물을 수 있는지는 각각의 요건에 따라 구분하여 살펴볼 필요가 있습니다.\n\n## 명절 시가·처가 갈등과 이혼, 자주 묻는 질문\n\nQ1. 명절에 시어머니에게 심한 말을 한 번 들은 것만으로 이혼할 수 있나요?\nA. 한 차례 불쾌한 말을 들었다는 사실만으로 민법 제840조 제3호의 ‘심히 부당한 대우’가 인정된다고 단정하기는 어렵습니다. 실제 발언의 내용과 정도, 당시 상황, 반복 여부, 혼인관계에 미친 영향 등을 종합적으로 살펴봐야 합니다.\n\nQ2. 시부모의 폭언을 남편이 알고도 “그냥 참아라”라고 했다면 남편에게도 책임이 있나요?\nA. 그러한 태도는 혼인관계가 파탄된 경위와 책임을 판단하는 요소가 될 수 있습니다. 다만 한 번 중재하지 않았다는 사실만으로 배우자의 책임이 바로 인정되는 것은 아니며, 폭언을 알고 있었는지와 방관·동조가 반복됐는지, 갈등 해결을 위해 어떤 태도를 보였는지 등을 함께 확인해야 합니다.\n\nQ3. 장인·장모의 폭언도 시부모의 폭언과 동일하게 이혼사유가 될 수 있나요?\nA. 민법 제840조 제3호는 성별을 구분하지 않고 ‘배우자 또는 그 직계존속’으로부터 심히 부당한 대우를 받은 경우를 규정하고 있습니다. 따라서 장인·장모의 부당한 대우 역시 요건을 충족하면 재판상 이혼사유가 문제될 수 있습니다.\n\nQ4. 가족 대화방이나 문자메시지도 증거로 사용할 수 있나요?\nA. 가족 단체대화방이나 문자메시지 등은 폭언의 구체적인 내용이나 가족 간 갈등의 경위, 배우자가 상황을 알고 있었는지 등을 확인하는 자료가 될 수 있습니다. 다만 개별 자료의 증거가치와 제출 방법은 구체적인 내용과 수집 경위에 따라 달라질 수 있습니다.\n\nQ5. 폭언 당시 녹음을 하지 못했다면 이혼소송이 불가능한가요?\nA. 녹음이 없다는 이유만으로 이혼소송이 불가능한 것은 아닙니다. 문자메시지와 메신저 대화, 사건 직후 배우자와 나눈 대화, 진료·상담 기록, 주변인의 진술 등 여러 자료를 통해 당시 상황과 혼인 파탄의 경위를 확인할 수 있습니다.\n\n## 명절 갈등 자체보다 혼인관계에 미친 영향을 살펴봐야 합니다\n\n명절은 평소보다 가족들이 한자리에 모이는 시간이 길고 제사나 가사노동, 시가·처가 방문 등을 둘러싼 갈등이 드러나기 쉬운 시기입니다.\n\n그러나 ‘명절에 다퉜다’는 사실 자체가 재판상 이혼사유가 되는 것은 아닙니다.\n\n시부모나 장인·장모의 폭언이 민법에서 정한 ‘심히 부당한 대우’에 해당하는지를 판단하려면 발언의 내용과 정도, 반복 여부와 갈등의 경위 등을 구체적으로 살펴봐야 합니다.\n\n또한 배우자가 이러한 상황을 알고도 지속적으로 방관하거나 부모의 행동에 동조했다면 시가·처가와의 갈등뿐 아니라 배우자와의 신뢰관계가 어떻게 훼손됐고 결국 혼인관계가 어느 정도까지 파탄됐는지도 함께 확인할 필요가 있습니다.\n\n진앤솔 법률사무소는 이혼 사건에서 단편적인 가족 간 갈등만을 보는 것이 아니라 혼인기간 동안 발생한 구체적인 사정과 부부관계의 변화, 문자메시지와 대화 내용, 진료·상담 기록 등 관련 자료를 검토하여 재판상 이혼사유와 혼인 파탄의 책임 등을 살펴보고 있습니다.\n\n명절을 전후해 시가나 처가의 반복적인 폭언·모욕으로 갈등을 겪고 있고 배우자 역시 이를 방관하거나 동조해 혼인관계가 어려워진 상황이라면, 각각의 행위가 법에서 정한 이혼사유에 해당할 수 있는지와 이를 확인할 수 있는 자료가 무엇인지 구체적으로 살펴볼 필요가 있습니다."}, {"title": "연인 대신 내준 월세·보증금·카드값, 헤어진 뒤 돌려받을 수 있을까? 대납금 반환 기준 [창원 민사 변호사]", "kw": "대납금", "text": "“남자친구가 형편이 어려워 월세와 카드값을 대신 내줬습니다. 헤어진 뒤 갚으라고 하니 선물로 받은 돈이라고 주장합니다.”\n“여자친구 명의의 임대차보증금과 자동차 할부금을 제가 직접 납부했습니다. 상대방 계좌로 송금한 것이 아니어도 반환을 청구할 수 있을까요?”\n\n연인관계에서는 상대방 계좌로 돈을 직접 송금하기보다 월세·카드대금·대출금 등을 대신 납부하는 경우가 많습니다.\n\n결론부터 말하면, 돈을 상대방 계좌로 직접 송금하지 않았더라도 상대방의 요청과 반환 약정 또는 그 밖의 비용상환 근거가 인정된다면 대여금이나 대납금의 반환을 청구할 수 있습니다.\n\n상대방의 요청으로 그 사람이 부담해야 할 채무를 대신 갚았고, 나중에 돌려받기로 합의했다면 임대인·카드회사·금융기관 등 제3자에게 직접 지급했더라도 반환청구가 인정될 수 있습니다.\n\n다만 연인 대신 돈을 냈다는 사실만으로 모두 돌려받을 수 있는 것은 아닙니다.\n\n동거 중 함께 사용한 주택의 월세나 공과금처럼 공동생활을 위해 부담한 비용이거나 증여한 돈이라면 상대방 개인에 대한 대여금으로 인정되지 않을 수 있습니다.\n\n따라서 핵심은 돈이 어느 계좌로 들어갔는지가 아니라 다음 세 가지입니다.\n\n- 누구의 채무나 비용을 대신 지급했는지\n- 상대방이 나중에 갚기로 했는지\n- 공동생활비나 증여금이 아니라 반환을 전제로 지급했는지\n\n## 상대방 계좌로 송금하지 않아도 대여가 성립할 수 있습니다\n\n대여금 반환청구를 하려면 반드시 돈이 상대방 명의 계좌로 입금되어야 하는 것은 아닙니다.\n\n상대방의 부탁을 받고 그 사람이 지급해야 할 월세·카드값·대출금을 채권자에게 직접 지급했다면, 그 지급으로 상대방의 채무가 줄어드는 경제적 이익이 발생할 수 있습니다.\n\n예를 들어 남자친구가 “이번 달 카드값을 대신 내주면 다음 달 급여를 받아 갚겠다”고 요청하여 여자친구가 카드회사에 직접 납부한 경우를 생각해 볼 수 있습니다.\n\n돈이 남자친구의 계좌를 거치지는 않았지만 남자친구가 부담하던 카드대금 채무가 소멸했습니다. 이와 함께 반환 약정이 인정된다면 직접 송금한 대여금과 마찬가지로 반환을 청구할 수 있습니다.\n\n민법상 채무는 일정한 경우 제3자도 대신 변제할 수 있습니다. 대법원도 제3자가 채무자의 채무를 유효하게 변제한 경우 채무자와의 계약관계가 있다면 그 약정에 따라, 계약관계가 없다면 사무관리의 비용상환 법리에 따라 구상권을 취득할 수 있다고 보고 있습니다.\n\n따라서 계좌이체 내역에 표시된 수취인이 임대인이나 카드회사라는 이유만으로 상대방에 대한 청구가 부정되는 것은 아닙니다. 그 돈이 실제로 누구의 채무를 갚는 데 사용됐는지와 상대방이 반환을 약속했는지를 함께 확인해야 합니다.\n\n## 월세·카드값 등 항목별로 무엇을 확인해야 할까요?\n\n같은 대납금이라도 계약 명의, 실제 사용자와 반환 약정에 따라 결론이 달라질 수 있습니다.\n\n대납 항목\n핵심 확인사항\n월세·관리비\n임차인 명의, 실제 거주자, 공동생활비 분담 여부\n카드대금\n카드 명의자, 실제 사용내역, 대납 요청 여부\n대출금\n금융기관에 대한 채무자, 대출금의 실제 사용자\n휴대전화 요금\n가입 명의와 단말기·통신서비스의 실제 사용자\n자동차 할부금\n할부계약 채무자, 차량 명의와 실제 이용자\n사업장 임대료\n사업 운영주체와 임대차계약 명의\n병원비\n진료받은 사람, 지급 요청과 반환 약속 여부\n임대차보증금\n계약 명의와 퇴거 시 보증금 반환채권의 귀속\n\n항목의 이름보다 실제 법률관계가 중요합니다.\n\n예를 들어 연인 명의의 카드대금을 대신 납부했다면 상대방의 채무를 대신 갚은 것으로 볼 여지가 큽니다. 반면 본인 명의의 신용카드를 연인에게 사용하게 한 경우에는 카드회사에 대한 채무자는 본인입니다.\n\n이 경우에는 카드값을 납부했다는 사실만으로 부족하고, 상대방이 사용한 금액을 반환하기로 했는지, 해당 결제가 선물이나 공동생활비에 해당하지 않는지를 입증해야 합니다.\n\n대출도 마찬가지입니다. 상대방의 부탁으로 자신의 명의로 대출받아 돈을 전달했다면 금융기관에 대한 채무자는 명의를 제공한 사람입니다. 연인 사이에서 상대방이 원리금을 부담하기로 했다는 내부 약정이 있더라도 금융기관에 대한 채무가 상대방에게 자동으로 이전되는 것은 아닙니다.\n\n따라서 이른바 ‘대출 명의를 빌려준 경우’에는 금융기관에 대한 상환의무와 연인 사이의 내부적인 반환의무를 구분해야 합니다.\n\n## 반환 여부는 ‘누구의 채무였는지’부터 확인해야 합니다\n\n상대방을 대신해 돈을 냈다고 주장하려면 먼저 대납한 금액이 원래 누구의 채무였는지를 확인해야 합니다.\n\n다음과 같은 경우에는 상대방의 채무를 대신 변제했다고 주장하기 비교적 명확합니다.\n\n- 상대방 명의 임대차계약의 월세를 임대인에게 지급한 경우\n- 상대방 명의 신용카드의 결제대금을 카드회사에 납부한 경우\n- 상대방 명의 대출의 원리금을 금융기관에 지급한 경우\n- 상대방 명의 자동차의 할부금을 납부한 경우\n- 상대방의 진료비를 병원에 지급한 경우\n\n반면 계약 명의가 본인이거나 두 사람이 함께 이용한 비용이라면 별도의 검토가 필요합니다.\n\n특히 임대차보증금은 누가 임대차계약의 당사자인지, 퇴거할 때 보증금을 누가 반환받는지가 중요합니다.\n\n연인 명의의 임대차계약에 보증금을 지급했고 보증금 반환채권이 상대방에게 귀속되거나, 임대차 종료 후 상대방이 보증금을 반환받았다면 상대방에게 경제적 이익이 귀속됐다고 주장할 수 있습니다.\n\n그러나 본인이 공동임차인이거나 보증금 반환채권을 직접 보유하고 있다면 상대방에 대한 대여금이 아니라 자신의 임차보증금을 지급한 것으로 판단될 수 있습니다.\n\n또한 대납 후 임대인·금융기관 등에 대한 채무가 실제로 소멸했는지도 확인해야 합니다. 납부계좌를 잘못 지정했거나 제3자의 다른 채무를 갚은 경우라면 상대방에게 이익이 귀속됐다고 보기 어려울 수 있습니다.\n\n## “나중에 갚겠다”는 반환 약정이 있었는지가 중요합니다\n\n연인관계에서 발생한 금전 분쟁은 대여금인지 증여금인지 구별하기 어려운 경우가 많습니다.\n\n상대방이 먼저 대납을 요청하고 다음과 같이 말했다면 반환 약정을 뒷받침할 수 있습니다.\n\n“이번 달 월세만 대신 내주면 다음 달에 갚겠다.”\n“카드값을 먼저 막아주면 월급을 받아서 돌려주겠다.”\n“자동차 할부금은 내가 매달 보내겠다.”\n“보증금은 계약이 끝나면 전액 돌려주겠다.”\n“대출은 네 명의로 받지만 원리금은 내가 부담하겠다.”\n\n반환 약정은 반드시 차용증으로만 증명해야 하는 것은 아닙니다.\n\n카카오톡이나 문자메시지, 통화녹음, 계좌이체 메모, 일부 변제내역 및 정산표 등을 통해서도 대납 요청과 반환 약정을 입증할 수 있습니다.\n\n반대로 상대방의 요청이나 반환 약속 없이 자발적으로 비용을 부담했고, 교제 중에도 돌려달라고 요구한 적이 없다면 증여나 공동생활비로 판단될 가능성이 커질 수 있습니다.\n\n다만 연인관계에서 지급했다는 이유만으로 모든 돈이 증여가 되는 것은 아닙니다. 지급 금액, 목적, 당사자의 경제상황, 반복적인 반환 약속과 일부 변제 여부 등을 종합적으로 판단해야 합니다.\n\n## 동거 중 부담한 공동생활비는 돌려받기 어려울 수 있습니다\n\n두 사람이 함께 거주하면서 사용한 월세·관리비·통신비·식비 등을 한 사람이 더 많이 부담했다고 해서 차액이 모두 상대방에 대한 대여금이 되는 것은 아닙니다.\n\n연인 사이에 공동생활을 위해 소비된 비용은 특별한 반환 약정이 없다면 각자가 생활공동체를 유지하기 위해 부담한 금액으로 판단될 수 있습니다.\n\n예를 들어 다음과 같은 비용입니다.\n\n- 함께 거주한 주택의 월세와 관리비\n- 전기·수도·가스요금\n- 두 사람이 함께 사용한 생활용품 구입비\n- 공동 식비와 여행비\n- 함께 이용한 차량의 유지비\n- 교제 중 통상적으로 지출한 선물과 외식비\n\n반면 공동생활과 직접 관련이 없는 상대방의 개인채무를 대신 갚았다면 결론이 달라질 수 있습니다.\n예를 들어 상대방이 교제 전부터 부담하던 카드연체금, 개인사업장의 임대료, 개인 대출금 또는 본인만 사용하는 자동차의 할부금을 대신 지급하고 반환받기로 했다면 개인적인 대납금으로 인정될 가능성이 있습니다.\n\n결국 월세나 관리비라는 비용의 명칭만으로 판단하는 것이 아니라 누가 사용했고, 누가 최종적으로 부담하기로 했으며, 반환 약정이 있었는지를 항목별로 구분해야 합니다.\n\n## 대여금·비용상환·구상금·부당이득 중 무엇을 청구해야 할까요?\n\n대납금 반환사건에서는 사실관계에 따라 청구원인이 달라질 수 있습니다.\n\n청구 유형\n적용될 수 있는 경우\n대여금\n대신 납부한 금액을 상대방에게 빌려준 것으로 처리하기로 한 경우\n약정금·비용상환\n상대방의 요청으로 비용을 지급하고 그 지출액을 상환받기로 한 경우\n구상금\n상대방이 부담할 채무를 유효하게 대신 변제하여 법률상 비용상환권을 취득한 경우\n부당이득\n상대방이 증여·공동생활비 등 법률상 원인 없이 이익을 얻은 경우\n\n대여금과 약정금 청구에서는 상대방의 요청과 반환 합의가 핵심입니다.\n\n상대방의 채무를 제3자가 유효하게 대신 변제한 경우에는 당사자 사이의 계약이나 사무관리 등에 따른 구상금 또는 비용상환청구가 문제될 수 있습니다. 대법원은 채무자와 계약관계가 없다면 특별한 사정이 없는 한 사무관리비용 상환청구권에 따라 구상권을 취득할 수 있다고 판단했습니다.\n\n다만 연인관계에서 자발적으로 비용을 부담한 경우에는 상대방을 위해 사무를 처리하려는 의사가 있었는지, 증여나 공동생활비 분담으로 지급한 것은 아닌지에 따라 사무관리의 성립 여부가 달라질 수 있습니다.\n\n반환 약정이 명확하다면 대여금이나 약정금 청구를 검토할 수 있습니다. 상대방이 부담할 채무를 유효하게 대신 변제했지만 별도의 계약관계가 없다면 사무관리에 따른 비용상환 또는 구상금 청구가 문제될 수 있습니다.\n\n부당이득반환청구는 상대방이 법률상 원인 없이 재산상 이익을 얻은 경우에 인정됩니다. 따라서 반환 약정을 증명하지 못했다는 이유만으로 곧바로 부당이득이 성립하는 것은 아닙니다.\n\n증여, 공동생활비 분담 또는 연인 사이의 호의로 비용을 지급했다면 법률상 원인이 인정되어 부당이득반환청구가 받아들여지지 않을 수 있습니다. 실제 채무자와 이익을 얻은 사람이 다르다면 누구를 상대로 어떤 청구를 해야 하는지도 구분해야 합니다.\n\n따라서 같은 대납금에 대해 청구원인을 임의로 선택하기보다 계약 명의, 대납 요청, 반환 약정 및 실제 이익의 귀속을 토대로 주된 청구와 예비적 청구를 구성할 필요가 있습니다.\n\n## 대납금 반환청구 전에 어떤 자료를 준비해야 할까요?\n\n대납금 반환을 청구하려면 단순히 자신이 돈을 지출했다는 사실뿐 아니라 그 돈으로 상대방의 채무가 소멸하거나 상대방에게 경제적 이익이 귀속됐다는 점을 정리해야 합니다.\n\n확인할 내용\n주요 자료\n상대방의 대납 요청\n카카오톡, 문자메시지, 통화녹음\n실제 납부 사실\n계좌이체 내역, 카드명세서, 납부확인서\n채무와 계약의 명의\n임대차계약서, 대출계약서, 할부계약서\n반환 약정\n“갚겠다”는 메시지, 차용증, 정산표\n공동생활비 여부\n거주기간, 실제 사용자, 비용분담 내역\n상대방의 경제적 이익\n채무 잔액 감소, 보증금 반환내역, 자산 명의\n\n여러 비용을 한꺼번에 청구하기보다 월세, 카드값, 대출금, 자동차 할부금 등 항목별로 지급일·금액·수취인·지급 목적을 표로 정리하는 것이 좋습니다.\n\n상대방이 일부 금액을 갚았다면 그 지급이 어느 대납금에 대한 변제였는지 확인할 수 있는 메시지와 송금내역도 함께 보관해야 합니다.\n\n## 연인 사이 대납금에 관해 자주 묻는 질문\n\nQ1. 상대방 계좌로 보낸 돈이 아니어도 대여금으로 인정될 수 있나요?\nA. 상대방의 요청에 따라 상대방이 지급해야 할 채무를 대신 납부했고 반환 약정이 있었다면, 임대인이나 카드회사 등에 직접 지급했더라도 반환청구가 인정될 수 있습니다.\n\nQ2. 남자친구 명의의 카드값을 대신 냈습니다\nA. 카드 명의와 사용내역, 대납 요청 및 반환 약속을 확인해야 합니다. 남자친구의 개인적인 카드대금을 대신 납부하고 나중에 돌려받기로 했다면 대여금·약정금 또는 구상금 청구를 검토할 수 있습니다.\n\nQ3. 제 카드로 여자친구가 물건을 구입했습니다\nA. 카드회사에 대한 채무자는 원칙적으로 카드 명의자인 본인입니다. 여자친구가 사용한 금액을 반환하기로 했다는 약정이나 해당 물건이 여자친구에게 귀속됐다는 자료가 필요합니다. 선물이나 공동생활비로 사용한 금액이라면 반환이 어려울 수 있습니다.\n\nQ4. 함께 살던 집의 월세를 제가 전부 냈습니다\nA. 동거 중 함께 사용한 주택의 월세라면 특별한 반환 약정이 없는 한 공동생활비로 판단될 수 있습니다. 상대방이 자신의 부담분을 나중에 갚기로 했다는 메시지나 비용분담 약정이 있는지 확인해야 합니다.\n\nQ5. 연인 명의의 보증금을 제가 지급했습니다\nA. 임대차계약의 명의와 보증금 반환채권이 누구에게 귀속되는지 확인해야 합니다. 상대방 명의로 계약하고 상대방이 보증금을 반환받는 구조에서 반환 약정까지 있었다면 청구 가능성이 있습니다.\n\nQ6. 제 명의로 대출받아 남자친구에게 줬습니다\nA. 금융기관에 대한 채무자는 대출명의자인 본인이므로 남자친구가 갚기로 했다는 내부 약정만으로 은행에 대한 책임에서 벗어날 수는 없습니다. 남자친구에게 돈이 전달됐고 원리금을 부담하기로 했다는 사실을 입증하여 별도의 반환청구를 검토해야 합니다.\n\nQ7. 헤어진 뒤 처음으로 돈을 돌려달라고 해도 되나요?\nA. 교제 중 반환을 요구하지 않았다는 사실만으로 권리가 당연히 없어지는 것은 아닙니다. 다만 반환 약정의 내용에 따라 변제기가 언제 도래했는지와 소멸시효가 완성됐는지를 별도로 확인해야 합니다. 오랜 기간 반환 요구가 없었다면 상대방이 증여나 공동생활비였다고 주장할 수 있으므로 당시 대화와 지급 목적을 구체적으로 입증할 필요도 있습니다.\n\n## 연인 대신 지출했다는 사실만으로 반환되는 것은 아닙니다\n\n연인의 월세·보증금·카드값·대출금 등을 대신 납부했다면 상대방 계좌로 직접 송금하지 않았더라도 반환을 청구할 수 있습니다.\n\n중요한 것은 송금 경로가 아니라 누구의 채무를 대신 갚았는지, 상대방의 요청이 있었는지, 나중에 반환하기로 합의했는지입니다.\n\n상대방 명의의 카드대금이나 대출금처럼 개인채무를 대신 변제하고 반환 약정이 있었다면 대여금·약정금 또는 구상금 청구가 문제될 수 있습니다.\n\n반면 함께 거주한 주택의 월세와 관리비, 식비와 공과금 등 공동생활을 위해 사용한 비용이라면 특별한 정산 약정이 없는 한 상대방 개인에 대한 대여금으로 인정되지 않을 수 있습니다.\n\n임대차보증금은 계약 명의와 보증금 반환채권의 귀속을 확인해야 하고, 본인 명의의 카드나 대출을 상대방이 사용한 경우에는 외부 채권자에 대한 책임과 연인 사이의 내부적인 반환 약정을 구분해야 합니다.\n\n대납금 반환을 준비할 때는 각 항목별로 지급일, 금액, 수취인, 계약 명의, 실제 사용자와 반환 약정을 정리해야 합니다. 상대방의 요청과 “갚겠다”는 답변, 일부 변제내역 및 납부확인서가 있다면 함께 확보할 필요가 있습니다.\n\n결국 연인관계가 끝났다는 이유만으로 교제 중 지출한 모든 돈을 정산할 수 있는 것도 아니고, 연인 사이였다는 이유만으로 반환청구가 모두 배제되는 것도 아닙니다.\n\n월세·보증금·카드값 등 각각의 비용이 증여금인지 공동생활비인지, 반환을 전제로 한 대납금인지 구분한 뒤 사실관계에 맞는 청구원인을 선택하는 것이 중요합니다."}, {"title": "‘동업을 그만두겠다’는 통보만 하면 끝날까? 동업계약 해지·탈퇴·해산의 차이 [창원 기업 변호사]", "kw": "동업계약", "text": "“동업자에게 내용증명으로 계약을 해지한다고 통보했습니다. 이제 동업관계가 끝났으니 제가 지급한 출자금을 전부 돌려받을 수 있나요?”\n“저는 동업에서 빠지고 싶지만 상대방은 계속 영업하겠다고 합니다. 탈퇴를 통보해야 하는지 사업 전체의 해산을 요구해야 하는지 모르겠습니다.”\n\n동업관계가 악화되면 내용증명에 흔히 “동업계약을 해지한다”라고 기재합니다.\n\n그러나 민법상 조합에 해당하는 동업계약은 일반적인 계약처럼 해제·해지하고 이미 지급한 출자금 전액의 원상회복을 요구할 수 있는 계약이 아닐 수 있습니다.\n\n공동사업이 시작되어 조합의 실체가 형성된 이후에는 자신만 동업자 지위에서 벗어나는 ‘탈퇴’인지, 공동사업 전체를 종료하고 재산을 정리하려는 ‘해산청구’인지 구분해야 합니다.\n\n대법원도 동업계약과 같은 조합계약에서는 일반계약처럼 계약을 해제·해지하여 상대방에게 원상회복의무를 부담시키는 방식과 조합의 탈퇴·해산을 구별하고 있습니다.\n\n따라서 내용증명에 ‘해지한다’는 표현을 사용했더라도 실제 법적 효과는 당사자가 동업을 끝내려는 목적과 통보 전후의 사정에 따라 달라질 수 있습니다.\n\n## 일반계약의 해제·해지와 동업계약의 종료는 다릅니다\n\n일반적인 계약에서 해제는 계약을 소급적으로 소멸시키고 당사자에게 원상회복의무를 발생시키는 제도입니다. 해지는 계속적 계약관계를 장래를 향해 종료시키는 것을 의미합니다.\n\n그러나 여러 사람이 출자하여 공동사업을 운영하는 조합계약은 계약이 이행되면서 출자금, 사업 수익, 채무 및 영업재산이 하나의 조합재산을 형성합니다.\n\n이미 출자금이 임대차보증금, 인테리어비, 재료비, 인건비 등에 사용되었다면 동업계약 체결 전의 상태로 그대로 되돌리는 것이 어렵습니다. 이에 따라 공동사업이 개시되고 조합의 실체가 형성된 이후에는 일반계약처럼 계약을 해제하거나 해지하여 출자금 전액을 원상회복받는 방식보다 탈퇴와 해산·청산의 법리가 적용되는 것이 원칙입니다.\n\n구분\n의미\n주요 정산 방법\n해제\n계약관계를 원칙적으로 소급하여 소멸\n원상회복 문제 발생\n해지\n계속적 계약관계를 장래를 향해 종료\n종료 시점까지의 관계 정산\n탈퇴\n특정 조합원만 동업관계에서 이탈\n탈퇴 당시 조합재산을 기준으로 지분 계산\n해산\n공동사업 전체를 종료하고 재산 정리\n채무 변제 후 남은 잔여재산 분배\n\n다만 계약의 명칭이 ‘동업계약’이라고 해서 언제나 민법상 조합계약이 되는 것은 아닙니다. 공동사업의 실행 정도만으로 해제·해지 가능성을 단정할 수 없으며, 상호 출자와 공동경영 및 손익분담 약정이 있었는지, 조합의 실체가 형성됐는지, 계약의 무효·취소 사유나 별도의 종료·정산특약이 있는지를 구체적으로 확인해야 합니다.\n\n## “계약을 해지했으니 출자금을 전부 돌려달라”는 청구가 가능할까요?\n\n동업계약 종료에서 가장 흔한 오해는 계약을 해지하면 처음 지급한 출자금을 그대로 돌려받을 수 있다는 생각입니다.\n\n출자금은 상대방에게 보관을 맡긴 돈이 아니라 공동사업을 위해 제공한 재산입니다. 사업이 시작되면 출자금은 조합재산을 형성하고 사업의 손익에 따라 그 가치가 달라질 수 있습니다.\n\n따라서 단순히 “동업계약을 해지한다”고 통보한 뒤 최초 출자금 전액의 반환을 요구한다고 해서 그 청구가 그대로 인정되는 것은 아닙니다.\n\n탈퇴로 평가된다면 민법 제719조에 따라 탈퇴 당시 조합재산 상태를 기준으로 지분환급액을 계산해야 합니다. 조합의 자산보다 채무가 많다면 최초 출자금이 있더라도 돌려받을 금액이 없을 수 있습니다.\n\n해산으로 평가된다면 공동사업을 중단하고 조합의 채권을 회수하며 채무를 변제하는 청산절차를 거쳐야 합니다. 그 후 남은 재산이 있을 때 잔여재산을 분배받는 구조입니다.\n\n반면 동업자의 계약 위반으로 별도의 손해가 발생했다면 출자금 정산과 별개로 손해배상청구가 문제될 수 있습니다. 다만 손해배상을 청구하려면 상대방의 계약상 의무 위반과 귀책사유, 손해의 발생, 손해액 및 인과관계를 구체적으로 주장·증명해야 합니다.\n\n## 내가 나가는 것과 사업 전체를 끝내는 것은 다릅니다\n\n민법 제716조에 따른 탈퇴는 특정 조합원이 장래를 향해 조합원 지위에서 벗어나는 것입니다.\n\n조합의 존속기간을 정하지 않았다면 원칙적으로 탈퇴할 수 있지만, 부득이한 사유 없이 조합에 불리한 시기에 탈퇴할 수는 없습니다. 존속기간을 정한 조합에서는 부득이한 사유가 있어야 탈퇴할 수 있습니다.\n\n탈퇴는 남은 동업자가 기존 사업을 계속하는 것을 전제로 합니다. 탈퇴자는 사업장 재산을 임의로 나누어 가져가는 것이 아니라 탈퇴 당시의 조합재산 상태를 기준으로 계산한 지분상당액을 금전으로 정산받는 것이 원칙입니다.\n\n반면 민법 제720조에 따른 해산청구는 공동사업 전체를 중단하고 조합재산을 정리하는 절차로 들어가게 하는 의사표시입니다. 해산을 청구하려면 조합의 목적 달성이 매우 어려워졌거나 조합원 간 신뢰관계가 파괴되어 정상적인 운영을 기대할 수 없는 등의 부득이한 사유가 필요합니다.\n\n이를 간단히 구분하면 다음과 같습니다.\n\n· 나는 나가지만 상대방의 영업 계속은 인정한다\n→ 탈퇴와 지분환급 문제\n\n· 상대방의 영업 계속까지 반대하고 사업 전체의 종료를 요구한다\n→ 해산청구와 청산 문제\n\n· 공동사업에 착수하기 전이거나 조합의 실체가 형성됐는지가 불분명하다\n→ 민법상 조합계약의 성립 여부와 적용될 종료 법리를 먼저 검토\n\n· 상대방의 계약 위반으로 손해가 발생했다\n→ 탈퇴·해산과 별도로 손해배상 가능성 검토\n\n대법원은 탈퇴가 남은 조합원의 사업 계속을 전제로 하는 반면, 해산청구는 사업활동을 중지하고 조합재산을 정리하는 단계로 들어가는 것이라고 구별하고 있습니다.\n\n## 한 사람은 계속 영업하려 하고 다른 사람은 사업을 끝내려 한다면\n\n2인 동업에서 한 사람은 기존 가게나 사업을 계속하려 하고 다른 사람은 사업장 폐쇄와 전체 재산의 처분을 요구하는 경우가 있습니다.\n\n나가려는 사람이 남은 동업자의 사업 계속을 받아들이고 자신의 지분만 정산받으려는 것이라면 탈퇴의 성격이 강합니다.\n\n반대로 다음과 같은 요구를 했다면 해산청구로 평가될 가능성이 있습니다.\n\n- 사업장 영업을 전면 중단할 것\n- 사업자등록을 폐업할 것\n- 임대차보증금을 반환받아 나눌 것\n- 시설·재고·차량 등을 모두 처분할 것\n- 사업계좌와 영업허가를 정리할 것\n- 조합의 채권과 채무를 모두 청산할 것\n\n당사자가 내용증명에 ‘탈퇴’ 또는 ‘해지’라는 단어를 사용했는지만으로 결론이 정해지는 것은 아닙니다. 통보서 전체의 내용, 상대방에게 요구한 조치 및 통보 전후의 행동을 통해 실제 의사를 판단합니다.\n\n예를 들어 동업을 그만두겠다고 하면서 상대방이 계속 영업하는 것에는 이의를 제기하지 않고 탈퇴 당시의 지분 정산만 요구했다면 탈퇴로 볼 가능성이 큽니다.\n\n반면 영업을 즉시 중단하고 모든 조합재산을 처분하여 나누자고 요구했다면 표현상 ‘탈퇴’라고 적었더라도 실질적으로는 해산청구로 해석될 수 있습니다.\n\n다만 한 사람이 사업을 모두 종료하고 싶어 한다는 이유만으로 언제나 조합이 해산되는 것은 아닙니다. 민법 제720조가 정한 부득이한 사유가 있는지, 동업계약에서 별도의 종료사유를 정했는지 등을 확인해야 합니다.\n\n## “동업계약을 해지한다”는 통보가 해산청구로 인정될 수 있을까요?\n\n내용증명에 ‘조합의 해산을 청구한다’고 정확히 쓰지 않았더라도 구체적인 사정에 따라 해지통고가 해산청구로 해석될 수 있습니다.\n\n대법원은 조합원 사이의 불화와 대립으로 신뢰관계가 깨지고, 특정 조합원의 탈퇴나 제명만으로도 조합업무의 정상적인 운영을 기대할 수 없는 상황에서 이루어진 해지통고라면 조합의 소멸을 동반하는 해산청구로 볼 수 있다고 판단했습니다.\n\n대법원 2024. 9. 27. 선고 2024다224645, 224652 판결도 조합계약을 일반계약처럼 해제·해지할 수 없다는 원칙과 함께, 신뢰관계가 파탄된 상황에서의 해지통고는 그 실질에 따라 해산청구로 해석될 수 있다는 법리를 확인했습니다.\n\n다만 동업자 사이에 다툼이 발생했다는 사실만으로 해산사유가 자동으로 인정되는 것은 아닙니다.\n\n일시적인 의견 충돌이나 사소한 계약 위반을 넘어 다음과 같은 사정이 있는지 확인해야 합니다.\n\n 공동 의사결정이 사실상 불가능해졌는지\n 사업계좌나 장부를 일방이 독점했는지\n 상대방을 사업 운영에서 완전히 배제했는지\n 횡령·배임 등의 형사분쟁이나 상호 고소가 발생했는지\n 추가 출자와 손실분담에 관한 합의가 불가능한지\n 영업을 계속할수록 손실이 확대되는지\n 탈퇴나 제명만으로 사업을 정상화하기 어려운지\n\n판례는 조합의 재산상태 악화나 영업부진으로 목적 달성이 매우 곤란해진 경우뿐 아니라 조합원 사이의 불화·대립으로 신뢰관계가 파괴되어 정상적인 운영을 기대할 수 없는 경우도 해산청구의 부득이한 사유가 될 수 있다고 보고 있습니다.\n\n## 내용증명에는 무엇을 명확히 적어야 할까요?\n\n내용증명은 발송인이 어떤 의사를 언제 표시했는지를 증명하는 수단입니다. 그러나 ‘동업계약을 해지한다’는 한 문장만 적으면 그 의미가 탈퇴인지 해산청구인지 불분명해질 수 있습니다.\n\n내용증명을 작성하기 전에는 우선 다음 질문에 답해야 합니다.\n\n- 상대방이 사업을 계속해도 되는가, 아니면 사업 전체를 끝내려는 것인가?\n\n탈퇴하려는 경우에는 다음 내용을 명시하는 것이 좋습니다.\n\n· 동업관계에서 탈퇴한다는 명확한 의사\n· 탈퇴 의사를 표시한 날짜와 상대방에게 통지가 도달한 날짜\n· 탈퇴 사유 및 동업계약과 민법상 근거\n· 상대방이 사업을 계속하는 것에 관한 입장\n· 탈퇴 시점을 기준으로 한 자산·부채 자료의 제출 요구\n· 민법 제719조에 따른 지분 정산 요구\n· 사업계좌·카드·인감 등 사업 관련 자료와 물품의 인계 방법\n\n해산을 청구하려는 경우에는 다음 내용을 구분하여 적을 필요가 있습니다.\n\n· 조합 전체의 해산을 청구한다는 의사\n· 정상적인 공동운영이 불가능해진 구체적인 사유\n· 영업 중단과 신규 채무 발생 방지 요구\n· 조합재산의 임의 처분 중단과 공동관리에 관한 요구\n· 필요한 경우 가압류·가처분 등 보전처분을 진행한다는 통지\n· 채권 회수와 채무 변제를 포함한 청산 요구\n· 장부·계좌·세무자료 제출 요구\n· 청산 후 잔여재산 분배 요구\n\n특히 ‘해지’라는 용어를 사용하더라도 뒤에서 출자금 전액의 즉시 반환만 요구하면 일반계약의 원상회복을 청구한 것인지, 탈퇴에 따른 지분환급을 요구한 것인지 불분명해질 수 있습니다.\n\n따라서 법률용어 하나만 기재하기보다 사업을 계속할 것인지, 재산을 어떤 기준으로 정리할 것인지까지 구체적으로 밝혀야 합니다.\n\n## 잘못된 종료 통보는 정산 기준일과 소송에 어떤 영향을 줄까요?\n\n탈퇴와 해산은 정산 방법뿐 아니라 기준시점도 다릅니다.\n\n구분\n정산 기준\n청구의 성격\n탈퇴\n탈퇴 당시의 조합재산 상태\n탈퇴자의 지분환급청구\n해산\n채권 회수와 채무 변제를 거쳐 청산 종료 시 확정된 잔여재산\n잔여재산 분배청구\n일반계약의 해제\n적법한 해제의 경우 원칙적으로 계약 전 상태 회복\n원상회복청구\n\n탈퇴에 따른 지분환급액은 민법 제719조에 따라 탈퇴 당시의 조합재산 상태를 기준으로 계산합니다. 따라서 언제 탈퇴 의사가 상대방에게 도달했고, 언제 탈퇴의 효력이 발생했는지가 중요합니다.\n\n해산의 경우에는 조합재산을 처분하고 채권을 회수하며 채무를 변제하는 청산절차가 선행됩니다. 청산해야 할 사무가 남아 있다면 곧바로 최초 출자금이나 특정 재산의 분배를 청구하기 어려울 수 있습니다.\n\n대법원도 해산에 따른 잔여재산 분배와 탈퇴에 따른 지분반환은 서로 다른 권리라고 구별하고 있습니다.\n\n예를 들어 실제 의사는 사업 전체를 종료하는 것이었는데 소송에서 탈퇴에 따른 지분환급금만 청구하거나, 반대로 상대방이 계속 영업하는 것을 인정하면서 해산에 따른 잔여재산 분배를 청구하면 청구원인과 정산방식이 맞지 않는 문제가 발생할 수 있습니다.\n\n대법원 2024다224645, 224652 판결에서도 당사자들이 동업계약이라고 주장하면서 일반계약의 해제·해지를 전제로 원상회복을 청구한 사안에서, 법원이 해당 계약이 조합계약인지, 종료원인이 탈퇴나 해산 중 무엇인지 구체적으로 심리해야 한다고 판단했습니다.\n\n따라서 내용증명의 표현이 불명확하면 다음과 같은 쟁점이 발생할 수 있습니다.\n\n- 동업관계가 실제로 종료된 날짜\n- 탈퇴 당시 조합재산의 평가 기준일\n- 해산청구가 상대방에게 도달한 시점\n- 탈퇴에 따른 지분환급인지 해산에 따른 잔여재산 분배인지\n- 출자금 전액 반환 또는 손해배상을 청구할 수 있는지\n- 소송에서 청구원인을 변경해야 하는지\n\n종료 통보 단계에서부터 목적과 법적 근거를 구분해야 하는 이유입니다.\n\n## 동업계약 종료에 관해 자주 묻는 질문\n\nQ1. 내용증명으로 “동업계약을 해지한다”고 보내면 바로 끝나나요?\nA. 그 표현만으로 법적 효과가 일률적으로 정해지지는 않습니다. 민법상 조합에 해당한다면 탈퇴인지 해산청구인지, 그 요건이 충족됐는지 확인해야 합니다. 상대방에게 통지가 도달했는지와 실제로 무엇을 요구했는지도 중요합니다.\n\nQ2. 상대방이 계약을 위반했으니 출자금을 전액 돌려받을 수 있나요?\nA. 동업계약을 일반계약처럼 해제하고 출자금 전액의 원상회복을 구하기는 어려울 수 있습니다. 탈퇴 당시 지분을 계산하거나 해산·청산 후 잔여재산을 분배해야 합니다. 상대방의 귀책사유로 별도의 손해가 발생했다면 손해배상 가능성을 따로 검토해야 합니다.\n\nQ3. 저는 나가고 상대방은 가게를 계속 운영하기로 했습니다\nA. 상대방의 사업 계속을 전제로 자신만 동업관계에서 벗어난다면 탈퇴의 성격이 강합니다. 탈퇴 당시의 전체 자산과 채무를 평가하여 지분환급액을 계산해야 합니다.\n\nQ4. 상대방이 사업을 계속하겠다고 해도 해산을 요구할 수 있나요?\nA. 조합의 목적 달성이 매우 어려워졌거나 신뢰관계가 파괴되어 정상적인 공동운영을 기대할 수 없는 부득이한 사유가 있다면 해산을 청구할 수 있습니다. 다만 단순히 본인이 사업을 그만두고 싶다는 이유만으로 해산이 인정되는 것은 아닙니다.\n\nQ5. 동업자 사이의 신뢰가 깨졌다면 무조건 해산되나요?\nA. 단순한 감정대립이나 일시적인 의견 충돌만으로는 부족할 수 있습니다. 공동 의사결정, 자금관리와 업무수행이 사실상 불가능하고 탈퇴나 제명으로도 정상적인 운영을 회복하기 어려운 상태인지 구체적으로 판단해야 합니다.\n\nQ6. 동업계약서에 해지 조항이 있으면 어떻게 되나요?\nA. 계약에서 정한 종료사유와 정산방법을 먼저 확인해야 합니다. 다만 ‘해지’라는 표현이 있다는 이유만으로 일반계약과 동일한 원상회복 효과가 발생한다고 단정할 수는 없습니다. 해당 조항이 탈퇴, 해산 또는 별도의 정산특약 중 무엇을 정한 것인지 계약 전체의 내용에 따라 해석해야 합니다.\n\n## 동업계약 종료는 ‘해지한다’는 한 문장으로 결정되지 않습니다\n\n동업관계를 종료하고 싶다고 해서 내용증명에 “동업계약을 해지한다”고 적는 것만으로 모든 법률관계가 정리되는 것은 아닙니다.\n\n공동사업이 시작되어 민법상 조합의 실체가 형성됐다면 일반계약처럼 계약을 해제·해지하여 출자금 전액의 원상회복을 구하기보다 조합원의 탈퇴 또는 조합의 해산·청산 절차를 검토해야 합니다.\n\n자신만 동업관계에서 나가고 상대방이 사업을 계속하는 것을 인정한다면 탈퇴가 문제 됩니다. 이 경우 탈퇴 당시 조합재산을 기준으로 지분환급액을 계산합니다.\n\n반대로 사업 전체를 종료하고 조합재산과 채무를 모두 정리하려는 경우에는 해산청구와 청산절차가 문제 됩니다. 해산을 청구하려면 신뢰관계의 파탄 등 공동사업을 계속하기 어려운 부득이한 사유가 있는지도 확인해야 합니다.\n\n해지통고라는 표현을 사용했더라도 당사자 사이의 신뢰관계가 완전히 깨졌고 통보 내용이 영업 중단과 전체 재산의 정리를 요구하는 취지라면 해산청구로 해석될 수 있습니다. 그러나 모든 해지통고가 자동으로 해산청구가 되는 것은 아닙니다.\n\n탈퇴인지 해산인지에 따라 정산의 기준시점과 계산방법, 소송에서 청구해야 할 권리가 달라집니다.\n\n따라서 내용증명을 보내기 전에는 상대방의 사업 계속을 인정할 것인지, 사업 전체의 종료를 요구할 것인지, 출자금 전액 반환이 아니라 어떤 법적 기준에 따른 정산을 구할 것인지를 먼저 정리해야 합니다.\n\n동업계약서, 출자내역, 사업계좌, 세무자료, 자산·부채 현황 및 동업자 사이의 대화를 확인한 뒤 종료 통보의 목적과 법적 근거를 명확히 하는 것이 이후 정산과 소송에서 발생할 수 있는 혼선을 줄이는 방법입니다."}];
+const SEED_LEDGER = [
+  {date:"2026-09-23",platform:"lawtalk",title:"동업채무의 대외책임과 내부 손실부담 기준",kw:"동업채무"},
+  {date:"2026-09-23",platform:"lawtalk",title:"오래된 대여금의 소멸시효 및 회수 절차",kw:"대여금 소멸시효"},
+  {date:"2026-09-23",platform:"naver",title:"온라인 폭파·살해 예고글의 공중협박죄 성립 기준",kw:"공중협박죄"},
+  {date:"2026-09-23",platform:"naver",title:"부양의무 위반 상속인의 상속권 상실 기준",kw:"상속권 상실"},
+  {date:"2026-09-23",platform:"tistory",title:"2인 동업관계 탈퇴 시 조합재산 귀속과 정산",kw:"동업 탈퇴 정산"},
+  {date:"2026-09-23",platform:"tistory",title:"차용금 사기죄의 성립 기준과 민사상 대여금 청구",kw:"차용금 사기"},
+  ...CORPUS.map(c => ({date:"",platform:"",title:c.title,kw:c.kw}))
+];
+const FIELDS = [
+  ["divorce","가사·이혼","이혼"],["inherit","상속","상속"],["civil","민사(대여금·손해배상)","민사"],
+  ["realty","부동산·임대차","부동산"],["corp","기업·동업","기업"],["criminal","형사","형사"],
+  ["sex","성범죄","형사"],["traffic","교통사고","교통사고"],["admin","행정","행정"],
+  ["labor","노동","노동"],["exec","민사집행·채권추심","민사"],["etc","기타","법률"]
+];
+const PLATFORMS = {
+  naver:{label:"네이버 블로그",angle:"사례와 질문으로 시작해 법적 기준, 판단 요소, 준비 자료, 자주 묻는 질문 순서로 가는 정보형. 모바일에서 읽기 좋게 문단을 짧게 끊는다."},
+  tistory:{label:"티스토리",angle:"구글 검색 유입을 고려한 법리 해설형. 개념 정의와 요건을 소제목 단위로 명확히 정리하고 조문·판례 해설 비중을 높인다."},
+  lawtalk:{label:"로톡",angle:"질문에 먼저 답하는 결론 선행형. 절차, 기간, 준비 서류, 비용이 드는 지점을 실무 중심으로 정리한다."},
+  homepage:{label:"홈페이지",angle:"사무소 업무 분야 소개를 겸한 해설형. 과장 없이 쟁점과 검토 방식 위주로 쓴다."}
+};
+/* 팀 글 3편 실측(corpus_stats.py). 로톡·티스토리 채널별 실측이 쌓이면 교체 */
+const SPEC = {chars_min:3800,chars_max:6700,kw_min:1.33,kw_max:4.02,title_min:40,title_max:62,sub_min:7,sub_max:10,sent_max:99,para_max:4,lead:160,
+  note:"팀 글 3편 기준(채널 구분 전)"};
+const BANNED = [
+  {cat:"광고규정",lv:"fail",basis:"변호사법 제23조 제2항 제4호",p:["승소 보장","승소를 보장","100% 승소","무조건 승소","무조건 이길","반드시 승소","반드시 이길","확실히 이길","확실한 승소","책임지고 해결","전액 회수 보장","무혐의 보장","집행유예 보장"]},
+  {cat:"광고규정",lv:"fail",basis:"변호사법 제23조 제2항 제5호",p:["업계 최고","최고의 변호사","국내 최초","국내 1위","1위 로펌","유일한 변호사","가장 잘하는","타 법률사무소와 달리","다른 변호사와 달리"]},
+  {cat:"광고규정",lv:"fail",basis:"변호사법 제23조 제2항 제2호",p:["국제변호사","전문 1인자"]},
+  {cat:"근거 없는 해석",lv:"fail",basis:"출처 없는 법령 해석·실무 경향·학설 서술 금지",p:["해석되는 경우가 많","해석하는 경우가 많","해석될 수 있","해석될 여지","해석의 여지","해석되기도","해석이 갈","달리 해석","일반적으로 논의","일반적으로 거론","일반적으로 알려","논의되는 요건","거론되는 요소","알려져 있습니다","알려져 있으나","알려져 있지만","설명됩니다","설명되기도","견해도 있습니다","견해에 따르면","반론도 있습니다","통설","다수설","실무상","실무에서는","실무적으로","실무는","경향이 있","볼 여지","평가될 여지","인정될 여지","판단되는 경우가 많","인정되는 경우가 많","평가되는 경우가 많","보는 경우가 많","처리되는 경우가 많","검토되는 경우가 많","살펴보는 경우가 많","확인하는 경우가 많","문제되는 경우가 많","대체로"]},
+  {cat:"과장 표현",lv:"warn",basis:"팀 문체 규칙",p:["충격적인","충격!","놀라운","반드시 알아야 할","모르면 손해","지금 바로 연락","절대 놓치지"]},
+  {cat:"AI 문투",lv:"warn",basis:"AI 글 패턴",p:["결론적으로","요약하자면","종합적으로 살펴보면","다양한 측면에서","중요한 역할을 합니다","에 대해 알아보겠습니다","에 대해 자세히 알아보","도움이 되셨기를 바랍니다","이 글에서는","첫째,","둘째,","셋째,"]},
+  {cat:"금지 맥락",lv:"fail",basis:"내부 규칙",p:["강정한"]}
+];
+const NEGATED = /^\S{0,2}\s?(없|않|아닙|못)/;
+const LAW_SERVER = "법령mcp";
+
+/* ───────── 상태 ───────── */
+const S = {sample:null, tools:false, mcp:null, law:false, db:null, user:null, me:null, canEdit:false,
+  posts:[], settings:{firm:"진앤솔 법률사무소",region:"창원",sig:""},
+  design:null, refs:{verified:[],unverified:[],disputed:[]}, openId:null, ctl:null, busy:false};
+const $ = id => document.getElementById(id);
+
+/* ───────── 공용 ───────── */
+function toast(msg){const t=$("toast");t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2600);}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+const nospace = s => s.replace(/\s/g,"");
+function countKw(text,kw){ if(!kw) return 0; const t=nospace(text),k=nospace(kw); if(!k) return 0; let n=0,i=0; while((i=t.indexOf(k,i))!==-1){n++;i+=k.length;} return n; }
+function sentences(text){return text.split(/(?<=[.?!])\s+|\n+/).map(s=>s.trim()).filter(s=>s.length>1);}
+function shingles(text,n=5){const t=nospace(text),set=new Set();for(let i=0;i+n<=t.length;i++)set.add(t.slice(i,i+n));return set;}
+function jaccard(a,b){if(!a.size||!b.size)return 0;let inter=0;const [s,l]=a.size<b.size?[a,b]:[b,a];for(const x of s)if(l.has(x))inter++;return inter/(a.size+b.size-inter);}
+function parseDoc(text){
+  const lines=text.replace(/\r/g,"").replace(/^\s+/,"").split("\n");
+  let title="";
+  if(lines[0]&&/^제목\s*:/.test(lines[0])){title=lines.shift().replace(/^제목\s*:\s*/,"").trim();}
+  const subheads=lines.filter(l=>l.startsWith("## ")).map(l=>l.slice(3).trim());
+  const body=lines.filter(l=>!l.startsWith("## ")).join("\n").trim();
+  const paragraphs=body.split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean);
+  return {title,subheads,body,paragraphs};
+}
+function fieldInfo(key){return FIELDS.find(f=>f[0]===key)||FIELDS[FIELDS.length-1];}
+
+/* ───────── 인용 추출(검증 목록 대조용) ───────── */
+const LAW_RE=/((?:[가-힣]+\s?)?(?:법|법률|시행령|시행규칙|규칙))?\s*제\s?(\d+)조(?:의\s?(\d+))?/g;
+const CASE_RE=/(?<!\d)(\d{2,4})(가합|가단|가소|고합|고단|구합|구단|드합|드단|느합|느단|헌마|헌바|헌가|다|도|두|므|스|누|나|노|마|카|르|브)(\d{2,7})/g;
+function extractCites(text){
+  const laws=[],cases=[];
+  for(const m of text.matchAll(LAW_RE)){laws.push({raw:m[0].trim(),law:(m[1]||"").replace(/\s/g,""),jo:m[2]+(m[3]?"의"+m[3]:"")});}
+  for(const m of text.matchAll(CASE_RE)){cases.push({raw:m[0],no:m[1]+m[2]+m[3]});}
+  return {laws,cases};
+}
+function citeVerified(c,kind){
+  const vs=S.refs.verified.map(v=>nospace(v.cite||""));
+  if(kind==="case") return vs.some(v=>v.includes(c.no));
+  return vs.some(v=>v.includes("제"+c.jo+"조")&&(!c.law||c.law==="같은법"||v.includes(c.law)));
+}
+
+/* ───────── 검수(tools/seo_check.py 이식) ───────── */
+function runChecks(text,kw,lsi,platform){
+  const d=parseDoc(text), n=nospace(d.body).length, items=[];
+  const add=(lv,item,detail)=>items.push({lv,item,detail});
+  if(!text.trim()) return {items:[{lv:"fail",item:"원고",detail:"원고가 비어 있습니다"}],pass:false};
+  // 분량
+  if(n<SPEC.chars_min||n>SPEC.chars_max) add("warn","분량",`본문 ${n.toLocaleString()}자(공백 제외). 기준 ${SPEC.chars_min.toLocaleString()}~${SPEC.chars_max.toLocaleString()}자`);
+  else add("ok","분량",`본문 ${n.toLocaleString()}자`);
+  // 제목
+  if(!d.title) add("fail","제목","첫 줄에 '제목:'이 없습니다");
+  else{
+    const tl=d.title.length;
+    if(tl<SPEC.title_min||tl>SPEC.title_max) add("warn","제목 길이",`${tl}자. 팀 기준 ${SPEC.title_min}~${SPEC.title_max}자`);
+    if(kw){const pos=nospace(d.title).indexOf(nospace(kw));
+      if(pos<0) add("fail","제목 키워드",`대표 키워드 '${kw}'가 제목에 없습니다`);
+      else if(pos>nospace(d.title).length/2) add("warn","제목 키워드","대표 키워드가 제목 뒤쪽 절반에 있습니다");
+      else add("ok","제목 키워드","앞쪽 배치");}
+  }
+  // 키워드 밀도·분포
+  if(kw){
+    const c=countKw(d.body,kw), per=c/Math.max(n,1)*1000;
+    let lv="ok"; if(per>SPEC.kw_max*1.5) lv="fail"; else if(per>SPEC.kw_max||per<SPEC.kw_min) lv="warn";
+    add(lv,"키워드 밀도",`'${kw}' ${c}회, 1,000자당 ${per.toFixed(2)}회. 기준 ${SPEC.kw_min}~${SPEC.kw_max}`);
+    if(countKw(nospace(d.body).slice(0,SPEC.lead),kw)===0) add("warn","도입부 키워드",`첫 ${SPEC.lead}자 안에 대표 키워드가 없습니다`);
+    const flat=nospace(d.body), q=Math.max(Math.floor(flat.length/4),1);
+    const dist=[0,1,2,3].map(i=>countKw(flat.slice(i*q,i<3?(i+1)*q:undefined),kw));
+    add(dist.filter(x=>x===0).length>=2?"warn":"ok","키워드 분포",`4등분 구간별 ${dist.join(" / ")}회`);
+    if(d.subheads.length&&d.subheads.every(s=>countKw(s,kw))) add("warn","소제목 키워드","모든 소제목에 대표 키워드가 반복됩니다. 절반 이하로 줄이십시오");
+  }
+  // LSI
+  if(lsi.length){
+    const full=[d.title,...d.subheads,d.body].join("\n");
+    const miss=lsi.filter(w=>countKw(full,w)===0);
+    const heavy=lsi.filter(w=>countKw(d.body,w)/Math.max(n,1)*1000>SPEC.kw_max*1.5);
+    add((lsi.length-miss.length)/lsi.length>=0.7?"ok":"warn","LSI 반영",`${lsi.length-miss.length}/${lsi.length}`+(miss.length?` · 누락: ${miss.join(", ")}`:""));
+    if(heavy.length) add("warn","LSI 과다",heavy.join(", "));
+  }
+  // 소제목
+  const sh=d.subheads.length;
+  if(sh<SPEC.sub_min||sh>SPEC.sub_max) add("warn","소제목 수",`${sh}개. 팀 기준 ${SPEC.sub_min}~${SPEC.sub_max}개`);
+  const dupSh=d.subheads.filter((s,i,a)=>a.indexOf(s)!==i);
+  if(dupSh.length) add("fail","소제목 중복",dupSh.join(", "));
+  // 호흡
+  const sents=sentences(d.body);
+  const longS=sents.filter(s=>/[.?!]$/.test(s)&&nospace(s).length>SPEC.sent_max);
+  if(longS.length) add("warn","긴 문장",`${longS.length}개(${SPEC.sent_max}자 초과). 예: ${longS[0].slice(0,36)}…`);
+  const longP=d.paragraphs.filter(p=>(p.match(/[.?!](?=\s|$)/g)||[]).length>SPEC.para_max && !/^Q\d/.test(p));
+  if(longP.length) add("warn","긴 문단",`${longP.length}개(${SPEC.para_max}문장 초과). 예: ${longP[0].slice(0,30)}…`);
+  const ends=sents.filter(s=>/[.?!]$/.test(s)).map(s=>s.replace(/[.?!\s]+$/,"").slice(-6));
+  let run=1,worst=[1,""];for(let i=1;i<ends.length;i++){run=ends[i]===ends[i-1]?run+1:1;if(run>worst[0])worst=[run,ends[i]];}
+  if(worst[0]>=4) add("warn","문말 단조",`'…${worst[1]}' ${worst[0]}문장 연속`);
+  // 반복 어구
+  const toks=d.body.split(/\s+/).filter(Boolean),g={};
+  for(let i=0;i<toks.length-2;i++){const k=toks.slice(i,i+3).join(" ");g[k]=(g[k]||0)+1;}
+  const reps=Object.entries(g).filter(([,v])=>v>=5).sort((a,b)=>b[1]-a[1]).slice(0,4);
+  if(reps.length) add("warn","반복 어구",reps.map(([k,v])=>`'${k}' ${v}회`).join("; "));
+  const sc={};sents.forEach(s=>{if(nospace(s).length>15)sc[s]=(sc[s]||0)+1;});
+  const dupS=Object.keys(sc).filter(k=>sc[k]>1);
+  if(dupS.length) add("fail","중복 문장",`${dupS.length}개. 예: ${dupS[0].slice(0,36)}`);
+  // 금지 표현
+  const full=[d.title,...d.subheads,d.body].join("\n");
+  for(const r of BANNED){
+    const hits=r.p.filter(p=>{let i=0;while((i=full.indexOf(p,i))!==-1){if(!NEGATED.test(full.slice(i+p.length,i+p.length+6)))return true;i+=p.length;}return false;});
+    if(hits.length) add(r.lv,r.cat,`${hits.join(", ")} (${r.basis})`);
+  }
+  if(/\*\*|__|~~/.test(text)) add("fail","형식","마크다운 강조 기호가 있습니다");
+  if(/<\/?[a-zA-Z][^>]*>/.test(text)) add("fail","형식","HTML 태그가 있습니다");
+  // 인용 대조
+  const cites=extractCites(full);
+  const badLaw=cites.laws.filter(c=>!citeVerified(c,"law")), badCase=cites.cases.filter(c=>!citeVerified(c,"case"));
+  if(badCase.length) add("fail","판례 인용",`확인 안 된 사건번호: ${[...new Set(badCase.map(c=>c.raw))].join(", ")}`);
+  if(badLaw.length) add("fail","조문 인용",`확인 안 된 조문: ${[...new Set(badLaw.map(c=>c.raw))].slice(0,6).join(", ")}`);
+  if(!badLaw.length&&!badCase.length&&(cites.laws.length||cites.cases.length)) add("ok","인용 대조",`조문 ${cites.laws.length}건, 판례 ${cites.cases.length}건 모두 확인 목록에 있음`);
+  const precedentTalk=sents.filter(s=>/대법원|판례/.test(s)).length;
+  if(precedentTalk&&!S.refs.verified.some(v=>v.type==="판례")) add("warn","판례 취지 서술",`'대법원·판례' 언급 문장 ${precedentTalk}개가 있으나 확인된 판례가 없습니다. 법령 검증 또는 삭제가 필요합니다`);
+  // 유사문서
+  const me=shingles(d.body); let best=[0,""];
+  const pool=[...CORPUS.map(c=>({t:c.title,x:c.text})),...S.posts.filter(p=>p.id!==S.openId&&p.text).map(p=>({t:p.title,x:p.text}))];
+  const selfKey=nospace(d.body);
+  for(const o of pool){const ob=parseDoc(o.x).body; if(nospace(ob)===selfKey) continue; // 같은 글 자체는 비교에서 뺀다
+    const j=jaccard(me,shingles(ob));if(j>best[0])best=[j,o.t];}
+  if(pool.length){const lv=best[0]>=0.35?"fail":best[0]>=0.2?"warn":"ok";add(lv,"유사문서",`최대 유사도 ${best[0].toFixed(2)}${best[1]?` (${best[1].slice(0,24)}…)`:""}. 경고 0.20 / 불가 0.35`);}
+  const order={fail:0,warn:1,ok:2}; items.sort((a,b)=>order[a.lv]-order[b.lv]);
+  return {items,pass:!items.some(i=>i.lv==="fail")};
+}
+function renderChecks(r){
+  const v=$("verdict"), f=r.items.filter(i=>i.lv==="fail").length, w=r.items.filter(i=>i.lv==="warn").length;
+  v.className="verdict "+(f?"fail":w?"warn":"ok");
+  v.textContent=f?`발행 불가 ${f}건 · 경고 ${w}건`:w?`발행 가능 · 경고 ${w}건`:"발행 가능";
+  $("checks").innerHTML=r.items.map(i=>`<li><span class="lv ${i.lv}">${{ok:"통과",warn:"경고",fail:"불가"}[i.lv]}</span><span><b>${esc(i.item)}</b> ${esc(i.detail)}</span></li>`).join("");
+  $("spec-note").textContent=SPEC.note;
+}
+function currentKw(){return $("kw").value.trim()||S.design?.main_kw||"";}
+function currentLsi(){return S.design?.lsi||[];}
+function doCheck(){const r=runChecks($("editor").value,currentKw(),currentLsi(),$("platform").value);renderChecks(r);return r;}
+
+/* ───────── 원고 메타 ───────── */
+function updateMeta(){
+  const t=$("editor").value, d=parseDoc(t);
+  const kw=currentKw();
+  $("meta").innerHTML=`<span>공백 제외 <b>${nospace(d.body).length.toLocaleString()}</b>자</span><span>공백 포함 <b>${d.body.length.toLocaleString()}</b>자</span><span>소제목 <b>${d.subheads.length}</b>개</span>`+(kw?`<span>'${esc(kw)}' <b>${countKw(d.body,kw)}</b>회</span>`:"");
+}
+
+/* ───────── 편집장 진행표 ───────── */
+const STAGES=[["design","설계","주제 기획 담당: 제목·키워드·목차"],["law","법리 확인","법리 검증 담당: 조문·판례 원문 확인"],["write","집필","집필 담당: 팀 문체로 원고 작성"],["audit","검수","검수 담당: 수치 검수와 문맥 점검"],["revise","수정","집필 담당: 검수 지시 반영(최대 2회)"],["final","최종 확인","편집장: 불가 0건 확인"]];
+function resetStages(){$("stages").innerHTML=STAGES.map(([k,t,d])=>`<li class="stage" id="sg-${k}" data-s="wait"><span class="dot"></span><span>${t}<small>${d}</small></span></li>`).join("");$("loop-note").textContent="";}
+function stage(k,s,note){const el=$("sg-"+k);if(!el)return;el.dataset.s=s;if(note!==undefined)el.querySelector("small").textContent=note;}
+
+/* ───────── 프롬프트 ───────── */
+const STYLE_RULES=`[팀 문체 규칙 — 진앤솔 법률사무소 블로그 실측]
+- 제목: 독자 질문형 또는 상황 제시 뒤에 쉼표·물음표, 이어 핵심 정리어, 끝에 대괄호 꼬리표 "[지역 분야 변호사]". 40~60자. 대표 키워드는 제목 앞쪽 절반 안에 넣는다.
+- 도입: 의뢰인이 실제로 할 법한 질문 2개를 “ ”로 인용해 한 줄씩 쓴다. 이어서 상황 설명 → "단순히 ~만으로 ~인정되는 것은 아닙니다" 식의 균형 문장 → "그렇다면 ~ 살펴보겠습니다" 또는 "결론부터 말하면"으로 본론 전환.
+- 소제목 8~9개. 질문형("~될 수 있을까?", "~해야 할까요?")과 서술형("~는 다릅니다")을 섞는다. 번호를 붙이지 않는다. 소제목 줄은 "## "로 시작한다.
+- 문단은 1~2문장, 문단 사이 빈 줄. 한 문장은 대체로 40~90자.
+- 법적 근거 문형: "민법 제○조 제○호는 ~라고 규정하고 있습니다", "대법원은 ~라고 보고 있습니다/판단했습니다". 조문·판례 번호는 [인용 가능 목록]에 있는 것만 쓴다.
+- 보수적 서술: "~될 수 있습니다", "단정하기는 어렵습니다", "다만", "반면", "따라서"로 사실관계에 따라 결론이 달라지는 지점을 보여 준다. 결과를 약속하지 않는다.
+- 법령 해석 금지: 법령·판례의 의미는 조문 문언이나 확인된 판례의 판시 내용 그대로만 쓴다. '해석되는 경우가 많다', '해석될 수 있다', '일반적으로 논의된다', '알려져 있다', '설명된다', '실무상 ~하는 경우가 많다', '~라는 견해·반론도 있다', '경향이 있다', '볼 여지가 있다'처럼 근거를 댈 수 없는 해석·경향·학설 서술은 쓰지 않는다. 근거가 없으면 그 문장을 빼는 것이 원칙이다.
+- 목록은 "- " 또는 "· ", 증거·자료 항목은 ①②③ 뒤에 항목명 한 줄, 설명 문단. 비교표는 표 대신 '항목명 줄 / 내용 줄'을 번갈아 쓴다.
+- 반드시 들어가는 구간: 판단 기준 설명, 사례 대비(같은 상황이라도 결론이 달라지는 경우), 준비할 자료·증거, "○○, 자주 묻는 질문" 소제목 아래 Q1.~Q5.(각 Q 한 줄, "A." 답 2~3문장), 핵심 명제형 마무리 소제목과 요약 문단 4~6개.
+- 마지막 문단 2개: "{FIRM}는 ~ 자료를 검토하여 ~을 살펴보고 있습니다." 한 문단, "~ 상황이라면 ~ 구체적으로 살펴볼 필요가 있습니다." 한 문단. 사무소 소개·구성원·연락처 문단은 쓰지 않는다(서명은 따로 붙인다).
+- 금지: 굵게·기울임 같은 마크다운 강조, HTML, 이모지, 해시태그, "결론적으로/요약하자면/첫째·둘째", 결과 보장·비교 광고·과장 표현, 특정 변호사 이름.`;
+function styleSample(){const t=CORPUS[0].text; return t.slice(0, t.indexOf("## 명절에 한 번"));}
+
+function designPrompt(inp){
+  return `당신은 법률사무소 마케팅팀의 주제 기획 담당입니다. 아래 조건으로 블로그 원고 설계를 JSON 하나로만 답하십시오.
+
+[조건]
+플랫폼: ${PLATFORMS[inp.platform].label} — 각도: ${PLATFORMS[inp.platform].angle}
+분야: ${inp.fieldLabel}
+제목 꼬리표: [${inp.region} ${inp.fieldTag} 변호사]
+주제: ${inp.topic||"(미정 — 분야 안에서 검색 수요가 있을 주제로 정하십시오)"}
+대표 키워드(지정): ${inp.kw||"(미지정 — 정하십시오)"}
+독자 메모: ${inp.memo||"(없음)"}
+참고자료 요약: ${inp.refs?inp.refs.slice(0,1500):"(없음)"}
+
+${STYLE_RULES.replace("{FIRM}",inp.firm)}
+
+[출력 JSON 형식]
+{"titles":["제목안1","제목안2","제목안3"],
+ "main_kw":"대표 키워드(2~4어절 명사구)",
+ "lsi":["같은 법률관계를 설명할 때 자연히 나오는 용어 5~8개(대표 키워드의 띄어쓰기 변형 금지)"],
+ "longtail":["독자가 검색창에 칠 질문형 표현 2~3개"],
+ "questions":["도입부 인용 질문 1","도입부 인용 질문 2"],
+ "outline":[{"h":"소제목","point":"이 구간에서 답할 내용 1~2문장"}],
+ "issues":[{"issue":"법적 근거가 필요한 쟁점","need":"조문|판례","query":"법령·판례 검색어"}]}
+outline은 8~9개, issues는 2~5개. 사실관계를 지어내지 마십시오.`;
+}
+function lawPrompt(inp,design){
+  return `당신은 법리 검증 담당입니다. 목표는 틀린 법률 정보가 원고에 들어가지 않게 하는 것입니다.
+주제: ${design.titles?.[0]||inp.topic}
+쟁점: ${JSON.stringify(design.issues||[])}
+팀원이 준 참고자료:
+${inp.refs||"(없음)"}
+
+도구 사용법: search_law(query)로 법령을 찾아 mst를 얻고, get_law_text(mst, jo)로 조문 원문을 확인합니다. 판례는 search_decisions(query)로 찾고 결과 원문에 사건번호와 요지가 있는 것만 채택합니다. 쟁점마다 도구로 원문을 확인하십시오. 원문을 보지 못한 것은 verified에 넣지 마십시오. 기억에 의존한 번호는 unverified로 보냅니다.
+
+마지막 답은 JSON 하나:
+{"verified":[{"type":"조문|판례","cite":"민법 제840조 제3호 / 대법원 2020. 1. 1. 선고 2019다12345 판결","summary":"원문 기준 요지 1~2문장","use":"원고에서 쓸 지점"}],
+ "unverified":[{"cite":"","reason":""}],
+ "disputed":[]}
+disputed는 항상 빈 배열로 둡니다. 확인된 판례끼리 결론이 다른 경우에만 verified에 각각 넣으십시오.`;
+}
+function refsOnlyPrompt(inp){
+  return `아래 참고자료에 실제로 적혀 있는 조문과 판례만 목록으로 뽑으십시오. 자료에 없는 번호를 보태지 마십시오.
+참고자료:
+${inp.refs}
+
+JSON 하나로만: {"verified":[{"type":"조문|판례","cite":"","summary":"자료 기준 요지","use":""}],"unverified":[],"disputed":[]}`;
+}
+function writePrompt(inp,design,refs){
+  return `당신은 법률 블로그 집필 담당입니다. 아래 설계와 인용 가능 목록만 재료로 ${PLATFORMS[inp.platform].label} 원고 전문을 쓰십시오.
+
+${STYLE_RULES.replace("{FIRM}",inp.firm)}
+
+[플랫폼 각도] ${PLATFORMS[inp.platform].angle}
+
+[설계]
+제목(첫 번째 안을 쓰되 다듬어도 됨): ${design.titles?.[0]}
+대표 키워드: ${design.main_kw} — 본문에 8~15회, 첫 160자 안에 1회, 소제목에는 절반 이하. 억지로 넣지 말고 문맥상 자연스러운 자리에만.
+LSI: ${(design.lsi||[]).join(", ")} — 70% 이상을 설명 맥락에서 사용. 나열 금지.
+롱테일(FAQ 질문에 반영): ${(design.longtail||[]).join(" / ")}
+도입 질문: ${(design.questions||[]).join(" / ")}
+목차: ${(design.outline||[]).map((o,i)=>`${i+1}) ${o.h} — ${o.point}`).join("\n")}
+독자 메모: ${inp.memo||"(없음)"}
+
+[인용 가능 목록 — 여기 있는 조문·판례만 번호를 적을 수 있음]
+${refs.verified.length?refs.verified.map(v=>`- ${v.cite}: ${v.summary}`).join("\n"):"(없음 — 조문·판례 번호와 '대법원은 ~' 식의 판례 취지 서술을 쓰지 말고, 일반적인 법률관계 설명과 판단 요소 중심으로 쓰십시오)"}
+
+[문체 견본 — 리듬과 구성만 참고하고 문장을 베끼지 말 것]
+${styleSample()}
+
+[출력 형식]
+첫 줄 "제목: …". 소제목 줄은 "## "로 시작. 문단 사이 빈 줄. 본문 공백 제외 4,500~6,000자. 원고 외의 설명, 머리말, 코드블록을 붙이지 말고 원고만 출력하십시오.`;
+}
+function auditPrompt(text,design,refs,fails){
+  return `당신은 발행 전 품질 검수 담당입니다. 네이버·구글이 저품질로 볼 신호와 법률 서술 오류를 찾습니다. 원고를 고치지 말고 수정 지시만 JSON으로 답하십시오.
+
+대표 키워드: ${design?.main_kw||""}
+인용 가능 목록: ${refs.verified.map(v=>v.cite).join(" / ")||"(없음)"}
+자동 검수에서 나온 불가·경고: ${fails.map(i=>i.item+": "+i.detail).join(" | ")||"(없음)"}
+
+점검 항목: 1) 제목이 약속한 질문에 본문이 실제로 답하는가 2) 키워드를 억지로 넣은 문장 3) LSI 나열 4) 채우기용 문단(일반론 반복, 막연한 "상황에 따라 다릅니다") 5) AI 글 티(기계적 병렬, 과잉 접속사, 뜻 없는 요약) 6) 결과 보장·비교·과장 표현 7) 인용 가능 목록에 없는 조문·판례·수치, 단정적 법률 서술 8) 출처 없는 법령 해석·실무 경향·학설 서술("해석되는 경우가 많다", "해석될 수 있다", "일반적으로 논의된다", "알려져 있다", "실무상", "견해도 있다", "경향이 있다" 등) — 해당 문장 삭제를 지시.
+
+JSON 하나: {"issues":[{"where":"소제목명 또는 문단 첫 어절","problem":"","fix":"무엇을 어떻게 고칠지"}],"verdict":"발행 가능|수정 필요"}
+issues는 중요한 것 최대 8개.
+
+[원고]
+${text}`;
+}
+function revisePrompt(text,issues,design,refs){
+  return `당신은 법률 블로그 집필 담당입니다. 아래 원고를 수정 지시대로 고친 전문을 출력하십시오. 지시받지 않은 부분의 표현과 용어는 그대로 둡니다.
+
+[수정 지시]
+${issues.map((x,i)=>`${i+1}. [${x.where||"-"}] ${x.problem} → ${x.fix}`).join("\n")}
+
+[지켜야 할 것] 조문 문언과 확인된 판례 판시 밖의 해석·경향·학설 서술("해석되는 경우가 많다", "해석될 수 있다", "일반적으로 논의된다", "알려져 있다", "실무상", "견해도 있다", "경향이 있다" 등)은 새로 쓰지 말고 남아 있으면 문장째 삭제. 대표 키워드 '${design?.main_kw||""}' 밀도 유지. 조문·판례 번호는 다음 목록에 있는 것만: ${refs.verified.map(v=>v.cite).join(" / ")||"(없음 — 번호와 판례 취지 서술 삭제)"}. 첫 줄 "제목: …", 소제목 "## ". 원고만 출력.
+
+[원고]
+${text}`;
+}
+function rephrasePrompt(text){
+  return `아래 법률 블로그 원고를 기존 글과의 유사도를 낮추도록 다시 쓰십시오. 법률 내용, 조문·판례 번호, 대표 키워드 횟수, 소제목 개수와 순서는 유지하고 문장 구조, 어순, 예시 표현, 연결어를 바꿉니다. 새로운 법률 사실이나 출처 없는 해석·경향 서술("해석되는 경우가 많다", "일반적으로 논의된다", "실무상" 등)을 보태지 마십시오. 첫 줄 "제목: …", 소제목 "## ". 원고만 출력하십시오.
+
+${text}`;
+}
+function topicPrompt(field,platform,n,memo,ledger){
+  return `당신은 법률사무소 블로그 주제 기획 담당입니다. ${field} 분야에서 ${PLATFORMS[platform].label}에 올릴 주제 ${n}개를 제안하십시오.
+시기·이슈 메모: ${memo||"(없음)"}
+이미 발행하거나 작성 중인 글(겹치지 않게): ${ledger.map(l=>l.title).join(" / ")}
+플랫폼 각도: ${PLATFORMS[platform].angle}
+의뢰인이 실제로 검색하는 구체적 상황 단위로 쪼개십시오(예: '이혼' 대신 '명절 시가 폭언이 이혼사유가 되는지'). 검색량 수치는 쓰지 마십시오. 판례·조문 번호를 적지 마십시오.
+
+JSON 배열 하나: [{"topic":"주제","title":"제목안(팀 형식: 질문형 + 정리어 + [지역 분야 변호사])","main_kw":"대표 키워드","lsi":["5~8개"],"longtail":["2~3개"],"intent":"정보 탐색|절차 확인|비용 확인|대응 방법","why":"이 주제를 고른 이유 1문장","risk":"법리 다툼·광고규정 등 주의점 또는 없음"}]`;
+}
+
+/* ───────── 중복 판정 ───────── */
+function overlap(kw,title){
+  const k=nospace(kw||""); const out=[];
+  const ledger=[...SEED_LEDGER,...S.posts.map(p=>({title:p.title,kw:p.kw,platform:p.platform,date:(p.updatedAt||"").slice(0,10),status:p.status}))];
+  for(const r of ledger){
+    const t=nospace(r.title||""), m=nospace(r.kw||"");
+    if(k&&(k===m||t.includes(k)||(m&&k.includes(m)))){out.push(["strong",r]);continue;}
+    const toks=(kw||"").match(/[가-힣A-Za-z0-9]{2,}/g)||[];
+    const hit=toks.filter(w=>(r.title||"").includes(w)||(r.kw||"").includes(w));
+    if(toks.length&&hit.length/toks.length>=0.5) out.push(["mid",r]);
+  }
+  return out;
+}
+
+/* ───────── 파이프라인 ───────── */
+function readInputs(){
+  const f=fieldInfo($("field").value);
+  return {platform:$("platform").value,field:f[0],fieldLabel:f[1],fieldTag:f[2],topic:$("topic").value.trim(),kw:$("kw").value.trim(),
+    memo:$("memo").value.trim(),refs:$("refs").value.trim(),region:S.settings.region||"창원",firm:S.settings.firm||"진앤솔 법률사무소",useLaw:$("use-law").checked};
+}
+function sampleErr(e){
+  const m={not_granted:"Claude 사용이 허용되지 않았습니다. 페이지를 새로 열어 허용해 주십시오.",sampling_disabled:"이 계정에서는 Claude 호출을 쓸 수 없습니다.",rate_limited:"Claude 사용량 한도에 걸렸습니다. 잠시 뒤 다시 시도하십시오.",session_expired:"claude.ai에 다시 로그인해 주십시오.",refused:"Claude가 이 요청을 처리하지 않았습니다. 주제 표현을 바꿔 보십시오.",prompt_too_large:"입력이 너무 깁니다. 참고자료를 줄여 주십시오.",invalid_json:"응답 형식이 맞지 않았습니다. 다시 시도하십시오.",cancelled:"중지했습니다."};
+  return m[e?.code]||"Claude 호출에 실패했습니다. 다시 시도하십시오.";
+}
+function lawTools(signal){
+  const call=async(tool,input)=>{
+    const r=await S.mcp.callTool(LAW_SERVER,tool,input,{signal});
+    let p=r.payload; if(typeof p!=="string") p=JSON.stringify(p);
+    return (p||"").slice(0,24000);
+  };
+  return [
+    {name:"search_law",description:"법령명 키워드로 법령을 검색해 법령ID와 MST를 돌려줍니다. 조문을 보기 전에 먼저 호출합니다.",inputSchema:{type:"object",properties:{query:{type:"string",description:"법령명, 예: 민법"}},required:["query"]},execute:i=>call("search_law",{query:String(i.query||""),display:10})},
+    {name:"get_law_text",description:"조문 원문을 돌려줍니다. search_law에서 얻은 mst와 '제840조' 같은 조문 번호를 넣습니다.",inputSchema:{type:"object",properties:{mst:{type:"string"},jo:{type:"string",description:"예: 제840조"}},required:["mst"]},execute:i=>call("get_law_text",{mst:String(i.mst||""),...(i.jo?{jo:String(i.jo)}:{})})},
+    {name:"search_decisions",description:"대법원 등 판례를 키워드로 검색해 사건번호·선고일·요지를 돌려줍니다.",inputSchema:{type:"object",properties:{query:{type:"string"}},required:["query"]},execute:i=>call("search_decisions",{domain:"precedent",query:String(i.query||""),display:8})}
+  ];
+}
+async function probeLaw(){
+  S.lawProbed=true;
+  try{await S.mcp.callTool(LAW_SERVER,"search_law",{query:"민법",display:1});pill("st-law",true,"법령mcp 연결됨");}
+  catch(e){S.law=false;pill("st-law",false,e?.code==="server_not_connected"?"법령mcp 미연결":"법령 검증 불가");}
+}
+function renderDesign(d){
+  if(!d){return;}
+  $("kwbox").innerHTML=`<div><span class="hint">제목 후보 (눌러서 원고 제목에 적용)</span><ul class="titles">${(d.titles||[]).map(t=>`<li><button type="button" data-title="${esc(t)}">${esc(t)}</button></li>`).join("")}</ul></div>
+    <div><span class="hint">대표 키워드</span><div class="chips"><span class="chip">${esc(d.main_kw)}</span></div></div>
+    <div><span class="hint">LSI</span><div class="chips" id="lsi-chips">${(d.lsi||[]).map(w=>`<span class="chip">${esc(w)}</span>`).join("")}</div></div>
+    <div><span class="hint">롱테일</span><div class="chips">${(d.longtail||[]).map(w=>`<span class="chip">${esc(w)}</span>`).join("")}</div></div>`;
+}
+function refreshLsiChips(){
+  const box=$("lsi-chips"); if(!box||!S.design) return;
+  const t=$("editor").value;
+  box.innerHTML=(S.design.lsi||[]).map(w=>`<span class="chip ${countKw(t,w)?"":"miss"}">${esc(w)}</span>`).join("");
+}
+function renderRefs(){
+  const r=S.refs, el=$("reflist");
+  if(!r.verified.length&&!r.unverified?.length){el.innerHTML=`<p class="hint">확인된 조문·판례가 없습니다. 원고에는 번호 없는 일반 설명만 들어갑니다.</p>`;return;}
+  el.innerHTML=r.verified.map(v=>`<div class="ref v"><b>${esc(v.cite)}</b><br>${esc(v.summary||"")}</div>`).join("")+
+    (r.unverified||[]).map(v=>`<div class="ref x"><b>${esc(v.cite)}</b> 확인 실패 — 사용 금지<br><span class="hint">${esc(v.reason||"")}</span></div>`).join("")+
+    "";
+}
+function setBusy(b){S.busy=b;["run","check","rephrase","save"].forEach(id=>$(id).disabled=b);$("stop").hidden=!b;}
+
+async function pipeline(){
+  if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  const inp=readInputs();
+  if(!inp.topic&&!inp.kw){toast("주제나 대표 키워드 중 하나는 넣어 주십시오");return;}
+  if(inp.topic||inp.kw){const dup=overlap(inp.kw||inp.topic,inp.topic).filter(x=>x[0]==="strong");if(dup.length)toast(`기존 글과 키워드가 겹칩니다: ${dup[0][1].title.slice(0,30)}…`);}
+  resetStages();setBusy(true);S.ctl=new AbortController();const signal=S.ctl.signal;
+  $("trunc").hidden=true; S.openId=null;
+  try{
+    // 1 설계
+    stage("design","run");
+    const d=await S.sample.json(designPrompt(inp),{signal,cache:false});
+    if(!d||!Array.isArray(d.outline)) throw {code:"invalid_json"};
+    if(inp.kw) d.main_kw=inp.kw;
+    S.design=d; renderDesign(d); stage("design","done",`소제목 ${d.outline.length}개, LSI ${d.lsi?.length||0}개`);
+    if(!inp.kw) $("kw").value=d.main_kw||"";
+    // 2 법리
+    stage("law","run");
+    if(inp.useLaw&&S.law&&S.tools&&!S.lawProbed) await probeLaw();
+    let refs={verified:[],unverified:[],disputed:[]};
+    const canLaw=inp.useLaw&&S.law&&S.tools;
+    if(canLaw){
+      try{ refs=await S.sample.json(lawPrompt(inp,d),{signal,tools:lawTools(signal)}); stage("law","done",`확인 ${refs.verified?.length||0}건 · 실패 ${refs.unverified?.length||0}건`); }
+      catch(e){ if(e?.code==="cancelled") throw e; stage("law","warn","법령 검증 실패 — 참고자료만 사용"); if(inp.refs) refs=await S.sample.json(refsOnlyPrompt(inp),{signal,cache:false}); }
+    }else if(inp.refs){
+      refs=await S.sample.json(refsOnlyPrompt(inp),{signal,cache:false});
+      stage("law","warn",`참고자료에서 ${refs.verified?.length||0}건 (원문 대조 없음)`);
+    }else stage("law","warn","검증 수단 없음 — 번호 없는 일반 설명으로 작성");
+    refs.verified=(refs.verified||[]).filter(v=>v&&v.cite); refs.unverified=refs.unverified||[]; refs.disputed=refs.disputed||[];
+    S.refs=refs; renderRefs();
+    // 3 집필
+    stage("write","run","원고 작성 중");
+    const ed=$("editor"); ed.value="";
+    const w=await S.sample(writePrompt(inp,d,refs),{signal,cache:false,modelTier:"complex",onText:({text})=>{ed.value=text;updateMeta();}});
+    ed.value=w.text.trim(); updateMeta();
+    if(w.truncated){$("trunc").textContent="원고가 길이 한도에서 끊겼습니다. 끝부분을 확인하고 필요하면 이어서 써 주십시오.";$("trunc").hidden=false;}
+    stage("write","done",`본문 ${nospace(parseDoc(ed.value).body).length.toLocaleString()}자`);
+    // 4~5 검수·수정 루프
+    let loops=0;
+    for(;;){
+      stage("audit","run");
+      const r=runChecks(ed.value,d.main_kw,d.lsi||[],inp.platform); renderChecks(r);
+      const flagged=r.items.filter(i=>i.lv!=="ok");
+      const a=await S.sample.json(auditPrompt(ed.value,d,refs,flagged),{signal,cache:false});
+      const issues=[...r.items.filter(i=>i.lv==="fail").map(i=>({where:i.item,problem:i.detail,fix:"기준에 맞게 고치거나 해당 표현·인용을 삭제"})),...(a?.issues||[])];
+      stage("audit",r.pass?"done":"fail",`불가 ${r.items.filter(i=>i.lv==="fail").length}건 · 지시 ${issues.length}건`);
+      if(!issues.length||loops>=2){break;}
+      loops++; $("loop-note").textContent=`수정 ${loops}회차`;
+      stage("revise","run",`${loops}회차 수정 중`);
+      const rv=await S.sample(revisePrompt(ed.value,issues.slice(0,10),d,refs),{signal,cache:false,onText:({text})=>{ed.value=text;updateMeta();}});
+      ed.value=rv.text.trim(); updateMeta(); stage("revise","done",`${loops}회차 반영`);
+    }
+    if(loops===0) stage("revise","done","수정 불필요");
+    // 6 최종
+    const fin=doCheck(); refreshLsiChips();
+    stage("final",fin.pass?"done":"fail",fin.pass?"불가 0건 — 담당 변호사 검토 후 게시":"불가 항목이 남았습니다. 검수 결과를 보고 직접 고치십시오");
+  }catch(e){
+    const msg=sampleErr(e); toast(msg);
+    const running=[...document.querySelectorAll('.stage[data-s="run"]')]; running.forEach(el=>{el.dataset.s="fail";el.querySelector("small").textContent=msg;});
+    if(e?.text&&!$("editor").value) $("editor").value=e.text;
+  }finally{setBusy(false);updateMeta();}
+}
+
+async function rephrase(){
+  const t=$("editor").value.trim(); if(!t){toast("원고가 없습니다");return;}
+  if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  setBusy(true);S.ctl=new AbortController();const before=t;
+  try{const r=await S.sample(rephrasePrompt(t),{signal:S.ctl.signal,cache:false,onText:({text})=>{$("editor").value=text;updateMeta();}});
+    $("editor").value=r.text.trim();doCheck();toast("리프레이즈를 마쳤습니다");}
+  catch(e){toast(sampleErr(e));$("editor").value=e?.text||before;}
+  finally{setBusy(false);updateMeta();}
+}
+
+/* ───────── 주제 추천 ───────── */
+async function topics(ev){
+  ev.preventDefault(); if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  const f=fieldInfo($("t-field").value), platform=$("t-platform").value, n=+$("t-n").value;
+  const ledger=[...SEED_LEDGER,...S.posts.map(p=>({title:p.title}))].slice(-60);
+  $("t-run").disabled=true; $("topic-cards").innerHTML=`<div class="empty">주제를 고르는 중입니다</div>`;
+  try{
+    const list=await S.sample.json(topicPrompt(f[1],platform,n,$("t-memo").value.trim(),ledger),{cache:false});
+    if(!Array.isArray(list)) throw {code:"invalid_json"};
+    $("topic-cards").innerHTML=list.map((t,i)=>{
+      const ov=overlap(t.main_kw,t.title); const strong=ov.find(o=>o[0]==="strong"), mid=ov.find(o=>o[0]==="mid");
+      const dup=strong?`<span class="dup strong">겹침: ${esc(strong[1].title.slice(0,28))}</span>`:mid?`<span class="dup mid">일부 겹침: ${esc(mid[1].title.slice(0,28))}</span>`:`<span class="dup none">기존 글과 겹침 없음</span>`;
+      return `<article class="card"><h3>${esc(t.title||t.topic)}</h3>${dup}<dl>
+        <dt>대표 키워드</dt><dd>${esc(t.main_kw)}</dd><dt>LSI</dt><dd>${esc((t.lsi||[]).join(", "))}</dd>
+        <dt>롱테일</dt><dd>${esc((t.longtail||[]).join(" / "))}</dd><dt>검색 의도</dt><dd>${esc(t.intent||"")}</dd>
+        <dt>이유</dt><dd>${esc(t.why||"")}</dd><dt>주의</dt><dd>${esc(t.risk||"")}</dd></dl>
+        <div class="btns"><button class="btn primary" type="button" data-use="${i}">이 주제로 작성</button></div></article>`;}).join("");
+    topics._list=list; topics._field=f[0]; topics._platform=platform;
+  }catch(e){$("topic-cards").innerHTML=`<div class="empty">${esc(sampleErr(e))}</div>`;}
+  finally{$("t-run").disabled=false;}
+}
+$("topic-cards").addEventListener("click",e=>{
+  const b=e.target.closest("[data-use]"); if(!b) return; const t=topics._list[+b.dataset.use];
+  $("field").value=topics._field; $("platform").value=topics._platform; $("topic").value=t.topic||t.title; $("kw").value=t.main_kw||"";
+  $("memo").value=[t.why,(t.longtail||[]).join(" / ")].filter(Boolean).join("\n");
+  show("write"); toast("작성 조건에 옮겼습니다. 생성하기를 누르십시오");
+});
+
+/* ───────── 원고함(db) ───────── */
+async function savePost(){
+  const text=$("editor").value.trim(); if(!text){toast("원고가 없습니다");return;}
+  if(!S.db){toast("원고함을 쓸 수 없는 화면입니다");return;}
+  const d=parseDoc(text), r=runChecks(text,currentKw(),currentLsi(),$("platform").value), now=new Date().toISOString();
+  const id=S.openId||("p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6));
+  const prev=S.posts.find(p=>p.id===id);
+  const data={title:d.title||"(제목 없음)",platform:$("platform").value,field:$("field").value,kw:currentKw(),lsi:currentLsi(),text,
+    refs:S.refs.verified.map(v=>v.cite),fails:r.items.filter(i=>i.lv==="fail").length,status:prev?.status||"draft",url:prev?.url||"",
+    author:prev?.author||S.me||"",createdAt:prev?.createdAt||now,updatedAt:now};
+  try{await S.db.doc("posts/"+id).set(data);S.openId=id;toast("원고함에 저장했습니다");}
+  catch(e){toast(e?.code==="permission_denied"?"저장 권한이 없습니다. 원고실 소유자에게 참여자 권한을 요청하십시오":"저장에 실패했습니다");}
+}
+async function renderBox(){
+  const f=$("box-filter").value; let rows=S.posts.slice();
+  if(f==="mine") rows=rows.filter(p=>p.author&&p.author===S.me);
+  if(f==="draft") rows=rows.filter(p=>p.status!=="published");
+  if(f==="pub") rows=rows.filter(p=>p.status==="published");
+  if(!S.db){$("box-rows").innerHTML=`<tr><td colspan="7" class="empty">원고함을 쓸 수 없는 화면입니다</td></tr>`;return;}
+  if(!rows.length){$("box-rows").innerHTML=`<tr><td colspan="7" class="empty">저장된 원고가 없습니다</td></tr>`;return;}
+  let names={}; try{ if(S.user) { const ids=[...new Set(rows.map(p=>p.author).filter(Boolean))]; if(ids.length) names=await S.user.profiles(ids);} }catch(_){}
+  $("box-rows").innerHTML=rows.map(p=>`<tr>
+    <td>${p.status==="published"?`<span class="tag pub">발행</span>`:`<span class="tag">초안</span>`}${p.fails?` <span class="tag" style="color:var(--fail)">불가 ${p.fails}</span>`:""}</td>
+    <td>${esc(p.title)}${p.url?`<br><a href="${esc(p.url)}" target="_blank" rel="noopener" class="hint">${esc(p.url.slice(0,48))}</a>`:""}</td>
+    <td>${esc(PLATFORMS[p.platform]?.label||"")}</td><td>${esc(p.kw||"")}</td>
+    <td>${esc(names[p.author]?.name||"팀원")}</td><td class="num">${esc((p.updatedAt||"").slice(0,10))}</td>
+    <td><div class="btns"><button class="btn" type="button" data-open="${esc(p.id)}">열기</button>${p.status!=="published"?`<button class="btn" type="button" data-pub="${esc(p.id)}">발행 처리</button>`:""}</div>
+      <div data-pubform="${esc(p.id)}" hidden style="margin-top:6px;display:grid;gap:6px"><input type="text" placeholder="게시 주소" aria-label="게시 주소"><button class="btn primary" type="button" data-pubok="${esc(p.id)}">발행으로 기록</button></div></td></tr>`).join("");
+}
+$("box-rows").addEventListener("click",async e=>{
+  const o=e.target.closest("[data-open]"), pb=e.target.closest("[data-pub]"), ok=e.target.closest("[data-pubok]");
+  if(o){const p=S.posts.find(x=>x.id===o.dataset.open); if(!p) return;
+    $("editor").value=p.text; $("platform").value=p.platform||"naver"; $("field").value=p.field||"etc"; $("kw").value=p.kw||"";
+    S.openId=p.id; S.design={main_kw:p.kw,lsi:p.lsi||[],titles:[p.title]}; S.refs={verified:(p.refs||[]).map(c=>({cite:c,type:/\d{2,4}(다|도|두|므|스|누|나|노)/.test(c)?"판례":"조문"})),unverified:[],disputed:[]};
+    renderDesign(S.design); renderRefs(); updateMeta(); doCheck(); show("write");}
+  if(pb){const box=document.querySelector(`[data-pubform="${pb.dataset.pub}"]`); box.hidden=!box.hidden;}
+  if(ok){const id=ok.dataset.pubok, url=document.querySelector(`[data-pubform="${id}"] input`).value.trim();
+    try{await S.db.doc("posts/"+id).update({status:"published",url,publishedAt:new Date().toISOString(),updatedAt:new Date().toISOString()});toast("발행으로 기록했습니다");}
+    catch(_){toast("기록에 실패했습니다. 권한을 확인하십시오");}}
+});
+$("box-filter").addEventListener("change",renderBox);
+
+/* ───────── 설정 ───────── */
+$("set-form").addEventListener("submit",async e=>{
+  e.preventDefault(); if(!S.db){toast("설정을 저장할 수 없는 화면입니다");return;}
+  const data={firm:$("s-firm").value.trim(),region:$("s-region").value.trim(),sig:$("s-sig").value,updatedAt:new Date().toISOString()};
+  try{await S.db.doc("settings/main").set(data);toast("설정을 저장했습니다");}catch(_){toast("편집 권한이 있는 사람만 저장할 수 있습니다");}
+});
+
+/* ───────── 복사 ───────── */
+async function copyText(withSig){
+  const d=parseDoc($("editor").value); if(!d.body){toast("원고가 없습니다");return;}
+  const lines=[d.title,"",...$("editor").value.replace(/^\s*제목\s*:.*\n?/,"").split("\n").map(l=>l.startsWith("## ")?"\n"+l.slice(3):l)];
+  let out=lines.join("\n").trim(); if(withSig&&S.settings.sig) out+="\n\n\n"+S.settings.sig.trim();
+  try{await navigator.clipboard.writeText(out);toast(withSig&&!S.settings.sig?"서명 문구가 비어 있어 본문만 복사했습니다":"복사했습니다. 소제목은 '## ' 표시를 빼고 앞에 빈 줄을 하나 더 둡니다");}
+  catch(_){const ed=$("editor");ed.focus();ed.select();toast("자동 복사가 막혀 원고 전체를 선택했습니다. Ctrl+C로 복사하십시오");}
+}
+
+/* ───────── 화면 전환 ───────── */
+function show(v){["write","topic","box","set"].forEach(k=>{$("view-"+k).hidden=k!==v;$("tab-"+k).setAttribute("aria-selected",String(k===v));});
+  try{localStorage.setItem("wk.view",v);}catch(_){}
+  if(v==="box") renderBox();}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>show(t.dataset.view)));
+
+/* ───────── 초기화 ───────── */
+function fillFields(){const o=FIELDS.map(f=>`<option value="${f[0]}">${f[1]}</option>`).join("");$("field").innerHTML=o;$("t-field").innerHTML=o;}
+function saveDraft(){try{localStorage.setItem("wk.draft",JSON.stringify({p:$("platform").value,f:$("field").value,t:$("topic").value,k:$("kw").value,m:$("memo").value,r:$("refs").value,e:$("editor").value}));}catch(_){}}
+function loadDraft(){try{const d=JSON.parse(localStorage.getItem("wk.draft")||"null");if(!d)return;$("platform").value=d.p||"naver";$("field").value=d.f||"divorce";$("topic").value=d.t||"";$("kw").value=d.k||"";$("memo").value=d.m||"";$("refs").value=d.r||"";$("editor").value=d.e||"";}catch(_){}}
+function pill(id,on,txt){const p=$(id);p.textContent=txt;p.className="pill "+(on?"on":"off");}
+
+fillFields(); resetStages(); loadDraft(); updateMeta();
+if(!$("editor").value){ // 첫 화면 예시: 팀 글 1편을 불러와 검수 결과를 보여 준다
+  $("editor").value="제목: "+CORPUS[1].title+"\n\n"+CORPUS[1].text; $("kw").value=CORPUS[1].kw; $("topic").value="연인 대신 내준 월세·카드값 반환"; $("field").value="civil";
+  S.refs={verified:[],unverified:[],disputed:[]}; updateMeta();
+  $("trunc").textContent="예시로 팀 글 한 편을 불러왔습니다. 생성하기를 누르면 새 원고로 바뀝니다."; $("trunc").hidden=false;
+}
+doCheck();
+try{const v=localStorage.getItem("wk.view");if(v&&v!=="write")show(v);}catch(_){}
+
+$("form").addEventListener("submit",e=>{e.preventDefault();if(!S.busy)pipeline();});
+$("stop").addEventListener("click",()=>S.ctl?.abort());
+$("check").addEventListener("click",()=>{doCheck();refreshLsiChips();});
+$("rephrase").addEventListener("click",rephrase);
+$("copy").addEventListener("click",()=>copyText(false));
+$("copy-sig").addEventListener("click",()=>copyText(true));
+$("save").addEventListener("click",savePost);
+$("topic-form").addEventListener("submit",topics);
+$("kwbox").addEventListener("click",e=>{const b=e.target.closest("[data-title]");if(!b)return;const ed=$("editor");ed.value=ed.value.replace(/^\s*제목\s*:.*$/m,"제목: "+b.dataset.title);if(!/^\s*제목\s*:/.test(ed.value))ed.value="제목: "+b.dataset.title+"\n\n"+ed.value;updateMeta();});
+let _t;$("editor").addEventListener("input",()=>{updateMeta();clearTimeout(_t);_t=setTimeout(()=>{saveDraft();refreshLsiChips();},600);});
+["platform","field","topic","kw","memo","refs"].forEach(id=>$(id).addEventListener("change",saveDraft));
+
+(async()=>{
+  const C=window.claude; if(!C||!C.use){pill("st-claude",false,"Claude 연결 없음");pill("st-law",false,"법령 검증 없음");pill("st-db",false,"원고함 없음");return;}
+  C.use("sample").then(async s=>{S.sample=s; if(!s){pill("st-claude",false,"Claude 연결 없음");return;}
+    try{const l=await s.limits();S.tools=!!l?.tools;}catch(_){S.tools=false;}
+    pill("st-claude",true,"Claude 연결됨");
+    C.use("mcp").then(async m=>{S.mcp=m;
+      if(!m||!S.tools){pill("st-law",false,"법령 검증 꺼짐");return;}
+      S.law=true; pill("st-law",true,"법령mcp 사용 가능"); // 연결 여부는 첫 호출에서 확인
+    });
+  });
+  C.use("user").then(async u=>{S.user=u; if(!u) return; try{S.me=await u.id();S.canEdit=await u.canEdit();}catch(_){}
+    $("s-save").disabled=!S.canEdit; $("set-note").textContent=S.canEdit?"저장하면 팀 전체에 적용됩니다":"편집 권한자만 저장할 수 있습니다";});
+  C.use("db").then(db=>{S.db=db; if(!db){pill("st-db",false,"원고함 없음");return;}
+    pill("st-db",true,"원고함 연결됨");
+    db.doc("settings/main").onSnapshot(snap=>{const d=snap.exists?snap.data():null; if(d){S.settings={firm:d.firm||S.settings.firm,region:d.region||S.settings.region,sig:d.sig||""};$("s-firm").value=S.settings.firm;$("s-region").value=S.settings.region;$("s-sig").value=S.settings.sig;}},()=>{});
+    db.collection("posts").orderBy("updatedAt","desc").limit(300).onSnapshot(snap=>{S.posts=snap.docs.map(d=>({id:d.id,...d.data()}));if(!$("view-box").hidden)renderBox();},()=>pill("st-db",false,"원고함 연결 끊김"));
+  });
+})();
+</script>
