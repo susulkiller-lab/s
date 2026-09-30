@@ -172,6 +172,9 @@ details summary{cursor:pointer;font-size:12px;color:var(--muted)}
         <div class="panel-b">
           <label class="f"><span><b>사건번호</b> (판결문을 붙여넣지 않을 때는 필수)</span>
             <input type="text" id="caseno" placeholder="예: 대법원 2001.6.1. 선고 98다17930 판결"></label>
+          <label class="f"><span>판결문 파일 (PDF 또는 텍스트)</span>
+            <input type="file" id="pdf" accept=".pdf,application/pdf,.txt,text/plain"></label>
+          <p class="hint" id="pdf-info">파일을 고르면 읽은 글이 아래 칸에 채워집니다. 이 칸으로 끌어다 놓아도 됩니다.</p>
           <label class="f"><span>판결문 전문 또는 판결 요지</span>
             <textarea id="src" rows="8" placeholder="판결문이나 보도자료 요지를 붙여넣으면 그 자료를 기준으로 씁니다. 비워 두면 법령mcp로 사건번호를 조회합니다. 선고된 지 얼마 안 된 판결은 조회되지 않을 수 있으니 요지나 전문을 함께 주십시오."></textarea></label>
           <label class="f"><span>자료 유형</span>
@@ -345,6 +348,7 @@ details summary{cursor:pointer;font-size:12px;color:var(--muted)}
       <div class="panel-b" style="font-size:13px">
         <p style="margin:0">1. 해설 작성에서 사건번호를 넣거나 판결문·요지를 붙여넣고 분량과 플랫폼을 고른 뒤 생성하기를 누릅니다. 편집장이 판결 해부, 법령·판례 검증, 기획, 집필, 점검·독립 검토, 수정 순서로 진행합니다.</p>
         <p style="margin:0">2. 검수에서 '불가' 항목이 0건이어야 게시할 수 있습니다. '경고'는 원문과 대조해 판단합니다. 원문 대조 경고는 판결문 전문 또는 요지를 붙여넣었을 때 나옵니다.</p>
+        <p style="margin:0">판결문 PDF는 글자가 들어 있는 파일만 읽습니다. 스캔본(그림으로만 된 PDF)은 읽지 못하므로 글자로 옮겨 붙여 넣으십시오. 읽은 결과는 판결문 칸에 채워지니 표, 각주, 단 나눔이 있는 곳이 원문과 다르게 옮겨지지 않았는지 훑어본 뒤 생성하십시오. 글자가 깨지면 파일 안의 글꼴 정보가 없는 PDF일 수 있으니 텍스트로 붙여 넣으십시오.</p>
         <p style="margin:0">3. 요지만 입력한 글에는 "판결 요지를 기준으로 정리했다"는 문장이 들어갑니다. 전문이 공개되면 다시 생성해 갱신하십시오.</p>
         <p style="margin:0">4. 법령 검증은 claude.ai 설정의 커넥터에 '법령mcp'를 추가한 사람만 쓸 수 있습니다. 없으면 사건번호 조회와 조문·판례 원문 확인이 되지 않고, 추가 참고 원문 칸에 넣은 것만 인용합니다.</p>
         <p style="margin:0">5. 선고된 지 두 달 안의 판결이거나 종전 판례가 변경된 판결은 법제처 DB에 아직 없을 수 있습니다. 이 프로그램은 웹 검색을 하지 못하므로, 그런 글은 대법원 보도자료와 후속 판결을 직접 확인하십시오.</p>
@@ -459,6 +463,77 @@ function citeVerified(c,kind){
 function slugCase(no){
   const m={다:"da",도:"do",두:"du",므:"meu",스:"seu",누:"nu",나:"na",노:"no",마:"ma",카:"ka",르:"reu",브:"beu",가합:"gahap",가단:"gadan",가소:"gaso",고합:"gohap",고단:"godan",구합:"guhap",구단:"gudan",드합:"duhap",드단:"dudan",느합:"neuhap",느단:"neudan",헌마:"hunma",헌바:"hunba",헌가:"hunga"};
   const x=no.match(/^(\d+)([가-힣]+)(\d+)$/);return x&&m[x[2]]?`case-${x[1]}${m[x[2]]}${x[3]}`:"";
+}
+
+/* ───────── 판결문 파일(PDF·텍스트) 읽기 ───────── */
+const PDFJS_BASE="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/";
+function loadScript(src){return new Promise((res,rej)=>{const el=document.createElement("script");el.src=src;el.onload=res;el.onerror=()=>rej({code:"pdf_lib"});document.head.appendChild(el);});}
+async function loadPdfJs(){
+  if(window.pdfjsLib&&window.pdfjsWorker)return window.pdfjsLib;
+  await loadScript(PDFJS_BASE+"pdf.min.js");
+  await loadScript(PDFJS_BASE+"pdf.worker.min.js"); // 작업자를 따로 띄우지 못하는 화면이라 같은 화면에서 돌린다
+  if(!window.pdfjsLib)throw {code:"pdf_lib"};
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS_BASE+"pdf.worker.min.js";
+  return window.pdfjsLib;
+}
+function pageLines(items){
+  let out="";
+  for(const it of items){if(typeof it.str!=="string")continue;out+=it.str;if(it.hasEOL)out+="\n";}
+  return out.replace(/[ \t\u00a0]+\n/g,"\n").split("\n").map(l=>l.replace(/[ \t\u00a0]+/g," ").trim());
+}
+async function extractPdf(file){
+  const lib=await loadPdfJs();
+  const doc=await lib.getDocument({data:new Uint8Array(await file.arrayBuffer()),isEvalSupported:false,disableFontFace:true,verbosity:0}).promise;
+  const pages=[];
+  for(let n=1;n<=doc.numPages;n++){const pg=await doc.getPage(n);const tc=await pg.getTextContent();pages.push(pageLines(tc.items));}
+  const chars=pages.reduce((a,p)=>a+nospace(p.join("")).length,0);
+  if(chars<40*doc.numPages)throw {code:"pdf_scan",pages:doc.numPages};
+  // 쪽번호 줄과 여러 쪽에 되풀이되는 머리글·바닥글을 뺀다
+  let nums=0,reps=0;
+  const seen={};
+  pages.forEach(p=>new Set(p.filter(l=>l&&l.length<=60)).forEach(l=>seen[l]=(seen[l]||0)+1));
+  const clean=pages.map(p=>p.filter(l=>{
+    if(/^[-–—\s]*\d{1,4}[-–—\s]*$/.test(l)&&l){nums++;return false;}
+    if(pages.length>=3&&l&&l.length<=60&&seen[l]>=Math.ceil(pages.length*0.6)){reps++;return false;}
+    return true;}).join("\n").replace(/\n{3,}/g,"\n\n").trim());
+  const emptyPages=clean.filter(t=>nospace(t).length<20).length;
+  return {text:clean.join("\n\n"),pages:doc.numPages,nums,reps,emptyPages,kind:"PDF"};
+}
+async function readTextFile(file){
+  const buf=await file.arrayBuffer();let text,enc="UTF-8";
+  try{text=new TextDecoder("utf-8",{fatal:true}).decode(buf);}catch(_){text=new TextDecoder("euc-kr").decode(buf);enc="EUC-KR";}
+  return {text:text.replace(/\r/g,"").trim(),enc,kind:"텍스트"};
+}
+function updateSrcInfo(){
+  const t=$("src").value.trim();
+  if(!t){$("src-info").textContent="";return;}
+  const kind=readInputs().srcKind;
+  let msg=`${kind} ${t.length.toLocaleString()}자`;
+  if(new TextEncoder().encode(t).length>CLIP.write){
+    const w=clipBytes(t,CLIP.write).text.length,r=clipBytes(t,CLIP.review).text.length,a=clipBytes(t,CLIP.analyze).text.length;
+    msg+=` · 길이 한도: 판결 해부에는 앞 약 ${a.toLocaleString()}자, 독립 검토에는 앞 약 ${r.toLocaleString()}자, 집필에는 앞 약 ${w.toLocaleString()}자가 전달됩니다. 뒷부분(별개의견 등)을 근거로 한 서술은 원문으로 직접 확인하십시오`;
+  }
+  $("src-info").textContent=msg;
+}
+async function loadSourceFile(f){
+  const info=$("pdf-info");
+  if(!f)return;
+  if(f.size>30*1024*1024){info.textContent="파일이 30MB를 넘습니다. 판결문 부분만 나눠서 올려 주십시오.";return;}
+  const isPdf=/\.pdf$/i.test(f.name)||f.type==="application/pdf";
+  if(!isPdf&&!/\.txt$/i.test(f.name)&&!/^text\//.test(f.type)){info.textContent="PDF 또는 텍스트(.txt) 파일만 읽을 수 있습니다. 워드 파일은 내용을 복사해 붙여 넣어 주십시오.";return;}
+  info.textContent=isPdf?"PDF에서 글자를 읽는 중입니다. 처음에는 읽기 도구를 내려받느라 몇 초 걸립니다":"파일을 읽는 중입니다";
+  try{
+    const r=isPdf?await extractPdf(f):await readTextFile(f);
+    if(!r.text.trim())throw {code:"pdf_scan",pages:r.pages||0};
+    $("src").value=r.text;$("srckind").value="auto";
+    if(!$("caseno").value.trim()){const c=firstCaseNo(r.text.slice(0,3000));if(c)$("caseno").value=c;}
+    info.textContent=isPdf
+      ?`${f.name}: ${r.pages}쪽, ${r.text.length.toLocaleString()}자를 읽었습니다.${r.nums||r.reps?` 쪽번호와 되풀이되는 머리글·바닥글 ${r.nums+r.reps}줄은 뺐습니다.`:""}${r.emptyPages?` 글자가 거의 없는 쪽이 ${r.emptyPages}개 있습니다. 그림으로만 된 쪽은 읽지 못했을 수 있습니다.`:""} 아래 칸을 훑어 원문과 다르게 옮겨진 곳이 없는지 확인하십시오.`
+      :`${f.name}: ${r.enc} 텍스트 ${r.text.length.toLocaleString()}자를 읽었습니다.`;
+    updateSrcInfo();saveDraft();
+  }catch(e){
+    info.textContent=e?.code==="pdf_scan"?"이 PDF에는 읽을 수 있는 글자가 없습니다. 스캔본이면 글자로 옮겨 판결문 칸에 붙여 넣어 주십시오.":e?.code==="pdf_lib"?"PDF 읽기 도구를 내려받지 못했습니다. 잠시 뒤 다시 시도하거나 글자를 복사해 붙여 넣어 주십시오.":"파일을 읽지 못했습니다. 암호가 걸렸거나 깨진 PDF일 수 있습니다. 글자를 복사해 붙여 넣어 주십시오.";
+  }
 }
 
 /* ───────── 현재 조건 ───────── */
@@ -1418,7 +1493,7 @@ function syncUi(){
 }
 function pill(id,on,txt){const p=$(id);p.textContent=txt;p.className="pill "+(on?"on":"off");}
 
-resetStages();loadDraft();syncUi();updateMeta();
+resetStages();loadDraft();syncUi();updateMeta();updateSrcInfo();
 if($("editor").value.trim()){ensureDraft();doCheck();}
 try{const v=localStorage.getItem("pr.view");if(v&&v!=="write")show(v);}catch(_){}
 
@@ -1443,7 +1518,10 @@ $("dtabs").addEventListener("click",e=>{const b=e.target.closest("[data-i]");if(
 $("kwbox").addEventListener("click",e=>{const b=e.target.closest("[data-title]");if(!b)return;const ed=$("editor");ed.value=ed.value.replace(/^\s*제목\s*:.*$/m,"제목: "+b.dataset.title);if(!/^\s*제목\s*:/.test(ed.value))ed.value="제목: "+b.dataset.title+"\n\n"+ed.value;if(cur())cur().text=ed.value;updateMeta();});
 let _t;$("editor").addEventListener("input",()=>{if(cur())cur().text=$("editor").value;updateMeta();clearTimeout(_t);_t=setTimeout(()=>{saveDraft();refreshLsiChips();},600);});
 ["len","platform","closing","len-chars","len-n"].forEach(id=>$(id).addEventListener("change",syncUi));
-$("src").addEventListener("input",()=>{const t=$("src").value.trim();$("src-info").textContent=t?`${readInputs().srcKind} ${t.length.toLocaleString()}자`:"";});
+$("src").addEventListener("input",updateSrcInfo);
+$("srckind").addEventListener("change",updateSrcInfo);
+$("pdf").addEventListener("change",async e=>{const f=e.target.files[0];await loadSourceFile(f);e.target.value="";});
+["dragover","drop"].forEach(ev=>$("src").addEventListener(ev,e=>{if(!e.dataTransfer?.types?.includes("Files"))return;e.preventDefault();if(ev==="drop")loadSourceFile(e.dataTransfer.files[0]);}));
 $("style").addEventListener("change",()=>{if($("style").value==="news")$("upd").checked=true;});
 FIELD_IDS.concat(["confirm","upd"]).forEach(id=>$(id).addEventListener("change",saveDraft));
 document.querySelectorAll('input[name="inc"]').forEach(x=>x.addEventListener("change",saveDraft));
