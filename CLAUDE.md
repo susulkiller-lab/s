@@ -63,6 +63,7 @@ C. "이 글 검수해줘"(원고 제공) → 4단계만 수행한다.
 - `corpus/posts/<채널>/`: 팀 기존 글 원문(문체·유사도 기준). 채널 미상 글은 `common/`. 사무소 소개·서명 문단은 빼고 저장한다
 - `corpus/lawrewrite/ANALYSIS.md`: 로리라이트 화면 분석
 - `app/`: 팀원용 원고실 아티팩트 원본과 빌드 스크립트
+- `app/panrye.html`: 팀원용 판례 해설실 아티팩트(https://claude.ai/artifact/T4w1CXsgviDtdGZ3J7UimG). 판결문·요지·사건번호로 네이버·티스토리 판례 해설 원고를 만든다. 코퍼스가 없어 빌드 없이 이 파일을 그대로 같은 URL로 재게시한다. 규칙의 원본은 `.claude/skills/case-commentary-blog/SKILL.md`이고, 규칙을 바꾸면 이 파일과 함께 고친다
 - `kit/wonkosil-kit/`: 팀원 개인 원고실 설치 키트(Claude Code에서 "원고실 설치해줘"), `kit/wonkosil-kit.zip`이 배포본. app/wonkosil.html을 고치면 키트에 복사해 다시 압축한다
 - `skill/jinnsol-blog/`: 팀원 claude.ai에 올리는 스킬 원본, `skill/jinnsol-blog.zip`이 배포본. 규칙·코퍼스를 바꾸면 파일을 복사해 다시 압축한다
 - `data/published.csv`: 발행 기록
