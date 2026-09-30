@@ -348,7 +348,7 @@ details summary{cursor:pointer;font-size:12px;color:var(--muted)}
       <div class="panel-h"><h2>사용 안내</h2></div>
       <div class="panel-b" style="font-size:13px">
         <p style="margin:0">1. 해설 작성에서 사건번호를 넣거나 판결문·요지를 붙여넣고 분량과 플랫폼을 고른 뒤 생성하기를 누릅니다. 편집장이 판결 해부, 법령·판례 검증, 기획, 집필, 점검·독립 검토, 수정 순서로 진행합니다.</p>
-        <p style="margin:0">2. 검수에서 '불가' 항목이 0건이어야 게시할 수 있습니다. '경고'는 원문과 대조해 판단합니다. 원문 대조 경고는 판결문 전문 또는 요지를 붙여넣었을 때 나옵니다.</p>
+        <p style="margin:0">2. 검수에서 '불가' 항목이 0건이어야 게시할 수 있습니다. '경고'는 원문과 대조해 판단합니다. 원문 대조 경고는 판결문 전문 또는 요지를 붙여넣었을 때 나옵니다. 자동 수정 중 Claude 호출이 실패하면 원고는 그대로 두고 원인 코드를 진행표에 보여 줍니다. 이때 '지적 반영 수정'을 누르면 불가 항목과 독립 검토 지적을 반영해 한 번 다시 고칩니다.</p>
         <p style="margin:0">판결문 PDF는 글자가 들어 있는 파일만 읽습니다. 스캔본(그림으로만 된 PDF)은 읽지 못하므로 글자로 옮겨 붙여 넣으십시오. 읽은 결과는 판결문 칸에 채워지니 표, 각주, 단 나눔이 있는 곳이 원문과 다르게 옮겨지지 않았는지 훑어본 뒤 생성하십시오. 글자가 깨지면 파일 안의 글꼴 정보가 없는 PDF일 수 있으니 텍스트로 붙여 넣으십시오.</p>
         <p style="margin:0">3. 요지만 입력한 글에는 "판결 요지를 기준으로 정리했다"는 문장이 들어갑니다. 전문이 공개되면 다시 생성해 갱신하십시오.</p>
         <p style="margin:0">4. 법령 검증은 claude.ai 설정의 커넥터에 '법령mcp'를 추가한 사람만 쓸 수 있습니다. 없으면 사건번호 조회와 조문·판례 원문 확인이 되지 않고, 추가 참고 원문 칸에 넣은 것만 인용합니다.</p>
@@ -1144,6 +1144,45 @@ function errInfo(e){
 }
 /* 모델에 보내는 글에서 요청을 깨뜨릴 수 있는 문자(NUL 등 제어문자, 짝 없는 서로게이트)를 없앤다 */
 const cleanPrompt=t=>String(t).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g,"").replace(/[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/g,"\ufffd");
+/* 모델이 돌려준 JSON은 필드가 빠지거나 배열 자리에 문자열이 올 수 있다. 받자마자 모양을 바로잡아 화면 코드가 예외를 내지 않게 한다 */
+const isObj=x=>!!x&&typeof x==="object"&&!Array.isArray(x);
+const str=v=>v==null?"":typeof v==="string"?v:(typeof v==="number"||typeof v==="boolean")?String(v):Array.isArray(v)?v.map(str).filter(Boolean).join(", "):"";
+const arr=v=>Array.isArray(v)?v.map(x=>isObj(x)?"":str(x)).filter(Boolean):(v==null||v===""?[]:splitList(str(v)));
+function normAnalysis(a){
+  const I=isObj(a.id)?a.id:{},F=isObj(a.facts)?a.facts:{},P=isObj(a.prior)?a.prior:{},C=isObj(a.change)?a.change:{},R=isObj(a.rules)?a.rules:{},E=isObj(a.effect)?a.effect:{},K=isObj(a.kw)?a.kw:{},T=isObj(a.cites)?a.cites:{};
+  const open=Array.isArray(a.open)?a.open.map(x=>typeof x==="string"?{text:x,hypothetical:false}:isObj(x)?{text:str(x.text),hypothetical:x.hypothetical===true}:null).filter(x=>x&&x.text):(typeof a.open==="string"&&a.open?[{text:a.open,hypothetical:false}]:[]);
+  return {id:{court:str(I.court),date:str(I.date),case_no:str(I.case_no),case_name:str(I.case_name),en_banc:I.en_banc===true||I.en_banc==="true",order:str(I.order),basis:str(I.basis),level:str(I.level),kind:str(I.kind)},
+    facts:{parties:str(F.parties),amounts:str(F.amounts),timeline:arr(F.timeline)},issue:str(a.issue),
+    prior:{text:str(P.text),cases:arr(P.cases),reason:str(P.reason)},
+    change:{type:str(C.type),prior_scope:str(C.prior_scope),new_scope:str(C.new_scope),sentence:str(C.sentence)},
+    chain:(Array.isArray(a.chain)?a.chain:[]).filter(isObj).map(c=>({q:str(c.q),a:str(c.a),why:str(c.why),cites:arr(c.cites),link:str(c.link)})),
+    balance:(Array.isArray(a.balance)?a.balance:[]).filter(isObj).map(b=>({who:str(b.who),point:str(b.point)})),
+    rules:{principle:str(R.principle),exceptions:arr(R.exceptions),burden:str(R.burden)},
+    effect:{order_type:str(E.order_type),not_decided:arr(E.not_decided),later:arr(E.later)},open,
+    cites:{laws:arr(T.laws),cases:arr(T.cases)},adjacent_not_in_case:arr(a.adjacent_not_in_case),
+    kw:{main:str(K.main),lsi:arr(K.lsi),longtail:arr(K.longtail)}};
+}
+function normPlan(p){
+  const M=isObj(p.meta)?p.meta:{};
+  return {titles:(Array.isArray(p.titles)?p.titles:[]).map(t=>typeof t==="string"?{t,c:""}:isObj(t)?{t:str(t.t),c:str(t.c)}:{t:"",c:""}).filter(t=>t.t),
+    main_kw:str(p.main_kw),lsi:arr(p.lsi),longtail:arr(p.longtail),
+    outline:(Array.isArray(p.outline)?p.outline:[]).map(x=>typeof x==="string"?{h:x}:isObj(x)?x:{}).map(x=>({h:str(x.h).replace(/^#+\s*/,"").trim(),role:str(x.role),handoff:str(x.handoff),point:str(x.point)})).filter(x=>x.h),
+    dropped:arr(p.dropped),forbid:arr(p.forbid),
+    meta:{tags:arr(M.tags),categories:arr(M.categories),thumbs:arr(M.thumbs),image_desc:str(M.image_desc),search_desc:str(M.search_desc),slug_kw:str(M.slug_kw)}};
+}
+function normRefs(r){
+  r=isObj(r)?r:{};
+  const items=v=>(Array.isArray(v)?v:[]).map(x=>typeof x==="string"?{cite:x}:isObj(x)?x:{}).map(x=>({type:str(x.type),cite:str(x.cite).trim(),summary:str(x.summary),use:str(x.use),reason:str(x.reason)})).filter(x=>x.cite);
+  const dc=isObj(r.direction_check)?{agrees:r.direction_check.agrees,note:str(r.direction_check.note)}:null;
+  return {verified:items(r.verified),unverified:items(r.unverified).map(x=>({cite:x.cite,reason:x.reason})),
+    amendments:(Array.isArray(r.amendments)?r.amendments:[]).map(x=>typeof x==="string"?{law:"",note:x}:isObj(x)?{law:str(x.law),note:str(x.note)}:null).filter(x=>x&&(x.law||x.note)),
+    prior_quote:str(r.prior_quote),direction_check:dc,cite_signal:str(r.cite_signal)};
+}
+function normReview(rv){
+  const list=Array.isArray(rv?.issues)?rv.issues:[];
+  return list.map(x=>typeof x==="string"?{quote:x,type:"",basis:"",actual:"",confidence:"원문만으로 판단 불가"}:isObj(x)?{quote:str(x.quote),type:str(x.type),basis:str(x.basis),actual:str(x.actual),confidence:str(x.confidence)}:null).filter(Boolean);
+}
+const isClear=x=>/명백/.test(x.confidence||"");
 const ask=(prompt,opts)=>S.sample(cleanPrompt(prompt),opts);
 const askJson=(prompt,opts)=>S.sample.json(cleanPrompt(prompt),opts);
 function sampleErr(e){
@@ -1311,9 +1350,9 @@ async function pipeline(){
     stage("intake","done",`${src.kind} ${src.text.length.toLocaleString()}자${src.fetched?" · 사건번호로 조회":" · 사용자 제공"}${src.dbHit===false?" · DB 미수록":""}`);
     // 2 판결 해부
     stage("analyze","run");
-    const a=await askJson(analysisPrompt(src,src.caseNo),{signal,cache:false});
-    if(!a||!a.id||!Array.isArray(a.chain))throw {code:"invalid_json"};
-    a.cites=a.cites||{laws:[],cases:[]};
+    const raw=await askJson(analysisPrompt(src,src.caseNo),{signal,cache:false});
+    if(!isObj(raw)||!isObj(raw.id)||!Array.isArray(raw.chain))throw {code:"invalid_json"};
+    const a=normAnalysis(raw);
     S.analysis=a;renderSheet();
     if(a.id.case_no&&!src.caseNo)src.caseNo=firstCaseNo(a.id.case_no)||a.id.case_no;
     stage("analyze","done",`${a.id.court||""} ${a.id.date||""} ${a.id.case_no||""} · 논증 ${a.chain.length}단계 · 변경 판정 ${a.change?.type||"미기재"}`);
@@ -1323,12 +1362,12 @@ async function pipeline(){
     const canLaw=S.law&&S.tools&&S.mcp;
     if(canLaw&&!S.lawProbed)await probeLaw();
     if(canLaw&&S.law){
-      try{refs={...emptyRefs(),...await askJson(verifyPrompt(a),{signal,tools:lawTools(signal)})};
+      try{refs=normRefs(await askJson(verifyPrompt(a),{signal,tools:lawTools(signal)}));
         stage("verify","done",`확인 ${refs.verified?.length||0}건 · 교차검증 미완 ${refs.unverified?.length||0}건`);}
       catch(e){if(e?.code==="cancelled")throw e;stage("verify","warn","법령 검증 실패 — 추가 참고 원문만 사용");}
     }
     if(!refs.verified?.length&&inp.refs){
-      try{const r2=await askJson(refsOnlyPrompt(inp.refs),{signal,cache:false});refs={...refs,verified:(r2.verified||[]).map(v=>({...v,src:"user"})),unverified:[...(refs.unverified||[]),...(r2.unverified||[])]};
+      try{const n2=normRefs(await askJson(refsOnlyPrompt(inp.refs),{signal,cache:false}));refs={...refs,verified:n2.verified.map(v=>({...v,src:"user"})),unverified:[...(refs.unverified||[]),...n2.unverified]};
         stage("verify","warn",`추가 참고 원문에서 ${refs.verified.length}건 (원문 대조 없음)`);}catch(e){if(e?.code==="cancelled")throw e;}
     }else if(!canLaw||!S.law){
       if(!inp.refs)stage("verify","warn","검증 수단 없음 — 조문·판례 번호 없이 작성");
@@ -1348,10 +1387,10 @@ async function pipeline(){
       const d=S.drafts[i];d.closing=closingStr;d.text="";
       stage("plan","run",`${d.label} 설계 중 (${i+1}/${S.drafts.length})`);
       const prior=S.drafts.slice(0,i).map(p=>({label:p.label,...p.design}));
-      const pl=await askJson(planPrompt(inp,a,refs,d,prior),{signal,cache:false});
-      if(!pl||!Array.isArray(pl.outline)||!pl.outline.length)throw {code:"invalid_json"};
-      pl.titles=(pl.titles||[]).map(t=>typeof t==="string"?{t,c:""}:t);
+      const pl=normPlan(await askJson(planPrompt(inp,a,refs,d,prior),{signal,cache:false}));
+      if(!pl.outline.length)throw {code:"invalid_json"};
       pl.main_kw=inp.kw||(i>0?S.drafts[0].design.main_kw:"")||pl.main_kw||a.kw?.main||"";
+      if(!pl.titles.length)pl.titles=[{t:`${pl.main_kw}, ${a.id.case_no||src.caseNo||""} 판결 해설`.replace(/\s+/g," ").replace(/, $/,""),c:"설계 응답에 제목이 없어 자동으로 만든 제목"}];
       if(i>0&&!inp.kw){pl.lsi=pl.lsi?.length?pl.lsi:S.drafts[0].design.lsi;}
       d.design=pl;
       const slugKw=(pl.meta?.slug_kw||"").toLowerCase().replace(/[^a-z0-9-]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");
@@ -1376,8 +1415,8 @@ async function pipeline(){
         stage("audit","run",`${d.label} 점검·독립 검토 중`);
         let rv=null;d.reviewErr="";
         try{rv=await askJson(reviewPrompt(d.text,S.refs),{signal,cache:false});}catch(e){if(e?.code==="cancelled")throw e;console.error("독립 검토 호출 실패",e);d.reviewErr=errInfo(e);}
-        const list=Array.isArray(rv?.issues)?rv.issues.filter(x=>x&&typeof x==="object"):[];
-        d.review=rv?{explicit:list.filter(x=>x.confidence==="명백히 다름"),unsure:list.filter(x=>x.confidence!=="명백히 다름"),fixed:d.review?.fixed||0}:null;d.reviewText=d.text;
+        const list=normReview(rv);
+        d.review=rv?{explicit:list.filter(isClear),unsure:list.filter(x=>!isClear(x)),fixed:d.review?.fixed||0}:null;d.reviewText=d.text;
         const r=runChecks(d);renderChecks(r);renderNote();
         const issues=groupIssues(r,d);
         stage("audit",issues.length||d.reviewErr?"warn":"done",`${d.label} 점검 지적 ${issues.length}건 · ${d.reviewErr?`독립 검토 실패(${d.reviewErr})`:`검토 지적 ${list.length}건`}`);
