@@ -342,6 +342,7 @@ const BANNED = [
 ];
 const NEGATED = /^\S{0,2}\s?(없|않|아닙|못)/;
 const LAW_SERVER = "법령mcp";
+const NO_SAMPLE_MSG = "공유받은 원고실에서는 글 생성을 쓸 수 없습니다. 설치 키트로 본인 원고실을 만들어 쓰십시오";
 
 /* ───────── 상태 ───────── */
 const S = {sample:null, tools:false, mcp:null, law:false, db:null, user:null, me:null, canEdit:false,
@@ -681,7 +682,7 @@ function renderRefs(){
 function setBusy(b){S.busy=b;["run","check","rephrase","save"].forEach(id=>$(id).disabled=b);$("stop").hidden=!b;}
 
 async function pipeline(){
-  if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  if(!S.sample){toast(NO_SAMPLE_MSG);return;}
   const inp=readInputs();
   if(!inp.topic&&!inp.kw){toast("주제나 대표 키워드 중 하나는 넣어 주십시오");return;}
   if(inp.topic||inp.kw){const dup=overlap(inp.kw||inp.topic,inp.topic).filter(x=>x[0]==="strong");if(dup.length)toast(`기존 글과 키워드가 겹칩니다: ${dup[0][1].title.slice(0,30)}…`);}
@@ -744,7 +745,7 @@ async function pipeline(){
 
 async function rephrase(){
   const t=$("editor").value.trim(); if(!t){toast("원고가 없습니다");return;}
-  if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  if(!S.sample){toast(NO_SAMPLE_MSG);return;}
   setBusy(true);S.ctl=new AbortController();const before=t;
   try{const r=await S.sample(rephrasePrompt(t),{signal:S.ctl.signal,cache:false,onText:({text})=>{$("editor").value=text;updateMeta();}});
     $("editor").value=r.text.trim();doCheck();toast("리프레이즈를 마쳤습니다");}
@@ -754,7 +755,7 @@ async function rephrase(){
 
 /* ───────── 주제 추천 ───────── */
 async function topics(ev){
-  ev.preventDefault(); if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  ev.preventDefault(); if(!S.sample){toast(NO_SAMPLE_MSG);return;}
   const f=fieldInfo($("t-field").value), platform=$("t-platform").value, n=+$("t-n").value;
   const ledger=[...SEED_LEDGER,...S.posts.map(p=>({title:p.title}))].slice(-60);
   $("t-run").disabled=true; $("topic-cards").innerHTML=`<div class="empty">주제를 고르는 중입니다</div>`;
@@ -873,7 +874,7 @@ let _t;$("editor").addEventListener("input",()=>{updateMeta();clearTimeout(_t);_
 
 (async()=>{
   const C=window.claude; if(!C||!C.use){pill("st-claude",false,"Claude 연결 없음");pill("st-law",false,"법령 검증 없음");pill("st-db",false,"원고함 없음");return;}
-  C.use("sample").then(async s=>{S.sample=s; if(!s){pill("st-claude",false,"Claude 연결 없음");return;}
+  C.use("sample").then(async s=>{S.sample=s; if(!s){pill("st-claude",false,"Claude 연결 없음");pill("st-law",false,"법령 검증 없음");$("trunc").textContent=NO_SAMPLE_MSG+". 검수·복사·원고함 열람은 쓸 수 있습니다.";$("trunc").hidden=false;return;}
     try{const l=await s.limits();S.tools=!!l?.tools;}catch(_){S.tools=false;}
     pill("st-claude",true,"Claude 연결됨");
     C.use("mcp").then(async m=>{S.mcp=m;
