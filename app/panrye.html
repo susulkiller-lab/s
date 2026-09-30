@@ -253,6 +253,7 @@ details summary{cursor:pointer;font-size:12px;color:var(--muted)}
         <div class="btns">
           <button class="btn" type="button" id="check">검수</button>
           <button class="btn" type="button" id="batch">인용 일괄 검증</button>
+          <button class="btn" type="button" id="revise" title="검수 결과의 불가 항목과 독립 검토 지적을 반영해 한 번 고칩니다">지적 반영 수정</button>
           <button class="btn" type="button" id="copy">본문 복사</button>
           <button class="btn" type="button" id="copy-sig">서명 포함 복사</button>
           <button class="btn primary" type="button" id="save">원고함 저장</button>
@@ -438,6 +439,7 @@ function clipBytes(s,max){
   s=String(s||"");const enc=new TextEncoder();
   if(enc.encode(s).length<=max)return {text:s,clipped:false};
   let lo=0,hi=s.length;while(lo<hi){const mid=(lo+hi+1)>>1;if(enc.encode(s.slice(0,mid)).length<=max)lo=mid;else hi=mid-1;}
+  if(lo>0&&/[\ud800-\udbff]/.test(s[lo-1]))lo--;
   return {text:s.slice(0,lo)+"\n(이하 생략: 원문이 길어 앞부분만 제공함)",clipped:true};
 }
 function cleanTags(s){return String(s||"").replace(/<br\s*\/?>/gi,"\n").replace(/<[^>]+>/g,"").replace(/[ \t ]+/g," ").replace(/\n[ \t]+/g,"\n").replace(/\n{3,}/g,"\n\n").trim();}
@@ -694,6 +696,7 @@ function runChecks(d){
     const badDt=[...new Set([...body.matchAll(/\d{4}\.\s?\d{1,2}\.\s?\d{1,2}\./g)].map(m=>nospace(m[0])).filter(x=>!sn.includes(x)&&!selfDates.has(x)))];
     if(badDt.length)add("warn","날짜 원문 대조",`원문에 없는 날짜: ${badDt.slice(0,4).join(", ")}`);
   }else add("warn","원문 대조","원문이 없어 금액·날짜·따옴표 대조를 하지 못했습니다");
+  if(!d.review&&d.reviewErr)add("warn","독립 검토",`독립 검토 호출이 실패해 실행하지 못했습니다(${d.reviewErr}). 판결 원문과 직접 대조하십시오`);
   if(d.review){
     if(d.reviewText!==d.text&&(d.review.explicit?.length||d.review.unsure?.length))add("warn","독립 검토",`검토 뒤에 원고가 수정되었습니다. 당시 지적 ${d.review.explicit.length+d.review.unsure.length}건이 고쳐졌는지 직접 확인하십시오`);
     else if(d.review.explicit?.length)add("fail","독립 검토",`원문과 명백히 다른 지적 ${d.review.explicit.length}건이 남아 있습니다. 작성 노트를 확인하십시오`);
@@ -1135,11 +1138,19 @@ async function fetchDecision(caseNo,signal){
 }
 
 /* ───────── 파이프라인 ───────── */
+function errInfo(e){
+  if(e&&e.code)return e.code+(e.message?`: ${String(e.message).slice(0,120)}`:"");
+  return `${e?.name||"Error"}: ${String(e?.message||e).slice(0,120)}`;
+}
+/* 모델에 보내는 글에서 요청을 깨뜨릴 수 있는 문자(NUL 등 제어문자, 짝 없는 서로게이트)를 없앤다 */
+const cleanPrompt=t=>String(t).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g,"").replace(/[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/g,"\ufffd");
+const ask=(prompt,opts)=>S.sample(cleanPrompt(prompt),opts);
+const askJson=(prompt,opts)=>S.sample.json(cleanPrompt(prompt),opts);
 function sampleErr(e){
   const m={not_granted:"Claude 사용이 허용되지 않았습니다. 페이지를 새로 열어 허용해 주십시오.",sampling_disabled:"이 계정에서는 Claude 호출을 쓸 수 없습니다.",rate_limited:"Claude 사용량 한도에 걸렸습니다. 잠시 뒤 다시 시도하십시오.",session_expired:"claude.ai에 다시 로그인해 주십시오.",refused:"Claude가 이 요청을 처리하지 않았습니다. 입력 자료를 확인해 주십시오.",prompt_too_large:"입력이 너무 깁니다. 판결문을 줄여 주십시오.",invalid_json:"응답 형식이 맞지 않았습니다. 다시 시도하십시오.",cancelled:"중지했습니다.",empty_completion:"응답이 비어 있습니다. 다시 시도하십시오."};
-  return m[e?.code]||(e?.code==="user"?e.message:"Claude 호출에 실패했습니다. 다시 시도하십시오.");
+  return m[e?.code]||(e?.code==="user"?e.message:`Claude 호출에 실패했습니다. 다시 시도하십시오. (원인: ${errInfo(e)})`);
 }
-function setBusy(b){S.busy=b;["run","check","batch","save"].forEach(id=>$(id).disabled=b);$("stop").hidden=!b;}
+function setBusy(b){S.busy=b;["run","check","batch","revise","save"].forEach(id=>$(id).disabled=b);$("stop").hidden=!b;}
 function userErr(msg){return {code:"user",message:msg};}
 
 async function intake(inp,signal){
@@ -1208,7 +1219,7 @@ async function writeDraft(inp,a,d,signal){
   for(let i=0;i<groups.length;i++){
     const info=chunkInfo(d,i,groups);
     stage("write","run",`${d.label} ${i+1}/${groups.length} 작성 중`);
-    const r=await S.sample(writePrompt(inp,a,S.refs,d,info,acc,closing),{signal,cache:false,modelTier:"complex",onText:({text})=>{showText(d,(acc?acc+"\n\n":"")+text.split(/\n?@@NOTE/)[0]);}});
+    const r=await ask(writePrompt(inp,a,S.refs,d,info,acc,closing),{signal,cache:false,modelTier:"complex",onText:({text})=>{showText(d,(acc?acc+"\n\n":"")+text.split(/\n?@@NOTE/)[0]);}});
     let part=r.text.trim();
     if(!info.first)part=part.replace(/^\s*제목\s*:.*\n+/,"");
     if(info.last){const p=parseNote(part);part=p.body;d.note=p.note;}
@@ -1228,24 +1239,25 @@ function splitBlocks(text,limit){
   return blocks;
 }
 async function reviseDraft(d,issues,signal){
-  const closing=d.closing;
-  const blocks=nospace(d.text).length<=4500?[d.text]:splitBlocks(d.text,3500);
-  const out=[];
-  for(let i=0;i<blocks.length;i++){
-    const r=await S.sample(revisePrompt(blocks[i],issues,closing,i===0),{signal,cache:false,onText:({text})=>{if(blocks.length===1)showText(d,text);}});
-    let t=r.text.trim();
-    const firstLine=blocks[i].split("\n")[0];
-    const ok=!r.truncated&&t.length>blocks[i].length*0.6&&(!firstLine.startsWith("## ")||t.startsWith("## "))&&(i>0||!/^제목\s*:/.test(firstLine)||/^제목\s*:/.test(t));
-    out.push(ok?t:blocks[i]);
-    if(!ok)d.reviseSkipped=true;
-  }
-  const joined=out.join("\n\n").replace(/\n\n(## )/g,"\n\n$1");
-  showText(d,joined);
+  const closing=d.closing,orig=d.text;
+  const blocks=nospace(d.text).length<=3000?[d.text]:splitBlocks(d.text,2500);
+  const out=[];d.reviseSkipped=false;
+  try{
+    for(let i=0;i<blocks.length;i++){
+      const r=await ask(revisePrompt(blocks[i],issues,closing,i===0),{signal,cache:false,onText:({text})=>{if(blocks.length===1)showText(d,text);}});
+      let t=r.text.trim();
+      const firstLine=blocks[i].split("\n")[0];
+      const ok=!r.truncated&&t.length>blocks[i].length*0.6&&(!firstLine.startsWith("## ")||t.startsWith("## "))&&(i>0||!/^제목\s*:/.test(firstLine)||/^제목\s*:/.test(t));
+      out.push(ok?t:blocks[i]);
+      if(!ok)d.reviseSkipped=true;
+    }
+  }catch(e){showText(d,orig);throw e;} // 실패하면 스트리밍으로 덮인 글을 원래대로 되돌린다
+  showText(d,out.join("\n\n"));
 }
 function groupIssues(r,d){
   const FIX={"요지 기준 표시":"마무리 구간에서만 처리: 한계 고지에 '판결 요지를 기준으로 정리했다'는 문장을 넣음","마무리 문구":"마무리 구간에서만 처리: 지정한 안내 문구를 마지막 줄에 한 글자도 바꾸지 않고 넣음"};
   const fails=r.items.filter(i=>i.lv==="fail"&&!["분량","소제목 수","제목 키워드","유사문서","인용 일괄 검증","독립 검토","제목","소제목 번호","소제목 중복"].includes(i.item)).map(i=>({where:i.item,problem:i.detail,fix:FIX[i.item]||"기준에 맞게 고치거나 해당 표현·인용을 삭제"}));
-  const rev=(d.review?.explicit||[]).map(x=>({where:`문장 "${(x.quote||"").slice(0,30)}…"`,problem:`원문과 다름(유형 ${x.type}): ${x.actual||x.basis||""}`,fix:"원문이 말하는 내용으로 고치거나, 근거를 찾을 수 없으면 삭제하거나 유보로 바꿈"}));
+  const rev=(d.review?.explicit||[]).map(x=>({where:`문장 "${String(x.quote||"").slice(0,30)}…"`,problem:`원문과 다름(유형 ${x.type}): ${x.actual||x.basis||""}`,fix:"원문이 말하는 내용으로 고치거나, 근거를 찾을 수 없으면 삭제하거나 유보로 바꿈"}));
   return [...fails,...rev];
 }
 function summarizeBatch(text){
@@ -1299,7 +1311,7 @@ async function pipeline(){
     stage("intake","done",`${src.kind} ${src.text.length.toLocaleString()}자${src.fetched?" · 사건번호로 조회":" · 사용자 제공"}${src.dbHit===false?" · DB 미수록":""}`);
     // 2 판결 해부
     stage("analyze","run");
-    const a=await S.sample.json(analysisPrompt(src,src.caseNo),{signal,cache:false});
+    const a=await askJson(analysisPrompt(src,src.caseNo),{signal,cache:false});
     if(!a||!a.id||!Array.isArray(a.chain))throw {code:"invalid_json"};
     a.cites=a.cites||{laws:[],cases:[]};
     S.analysis=a;renderSheet();
@@ -1311,12 +1323,12 @@ async function pipeline(){
     const canLaw=S.law&&S.tools&&S.mcp;
     if(canLaw&&!S.lawProbed)await probeLaw();
     if(canLaw&&S.law){
-      try{refs={...emptyRefs(),...await S.sample.json(verifyPrompt(a),{signal,tools:lawTools(signal)})};
+      try{refs={...emptyRefs(),...await askJson(verifyPrompt(a),{signal,tools:lawTools(signal)})};
         stage("verify","done",`확인 ${refs.verified?.length||0}건 · 교차검증 미완 ${refs.unverified?.length||0}건`);}
       catch(e){if(e?.code==="cancelled")throw e;stage("verify","warn","법령 검증 실패 — 추가 참고 원문만 사용");}
     }
     if(!refs.verified?.length&&inp.refs){
-      try{const r2=await S.sample.json(refsOnlyPrompt(inp.refs),{signal,cache:false});refs={...refs,verified:(r2.verified||[]).map(v=>({...v,src:"user"})),unverified:[...(refs.unverified||[]),...(r2.unverified||[])]};
+      try{const r2=await askJson(refsOnlyPrompt(inp.refs),{signal,cache:false});refs={...refs,verified:(r2.verified||[]).map(v=>({...v,src:"user"})),unverified:[...(refs.unverified||[]),...(r2.unverified||[])]};
         stage("verify","warn",`추가 참고 원문에서 ${refs.verified.length}건 (원문 대조 없음)`);}catch(e){if(e?.code==="cancelled")throw e;}
     }else if(!canLaw||!S.law){
       if(!inp.refs)stage("verify","warn","검증 수단 없음 — 조문·판례 번호 없이 작성");
@@ -1336,7 +1348,7 @@ async function pipeline(){
       const d=S.drafts[i];d.closing=closingStr;d.text="";
       stage("plan","run",`${d.label} 설계 중 (${i+1}/${S.drafts.length})`);
       const prior=S.drafts.slice(0,i).map(p=>({label:p.label,...p.design}));
-      const pl=await S.sample.json(planPrompt(inp,a,refs,d,prior),{signal,cache:false});
+      const pl=await askJson(planPrompt(inp,a,refs,d,prior),{signal,cache:false});
       if(!pl||!Array.isArray(pl.outline)||!pl.outline.length)throw {code:"invalid_json"};
       pl.titles=(pl.titles||[]).map(t=>typeof t==="string"?{t,c:""}:t);
       pl.main_kw=inp.kw||(i>0?S.drafts[0].design.main_kw:"")||pl.main_kw||a.kw?.main||"";
@@ -1362,23 +1374,30 @@ async function pipeline(){
       let loops=0;
       for(;;){
         stage("audit","run",`${d.label} 점검·독립 검토 중`);
-        let rv={issues:[]};
-        try{rv=await S.sample.json(reviewPrompt(d.text,S.refs),{signal,cache:false});}catch(e){if(e?.code==="cancelled")throw e;}
-        const list=Array.isArray(rv?.issues)?rv.issues:[];
-        d.review={explicit:list.filter(x=>x.confidence==="명백히 다름"),unsure:list.filter(x=>x.confidence!=="명백히 다름"),fixed:d.review?.fixed||0};d.reviewText=d.text;
+        let rv=null;d.reviewErr="";
+        try{rv=await askJson(reviewPrompt(d.text,S.refs),{signal,cache:false});}catch(e){if(e?.code==="cancelled")throw e;console.error("독립 검토 호출 실패",e);d.reviewErr=errInfo(e);}
+        const list=Array.isArray(rv?.issues)?rv.issues.filter(x=>x&&typeof x==="object"):[];
+        d.review=rv?{explicit:list.filter(x=>x.confidence==="명백히 다름"),unsure:list.filter(x=>x.confidence!=="명백히 다름"),fixed:d.review?.fixed||0}:null;d.reviewText=d.text;
         const r=runChecks(d);renderChecks(r);renderNote();
         const issues=groupIssues(r,d);
-        stage("audit",issues.length?"warn":"done",`${d.label} 점검 지적 ${issues.length}건 · 검토 지적 ${list.length}건`);
+        stage("audit",issues.length||d.reviewErr?"warn":"done",`${d.label} 점검 지적 ${issues.length}건 · ${d.reviewErr?`독립 검토 실패(${d.reviewErr})`:`검토 지적 ${list.length}건`}`);
         if(!issues.length||loops>=2)break;
         loops++;$("loop-note").textContent=`${d.label} 수정 ${loops}회차`;
         stage("revise","run",`${d.label} ${loops}회차 수정 중`);
-        const nFix=d.review.explicit.length;
-        await reviseDraft(d,issues.slice(0,12),signal);
-        d.review.fixed+=nFix;
-        stage("revise","done",`${d.label} ${loops}회차 반영${d.reviseSkipped?" (일부 구간은 수정본이 기준에 못 미쳐 반영하지 않음)":""}`);
+        const nFix=d.review?.explicit?.length||0;
+        try{
+          await reviseDraft(d,issues.slice(0,12),signal);
+          if(d.review)d.review.fixed+=nFix;
+          stage("revise","done",`${d.label} ${loops}회차 반영${d.reviseSkipped?" (일부 구간은 수정본이 기준에 못 미쳐 반영하지 않음)":""}`);
+        }catch(e){
+          if(e?.code==="cancelled")throw e;
+          console.error("수정 호출 실패",e);
+          stage("revise","warn",`${d.label} 수정 호출이 실패해 지적을 반영하지 못했습니다(${errInfo(e)}). 원고는 그대로 두었습니다. '지적 반영 수정'을 다시 누르거나 직접 고치십시오`);
+          break;
+        }
       }
     }
-    if(!document.querySelector('#sg-revise[data-s="done"]'))stage("revise","done","수정 불필요");
+    if($("sg-revise").dataset.s==="wait")stage("revise","done","수정 불필요");
     // 9 최종
     stage("final","run","인용 일괄 검증 중");
     for(let i=0;i<S.drafts.length;i++){
@@ -1390,6 +1409,7 @@ async function pipeline(){
     switchTo(0);renderRefs();
     stage("final",allPass?"done":"fail",allPass?"불가 0건 — 담당 변호사 검토 후 게시":`불가 ${fails}건이 남았습니다. 검수 결과를 보고 직접 고치십시오`);
   }catch(e){
+    console.error("판례해설실 오류",e);
     const msg=sampleErr(e);toast(msg);
     [...document.querySelectorAll('.stage[data-s="run"]')].forEach(el=>{el.dataset.s="fail";el.querySelector("small").textContent=msg;});
     if(e?.text&&cur()&&!cur().text){showText(cur(),e.text);}
@@ -1509,6 +1529,21 @@ $("batch").addEventListener("click",async()=>{
     d.batch=await batchVerify(d,S.ctl.signal);S.batchRefs=[...(S.batchRefs||[]),...d.batch.refs];renderRefs();renderChecks(runChecks(d));toast("인용 일괄 검증을 마쳤습니다");}
   catch(e){toast(e?.code==="cancelled"?"중지했습니다":"인용 일괄 검증에 실패했습니다. 법령mcp 연결을 확인하십시오");}
   finally{setBusy(false);}
+});
+$("revise").addEventListener("click",async()=>{
+  const d=cur();
+  if(!S.sample){toast("Claude 호출을 쓸 수 없는 화면입니다");return;}
+  if(!d||!$("editor").value.trim()){toast("원고가 없습니다");return;}
+  const srcText=(S.src?.text||$("src").value).trim();
+  if(!srcText){toast("판결 원문이 있어야 수정할 수 있습니다. 판결문 칸에 원문이나 요지를 넣어 주십시오");return;}
+  if(!S.src)S.src={text:srcText,kind:readInputs().srcKind||"요지",caseNo:"",fetched:false,dbHit:null,clipped:false};
+  d.text=$("editor").value;
+  const issues=groupIssues(runChecks(d),d);
+  if(!issues.length){toast("반영할 불가 항목이나 독립 검토 지적이 없습니다");return;}
+  setBusy(true);S.ctl=new AbortController();
+  try{await reviseDraft(d,issues.slice(0,12),S.ctl.signal);renderChecks(runChecks(d));refreshLsiChips();toast(d.reviseSkipped?"일부 구간은 수정본이 기준에 못 미쳐 반영하지 않았습니다":"수정을 마쳤습니다. 검수 결과를 확인하십시오");}
+  catch(e){console.error(e);toast(sampleErr(e));}
+  finally{setBusy(false);updateMeta();}
 });
 $("copy").addEventListener("click",()=>copyText(false));
 $("copy-sig").addEventListener("click",()=>copyText(true));
