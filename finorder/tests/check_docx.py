@@ -243,6 +243,11 @@ def main():
         want = [i for i, (k, t) in enumerate(exp) if k == "l2" and t.startswith("2)")]
         check(ul == [(want[0], "요구대상거래기간의 거래내역")], "밑줄 구간 %r" % ul)
 
+    # Word는 keepNext·keepLines·pageBreakBefore가 걸린 줄 옆에 검은 네모(서식 표시)를 띄운다. 쓰지 않는다.
+    for tag in ("keepNext", "keepLines", "pageBreakBefore", "numPr"):
+        n = len(doc.findall(".//" + W + tag))
+        check(n == 0, "문단 서식 %s가 %d곳에 있음(Word에 검은 네모 표시가 뜬다)" % (tag, n))
+
     sect = body.find(W + "sectPr")
     pg = sect.find(W + "pgSz")
     check(pg.get(W + "w") == "11906" and pg.get(W + "h") == "16838", "A4 크기")
