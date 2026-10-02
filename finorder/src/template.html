@@ -1,0 +1,314 @@
+<title>금융거래정보 제출명령 작성기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>/*__CSS__*/</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>금융거래정보 제출명령 작성기</h1>
+      <p>신청서 문안 확인, 항목별 복사, DOCX 저장</p>
+    </div>
+    <div class="status" aria-label="연결 상태">
+      <span class="pill" id="st-db">저장소 확인 중</span>
+      <span class="pill" id="st-claude">Claude 확인 중</span>
+    </div>
+  </header>
+
+  <div class="view-tabs" role="tablist" aria-label="화면 전환">
+    <button type="button" class="vt" id="tab-form" role="tab" aria-selected="true" aria-controls="pane-form">작성</button>
+    <button type="button" class="vt" id="tab-preview" role="tab" aria-selected="false" aria-controls="pane-preview">미리보기</button>
+  </div>
+
+  <main class="layout">
+
+    <!-- 좌측: 작성 -->
+    <section id="pane-form" class="pane-form" aria-label="작성">
+
+      <!-- 사건 정보(번호 없는 머리 카드) -->
+      <section class="card step" data-step="case" aria-labelledby="h-case">
+        <header class="step-h">
+          <div class="step-t">
+            <h2 id="h-case">사건 정보</h2>
+            <p class="step-sub">문서 맨 위의 사건, 원고, 피고 줄에 들어갑니다.</p>
+          </div>
+        </header>
+        <div class="grid-2">
+          <label class="field"><span class="lbl">사건번호</span>
+            <input type="text" id="case-no" placeholder="예: 2026드단12345" autocomplete="off" spellcheck="false"></label>
+          <label class="field"><span class="lbl">사건명</span>
+            <input type="text" id="case-name" placeholder="예: 이혼 등" autocomplete="off"></label>
+          <label class="field"><span class="lbl">원고 이름</span>
+            <input type="text" id="plaintiff" placeholder="예: 홍길동" autocomplete="off"></label>
+          <label class="field"><span class="lbl">피고 이름</span>
+            <input type="text" id="defendant" placeholder="예: 김영희" autocomplete="off"></label>
+        </div>
+        <fieldset class="field fs">
+          <legend class="lbl">우리 측</legend>
+          <div class="seg" role="radiogroup" aria-label="우리 측 당사자">
+            <label><input type="radio" name="ours" id="ours-plaintiff" value="plaintiff"><span>원고</span></label>
+            <label><input type="radio" name="ours" id="ours-defendant" value="defendant"><span>피고</span></label>
+          </div>
+          <p class="hint">소송대리인이 대리하는 쪽입니다. 선택한 쪽이 도입 문장 '원고 ○○○의 소송대리인은'에 들어갑니다.</p>
+        </fieldset>
+      </section>
+
+      <!-- 1. 대상기관 -->
+      <section class="card step" data-step="inst" aria-labelledby="h-inst">
+        <header class="step-h">
+          <span class="step-no" aria-hidden="true">1</span>
+          <div class="step-t">
+            <h2 id="h-inst">대상기관</h2>
+            <p class="step-sub">체크한 곳만 문서에 들어갑니다. 선택한 순서대로 가, 나, 다 순번이 붙습니다.</p>
+          </div>
+          <div class="step-act">
+            <button type="button" class="btn sm" id="btn-update-open" aria-controls="update-panel" aria-expanded="false">최신화</button>
+            <button type="button" class="btn sm" id="btn-add-inst-open" aria-controls="add-inst" aria-expanded="false">기관 추가</button>
+          </div>
+        </header>
+
+        <!-- 최신화 패널(인라인, 초기 숨김) -->
+        <div id="update-panel" class="inline-panel" role="region" aria-labelledby="h-upd" hidden>
+          <div class="ip-head">
+            <h3 id="h-upd">기관 주소 최신화</h3>
+            <button type="button" class="btn ghost sm" id="upd-close">닫기</button>
+          </div>
+          <p class="note">이 화면에서는 인터넷 검색을 할 수 없습니다. 관리자가 Claude Code 세션에서 '금융기관 주소 최신화'를 요청하면 데이터 파일과 이 화면을 함께 갱신합니다. 그 사이 급히 바꿔야 하면 아래 순서로 직접 갱신할 수 있습니다.</p>
+          <div id="upd-summary" class="upd-summary" aria-label="기관별 조사 현황"></div>
+          <ol class="upd-steps">
+            <li>
+              <div class="us-body">
+                <b>요청문 복사</b>
+                <span>현재 기관 목록과 검증 규칙(독립 출처 2곳, 출처 주소 필수, 확인 못 하면 비움)이 담긴 요청문을 복사합니다.</span>
+              </div>
+              <button type="button" class="btn sm" id="upd-copy">요청문 복사</button>
+            </li>
+            <li>
+              <div class="us-body">
+                <b>웹 검색이 되는 Claude에 붙여 넣기</b>
+                <span>Claude Code 세션이나 웹 검색을 켠 대화에 요청문을 붙여 넣고, 돌려받은 JSON을 복사합니다.</span>
+              </div>
+            </li>
+            <li class="us-wide">
+              <div class="us-body">
+                <b>결과 붙여넣기</b>
+                <label class="field"><span class="sr-only">Claude가 돌려준 JSON</span>
+                  <textarea id="upd-paste" rows="5" spellcheck="false" placeholder="여기에 JSON을 붙여 넣으십시오"></textarea></label>
+                <div class="btns"><button type="button" class="btn sm" id="upd-check">변경 확인</button></div>
+              </div>
+            </li>
+            <li class="us-wide">
+              <div class="us-body">
+                <b>비교 후 적용</b>
+                <div id="upd-diff" class="upd-diff" aria-live="polite"></div>
+                <div class="btns"><button type="button" class="btn primary sm" id="upd-apply">선택 적용</button></div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <!-- 기관 추가 폼(인라인, 초기 숨김) -->
+        <div id="add-inst" class="inline-panel" role="group" aria-labelledby="h-add" hidden>
+          <div class="ip-head"><h3 id="h-add">목록에 없는 기관 추가</h3></div>
+          <p class="hint">추가한 기관은 '추가' 표시와 함께 목록에 남아 다음에도 쓸 수 있습니다. 주소는 공식 자료로 확인한 값을 넣어 주십시오.</p>
+          <div class="grid-2 add-grid">
+            <label class="field span-2"><span class="lbl">기관 명칭</span>
+              <input type="text" id="add-name" placeholder="신청서에 쓰는 정식 명칭 (예: 주식회사 ○○은행)" autocomplete="off"></label>
+            <label class="field zip"><span class="lbl">우편번호</span>
+              <input type="text" id="add-zip" inputmode="numeric" maxlength="5" placeholder="5자리" autocomplete="off"></label>
+            <label class="field"><span class="lbl">도로명주소</span>
+              <input type="text" id="add-addr" placeholder="번지, 층까지 (참고 괄호 제외)" autocomplete="off"></label>
+            <label class="field span-2"><span class="lbl">참고 (선택)</span>
+              <input type="text" id="add-note" placeholder="괄호 안에 들어갈 법정동, 건물명 (예: 여의도동)" autocomplete="off"></label>
+            <label class="field"><span class="lbl">분류</span>
+              <select id="add-cat">
+                <option value="bank">시중·특수·지방은행</option>
+                <option value="post">우체국</option>
+                <option value="inet">인터넷전문은행</option>
+                <option value="mutual">상호금융</option>
+                <option value="savings">저축은행</option>
+                <option value="securities">증권사</option>
+                <option value="insurance">보험사</option>
+                <option value="card">카드사</option>
+              </select></label>
+            <label class="field"><span class="lbl">5.가의 호칭</span>
+              <select id="add-wording">
+                <option value="은행">귀 은행</option>
+                <option value="기관">귀 기관</option>
+              </select></label>
+          </div>
+          <p class="err" id="add-msg" role="alert" hidden></p>
+          <div class="btns">
+            <button type="button" class="btn primary sm" id="add-save">저장</button>
+            <button type="button" class="btn ghost sm" id="add-cancel">취소</button>
+          </div>
+        </div>
+
+        <label class="field"><span class="sr-only">기관 검색</span>
+          <input type="search" id="inst-search" placeholder="기관명 검색 (초성 가능, 예: ㄱㅁ)" autocomplete="off" spellcheck="false"></label>
+
+        <div class="inst-pick">
+          <div id="inst-cats" class="cats" role="tablist" aria-label="기관 분류"></div>
+          <div id="inst-list" class="inst-list" role="group" aria-label="기관 목록"></div>
+        </div>
+
+        <div class="sel-wrap">
+          <div class="sub-row">
+            <h3 class="sub-h">문서에 들어갈 순서</h3>
+            <span class="count" id="inst-count" aria-live="polite">0곳 선택</span>
+          </div>
+          <ol id="inst-selected" class="sel-list" aria-label="선택한 기관"></ol>
+        </div>
+
+        <div class="sets">
+          <div class="sub-row">
+            <h3 class="sub-h">선택 세트</h3>
+            <span class="hint">자주 쓰는 기관 조합을 이름으로 저장해 두고 불러옵니다.</span>
+          </div>
+          <div id="set-list" class="set-list"></div>
+          <div class="set-save-row">
+            <label class="field"><span class="sr-only">세트 이름</span>
+              <input type="text" id="set-name" placeholder="세트 이름 (예: 시중은행 4곳)" autocomplete="off"></label>
+            <button type="button" class="btn sm" id="set-save">현재 선택 저장</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. 명의인 -->
+      <section class="card step" data-step="holder" aria-labelledby="h-holder">
+        <header class="step-h">
+          <span class="step-no" aria-hidden="true">2</span>
+          <div class="step-t">
+            <h2 id="h-holder">명의인</h2>
+            <p class="step-sub">계좌를 조회할 사람입니다. 여러 명이면 추가합니다.</p>
+          </div>
+        </header>
+        <p class="note privacy" role="note">이름과 주민등록번호는 저장되지 않고 이 화면에서만 쓰입니다. Claude 호출에도 보내지 않습니다.</p>
+        <div id="holders" class="holders"></div>
+        <div class="row-act">
+          <button type="button" class="btn sm" id="btn-add-holder">명의인 추가</button>
+          <p class="hint">번호는 숫자만 입력하면 하이픈이 자동으로 들어갑니다. 13자리는 주민등록번호 또는 법인등록번호, 10자리는 사업자등록번호입니다. 지위는 4. 사용목적의 대상 표기에 쓰입니다.</p>
+        </div>
+      </section>
+
+      <!-- 3. 거래기간 -->
+      <section class="card step" data-step="period" aria-labelledby="h-period">
+        <header class="step-h">
+          <span class="step-no" aria-hidden="true">3</span>
+          <div class="step-t">
+            <h2 id="h-period">거래기간</h2>
+            <p class="step-sub">요구할 거래내역의 시작일과 종료일입니다.</p>
+          </div>
+          <div class="seg" role="radiogroup" aria-label="입력 방식">
+            <label><input type="radio" name="permode" id="per-mode-cal" value="cal" checked><span>달력 선택</span></label>
+            <label><input type="radio" name="permode" id="per-mode-text" value="text"><span>직접 입력</span></label>
+          </div>
+        </header>
+        <div id="per-presets" class="presets" role="group" aria-label="기간 빠른 입력">
+          <span class="presets-lbl">빠른 입력</span>
+          <button type="button" class="btn sm" data-preset="3y">최근 3년</button>
+          <button type="button" class="btn sm" data-preset="5y">최근 5년</button>
+          <button type="button" class="btn sm" data-preset="10y">최근 10년</button>
+          <button type="button" class="btn sm" data-preset="today">종료일 오늘</button>
+        </div>
+        <div class="period-fields">
+          <div class="grid-2 per-cal">
+            <label class="field"><span class="lbl">시작일</span>
+              <input type="date" id="per-start"></label>
+            <label class="field"><span class="lbl">종료일</span>
+              <input type="date" id="per-end"></label>
+          </div>
+          <div class="grid-2 per-text">
+            <label class="field"><span class="lbl">시작일</span>
+              <input type="text" id="per-text-start" placeholder="예: 2023.9.1" autocomplete="off" spellcheck="false"></label>
+            <label class="field"><span class="lbl">종료일</span>
+              <input type="text" id="per-text-end" placeholder="예: 2026.9.1" autocomplete="off" spellcheck="false"></label>
+          </div>
+        </div>
+        <p class="hint" id="per-note" aria-live="polite">두 날짜를 모두 넣으면 문서에 '2023. 9. 1.부터 2026. 9. 1.까지' 형식으로 들어갑니다. 직접 입력은 점, 하이픈, 슬래시, 공백으로 구분해도 됩니다.</p>
+      </section>
+
+      <!-- 4. 사용목적 (+ 5.가 호칭) -->
+      <section class="card step" data-step="purpose" aria-labelledby="h-purpose">
+        <header class="step-h">
+          <span class="step-no" aria-hidden="true">4</span>
+          <div class="step-t">
+            <h2 id="h-purpose">사용목적</h2>
+            <p class="step-sub">법원에 밝히는 사용목적 문장입니다.</p>
+          </div>
+          <div class="seg" role="radiogroup" aria-label="사건 유형">
+            <label><input type="radio" name="purpose" id="purpose-divorce" value="divorce" checked><span>이혼 재산분할</span></label>
+            <label><input type="radio" name="purpose" id="purpose-other" value="other"><span>그 밖의 사건</span></label>
+          </div>
+        </header>
+
+        <div class="p-fixed">
+          <span class="tag">고정 문구</span>
+          <p id="purpose-fixed" class="fixed-text">원고 명의의 재산을 확인하여 재산분할 대상에 포함시키기 위함입니다.</p>
+          <p class="hint">대상 표기는 2. 명의인의 지위에 맞춰 자동으로 바뀝니다.</p>
+        </div>
+
+        <div class="p-other">
+          <label class="field"><span class="lbl">사용목적 직접 작성</span>
+            <textarea id="purpose-text" rows="3" placeholder="예: 피고 명의의 부동산 매각대금의 사용처를 확인하기 위함입니다."></textarea></label>
+          <div class="btns">
+            <button type="button" class="btn sm" id="btn-polish">다듬기</button>
+            <button type="button" class="btn ghost sm" id="btn-polish-stop" hidden>중단</button>
+            <span class="hint">초안과 사건명만 Claude에 보냅니다. 이름, 번호, 사건번호는 보내지 않습니다.</span>
+          </div>
+          <div id="polish-result" class="polish-result" aria-live="polite"></div>
+        </div>
+
+        <div class="subblock">
+          <div class="sub-row">
+            <span class="step-no sm" aria-hidden="true">5</span>
+            <h3 class="sub-h">요구하는 거래정보 문구</h3>
+          </div>
+          <label class="field"><span class="lbl">5.가의 호칭</span>
+            <select id="wording">
+              <option value="auto">자동</option>
+              <option value="은행">귀 은행</option>
+              <option value="기관">귀 기관</option>
+              <option value="사">귀 사</option>
+            </select></label>
+          <p class="hint">5.가 첫 문장의 '귀 ○○에'에 쓰입니다. 자동은 선택한 기관이 모두 은행류이면 '귀 은행', 하나라도 아니면 '귀 기관'입니다.</p>
+        </div>
+      </section>
+
+      <div class="form-foot">
+        <button type="button" class="btn danger" id="btn-reset">초기화</button>
+        <p class="hint">사건, 명의인, 기간, 사용목적 입력을 모두 지웁니다. 기관 목록과 저장한 세트는 그대로 둡니다.</p>
+      </div>
+    </section>
+
+    <!-- 우측: 미리보기와 점검 -->
+    <section id="pane-preview" class="pane-preview" aria-label="미리보기">
+      <div class="pv-head">
+        <h2>신청서 미리보기</h2>
+        <span class="hint">소제목 옆 복사 버튼은 전자소송 입력용입니다.</span>
+      </div>
+      <div class="stage" tabindex="0" role="region" aria-label="신청서 용지">
+        <div id="doc-preview" class="paper"></div>
+      </div>
+      <div class="check">
+        <div class="check-h">
+          <h3>제출 전 점검</h3>
+          <span class="miss-count" id="missing-count"></span>
+        </div>
+        <ul id="missing-list" class="miss-list" aria-live="polite"></ul>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn primary big" id="btn-docx">DOCX로 저장</button>
+        <button type="button" class="btn big" id="btn-copy-all">전체 복사</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>/*__DOCX__*/</script>
+<script>window.__INSTITUTIONS__ = /*__DATA__*/;</script>
+<script>/*__APP__*/</script>

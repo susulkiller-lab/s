@@ -77,23 +77,28 @@ def main() -> int:
             errors.append(f"{tag}: cat 오류 {it.get('cat')}")
         if it.get("wording") not in ("은행", "기관"):
             errors.append(f"{tag}: wording 오류")
-        if it.get("status") not in ("verified", "needs_check"):
+        if it.get("status") not in ("verified", "user_provided", "needs_check"):
             errors.append(f"{tag}: status 오류")
         if not it.get("name") or not it.get("short"):
             errors.append(f"{tag}: name/short 비어 있음")
         zp, ad = it.get("zip", ""), it.get("addr", "")
-        if it.get("status") == "verified":
+        st = it.get("status")
+        if st in ("verified", "user_provided"):
             if not re.fullmatch(r"\d{5}", zp or ""):
-                errors.append(f"{tag}: verified인데 우편번호 5자리 아님({zp!r})")
+                errors.append(f"{tag}: {st}인데 우편번호 5자리 아님({zp!r})")
             if not ad:
-                errors.append(f"{tag}: verified인데 주소 없음")
-            if len(it.get("sources", [])) < 2:
-                warns.append(f"{tag}: verified인데 출처 {len(it.get('sources', []))}개")
-        else:
-            if zp or ad:
-                warns.append(f"{tag}: needs_check인데 주소/우편번호가 채워져 있음(미확인 값 포함 여부 점검)")
+                errors.append(f"{tag}: {st}인데 주소 없음")
+        if st == "verified" and len(it.get("sources", [])) < 2:
+            errors.append(f"{tag}: verified인데 출처 {len(it.get('sources', []))}개(2곳 이상 필요)")
+        if st == "user_provided" and not it.get("sources"):
+            errors.append(f"{tag}: user_provided인데 출처(사용자 양식 표시) 없음")
+        if st == "needs_check" and (zp or ad):
+            warns.append(f"{tag}: needs_check인데 주소/우편번호가 채워져 있음(미확인 값 포함 여부 점검)")
         for s in it.get("sources", []):
-            if not str(s.get("url", "")).startswith("http"):
+            url = str(s.get("url", ""))
+            if st == "user_provided" and url == "":
+                continue
+            if not url.startswith("http"):
                 errors.append(f"{tag}: 출처 URL 형식 오류")
         if re.search(r"[*#`<>]", it.get("name", "") + it.get("short", "") + ad + it.get("note", "")):
             errors.append(f"{tag}: 마크다운/HTML 문자 포함")
@@ -121,8 +126,8 @@ def main() -> int:
         it.pop("_file", None)
     result = {"schema": 1, "asOf": AS_OF, "categories": CATEGORIES, "institutions": items}
 
-    ver = sum(1 for i in items if i.get("status") == "verified")
-    print(f"기관 {len(items)}곳 (verified {ver}, needs_check {len(items) - ver})")
+    cnt = {s: sum(1 for i in items if i.get("status") == s) for s in ("verified", "user_provided", "needs_check")}
+    print(f"기관 {len(items)}곳 (verified {cnt['verified']}, user_provided {cnt['user_provided']}, needs_check {cnt['needs_check']})")
     for e in errors:
         print("오류:", e)
     for w in warns:

@@ -1,0 +1,488 @@
+{
+  "institutions": [
+    {
+      "id": "saemaeul-center",
+      "cat": "mutual",
+      "short": "새마을금고중앙회",
+      "name": "새마을금고중앙회",
+      "aliases": [
+        "새마을금고",
+        "MG새마을금고",
+        "MG",
+        "새마을금고 중앙회"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": "금고(지역금고 포함)와 중앙회는 각각 이 법에 따라 설립된 비영리법인이다(새마을금고법 제2조 제1항·제3항, 국가법령정보센터 조회 2026-10-02)."
+    },
+    {
+      "id": "cu-center",
+      "cat": "mutual",
+      "short": "신협중앙회",
+      "name": "신용협동조합중앙회",
+      "aliases": [
+        "신협",
+        "신용협동조합",
+        "신협 중앙회"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": "조합과 중앙회는 각각 이 법에 따라 설립된 비영리법인이다(신용협동조합법 제2조 제1호·제2호, 국가법령정보센터 조회 2026-10-02)."
+    },
+    {
+      "id": "nonghyup-center",
+      "cat": "mutual",
+      "short": "농협중앙회",
+      "name": "농업협동조합중앙회",
+      "aliases": [
+        "농협",
+        "NH농협",
+        "지역농협",
+        "단위농협",
+        "농협 상호금융"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": "이 법에 따라 설립되는 조합과 중앙회는 각각 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(농업협동조합법 제4조, 국가법령정보센터 조회 2026-10-02)."
+    },
+    {
+      "id": "suhyup-center",
+      "cat": "mutual",
+      "short": "수협중앙회",
+      "name": "수산업협동조합중앙회",
+      "aliases": [
+        "수협",
+        "수산업협동조합",
+        "수협 상호금융",
+        "수협 중앙회"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": "중앙회는 수산업협동조합중앙회의 명칭을 사용하여야 한다(수산업협동조합법 제3조 제1항 제4호). 조합과 중앙회는 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(같은 법 제4조). 국가법령정보센터 조회 2026-10-02."
+    },
+    {
+      "id": "nfcf-center",
+      "cat": "mutual",
+      "short": "산림조합중앙회",
+      "name": "산림조합중앙회",
+      "aliases": [
+        "산림조합",
+        "산림조합 중앙회",
+        "산림조합 상호금융"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": "이 법에 따라 설립되는 조합과 중앙회는 각각 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(산림조합법 제4조, 국가법령정보센터 조회 2026-10-02)."
+    },
+    {
+      "id": "sbi-savings",
+      "cat": "savings",
+      "short": "SBI저축은행",
+      "name": "주식회사 에스비아이저축은행",
+      "aliases": [
+        "SBI",
+        "에스비아이저축은행",
+        "SBI저축",
+        "에스비아이"
+      ],
+      "wording": "은행",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "ok-savings",
+      "cat": "savings",
+      "short": "OK저축은행",
+      "name": "주식회사 오케이저축은행",
+      "aliases": [
+        "OK",
+        "오케이저축은행",
+        "OK저축",
+        "오케이"
+      ],
+      "wording": "은행",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "welcome-savings",
+      "cat": "savings",
+      "short": "웰컴저축은행",
+      "name": "주식회사 웰컴저축은행",
+      "aliases": [
+        "웰컴",
+        "웰컴디지털뱅크",
+        "웰컴저축"
+      ],
+      "wording": "은행",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "koreainvest-savings",
+      "cat": "savings",
+      "short": "한국투자저축은행",
+      "name": "주식회사 한국투자저축은행",
+      "aliases": [
+        "한국투자",
+        "한투저축은행",
+        "한투",
+        "한국투자저축"
+      ],
+      "wording": "은행",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "acuon-savings",
+      "cat": "savings",
+      "short": "애큐온저축은행",
+      "name": "주식회사 애큐온저축은행",
+      "aliases": [
+        "애큐온",
+        "ACUON",
+        "애큐온저축"
+      ],
+      "wording": "은행",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "daol-savings",
+      "cat": "savings",
+      "short": "다올저축은행",
+      "name": "주식회사 다올저축은행",
+      "aliases": [
+        "다올",
+        "DAOL",
+        "다올저축"
+      ],
+      "wording": "은행",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "db-savings",
+      "cat": "savings",
+      "short": "DB저축은행",
+      "name": "주식회사 디비저축은행",
+      "aliases": [
+        "DB",
+        "디비저축은행",
+        "DB저축"
+      ],
+      "wording": "은행",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "shinhan-savings",
+      "cat": "savings",
+      "short": "신한저축은행",
+      "name": "주식회사 신한저축은행",
+      "aliases": [
+        "신한",
+        "신한SOL저축은행",
+        "신한 SOL저축은행",
+        "신한저축"
+      ],
+      "wording": "은행",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "hana-savings",
+      "cat": "savings",
+      "short": "하나저축은행",
+      "name": "주식회사 하나저축은행",
+      "aliases": [
+        "하나",
+        "하나저축"
+      ],
+      "wording": "은행",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "jt-chinae-savings",
+      "cat": "savings",
+      "short": "JT친애저축은행",
+      "name": "제이티친애저축은행 주식회사",
+      "aliases": [
+        "JT친애",
+        "제이티친애저축은행",
+        "친애저축은행",
+        "JT"
+      ],
+      "wording": "은행",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "pepper-savings",
+      "cat": "savings",
+      "short": "페퍼저축은행",
+      "name": "주식회사 페퍼저축은행",
+      "aliases": [
+        "페퍼",
+        "PEPPER",
+        "페퍼저축"
+      ],
+      "wording": "은행",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "samsung-card",
+      "cat": "card",
+      "short": "삼성카드",
+      "name": "삼성카드 주식회사",
+      "aliases": [
+        "삼성",
+        "Samsung Card"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "shinhan-card",
+      "cat": "card",
+      "short": "신한카드",
+      "name": "주식회사 신한카드",
+      "aliases": [
+        "신한",
+        "Shinhan Card"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "kb-card",
+      "cat": "card",
+      "short": "KB국민카드",
+      "name": "주식회사 케이비국민카드",
+      "aliases": [
+        "국민카드",
+        "KB카드",
+        "케이비국민카드",
+        "KB",
+        "국민"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "hyundai-card",
+      "cat": "card",
+      "short": "현대카드",
+      "name": "현대카드 주식회사",
+      "aliases": [
+        "현대",
+        "Hyundai Card"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "lotte-card",
+      "cat": "card",
+      "short": "롯데카드",
+      "name": "롯데카드 주식회사",
+      "aliases": [
+        "롯데",
+        "Lotte Card"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "hana-card",
+      "cat": "card",
+      "short": "하나카드",
+      "name": "하나카드 주식회사",
+      "aliases": [
+        "하나",
+        "Hana Card"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "woori-card",
+      "cat": "card",
+      "short": "우리카드",
+      "name": "주식회사 우리카드",
+      "aliases": [
+        "우리",
+        "Woori Card"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    },
+    {
+      "id": "bc-card",
+      "cat": "card",
+      "short": "BC카드",
+      "name": "비씨카드 주식회사",
+      "aliases": [
+        "비씨카드",
+        "BC",
+        "비씨"
+      ],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [],
+      "memo": ""
+    }
+  ]
+}
