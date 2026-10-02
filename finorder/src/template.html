@@ -111,13 +111,11 @@
         <!-- 기관 추가 폼(인라인, 초기 숨김) -->
         <div id="add-inst" class="inline-panel" role="group" aria-labelledby="h-add" hidden>
           <div class="ip-head"><h3 id="h-add">목록에 없는 기관 추가</h3></div>
-          <p class="hint">추가한 기관은 '추가' 표시와 함께 목록에 남아 다음에도 쓸 수 있습니다. 주소는 공식 자료로 확인한 값을 넣어 주십시오.</p>
+          <p class="hint">추가한 기관은 '추가' 표시와 함께 목록에 남아 다음에도 쓸 수 있습니다. 주소는 공식 자료로 확인한 값을 넣어 주십시오. 우편번호는 쓰지 않습니다.</p>
           <div class="grid-2 add-grid">
             <label class="field span-2"><span class="lbl">기관 명칭</span>
               <input type="text" id="add-name" placeholder="신청서에 쓰는 정식 명칭 (예: 주식회사 ○○은행)" autocomplete="off"></label>
-            <label class="field zip"><span class="lbl">우편번호</span>
-              <input type="text" id="add-zip" inputmode="numeric" maxlength="5" placeholder="5자리" autocomplete="off"></label>
-            <label class="field"><span class="lbl">도로명주소</span>
+            <label class="field span-2"><span class="lbl">도로명주소</span>
               <input type="text" id="add-addr" placeholder="번지, 층까지 (참고 괄호 제외)" autocomplete="off"></label>
             <label class="field span-2"><span class="lbl">참고 (선택)</span>
               <input type="text" id="add-note" placeholder="괄호 안에 들어갈 법정동, 건물명 (예: 여의도동)" autocomplete="off"></label>
@@ -132,12 +130,8 @@
                 <option value="insurance">보험사</option>
                 <option value="card">카드사</option>
               </select></label>
-            <label class="field"><span class="lbl">5.가의 호칭</span>
-              <select id="add-wording">
-                <option value="은행">귀 은행</option>
-                <option value="기관">귀 기관</option>
-              </select></label>
           </div>
+          <p class="hint">보험사로 분류하면 보험사용 신청서(5. 문안이 다름)에 들어갑니다.</p>
           <p class="err" id="add-msg" role="alert" hidden></p>
           <div class="btns">
             <button type="button" class="btn primary sm" id="add-save">저장</button>
@@ -263,7 +257,17 @@
           <div id="polish-result" class="polish-result" aria-live="polite"></div>
         </div>
 
-        <div class="subblock">
+        <div class="subblock" id="ins-block" hidden>
+          <div class="sub-row">
+            <span class="step-no sm" aria-hidden="true">5</span>
+            <h3 class="sub-h">보험 기준일</h3>
+          </div>
+          <label class="field"><span class="lbl">기준일</span>
+            <input type="date" id="ins-date"></label>
+          <p class="hint">보험사용 5.의 '○○ 기준', '○○ 이후', '○○ 이전'에 들어가는 날짜입니다. 문서에는 '2026. 3. 20.' 형식으로 쓰입니다.</p>
+        </div>
+
+        <div class="subblock" id="wording-block">
           <div class="sub-row">
             <span class="step-no sm" aria-hidden="true">5</span>
             <h3 class="sub-h">요구하는 거래정보 문구</h3>
@@ -275,7 +279,7 @@
               <option value="기관">귀 기관</option>
               <option value="사">귀 사</option>
             </select></label>
-          <p class="hint">5.가 첫 문장의 '귀 ○○에'에 쓰입니다. 자동은 선택한 기관이 모두 은행류이면 '귀 은행', 하나라도 아니면 '귀 기관'입니다.</p>
+          <p class="hint">은행·금융기관용 5.가 첫 문장의 '귀 ○○에'에 쓰입니다(보험사용은 항상 '귀 회사에'). 자동은 선택한 기관이 모두 은행류이면 '귀 은행', 하나라도 아니면 '귀 기관'입니다.</p>
         </div>
       </section>
 
@@ -290,6 +294,14 @@
       <div class="pv-head">
         <h2>신청서 미리보기</h2>
         <span class="hint">소제목 옆 복사 버튼은 전자소송 입력용입니다.</span>
+      </div>
+      <div class="form-switch" id="form-switch" role="radiogroup" aria-label="지금 만들 신청서 종류" hidden>
+        <span class="fs-lbl">만들 신청서</span>
+        <div class="seg">
+          <label><input type="radio" name="formtype" id="form-bank" value="bank"><span>은행·금융기관용 <b class="fs-n" id="form-bank-n"></b></span></label>
+          <label><input type="radio" name="formtype" id="form-insurance" value="insurance"><span>보험사용 <b class="fs-n" id="form-insurance-n"></b></span></label>
+        </div>
+        <p class="hint">은행류와 보험사는 5. 요구하는 거래정보 문안이 달라 신청서를 따로 저장합니다. 고른 종류의 기관만 1.에 들어갑니다.</p>
       </div>
       <div class="stage" tabindex="0" role="region" aria-label="신청서 용지">
         <div id="doc-preview" class="paper"></div>

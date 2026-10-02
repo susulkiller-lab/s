@@ -253,8 +253,9 @@
 
   /* ---- 기관 데이터 ---- */
   const STATUSES = ["verified", "user_provided", "needs_check"];
-  /** 우편번호 5자리와 주소가 모두 있는가 */
-  const hasAddr = (i) => /^\d{5}$/.test(String((i && i.zip) || "")) && !!String((i && i.addr) || "").trim();
+  /** 주소가 있는가(우편번호는 없어도 된다. 제공 목록에 우편번호 열이 없기 때문) */
+  const hasAddr = (i) => !!String((i && i.addr) || "").trim();
+  const hasZip = (i) => /^\d{5}$/.test(String((i && i.zip) || ""));
   /** 일반 항목으로 쓸 수 있는가: needs_check가 아니고 주소가 있어야 한다(needs_check는 직원이 확인·저장해야 풀린다) */
   const isReady = (i) => !!i && i.status !== "needs_check" && hasAddr(i);
 
@@ -265,10 +266,10 @@
     if (m && m[1]) return { addr: m[1].trim(), note: m[2].trim() };
     return { addr: s, note: "" };
   }
-  /** (우편번호) 주소 (참고). 값이 없으면 빈 문자열 */
+  /** (우편번호) 주소 (참고). 우편번호가 없으면 앞 괄호를 뺀다. 값이 없으면 빈 문자열 */
   function addrLine(i) {
     if (!i || (!i.zip && !i.addr)) return "";
-    return "(" + (i.zip || "") + ") " + (i.addr || "") + (i.note ? " (" + i.note + ")" : "");
+    return (i.zip ? "(" + i.zip + ") " : "") + (i.addr || "") + (i.note ? " (" + i.note + ")" : "");
   }
   function normInst(raw, origin) {
     const o = Object.assign({}, raw);
@@ -647,7 +648,7 @@
    */
   function computeMissing(state) {
     const items = [];
-    const need = (sev, msg, go) => items.push({ sev, msg, go: go || "" });
+    const need = (sev, msg, go, soft) => items.push({ sev, msg, go: go || "", soft: !!soft });
     const insts = resolveInsts(state);
     if (!clean(state.caseNo)) need("req", "사건번호 미입력", "#case-no");
     if (!clean(state.caseName)) need("req", "사건명 미입력", "#case-name");
@@ -660,6 +661,12 @@
       const go = '.sel-row[data-id="' + i.id + '"] .sel-fill-zip';
       need("req", (i.short || i.name) + (hasAddr(i) ? " 주소 확인 필요(확인 후 저장)" : " 주소 미입력"), go);
     });
+    // 우편번호가 없는 기관은 문서에 주소만 표기된다. 흔한 경우라 저장 확인 단계는 걸지 않는다(soft)
+    const noZip = insts.filter((i) => isReady(i) && !hasZip(i));
+    if (noZip.length) {
+      const names = noZip.slice(0, 3).map((i) => i.short || i.name).join(", ") + (noZip.length > 3 ? " 외 " + (noZip.length - 3) + "곳" : "");
+      need("warn", "우편번호 없는 기관 " + noZip.length + "곳(" + names + "): 문서에는 우편번호 없이 주소만 표기됩니다", ".sel-row[data-id=\"" + noZip[0].id + "\"] .sel-edit", true);
+    }
     const holders = state.holders || [];
     holders.forEach((h, idx) => {
       const k = holders.length > 1 ? "명의인 " + (idx + 1) + " " : "명의인 ";
@@ -769,7 +776,7 @@
    * 최신화 항목 한 건을 현재 목록과 비교한다.
    * ctx: { byId: {id: 기관}, catIds: [], today }
    * 반환: { id, kind: "changed"|"new"|"same"|"invalid", reasons: [], cur, next }
-   * 적용 가능 조건: 우편번호 5자리 문자열, 주소 비어 있지 않음, 출처 URL 1개 이상
+   * 적용 가능 조건: 우편번호는 비어 있거나 5자리 문자열, 주소 비어 있지 않음, 출처 URL 1개 이상
    */
   function classifyUpdate(item, ctx) {
     const reasons = [];
@@ -781,7 +788,7 @@
     let zip = "";
     if (typeof item.zip === "string") zip = item.zip.trim();
     else if (item.zip != null) reasons.push("우편번호는 문자열이어야 함");
-    if (!/^\d{5}$/.test(zip)) reasons.push("우편번호 5자리 아님");
+    if (zip && !/^\d{5}$/.test(zip)) reasons.push("우편번호 5자리 아님");
 
     let addr = typeof item.addr === "string" ? clean(item.addr) : "";
     let note = typeof item.note === "string" ? clean(item.note) : "";
@@ -821,7 +828,7 @@
       "규칙",
       "1. 기억에 의존하지 말고 반드시 웹 검색으로 확인합니다. 추정하거나 지어내지 않습니다.",
       "2. 주소는 법인 등기부상 본점 소재지(공시·약관의 '본점 소재지' 표기)를 씁니다. 대표 사무소, 영업점, 별관 주소가 다르면 memo에만 적습니다.",
-      "3. addr는 도로명주소(번지·층 포함, 참고 괄호 제외), note는 괄호 안에 들어갈 참고(법정동, 건물명), zip은 5자리 새우편번호(문자열)입니다.",
+      "3. addr는 도로명주소(번지·층 포함, 참고 괄호 제외), note는 괄호 안에 들어갈 참고(법정동, 건물명), zip은 5자리 새우편번호(문자열)이며 확인하지 못하면 빈 문자열입니다.",
       "4. 서로 독립된 출처 2곳 이상(공식 홈페이지, 약관, 전자공시, 금융감독원 등)에서 도로명주소가 일치하고, 우편번호가 공식 페이지 또는 정부 도로명주소 DB에서 확인될 때만 status를 \"verified\"로 합니다. 그 밖에는 \"needs_check\"입니다.",
       "5. 확인하지 못한 항목은 addr와 zip을 \"\"(빈 문자열)로 비웁니다.",
       "6. 항목마다 sources에 출처 {label, url}을 1개 이상 적습니다. url이 없으면 적용되지 않습니다. 검색 요약문, 위키, 채용·사업자정보 사이트는 출처로 쓰지 않습니다.",
@@ -1412,8 +1419,8 @@
       const name = clean(n && n.value), zip = digitsOnly(z.value);
       const bad = (el, m) => { if (err) err.textContent = m; el.setAttribute("aria-invalid", "true"); el.focus(); };
       if (n && !name) return bad(n, "기관 명칭을 입력해 주십시오.");
-      if (!/^\d{5}$/.test(zip)) return bad(z, "우편번호 5자리를 입력해 주십시오.");
       if (!clean(a.value)) return bad(a, "도로명주소를 입력해 주십시오.");
+      if (zip && !/^\d{5}$/.test(zip)) return bad(z, "우편번호는 5자리이거나 비워 두십시오.");
       delete ui.editing[id];
       const where = await saveAddress(id, { name: name || (inst(id) || {}).name, zip, addr: a.value, note: t ? t.value : "" });
       toast("기관 정보를 저장했습니다." + WHERE[where], where === "fallback" ? 6000 : 0);
@@ -1481,8 +1488,8 @@
       const addrRaw = clean($("add-addr") && $("add-addr").value);
       const noteIn = clean($("add-note") && $("add-note").value).replace(/^\((.*)\)$/, "$1");
       if (!name) return addMsg("기관 명칭을 입력해 주십시오.");
-      if (!/^\d{5}$/.test(zip)) return addMsg("우편번호 5자리를 입력해 주십시오.");
       if (!addrRaw) return addMsg("도로명주소를 입력해 주십시오.");
+      if (zip && !/^\d{5}$/.test(zip)) return addMsg("우편번호는 5자리이거나 비워 두십시오.");
       const nn = normName(name);
       const dup = catalogList.find((i) => normName(i.name) === nn || normName(i.short) === nn);
       if (dup) {
@@ -1518,7 +1525,7 @@
     /* ---- 5.8 최신화 패널 ---- */
     function statusLabel(i) {
       if (i.status === "needs_check") return "주소 미확인";
-      if (i.status === "user_provided") return i.origin === "builtin" ? "양식 기준" : "직접 입력";
+      if (i.status === "user_provided") return i.origin === "builtin" ? "제공 목록 기준" : "직접 입력";
       return "확인됨";
     }
     function sourcesHTML(i) {

@@ -179,7 +179,6 @@ fieldset.fs .seg span{min-width:84px}
 .inline-panel{display:grid;gap:12px;padding:14px;background:var(--surface-2);border:1px solid var(--accent-line);border-radius:var(--r)}
 .ip-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .ip-head h3{font-size:14px;font-weight:600}
-.add-grid .zip{grid-column:auto}
 .upd-summary{font-size:12.5px;color:var(--muted);max-height:168px;overflow:auto;border:1px solid var(--line);border-radius:var(--r-s);background:var(--surface)}
 .upd-summary:empty{display:none}
 .upd-summary table{width:100%;border-collapse:collapse}
@@ -248,9 +247,8 @@ fieldset.fs .seg span{min-width:84px}
 .inst-short{grid-area:short;font-weight:600;font-size:14px;line-height:1.35;overflow-wrap:anywhere}
 .inst-sub{grid-area:sub;font-size:12px;line-height:1.35;color:var(--muted);overflow-wrap:anywhere}
 /* 주소 상태 배지는 data-status로 그린다. verified는 배지 없음 */
-.inst-item[data-status="needs_check"]::after,.inst-item[data-status="user_provided"]::after{grid-area:badge;justify-self:start;margin-top:2px;font-size:11px;font-weight:500;line-height:1.3;white-space:nowrap}
+.inst-item[data-status="needs_check"]::after{grid-area:badge;justify-self:start;margin-top:2px;font-size:11px;font-weight:500;line-height:1.3;white-space:nowrap}
 .inst-item[data-status="needs_check"]::after{content:"주소 미확인";color:var(--warn)}
-.inst-item[data-status="user_provided"]::after{content:"양식 기준";color:var(--muted)}
 .badge{grid-area:badge;justify-self:start;margin-top:2px;font-size:11px;font-weight:600;line-height:1.3;padding:0 6px;border-radius:3px;white-space:nowrap;background:var(--surface);color:var(--accent);border:1px solid var(--accent-line)}
 .badge.warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn-line)}
 /* 직접 추가한 기관은 '추가' 배지만 보이고, 그 밖의 항목에서는 JS가 만든 상태 배지를 가린다 */
@@ -277,7 +275,6 @@ fieldset.fs .seg span{min-width:84px}
 .sel-ctl .sel-del:hover:not(:disabled){border-color:var(--fail);color:var(--fail);background:var(--fail-soft)}
 .sel-fill{display:flex;flex-wrap:wrap;gap:6px;padding:8px;margin-top:2px;background:var(--warn-soft);border:1px solid var(--warn-line);border-radius:var(--r-s)}
 .sel-fill input{min-height:36px;padding:6px 8px;font-size:14px;background:var(--surface)}
-.sel-fill-zip{flex:0 0 92px;width:92px;font-variant-numeric:tabular-nums}
 .sel-fill-addr{flex:1 1 160px;width:auto}
 .sel-fill-save{min-height:36px;padding:4px 14px;border:1px solid var(--accent);border-radius:var(--r-s);background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:600}
 .sel-fill-save:hover{background:var(--accent-hover)}
@@ -364,6 +361,9 @@ fieldset.fs .seg span{min-width:84px}
 .d-l1{padding-left:1.83em;text-indent:-1.83em;text-align:justify;margin-top:.1em}
 .d-l2{padding-left:3.67em;text-indent:-1.83em;text-align:justify;margin-top:.1em}
 .d-mk{display:inline-block;width:1.83em;text-indent:0}
+.d-p{text-align:justify}
+.d-l2c{padding-left:3.67em;text-align:justify;margin-top:.1em}
+.d-l3{padding-left:5.5em;text-indent:-1.83em;text-align:justify;margin-top:.1em}
 .paper u{text-decoration-thickness:1px;text-underline-offset:.22em}
 .d-blank{background:var(--paper-blank);color:var(--paper-blank-ink);border-radius:2px;padding:0 .25em;border-bottom:1px dashed var(--paper-blank-ink)}
 .btn-copy{margin-left:auto;flex:none;min-height:26px;padding:0 9px;border:1px solid var(--paper-edge);border-radius:4px;background:transparent;color:var(--paper-mute);font-family:var(--sans);font-size:11.5px;font-weight:500;line-height:1}
@@ -405,7 +405,6 @@ fieldset.fs .seg span{min-width:84px}
   .status{margin-left:0}
   .card{padding:14px}
   .grid-2{grid-template-columns:minmax(0,1fr)}
-  .add-grid .zip{grid-column:1 / -1}
   input:not([type="checkbox"]):not([type="radio"]),select,textarea{font-size:16px}
   .stage{padding:8px}
   .paper{padding:7% 6%;font-size:13px}
@@ -439,3 +438,13 @@ fieldset.fs .seg span{min-width:84px}
 .copy-fallback textarea{width:100%;min-height:120px;font-family:var(--mono);font-size:12px;line-height:1.5}
 .diff-table th:first-child,.diff-table td:first-child{width:32px;text-align:center}
 .d-h .d-h-t{flex:1;min-width:0}
+
+/* 신청서 종류 전환(은행류·보험사가 섞였을 때) */
+.form-switch{display:grid;gap:6px;padding:10px 12px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:var(--surface);margin-block:8px}
+.form-switch .fs-lbl{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.form-switch .seg{justify-self:start;max-width:100%}
+.form-switch .seg span{white-space:normal;line-height:1.3;padding-block:6px}
+.fs-n{font-weight:600;font-variant-numeric:tabular-nums;opacity:.85}
+/* 선택 목록의 종류 표시(섞였을 때만 JS가 만든다) */
+.sel-grp{display:inline-block;margin-left:6px;padding:0 6px;border:1px solid var(--line-strong);border-radius:3px;font-size:11px;font-weight:600;color:var(--muted);vertical-align:1px}
+.sel-row[data-form="insurance"] .sel-grp{color:var(--accent);border-color:var(--accent)}

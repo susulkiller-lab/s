@@ -1,5 +1,5 @@
 {
- "schema": 1,
+ "schema": 2,
  "asOf": "2026-10-02",
  "categories": [
   {
@@ -49,15 +49,18 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "07331",
    "addr": "서울특별시 영등포구 국제금융로8길 26",
    "note": "여의도동",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kbstar.com/"
     }
    ],
    "memo": ""
@@ -73,15 +76,18 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "04513",
    "addr": "서울특별시 중구 세종대로9길 20",
    "note": "태평로2가",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.shinhangroup.com/kr/about/map"
     }
    ],
    "memo": ""
@@ -97,15 +103,18 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "04632",
    "addr": "서울특별시 중구 소공로 51",
    "note": "회현동1가",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://spot.wooribank.com/pot/Dream?withyou=CMCOM0154"
     }
    ],
    "memo": ""
@@ -123,12 +132,20 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 을지로 35",
+   "note": "을지로1가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://hanabank.com/cont/customer/customer03/customer0301/index.jsp"
+    }
+   ],
    "memo": ""
   },
   {
@@ -146,12 +163,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 종로구 종로 47",
+   "note": "공평동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.sc.co.kr/"
+    }
+   ],
    "memo": ""
   },
   {
@@ -167,12 +192,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 종로구 새문안로 50",
+   "note": "신문로2가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.citibank.co.kr/download/cms/ir/AUDIT_REPORT_TBL/2022%20YE_Consolidated%20Audit%20Report_Kor.pdf"
+    }
+   ],
    "memo": ""
   },
   {
@@ -188,15 +221,18 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "04517",
    "addr": "서울특별시 중구 통일로 120",
    "note": "충정로1가",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.nhbank.com/nhmn/KO_NHMN_01.do"
     }
    ],
    "memo": ""
@@ -213,12 +249,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 송파구 오금로 62",
+   "note": "신천동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.suhyup-bank.com/ib20/mnu/PBM01055?boardGroup=0&boardTable=0&num=2030"
+    }
+   ],
    "memo": ""
   },
   {
@@ -235,12 +279,20 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 을지로 79",
+   "note": "을지로2가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://research.ibk.co.kr/research/introduce/location"
+    }
+   ],
    "memo": ""
   },
   {
@@ -255,12 +307,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 은행로 14",
+   "note": "여의도동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kdb.co.kr/wcmscontents/pdf/1-2_KDB_External_Review_K_Green_Bond_2025.pdf"
+    }
+   ],
    "memo": ""
   },
   {
@@ -275,12 +335,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "부산광역시 남구 문현금융로 30",
+   "note": "문현동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.busanbank.co.kr/ib20/mnu/BHPBKI445001102?SEQ=020"
+    }
+   ],
    "memo": ""
   },
   {
@@ -295,18 +363,21 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "51316",
    "addr": "경상남도 창원시 마산회원구 3·15대로 642",
    "note": "석전동",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.bnkfg.com/download?seq=6011"
     }
    ],
-   "memo": "주소는 사용자 양식 기준입니다. 검색 요약 중 다른 주소가 나온 바 있어 공식 홈페이지에서 한 번 확인해 두십시오."
+   "memo": ""
   },
   {
    "id": "im",
@@ -322,12 +393,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "대구광역시 수성구 달구벌대로 2310",
+   "note": "수성동2가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.imbank.co.kr/hlp_ebz_sm_31020_brfind.act"
+    }
+   ],
    "memo": ""
   },
   {
@@ -342,12 +421,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "광주광역시 동구 제봉로 225",
+   "note": "대인동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kjbank.com/banking/homepage/kj_info/infor/bank08_01.jsp"
+    }
+   ],
    "memo": ""
   },
   {
@@ -362,30 +449,46 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "전북특별자치도 전주시 덕진구 백제대로 566",
+   "note": "금암동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://kind.krx.co.kr/external/2024/06/28/000623/20240628001483/2023%20JB%EA%B8%88%EC%9C%B5%EA%B7%B8%EB%A3%B9%20%ED%86%B5%ED%95%A9%EC%97%B0%EC%B0%A8%EB%B3%B4%EA%B3%A0%EC%84%9C%28%EA%B5%AD%EB%AC%B8%29.pdf"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "jeju",
    "cat": "bank",
    "short": "제주은행",
-   "name": "제주은행",
+   "name": "주식회사 제주은행",
    "aliases": [
     "제주"
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "제주특별자치도 제주시 1100로 3351",
+   "note": "노형동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://kind.krx.co.kr/external/2026/02/26/001564/20260226003478/00591.htm"
+    }
+   ],
    "memo": ""
   },
   {
@@ -401,15 +504,18 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "30114",
    "addr": "세종특별자치시 도움5로 19",
-   "note": "어진동",
+   "note": "어진동, 정부세종청사 8동",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.koreapost.go.kr/kpost/subIndex/4328.do"
     }
    ],
    "memo": ""
@@ -426,15 +532,18 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "13529",
-   "addr": "경기도 성남시 분당구 분당내곡로 131, 11층",
+   "addr": "경기도 성남시 분당구 분당내곡로 131, 15층",
    "note": "백현동, 판교테크원",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kakaobank.com/Corp/About/Contacts"
     }
    ],
    "memo": ""
@@ -451,18 +560,21 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "04548",
-   "addr": "서울특별시 중구 을지로 170",
+   "addr": "서울특별시 중구 을지로 170, 동관 6층",
    "note": "을지로4가, 을지트윈타워",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kbanknow.com/web/about/kbank/info?tab=location"
     }
    ],
-   "memo": "우편번호는 사용자 양식 기준입니다. 검색 요약에 다른 우편번호가 나온 바 있어 도로명주소 안내시스템에서 한 번 확인해 두십시오."
+   "memo": ""
   },
   {
    "id": "tossbank",
@@ -476,15 +588,18 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "06133",
    "addr": "서울특별시 강남구 테헤란로 131, 13층",
    "note": "역삼동, 한국지식재산센터",
    "status": "user_provided",
    "checkedAt": "2026-10-02",
    "sources": [
     {
-     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
      "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://tossbank.com/"
     }
    ],
    "memo": ""
@@ -502,13 +617,21 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 봉은사로114길 20",
+   "note": "삼성동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
-   "memo": "금고(지역금고 포함)와 중앙회는 각각 이 법에 따라 설립된 비영리법인이다(새마을금고법 제2조 제1항·제3항, 국가법령정보센터 조회 2026-10-02)."
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kfcc.co.kr/federation/fed0701.do"
+    }
+   ],
+   "memo": ""
   },
   {
    "id": "cu-center",
@@ -522,13 +645,21 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "대전광역시 서구 한밭대로 745",
+   "note": "둔산동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
-   "memo": "조합과 중앙회는 각각 이 법에 따라 설립된 비영리법인이다(신용협동조합법 제2조 제1호·제2호, 국가법령정보센터 조회 2026-10-02)."
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.cu.co.kr/cu/ad/biz/selectBizList.do?mi=100028"
+    }
+   ],
+   "memo": ""
   },
   {
    "id": "nonghyup-center",
@@ -544,13 +675,21 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 새문안로 16",
+   "note": "충정로1가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
-   "memo": "이 법에 따라 설립되는 조합과 중앙회는 각각 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(농업협동조합법 제4조, 국가법령정보센터 조회 2026-10-02)."
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://nonghyup.ttmap.co.kr/list_etc.jsp?menu=5&s_menu=1"
+    }
+   ],
+   "memo": ""
   },
   {
    "id": "suhyup-center",
@@ -565,13 +704,21 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 송파구 오금로 62",
+   "note": "신천동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
-   "memo": "중앙회는 수산업협동조합중앙회의 명칭을 사용하여야 한다(수산업협동조합법 제3조 제1항 제4호). 조합과 중앙회는 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(같은 법 제4조). 국가법령정보센터 조회 2026-10-02."
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.suhyup.co.kr/suhyup/198/subview.do"
+    }
+   ],
+   "memo": ""
   },
   {
    "id": "nfcf-center",
@@ -585,13 +732,21 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 송파구 석촌호수로 166",
+   "note": "삼전동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
-   "memo": "이 법에 따라 설립되는 조합과 중앙회는 각각 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(산림조합법 제4조, 국가법령정보센터 조회 2026-10-02)."
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.nfcf.or.kr/forest/user.tdf?a=common.HtmlApp&c=6001&page=%2Fkor%2Fintro%2FMember02.html"
+    }
+   ],
+   "memo": ""
   },
   {
    "id": "sbi-savings",
@@ -606,12 +761,20 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 을지로5길 26, 동관 9층",
+   "note": "수하동, 미래에셋센터원빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.sbisb.co.kr/itd0010500.act"
+    }
+   ],
    "memo": ""
   },
   {
@@ -627,19 +790,27 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 세종대로 39, 10층",
+   "note": "남대문로4가, 대한상공회의소",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://play.google.com/store/apps/details?hl=ko&id=com.cabsoft.oksavingbank"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "welcome-savings",
    "cat": "savings",
    "short": "웰컴저축은행",
-   "name": "주식회사 웰컴저축은행",
+   "name": "웰컴저축은행 주식회사",
    "aliases": [
     "웰컴",
     "웰컴디지털뱅크",
@@ -647,12 +818,20 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 용산구 한강대로 148",
+   "note": "한강로2가, 웰컴금융타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.welcomebank.co.kr/ib20/mnu/IBNBKI000000"
+    }
+   ],
    "memo": ""
   },
   {
@@ -668,12 +847,20 @@
    ],
    "wording": "은행",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "경기도 성남시 분당구 서현로 184",
+   "note": "서현동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.fsb.or.kr/view/comm/file/FileDown.jsp?DSTC1=fsbpbnf&ORCP_FILE_NM=%ED%95%9C%EA%B5%AD%ED%88%AC%EC%9E%90%EC%A0%80%EC%B6%95%EC%9D%80%ED%96%89_%ED%86%B5%EC%9D%BC%EA%B2%BD%EC%98%81%EA%B3%B5%EC%8B%9C_FY2023.4Q.pdf&SAVE_FILE_NM=fb0732024132983746726.pdf"
+    }
+   ],
    "memo": ""
   },
   {
@@ -688,12 +875,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 선릉로 514",
+   "note": "삼성동, 성원타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.acuonsb.co.kr/sv_inq7103101.act"
+    }
+   ],
    "memo": ""
   },
   {
@@ -708,12 +903,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 테헤란로 504",
+   "note": "대치동, 해성1빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.daolsb.com/file/fileDownload.do?fileName=%EC%A0%9C53%EA%B8%B0+%EB%8B%A4%EC%98%AC%EC%A0%80%EC%B6%95%EC%9D%80%ED%96%89+%ED%86%B5%EC%9D%BC%EA%B2%BD%EC%98%81%EA%B3%B5%EC%8B%9C_%EC%84%9C%EB%AA%85%ED%9B%84.pdf&file_cours_web=%2Fupload%2Ftbl%2F2024%2F3%2F29%2F34215b48-0f99-46b0-acba-7a058241dc0d.pdf"
+    }
+   ],
    "memo": ""
   },
   {
@@ -728,12 +931,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 남대문로 113",
+   "note": "다동, DB저축은행빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://m.dbgroup.co.kr/pages/contact/contactus_detail.jsp?cidx=25"
+    }
+   ],
    "memo": ""
   },
   {
@@ -749,12 +960,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 청계천로 54",
+   "note": "삼각동, 광교빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.shinhansavings.com/"
+    }
+   ],
    "memo": ""
   },
   {
@@ -768,12 +987,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 테헤란로 127",
+   "note": "역삼동, 하나금융그룹 강남사옥",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.hanasavings.com/CUS/CUS0205"
+    }
+   ],
    "memo": ""
   },
   {
@@ -789,12 +1016,20 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 테헤란로 317, 4층·5층·6층",
+   "note": "역삼동, 동훈빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://sign.jtchinae-bank.co.kr/guide/internetbanking.do"
+    }
+   ],
    "memo": ""
   },
   {
@@ -809,19 +1044,27 @@
    ],
    "wording": "은행",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "경기도 성남시 분당구 황새울로 340",
+   "note": "서현동, 페퍼존빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://pepperbank.kr/"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "samsung-securities",
    "cat": "securities",
    "short": "삼성증권",
-   "name": "삼성증권주식회사",
+   "name": "삼성증권 주식회사",
    "aliases": [
     "삼성증권",
     "삼성",
@@ -829,12 +1072,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 서초구 서초대로74길 11",
+   "note": "서초동, 삼성전자빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.samsungsecurities.co.kr/kor/main.do"
+    }
+   ],
    "memo": ""
   },
   {
@@ -848,12 +1099,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 을지로5길 26",
+   "note": "수하동, 미래에셋센터원빌딩 이스트타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://kind.krx.co.kr/external/2026/07/21/000112/20260721000224/10800.htm"
+    }
+   ],
    "memo": ""
   },
   {
@@ -869,12 +1128,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 의사당대로 88",
+   "note": "여의도동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.koreainvestment-event.com/"
+    }
+   ],
    "memo": ""
   },
   {
@@ -889,12 +1156,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 여의대로 108",
+   "note": "여의도동, 파크원 타워2",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://nhfngroup.com/user/indexSub.do?codyMenuSeq=884094574&siteId=nhfngroup"
+    }
+   ],
    "memo": ""
   },
   {
@@ -908,12 +1183,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 여의나루로 50",
+   "note": "여의도동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kbsec.com/util/introduction/jsp/UTIL_02_0002.jsp"
+    }
+   ],
    "memo": ""
   },
   {
@@ -927,12 +1210,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 의사당대로 96",
+   "note": "여의도동, TP타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www3.kiwoom.com/h/main?dummyVal=0"
+    }
+   ],
    "memo": ""
   },
   {
@@ -947,12 +1238,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 의사당대로 96",
+   "note": "여의도동, TP타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://file.shinhansec.com/filedoc/mtscon/fy2023esg.pdf"
+    }
+   ],
    "memo": ""
   },
   {
@@ -965,12 +1264,20 @@
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 의사당대로 82",
+   "note": "여의도동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://openhanafn.ttmap.co.kr/content_dt.jsp"
+    }
+   ],
    "memo": ""
   },
   {
@@ -983,12 +1290,20 @@
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 삼일대로 343",
+   "note": "저동1가, 대신파이낸스센터",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://company.daishin.com/E5/WTS/Company/DW_BranchRouteList.aspx"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1002,12 +1317,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 테헤란로 133, 7층",
+   "note": "역삼동, 한국타이어빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://corp.tossinvest.com/ko/corporate-info"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1021,12 +1344,20 @@
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "경기도 성남시 분당구 판교역로 166, B동 8층",
+   "note": "백현동, 카카오 판교아지트",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://kakaopaysec.com/company/about/dynamicPage.do"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1039,12 +1370,20 @@
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 국제금융로 10",
+   "note": "여의도동, Three IFC",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.imeritz.com/main/ir/com_0100.html"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1059,38 +1398,54 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "부산광역시 남구 문현금융로 40",
+   "note": "문현동, 부산국제금융센터",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.ksd.or.kr/ko/"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "samsung-life",
    "cat": "insurance",
    "short": "삼성생명",
-   "name": "삼성생명보험주식회사",
+   "name": "삼성생명보험 주식회사",
    "aliases": [
     "삼성생명",
     "삼성생명보험"
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 서초구 서초대로74길 11",
+   "note": "서초동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://family.samsunglife.com/simms/main.do"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "hanwha-life",
    "cat": "insurance",
    "short": "한화생명",
-   "name": "한화생명보험주식회사",
+   "name": "한화생명보험 주식회사",
    "aliases": [
     "한화생명",
     "한화생명보험",
@@ -1098,31 +1453,47 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 63로 50",
+   "note": "여의도동, 63 한화생명빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://company.hanwhalife.com/ko"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "kyobo-life",
    "cat": "insurance",
    "short": "교보생명",
-   "name": "교보생명보험주식회사",
+   "name": "교보생명보험 주식회사",
    "aliases": [
     "교보",
     "교보생명보험"
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 종로구 종로 1",
+   "note": "종로1가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kyobobldg.co.kr/"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1137,19 +1508,27 @@
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 삼일대로 358",
+   "note": "을지로2가, 신한L타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.shinhanlife.co.kr/hp/cdha0010.do"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "nh-life",
    "cat": "insurance",
    "short": "NH농협생명",
-   "name": "농협생명보험주식회사",
+   "name": "농협생명보험 주식회사",
    "aliases": [
     "농협생명",
     "NH생명",
@@ -1157,38 +1536,54 @@
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 서대문구 통일로 87",
+   "note": "미근동, NH농협생명빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://with.nonghyup.com/jbnf/jbnfDtl.do?jbnfSqno=83664"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "heungkuk-life",
    "cat": "insurance",
    "short": "흥국생명",
-   "name": "흥국생명보험주식회사",
+   "name": "흥국생명보험 주식회사",
    "aliases": [
     "흥국",
     "흥국생명보험"
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 종로구 새문안로 68",
+   "note": "신문로1가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.heungkuklife.co.kr/jsps/front/trustproduct/trustproduct-process.jsp"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "samsung-fire",
    "cat": "insurance",
    "short": "삼성화재",
-   "name": "삼성화재해상보험주식회사",
+   "name": "삼성화재해상보험 주식회사",
    "aliases": [
     "삼성화재해상",
     "삼성화재",
@@ -1196,12 +1591,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 서초구 서초대로74길 14",
+   "note": "서초동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.samsungfire.com/publication/pdf/ZPB302070_0_20230915_file1.pdf?X-SFMI-INTLOG=N41014-004607%5E%5EY%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1216,19 +1619,27 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 종로구 세종대로 163",
+   "note": "세종로, 현대해상빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://car.hi.co.kr/service.do?m=0pz7088wup"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "db-insurance",
    "cat": "insurance",
    "short": "DB손해보험",
-   "name": "DB손해보험주식회사",
+   "name": "DB손해보험 주식회사",
    "aliases": [
     "DB손보",
     "DB",
@@ -1236,19 +1647,27 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 테헤란로 432",
+   "note": "대치동, DB금융센터",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.idbins.com/FWCUSV1278.do"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "kb-insurance",
    "cat": "insurance",
    "short": "KB손해보험",
-   "name": "KB손해보험주식회사",
+   "name": "KB손해보험 주식회사",
    "aliases": [
     "KB손보",
     "KB",
@@ -1256,31 +1675,47 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 테헤란로 117",
+   "note": "역삼동, KB손해보험빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.kbinsure.co.kr/CU601040001.ec"
+    }
+   ],
    "memo": ""
   },
   {
    "id": "meritz-fire",
    "cat": "insurance",
    "short": "메리츠화재",
-   "name": "메리츠화재해상보험주식회사",
+   "name": "메리츠화재해상보험 주식회사",
    "aliases": [
     "메리츠화재해상",
     "메리츠"
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 강남구 강남대로 382",
+   "note": "역삼동, 메리츠타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://recruit.meritzfire.com/new/company/company03.do?idx=all"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1294,12 +1729,20 @@
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 여의대로 56",
+   "note": "여의도동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://mall.hwgeneralins.com/index.do"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1313,12 +1756,20 @@
    ],
    "wording": "기관",
    "popular": false,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 소월로 3",
+   "note": "남창동, 롯데손해보험빌딩",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.lotteins.co.kr/web/C/D/I/cdi600.jsp"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1332,12 +1783,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 세종대로 67",
+   "note": "태평로2가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://bill.samsungcard.com/company/main/UHPPCI0198M0.jsp?click=main_footer_IR"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1351,12 +1810,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 을지로 100",
+   "note": "을지로2가, 파인에비뉴 A동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.shinhancard.com/pconts/download/company/SHC_2025_Sustainability_Report_KOR.pdf"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1373,12 +1840,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 종로구 새문안로3길 30",
+   "note": "내수동",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://card.kbcard.com/CRD/DVIEW/HCAMCXPRICACR0001?mainCC=a"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1392,12 +1867,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 영등포구 의사당대로 3",
+   "note": "여의도동, 현대카드빌딩 1관",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.hyundaicard.com/csa/mb/STOREMAIN.hc"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1411,12 +1894,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 종로구 새문안로 76",
+   "note": "신문로1가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.lottecard.co.kr/app/LPCOIAB_V100.lc"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1430,12 +1921,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 을지로 66",
+   "note": "을지로2가",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.hanacard.co.kr/OPP35150010D.web?_frame=no&mID=OPP35150000D&schID=ncd"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1449,12 +1948,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 종로구 종로1길 50",
+   "note": "중학동, 더케이트윈타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://nm.wooricard.com/"
+    }
+   ],
    "memo": ""
   },
   {
@@ -1469,12 +1976,20 @@
    ],
    "wording": "기관",
    "popular": true,
-   "zip": "",
-   "addr": "",
-   "note": "",
-   "status": "needs_check",
+   "addr": "서울특별시 중구 을지로 170",
+   "note": "을지로4가, 을지트윈타워",
+   "status": "user_provided",
    "checkedAt": "2026-10-02",
-   "sources": [],
+   "sources": [
+    {
+     "label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)",
+     "url": ""
+    },
+    {
+     "label": "기관 확인 자료(사용자 제공 목록의 링크)",
+     "url": "https://www.bccard.com/app/card/html/company/kr/company/location/head/location.jsp"
+    }
+   ],
    "memo": ""
   }
  ]
