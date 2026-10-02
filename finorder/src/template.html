@@ -63,8 +63,8 @@
             <p class="step-sub">체크한 곳만 문서에 들어갑니다. 선택한 순서대로 가, 나, 다 순번이 붙습니다.</p>
           </div>
           <div class="step-act">
-            <button type="button" class="btn sm" id="btn-update-open" aria-controls="update-panel" aria-expanded="false">최신화</button>
-            <button type="button" class="btn sm" id="btn-add-inst-open" aria-controls="add-inst" aria-expanded="false">기관 추가</button>
+            <button type="button" class="btn sm" id="btn-update-open" aria-controls="update-panel">최신화</button>
+            <button type="button" class="btn sm" id="btn-add-inst-open" aria-controls="add-inst">기관 추가</button>
           </div>
         </header>
 
@@ -145,8 +145,11 @@
           </div>
         </div>
 
-        <label class="field"><span class="sr-only">기관 검색</span>
-          <input type="search" id="inst-search" placeholder="기관명 검색 (초성 가능, 예: ㄱㅁ)" autocomplete="off" spellcheck="false"></label>
+        <div class="inst-tools">
+          <label class="field inst-search"><span class="sr-only">기관 검색</span>
+            <input type="search" id="inst-search" placeholder="기관명 검색 (초성 가능, 예: ㄱㅁ)" autocomplete="off" spellcheck="false"></label>
+          <label class="check-line"><input type="checkbox" id="inst-filter-ready"><span>주소 확인된 곳만 보기</span></label>
+        </div>
 
         <div class="inst-pick">
           <div id="inst-cats" class="cats" role="tablist" aria-label="기관 분류"></div>

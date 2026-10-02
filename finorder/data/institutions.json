@@ -1,0 +1,1481 @@
+{
+ "schema": 1,
+ "asOf": "2026-10-02",
+ "categories": [
+  {
+   "id": "bank",
+   "label": "시중·특수·지방은행"
+  },
+  {
+   "id": "post",
+   "label": "우체국"
+  },
+  {
+   "id": "inet",
+   "label": "인터넷전문은행"
+  },
+  {
+   "id": "mutual",
+   "label": "상호금융"
+  },
+  {
+   "id": "savings",
+   "label": "저축은행"
+  },
+  {
+   "id": "securities",
+   "label": "증권사"
+  },
+  {
+   "id": "insurance",
+   "label": "보험사"
+  },
+  {
+   "id": "card",
+   "label": "카드사"
+  }
+ ],
+ "institutions": [
+  {
+   "id": "kookmin",
+   "cat": "bank",
+   "short": "국민은행",
+   "name": "주식회사 국민은행",
+   "aliases": [
+    "KB국민은행",
+    "KB",
+    "국민",
+    "KB은행"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "07331",
+   "addr": "서울특별시 영등포구 국제금융로8길 26",
+   "note": "여의도동",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": ""
+  },
+  {
+   "id": "shinhan",
+   "cat": "bank",
+   "short": "신한은행",
+   "name": "주식회사 신한은행",
+   "aliases": [
+    "신한",
+    "Shinhan"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "04513",
+   "addr": "서울특별시 중구 세종대로9길 20",
+   "note": "태평로2가",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": ""
+  },
+  {
+   "id": "woori",
+   "cat": "bank",
+   "short": "우리은행",
+   "name": "주식회사 우리은행",
+   "aliases": [
+    "우리",
+    "Woori"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "04632",
+   "addr": "서울특별시 중구 소공로 51",
+   "note": "회현동1가",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": ""
+  },
+  {
+   "id": "hana",
+   "cat": "bank",
+   "short": "하나은행",
+   "name": "주식회사 하나은행",
+   "aliases": [
+    "하나",
+    "KEB하나은행",
+    "KEB하나",
+    "Hana"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "sc",
+   "cat": "bank",
+   "short": "SC제일은행",
+   "name": "주식회사 한국스탠다드차타드은행",
+   "aliases": [
+    "SC제일",
+    "제일은행",
+    "한국스탠다드차타드은행",
+    "스탠다드차타드",
+    "SC은행",
+    "SC"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "citi",
+   "cat": "bank",
+   "short": "한국씨티은행",
+   "name": "주식회사 한국씨티은행",
+   "aliases": [
+    "씨티은행",
+    "씨티",
+    "Citi",
+    "한국씨티"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "nonghyup",
+   "cat": "bank",
+   "short": "농협은행",
+   "name": "농협은행 주식회사",
+   "aliases": [
+    "NH농협은행",
+    "NH",
+    "농협",
+    "NH농협"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "04517",
+   "addr": "서울특별시 중구 통일로 120",
+   "note": "충정로1가",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": ""
+  },
+  {
+   "id": "suhyup",
+   "cat": "bank",
+   "short": "수협은행",
+   "name": "수협은행",
+   "aliases": [
+    "Sh수협은행",
+    "수협",
+    "Sh"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "ibk",
+   "cat": "bank",
+   "short": "IBK기업은행",
+   "name": "중소기업은행",
+   "aliases": [
+    "기업은행",
+    "IBK",
+    "기업",
+    "IBK기업",
+    "중소기업은행"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kdb",
+   "cat": "bank",
+   "short": "KDB산업은행",
+   "name": "한국산업은행",
+   "aliases": [
+    "산업은행",
+    "KDB",
+    "산은"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "busan",
+   "cat": "bank",
+   "short": "부산은행",
+   "name": "주식회사 부산은행",
+   "aliases": [
+    "BNK부산은행",
+    "BNK부산",
+    "부산"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kyongnam",
+   "cat": "bank",
+   "short": "경남은행",
+   "name": "주식회사 경남은행",
+   "aliases": [
+    "BNK경남은행",
+    "BNK경남",
+    "경남"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "51316",
+   "addr": "경상남도 창원시 마산회원구 3·15대로 642",
+   "note": "석전동",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": "주소는 사용자 양식 기준입니다. 검색 요약 중 다른 주소가 나온 바 있어 공식 홈페이지에서 한 번 확인해 두십시오."
+  },
+  {
+   "id": "im",
+   "cat": "bank",
+   "short": "iM뱅크",
+   "name": "주식회사 아이엠뱅크",
+   "aliases": [
+    "아이엠뱅크",
+    "iM",
+    "대구은행",
+    "DGB대구은행",
+    "DGB"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kwangju",
+   "cat": "bank",
+   "short": "광주은행",
+   "name": "주식회사 광주은행",
+   "aliases": [
+    "JB광주은행",
+    "광주",
+    "JB"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "jeonbuk",
+   "cat": "bank",
+   "short": "전북은행",
+   "name": "주식회사 전북은행",
+   "aliases": [
+    "JB전북은행",
+    "전북",
+    "JB"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "jeju",
+   "cat": "bank",
+   "short": "제주은행",
+   "name": "제주은행",
+   "aliases": [
+    "제주"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "koreapost",
+   "cat": "post",
+   "short": "우체국",
+   "name": "우정사업본부(우체국예금)",
+   "aliases": [
+    "우정사업본부",
+    "우체국예금",
+    "우체국",
+    "우정본부"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "30114",
+   "addr": "세종특별자치시 도움5로 19",
+   "note": "어진동",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": ""
+  },
+  {
+   "id": "kakaobank",
+   "cat": "inet",
+   "short": "카카오뱅크",
+   "name": "주식회사 카카오뱅크",
+   "aliases": [
+    "카카오",
+    "kakaobank",
+    "카뱅"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "13529",
+   "addr": "경기도 성남시 분당구 분당내곡로 131, 11층",
+   "note": "백현동, 판교테크원",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": ""
+  },
+  {
+   "id": "kbank",
+   "cat": "inet",
+   "short": "케이뱅크",
+   "name": "주식회사 케이뱅크",
+   "aliases": [
+    "K뱅크",
+    "Kbank",
+    "케이"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "04548",
+   "addr": "서울특별시 중구 을지로 170",
+   "note": "을지로4가, 을지트윈타워",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": "우편번호는 사용자 양식 기준입니다. 검색 요약에 다른 우편번호가 나온 바 있어 도로명주소 안내시스템에서 한 번 확인해 두십시오."
+  },
+  {
+   "id": "tossbank",
+   "cat": "inet",
+   "short": "토스뱅크",
+   "name": "주식회사 토스뱅크",
+   "aliases": [
+    "토스",
+    "Toss",
+    "toss bank"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "06133",
+   "addr": "서울특별시 강남구 테헤란로 131, 13층",
+   "note": "역삼동, 한국지식재산센터",
+   "status": "user_provided",
+   "checkedAt": "2026-10-02",
+   "sources": [
+    {
+     "label": "사용자 제공 양식(2026. 9. 작성본)",
+     "url": ""
+    }
+   ],
+   "memo": ""
+  },
+  {
+   "id": "saemaeul-center",
+   "cat": "mutual",
+   "short": "새마을금고중앙회",
+   "name": "새마을금고중앙회",
+   "aliases": [
+    "새마을금고",
+    "MG새마을금고",
+    "MG",
+    "새마을금고 중앙회"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": "금고(지역금고 포함)와 중앙회는 각각 이 법에 따라 설립된 비영리법인이다(새마을금고법 제2조 제1항·제3항, 국가법령정보센터 조회 2026-10-02)."
+  },
+  {
+   "id": "cu-center",
+   "cat": "mutual",
+   "short": "신협중앙회",
+   "name": "신용협동조합중앙회",
+   "aliases": [
+    "신협",
+    "신용협동조합",
+    "신협 중앙회"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": "조합과 중앙회는 각각 이 법에 따라 설립된 비영리법인이다(신용협동조합법 제2조 제1호·제2호, 국가법령정보센터 조회 2026-10-02)."
+  },
+  {
+   "id": "nonghyup-center",
+   "cat": "mutual",
+   "short": "농협중앙회",
+   "name": "농업협동조합중앙회",
+   "aliases": [
+    "농협",
+    "NH농협",
+    "지역농협",
+    "단위농협",
+    "농협 상호금융"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": "이 법에 따라 설립되는 조합과 중앙회는 각각 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(농업협동조합법 제4조, 국가법령정보센터 조회 2026-10-02)."
+  },
+  {
+   "id": "suhyup-center",
+   "cat": "mutual",
+   "short": "수협중앙회",
+   "name": "수산업협동조합중앙회",
+   "aliases": [
+    "수협",
+    "수산업협동조합",
+    "수협 상호금융",
+    "수협 중앙회"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": "중앙회는 수산업협동조합중앙회의 명칭을 사용하여야 한다(수산업협동조합법 제3조 제1항 제4호). 조합과 중앙회는 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(같은 법 제4조). 국가법령정보센터 조회 2026-10-02."
+  },
+  {
+   "id": "nfcf-center",
+   "cat": "mutual",
+   "short": "산림조합중앙회",
+   "name": "산림조합중앙회",
+   "aliases": [
+    "산림조합",
+    "산림조합 중앙회",
+    "산림조합 상호금융"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": "이 법에 따라 설립되는 조합과 중앙회는 각각 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(산림조합법 제4조, 국가법령정보센터 조회 2026-10-02)."
+  },
+  {
+   "id": "sbi-savings",
+   "cat": "savings",
+   "short": "SBI저축은행",
+   "name": "주식회사 에스비아이저축은행",
+   "aliases": [
+    "SBI",
+    "에스비아이저축은행",
+    "SBI저축",
+    "에스비아이"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "ok-savings",
+   "cat": "savings",
+   "short": "OK저축은행",
+   "name": "주식회사 오케이저축은행",
+   "aliases": [
+    "OK",
+    "오케이저축은행",
+    "OK저축",
+    "오케이"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "welcome-savings",
+   "cat": "savings",
+   "short": "웰컴저축은행",
+   "name": "주식회사 웰컴저축은행",
+   "aliases": [
+    "웰컴",
+    "웰컴디지털뱅크",
+    "웰컴저축"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "koreainvest-savings",
+   "cat": "savings",
+   "short": "한국투자저축은행",
+   "name": "주식회사 한국투자저축은행",
+   "aliases": [
+    "한국투자",
+    "한투저축은행",
+    "한투",
+    "한국투자저축"
+   ],
+   "wording": "은행",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "acuon-savings",
+   "cat": "savings",
+   "short": "애큐온저축은행",
+   "name": "주식회사 애큐온저축은행",
+   "aliases": [
+    "애큐온",
+    "ACUON",
+    "애큐온저축"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "daol-savings",
+   "cat": "savings",
+   "short": "다올저축은행",
+   "name": "주식회사 다올저축은행",
+   "aliases": [
+    "다올",
+    "DAOL",
+    "다올저축"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "db-savings",
+   "cat": "savings",
+   "short": "DB저축은행",
+   "name": "주식회사 디비저축은행",
+   "aliases": [
+    "DB",
+    "디비저축은행",
+    "DB저축"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "shinhan-savings",
+   "cat": "savings",
+   "short": "신한저축은행",
+   "name": "주식회사 신한저축은행",
+   "aliases": [
+    "신한",
+    "신한SOL저축은행",
+    "신한 SOL저축은행",
+    "신한저축"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "hana-savings",
+   "cat": "savings",
+   "short": "하나저축은행",
+   "name": "주식회사 하나저축은행",
+   "aliases": [
+    "하나",
+    "하나저축"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "jt-chinae-savings",
+   "cat": "savings",
+   "short": "JT친애저축은행",
+   "name": "제이티친애저축은행 주식회사",
+   "aliases": [
+    "JT친애",
+    "제이티친애저축은행",
+    "친애저축은행",
+    "JT"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "pepper-savings",
+   "cat": "savings",
+   "short": "페퍼저축은행",
+   "name": "주식회사 페퍼저축은행",
+   "aliases": [
+    "페퍼",
+    "PEPPER",
+    "페퍼저축"
+   ],
+   "wording": "은행",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "samsung-securities",
+   "cat": "securities",
+   "short": "삼성증권",
+   "name": "삼성증권주식회사",
+   "aliases": [
+    "삼성증권",
+    "삼성",
+    "Samsung Securities"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "miraeasset-securities",
+   "cat": "securities",
+   "short": "미래에셋증권",
+   "name": "미래에셋증권 주식회사",
+   "aliases": [
+    "미래에셋",
+    "미래에셋증권"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "korea-investment-securities",
+   "cat": "securities",
+   "short": "한국투자증권",
+   "name": "한국투자증권 주식회사",
+   "aliases": [
+    "한국투자",
+    "한투",
+    "KIS",
+    "한국투자증권"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "nh-investment-securities",
+   "cat": "securities",
+   "short": "NH투자증권",
+   "name": "NH투자증권 주식회사",
+   "aliases": [
+    "NH",
+    "NH투자",
+    "엔에이치투자증권"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kb-securities",
+   "cat": "securities",
+   "short": "KB증권",
+   "name": "KB증권 주식회사",
+   "aliases": [
+    "KB",
+    "케이비증권"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kiwoom-securities",
+   "cat": "securities",
+   "short": "키움증권",
+   "name": "키움증권 주식회사",
+   "aliases": [
+    "키움",
+    "Kiwoom"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "shinhan-investment-securities",
+   "cat": "securities",
+   "short": "신한투자증권",
+   "name": "신한투자증권 주식회사",
+   "aliases": [
+    "신한투자",
+    "신한증권",
+    "신한"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "hana-securities",
+   "cat": "securities",
+   "short": "하나증권",
+   "name": "하나증권 주식회사",
+   "aliases": [
+    "하나"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "daishin-securities",
+   "cat": "securities",
+   "short": "대신증권",
+   "name": "대신증권 주식회사",
+   "aliases": [
+    "대신"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "toss-securities",
+   "cat": "securities",
+   "short": "토스증권",
+   "name": "토스증권 주식회사",
+   "aliases": [
+    "토스",
+    "Toss"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kakaopay-securities",
+   "cat": "securities",
+   "short": "카카오페이증권",
+   "name": "카카오페이증권 주식회사",
+   "aliases": [
+    "카카오페이",
+    "카카오"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "meritz-securities",
+   "cat": "securities",
+   "short": "메리츠증권",
+   "name": "메리츠증권 주식회사",
+   "aliases": [
+    "메리츠"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "ksd",
+   "cat": "securities",
+   "short": "한국예탁결제원",
+   "name": "한국예탁결제원",
+   "aliases": [
+    "예탁결제원",
+    "예탁원",
+    "KSD"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "samsung-life",
+   "cat": "insurance",
+   "short": "삼성생명",
+   "name": "삼성생명보험주식회사",
+   "aliases": [
+    "삼성생명",
+    "삼성생명보험"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "hanwha-life",
+   "cat": "insurance",
+   "short": "한화생명",
+   "name": "한화생명보험주식회사",
+   "aliases": [
+    "한화생명",
+    "한화생명보험",
+    "한화"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kyobo-life",
+   "cat": "insurance",
+   "short": "교보생명",
+   "name": "교보생명보험주식회사",
+   "aliases": [
+    "교보",
+    "교보생명보험"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "shinhan-life",
+   "cat": "insurance",
+   "short": "신한라이프",
+   "name": "신한라이프생명보험 주식회사",
+   "aliases": [
+    "신한라이프",
+    "신한생명",
+    "신한라이프생명"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "nh-life",
+   "cat": "insurance",
+   "short": "NH농협생명",
+   "name": "농협생명보험주식회사",
+   "aliases": [
+    "농협생명",
+    "NH생명",
+    "NH농협생명보험"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "heungkuk-life",
+   "cat": "insurance",
+   "short": "흥국생명",
+   "name": "흥국생명보험주식회사",
+   "aliases": [
+    "흥국",
+    "흥국생명보험"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "samsung-fire",
+   "cat": "insurance",
+   "short": "삼성화재",
+   "name": "삼성화재해상보험주식회사",
+   "aliases": [
+    "삼성화재해상",
+    "삼성화재",
+    "삼성"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "hyundai-marine",
+   "cat": "insurance",
+   "short": "현대해상",
+   "name": "현대해상화재보험 주식회사",
+   "aliases": [
+    "현대해상화재",
+    "현대해상",
+    "현대"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "db-insurance",
+   "cat": "insurance",
+   "short": "DB손해보험",
+   "name": "DB손해보험주식회사",
+   "aliases": [
+    "DB손보",
+    "DB",
+    "디비손보"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kb-insurance",
+   "cat": "insurance",
+   "short": "KB손해보험",
+   "name": "KB손해보험주식회사",
+   "aliases": [
+    "KB손보",
+    "KB",
+    "케이비손보"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "meritz-fire",
+   "cat": "insurance",
+   "short": "메리츠화재",
+   "name": "메리츠화재해상보험주식회사",
+   "aliases": [
+    "메리츠화재해상",
+    "메리츠"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "hanwha-general-insurance",
+   "cat": "insurance",
+   "short": "한화손해보험",
+   "name": "한화손해보험 주식회사",
+   "aliases": [
+    "한화손보",
+    "한화"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "lotte-insurance",
+   "cat": "insurance",
+   "short": "롯데손해보험",
+   "name": "롯데손해보험 주식회사",
+   "aliases": [
+    "롯데손보",
+    "롯데"
+   ],
+   "wording": "기관",
+   "popular": false,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "samsung-card",
+   "cat": "card",
+   "short": "삼성카드",
+   "name": "삼성카드 주식회사",
+   "aliases": [
+    "삼성",
+    "Samsung Card"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "shinhan-card",
+   "cat": "card",
+   "short": "신한카드",
+   "name": "주식회사 신한카드",
+   "aliases": [
+    "신한",
+    "Shinhan Card"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "kb-card",
+   "cat": "card",
+   "short": "KB국민카드",
+   "name": "주식회사 케이비국민카드",
+   "aliases": [
+    "국민카드",
+    "KB카드",
+    "케이비국민카드",
+    "KB",
+    "국민"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "hyundai-card",
+   "cat": "card",
+   "short": "현대카드",
+   "name": "현대카드 주식회사",
+   "aliases": [
+    "현대",
+    "Hyundai Card"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "lotte-card",
+   "cat": "card",
+   "short": "롯데카드",
+   "name": "롯데카드 주식회사",
+   "aliases": [
+    "롯데",
+    "Lotte Card"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "hana-card",
+   "cat": "card",
+   "short": "하나카드",
+   "name": "하나카드 주식회사",
+   "aliases": [
+    "하나",
+    "Hana Card"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "woori-card",
+   "cat": "card",
+   "short": "우리카드",
+   "name": "주식회사 우리카드",
+   "aliases": [
+    "우리",
+    "Woori Card"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  },
+  {
+   "id": "bc-card",
+   "cat": "card",
+   "short": "BC카드",
+   "name": "비씨카드 주식회사",
+   "aliases": [
+    "비씨카드",
+    "BC",
+    "비씨"
+   ],
+   "wording": "기관",
+   "popular": true,
+   "zip": "",
+   "addr": "",
+   "note": "",
+   "status": "needs_check",
+   "checkedAt": "2026-10-02",
+   "sources": [],
+   "memo": ""
+  }
+ ]
+}

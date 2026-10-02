@@ -1,0 +1,518 @@
+{
+  "institutions": [
+    {
+      "id": "samsung-securities",
+      "cat": "securities",
+      "short": "삼성증권",
+      "name": "삼성증권주식회사",
+      "aliases": ["삼성증권", "삼성", "Samsung Securities"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "06620",
+      "addr": "서울특별시 서초구 서초대로74길 11",
+      "note": "서초동, 삼성전자빌딩",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 Contact Us(검색요약)", "url": "https://samsungsecurities.co.kr/kor/contactus.do"},
+        {"label": "KIND 삼성증권 사업보고서(검색요약)", "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=search&acptno=20240313002223&docno=&viewerhost="},
+        {"label": "금융투자협회 회원사(검색요약)", "url": "https://m.kofia.or.kr/members/m_12/sub020201.do?page=3&srchCate=4&pitem=10"},
+        {"label": "LEI 등록정보(상호 표기, 검색요약)", "url": "https://opencorpdata.com/lei/988400RBTJTHNUOHE716"}
+      ],
+      "memo": ""
+    },
+    {
+      "id": "miraeasset-securities",
+      "cat": "securities",
+      "short": "미래에셋증권",
+      "name": "미래에셋증권 주식회사",
+      "aliases": ["미래에셋", "미래에셋증권"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 본사 위치정보(검색요약)", "url": "https://securities.miraeasset.com/hkc/hkc2014/p01.do?divNo=000&branchNo=000"},
+        {"label": "KIND 사업보고서 검색 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2026/03/09/000282/20260309000809/11011.htm"}
+      ],
+      "memo": "도로명주소는 공식 홈페이지와 공시 2곳에서 일치하나 우편번호를 확인하지 못함. 상호의 주식회사 표기 위치·띄어쓰기를 확인하지 못함."
+    },
+    {
+      "id": "korea-investment-securities",
+      "cat": "securities",
+      "short": "한국투자증권",
+      "name": "한국투자증권 주식회사",
+      "aliases": ["한국투자", "한투", "KIS", "한국투자증권"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "07321",
+      "addr": "서울특별시 영등포구 의사당대로 88",
+      "note": "여의도동",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 본점 안내(검색요약)", "url": "https://www.truefriend.com/main/customer/guide/branch/_view/branch_center.jsp?templet-bypass=true"},
+        {"label": "공식 홈페이지 본점 영업점안내(검색요약)", "url": "https://www.truefriend.com/main/customer/guide/branch/branch_head.jsp?cmd=branch_map_CenterView"},
+        {"label": "KIND 공시 검색 최상위 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2025/05/15/001537/20250515003592/11013.htm"},
+        {"label": "LEI 등록정보(상호 표기, 검색요약)", "url": "https://lei.bloomberg.com/leis/view/549300R8VJDW3X6CD250"}
+      ],
+      "memo": ""
+    },
+    {
+      "id": "nh-investment-securities",
+      "cat": "securities",
+      "short": "NH투자증권",
+      "name": "NH투자증권 주식회사",
+      "aliases": ["NH", "NH투자", "엔에이치투자증권"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "07335",
+      "addr": "서울특별시 영등포구 여의대로 108",
+      "note": "파크원 NH금융타워(타워2)",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 영업점 검색(검색요약)", "url": "https://www.nhsec.com/ir/branch/branchInfo.action"},
+        {"label": "공식 모바일 영업점 목록(검색요약)", "url": "https://m.nhsec.com/etc/branchList"},
+        {"label": "KIND 사업보고서 검색 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2024/03/15/000693/20240315002535/11011.htm"}
+      ],
+      "memo": "공시 검색 요약에 2021년 4월 19일 현 소재지로 이전했다고 나옴. 상호의 주식회사 표기 위치·띄어쓰기를 확인하지 못함."
+    },
+    {
+      "id": "kb-securities",
+      "cat": "securities",
+      "short": "KB증권",
+      "name": "KB증권 주식회사",
+      "aliases": ["KB", "케이비증권"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "07328",
+      "addr": "서울특별시 영등포구 여의나루로 50",
+      "note": "여의도동",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 본사 주소 변경 안내(검색요약)", "url": "https://www.kbsec.com/popup/html/BANK_05_180518.html"},
+        {"label": "공식 홈페이지 찾아오시는 길(검색요약)", "url": "https://www.kbsec.com/go.able?linkcd=m50020024"},
+        {"label": "KIND 사업보고서 검색 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2026/03/23/000996/20260323004603/11011.htm"}
+      ],
+      "memo": "공식 홈페이지·공시 요약에 2018년 5월 21일 여의나루로4길 21에서 현 소재지로 이전했다고 나옴. 상호의 주식회사 표기 위치·띄어쓰기를 확인하지 못함."
+    },
+    {
+      "id": "kiwoom-securities",
+      "cat": "securities",
+      "short": "키움증권",
+      "name": "키움증권 주식회사",
+      "aliases": ["키움", "Kiwoom"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "07321",
+      "addr": "서울특별시 영등포구 의사당대로 96",
+      "note": "TP타워",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 개요(검색요약)", "url": "https://www.kiwoom.com/h/ir/main"},
+        {"label": "공식 홈페이지 Contact Us(검색요약)", "url": "https://www.kiwoom.com/kwa/html/ir/kr/kiwoom/contactus.html"},
+        {"label": "한국경제 본사 이전 보도(2024-07)", "url": "https://www.hankyung.com/article/202407229303Y"},
+        {"label": "아시아경제 본사 이전 보도(2024-07)", "url": "https://www.asiae.co.kr/article/2024072214462246924&mobile=Y"},
+        {"label": "공식 지배구조 연차보고서(상호 표기, 검색요약)", "url": "https://download.kiwoom.com/ir/governanceReport.pdf?20260402="}
+      ],
+      "memo": "2024년 7월 여의도 키움파이낸스스퀘어에서 TP타워로 본사를 이전했다는 언론 보도 다수."
+    },
+    {
+      "id": "shinhan-investment-securities",
+      "cat": "securities",
+      "short": "신한투자증권",
+      "name": "신한투자증권 주식회사",
+      "aliases": ["신한투자", "신한증권", "신한"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "07321",
+      "addr": "서울특별시 영등포구 의사당대로 96",
+      "note": "여의도동, TP Tower",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 IR Contact us(검색요약)", "url": "https://open.shinhansec.com/new_ir/company/company_10.jsp"},
+        {"label": "공식 IR 본사 건물 소개(검색요약)", "url": "https://open.shinhansec.com/new_ir/business/business_06.jsp"},
+        {"label": "이투데이 사옥 이전 보도(2024-07)", "url": "https://www.etoday.co.kr/news/view/2378552"},
+        {"label": "이코노믹리뷰 계열 본사 이전 보도(2024-07)", "url": "https://m.ekn.kr/view.php?key=20240710021353172"},
+        {"label": "KIND 2026년 사업보고서(검색요약)", "url": "https://kind.krx.co.kr/external/2026/03/11/001532/20260311003708/11011.htm"}
+      ],
+      "memo": "2024년 6월 말부터 8월 초까지 여의도 TP타워로 본사 사옥을 이전했다는 언론 보도 다수. 상호의 주식회사 표기 위치·띄어쓰기를 확인하지 못함."
+    },
+    {
+      "id": "hana-securities",
+      "cat": "securities",
+      "short": "하나증권",
+      "name": "하나증권 주식회사",
+      "aliases": ["하나"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 전자금융서비스 이용약관 PDF 2018년판(검색요약)", "url": "https://www.hanaw.com/hts/notice/__icsFiles/afieldfile/2018/09/21/56785.pdf"},
+        {"label": "사업자정보 사이트(상업, 검색요약)", "url": "https://bizno.net/article/4448502675"},
+        {"label": "LEI 조회 사이트(검색요약)", "url": "https://www.lei-lookup.com/record/549300EYQ6V322IGFP59/"}
+      ],
+      "memo": "공식 약관(2018년판)과 상업 사이트에서 도로명주소는 일치하나 우편번호의 공식 출처와 공시 확인을 하지 못함. 공시 검색에서는 하나금융지주 정보만 나와 대조하지 못함. 상호의 주식회사 표기 위치·띄어쓰기를 확인하지 못함."
+    },
+    {
+      "id": "daishin-securities",
+      "cat": "securities",
+      "short": "대신증권",
+      "name": "대신증권 주식회사",
+      "aliases": ["대신"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "KIND 사업보고서 검색 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2025/03/21/000279/20250321001182/11011.htm"},
+        {"label": "공식 홈페이지 영업점 안내(검색요약)", "url": "http://money2.daishin.com/E5/Service/www/route/DM_branchRouteMap.aspx?ino=134"},
+        {"label": "상업 주소 사이트(우편번호 값 확인용, 비공식)", "url": "https://juso.app/b/51eo59sroic4i8rb"}
+      ],
+      "memo": "도로명주소는 공시와 공식 영업점 안내에서 일치하나 우편번호는 공식·정부 출처에서 확인하지 못하고 상업 사이트 값만 확인함."
+    },
+    {
+      "id": "toss-securities",
+      "cat": "securities",
+      "short": "토스증권",
+      "name": "토스증권 주식회사",
+      "aliases": ["토스", "Toss"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 기업 정보(검색요약)", "url": "https://corp.tossinvest.com/ko/corporate-info"}
+      ],
+      "memo": "독립 출처 1곳(공식 홈페이지)만 확인됨. 공식 표기는 토스증권(주)이며 상호의 주식회사 표기 위치를 확인하지 못함."
+    },
+    {
+      "id": "kakaopay-securities",
+      "cat": "securities",
+      "short": "카카오페이증권",
+      "name": "카카오페이증권 주식회사",
+      "aliases": ["카카오페이", "카카오"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 안내 페이지(검색요약)", "url": "https://www.kakaopaysec.com/guide/inherit/dynamicPage.do"},
+        {"label": "공식 홈페이지 여의도 오피스 개소 소식(검색요약)", "url": "https://www.kakaopaysec.com/company/news_page/dynamicNewsDetail.do?id=69"},
+        {"label": "헤럴드경제 여의도 오피스 보도(검색요약)", "url": "https://biz.heraldcorp.com/article/10455018"}
+      ],
+      "memo": "공식 홈페이지가 본사(경기 성남시 판교)와 서울 여의도 디지털지점·영업부를 구분해 표기하여 등기상 본점 확인이 필요함. 우편번호도 확인하지 못함. 상호의 주식회사 표기 위치·띄어쓰기를 확인하지 못함."
+    },
+    {
+      "id": "meritz-securities",
+      "cat": "securities",
+      "short": "메리츠증권",
+      "name": "메리츠증권 주식회사",
+      "aliases": ["메리츠"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 영업점안내(검색요약)", "url": "https://home.imeritz.com/bsbr/BsbrInfo.do"},
+        {"label": "공식 홈페이지 회사개요(검색요약)", "url": "https://home.imeritz.com/main/ir/com_0100.html"}
+      ],
+      "memo": "독립 출처 1곳(공식 홈페이지 영업점 안내)만 확인됨. 공시 검색에서는 메리츠금융지주 정보만 나와 대조하지 못함. 상호의 주식회사 표기 위치·띄어쓰기를 확인하지 못함."
+    },
+    {
+      "id": "ksd",
+      "cat": "securities",
+      "short": "한국예탁결제원",
+      "name": "한국예탁결제원",
+      "aliases": ["예탁결제원", "예탁원", "KSD"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "48400",
+      "addr": "부산광역시 남구 문현금융로 40",
+      "note": "문현동, 부산국제금융센터",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 오시는 길(검색요약)", "url": "https://fep.ksd.or.kr/statics/serv/serv03.home"},
+        {"label": "공식 홈페이지(검색요약)", "url": "https://www.ksd.or.kr/ko/?page=193"},
+        {"label": "KSD 나눔재단 오시는길(검색요약)", "url": "https://nanum.ksd.or.kr/introduction05.home"},
+        {"label": "부산 남구청 BIFC 입주기관 현황(검색요약)", "url": "https://www.bsnamgu.go.kr/index.namgu?menuCd=DOM_000000125002008000"}
+      ],
+      "memo": "공식 홈페이지 오시는 길에 부산본사(본점)와 서울사옥이 구분 표기됨. 서울사옥: (07330) 서울특별시 영등포구 여의나루로4길 23 (여의도동). addr는 부산본사(본점) 기준."
+    },
+    {
+      "id": "samsung-life",
+      "cat": "insurance",
+      "short": "삼성생명",
+      "name": "삼성생명보험주식회사",
+      "aliases": ["삼성생명", "삼성생명보험"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "06620",
+      "addr": "서울특별시 서초구 서초대로74길 11",
+      "note": "서초동",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 회사소개(검색요약)", "url": "https://www.samsunglife.com/individual/display/intro/PDK-MAMAI000000M"},
+        {"label": "KIND 삼성생명 사업보고서(검색요약)", "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchInitInfo&acptNo=20240313002309&docno="},
+        {"label": "생명보험협회 회원사 안내(검색요약)", "url": "https://www.klia.or.kr/klia/company/member/list.do"}
+      ],
+      "memo": ""
+    },
+    {
+      "id": "hanwha-life",
+      "cat": "insurance",
+      "short": "한화생명",
+      "name": "한화생명보험주식회사",
+      "aliases": ["한화생명", "한화생명보험", "한화"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 기업개요(검색요약)", "url": "https://company.hanwhalife.com/ko/about/company-overview/hanwhalife"},
+        {"label": "공식 홈페이지 회사소개(검색요약)", "url": "https://www.hanwhalife.com/company/main/CM_0000000_P10000.do"},
+        {"label": "KIND 2026년 사업보고서 검색 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2026/03/18/001708/20260318007927/11011.htm"},
+        {"label": "생명보험협회 회원사 안내(검색요약)", "url": "https://www.klia.or.kr/klia/company/member/list.do"}
+      ],
+      "memo": "도로명주소는 공식 홈페이지·공시·생명보험협회 3곳에서 일치하나 본점 우편번호를 확인하지 못함. 건물명은 출처마다 다르게 표기됨(63 한화생명빌딩, 한화금융센터)."
+    },
+    {
+      "id": "kyobo-life",
+      "cat": "insurance",
+      "short": "교보생명",
+      "name": "교보생명보험주식회사",
+      "aliases": ["교보", "교보생명보험"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 오시는 길(검색요약)", "url": "https://www.kyobo.com/dgt/web/company-information/directions"}
+      ],
+      "memo": "독립 출처 1곳(공식 홈페이지)만 확인됨. 공식 표기는 교보생명보험주식회사 또는 교보생명보험(주)로 나옴."
+    },
+    {
+      "id": "shinhan-life",
+      "cat": "insurance",
+      "short": "신한라이프",
+      "name": "신한라이프생명보험 주식회사",
+      "aliases": ["신한라이프", "신한생명", "신한라이프생명"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "04542",
+      "addr": "서울특별시 중구 삼일대로 358",
+      "note": "을지로2가",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 헬프데스크(검색요약)", "url": "https://www.shinhanlife.co.kr/hp/cdhf0010.do"},
+        {"label": "생명보험협회 회원사 안내(검색요약)", "url": "https://www.klia.or.kr/klia/company/member/list.do"},
+        {"label": "한경 매거진 합병 인가 보도(2021-05)", "url": "https://magazine.hankyung.com/money/article/202105126017c"}
+      ],
+      "memo": "신한생명과 오렌지라이프가 합병해 2021년 7월 1일 신한라이프로 출범했다는 보도. 법적 상호 표기는 공식 홈페이지·생명보험협회 요약을 따름."
+    },
+    {
+      "id": "nh-life",
+      "cat": "insurance",
+      "short": "NH농협생명",
+      "name": "농협생명보험주식회사",
+      "aliases": ["농협생명", "NH생명", "NH농협생명보험"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 모바일 안내(검색요약)", "url": "https://m.nhlife.co.kr/mo/ma/02/00/MOMA0200M00"}
+      ],
+      "memo": "독립 출처 1곳(공식 홈페이지)만 확인됨. 공식 요약상 회사명은 농협생명보험주식회사."
+    },
+    {
+      "id": "heungkuk-life",
+      "cat": "insurance",
+      "short": "흥국생명",
+      "name": "흥국생명보험주식회사",
+      "aliases": ["흥국", "흥국생명보험"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 찾아오시는길(검색요약)", "url": "https://www.heungkuklife.co.kr/jsps/front/company/summary/ci-summary06.jsp"}
+      ],
+      "memo": "독립 출처 1곳(공식 홈페이지)만 확인됨."
+    },
+    {
+      "id": "samsung-fire",
+      "cat": "insurance",
+      "short": "삼성화재",
+      "name": "삼성화재해상보험주식회사",
+      "aliases": ["삼성화재해상", "삼성화재", "삼성"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 기업개요(검색요약)", "url": "https://www.samsungfire.com/v2/html/company/01/M_010_010_001.html"},
+        {"label": "KIND 사업보고서 검색 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2024/03/13/000003/20240313000071/11011.htm"},
+        {"label": "손해보험협회 회원사(검색요약)", "url": "https://www.knia.or.kr/m/about/partner/partner01"}
+      ],
+      "memo": "도로명주소는 공식 홈페이지·공시·손해보험협회 3곳에서 일치하나 본점 우편번호를 확인하지 못함(공식 홈페이지의 04511은 외국인보험 담당 부서 표기로 본점 표기가 아님)."
+    },
+    {
+      "id": "hyundai-marine",
+      "cat": "insurance",
+      "short": "현대해상",
+      "name": "현대해상화재보험 주식회사",
+      "aliases": ["현대해상화재", "현대해상", "현대"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "03183",
+      "addr": "서울특별시 종로구 세종대로 163",
+      "note": "세종로, 현대해상빌딩",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 모바일(검색요약)", "url": "https://m.hi.co.kr/serviceAction.do?menuId=100422"},
+        {"label": "KIND 현대해상 사업보고서(검색요약)", "url": "https://kind.krx.co.kr/common/disclsviewer.do?method=searchInitInfo&acptNo=20250407000441&docno="},
+        {"label": "손해보험협회 회원사(검색요약)", "url": "https://www.knia.or.kr/m/about/partner/partner01"}
+      ],
+      "memo": "상호 표기가 출처마다 다름: 공시 요약은 현대해상화재보험 주식회사, 손해보험협회 요약은 현대해상화재보험주식회사, 공식 홈페이지 요약은 현대해상화재보험㈜."
+    },
+    {
+      "id": "db-insurance",
+      "cat": "insurance",
+      "short": "DB손해보험",
+      "name": "DB손해보험주식회사",
+      "aliases": ["DB손보", "DB", "디비손보"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "06194",
+      "addr": "서울특별시 강남구 테헤란로 432",
+      "note": "대치동, DB금융센터",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 IR 고객상담센터 안내(검색요약)", "url": "https://ir.idbins.com/FMCUSV1211.do"},
+        {"label": "KIND 사업보고서 검색 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2025/03/13/002232/20250313005052/11011.htm"},
+        {"label": "손해보험협회 회원사(검색요약)", "url": "https://www.knia.or.kr/m/about/partner/partner01"}
+      ],
+      "memo": ""
+    },
+    {
+      "id": "kb-insurance",
+      "cat": "insurance",
+      "short": "KB손해보험",
+      "name": "KB손해보험주식회사",
+      "aliases": ["KB손보", "KB", "케이비손보"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "06134",
+      "addr": "서울특별시 강남구 테헤란로 117",
+      "note": "역삼동, KB손해보험빌딩",
+      "status": "verified",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 사옥안내(본사)(검색요약)", "url": "http://www.kbinsure.co.kr/CU601040001.ec"},
+        {"label": "손해보험협회 회원사(검색요약)", "url": "https://www.knia.or.kr/m/about/partner/partner01"}
+      ],
+      "memo": "공식 홈페이지에 KB타워(서울) 등 다른 사옥 안내 페이지가 별도로 있음. 상호 표기는 손해보험협회 요약 기준이며 공시 원문 대조 필요."
+    },
+    {
+      "id": "meritz-fire",
+      "cat": "insurance",
+      "short": "메리츠화재",
+      "name": "메리츠화재해상보험주식회사",
+      "aliases": ["메리츠화재해상", "메리츠"],
+      "wording": "기관",
+      "popular": true,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지(검색요약)", "url": "https://www.meritzfire.com/mig-info.html"}
+      ],
+      "memo": "독립 출처 1곳(공식 홈페이지)만 확인됨. 공식 요약상 회사명은 메리츠화재해상보험주식회사."
+    },
+    {
+      "id": "hanwha-general-insurance",
+      "cat": "insurance",
+      "short": "한화손해보험",
+      "name": "한화손해보험 주식회사",
+      "aliases": ["한화손보", "한화"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지(검색요약)", "url": "https://www.hwgeneralins.com/"},
+        {"label": "공식 기업 사이트(검색요약)", "url": "https://corp.hwgeneralins.com/"}
+      ],
+      "memo": "독립 출처 1곳(공식 홈페이지)만 확인됨. 상호의 주식회사 표기 위치·띄어쓰기를 확인하지 못함."
+    },
+    {
+      "id": "lotte-insurance",
+      "cat": "insurance",
+      "short": "롯데손해보험",
+      "name": "롯데손해보험 주식회사",
+      "aliases": ["롯데손보", "롯데"],
+      "wording": "기관",
+      "popular": false,
+      "zip": "",
+      "addr": "",
+      "note": "",
+      "status": "needs_check",
+      "checkedAt": "2026-10-02",
+      "sources": [
+        {"label": "공식 홈페이지 서비스망 찾기(검색요약)", "url": "https://www.lotteins.co.kr/web/C/D/I/lotteins_map.jsp"},
+        {"label": "KIND 사업보고서 검색 노출(검색요약)", "url": "https://kind.krx.co.kr/external/2025/03/20/002024/20250320008271/11011.htm"},
+        {"label": "디지털데일리 매각 관련 보도(2026-04-09)", "url": "https://www.ddaily.co.kr/page/view/2026040917324220076"}
+      ],
+      "memo": "도로명주소는 공식 홈페이지와 공시 2곳에서 일치하나 본점 우편번호를 확인하지 못함. 공식 홈페이지의 보험금 접수 우편주소는 (04315) 서울시 용산구 원효로90길 11 용산더프라임빌딩 업무동 20층으로 본점 주소가 아님. 영업 중이며 상호 변경은 확인되지 않음."
+    }
+  ]
+}
