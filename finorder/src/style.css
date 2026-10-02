@@ -427,3 +427,15 @@ fieldset.fs .seg span{min-width:84px}
   .sel-row{grid-template-columns:44px minmax(0,1fr)}
   .sel-ctl{grid-column:2;justify-self:end}
 }
+
+/* 통합 단계 보완: JS가 만드는 조각 */
+.sel-edit{justify-self:start;min-height:0;padding:2px 0;border:0;background:transparent;color:var(--accent);font-size:12px;text-decoration:underline;text-underline-offset:2px}
+.sel-edit:hover{background:transparent;color:var(--accent-hover)}
+.sel-fill-cancel{margin-left:6px}
+.inst-item{position:relative}
+.inst-del{border-radius:4px;cursor:pointer}
+.inst-del:hover{background:var(--fail-soft);color:var(--fail);opacity:1!important}
+.copy-fallback{display:grid;gap:8px;margin-top:8px}
+.copy-fallback textarea{width:100%;min-height:120px;font-family:var(--mono);font-size:12px;line-height:1.5}
+.diff-table th:first-child,.diff-table td:first-child{width:32px;text-align:center}
+.d-h .d-h-t{flex:1;min-width:0}
