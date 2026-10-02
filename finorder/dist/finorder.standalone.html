@@ -183,7 +183,6 @@ fieldset.fs .seg span{min-width:84px}
 .inline-panel{display:grid;gap:12px;padding:14px;background:var(--surface-2);border:1px solid var(--accent-line);border-radius:var(--r)}
 .ip-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .ip-head h3{font-size:14px;font-weight:600}
-.add-grid .zip{grid-column:auto}
 .upd-summary{font-size:12.5px;color:var(--muted);max-height:168px;overflow:auto;border:1px solid var(--line);border-radius:var(--r-s);background:var(--surface)}
 .upd-summary:empty{display:none}
 .upd-summary table{width:100%;border-collapse:collapse}
@@ -252,9 +251,8 @@ fieldset.fs .seg span{min-width:84px}
 .inst-short{grid-area:short;font-weight:600;font-size:14px;line-height:1.35;overflow-wrap:anywhere}
 .inst-sub{grid-area:sub;font-size:12px;line-height:1.35;color:var(--muted);overflow-wrap:anywhere}
 /* 주소 상태 배지는 data-status로 그린다. verified는 배지 없음 */
-.inst-item[data-status="needs_check"]::after,.inst-item[data-status="user_provided"]::after{grid-area:badge;justify-self:start;margin-top:2px;font-size:11px;font-weight:500;line-height:1.3;white-space:nowrap}
+.inst-item[data-status="needs_check"]::after{grid-area:badge;justify-self:start;margin-top:2px;font-size:11px;font-weight:500;line-height:1.3;white-space:nowrap}
 .inst-item[data-status="needs_check"]::after{content:"주소 미확인";color:var(--warn)}
-.inst-item[data-status="user_provided"]::after{content:"양식 기준";color:var(--muted)}
 .badge{grid-area:badge;justify-self:start;margin-top:2px;font-size:11px;font-weight:600;line-height:1.3;padding:0 6px;border-radius:3px;white-space:nowrap;background:var(--surface);color:var(--accent);border:1px solid var(--accent-line)}
 .badge.warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn-line)}
 /* 직접 추가한 기관은 '추가' 배지만 보이고, 그 밖의 항목에서는 JS가 만든 상태 배지를 가린다 */
@@ -281,7 +279,6 @@ fieldset.fs .seg span{min-width:84px}
 .sel-ctl .sel-del:hover:not(:disabled){border-color:var(--fail);color:var(--fail);background:var(--fail-soft)}
 .sel-fill{display:flex;flex-wrap:wrap;gap:6px;padding:8px;margin-top:2px;background:var(--warn-soft);border:1px solid var(--warn-line);border-radius:var(--r-s)}
 .sel-fill input{min-height:36px;padding:6px 8px;font-size:14px;background:var(--surface)}
-.sel-fill-zip{flex:0 0 92px;width:92px;font-variant-numeric:tabular-nums}
 .sel-fill-addr{flex:1 1 160px;width:auto}
 .sel-fill-save{min-height:36px;padding:4px 14px;border:1px solid var(--accent);border-radius:var(--r-s);background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:600}
 .sel-fill-save:hover{background:var(--accent-hover)}
@@ -368,6 +365,9 @@ fieldset.fs .seg span{min-width:84px}
 .d-l1{padding-left:1.83em;text-indent:-1.83em;text-align:justify;margin-top:.1em}
 .d-l2{padding-left:3.67em;text-indent:-1.83em;text-align:justify;margin-top:.1em}
 .d-mk{display:inline-block;width:1.83em;text-indent:0}
+.d-p{text-align:justify}
+.d-l2c{padding-left:3.67em;text-align:justify;margin-top:.1em}
+.d-l3{padding-left:5.5em;text-indent:-1.83em;text-align:justify;margin-top:.1em}
 .paper u{text-decoration-thickness:1px;text-underline-offset:.22em}
 .d-blank{background:var(--paper-blank);color:var(--paper-blank-ink);border-radius:2px;padding:0 .25em;border-bottom:1px dashed var(--paper-blank-ink)}
 .btn-copy{margin-left:auto;flex:none;min-height:26px;padding:0 9px;border:1px solid var(--paper-edge);border-radius:4px;background:transparent;color:var(--paper-mute);font-family:var(--sans);font-size:11.5px;font-weight:500;line-height:1}
@@ -409,7 +409,6 @@ fieldset.fs .seg span{min-width:84px}
   .status{margin-left:0}
   .card{padding:14px}
   .grid-2{grid-template-columns:minmax(0,1fr)}
-  .add-grid .zip{grid-column:1 / -1}
   input:not([type="checkbox"]):not([type="radio"]),select,textarea{font-size:16px}
   .stage{padding:8px}
   .paper{padding:7% 6%;font-size:13px}
@@ -443,6 +442,16 @@ fieldset.fs .seg span{min-width:84px}
 .copy-fallback textarea{width:100%;min-height:120px;font-family:var(--mono);font-size:12px;line-height:1.5}
 .diff-table th:first-child,.diff-table td:first-child{width:32px;text-align:center}
 .d-h .d-h-t{flex:1;min-width:0}
+
+/* 신청서 종류 전환(은행류·보험사가 섞였을 때) */
+.form-switch{display:grid;gap:6px;padding:10px 12px;border:1px solid var(--line-strong);border-radius:var(--r-s);background:var(--surface);margin-block:8px}
+.form-switch .fs-lbl{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.form-switch .seg{justify-self:start;max-width:100%}
+.form-switch .seg span{white-space:normal;line-height:1.3;padding-block:6px;gap:.4em}
+.fs-n{font-weight:600;font-variant-numeric:tabular-nums;opacity:.85}
+/* 선택 목록의 종류 표시(섞였을 때만 JS가 만든다) */
+.sel-grp{display:inline-block;margin-left:6px;padding:0 6px;border:1px solid var(--line-strong);border-radius:3px;font-size:11px;font-weight:600;color:var(--muted);vertical-align:1px}
+.sel-row[data-form="insurance"] .sel-grp{color:var(--accent);border-color:var(--accent)}
 </style>
 
 <div class="wrap">
@@ -552,13 +561,11 @@ fieldset.fs .seg span{min-width:84px}
         <!-- 기관 추가 폼(인라인, 초기 숨김) -->
         <div id="add-inst" class="inline-panel" role="group" aria-labelledby="h-add" hidden>
           <div class="ip-head"><h3 id="h-add">목록에 없는 기관 추가</h3></div>
-          <p class="hint">추가한 기관은 '추가' 표시와 함께 목록에 남아 다음에도 쓸 수 있습니다. 주소는 공식 자료로 확인한 값을 넣어 주십시오.</p>
+          <p class="hint">추가한 기관은 '추가' 표시와 함께 목록에 남아 다음에도 쓸 수 있습니다. 주소는 공식 자료로 확인한 값을 넣어 주십시오. 우편번호는 쓰지 않습니다.</p>
           <div class="grid-2 add-grid">
             <label class="field span-2"><span class="lbl">기관 명칭</span>
               <input type="text" id="add-name" placeholder="신청서에 쓰는 정식 명칭 (예: 주식회사 ○○은행)" autocomplete="off"></label>
-            <label class="field zip"><span class="lbl">우편번호</span>
-              <input type="text" id="add-zip" inputmode="numeric" maxlength="5" placeholder="5자리" autocomplete="off"></label>
-            <label class="field"><span class="lbl">도로명주소</span>
+            <label class="field span-2"><span class="lbl">도로명주소</span>
               <input type="text" id="add-addr" placeholder="번지, 층까지 (참고 괄호 제외)" autocomplete="off"></label>
             <label class="field span-2"><span class="lbl">참고 (선택)</span>
               <input type="text" id="add-note" placeholder="괄호 안에 들어갈 법정동, 건물명 (예: 여의도동)" autocomplete="off"></label>
@@ -573,12 +580,8 @@ fieldset.fs .seg span{min-width:84px}
                 <option value="insurance">보험사</option>
                 <option value="card">카드사</option>
               </select></label>
-            <label class="field"><span class="lbl">5.가의 호칭</span>
-              <select id="add-wording">
-                <option value="은행">귀 은행</option>
-                <option value="기관">귀 기관</option>
-              </select></label>
           </div>
+          <p class="hint">보험사로 분류하면 보험사용 신청서(5. 문안이 다름)에 들어갑니다.</p>
           <p class="err" id="add-msg" role="alert" hidden></p>
           <div class="btns">
             <button type="button" class="btn primary sm" id="add-save">저장</button>
@@ -704,7 +707,17 @@ fieldset.fs .seg span{min-width:84px}
           <div id="polish-result" class="polish-result" aria-live="polite"></div>
         </div>
 
-        <div class="subblock">
+        <div class="subblock" id="ins-block" hidden>
+          <div class="sub-row">
+            <span class="step-no sm" aria-hidden="true">5</span>
+            <h3 class="sub-h">보험 기준일</h3>
+          </div>
+          <label class="field"><span class="lbl">기준일</span>
+            <input type="date" id="ins-date"></label>
+          <p class="hint">보험사용 5.의 '○○ 기준', '○○ 이후', '○○ 이전'에 들어가는 날짜입니다. 문서에는 '2026. 3. 20.' 형식으로 쓰입니다.</p>
+        </div>
+
+        <div class="subblock" id="wording-block">
           <div class="sub-row">
             <span class="step-no sm" aria-hidden="true">5</span>
             <h3 class="sub-h">요구하는 거래정보 문구</h3>
@@ -716,7 +729,7 @@ fieldset.fs .seg span{min-width:84px}
               <option value="기관">귀 기관</option>
               <option value="사">귀 사</option>
             </select></label>
-          <p class="hint">5.가 첫 문장의 '귀 ○○에'에 쓰입니다. 자동은 선택한 기관이 모두 은행류이면 '귀 은행', 하나라도 아니면 '귀 기관'입니다.</p>
+          <p class="hint">은행·금융기관용 5.가 첫 문장의 '귀 ○○에'에 쓰입니다(보험사용은 항상 '귀 회사에'). 자동은 선택한 기관이 모두 은행류이면 '귀 은행', 하나라도 아니면 '귀 기관'입니다.</p>
         </div>
       </section>
 
@@ -731,6 +744,14 @@ fieldset.fs .seg span{min-width:84px}
       <div class="pv-head">
         <h2>신청서 미리보기</h2>
         <span class="hint">소제목 옆 복사 버튼은 전자소송 입력용입니다.</span>
+      </div>
+      <div class="form-switch" id="form-switch" role="radiogroup" aria-label="지금 만들 신청서 종류" hidden>
+        <span class="fs-lbl">만들 신청서</span>
+        <div class="seg">
+          <label><input type="radio" name="formtype" id="form-bank" value="bank"><span>은행·금융기관용 <b class="fs-n" id="form-bank-n"></b></span></label>
+          <label><input type="radio" name="formtype" id="form-insurance" value="insurance"><span>보험사용 <b class="fs-n" id="form-insurance-n"></b></span></label>
+        </div>
+        <p class="hint">은행류와 보험사는 5. 요구하는 거래정보 문안이 달라 신청서를 따로 저장합니다. 고른 종류의 기관만 1.에 들어갑니다.</p>
       </div>
       <div class="stage" tabindex="0" role="region" aria-label="신청서 용지">
         <div id="doc-preview" class="paper"></div>
@@ -20869,7 +20890,7 @@ var __async = (__this, __arguments, generator) => {
   return exports;
 }({});
 </script>
-<script>window.__INSTITUTIONS__ = {"schema": 1, "asOf": "2026-10-02", "categories": [{"id": "bank", "label": "시중·특수·지방은행"}, {"id": "post", "label": "우체국"}, {"id": "inet", "label": "인터넷전문은행"}, {"id": "mutual", "label": "상호금융"}, {"id": "savings", "label": "저축은행"}, {"id": "securities", "label": "증권사"}, {"id": "insurance", "label": "보험사"}, {"id": "card", "label": "카드사"}], "institutions": [{"id": "kookmin", "cat": "bank", "short": "국민은행", "name": "주식회사 국민은행", "aliases": ["KB국민은행", "KB", "국민", "KB은행"], "wording": "은행", "popular": true, "zip": "07331", "addr": "서울특별시 영등포구 국제금융로8길 26", "note": "여의도동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": ""}, {"id": "shinhan", "cat": "bank", "short": "신한은행", "name": "주식회사 신한은행", "aliases": ["신한", "Shinhan"], "wording": "은행", "popular": true, "zip": "04513", "addr": "서울특별시 중구 세종대로9길 20", "note": "태평로2가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": ""}, {"id": "woori", "cat": "bank", "short": "우리은행", "name": "주식회사 우리은행", "aliases": ["우리", "Woori"], "wording": "은행", "popular": true, "zip": "04632", "addr": "서울특별시 중구 소공로 51", "note": "회현동1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": ""}, {"id": "hana", "cat": "bank", "short": "하나은행", "name": "주식회사 하나은행", "aliases": ["하나", "KEB하나은행", "KEB하나", "Hana"], "wording": "은행", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "sc", "cat": "bank", "short": "SC제일은행", "name": "주식회사 한국스탠다드차타드은행", "aliases": ["SC제일", "제일은행", "한국스탠다드차타드은행", "스탠다드차타드", "SC은행", "SC"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "citi", "cat": "bank", "short": "한국씨티은행", "name": "주식회사 한국씨티은행", "aliases": ["씨티은행", "씨티", "Citi", "한국씨티"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "nonghyup", "cat": "bank", "short": "농협은행", "name": "농협은행 주식회사", "aliases": ["NH농협은행", "NH", "농협", "NH농협"], "wording": "은행", "popular": true, "zip": "04517", "addr": "서울특별시 중구 통일로 120", "note": "충정로1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": ""}, {"id": "suhyup", "cat": "bank", "short": "수협은행", "name": "수협은행", "aliases": ["Sh수협은행", "수협", "Sh"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "ibk", "cat": "bank", "short": "IBK기업은행", "name": "중소기업은행", "aliases": ["기업은행", "IBK", "기업", "IBK기업", "중소기업은행"], "wording": "은행", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kdb", "cat": "bank", "short": "KDB산업은행", "name": "한국산업은행", "aliases": ["산업은행", "KDB", "산은"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "busan", "cat": "bank", "short": "부산은행", "name": "주식회사 부산은행", "aliases": ["BNK부산은행", "BNK부산", "부산"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kyongnam", "cat": "bank", "short": "경남은행", "name": "주식회사 경남은행", "aliases": ["BNK경남은행", "BNK경남", "경남"], "wording": "은행", "popular": true, "zip": "51316", "addr": "경상남도 창원시 마산회원구 3·15대로 642", "note": "석전동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": "주소는 사용자 양식 기준입니다. 검색 요약 중 다른 주소가 나온 바 있어 공식 홈페이지에서 한 번 확인해 두십시오."}, {"id": "im", "cat": "bank", "short": "iM뱅크", "name": "주식회사 아이엠뱅크", "aliases": ["아이엠뱅크", "iM", "대구은행", "DGB대구은행", "DGB"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kwangju", "cat": "bank", "short": "광주은행", "name": "주식회사 광주은행", "aliases": ["JB광주은행", "광주", "JB"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "jeonbuk", "cat": "bank", "short": "전북은행", "name": "주식회사 전북은행", "aliases": ["JB전북은행", "전북", "JB"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "jeju", "cat": "bank", "short": "제주은행", "name": "제주은행", "aliases": ["제주"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "koreapost", "cat": "post", "short": "우체국", "name": "우정사업본부(우체국예금)", "aliases": ["우정사업본부", "우체국예금", "우체국", "우정본부"], "wording": "은행", "popular": true, "zip": "30114", "addr": "세종특별자치시 도움5로 19", "note": "어진동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": ""}, {"id": "kakaobank", "cat": "inet", "short": "카카오뱅크", "name": "주식회사 카카오뱅크", "aliases": ["카카오", "kakaobank", "카뱅"], "wording": "은행", "popular": true, "zip": "13529", "addr": "경기도 성남시 분당구 분당내곡로 131, 11층", "note": "백현동, 판교테크원", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": ""}, {"id": "kbank", "cat": "inet", "short": "케이뱅크", "name": "주식회사 케이뱅크", "aliases": ["K뱅크", "Kbank", "케이"], "wording": "은행", "popular": true, "zip": "04548", "addr": "서울특별시 중구 을지로 170", "note": "을지로4가, 을지트윈타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": "우편번호는 사용자 양식 기준입니다. 검색 요약에 다른 우편번호가 나온 바 있어 도로명주소 안내시스템에서 한 번 확인해 두십시오."}, {"id": "tossbank", "cat": "inet", "short": "토스뱅크", "name": "주식회사 토스뱅크", "aliases": ["토스", "Toss", "toss bank"], "wording": "은행", "popular": true, "zip": "06133", "addr": "서울특별시 강남구 테헤란로 131, 13층", "note": "역삼동, 한국지식재산센터", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 양식(2026. 9. 작성본)", "url": ""}], "memo": ""}, {"id": "saemaeul-center", "cat": "mutual", "short": "새마을금고중앙회", "name": "새마을금고중앙회", "aliases": ["새마을금고", "MG새마을금고", "MG", "새마을금고 중앙회"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": "금고(지역금고 포함)와 중앙회는 각각 이 법에 따라 설립된 비영리법인이다(새마을금고법 제2조 제1항·제3항, 국가법령정보센터 조회 2026-10-02)."}, {"id": "cu-center", "cat": "mutual", "short": "신협중앙회", "name": "신용협동조합중앙회", "aliases": ["신협", "신용협동조합", "신협 중앙회"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": "조합과 중앙회는 각각 이 법에 따라 설립된 비영리법인이다(신용협동조합법 제2조 제1호·제2호, 국가법령정보센터 조회 2026-10-02)."}, {"id": "nonghyup-center", "cat": "mutual", "short": "농협중앙회", "name": "농업협동조합중앙회", "aliases": ["농협", "NH농협", "지역농협", "단위농협", "농협 상호금융"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": "이 법에 따라 설립되는 조합과 중앙회는 각각 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(농업협동조합법 제4조, 국가법령정보센터 조회 2026-10-02)."}, {"id": "suhyup-center", "cat": "mutual", "short": "수협중앙회", "name": "수산업협동조합중앙회", "aliases": ["수협", "수산업협동조합", "수협 상호금융", "수협 중앙회"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": "중앙회는 수산업협동조합중앙회의 명칭을 사용하여야 한다(수산업협동조합법 제3조 제1항 제4호). 조합과 중앙회는 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(같은 법 제4조). 국가법령정보센터 조회 2026-10-02."}, {"id": "nfcf-center", "cat": "mutual", "short": "산림조합중앙회", "name": "산림조합중앙회", "aliases": ["산림조합", "산림조합 중앙회", "산림조합 상호금융"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": "이 법에 따라 설립되는 조합과 중앙회는 각각 법인으로 하고, 중앙회의 주소는 그 주된 사무소의 소재지로 한다(산림조합법 제4조, 국가법령정보센터 조회 2026-10-02)."}, {"id": "sbi-savings", "cat": "savings", "short": "SBI저축은행", "name": "주식회사 에스비아이저축은행", "aliases": ["SBI", "에스비아이저축은행", "SBI저축", "에스비아이"], "wording": "은행", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "ok-savings", "cat": "savings", "short": "OK저축은행", "name": "주식회사 오케이저축은행", "aliases": ["OK", "오케이저축은행", "OK저축", "오케이"], "wording": "은행", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "welcome-savings", "cat": "savings", "short": "웰컴저축은행", "name": "주식회사 웰컴저축은행", "aliases": ["웰컴", "웰컴디지털뱅크", "웰컴저축"], "wording": "은행", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "koreainvest-savings", "cat": "savings", "short": "한국투자저축은행", "name": "주식회사 한국투자저축은행", "aliases": ["한국투자", "한투저축은행", "한투", "한국투자저축"], "wording": "은행", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "acuon-savings", "cat": "savings", "short": "애큐온저축은행", "name": "주식회사 애큐온저축은행", "aliases": ["애큐온", "ACUON", "애큐온저축"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "daol-savings", "cat": "savings", "short": "다올저축은행", "name": "주식회사 다올저축은행", "aliases": ["다올", "DAOL", "다올저축"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "db-savings", "cat": "savings", "short": "DB저축은행", "name": "주식회사 디비저축은행", "aliases": ["DB", "디비저축은행", "DB저축"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "shinhan-savings", "cat": "savings", "short": "신한저축은행", "name": "주식회사 신한저축은행", "aliases": ["신한", "신한SOL저축은행", "신한 SOL저축은행", "신한저축"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "hana-savings", "cat": "savings", "short": "하나저축은행", "name": "주식회사 하나저축은행", "aliases": ["하나", "하나저축"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "jt-chinae-savings", "cat": "savings", "short": "JT친애저축은행", "name": "제이티친애저축은행 주식회사", "aliases": ["JT친애", "제이티친애저축은행", "친애저축은행", "JT"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "pepper-savings", "cat": "savings", "short": "페퍼저축은행", "name": "주식회사 페퍼저축은행", "aliases": ["페퍼", "PEPPER", "페퍼저축"], "wording": "은행", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "samsung-securities", "cat": "securities", "short": "삼성증권", "name": "삼성증권주식회사", "aliases": ["삼성증권", "삼성", "Samsung Securities"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "miraeasset-securities", "cat": "securities", "short": "미래에셋증권", "name": "미래에셋증권 주식회사", "aliases": ["미래에셋", "미래에셋증권"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "korea-investment-securities", "cat": "securities", "short": "한국투자증권", "name": "한국투자증권 주식회사", "aliases": ["한국투자", "한투", "KIS", "한국투자증권"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "nh-investment-securities", "cat": "securities", "short": "NH투자증권", "name": "NH투자증권 주식회사", "aliases": ["NH", "NH투자", "엔에이치투자증권"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kb-securities", "cat": "securities", "short": "KB증권", "name": "KB증권 주식회사", "aliases": ["KB", "케이비증권"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kiwoom-securities", "cat": "securities", "short": "키움증권", "name": "키움증권 주식회사", "aliases": ["키움", "Kiwoom"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "shinhan-investment-securities", "cat": "securities", "short": "신한투자증권", "name": "신한투자증권 주식회사", "aliases": ["신한투자", "신한증권", "신한"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "hana-securities", "cat": "securities", "short": "하나증권", "name": "하나증권 주식회사", "aliases": ["하나"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "daishin-securities", "cat": "securities", "short": "대신증권", "name": "대신증권 주식회사", "aliases": ["대신"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "toss-securities", "cat": "securities", "short": "토스증권", "name": "토스증권 주식회사", "aliases": ["토스", "Toss"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kakaopay-securities", "cat": "securities", "short": "카카오페이증권", "name": "카카오페이증권 주식회사", "aliases": ["카카오페이", "카카오"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "meritz-securities", "cat": "securities", "short": "메리츠증권", "name": "메리츠증권 주식회사", "aliases": ["메리츠"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "ksd", "cat": "securities", "short": "한국예탁결제원", "name": "한국예탁결제원", "aliases": ["예탁결제원", "예탁원", "KSD"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "samsung-life", "cat": "insurance", "short": "삼성생명", "name": "삼성생명보험주식회사", "aliases": ["삼성생명", "삼성생명보험"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "hanwha-life", "cat": "insurance", "short": "한화생명", "name": "한화생명보험주식회사", "aliases": ["한화생명", "한화생명보험", "한화"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kyobo-life", "cat": "insurance", "short": "교보생명", "name": "교보생명보험주식회사", "aliases": ["교보", "교보생명보험"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "shinhan-life", "cat": "insurance", "short": "신한라이프", "name": "신한라이프생명보험 주식회사", "aliases": ["신한라이프", "신한생명", "신한라이프생명"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "nh-life", "cat": "insurance", "short": "NH농협생명", "name": "농협생명보험주식회사", "aliases": ["농협생명", "NH생명", "NH농협생명보험"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "heungkuk-life", "cat": "insurance", "short": "흥국생명", "name": "흥국생명보험주식회사", "aliases": ["흥국", "흥국생명보험"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "samsung-fire", "cat": "insurance", "short": "삼성화재", "name": "삼성화재해상보험주식회사", "aliases": ["삼성화재해상", "삼성화재", "삼성"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "hyundai-marine", "cat": "insurance", "short": "현대해상", "name": "현대해상화재보험 주식회사", "aliases": ["현대해상화재", "현대해상", "현대"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "db-insurance", "cat": "insurance", "short": "DB손해보험", "name": "DB손해보험주식회사", "aliases": ["DB손보", "DB", "디비손보"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kb-insurance", "cat": "insurance", "short": "KB손해보험", "name": "KB손해보험주식회사", "aliases": ["KB손보", "KB", "케이비손보"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "meritz-fire", "cat": "insurance", "short": "메리츠화재", "name": "메리츠화재해상보험주식회사", "aliases": ["메리츠화재해상", "메리츠"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "hanwha-general-insurance", "cat": "insurance", "short": "한화손해보험", "name": "한화손해보험 주식회사", "aliases": ["한화손보", "한화"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "lotte-insurance", "cat": "insurance", "short": "롯데손해보험", "name": "롯데손해보험 주식회사", "aliases": ["롯데손보", "롯데"], "wording": "기관", "popular": false, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "samsung-card", "cat": "card", "short": "삼성카드", "name": "삼성카드 주식회사", "aliases": ["삼성", "Samsung Card"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "shinhan-card", "cat": "card", "short": "신한카드", "name": "주식회사 신한카드", "aliases": ["신한", "Shinhan Card"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "kb-card", "cat": "card", "short": "KB국민카드", "name": "주식회사 케이비국민카드", "aliases": ["국민카드", "KB카드", "케이비국민카드", "KB", "국민"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "hyundai-card", "cat": "card", "short": "현대카드", "name": "현대카드 주식회사", "aliases": ["현대", "Hyundai Card"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "lotte-card", "cat": "card", "short": "롯데카드", "name": "롯데카드 주식회사", "aliases": ["롯데", "Lotte Card"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "hana-card", "cat": "card", "short": "하나카드", "name": "하나카드 주식회사", "aliases": ["하나", "Hana Card"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "woori-card", "cat": "card", "short": "우리카드", "name": "주식회사 우리카드", "aliases": ["우리", "Woori Card"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}, {"id": "bc-card", "cat": "card", "short": "BC카드", "name": "비씨카드 주식회사", "aliases": ["비씨카드", "BC", "비씨"], "wording": "기관", "popular": true, "zip": "", "addr": "", "note": "", "status": "needs_check", "checkedAt": "2026-10-02", "sources": [], "memo": ""}]};</script>
+<script>window.__INSTITUTIONS__ = {"schema": 2, "asOf": "2026-10-02", "categories": [{"id": "bank", "label": "시중·특수·지방은행"}, {"id": "post", "label": "우체국"}, {"id": "inet", "label": "인터넷전문은행"}, {"id": "mutual", "label": "상호금융"}, {"id": "savings", "label": "저축은행"}, {"id": "securities", "label": "증권사"}, {"id": "insurance", "label": "보험사"}, {"id": "card", "label": "카드사"}], "institutions": [{"id": "kookmin", "cat": "bank", "short": "국민은행", "name": "주식회사 국민은행", "aliases": ["KB국민은행", "KB", "국민", "KB은행"], "wording": "은행", "popular": true, "addr": "서울특별시 영등포구 국제금융로8길 26", "note": "여의도동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kbstar.com/"}], "memo": ""}, {"id": "shinhan", "cat": "bank", "short": "신한은행", "name": "주식회사 신한은행", "aliases": ["신한", "Shinhan"], "wording": "은행", "popular": true, "addr": "서울특별시 중구 세종대로9길 20", "note": "태평로2가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.shinhangroup.com/kr/about/map"}], "memo": ""}, {"id": "woori", "cat": "bank", "short": "우리은행", "name": "주식회사 우리은행", "aliases": ["우리", "Woori"], "wording": "은행", "popular": true, "addr": "서울특별시 중구 소공로 51", "note": "회현동1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://spot.wooribank.com/pot/Dream?withyou=CMCOM0154"}], "memo": ""}, {"id": "hana", "cat": "bank", "short": "하나은행", "name": "주식회사 하나은행", "aliases": ["하나", "KEB하나은행", "KEB하나", "Hana"], "wording": "은행", "popular": true, "addr": "서울특별시 중구 을지로 35", "note": "을지로1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://hanabank.com/cont/customer/customer03/customer0301/index.jsp"}], "memo": ""}, {"id": "sc", "cat": "bank", "short": "SC제일은행", "name": "주식회사 한국스탠다드차타드은행", "aliases": ["SC제일", "제일은행", "한국스탠다드차타드은행", "스탠다드차타드", "SC은행", "SC"], "wording": "은행", "popular": false, "addr": "서울특별시 종로구 종로 47", "note": "공평동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.sc.co.kr/"}], "memo": ""}, {"id": "citi", "cat": "bank", "short": "한국씨티은행", "name": "주식회사 한국씨티은행", "aliases": ["씨티은행", "씨티", "Citi", "한국씨티"], "wording": "은행", "popular": false, "addr": "서울특별시 종로구 새문안로 50", "note": "신문로2가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.citibank.co.kr/download/cms/ir/AUDIT_REPORT_TBL/2022%20YE_Consolidated%20Audit%20Report_Kor.pdf"}], "memo": ""}, {"id": "nonghyup", "cat": "bank", "short": "농협은행", "name": "농협은행 주식회사", "aliases": ["NH농협은행", "NH", "농협", "NH농협"], "wording": "은행", "popular": true, "addr": "서울특별시 중구 통일로 120", "note": "충정로1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.nhbank.com/nhmn/KO_NHMN_01.do"}], "memo": ""}, {"id": "suhyup", "cat": "bank", "short": "수협은행", "name": "수협은행", "aliases": ["Sh수협은행", "수협", "Sh"], "wording": "은행", "popular": false, "addr": "서울특별시 송파구 오금로 62", "note": "신천동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.suhyup-bank.com/ib20/mnu/PBM01055?boardGroup=0&boardTable=0&num=2030"}], "memo": ""}, {"id": "ibk", "cat": "bank", "short": "IBK기업은행", "name": "중소기업은행", "aliases": ["기업은행", "IBK", "기업", "IBK기업", "중소기업은행"], "wording": "은행", "popular": true, "addr": "서울특별시 중구 을지로 79", "note": "을지로2가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://research.ibk.co.kr/research/introduce/location"}], "memo": ""}, {"id": "kdb", "cat": "bank", "short": "KDB산업은행", "name": "한국산업은행", "aliases": ["산업은행", "KDB", "산은"], "wording": "은행", "popular": false, "addr": "서울특별시 영등포구 은행로 14", "note": "여의도동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kdb.co.kr/wcmscontents/pdf/1-2_KDB_External_Review_K_Green_Bond_2025.pdf"}], "memo": ""}, {"id": "busan", "cat": "bank", "short": "부산은행", "name": "주식회사 부산은행", "aliases": ["BNK부산은행", "BNK부산", "부산"], "wording": "은행", "popular": false, "addr": "부산광역시 남구 문현금융로 30", "note": "문현동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.busanbank.co.kr/ib20/mnu/BHPBKI445001102?SEQ=020"}], "memo": ""}, {"id": "kyongnam", "cat": "bank", "short": "경남은행", "name": "주식회사 경남은행", "aliases": ["BNK경남은행", "BNK경남", "경남"], "wording": "은행", "popular": true, "addr": "경상남도 창원시 마산회원구 3·15대로 642", "note": "석전동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.bnkfg.com/download?seq=6011"}], "memo": ""}, {"id": "im", "cat": "bank", "short": "iM뱅크", "name": "주식회사 아이엠뱅크", "aliases": ["아이엠뱅크", "iM", "대구은행", "DGB대구은행", "DGB"], "wording": "은행", "popular": false, "addr": "대구광역시 수성구 달구벌대로 2310", "note": "수성동2가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.imbank.co.kr/hlp_ebz_sm_31020_brfind.act"}], "memo": ""}, {"id": "kwangju", "cat": "bank", "short": "광주은행", "name": "주식회사 광주은행", "aliases": ["JB광주은행", "광주", "JB"], "wording": "은행", "popular": false, "addr": "광주광역시 동구 제봉로 225", "note": "대인동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kjbank.com/banking/homepage/kj_info/infor/bank08_01.jsp"}], "memo": ""}, {"id": "jeonbuk", "cat": "bank", "short": "전북은행", "name": "주식회사 전북은행", "aliases": ["JB전북은행", "전북", "JB"], "wording": "은행", "popular": false, "addr": "전북특별자치도 전주시 덕진구 백제대로 566", "note": "금암동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://kind.krx.co.kr/external/2024/06/28/000623/20240628001483/2023%20JB%EA%B8%88%EC%9C%B5%EA%B7%B8%EB%A3%B9%20%ED%86%B5%ED%95%A9%EC%97%B0%EC%B0%A8%EB%B3%B4%EA%B3%A0%EC%84%9C%28%EA%B5%AD%EB%AC%B8%29.pdf"}], "memo": ""}, {"id": "jeju", "cat": "bank", "short": "제주은행", "name": "주식회사 제주은행", "aliases": ["제주"], "wording": "은행", "popular": false, "addr": "제주특별자치도 제주시 1100로 3351", "note": "노형동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://kind.krx.co.kr/external/2026/02/26/001564/20260226003478/00591.htm"}], "memo": ""}, {"id": "koreapost", "cat": "post", "short": "우체국", "name": "우정사업본부(우체국예금)", "aliases": ["우정사업본부", "우체국예금", "우체국", "우정본부"], "wording": "은행", "popular": true, "addr": "세종특별자치시 도움5로 19", "note": "어진동, 정부세종청사 8동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.koreapost.go.kr/kpost/subIndex/4328.do"}], "memo": ""}, {"id": "kakaobank", "cat": "inet", "short": "카카오뱅크", "name": "주식회사 카카오뱅크", "aliases": ["카카오", "kakaobank", "카뱅"], "wording": "은행", "popular": true, "addr": "경기도 성남시 분당구 분당내곡로 131, 15층", "note": "백현동, 판교테크원", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kakaobank.com/Corp/About/Contacts"}], "memo": ""}, {"id": "kbank", "cat": "inet", "short": "케이뱅크", "name": "주식회사 케이뱅크", "aliases": ["K뱅크", "Kbank", "케이"], "wording": "은행", "popular": true, "addr": "서울특별시 중구 을지로 170, 동관 6층", "note": "을지로4가, 을지트윈타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kbanknow.com/web/about/kbank/info?tab=location"}], "memo": ""}, {"id": "tossbank", "cat": "inet", "short": "토스뱅크", "name": "주식회사 토스뱅크", "aliases": ["토스", "Toss", "toss bank"], "wording": "은행", "popular": true, "addr": "서울특별시 강남구 테헤란로 131, 13층", "note": "역삼동, 한국지식재산센터", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://tossbank.com/"}], "memo": ""}, {"id": "saemaeul-center", "cat": "mutual", "short": "새마을금고중앙회", "name": "새마을금고중앙회", "aliases": ["새마을금고", "MG새마을금고", "MG", "새마을금고 중앙회"], "wording": "기관", "popular": true, "addr": "서울특별시 강남구 봉은사로114길 20", "note": "삼성동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kfcc.co.kr/federation/fed0701.do"}], "memo": ""}, {"id": "cu-center", "cat": "mutual", "short": "신협중앙회", "name": "신용협동조합중앙회", "aliases": ["신협", "신용협동조합", "신협 중앙회"], "wording": "기관", "popular": true, "addr": "대전광역시 서구 한밭대로 745", "note": "둔산동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.cu.co.kr/cu/ad/biz/selectBizList.do?mi=100028"}], "memo": ""}, {"id": "nonghyup-center", "cat": "mutual", "short": "농협중앙회", "name": "농업협동조합중앙회", "aliases": ["농협", "NH농협", "지역농협", "단위농협", "농협 상호금융"], "wording": "기관", "popular": true, "addr": "서울특별시 중구 새문안로 16", "note": "충정로1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://nonghyup.ttmap.co.kr/list_etc.jsp?menu=5&s_menu=1"}], "memo": ""}, {"id": "suhyup-center", "cat": "mutual", "short": "수협중앙회", "name": "수산업협동조합중앙회", "aliases": ["수협", "수산업협동조합", "수협 상호금융", "수협 중앙회"], "wording": "기관", "popular": true, "addr": "서울특별시 송파구 오금로 62", "note": "신천동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.suhyup.co.kr/suhyup/198/subview.do"}], "memo": ""}, {"id": "nfcf-center", "cat": "mutual", "short": "산림조합중앙회", "name": "산림조합중앙회", "aliases": ["산림조합", "산림조합 중앙회", "산림조합 상호금융"], "wording": "기관", "popular": true, "addr": "서울특별시 송파구 석촌호수로 166", "note": "삼전동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.nfcf.or.kr/forest/user.tdf?a=common.HtmlApp&c=6001&page=%2Fkor%2Fintro%2FMember02.html"}], "memo": ""}, {"id": "sbi-savings", "cat": "savings", "short": "SBI저축은행", "name": "주식회사 에스비아이저축은행", "aliases": ["SBI", "에스비아이저축은행", "SBI저축", "에스비아이"], "wording": "은행", "popular": true, "addr": "서울특별시 중구 을지로5길 26, 동관 9층", "note": "수하동, 미래에셋센터원빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.sbisb.co.kr/itd0010500.act"}], "memo": ""}, {"id": "ok-savings", "cat": "savings", "short": "OK저축은행", "name": "주식회사 오케이저축은행", "aliases": ["OK", "오케이저축은행", "OK저축", "오케이"], "wording": "은행", "popular": true, "addr": "서울특별시 중구 세종대로 39, 10층", "note": "남대문로4가, 대한상공회의소", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://play.google.com/store/apps/details?hl=ko&id=com.cabsoft.oksavingbank"}], "memo": ""}, {"id": "welcome-savings", "cat": "savings", "short": "웰컴저축은행", "name": "웰컴저축은행 주식회사", "aliases": ["웰컴", "웰컴디지털뱅크", "웰컴저축"], "wording": "은행", "popular": true, "addr": "서울특별시 용산구 한강대로 148", "note": "한강로2가, 웰컴금융타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.welcomebank.co.kr/ib20/mnu/IBNBKI000000"}], "memo": ""}, {"id": "koreainvest-savings", "cat": "savings", "short": "한국투자저축은행", "name": "주식회사 한국투자저축은행", "aliases": ["한국투자", "한투저축은행", "한투", "한국투자저축"], "wording": "은행", "popular": true, "addr": "경기도 성남시 분당구 서현로 184", "note": "서현동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.fsb.or.kr/view/comm/file/FileDown.jsp?DSTC1=fsbpbnf&ORCP_FILE_NM=%ED%95%9C%EA%B5%AD%ED%88%AC%EC%9E%90%EC%A0%80%EC%B6%95%EC%9D%80%ED%96%89_%ED%86%B5%EC%9D%BC%EA%B2%BD%EC%98%81%EA%B3%B5%EC%8B%9C_FY2023.4Q.pdf&SAVE_FILE_NM=fb0732024132983746726.pdf"}], "memo": ""}, {"id": "acuon-savings", "cat": "savings", "short": "애큐온저축은행", "name": "주식회사 애큐온저축은행", "aliases": ["애큐온", "ACUON", "애큐온저축"], "wording": "은행", "popular": false, "addr": "서울특별시 강남구 선릉로 514", "note": "삼성동, 성원타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.acuonsb.co.kr/sv_inq7103101.act"}], "memo": ""}, {"id": "daol-savings", "cat": "savings", "short": "다올저축은행", "name": "주식회사 다올저축은행", "aliases": ["다올", "DAOL", "다올저축"], "wording": "은행", "popular": false, "addr": "서울특별시 강남구 테헤란로 504", "note": "대치동, 해성1빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.daolsb.com/file/fileDownload.do?fileName=%EC%A0%9C53%EA%B8%B0+%EB%8B%A4%EC%98%AC%EC%A0%80%EC%B6%95%EC%9D%80%ED%96%89+%ED%86%B5%EC%9D%BC%EA%B2%BD%EC%98%81%EA%B3%B5%EC%8B%9C_%EC%84%9C%EB%AA%85%ED%9B%84.pdf&file_cours_web=%2Fupload%2Ftbl%2F2024%2F3%2F29%2F34215b48-0f99-46b0-acba-7a058241dc0d.pdf"}], "memo": ""}, {"id": "db-savings", "cat": "savings", "short": "DB저축은행", "name": "주식회사 디비저축은행", "aliases": ["DB", "디비저축은행", "DB저축"], "wording": "은행", "popular": false, "addr": "서울특별시 중구 남대문로 113", "note": "다동, DB저축은행빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://m.dbgroup.co.kr/pages/contact/contactus_detail.jsp?cidx=25"}], "memo": ""}, {"id": "shinhan-savings", "cat": "savings", "short": "신한저축은행", "name": "주식회사 신한저축은행", "aliases": ["신한", "신한SOL저축은행", "신한 SOL저축은행", "신한저축"], "wording": "은행", "popular": false, "addr": "서울특별시 중구 청계천로 54", "note": "삼각동, 광교빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.shinhansavings.com/"}], "memo": ""}, {"id": "hana-savings", "cat": "savings", "short": "하나저축은행", "name": "주식회사 하나저축은행", "aliases": ["하나", "하나저축"], "wording": "은행", "popular": false, "addr": "서울특별시 강남구 테헤란로 127", "note": "역삼동, 하나금융그룹 강남사옥", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.hanasavings.com/CUS/CUS0205"}], "memo": ""}, {"id": "jt-chinae-savings", "cat": "savings", "short": "JT친애저축은행", "name": "제이티친애저축은행 주식회사", "aliases": ["JT친애", "제이티친애저축은행", "친애저축은행", "JT"], "wording": "은행", "popular": false, "addr": "서울특별시 강남구 테헤란로 317, 4층·5층·6층", "note": "역삼동, 동훈빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://sign.jtchinae-bank.co.kr/guide/internetbanking.do"}], "memo": ""}, {"id": "pepper-savings", "cat": "savings", "short": "페퍼저축은행", "name": "주식회사 페퍼저축은행", "aliases": ["페퍼", "PEPPER", "페퍼저축"], "wording": "은행", "popular": false, "addr": "경기도 성남시 분당구 황새울로 340", "note": "서현동, 페퍼존빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://pepperbank.kr/"}], "memo": ""}, {"id": "samsung-securities", "cat": "securities", "short": "삼성증권", "name": "삼성증권 주식회사", "aliases": ["삼성증권", "삼성", "Samsung Securities"], "wording": "기관", "popular": true, "addr": "서울특별시 서초구 서초대로74길 11", "note": "서초동, 삼성전자빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.samsungsecurities.co.kr/kor/main.do"}], "memo": ""}, {"id": "miraeasset-securities", "cat": "securities", "short": "미래에셋증권", "name": "미래에셋증권 주식회사", "aliases": ["미래에셋", "미래에셋증권"], "wording": "기관", "popular": true, "addr": "서울특별시 중구 을지로5길 26", "note": "수하동, 미래에셋센터원빌딩 이스트타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://kind.krx.co.kr/external/2026/07/21/000112/20260721000224/10800.htm"}], "memo": ""}, {"id": "korea-investment-securities", "cat": "securities", "short": "한국투자증권", "name": "한국투자증권 주식회사", "aliases": ["한국투자", "한투", "KIS", "한국투자증권"], "wording": "기관", "popular": true, "addr": "서울특별시 영등포구 의사당대로 88", "note": "여의도동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.koreainvestment-event.com/"}], "memo": ""}, {"id": "nh-investment-securities", "cat": "securities", "short": "NH투자증권", "name": "NH투자증권 주식회사", "aliases": ["NH", "NH투자", "엔에이치투자증권"], "wording": "기관", "popular": true, "addr": "서울특별시 영등포구 여의대로 108", "note": "여의도동, 파크원 타워2", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://nhfngroup.com/user/indexSub.do?codyMenuSeq=884094574&siteId=nhfngroup"}], "memo": ""}, {"id": "kb-securities", "cat": "securities", "short": "KB증권", "name": "KB증권 주식회사", "aliases": ["KB", "케이비증권"], "wording": "기관", "popular": true, "addr": "서울특별시 영등포구 여의나루로 50", "note": "여의도동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kbsec.com/util/introduction/jsp/UTIL_02_0002.jsp"}], "memo": ""}, {"id": "kiwoom-securities", "cat": "securities", "short": "키움증권", "name": "키움증권 주식회사", "aliases": ["키움", "Kiwoom"], "wording": "기관", "popular": true, "addr": "서울특별시 영등포구 의사당대로 96", "note": "여의도동, TP타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www3.kiwoom.com/h/main?dummyVal=0"}], "memo": ""}, {"id": "shinhan-investment-securities", "cat": "securities", "short": "신한투자증권", "name": "신한투자증권 주식회사", "aliases": ["신한투자", "신한증권", "신한"], "wording": "기관", "popular": true, "addr": "서울특별시 영등포구 의사당대로 96", "note": "여의도동, TP타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://file.shinhansec.com/filedoc/mtscon/fy2023esg.pdf"}], "memo": ""}, {"id": "hana-securities", "cat": "securities", "short": "하나증권", "name": "하나증권 주식회사", "aliases": ["하나"], "wording": "기관", "popular": false, "addr": "서울특별시 영등포구 의사당대로 82", "note": "여의도동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://openhanafn.ttmap.co.kr/content_dt.jsp"}], "memo": ""}, {"id": "daishin-securities", "cat": "securities", "short": "대신증권", "name": "대신증권 주식회사", "aliases": ["대신"], "wording": "기관", "popular": false, "addr": "서울특별시 중구 삼일대로 343", "note": "저동1가, 대신파이낸스센터", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://company.daishin.com/E5/WTS/Company/DW_BranchRouteList.aspx"}], "memo": ""}, {"id": "toss-securities", "cat": "securities", "short": "토스증권", "name": "토스증권 주식회사", "aliases": ["토스", "Toss"], "wording": "기관", "popular": true, "addr": "서울특별시 강남구 테헤란로 133, 7층", "note": "역삼동, 한국타이어빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://corp.tossinvest.com/ko/corporate-info"}], "memo": ""}, {"id": "kakaopay-securities", "cat": "securities", "short": "카카오페이증권", "name": "카카오페이증권 주식회사", "aliases": ["카카오페이", "카카오"], "wording": "기관", "popular": false, "addr": "경기도 성남시 분당구 판교역로 166, B동 8층", "note": "백현동, 카카오 판교아지트", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://kakaopaysec.com/company/about/dynamicPage.do"}], "memo": ""}, {"id": "meritz-securities", "cat": "securities", "short": "메리츠증권", "name": "메리츠증권 주식회사", "aliases": ["메리츠"], "wording": "기관", "popular": false, "addr": "서울특별시 영등포구 국제금융로 10", "note": "여의도동, Three IFC", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.imeritz.com/main/ir/com_0100.html"}], "memo": ""}, {"id": "ksd", "cat": "securities", "short": "한국예탁결제원", "name": "한국예탁결제원", "aliases": ["예탁결제원", "예탁원", "KSD"], "wording": "기관", "popular": true, "addr": "부산광역시 남구 문현금융로 40", "note": "문현동, 부산국제금융센터", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.ksd.or.kr/ko/"}], "memo": ""}, {"id": "samsung-life", "cat": "insurance", "short": "삼성생명", "name": "삼성생명보험 주식회사", "aliases": ["삼성생명", "삼성생명보험"], "wording": "기관", "popular": true, "addr": "서울특별시 서초구 서초대로74길 11", "note": "서초동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://family.samsunglife.com/simms/main.do"}], "memo": ""}, {"id": "hanwha-life", "cat": "insurance", "short": "한화생명", "name": "한화생명보험 주식회사", "aliases": ["한화생명", "한화생명보험", "한화"], "wording": "기관", "popular": true, "addr": "서울특별시 영등포구 63로 50", "note": "여의도동, 63 한화생명빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://company.hanwhalife.com/ko"}], "memo": ""}, {"id": "kyobo-life", "cat": "insurance", "short": "교보생명", "name": "교보생명보험 주식회사", "aliases": ["교보", "교보생명보험"], "wording": "기관", "popular": true, "addr": "서울특별시 종로구 종로 1", "note": "종로1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kyobobldg.co.kr/"}], "memo": ""}, {"id": "shinhan-life", "cat": "insurance", "short": "신한라이프", "name": "신한라이프생명보험 주식회사", "aliases": ["신한라이프", "신한생명", "신한라이프생명"], "wording": "기관", "popular": false, "addr": "서울특별시 중구 삼일대로 358", "note": "을지로2가, 신한L타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.shinhanlife.co.kr/hp/cdha0010.do"}], "memo": ""}, {"id": "nh-life", "cat": "insurance", "short": "NH농협생명", "name": "농협생명보험 주식회사", "aliases": ["농협생명", "NH생명", "NH농협생명보험"], "wording": "기관", "popular": false, "addr": "서울특별시 서대문구 통일로 87", "note": "미근동, NH농협생명빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://with.nonghyup.com/jbnf/jbnfDtl.do?jbnfSqno=83664"}], "memo": ""}, {"id": "heungkuk-life", "cat": "insurance", "short": "흥국생명", "name": "흥국생명보험 주식회사", "aliases": ["흥국", "흥국생명보험"], "wording": "기관", "popular": false, "addr": "서울특별시 종로구 새문안로 68", "note": "신문로1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.heungkuklife.co.kr/jsps/front/trustproduct/trustproduct-process.jsp"}], "memo": ""}, {"id": "samsung-fire", "cat": "insurance", "short": "삼성화재", "name": "삼성화재해상보험 주식회사", "aliases": ["삼성화재해상", "삼성화재", "삼성"], "wording": "기관", "popular": true, "addr": "서울특별시 서초구 서초대로74길 14", "note": "서초동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.samsungfire.com/publication/pdf/ZPB302070_0_20230915_file1.pdf?X-SFMI-INTLOG=N41014-004607%5E%5EY%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E"}], "memo": ""}, {"id": "hyundai-marine", "cat": "insurance", "short": "현대해상", "name": "현대해상화재보험 주식회사", "aliases": ["현대해상화재", "현대해상", "현대"], "wording": "기관", "popular": true, "addr": "서울특별시 종로구 세종대로 163", "note": "세종로, 현대해상빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://car.hi.co.kr/service.do?m=0pz7088wup"}], "memo": ""}, {"id": "db-insurance", "cat": "insurance", "short": "DB손해보험", "name": "DB손해보험 주식회사", "aliases": ["DB손보", "DB", "디비손보"], "wording": "기관", "popular": true, "addr": "서울특별시 강남구 테헤란로 432", "note": "대치동, DB금융센터", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.idbins.com/FWCUSV1278.do"}], "memo": ""}, {"id": "kb-insurance", "cat": "insurance", "short": "KB손해보험", "name": "KB손해보험 주식회사", "aliases": ["KB손보", "KB", "케이비손보"], "wording": "기관", "popular": true, "addr": "서울특별시 강남구 테헤란로 117", "note": "역삼동, KB손해보험빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.kbinsure.co.kr/CU601040001.ec"}], "memo": ""}, {"id": "meritz-fire", "cat": "insurance", "short": "메리츠화재", "name": "메리츠화재해상보험 주식회사", "aliases": ["메리츠화재해상", "메리츠"], "wording": "기관", "popular": true, "addr": "서울특별시 강남구 강남대로 382", "note": "역삼동, 메리츠타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://recruit.meritzfire.com/new/company/company03.do?idx=all"}], "memo": ""}, {"id": "hanwha-general-insurance", "cat": "insurance", "short": "한화손해보험", "name": "한화손해보험 주식회사", "aliases": ["한화손보", "한화"], "wording": "기관", "popular": false, "addr": "서울특별시 영등포구 여의대로 56", "note": "여의도동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://mall.hwgeneralins.com/index.do"}], "memo": ""}, {"id": "lotte-insurance", "cat": "insurance", "short": "롯데손해보험", "name": "롯데손해보험 주식회사", "aliases": ["롯데손보", "롯데"], "wording": "기관", "popular": false, "addr": "서울특별시 중구 소월로 3", "note": "남창동, 롯데손해보험빌딩", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.lotteins.co.kr/web/C/D/I/cdi600.jsp"}], "memo": ""}, {"id": "samsung-card", "cat": "card", "short": "삼성카드", "name": "삼성카드 주식회사", "aliases": ["삼성", "Samsung Card"], "wording": "기관", "popular": true, "addr": "서울특별시 중구 세종대로 67", "note": "태평로2가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://bill.samsungcard.com/company/main/UHPPCI0198M0.jsp?click=main_footer_IR"}], "memo": ""}, {"id": "shinhan-card", "cat": "card", "short": "신한카드", "name": "주식회사 신한카드", "aliases": ["신한", "Shinhan Card"], "wording": "기관", "popular": true, "addr": "서울특별시 중구 을지로 100", "note": "을지로2가, 파인에비뉴 A동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.shinhancard.com/pconts/download/company/SHC_2025_Sustainability_Report_KOR.pdf"}], "memo": ""}, {"id": "kb-card", "cat": "card", "short": "KB국민카드", "name": "주식회사 케이비국민카드", "aliases": ["국민카드", "KB카드", "케이비국민카드", "KB", "국민"], "wording": "기관", "popular": true, "addr": "서울특별시 종로구 새문안로3길 30", "note": "내수동", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://card.kbcard.com/CRD/DVIEW/HCAMCXPRICACR0001?mainCC=a"}], "memo": ""}, {"id": "hyundai-card", "cat": "card", "short": "현대카드", "name": "현대카드 주식회사", "aliases": ["현대", "Hyundai Card"], "wording": "기관", "popular": true, "addr": "서울특별시 영등포구 의사당대로 3", "note": "여의도동, 현대카드빌딩 1관", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.hyundaicard.com/csa/mb/STOREMAIN.hc"}], "memo": ""}, {"id": "lotte-card", "cat": "card", "short": "롯데카드", "name": "롯데카드 주식회사", "aliases": ["롯데", "Lotte Card"], "wording": "기관", "popular": true, "addr": "서울특별시 종로구 새문안로 76", "note": "신문로1가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.lottecard.co.kr/app/LPCOIAB_V100.lc"}], "memo": ""}, {"id": "hana-card", "cat": "card", "short": "하나카드", "name": "하나카드 주식회사", "aliases": ["하나", "Hana Card"], "wording": "기관", "popular": true, "addr": "서울특별시 중구 을지로 66", "note": "을지로2가", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.hanacard.co.kr/OPP35150010D.web?_frame=no&mID=OPP35150000D&schID=ncd"}], "memo": ""}, {"id": "woori-card", "cat": "card", "short": "우리카드", "name": "주식회사 우리카드", "aliases": ["우리", "Woori Card"], "wording": "기관", "popular": true, "addr": "서울특별시 종로구 종로1길 50", "note": "중학동, 더케이트윈타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://nm.wooricard.com/"}], "memo": ""}, {"id": "bc-card", "cat": "card", "short": "BC카드", "name": "비씨카드 주식회사", "aliases": ["비씨카드", "BC", "비씨"], "wording": "기관", "popular": true, "addr": "서울특별시 중구 을지로 170", "note": "을지로4가, 을지트윈타워", "status": "user_provided", "checkedAt": "2026-10-02", "sources": [{"label": "사용자 제공 목록(금융기관 본점 및 본사 주소, 기준일 2026. 10. 2.)", "url": ""}, {"label": "기관 확인 자료(사용자 제공 목록의 링크)", "url": "https://www.bccard.com/app/card/html/company/kr/company/location/head/location.jsp"}], "memo": ""}]};</script>
 <script>/* ==========================================================================
  * 금융거래정보 제출명령 작성기 — app.js (순수 JS, 빌드 도구 없음)
  *
@@ -20892,7 +20913,10 @@ var __async = (__this, __arguments, generator) => {
  *     holders: [{ role: "plaintiff"|"defendant"|"third", name, no }],
  *     period: { start: "YYYY-MM-DD", end: "YYYY-MM-DD" },
  *     purpose: { type: "divorce"|"other", text },
- *     wording: "auto"|"은행"|"기관"|"사" }
+ *     wording: "auto"|"은행"|"기관"|"사",       // 은행·금융기관용 5.가의 호칭
+ *     formType: ""|"bank"|"insurance",            // 종류가 섞였을 때 지금 만들 신청서
+ *     insDate: "" | "YYYY-MM-DD" }                // 보험사용 5.의 보험 기준일
+ *   기관 객체의 cat이 "insurance"이면 보험사용, 그 밖은 은행·금융기관용(formOf).
  * ========================================================================== */
 (function () {
   "use strict";
@@ -20933,6 +20957,26 @@ var __async = (__this, __arguments, generator) => {
   const L2_2_TAIL = "(송금 상대방, 상대방 계좌번호 및 은행 등 일체의 정보)을 회신하여 주시기 바랍니다(복수인 경우 각 계좌 모두).";
   const L2_3 = "위 각 항목은 PDF와 함께 XLSX 또는 CSV 형식의 전산자료로 제출하여 주시고, 거래코드의 설명과 통화·금액단위를 표시하여 주시기 바랍니다.";
 
+  // 보험사용 5.(SPEC 2-2장). 문안은 SPEC 코드 블록과 한 글자도 다르지 않아야 한다.
+  const INS_P_HEAD = "귀 회사에 ";
+  const INS_P_TAIL = "명의로 가입된 보험계약 중, 요구대상 거래기간 동안 유효하게 존속하였던 보험계약(해지·실효되었거나 만기가 도래한 계약을 포함합니다)에 관하여 아래 각 항목의 자료를 제출하여 주시기 바랍니다.";
+  // [종류, 마커, 문장]. {기준일}은 실행 시 날짜 run으로 바뀐다
+  const INS_ITEMS = [
+    ["l2", "1)", "보험·펀드·연금 등 가입내역 일체"],
+    ["l2c", "", "(다만, {기준일} 이후 신규로 체결되거나 변경된 계약이 있는 경우에는 해당 계약의 체결일 또는 변경일을 함께 기재하여 주시기 바랍니다.)"],
+    ["l2", "2)", "{기준일} 이전에 해지된 계약이 있는 경우, 해당 계약별 해지환급금의 지급내역 일체"],
+    ["l2", "3)", "{기준일} 기준 계약별 다음 사항"],
+    ["l3", "가.", "보험의 종류"],
+    ["l3", "나.", "증권번호"],
+    ["l3", "다.", "계약자·피보험자·수익자"],
+    ["l3", "라.", "계약일"],
+    ["l3", "마.", "월 보험료"],
+    ["l3", "바.", "계약상태"],
+    ["l3", "사.", "해약환급금 및 그 산출근거"],
+    ["l2", "4)", "보험계약대출의 실행 및 상환 내역, {기준일} 기준 대출잔액 및 위 3)항 기재 해약환급금에서 보험계약대출금이 이미 공제되어 있는지 여부"],
+    ["l2", "5)", "현재 시점의 해약환급금만을 제출하지 마시고, {기준일} 기준 해약환급금과 그 이후 현재까지의 변동내역을 구분하여 제출하여 주시기 바랍니다. 또한 각 항목별로 해당 사항이 없는 경우에는 “해당 없음”, 자료를 보유하고 있지 않은 경우에는 “자료 미보유”, 조회가 불가능한 경우에는 “조회 불가”라고 구분하여 회신하여 주시기 바랍니다."],
+  ];
+
   // 기관 순번: 가~허 28개. 29번째부터 "(29)" 표기.
   const LETTERS = "가나다라마바사아자차카타파하거너더러머버서어저처커터퍼허";
 
@@ -20941,7 +20985,7 @@ var __async = (__this, __arguments, generator) => {
     caseNo: "「사건번호」", caseName: "「사건명」",
     plaintiff: "「원고 이름」", defendant: "「피고 이름」",
     ours: "「우리 측 지위」", oursName: "「우리 측 이름」",
-    inst: "「대상기관」", zip: "「우편번호」", addr: "「주소」",
+    inst: "「대상기관」", addr: "「주소」", insDate: "「보험 기준일」",
     hName: "「이름」", hNo: "「주민등록번호」",
     start: "「시작일」", end: "「종료일」", purpose: "「사용목적」",
   };
@@ -21076,14 +21120,14 @@ var __async = (__this, __arguments, generator) => {
   }
 
   /* ---- 파일명 ---- */
-  /** 금융거래정보제출명령신청서_{사건번호 또는 날짜}.docx. 이름·번호는 쓰지 않는다. */
+  /** 금융거래정보제출명령신청서_{사건번호 또는 날짜}.docx (보험사용은 뒤에 _보험사). 이름·번호는 쓰지 않는다. */
   function makeFilename(state, now) {
     let base = clean(state && state.caseNo)
       .replace(/[\\/:*?"<>|\u0000-\u001f]/g, "_")
       .replace(/[. ]+$/, "")
       .slice(0, 60);
     if (!base) base = todayISO(now).replace(/-/g, "");
-    return "금융거래정보제출명령신청서_" + base + ".docx";
+    return "금융거래정보제출명령신청서_" + base + (effectiveForm(state || {}) === "insurance" ? "_보험사" : "") + ".docx";
   }
 
   /* ---- 초성 검색 ---- */
@@ -21125,8 +21169,8 @@ var __async = (__this, __arguments, generator) => {
 
   /* ---- 기관 데이터 ---- */
   const STATUSES = ["verified", "user_provided", "needs_check"];
-  /** 우편번호 5자리와 주소가 모두 있는가 */
-  const hasAddr = (i) => /^\d{5}$/.test(String((i && i.zip) || "")) && !!String((i && i.addr) || "").trim();
+  /** 주소가 있는가(우편번호는 쓰지 않는다) */
+  const hasAddr = (i) => !!String((i && i.addr) || "").trim();
   /** 일반 항목으로 쓸 수 있는가: needs_check가 아니고 주소가 있어야 한다(needs_check는 직원이 확인·저장해야 풀린다) */
   const isReady = (i) => !!i && i.status !== "needs_check" && hasAddr(i);
 
@@ -21137,10 +21181,36 @@ var __async = (__this, __arguments, generator) => {
     if (m && m[1]) return { addr: m[1].trim(), note: m[2].trim() };
     return { addr: s, note: "" };
   }
-  /** (우편번호) 주소 (참고). 값이 없으면 빈 문자열 */
+  /** 주소 (참고). 우편번호는 쓰지 않는다. 주소가 없으면 빈 문자열 */
   function addrLine(i) {
-    if (!i || (!i.zip && !i.addr)) return "";
-    return "(" + (i.zip || "") + ") " + (i.addr || "") + (i.note ? " (" + i.note + ")" : "");
+    if (!i || !String(i.addr || "").trim()) return "";
+    return i.addr + (i.note ? " (" + i.note + ")" : "");
+  }
+  /** 분류로 정하는 5.가 호칭: 은행·우체국·인터넷은행·저축은행은 "은행", 그 밖은 "기관" */
+  function wordingOfCat(cat) {
+    return ["bank", "post", "inet", "savings"].indexOf(cat) >= 0 ? "은행" : "기관";
+  }
+  /** 신청서 종류: 분류가 보험사이면 "insurance", 그 밖은 "bank" */
+  function formOf(inst) {
+    return inst && inst.cat === "insurance" ? "insurance" : "bank";
+  }
+  /** 선택된 기관의 종류들(처음 나온 순서, 중복 없음) */
+  function formKinds(insts) {
+    const out = [];
+    (insts || []).forEach((i) => { const f = formOf(i); if (out.indexOf(f) < 0) out.push(f); });
+    return out;
+  }
+  /**
+   * 지금 만들 신청서 종류. 종류가 하나면 그 종류, 섞이면 state.formType(선택에 있을 때)
+   * 아니면 먼저 선택한 기관의 종류. 선택이 없으면 state.formType 또는 "bank".
+   */
+  function effectiveForm(state, insts) {
+    state = state || {};
+    const kinds = formKinds(insts || resolveInsts(state));
+    const want = state.formType === "insurance" || state.formType === "bank" ? state.formType : "";
+    if (!kinds.length) return want || "bank";
+    if (kinds.length === 1) return kinds[0];
+    return kinds.indexOf(want) >= 0 ? want : kinds[0];
   }
   function normInst(raw, origin) {
     const o = Object.assign({}, raw);
@@ -21150,7 +21220,7 @@ var __async = (__this, __arguments, generator) => {
     o.aliases = Array.isArray(o.aliases) ? o.aliases.map(String) : [];
     o.wording = o.wording === "은행" ? "은행" : "기관";
     o.popular = !!o.popular;
-    o.zip = clean(o.zip);
+    delete o.zip; // 우편번호는 쓰지 않는다(이미 저장된 문서에 있어도 무시)
     o.addr = clean(o.addr);
     o.note = clean(o.note);
     o.sources = Array.isArray(o.sources) ? o.sources : [];
@@ -21179,7 +21249,7 @@ var __async = (__this, __arguments, generator) => {
       if (d.origin === "override") {
         const cur = byId[d.id];
         if (!cur) return;
-        ["name", "zip", "addr", "note", "status", "checkedAt", "sources", "memo"].forEach((k) => {
+        ["name", "addr", "note", "status", "checkedAt", "sources", "memo"].forEach((k) => {
           if (d[k] !== undefined) cur[k] = d[k];
         });
         cur.origin = "override";
@@ -21258,21 +21328,76 @@ var __async = (__this, __arguments, generator) => {
   }
 
   function instAddrRuns(inst) {
-    const zip = clean(inst.zip), addr = clean(inst.addr), note = clean(inst.note);
-    if (!zip && !addr) return [seg("「주소 미입력」", { blank: true })];
-    const runs = [
-      zip ? seg("(" + zip + ")") : seg("(" + PH.zip + ")", { blank: true }),
-      seg(" "),
-      addr ? seg(addr) : seg(PH.addr, { blank: true }),
-    ];
+    const addr = clean(inst.addr), note = clean(inst.note);
+    if (!addr) return [seg("「주소 미입력」", { blank: true })];
+    const runs = [seg(addr)];
     if (note) runs.push(seg(" (" + note + ")"));
     return runs;
+  }
+  /** "…{기준일}…" 문장을 날짜 run으로 나눈다. 비어 있으면 자리표시 */
+  function withDate(text, dateRun) {
+    const parts = text.split("{기준일}");
+    const runs = [];
+    parts.forEach((t, i) => {
+      if (i) runs.push(Object.assign({}, dateRun));
+      if (t) runs.push(seg(t));
+    });
+    return runs;
+  }
+
+  /** 은행·금융기관용 5.(SPEC 2장) */
+  function composeBank5(state, holders, insts, push) {
+    const w = resolveWording(state.wording, insts);
+    const hRuns = [];
+    holders.forEach((h, i) => {
+      if (i) hRuns.push(seg(", "));
+      const no = formatNo(h.no);
+      hRuns.push(val(h.name, PH.hName), seg(" ("), no ? seg(no) : seg(PH.hNo, { blank: true }), seg(")"));
+    });
+    const lastName = clean(holders[holders.length - 1].name);
+    const josa = josaEulReul(lastName);
+    push({
+      k: "l1", sec: 5, marker: "가.",
+      runs: [seg("귀 " + w + "에 ")].concat(hRuns, [seg(josa + (holders.length > 1 ? " 각 " : " ") + "명의자로 " + L1A_TAIL)]),
+    });
+    push({ k: "l1", sec: 5, marker: "나.", runs: [seg(L1B_TEXT)] });
+    push({ k: "l2", sec: 5, marker: "1)", runs: [seg(L2_1)] });
+    push({
+      k: "l2", sec: 5, marker: "2)",
+      runs: [
+        seg(L2_2_HEAD),
+        seg((UNDERLINE_BRACKETS ? "[" : "") + L2_2_UL + (UNDERLINE_BRACKETS ? "]" : ""), { u: true }),
+        seg(L2_2_TAIL),
+      ],
+    });
+    push({ k: "l2", sec: 5, marker: "3)", runs: [seg(L2_3)] });
+  }
+  /** 보험사용 5.(SPEC 2-2장). 호칭은 항상 "귀 회사에", 번호가 10자리이면 라벨은 사업자등록번호 */
+  function composeInsurance5(state, holders, push) {
+    const hRuns = [];
+    holders.forEach((h, i) => {
+      if (i) hRuns.push(seg(", "));
+      const no = formatNo(h.no);
+      const label = noDigitCount(no) === 10 ? "사업자등록번호" : "주민등록번호";
+      hRuns.push(val(h.name, PH.hName), seg("(" + label + ": "), no ? seg(no) : seg(PH.hNo, { blank: true }), seg(")"));
+    });
+    push({ k: "p", sec: 5, runs: [seg(INS_P_HEAD)].concat(hRuns, [seg((holders.length > 1 ? " 각 " : " ") + INS_P_TAIL)]) });
+    const iso = clean(state.insDate);
+    const d = isISO(iso) ? formatDateKR(iso) : "";
+    const dateRun = d ? seg(d) : seg(PH.insDate, { blank: true });
+    INS_ITEMS.forEach((it) => {
+      const b = { k: it[0], sec: 5, runs: withDate(it[2], dateRun) };
+      if (it[1]) b.marker = it[1];
+      push(b);
+    });
   }
 
   /** SPEC 2장 문안을 블록 배열로 만든다. 미리보기·복사·DOCX가 모두 이 결과를 쓴다. */
   function composeDoc(state) {
     state = state || {};
-    const insts = resolveInsts(state);
+    const allInsts = resolveInsts(state);
+    const form = effectiveForm(state, allInsts);
+    const insts = allInsts.filter((i) => formOf(i) === form); // 고른 종류의 기관만 1.에 들어간다
     const holders = Array.isArray(state.holders) && state.holders.length ? state.holders : [{ role: "third", name: "", no: "" }];
     const period = state.period || {};
     const purpose = state.purpose || {};
@@ -21342,30 +21467,8 @@ var __async = (__this, __arguments, generator) => {
 
     // 5. 요구하는 거래정보 등의 내용
     push({ k: "h", sec: 5, text: HEADS[4] });
-    const w = resolveWording(state.wording, insts);
-    const hRuns = [];
-    holders.forEach((h, i) => {
-      if (i) hRuns.push(seg(", "));
-      const no = formatNo(h.no);
-      hRuns.push(val(h.name, PH.hName), seg(" ("), no ? seg(no) : seg(PH.hNo, { blank: true }), seg(")"));
-    });
-    const lastName = clean(holders[holders.length - 1].name);
-    const josa = josaEulReul(lastName);
-    push({
-      k: "l1", sec: 5, marker: "가.",
-      runs: [seg("귀 " + w + "에 ")].concat(hRuns, [seg(josa + (holders.length > 1 ? " 각 " : " ") + "명의자로 " + L1A_TAIL)]),
-    });
-    push({ k: "l1", sec: 5, marker: "나.", runs: [seg(L1B_TEXT)] });
-    push({ k: "l2", sec: 5, marker: "1)", runs: [seg(L2_1)] });
-    push({
-      k: "l2", sec: 5, marker: "2)",
-      runs: [
-        seg(L2_2_HEAD),
-        seg((UNDERLINE_BRACKETS ? "[" : "") + L2_2_UL + (UNDERLINE_BRACKETS ? "]" : ""), { u: true }),
-        seg(L2_2_TAIL),
-      ],
-    });
-    push({ k: "l2", sec: 5, marker: "3)", runs: [seg(L2_3)] });
+    if (form === "insurance") composeInsurance5(state, holders, push);
+    else composeBank5(state, holders, insts, push);
     return blocks;
   }
 
@@ -21387,8 +21490,8 @@ var __async = (__this, __arguments, generator) => {
           lines.push(b.marker + " " + b.name);
           if (b.addr) lines.push(b.addr);
           break;
-        case "holder": case "p": lines.push(b.text); break;
-        case "l1": case "l2": lines.push(b.marker + " " + b.text); break;
+        case "holder": case "p": case "l2c": lines.push(b.text); break;
+        case "l1": case "l2": case "l3": lines.push(b.marker + " " + b.text); break;
         default: break;
       }
     });
@@ -21464,7 +21567,9 @@ var __async = (__this, __arguments, generator) => {
           break;
         }
         case "holder": case "p":
-          out.push(para({ spacing: spacing(0, 0), keepLines: true }, runsOf(b.runs)));
+          // 보험사용 5.의 첫 문단은 양쪽 정렬, 소제목과 1) 사이에 빈 줄 하나 정도의 간격
+          if (b.k === "p" && b.sec === 5) out.push(para({ alignment: AlignmentType.BOTH, spacing: spacing(0, 480) }, runsOf(b.runs)));
+          else out.push(para({ spacing: spacing(0, 0), keepLines: true }, runsOf(b.runs)));
           break;
         case "l1":
           out.push(
@@ -21478,6 +21583,17 @@ var __async = (__this, __arguments, generator) => {
           out.push(
             para(
               { alignment: AlignmentType.BOTH, indent: { left: 880, hanging: 440 }, tabStops: [{ type: TabStopType.LEFT, position: 880 }], spacing: spacing(0, 0) },
+              [run(b.marker), tabRun()].concat(runsOf(b.runs))
+            )
+          );
+          break;
+        case "l2c": // 1) 아래 이어지는 번호 없는 문단: l2와 같은 왼쪽 880, 내어쓰기 없음
+          out.push(para({ alignment: AlignmentType.BOTH, indent: { left: 880 }, spacing: spacing(0, 0) }, runsOf(b.runs)));
+          break;
+        case "l3": // 3) 아래 가.~사.: 왼쪽 1320, 내어쓰기 440
+          out.push(
+            para(
+              { alignment: AlignmentType.BOTH, indent: { left: 1320, hanging: 440 }, tabStops: [{ type: TabStopType.LEFT, position: 1320 }], spacing: spacing(0, 0) },
               [run(b.marker), tabRun()].concat(runsOf(b.runs))
             )
           );
@@ -21519,8 +21635,9 @@ var __async = (__this, __arguments, generator) => {
    */
   function computeMissing(state) {
     const items = [];
-    const need = (sev, msg, go) => items.push({ sev, msg, go: go || "" });
+    const need = (sev, msg, go, soft) => items.push({ sev, msg, go: go || "", soft: !!soft });
     const insts = resolveInsts(state);
+    const form = effectiveForm(state, insts);
     if (!clean(state.caseNo)) need("req", "사건번호 미입력", "#case-no");
     if (!clean(state.caseName)) need("req", "사건명 미입력", "#case-name");
     if (!clean(state.plaintiff)) need("req", "원고 이름 미입력", "#plaintiff");
@@ -21529,9 +21646,15 @@ var __async = (__this, __arguments, generator) => {
     if (!insts.length) need("req", "대상기관 1곳 이상 선택 필요", "#inst-search");
     insts.forEach((i) => {
       if (isReady(i)) return;
-      const go = '.sel-row[data-id="' + i.id + '"] .sel-fill-zip';
+      const go = '.sel-row[data-id="' + i.id + '"] .sel-fill-addr';
       need("req", (i.short || i.name) + (hasAddr(i) ? " 주소 확인 필요(확인 후 저장)" : " 주소 미입력"), go);
     });
+    // 신청서 종류: 은행류와 보험사가 섞이면 알리되(soft) 저장 확인 단계는 걸지 않는다
+    const kinds = formKinds(insts);
+    if (kinds.length > 1) {
+      need("warn", "은행류와 보험사가 함께 선택됨: 신청서는 종류별로 따로 저장(지금은 " + (form === "insurance" ? "보험사용" : "은행·금융기관용") + ")", "#form-" + form, true);
+    }
+    if (form === "insurance" && !isISO(clean(state.insDate))) need("req", "보험 기준일 미입력", "#ins-date");
     const holders = state.holders || [];
     holders.forEach((h, idx) => {
       const k = holders.length > 1 ? "명의인 " + (idx + 1) + " " : "명의인 ";
@@ -21641,7 +21764,7 @@ var __async = (__this, __arguments, generator) => {
    * 최신화 항목 한 건을 현재 목록과 비교한다.
    * ctx: { byId: {id: 기관}, catIds: [], today }
    * 반환: { id, kind: "changed"|"new"|"same"|"invalid", reasons: [], cur, next }
-   * 적용 가능 조건: 우편번호 5자리 문자열, 주소 비어 있지 않음, 출처 URL 1개 이상
+   * 적용 가능 조건: 주소 비어 있지 않음(괄호 없음), 출처 URL 1개 이상. 우편번호는 쓰지 않는다.
    */
   function classifyUpdate(item, ctx) {
     const reasons = [];
@@ -21649,11 +21772,6 @@ var __async = (__this, __arguments, generator) => {
     const id = typeof item.id === "string" ? item.id.trim() : "";
     if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) reasons.push("id 형식 오류");
     const cur = (ctx.byId && ctx.byId[id]) || null;
-
-    let zip = "";
-    if (typeof item.zip === "string") zip = item.zip.trim();
-    else if (item.zip != null) reasons.push("우편번호는 문자열이어야 함");
-    if (!/^\d{5}$/.test(zip)) reasons.push("우편번호 5자리 아님");
 
     let addr = typeof item.addr === "string" ? clean(item.addr) : "";
     let note = typeof item.note === "string" ? clean(item.note) : "";
@@ -21668,7 +21786,7 @@ var __async = (__this, __arguments, generator) => {
     const status = item.status === "verified" && hosts.length >= 2 ? "verified" : "needs_check";
     const checkedAt = isISO(item.checkedAt) ? item.checkedAt : ctx.today || todayISO();
     const memo = typeof item.memo === "string" ? item.memo.trim() : "";
-    const next = { zip, addr, note, status, checkedAt, sources, memo };
+    const next = { addr, note, status, checkedAt, sources, memo };
 
     if (!cur) {
       const name = typeof item.name === "string" ? clean(item.name) : "";
@@ -21678,29 +21796,29 @@ var __async = (__this, __arguments, generator) => {
       if (ctx.byNorm && name && ctx.byNorm[normName(name)]) reasons.push("같은 명칭의 기관이 이미 있음");
       next.name = name;
       next.cat = item.cat;
-      next.wording = item.wording === "은행" ? "은행" : "기관";
+      next.wording = wordingOfCat(item.cat);
       return { id, kind: reasons.length ? "invalid" : "new", reasons, cur: null, next };
     }
     if (reasons.length) return { id, kind: "invalid", reasons, cur, next };
-    const same = cur.zip === zip && cur.addr === addr && (cur.note || "") === note;
+    const same = cur.addr === addr && (cur.note || "") === note;
     return { id, kind: same ? "same" : "changed", reasons, cur, next };
   }
   function buildUpdateRequest(list, today) {
-    const rows = list.map((i) => ({ id: i.id, name: i.name, zip: i.zip, addr: i.addr, note: i.note }));
+    const rows = list.map((i) => ({ id: i.id, name: i.name, addr: i.addr, note: i.note }));
     return [
-      "아래 금융기관 목록의 본점 소재지(도로명주소)와 우편번호를 웹 검색으로 확인하여, 지정한 JSON 형식으로만 답해 주십시오. 오늘 날짜는 " + (today || todayISO()) + "입니다.",
+      "아래 금융기관 목록의 본점 소재지(도로명주소)를 웹 검색으로 확인하여, 지정한 JSON 형식으로만 답해 주십시오. 오늘 날짜는 " + (today || todayISO()) + "입니다.",
       "",
       "규칙",
       "1. 기억에 의존하지 말고 반드시 웹 검색으로 확인합니다. 추정하거나 지어내지 않습니다.",
       "2. 주소는 법인 등기부상 본점 소재지(공시·약관의 '본점 소재지' 표기)를 씁니다. 대표 사무소, 영업점, 별관 주소가 다르면 memo에만 적습니다.",
-      "3. addr는 도로명주소(번지·층 포함, 참고 괄호 제외), note는 괄호 안에 들어갈 참고(법정동, 건물명), zip은 5자리 새우편번호(문자열)입니다.",
-      "4. 서로 독립된 출처 2곳 이상(공식 홈페이지, 약관, 전자공시, 금융감독원 등)에서 도로명주소가 일치하고, 우편번호가 공식 페이지 또는 정부 도로명주소 DB에서 확인될 때만 status를 \"verified\"로 합니다. 그 밖에는 \"needs_check\"입니다.",
-      "5. 확인하지 못한 항목은 addr와 zip을 \"\"(빈 문자열)로 비웁니다.",
+      "3. addr는 도로명주소(번지·층 포함, 참고 괄호 제외), note는 괄호 안에 들어갈 참고(법정동, 건물명)이며 없으면 빈 문자열입니다. 우편번호는 쓰지 않습니다.",
+      "4. 서로 독립된 출처 2곳 이상(공식 홈페이지, 약관, 전자공시, 금융감독원 등)에서 도로명주소가 일치할 때만 status를 \"verified\"로 합니다. 그 밖에는 \"needs_check\"입니다.",
+      "5. 확인하지 못한 항목은 addr를 \"\"(빈 문자열)로 비웁니다.",
       "6. 항목마다 sources에 출처 {label, url}을 1개 이상 적습니다. url이 없으면 적용되지 않습니다. 검색 요약문, 위키, 채용·사업자정보 사이트는 출처로 쓰지 않습니다.",
       "7. 아래 목록에 없는 id를 새로 만들지 않습니다. 바뀐 것이 없으면 현재 값을 그대로 돌려줍니다.",
       "",
       "응답 형식(JSON 배열만, 설명 없이)",
-      '[{"id":"","zip":"","addr":"","note":"","status":"verified","checkedAt":"YYYY-MM-DD","sources":[{"label":"","url":"https://"}],"memo":""}]',
+      '[{"id":"","addr":"","note":"","status":"verified","checkedAt":"YYYY-MM-DD","sources":[{"label":"","url":"https://"}],"memo":""}]',
       "",
       "현재 목록",
       JSON.stringify(rows, null, 1),
@@ -21753,7 +21871,9 @@ var __async = (__this, __arguments, generator) => {
         .sort((a, b) => String(a.name).localeCompare(String(b.name), "ko"));
     },
     stamp(doc) {
-      return JSON.parse(JSON.stringify(Object.assign({}, doc, { updatedAt: new Date().toISOString(), updatedBy: this.uid || "" })));
+      const d = JSON.parse(JSON.stringify(Object.assign({}, doc, { updatedAt: new Date().toISOString(), updatedBy: this.uid || "" })));
+      delete d.zip; // 우편번호는 저장하지 않는다
+      return d;
     },
 
     /** db 쓰기 시도. 성공하면 true. 권한 거부 계열이면 이번 방문에서는 더 시도하지 않는다 */
@@ -21860,6 +21980,7 @@ var __async = (__this, __arguments, generator) => {
       perMode: "cal", perErr: { start: false, end: false },
       purpose: { type: "divorce", text: "" },
       wording: "auto",
+      formType: "", insDate: "",
     };
   }
 
@@ -22003,7 +22124,9 @@ var __async = (__this, __arguments, generator) => {
           return '<div class="d-inst"><span class="d-letter">' + esc(b.marker) + '</span><span class="d-name">' + runsHTML(b.nameRuns) + "</span>" +
             (b.addrRuns.length ? '<span class="d-addr">' + runsHTML(b.addrRuns) + "</span>" : "") + "</div>";
         case "holder": return '<p class="d-holder">' + runsHTML(b.runs) + "</p>";
-        case "p": return '<p class="d-p">' + runsHTML(b.runs) + "</p>";
+        case "p": return '<p class="d-p" data-sec="' + b.sec + '">' + runsHTML(b.runs) + "</p>";
+        case "l2c": return '<p class="d-l2c">' + runsHTML(b.runs) + "</p>";
+        case "l3": return '<p class="d-l3"><span class="d-mk">' + esc(b.marker) + "</span>" + runsHTML(b.runs) + "</p>";
         case "l1": return '<p class="d-l1"><span class="d-mk">' + esc(b.marker) + "</span>" + runsHTML(b.runs) + "</p>";
         case "l2": return '<p class="d-l2"><span class="d-mk">' + esc(b.marker) + "</span>" + runsHTML(b.runs) + "</p>";
         default: return "";
@@ -22022,6 +22145,7 @@ var __async = (__this, __arguments, generator) => {
     /* ---- 5.4 점검 목록·버튼 상태 ---- */
     function renderMissing() {
       const items = computeMissing(state);
+      const hard = items.filter((m) => !m.soft).length; // soft(종류 혼합 안내)는 DOCX 저장 확인 단계에서 세지 않는다
       const ul = $("missing-list");
       if (ul) {
         // 내용이 같으면 다시 쓰지 않는다(aria-live 목록이 키 입력마다 반복 낭독되지 않게)
@@ -22038,7 +22162,7 @@ var __async = (__this, __arguments, generator) => {
       const btn = $("btn-docx");
       if (btn) {
         if (!btn.dataset.label) btn.dataset.label = btn.textContent;
-        if (ui.docxArmed && items.length) btn.textContent = "미입력 " + items.length + "건 — 한 번 더 누르면 그대로 저장합니다";
+        if (ui.docxArmed && hard) btn.textContent = "미입력 " + hard + "건 — 한 번 더 누르면 그대로 저장합니다";
         else {
           if (ui.docxArmed) disarmDocx();
           btn.textContent = btn.dataset.label;
@@ -22086,7 +22210,27 @@ var __async = (__this, __arguments, generator) => {
       el.textContent = msgs.length ? msgs.join(" ") : noteDefault;
       el.classList.toggle("err", msgs.length > 0);
     }
+    /** 선택한 기관의 종류에 맞춰 종류 전환·보험 기준일·5.가 호칭 영역을 맞춘다 */
+    function syncForm() {
+      const insts = state.selected.map(inst).filter(Boolean);
+      const kinds = formKinds(insts);
+      state.formType = kinds.length ? effectiveForm(state, insts) : "";
+      const form = state.formType || "bank";
+      const sw = $("form-switch");
+      if (sw) sw.hidden = kinds.length < 2;
+      const count = (f) => insts.filter((i) => formOf(i) === f).length;
+      setText("form-bank-n", count("bank") + "곳");
+      setText("form-insurance-n", count("insurance") + "곳");
+      const rb = $("form-bank"), ri = $("form-insurance");
+      if (rb) rb.checked = form === "bank";
+      if (ri) ri.checked = form === "insurance";
+      const ib = $("ins-block");
+      if (ib) ib.hidden = form !== "insurance";
+      const wb = $("wording-block");
+      if (wb) wb.hidden = form === "insurance";
+    }
     function render() {
+      syncForm();
       renderPreview();
       renderMissing();
       markHolderErrors();
@@ -22101,7 +22245,7 @@ var __async = (__this, __arguments, generator) => {
       if (ui.ready) list = list.filter(isReady);
       return q ? list.filter((i) => searchMatch(i, q)) : list.filter((i) => i.cat === ui.cat);
     }
-    // 상태 배지(주소 미확인·양식 기준)는 data-status로 CSS가 그린다. JS는 직원이 추가한 기관의 '추가'만 만든다.
+    // 상태 배지(주소 미확인·제공 목록 기준)는 data-status로 CSS가 그린다. JS는 직원이 추가한 기관의 '추가'만 만든다.
     function badgeHTML(i) {
       return i.origin === "custom" ? '<span class="badge">추가</span>' : "";
     }
@@ -22187,7 +22331,7 @@ var __async = (__this, __arguments, generator) => {
       const ol = $("inst-selected");
       if (!ol) return;
       // 입력 중이던 주소 입력칸의 값과 포커스를 보존한다
-      const FILL = ["name", "zip", "addr", "note"];
+      const FILL = ["name", "addr", "note"];
       const saved = {};
       let focusKey = "";
       $$(".sel-row", ol).forEach((r) => {
@@ -22197,18 +22341,25 @@ var __async = (__this, __arguments, generator) => {
         }
         if (r.contains(document.activeElement)) focusKey = r.dataset.id + "|" + String(document.activeElement.className || "").split(" ")[0];
       });
+      // 순번은 문서에 나오는 순번(종류 안에서의 순번). 종류가 섞였을 때만 종류 표시를 붙인다
+      const all = state.selected.map(inst);
+      const mixed = formKinds(all.filter(Boolean)).length > 1;
+      const seen = { bank: 0, insurance: 0 };
       ol.innerHTML = state.selected
         .map((id, idx) => {
           const i = inst(id);
           if (!i) return "";
+          const f = formOf(i);
+          const num = ++seen[f];
+          const sameKind = (x) => x && formOf(x) === f;
+          const hasPrev = all.slice(0, idx).some(sameKind), hasNext = all.slice(idx + 1).some(sameKind);
           const fill = !isReady(i) || ui.editing[id];
-          const last = idx === state.selected.length - 1;
-          let main = '<b class="sel-name">' + esc(i.name || i.short) + "</b>";
+          const grp = mixed ? '<span class="sel-grp">' + (f === "insurance" ? "보험" : "은행") + "</span>" : "";
+          let main = '<b class="sel-name">' + esc(i.name || i.short) + grp + "</b>";
           if (fill) {
             // 명칭은 미확인 상호 후보를 미리 채워 직원이 확인·수정한다
             main +=
               '<div class="sel-fill"><input class="sel-fill-name" placeholder="기관 명칭(신청서에 쓰는 정식 상호)" aria-label="' + esc(i.short) + ' 기관 명칭" autocomplete="off" value="' + esc(i.name) + '">' +
-              '<input class="sel-fill-zip" inputmode="numeric" maxlength="5" placeholder="우편번호" aria-label="' + esc(i.short) + ' 우편번호" autocomplete="off" value="' + esc(hasAddr(i) ? i.zip : "") + '">' +
               '<input class="sel-fill-addr" placeholder="도로명주소(번지, 층까지)" aria-label="' + esc(i.short) + ' 도로명주소" autocomplete="off" value="' + esc(hasAddr(i) ? i.addr : "") + '">' +
               '<input class="sel-fill-note" placeholder="참고(선택): 법정동, 건물명" aria-label="' + esc(i.short) + ' 참고" autocomplete="off" value="' + esc(hasAddr(i) ? i.note : "") + '">' +
               '<button type="button" class="sel-fill-save">저장</button>' +
@@ -22218,9 +22369,9 @@ var __async = (__this, __arguments, generator) => {
             main += '<span class="sel-addr">' + esc(addrLine(i)) + "</span>" + '<button type="button" class="btn ghost sm sel-edit" aria-label="' + esc(i.short) + ' 주소 수정">주소 수정</button>';
           }
           return (
-            '<li class="sel-row" data-id="' + esc(id) + '"><span class="sel-letter">' + esc(instMarker(idx + 1)) + '</span><div class="sel-main">' + main + "</div>" +
-            '<div class="sel-ctl"><button type="button" class="sel-up" aria-label="위로"' + (idx === 0 ? " disabled" : "") + '>↑</button>' +
-            '<button type="button" class="sel-down" aria-label="아래로"' + (last ? " disabled" : "") + '>↓</button>' +
+            '<li class="sel-row" data-id="' + esc(id) + '"' + (mixed ? ' data-form="' + f + '"' : "") + '><span class="sel-letter">' + esc(instMarker(num)) + '</span><div class="sel-main">' + main + "</div>" +
+            '<div class="sel-ctl"><button type="button" class="sel-up" aria-label="위로"' + (hasPrev ? "" : " disabled") + '>↑</button>' +
+            '<button type="button" class="sel-down" aria-label="아래로"' + (hasNext ? "" : " disabled") + '>↓</button>' +
             '<button type="button" class="sel-del" aria-label="제거">✕</button></div></li>'
           );
         })
@@ -22250,9 +22401,14 @@ var __async = (__this, __arguments, generator) => {
       if (!on && at >= 0) state.selected.splice(at, 1);
       selectionChanged();
     }
+    /** 위·아래 이동: 문서 순번은 종류 안에서 매겨지므로 같은 종류의 가장 가까운 행과 맞바꾼다 */
     function moveInst(id, d) {
-      const i = state.selected.indexOf(id), j = i + d;
-      if (i < 0 || j < 0 || j >= state.selected.length) return;
+      const i = state.selected.indexOf(id);
+      if (i < 0) return;
+      const f = formOf(inst(id));
+      let j = i + d;
+      while (j >= 0 && j < state.selected.length && formOf(inst(state.selected[j])) !== f) j += d;
+      if (j < 0 || j >= state.selected.length) return;
       const t = state.selected[i]; state.selected[i] = state.selected[j]; state.selected[j] = t;
       renderSelected();
       render();
@@ -22265,7 +22421,7 @@ var __async = (__this, __arguments, generator) => {
       // 참고 칸이 비어 있고 주소 끝에 괄호가 붙어 있으면 참고로 나눈다
       const sp = f.note ? { addr: clean(f.addr), note: clean(f.note).replace(/^\((.*)\)$/, "$1") } : splitAddrNote(f.addr);
       const fields = {
-        name: f.name, zip: f.zip, addr: sp.addr, note: sp.note, status: "user_provided", checkedAt: todayISO(),
+        name: f.name, addr: sp.addr, note: sp.note, status: "user_provided", checkedAt: todayISO(),
         sources: [{ label: "직원 직접 입력", url: "" }],
       };
       let doc;
@@ -22280,14 +22436,13 @@ var __async = (__this, __arguments, generator) => {
     }
     async function onFillSave(row) {
       const id = row.dataset.id;
-      const n = row.querySelector(".sel-fill-name"), z = row.querySelector(".sel-fill-zip"), a = row.querySelector(".sel-fill-addr"), t = row.querySelector(".sel-fill-note"), err = row.querySelector(".sel-fill-err");
-      const name = clean(n && n.value), zip = digitsOnly(z.value);
+      const n = row.querySelector(".sel-fill-name"), a = row.querySelector(".sel-fill-addr"), t = row.querySelector(".sel-fill-note"), err = row.querySelector(".sel-fill-err");
+      const name = clean(n && n.value);
       const bad = (el, m) => { if (err) err.textContent = m; el.setAttribute("aria-invalid", "true"); el.focus(); };
       if (n && !name) return bad(n, "기관 명칭을 입력해 주십시오.");
-      if (!/^\d{5}$/.test(zip)) return bad(z, "우편번호 5자리를 입력해 주십시오.");
       if (!clean(a.value)) return bad(a, "도로명주소를 입력해 주십시오.");
       delete ui.editing[id];
-      const where = await saveAddress(id, { name: name || (inst(id) || {}).name, zip, addr: a.value, note: t ? t.value : "" });
+      const where = await saveAddress(id, { name: name || (inst(id) || {}).name, addr: a.value, note: t ? t.value : "" });
       toast("기관 정보를 저장했습니다." + WHERE[where], where === "fallback" ? 6000 : 0);
     }
 
@@ -22338,22 +22493,20 @@ var __async = (__this, __arguments, generator) => {
       if (name !== undefined && $("add-name")) $("add-name").value = name;
       const cs = $("add-cat");
       if (cs && Array.prototype.some.call(cs.options, (o) => o.value === ui.cat)) cs.value = ui.cat;
-      const focusEl = name ? $("add-zip") : $("add-name");
+      const focusEl = name ? $("add-addr") : $("add-name");
       if (focusEl) focusEl.focus();
     }
     function closeAdd() {
       const f = $("add-inst");
       if (f) f.hidden = true;
-      ["add-name", "add-zip", "add-addr", "add-note"].forEach((id) => { const e = $(id); if (e) e.value = ""; });
+      ["add-name", "add-addr", "add-note"].forEach((id) => { const e = $(id); if (e) e.value = ""; });
       addMsg("");
     }
     async function saveAdd() {
       const name = clean($("add-name") && $("add-name").value);
-      const zip = digitsOnly($("add-zip") && $("add-zip").value);
       const addrRaw = clean($("add-addr") && $("add-addr").value);
       const noteIn = clean($("add-note") && $("add-note").value).replace(/^\((.*)\)$/, "$1");
       if (!name) return addMsg("기관 명칭을 입력해 주십시오.");
-      if (!/^\d{5}$/.test(zip)) return addMsg("우편번호 5자리를 입력해 주십시오.");
       if (!addrRaw) return addMsg("도로명주소를 입력해 주십시오.");
       const nn = normName(name);
       const dup = catalogList.find((i) => normName(i.name) === nn || normName(i.short) === nn);
@@ -22364,11 +22517,11 @@ var __async = (__this, __arguments, generator) => {
       const sp = noteIn ? { addr: addrRaw, note: noteIn } : splitAddrNote(addrRaw);
       const id = "c-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
       const catSel = $("add-cat") ? $("add-cat").value : categories()[0].id;
-      const wording = $("add-wording") && $("add-wording").value === "은행" ? "은행" : "기관";
+      const catId = categories().some((c) => c.id === catSel) ? catSel : categories()[0].id;
       const doc = {
-        id, origin: "custom", cat: categories().some((c) => c.id === catSel) ? catSel : categories()[0].id,
-        short: name, name, aliases: [], wording, popular: false,
-        zip, addr: sp.addr, note: sp.note, status: "user_provided", checkedAt: todayISO(),
+        id, origin: "custom", cat: catId,
+        short: name, name, aliases: [], wording: wordingOfCat(catId), popular: false,
+        addr: sp.addr, note: sp.note, status: "user_provided", checkedAt: todayISO(),
         sources: [{ label: "직원 직접 입력", url: "" }], memo: "", createdAt: new Date().toISOString(),
       };
       const where = await Store.putInst(doc);
@@ -22390,7 +22543,7 @@ var __async = (__this, __arguments, generator) => {
     /* ---- 5.8 최신화 패널 ---- */
     function statusLabel(i) {
       if (i.status === "needs_check") return "주소 미확인";
-      if (i.status === "user_provided") return i.origin === "builtin" ? "양식 기준" : "직접 입력";
+      if (i.status === "user_provided") return i.origin === "builtin" ? "제공 목록 기준" : "직접 입력";
       return "확인됨";
     }
     function sourcesHTML(i) {
@@ -22419,7 +22572,7 @@ var __async = (__this, __arguments, generator) => {
         "</tbody></table>";
     }
     const KIND_LABEL = { changed: "변경", new: "신규", same: "동일", invalid: "형식 오류" };
-    function nextLine(n) { return n ? "(" + n.zip + ") " + n.addr + (n.note ? " (" + n.note + ")" : "") : ""; }
+    function nextLine(n) { return n ? n.addr + (n.note ? " (" + n.note + ")" : "") : ""; }
     function checkUpdate() {
       const out = $("upd-diff");
       if (!out) return;
@@ -22465,11 +22618,11 @@ var __async = (__this, __arguments, generator) => {
         if (r.kind === "new") {
           doc = {
             id, origin: "custom", cat: r.next.cat, short: r.next.name, name: r.next.name, aliases: [], wording: r.next.wording, popular: false,
-            zip: r.next.zip, addr: r.next.addr, note: r.next.note, status: r.next.status, checkedAt: r.next.checkedAt, sources: r.next.sources, memo: r.next.memo, createdAt: new Date().toISOString(),
+            addr: r.next.addr, note: r.next.note, status: r.next.status, checkedAt: r.next.checkedAt, sources: r.next.sources, memo: r.next.memo, createdAt: new Date().toISOString(),
           };
         } else {
           const raw = Store.rawInst(id);
-          const fields = { zip: r.next.zip, addr: r.next.addr, note: r.next.note, status: r.next.status, checkedAt: r.next.checkedAt, sources: r.next.sources };
+          const fields = { addr: r.next.addr, note: r.next.note, status: r.next.status, checkedAt: r.next.checkedAt, sources: r.next.sources };
           if (r.next.memo) fields.memo = r.next.memo;
           doc = r.cur.origin === "custom" ? Object.assign({}, raw, fields, { id, origin: "custom" }) : Object.assign({}, raw && raw.origin === "override" ? raw : {}, fields, { id, origin: "override" });
         }
@@ -22753,7 +22906,7 @@ var __async = (__this, __arguments, generator) => {
       }
     }
     function onDocxClick() {
-      const n = computeMissing(state).length;
+      const n = computeMissing(state).filter((m) => !m.soft).length;
       if (n && !ui.docxArmed) {
         ui.docxArmed = true;
         const btn = $("btn-docx");
@@ -22777,8 +22930,9 @@ var __async = (__this, __arguments, generator) => {
       state.perErr = fresh.perErr;
       state.purpose = fresh.purpose;
       state.wording = "auto";
+      state.formType = ""; state.insDate = "";
       ui.search = ""; ui.polish = null; ui.editing = {}; ui.diff = [];
-      ["case-no", "case-name", "plaintiff", "defendant", "inst-search", "purpose-text", "set-name", "upd-paste"].forEach((id) => { const e = $(id); if (e) e.value = ""; });
+      ["case-no", "case-name", "plaintiff", "defendant", "inst-search", "purpose-text", "set-name", "upd-paste", "ins-date"].forEach((id) => { const e = $(id); if (e) e.value = ""; });
       ["ours-plaintiff", "ours-defendant"].forEach((id) => { const e = $(id); if (e) e.checked = false; });
       if ($("purpose-divorce")) $("purpose-divorce").checked = true;
       if ($("purpose-other")) $("purpose-other").checked = false;
@@ -22855,6 +23009,15 @@ var __async = (__this, __arguments, generator) => {
       on("defendant", "input", (e) => { state.defendant = e.target.value; syncHolderNames(); render(); });
       ["ours-plaintiff", "ours-defendant"].forEach((id) => on(id, "change", (e) => { if (e.target.checked) { state.ours = e.target.value; followOpponent(); render(); } }));
       on("wording", "change", (e) => { state.wording = e.target.value; render(); });
+      // 신청서 종류 전환과 보험 기준일
+      ["form-bank", "form-insurance"].forEach((id) => on(id, "change", (e) => {
+        if (!e.target.checked) return;
+        state.formType = e.target.value === "insurance" ? "insurance" : "bank";
+        render();
+      }));
+      const onInsDate = (e) => { state.insDate = isISO(e.target.value) ? e.target.value : ""; render(); };
+      on("ins-date", "input", onInsDate);
+      on("ins-date", "change", onInsDate);
 
       // 기관 검색·분류·목록
       const onSearch = (e) => { ui.search = e.target.value; renderCats(); renderInstList(); };
@@ -22905,11 +23068,10 @@ var __async = (__this, __arguments, generator) => {
         else if (b.classList.contains("sel-down")) moveInst(id, 1);
         else if (b.classList.contains("sel-del")) toggleInst(id, false);
         else if (b.classList.contains("sel-fill-save")) onFillSave(row);
-        else if (b.classList.contains("sel-edit")) { ui.editing[id] = true; renderSelected(); const z = $$('.sel-row[data-id="' + id + '"] .sel-fill-zip')[0]; if (z) z.focus(); }
+        else if (b.classList.contains("sel-edit")) { ui.editing[id] = true; renderSelected(); const z = $$('.sel-row[data-id="' + id + '"] .sel-fill-addr')[0]; if (z) z.focus(); }
         else if (b.classList.contains("sel-fill-cancel")) { delete ui.editing[id]; renderSelected(); }
       });
       on("inst-selected", "input", (e) => {
-        if (e.target.classList.contains("sel-fill-zip")) e.target.value = digitsOnly(e.target.value).slice(0, 5);
         if (e.target.hasAttribute("aria-invalid")) e.target.removeAttribute("aria-invalid");
       });
       on("inst-selected", "keydown", (e) => {
@@ -22923,8 +23085,7 @@ var __async = (__this, __arguments, generator) => {
       on("btn-add-inst-open", "click", () => { const f = $("add-inst"); if (f && !f.hidden) closeAdd(); else openAdd(); });
       on("add-save", "click", saveAdd);
       on("add-cancel", "click", closeAdd);
-      on("add-zip", "input", (e) => { e.target.value = digitsOnly(e.target.value).slice(0, 5); });
-      ["add-name", "add-zip", "add-addr", "add-note"].forEach((id) => on(id, "keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); saveAdd(); } }));
+      ["add-name", "add-addr", "add-note"].forEach((id) => on(id, "keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); saveAdd(); } }));
 
       // 최신화
       on("btn-update-open", "click", () => {
@@ -23020,7 +23181,7 @@ var __async = (__this, __arguments, generator) => {
         if (mq && mq.matches) showPane("form");
         let el = null;
         try { el = document.querySelector(sel); } catch (err) { el = null; }
-        if (!el && sel.indexOf(".sel-row") === 0) el = document.querySelector("#inst-selected .sel-row .sel-fill-zip");
+        if (!el && sel.indexOf(".sel-row") === 0) el = document.querySelector("#inst-selected .sel-row .sel-fill-addr");
         if (el) { if (el.scrollIntoView) el.scrollIntoView({ block: "center" }); el.focus(); }
       };
       on("missing-list", "click", (e) => go(e.target.closest(".miss-item")));
@@ -23098,12 +23259,12 @@ var __async = (__this, __arguments, generator) => {
     formatNo, formatNoLive, noDigitCount, noLengthOk, formatDateKR, parsePeriodText, josaEulReul,
     hangulLetter, instMarker, todayISO, addYearsISO, isISO, splitAddrNote, addrLine,
     // 기관
-    searchMatch, toChosung, mergeInstitutions, resolveWording, purposeSubjectRuns, isReady, hasAddr,
+    searchMatch, toChosung, mergeInstitutions, resolveWording, purposeSubjectRuns, isReady, hasAddr, formOf, formKinds, effectiveForm, wordingOfCat,
     // 최신화·다듬기
     parseUpdateJson, classifyUpdate, buildUpdateRequest, scrubText, buildPolishPrompt, validatePolish, polishWarnings, extractJson,
     // 기타
     newState, Store,
-    consts: { UNDERLINE_BRACKETS, COPY_SECTION_HEADING, TITLE, HEADS, LETTERS },
+    consts: { UNDERLINE_BRACKETS, COPY_SECTION_HEADING, TITLE, HEADS, LETTERS, INS_P_HEAD, INS_P_TAIL, INS_ITEMS },
   };
   root.__finorder = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;

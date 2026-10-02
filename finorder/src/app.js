@@ -20,7 +20,10 @@
  *     holders: [{ role: "plaintiff"|"defendant"|"third", name, no }],
  *     period: { start: "YYYY-MM-DD", end: "YYYY-MM-DD" },
  *     purpose: { type: "divorce"|"other", text },
- *     wording: "auto"|"은행"|"기관"|"사" }
+ *     wording: "auto"|"은행"|"기관"|"사",       // 은행·금융기관용 5.가의 호칭
+ *     formType: ""|"bank"|"insurance",            // 종류가 섞였을 때 지금 만들 신청서
+ *     insDate: "" | "YYYY-MM-DD" }                // 보험사용 5.의 보험 기준일
+ *   기관 객체의 cat이 "insurance"이면 보험사용, 그 밖은 은행·금융기관용(formOf).
  * ========================================================================== */
 (function () {
   "use strict";
@@ -61,6 +64,26 @@
   const L2_2_TAIL = "(송금 상대방, 상대방 계좌번호 및 은행 등 일체의 정보)을 회신하여 주시기 바랍니다(복수인 경우 각 계좌 모두).";
   const L2_3 = "위 각 항목은 PDF와 함께 XLSX 또는 CSV 형식의 전산자료로 제출하여 주시고, 거래코드의 설명과 통화·금액단위를 표시하여 주시기 바랍니다.";
 
+  // 보험사용 5.(SPEC 2-2장). 문안은 SPEC 코드 블록과 한 글자도 다르지 않아야 한다.
+  const INS_P_HEAD = "귀 회사에 ";
+  const INS_P_TAIL = "명의로 가입된 보험계약 중, 요구대상 거래기간 동안 유효하게 존속하였던 보험계약(해지·실효되었거나 만기가 도래한 계약을 포함합니다)에 관하여 아래 각 항목의 자료를 제출하여 주시기 바랍니다.";
+  // [종류, 마커, 문장]. {기준일}은 실행 시 날짜 run으로 바뀐다
+  const INS_ITEMS = [
+    ["l2", "1)", "보험·펀드·연금 등 가입내역 일체"],
+    ["l2c", "", "(다만, {기준일} 이후 신규로 체결되거나 변경된 계약이 있는 경우에는 해당 계약의 체결일 또는 변경일을 함께 기재하여 주시기 바랍니다.)"],
+    ["l2", "2)", "{기준일} 이전에 해지된 계약이 있는 경우, 해당 계약별 해지환급금의 지급내역 일체"],
+    ["l2", "3)", "{기준일} 기준 계약별 다음 사항"],
+    ["l3", "가.", "보험의 종류"],
+    ["l3", "나.", "증권번호"],
+    ["l3", "다.", "계약자·피보험자·수익자"],
+    ["l3", "라.", "계약일"],
+    ["l3", "마.", "월 보험료"],
+    ["l3", "바.", "계약상태"],
+    ["l3", "사.", "해약환급금 및 그 산출근거"],
+    ["l2", "4)", "보험계약대출의 실행 및 상환 내역, {기준일} 기준 대출잔액 및 위 3)항 기재 해약환급금에서 보험계약대출금이 이미 공제되어 있는지 여부"],
+    ["l2", "5)", "현재 시점의 해약환급금만을 제출하지 마시고, {기준일} 기준 해약환급금과 그 이후 현재까지의 변동내역을 구분하여 제출하여 주시기 바랍니다. 또한 각 항목별로 해당 사항이 없는 경우에는 “해당 없음”, 자료를 보유하고 있지 않은 경우에는 “자료 미보유”, 조회가 불가능한 경우에는 “조회 불가”라고 구분하여 회신하여 주시기 바랍니다."],
+  ];
+
   // 기관 순번: 가~허 28개. 29번째부터 "(29)" 표기.
   const LETTERS = "가나다라마바사아자차카타파하거너더러머버서어저처커터퍼허";
 
@@ -69,7 +92,7 @@
     caseNo: "「사건번호」", caseName: "「사건명」",
     plaintiff: "「원고 이름」", defendant: "「피고 이름」",
     ours: "「우리 측 지위」", oursName: "「우리 측 이름」",
-    inst: "「대상기관」", zip: "「우편번호」", addr: "「주소」",
+    inst: "「대상기관」", addr: "「주소」", insDate: "「보험 기준일」",
     hName: "「이름」", hNo: "「주민등록번호」",
     start: "「시작일」", end: "「종료일」", purpose: "「사용목적」",
   };
@@ -204,14 +227,14 @@
   }
 
   /* ---- 파일명 ---- */
-  /** 금융거래정보제출명령신청서_{사건번호 또는 날짜}.docx. 이름·번호는 쓰지 않는다. */
+  /** 금융거래정보제출명령신청서_{사건번호 또는 날짜}.docx (보험사용은 뒤에 _보험사). 이름·번호는 쓰지 않는다. */
   function makeFilename(state, now) {
     let base = clean(state && state.caseNo)
       .replace(/[\\/:*?"<>|\u0000-\u001f]/g, "_")
       .replace(/[. ]+$/, "")
       .slice(0, 60);
     if (!base) base = todayISO(now).replace(/-/g, "");
-    return "금융거래정보제출명령신청서_" + base + ".docx";
+    return "금융거래정보제출명령신청서_" + base + (effectiveForm(state || {}) === "insurance" ? "_보험사" : "") + ".docx";
   }
 
   /* ---- 초성 검색 ---- */
@@ -253,9 +276,8 @@
 
   /* ---- 기관 데이터 ---- */
   const STATUSES = ["verified", "user_provided", "needs_check"];
-  /** 주소가 있는가(우편번호는 없어도 된다. 제공 목록에 우편번호 열이 없기 때문) */
+  /** 주소가 있는가(우편번호는 쓰지 않는다) */
   const hasAddr = (i) => !!String((i && i.addr) || "").trim();
-  const hasZip = (i) => /^\d{5}$/.test(String((i && i.zip) || ""));
   /** 일반 항목으로 쓸 수 있는가: needs_check가 아니고 주소가 있어야 한다(needs_check는 직원이 확인·저장해야 풀린다) */
   const isReady = (i) => !!i && i.status !== "needs_check" && hasAddr(i);
 
@@ -266,10 +288,36 @@
     if (m && m[1]) return { addr: m[1].trim(), note: m[2].trim() };
     return { addr: s, note: "" };
   }
-  /** (우편번호) 주소 (참고). 우편번호가 없으면 앞 괄호를 뺀다. 값이 없으면 빈 문자열 */
+  /** 주소 (참고). 우편번호는 쓰지 않는다. 주소가 없으면 빈 문자열 */
   function addrLine(i) {
-    if (!i || (!i.zip && !i.addr)) return "";
-    return (i.zip ? "(" + i.zip + ") " : "") + (i.addr || "") + (i.note ? " (" + i.note + ")" : "");
+    if (!i || !String(i.addr || "").trim()) return "";
+    return i.addr + (i.note ? " (" + i.note + ")" : "");
+  }
+  /** 분류로 정하는 5.가 호칭: 은행·우체국·인터넷은행·저축은행은 "은행", 그 밖은 "기관" */
+  function wordingOfCat(cat) {
+    return ["bank", "post", "inet", "savings"].indexOf(cat) >= 0 ? "은행" : "기관";
+  }
+  /** 신청서 종류: 분류가 보험사이면 "insurance", 그 밖은 "bank" */
+  function formOf(inst) {
+    return inst && inst.cat === "insurance" ? "insurance" : "bank";
+  }
+  /** 선택된 기관의 종류들(처음 나온 순서, 중복 없음) */
+  function formKinds(insts) {
+    const out = [];
+    (insts || []).forEach((i) => { const f = formOf(i); if (out.indexOf(f) < 0) out.push(f); });
+    return out;
+  }
+  /**
+   * 지금 만들 신청서 종류. 종류가 하나면 그 종류, 섞이면 state.formType(선택에 있을 때)
+   * 아니면 먼저 선택한 기관의 종류. 선택이 없으면 state.formType 또는 "bank".
+   */
+  function effectiveForm(state, insts) {
+    state = state || {};
+    const kinds = formKinds(insts || resolveInsts(state));
+    const want = state.formType === "insurance" || state.formType === "bank" ? state.formType : "";
+    if (!kinds.length) return want || "bank";
+    if (kinds.length === 1) return kinds[0];
+    return kinds.indexOf(want) >= 0 ? want : kinds[0];
   }
   function normInst(raw, origin) {
     const o = Object.assign({}, raw);
@@ -279,7 +327,7 @@
     o.aliases = Array.isArray(o.aliases) ? o.aliases.map(String) : [];
     o.wording = o.wording === "은행" ? "은행" : "기관";
     o.popular = !!o.popular;
-    o.zip = clean(o.zip);
+    delete o.zip; // 우편번호는 쓰지 않는다(이미 저장된 문서에 있어도 무시)
     o.addr = clean(o.addr);
     o.note = clean(o.note);
     o.sources = Array.isArray(o.sources) ? o.sources : [];
@@ -308,7 +356,7 @@
       if (d.origin === "override") {
         const cur = byId[d.id];
         if (!cur) return;
-        ["name", "zip", "addr", "note", "status", "checkedAt", "sources", "memo"].forEach((k) => {
+        ["name", "addr", "note", "status", "checkedAt", "sources", "memo"].forEach((k) => {
           if (d[k] !== undefined) cur[k] = d[k];
         });
         cur.origin = "override";
@@ -387,21 +435,76 @@
   }
 
   function instAddrRuns(inst) {
-    const zip = clean(inst.zip), addr = clean(inst.addr), note = clean(inst.note);
-    if (!zip && !addr) return [seg("「주소 미입력」", { blank: true })];
-    const runs = [
-      zip ? seg("(" + zip + ")") : seg("(" + PH.zip + ")", { blank: true }),
-      seg(" "),
-      addr ? seg(addr) : seg(PH.addr, { blank: true }),
-    ];
+    const addr = clean(inst.addr), note = clean(inst.note);
+    if (!addr) return [seg("「주소 미입력」", { blank: true })];
+    const runs = [seg(addr)];
     if (note) runs.push(seg(" (" + note + ")"));
     return runs;
+  }
+  /** "…{기준일}…" 문장을 날짜 run으로 나눈다. 비어 있으면 자리표시 */
+  function withDate(text, dateRun) {
+    const parts = text.split("{기준일}");
+    const runs = [];
+    parts.forEach((t, i) => {
+      if (i) runs.push(Object.assign({}, dateRun));
+      if (t) runs.push(seg(t));
+    });
+    return runs;
+  }
+
+  /** 은행·금융기관용 5.(SPEC 2장) */
+  function composeBank5(state, holders, insts, push) {
+    const w = resolveWording(state.wording, insts);
+    const hRuns = [];
+    holders.forEach((h, i) => {
+      if (i) hRuns.push(seg(", "));
+      const no = formatNo(h.no);
+      hRuns.push(val(h.name, PH.hName), seg(" ("), no ? seg(no) : seg(PH.hNo, { blank: true }), seg(")"));
+    });
+    const lastName = clean(holders[holders.length - 1].name);
+    const josa = josaEulReul(lastName);
+    push({
+      k: "l1", sec: 5, marker: "가.",
+      runs: [seg("귀 " + w + "에 ")].concat(hRuns, [seg(josa + (holders.length > 1 ? " 각 " : " ") + "명의자로 " + L1A_TAIL)]),
+    });
+    push({ k: "l1", sec: 5, marker: "나.", runs: [seg(L1B_TEXT)] });
+    push({ k: "l2", sec: 5, marker: "1)", runs: [seg(L2_1)] });
+    push({
+      k: "l2", sec: 5, marker: "2)",
+      runs: [
+        seg(L2_2_HEAD),
+        seg((UNDERLINE_BRACKETS ? "[" : "") + L2_2_UL + (UNDERLINE_BRACKETS ? "]" : ""), { u: true }),
+        seg(L2_2_TAIL),
+      ],
+    });
+    push({ k: "l2", sec: 5, marker: "3)", runs: [seg(L2_3)] });
+  }
+  /** 보험사용 5.(SPEC 2-2장). 호칭은 항상 "귀 회사에", 번호가 10자리이면 라벨은 사업자등록번호 */
+  function composeInsurance5(state, holders, push) {
+    const hRuns = [];
+    holders.forEach((h, i) => {
+      if (i) hRuns.push(seg(", "));
+      const no = formatNo(h.no);
+      const label = noDigitCount(no) === 10 ? "사업자등록번호" : "주민등록번호";
+      hRuns.push(val(h.name, PH.hName), seg("(" + label + ": "), no ? seg(no) : seg(PH.hNo, { blank: true }), seg(")"));
+    });
+    push({ k: "p", sec: 5, runs: [seg(INS_P_HEAD)].concat(hRuns, [seg((holders.length > 1 ? " 각 " : " ") + INS_P_TAIL)]) });
+    const iso = clean(state.insDate);
+    const d = isISO(iso) ? formatDateKR(iso) : "";
+    const dateRun = d ? seg(d) : seg(PH.insDate, { blank: true });
+    INS_ITEMS.forEach((it) => {
+      const b = { k: it[0], sec: 5, runs: withDate(it[2], dateRun) };
+      if (it[1]) b.marker = it[1];
+      push(b);
+    });
   }
 
   /** SPEC 2장 문안을 블록 배열로 만든다. 미리보기·복사·DOCX가 모두 이 결과를 쓴다. */
   function composeDoc(state) {
     state = state || {};
-    const insts = resolveInsts(state);
+    const allInsts = resolveInsts(state);
+    const form = effectiveForm(state, allInsts);
+    const insts = allInsts.filter((i) => formOf(i) === form); // 고른 종류의 기관만 1.에 들어간다
     const holders = Array.isArray(state.holders) && state.holders.length ? state.holders : [{ role: "third", name: "", no: "" }];
     const period = state.period || {};
     const purpose = state.purpose || {};
@@ -471,30 +574,8 @@
 
     // 5. 요구하는 거래정보 등의 내용
     push({ k: "h", sec: 5, text: HEADS[4] });
-    const w = resolveWording(state.wording, insts);
-    const hRuns = [];
-    holders.forEach((h, i) => {
-      if (i) hRuns.push(seg(", "));
-      const no = formatNo(h.no);
-      hRuns.push(val(h.name, PH.hName), seg(" ("), no ? seg(no) : seg(PH.hNo, { blank: true }), seg(")"));
-    });
-    const lastName = clean(holders[holders.length - 1].name);
-    const josa = josaEulReul(lastName);
-    push({
-      k: "l1", sec: 5, marker: "가.",
-      runs: [seg("귀 " + w + "에 ")].concat(hRuns, [seg(josa + (holders.length > 1 ? " 각 " : " ") + "명의자로 " + L1A_TAIL)]),
-    });
-    push({ k: "l1", sec: 5, marker: "나.", runs: [seg(L1B_TEXT)] });
-    push({ k: "l2", sec: 5, marker: "1)", runs: [seg(L2_1)] });
-    push({
-      k: "l2", sec: 5, marker: "2)",
-      runs: [
-        seg(L2_2_HEAD),
-        seg((UNDERLINE_BRACKETS ? "[" : "") + L2_2_UL + (UNDERLINE_BRACKETS ? "]" : ""), { u: true }),
-        seg(L2_2_TAIL),
-      ],
-    });
-    push({ k: "l2", sec: 5, marker: "3)", runs: [seg(L2_3)] });
+    if (form === "insurance") composeInsurance5(state, holders, push);
+    else composeBank5(state, holders, insts, push);
     return blocks;
   }
 
@@ -516,8 +597,8 @@
           lines.push(b.marker + " " + b.name);
           if (b.addr) lines.push(b.addr);
           break;
-        case "holder": case "p": lines.push(b.text); break;
-        case "l1": case "l2": lines.push(b.marker + " " + b.text); break;
+        case "holder": case "p": case "l2c": lines.push(b.text); break;
+        case "l1": case "l2": case "l3": lines.push(b.marker + " " + b.text); break;
         default: break;
       }
     });
@@ -593,7 +674,9 @@
           break;
         }
         case "holder": case "p":
-          out.push(para({ spacing: spacing(0, 0), keepLines: true }, runsOf(b.runs)));
+          // 보험사용 5.의 첫 문단은 양쪽 정렬, 소제목과 1) 사이에 빈 줄 하나 정도의 간격
+          if (b.k === "p" && b.sec === 5) out.push(para({ alignment: AlignmentType.BOTH, spacing: spacing(0, 480) }, runsOf(b.runs)));
+          else out.push(para({ spacing: spacing(0, 0), keepLines: true }, runsOf(b.runs)));
           break;
         case "l1":
           out.push(
@@ -607,6 +690,17 @@
           out.push(
             para(
               { alignment: AlignmentType.BOTH, indent: { left: 880, hanging: 440 }, tabStops: [{ type: TabStopType.LEFT, position: 880 }], spacing: spacing(0, 0) },
+              [run(b.marker), tabRun()].concat(runsOf(b.runs))
+            )
+          );
+          break;
+        case "l2c": // 1) 아래 이어지는 번호 없는 문단: l2와 같은 왼쪽 880, 내어쓰기 없음
+          out.push(para({ alignment: AlignmentType.BOTH, indent: { left: 880 }, spacing: spacing(0, 0) }, runsOf(b.runs)));
+          break;
+        case "l3": // 3) 아래 가.~사.: 왼쪽 1320, 내어쓰기 440
+          out.push(
+            para(
+              { alignment: AlignmentType.BOTH, indent: { left: 1320, hanging: 440 }, tabStops: [{ type: TabStopType.LEFT, position: 1320 }], spacing: spacing(0, 0) },
               [run(b.marker), tabRun()].concat(runsOf(b.runs))
             )
           );
@@ -650,6 +744,7 @@
     const items = [];
     const need = (sev, msg, go, soft) => items.push({ sev, msg, go: go || "", soft: !!soft });
     const insts = resolveInsts(state);
+    const form = effectiveForm(state, insts);
     if (!clean(state.caseNo)) need("req", "사건번호 미입력", "#case-no");
     if (!clean(state.caseName)) need("req", "사건명 미입력", "#case-name");
     if (!clean(state.plaintiff)) need("req", "원고 이름 미입력", "#plaintiff");
@@ -658,15 +753,15 @@
     if (!insts.length) need("req", "대상기관 1곳 이상 선택 필요", "#inst-search");
     insts.forEach((i) => {
       if (isReady(i)) return;
-      const go = '.sel-row[data-id="' + i.id + '"] .sel-fill-zip';
+      const go = '.sel-row[data-id="' + i.id + '"] .sel-fill-addr';
       need("req", (i.short || i.name) + (hasAddr(i) ? " 주소 확인 필요(확인 후 저장)" : " 주소 미입력"), go);
     });
-    // 우편번호가 없는 기관은 문서에 주소만 표기된다. 흔한 경우라 저장 확인 단계는 걸지 않는다(soft)
-    const noZip = insts.filter((i) => isReady(i) && !hasZip(i));
-    if (noZip.length) {
-      const names = noZip.slice(0, 3).map((i) => i.short || i.name).join(", ") + (noZip.length > 3 ? " 외 " + (noZip.length - 3) + "곳" : "");
-      need("warn", "우편번호 없는 기관 " + noZip.length + "곳(" + names + "): 문서에는 우편번호 없이 주소만 표기됩니다", ".sel-row[data-id=\"" + noZip[0].id + "\"] .sel-edit", true);
+    // 신청서 종류: 은행류와 보험사가 섞이면 알리되(soft) 저장 확인 단계는 걸지 않는다
+    const kinds = formKinds(insts);
+    if (kinds.length > 1) {
+      need("warn", "은행류와 보험사가 함께 선택됨: 신청서는 종류별로 따로 저장(지금은 " + (form === "insurance" ? "보험사용" : "은행·금융기관용") + ")", "#form-" + form, true);
     }
+    if (form === "insurance" && !isISO(clean(state.insDate))) need("req", "보험 기준일 미입력", "#ins-date");
     const holders = state.holders || [];
     holders.forEach((h, idx) => {
       const k = holders.length > 1 ? "명의인 " + (idx + 1) + " " : "명의인 ";
@@ -776,7 +871,7 @@
    * 최신화 항목 한 건을 현재 목록과 비교한다.
    * ctx: { byId: {id: 기관}, catIds: [], today }
    * 반환: { id, kind: "changed"|"new"|"same"|"invalid", reasons: [], cur, next }
-   * 적용 가능 조건: 우편번호는 비어 있거나 5자리 문자열, 주소 비어 있지 않음, 출처 URL 1개 이상
+   * 적용 가능 조건: 주소 비어 있지 않음(괄호 없음), 출처 URL 1개 이상. 우편번호는 쓰지 않는다.
    */
   function classifyUpdate(item, ctx) {
     const reasons = [];
@@ -784,11 +879,6 @@
     const id = typeof item.id === "string" ? item.id.trim() : "";
     if (!/^[a-z0-9][a-z0-9-]*$/.test(id)) reasons.push("id 형식 오류");
     const cur = (ctx.byId && ctx.byId[id]) || null;
-
-    let zip = "";
-    if (typeof item.zip === "string") zip = item.zip.trim();
-    else if (item.zip != null) reasons.push("우편번호는 문자열이어야 함");
-    if (zip && !/^\d{5}$/.test(zip)) reasons.push("우편번호 5자리 아님");
 
     let addr = typeof item.addr === "string" ? clean(item.addr) : "";
     let note = typeof item.note === "string" ? clean(item.note) : "";
@@ -803,7 +893,7 @@
     const status = item.status === "verified" && hosts.length >= 2 ? "verified" : "needs_check";
     const checkedAt = isISO(item.checkedAt) ? item.checkedAt : ctx.today || todayISO();
     const memo = typeof item.memo === "string" ? item.memo.trim() : "";
-    const next = { zip, addr, note, status, checkedAt, sources, memo };
+    const next = { addr, note, status, checkedAt, sources, memo };
 
     if (!cur) {
       const name = typeof item.name === "string" ? clean(item.name) : "";
@@ -813,29 +903,29 @@
       if (ctx.byNorm && name && ctx.byNorm[normName(name)]) reasons.push("같은 명칭의 기관이 이미 있음");
       next.name = name;
       next.cat = item.cat;
-      next.wording = item.wording === "은행" ? "은행" : "기관";
+      next.wording = wordingOfCat(item.cat);
       return { id, kind: reasons.length ? "invalid" : "new", reasons, cur: null, next };
     }
     if (reasons.length) return { id, kind: "invalid", reasons, cur, next };
-    const same = cur.zip === zip && cur.addr === addr && (cur.note || "") === note;
+    const same = cur.addr === addr && (cur.note || "") === note;
     return { id, kind: same ? "same" : "changed", reasons, cur, next };
   }
   function buildUpdateRequest(list, today) {
-    const rows = list.map((i) => ({ id: i.id, name: i.name, zip: i.zip, addr: i.addr, note: i.note }));
+    const rows = list.map((i) => ({ id: i.id, name: i.name, addr: i.addr, note: i.note }));
     return [
-      "아래 금융기관 목록의 본점 소재지(도로명주소)와 우편번호를 웹 검색으로 확인하여, 지정한 JSON 형식으로만 답해 주십시오. 오늘 날짜는 " + (today || todayISO()) + "입니다.",
+      "아래 금융기관 목록의 본점 소재지(도로명주소)를 웹 검색으로 확인하여, 지정한 JSON 형식으로만 답해 주십시오. 오늘 날짜는 " + (today || todayISO()) + "입니다.",
       "",
       "규칙",
       "1. 기억에 의존하지 말고 반드시 웹 검색으로 확인합니다. 추정하거나 지어내지 않습니다.",
       "2. 주소는 법인 등기부상 본점 소재지(공시·약관의 '본점 소재지' 표기)를 씁니다. 대표 사무소, 영업점, 별관 주소가 다르면 memo에만 적습니다.",
-      "3. addr는 도로명주소(번지·층 포함, 참고 괄호 제외), note는 괄호 안에 들어갈 참고(법정동, 건물명), zip은 5자리 새우편번호(문자열)이며 확인하지 못하면 빈 문자열입니다.",
-      "4. 서로 독립된 출처 2곳 이상(공식 홈페이지, 약관, 전자공시, 금융감독원 등)에서 도로명주소가 일치하고, 우편번호가 공식 페이지 또는 정부 도로명주소 DB에서 확인될 때만 status를 \"verified\"로 합니다. 그 밖에는 \"needs_check\"입니다.",
-      "5. 확인하지 못한 항목은 addr와 zip을 \"\"(빈 문자열)로 비웁니다.",
+      "3. addr는 도로명주소(번지·층 포함, 참고 괄호 제외), note는 괄호 안에 들어갈 참고(법정동, 건물명)이며 없으면 빈 문자열입니다. 우편번호는 쓰지 않습니다.",
+      "4. 서로 독립된 출처 2곳 이상(공식 홈페이지, 약관, 전자공시, 금융감독원 등)에서 도로명주소가 일치할 때만 status를 \"verified\"로 합니다. 그 밖에는 \"needs_check\"입니다.",
+      "5. 확인하지 못한 항목은 addr를 \"\"(빈 문자열)로 비웁니다.",
       "6. 항목마다 sources에 출처 {label, url}을 1개 이상 적습니다. url이 없으면 적용되지 않습니다. 검색 요약문, 위키, 채용·사업자정보 사이트는 출처로 쓰지 않습니다.",
       "7. 아래 목록에 없는 id를 새로 만들지 않습니다. 바뀐 것이 없으면 현재 값을 그대로 돌려줍니다.",
       "",
       "응답 형식(JSON 배열만, 설명 없이)",
-      '[{"id":"","zip":"","addr":"","note":"","status":"verified","checkedAt":"YYYY-MM-DD","sources":[{"label":"","url":"https://"}],"memo":""}]',
+      '[{"id":"","addr":"","note":"","status":"verified","checkedAt":"YYYY-MM-DD","sources":[{"label":"","url":"https://"}],"memo":""}]',
       "",
       "현재 목록",
       JSON.stringify(rows, null, 1),
@@ -888,7 +978,9 @@
         .sort((a, b) => String(a.name).localeCompare(String(b.name), "ko"));
     },
     stamp(doc) {
-      return JSON.parse(JSON.stringify(Object.assign({}, doc, { updatedAt: new Date().toISOString(), updatedBy: this.uid || "" })));
+      const d = JSON.parse(JSON.stringify(Object.assign({}, doc, { updatedAt: new Date().toISOString(), updatedBy: this.uid || "" })));
+      delete d.zip; // 우편번호는 저장하지 않는다
+      return d;
     },
 
     /** db 쓰기 시도. 성공하면 true. 권한 거부 계열이면 이번 방문에서는 더 시도하지 않는다 */
@@ -995,6 +1087,7 @@
       perMode: "cal", perErr: { start: false, end: false },
       purpose: { type: "divorce", text: "" },
       wording: "auto",
+      formType: "", insDate: "",
     };
   }
 
@@ -1138,7 +1231,9 @@
           return '<div class="d-inst"><span class="d-letter">' + esc(b.marker) + '</span><span class="d-name">' + runsHTML(b.nameRuns) + "</span>" +
             (b.addrRuns.length ? '<span class="d-addr">' + runsHTML(b.addrRuns) + "</span>" : "") + "</div>";
         case "holder": return '<p class="d-holder">' + runsHTML(b.runs) + "</p>";
-        case "p": return '<p class="d-p">' + runsHTML(b.runs) + "</p>";
+        case "p": return '<p class="d-p" data-sec="' + b.sec + '">' + runsHTML(b.runs) + "</p>";
+        case "l2c": return '<p class="d-l2c">' + runsHTML(b.runs) + "</p>";
+        case "l3": return '<p class="d-l3"><span class="d-mk">' + esc(b.marker) + "</span>" + runsHTML(b.runs) + "</p>";
         case "l1": return '<p class="d-l1"><span class="d-mk">' + esc(b.marker) + "</span>" + runsHTML(b.runs) + "</p>";
         case "l2": return '<p class="d-l2"><span class="d-mk">' + esc(b.marker) + "</span>" + runsHTML(b.runs) + "</p>";
         default: return "";
@@ -1157,6 +1252,7 @@
     /* ---- 5.4 점검 목록·버튼 상태 ---- */
     function renderMissing() {
       const items = computeMissing(state);
+      const hard = items.filter((m) => !m.soft).length; // soft(종류 혼합 안내)는 DOCX 저장 확인 단계에서 세지 않는다
       const ul = $("missing-list");
       if (ul) {
         // 내용이 같으면 다시 쓰지 않는다(aria-live 목록이 키 입력마다 반복 낭독되지 않게)
@@ -1173,7 +1269,7 @@
       const btn = $("btn-docx");
       if (btn) {
         if (!btn.dataset.label) btn.dataset.label = btn.textContent;
-        if (ui.docxArmed && items.length) btn.textContent = "미입력 " + items.length + "건 — 한 번 더 누르면 그대로 저장합니다";
+        if (ui.docxArmed && hard) btn.textContent = "미입력 " + hard + "건 — 한 번 더 누르면 그대로 저장합니다";
         else {
           if (ui.docxArmed) disarmDocx();
           btn.textContent = btn.dataset.label;
@@ -1221,7 +1317,27 @@
       el.textContent = msgs.length ? msgs.join(" ") : noteDefault;
       el.classList.toggle("err", msgs.length > 0);
     }
+    /** 선택한 기관의 종류에 맞춰 종류 전환·보험 기준일·5.가 호칭 영역을 맞춘다 */
+    function syncForm() {
+      const insts = state.selected.map(inst).filter(Boolean);
+      const kinds = formKinds(insts);
+      state.formType = kinds.length ? effectiveForm(state, insts) : "";
+      const form = state.formType || "bank";
+      const sw = $("form-switch");
+      if (sw) sw.hidden = kinds.length < 2;
+      const count = (f) => insts.filter((i) => formOf(i) === f).length;
+      setText("form-bank-n", count("bank") + "곳");
+      setText("form-insurance-n", count("insurance") + "곳");
+      const rb = $("form-bank"), ri = $("form-insurance");
+      if (rb) rb.checked = form === "bank";
+      if (ri) ri.checked = form === "insurance";
+      const ib = $("ins-block");
+      if (ib) ib.hidden = form !== "insurance";
+      const wb = $("wording-block");
+      if (wb) wb.hidden = form === "insurance";
+    }
     function render() {
+      syncForm();
       renderPreview();
       renderMissing();
       markHolderErrors();
@@ -1236,7 +1352,7 @@
       if (ui.ready) list = list.filter(isReady);
       return q ? list.filter((i) => searchMatch(i, q)) : list.filter((i) => i.cat === ui.cat);
     }
-    // 상태 배지(주소 미확인·양식 기준)는 data-status로 CSS가 그린다. JS는 직원이 추가한 기관의 '추가'만 만든다.
+    // 상태 배지(주소 미확인·제공 목록 기준)는 data-status로 CSS가 그린다. JS는 직원이 추가한 기관의 '추가'만 만든다.
     function badgeHTML(i) {
       return i.origin === "custom" ? '<span class="badge">추가</span>' : "";
     }
@@ -1322,7 +1438,7 @@
       const ol = $("inst-selected");
       if (!ol) return;
       // 입력 중이던 주소 입력칸의 값과 포커스를 보존한다
-      const FILL = ["name", "zip", "addr", "note"];
+      const FILL = ["name", "addr", "note"];
       const saved = {};
       let focusKey = "";
       $$(".sel-row", ol).forEach((r) => {
@@ -1332,18 +1448,25 @@
         }
         if (r.contains(document.activeElement)) focusKey = r.dataset.id + "|" + String(document.activeElement.className || "").split(" ")[0];
       });
+      // 순번은 문서에 나오는 순번(종류 안에서의 순번). 종류가 섞였을 때만 종류 표시를 붙인다
+      const all = state.selected.map(inst);
+      const mixed = formKinds(all.filter(Boolean)).length > 1;
+      const seen = { bank: 0, insurance: 0 };
       ol.innerHTML = state.selected
         .map((id, idx) => {
           const i = inst(id);
           if (!i) return "";
+          const f = formOf(i);
+          const num = ++seen[f];
+          const sameKind = (x) => x && formOf(x) === f;
+          const hasPrev = all.slice(0, idx).some(sameKind), hasNext = all.slice(idx + 1).some(sameKind);
           const fill = !isReady(i) || ui.editing[id];
-          const last = idx === state.selected.length - 1;
-          let main = '<b class="sel-name">' + esc(i.name || i.short) + "</b>";
+          const grp = mixed ? '<span class="sel-grp">' + (f === "insurance" ? "보험" : "은행") + "</span>" : "";
+          let main = '<b class="sel-name">' + esc(i.name || i.short) + grp + "</b>";
           if (fill) {
             // 명칭은 미확인 상호 후보를 미리 채워 직원이 확인·수정한다
             main +=
               '<div class="sel-fill"><input class="sel-fill-name" placeholder="기관 명칭(신청서에 쓰는 정식 상호)" aria-label="' + esc(i.short) + ' 기관 명칭" autocomplete="off" value="' + esc(i.name) + '">' +
-              '<input class="sel-fill-zip" inputmode="numeric" maxlength="5" placeholder="우편번호" aria-label="' + esc(i.short) + ' 우편번호" autocomplete="off" value="' + esc(hasAddr(i) ? i.zip : "") + '">' +
               '<input class="sel-fill-addr" placeholder="도로명주소(번지, 층까지)" aria-label="' + esc(i.short) + ' 도로명주소" autocomplete="off" value="' + esc(hasAddr(i) ? i.addr : "") + '">' +
               '<input class="sel-fill-note" placeholder="참고(선택): 법정동, 건물명" aria-label="' + esc(i.short) + ' 참고" autocomplete="off" value="' + esc(hasAddr(i) ? i.note : "") + '">' +
               '<button type="button" class="sel-fill-save">저장</button>' +
@@ -1353,9 +1476,9 @@
             main += '<span class="sel-addr">' + esc(addrLine(i)) + "</span>" + '<button type="button" class="btn ghost sm sel-edit" aria-label="' + esc(i.short) + ' 주소 수정">주소 수정</button>';
           }
           return (
-            '<li class="sel-row" data-id="' + esc(id) + '"><span class="sel-letter">' + esc(instMarker(idx + 1)) + '</span><div class="sel-main">' + main + "</div>" +
-            '<div class="sel-ctl"><button type="button" class="sel-up" aria-label="위로"' + (idx === 0 ? " disabled" : "") + '>↑</button>' +
-            '<button type="button" class="sel-down" aria-label="아래로"' + (last ? " disabled" : "") + '>↓</button>' +
+            '<li class="sel-row" data-id="' + esc(id) + '"' + (mixed ? ' data-form="' + f + '"' : "") + '><span class="sel-letter">' + esc(instMarker(num)) + '</span><div class="sel-main">' + main + "</div>" +
+            '<div class="sel-ctl"><button type="button" class="sel-up" aria-label="위로"' + (hasPrev ? "" : " disabled") + '>↑</button>' +
+            '<button type="button" class="sel-down" aria-label="아래로"' + (hasNext ? "" : " disabled") + '>↓</button>' +
             '<button type="button" class="sel-del" aria-label="제거">✕</button></div></li>'
           );
         })
@@ -1385,9 +1508,14 @@
       if (!on && at >= 0) state.selected.splice(at, 1);
       selectionChanged();
     }
+    /** 위·아래 이동: 문서 순번은 종류 안에서 매겨지므로 같은 종류의 가장 가까운 행과 맞바꾼다 */
     function moveInst(id, d) {
-      const i = state.selected.indexOf(id), j = i + d;
-      if (i < 0 || j < 0 || j >= state.selected.length) return;
+      const i = state.selected.indexOf(id);
+      if (i < 0) return;
+      const f = formOf(inst(id));
+      let j = i + d;
+      while (j >= 0 && j < state.selected.length && formOf(inst(state.selected[j])) !== f) j += d;
+      if (j < 0 || j >= state.selected.length) return;
       const t = state.selected[i]; state.selected[i] = state.selected[j]; state.selected[j] = t;
       renderSelected();
       render();
@@ -1400,7 +1528,7 @@
       // 참고 칸이 비어 있고 주소 끝에 괄호가 붙어 있으면 참고로 나눈다
       const sp = f.note ? { addr: clean(f.addr), note: clean(f.note).replace(/^\((.*)\)$/, "$1") } : splitAddrNote(f.addr);
       const fields = {
-        name: f.name, zip: f.zip, addr: sp.addr, note: sp.note, status: "user_provided", checkedAt: todayISO(),
+        name: f.name, addr: sp.addr, note: sp.note, status: "user_provided", checkedAt: todayISO(),
         sources: [{ label: "직원 직접 입력", url: "" }],
       };
       let doc;
@@ -1415,14 +1543,13 @@
     }
     async function onFillSave(row) {
       const id = row.dataset.id;
-      const n = row.querySelector(".sel-fill-name"), z = row.querySelector(".sel-fill-zip"), a = row.querySelector(".sel-fill-addr"), t = row.querySelector(".sel-fill-note"), err = row.querySelector(".sel-fill-err");
-      const name = clean(n && n.value), zip = digitsOnly(z.value);
+      const n = row.querySelector(".sel-fill-name"), a = row.querySelector(".sel-fill-addr"), t = row.querySelector(".sel-fill-note"), err = row.querySelector(".sel-fill-err");
+      const name = clean(n && n.value);
       const bad = (el, m) => { if (err) err.textContent = m; el.setAttribute("aria-invalid", "true"); el.focus(); };
       if (n && !name) return bad(n, "기관 명칭을 입력해 주십시오.");
       if (!clean(a.value)) return bad(a, "도로명주소를 입력해 주십시오.");
-      if (zip && !/^\d{5}$/.test(zip)) return bad(z, "우편번호는 5자리이거나 비워 두십시오.");
       delete ui.editing[id];
-      const where = await saveAddress(id, { name: name || (inst(id) || {}).name, zip, addr: a.value, note: t ? t.value : "" });
+      const where = await saveAddress(id, { name: name || (inst(id) || {}).name, addr: a.value, note: t ? t.value : "" });
       toast("기관 정보를 저장했습니다." + WHERE[where], where === "fallback" ? 6000 : 0);
     }
 
@@ -1473,23 +1600,21 @@
       if (name !== undefined && $("add-name")) $("add-name").value = name;
       const cs = $("add-cat");
       if (cs && Array.prototype.some.call(cs.options, (o) => o.value === ui.cat)) cs.value = ui.cat;
-      const focusEl = name ? $("add-zip") : $("add-name");
+      const focusEl = name ? $("add-addr") : $("add-name");
       if (focusEl) focusEl.focus();
     }
     function closeAdd() {
       const f = $("add-inst");
       if (f) f.hidden = true;
-      ["add-name", "add-zip", "add-addr", "add-note"].forEach((id) => { const e = $(id); if (e) e.value = ""; });
+      ["add-name", "add-addr", "add-note"].forEach((id) => { const e = $(id); if (e) e.value = ""; });
       addMsg("");
     }
     async function saveAdd() {
       const name = clean($("add-name") && $("add-name").value);
-      const zip = digitsOnly($("add-zip") && $("add-zip").value);
       const addrRaw = clean($("add-addr") && $("add-addr").value);
       const noteIn = clean($("add-note") && $("add-note").value).replace(/^\((.*)\)$/, "$1");
       if (!name) return addMsg("기관 명칭을 입력해 주십시오.");
       if (!addrRaw) return addMsg("도로명주소를 입력해 주십시오.");
-      if (zip && !/^\d{5}$/.test(zip)) return addMsg("우편번호는 5자리이거나 비워 두십시오.");
       const nn = normName(name);
       const dup = catalogList.find((i) => normName(i.name) === nn || normName(i.short) === nn);
       if (dup) {
@@ -1499,11 +1624,11 @@
       const sp = noteIn ? { addr: addrRaw, note: noteIn } : splitAddrNote(addrRaw);
       const id = "c-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
       const catSel = $("add-cat") ? $("add-cat").value : categories()[0].id;
-      const wording = $("add-wording") && $("add-wording").value === "은행" ? "은행" : "기관";
+      const catId = categories().some((c) => c.id === catSel) ? catSel : categories()[0].id;
       const doc = {
-        id, origin: "custom", cat: categories().some((c) => c.id === catSel) ? catSel : categories()[0].id,
-        short: name, name, aliases: [], wording, popular: false,
-        zip, addr: sp.addr, note: sp.note, status: "user_provided", checkedAt: todayISO(),
+        id, origin: "custom", cat: catId,
+        short: name, name, aliases: [], wording: wordingOfCat(catId), popular: false,
+        addr: sp.addr, note: sp.note, status: "user_provided", checkedAt: todayISO(),
         sources: [{ label: "직원 직접 입력", url: "" }], memo: "", createdAt: new Date().toISOString(),
       };
       const where = await Store.putInst(doc);
@@ -1554,7 +1679,7 @@
         "</tbody></table>";
     }
     const KIND_LABEL = { changed: "변경", new: "신규", same: "동일", invalid: "형식 오류" };
-    function nextLine(n) { return n ? "(" + n.zip + ") " + n.addr + (n.note ? " (" + n.note + ")" : "") : ""; }
+    function nextLine(n) { return n ? n.addr + (n.note ? " (" + n.note + ")" : "") : ""; }
     function checkUpdate() {
       const out = $("upd-diff");
       if (!out) return;
@@ -1600,11 +1725,11 @@
         if (r.kind === "new") {
           doc = {
             id, origin: "custom", cat: r.next.cat, short: r.next.name, name: r.next.name, aliases: [], wording: r.next.wording, popular: false,
-            zip: r.next.zip, addr: r.next.addr, note: r.next.note, status: r.next.status, checkedAt: r.next.checkedAt, sources: r.next.sources, memo: r.next.memo, createdAt: new Date().toISOString(),
+            addr: r.next.addr, note: r.next.note, status: r.next.status, checkedAt: r.next.checkedAt, sources: r.next.sources, memo: r.next.memo, createdAt: new Date().toISOString(),
           };
         } else {
           const raw = Store.rawInst(id);
-          const fields = { zip: r.next.zip, addr: r.next.addr, note: r.next.note, status: r.next.status, checkedAt: r.next.checkedAt, sources: r.next.sources };
+          const fields = { addr: r.next.addr, note: r.next.note, status: r.next.status, checkedAt: r.next.checkedAt, sources: r.next.sources };
           if (r.next.memo) fields.memo = r.next.memo;
           doc = r.cur.origin === "custom" ? Object.assign({}, raw, fields, { id, origin: "custom" }) : Object.assign({}, raw && raw.origin === "override" ? raw : {}, fields, { id, origin: "override" });
         }
@@ -1888,7 +2013,7 @@
       }
     }
     function onDocxClick() {
-      const n = computeMissing(state).length;
+      const n = computeMissing(state).filter((m) => !m.soft).length;
       if (n && !ui.docxArmed) {
         ui.docxArmed = true;
         const btn = $("btn-docx");
@@ -1912,8 +2037,9 @@
       state.perErr = fresh.perErr;
       state.purpose = fresh.purpose;
       state.wording = "auto";
+      state.formType = ""; state.insDate = "";
       ui.search = ""; ui.polish = null; ui.editing = {}; ui.diff = [];
-      ["case-no", "case-name", "plaintiff", "defendant", "inst-search", "purpose-text", "set-name", "upd-paste"].forEach((id) => { const e = $(id); if (e) e.value = ""; });
+      ["case-no", "case-name", "plaintiff", "defendant", "inst-search", "purpose-text", "set-name", "upd-paste", "ins-date"].forEach((id) => { const e = $(id); if (e) e.value = ""; });
       ["ours-plaintiff", "ours-defendant"].forEach((id) => { const e = $(id); if (e) e.checked = false; });
       if ($("purpose-divorce")) $("purpose-divorce").checked = true;
       if ($("purpose-other")) $("purpose-other").checked = false;
@@ -1990,6 +2116,15 @@
       on("defendant", "input", (e) => { state.defendant = e.target.value; syncHolderNames(); render(); });
       ["ours-plaintiff", "ours-defendant"].forEach((id) => on(id, "change", (e) => { if (e.target.checked) { state.ours = e.target.value; followOpponent(); render(); } }));
       on("wording", "change", (e) => { state.wording = e.target.value; render(); });
+      // 신청서 종류 전환과 보험 기준일
+      ["form-bank", "form-insurance"].forEach((id) => on(id, "change", (e) => {
+        if (!e.target.checked) return;
+        state.formType = e.target.value === "insurance" ? "insurance" : "bank";
+        render();
+      }));
+      const onInsDate = (e) => { state.insDate = isISO(e.target.value) ? e.target.value : ""; render(); };
+      on("ins-date", "input", onInsDate);
+      on("ins-date", "change", onInsDate);
 
       // 기관 검색·분류·목록
       const onSearch = (e) => { ui.search = e.target.value; renderCats(); renderInstList(); };
@@ -2040,11 +2175,10 @@
         else if (b.classList.contains("sel-down")) moveInst(id, 1);
         else if (b.classList.contains("sel-del")) toggleInst(id, false);
         else if (b.classList.contains("sel-fill-save")) onFillSave(row);
-        else if (b.classList.contains("sel-edit")) { ui.editing[id] = true; renderSelected(); const z = $$('.sel-row[data-id="' + id + '"] .sel-fill-zip')[0]; if (z) z.focus(); }
+        else if (b.classList.contains("sel-edit")) { ui.editing[id] = true; renderSelected(); const z = $$('.sel-row[data-id="' + id + '"] .sel-fill-addr')[0]; if (z) z.focus(); }
         else if (b.classList.contains("sel-fill-cancel")) { delete ui.editing[id]; renderSelected(); }
       });
       on("inst-selected", "input", (e) => {
-        if (e.target.classList.contains("sel-fill-zip")) e.target.value = digitsOnly(e.target.value).slice(0, 5);
         if (e.target.hasAttribute("aria-invalid")) e.target.removeAttribute("aria-invalid");
       });
       on("inst-selected", "keydown", (e) => {
@@ -2058,8 +2192,7 @@
       on("btn-add-inst-open", "click", () => { const f = $("add-inst"); if (f && !f.hidden) closeAdd(); else openAdd(); });
       on("add-save", "click", saveAdd);
       on("add-cancel", "click", closeAdd);
-      on("add-zip", "input", (e) => { e.target.value = digitsOnly(e.target.value).slice(0, 5); });
-      ["add-name", "add-zip", "add-addr", "add-note"].forEach((id) => on(id, "keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); saveAdd(); } }));
+      ["add-name", "add-addr", "add-note"].forEach((id) => on(id, "keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); saveAdd(); } }));
 
       // 최신화
       on("btn-update-open", "click", () => {
@@ -2155,7 +2288,7 @@
         if (mq && mq.matches) showPane("form");
         let el = null;
         try { el = document.querySelector(sel); } catch (err) { el = null; }
-        if (!el && sel.indexOf(".sel-row") === 0) el = document.querySelector("#inst-selected .sel-row .sel-fill-zip");
+        if (!el && sel.indexOf(".sel-row") === 0) el = document.querySelector("#inst-selected .sel-row .sel-fill-addr");
         if (el) { if (el.scrollIntoView) el.scrollIntoView({ block: "center" }); el.focus(); }
       };
       on("missing-list", "click", (e) => go(e.target.closest(".miss-item")));
@@ -2233,12 +2366,12 @@
     formatNo, formatNoLive, noDigitCount, noLengthOk, formatDateKR, parsePeriodText, josaEulReul,
     hangulLetter, instMarker, todayISO, addYearsISO, isISO, splitAddrNote, addrLine,
     // 기관
-    searchMatch, toChosung, mergeInstitutions, resolveWording, purposeSubjectRuns, isReady, hasAddr,
+    searchMatch, toChosung, mergeInstitutions, resolveWording, purposeSubjectRuns, isReady, hasAddr, formOf, formKinds, effectiveForm, wordingOfCat,
     // 최신화·다듬기
     parseUpdateJson, classifyUpdate, buildUpdateRequest, scrubText, buildPolishPrompt, validatePolish, polishWarnings, extractJson,
     // 기타
     newState, Store,
-    consts: { UNDERLINE_BRACKETS, COPY_SECTION_HEADING, TITLE, HEADS, LETTERS },
+    consts: { UNDERLINE_BRACKETS, COPY_SECTION_HEADING, TITLE, HEADS, LETTERS, INS_P_HEAD, INS_P_TAIL, INS_ITEMS },
   };
   root.__finorder = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;

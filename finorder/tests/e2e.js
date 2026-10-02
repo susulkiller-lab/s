@@ -1,5 +1,5 @@
 // 브라우저 E2E(실제 Chromium). 사전 준비: npm i playwright-core (저장소 밖), 실행: LC_ALL=C.UTF-8 NODE_PATH=<node_modules> node tests/e2e.js
-// 먼저 python3 finorder/build.py 로 dist/finorder.standalone.html 을 만든다. 결과 이미지는 tests/e2e-out/(커밋 제외).
+// 먼저 python3 finorder/build.py 로 dist/finorder.standalone.html 을 만든다. 결과 이미지·DOCX는 tests/e2e-out/(커밋 제외).
 // 실제 Chromium으로 dist/finorder.standalone.html 전체 흐름 시험 (가상 입력만 사용)
 const { chromium } = require("playwright-core");
 const fs = require("fs");
@@ -59,22 +59,20 @@ const ok = (c, m, extra) => { if (c) { pass++; console.log("PASS", m); } else { 
   const order = await page.locator("#inst-selected .sel-row").evaluateAll((els) => els.map((e) => e.dataset.id));
   ok(order[0] === "kakaobank" && order[1] === "kookmin", "위로 이동", order);
 
-  // 4. needs_check 기관 선택(하나은행) -> 주소 입력행
-  ok(await pick("하나은행", "hana"), "하나은행(미확인) 칩이 보임");
+  // 4. 선택한 기관의 주소 수정(override) 흐름
+  ok(await pick("하나은행", "hana"), "하나은행 칩이 보임");
   await page.fill("#inst-search", "");
-  const fillRow = page.locator('#inst-selected .sel-row[data-id="hana"] .sel-fill');
-  ok((await fillRow.count()) === 1, "미확인 기관은 주소 입력행이 뜸");
-  const m1 = await page.locator("#missing-list").innerText();
-  ok(/주소/.test(m1), "미입력 점검에 주소 확인 필요가 걸림", m1.slice(0, 120));
-  await fillRow.locator(".sel-fill-name").fill("주식회사 하나은행");
-  await fillRow.locator(".sel-fill-zip").fill("04523");
-  await fillRow.locator(".sel-fill-addr").fill("서울특별시 중구 을지로 66");
-  await fillRow.locator(".sel-fill-note").fill("을지로2가");
-  await fillRow.locator(".sel-fill-save").click();
+  const hanaRow = page.locator('#inst-selected .sel-row[data-id="hana"]');
+  const hanaAddr0 = await hanaRow.locator(".sel-addr").innerText();
+  ok(hanaAddr0.includes("서울특별시 중구 을지로 35") && hanaAddr0.includes("(을지로1가)"), "제공 목록의 하나은행 주소", hanaAddr0);
+  ok(!/\(\d{5}\)/.test(hanaAddr0), "선택 목록 주소에 우편번호가 없음", hanaAddr0);
+  await hanaRow.locator(".sel-edit").click();
+  ok((await hanaRow.locator(".sel-fill-zip").count()) === 0, "주소 수정 행에 우편번호 입력칸이 없음");
+  await hanaRow.locator(".sel-fill-addr").fill("서울특별시 중구 을지로 36");
+  await hanaRow.locator(".sel-fill-save").click();
   await page.waitForTimeout(200);
-  ok((await page.locator('#inst-selected .sel-row[data-id="hana"] .sel-fill').count()) === 0, "저장 후 입력행이 사라짐");
-  const hanaAddr = await page.locator('#inst-selected .sel-row[data-id="hana"] .sel-addr').innerText();
-  ok(hanaAddr.includes("04523") && hanaAddr.includes("을지로2가"), "저장한 주소가 표시됨", hanaAddr);
+  const hanaAddr1 = await page.locator('#inst-selected .sel-row[data-id="hana"] .sel-addr').innerText();
+  ok(hanaAddr1.includes("을지로 36"), "수정한 주소가 표시됨", hanaAddr1);
 
   // 5. 명의인: 원고 지위 + 번호
   const nHold = await page.locator("#holders .holder").count();
@@ -101,8 +99,8 @@ const ok = (c, m, extra) => { if (c) { pass++; console.log("PASS", m); } else { 
     "위 사건에 관하여 피고 김영희의 소송대리인은 금융실명거래 및 비밀보장에 관한 법률 제4조 제1항에 의하여 다음과 같이 금융거래정보제출명령을 신청합니다.",
     "1. 대상기관의 명칭 및 주소",
     "주식회사 카카오뱅크",
-    "(13529) 경기도 성남시 분당구 분당내곡로 131, 11층 (백현동, 판교테크원)",
-    "(04523) 서울특별시 중구 을지로 66 (을지로2가)",
+    "경기도 성남시 분당구 분당내곡로 131, 15층 (백현동, 판교테크원)",
+    "서울특별시 중구 을지로 36 (을지로1가)",
     "홍길동 (800101-1234567)",
     "부터",
     "까지",
@@ -114,6 +112,7 @@ const ok = (c, m, extra) => { if (c) { pass++; console.log("PASS", m); } else { 
   for (const n of need) ok(doc.includes(n), "미리보기 포함: " + n.slice(0, 40), doc.includes(n) ? "" : doc.slice(0, 300));
   ok(!/귀중|소송대리인\s*$|변호사|법률사무소/.test(doc.replace("의 소송대리인은", "")), "대리인·사무소·법원 귀중이 없음");
   ok(!/\*\*|<[a-z]+>/.test(doc), "미리보기에 마크다운/HTML 기호 없음");
+  ok(!/\(\d{5}\)/.test(doc), "미리보기 어디에도 우편번호 형식이 없음");
   const underlined = await page.locator("#doc-preview u").allInnerTexts();
   ok(underlined.length === 1 && underlined[0].includes("요구대상거래기간의 거래내역"), "밑줄 한 구간", underlined);
 
@@ -143,10 +142,61 @@ const ok = (c, m, extra) => { if (c) { pass++; console.log("PASS", m); } else { 
     ok(fs.statSync(fp).size > 5000, "DOCX 파일 크기", fs.statSync(fp).size);
   }
 
+  // 11-2. 보험사용 신청서: 은행류와 섞어 선택 -> 종류 전환 -> 기준일
+  await page.fill("#inst-search", "삼성생명"); await page.waitForTimeout(150);
+  await page.locator('.inst-item[data-id="samsung-life"]').first().click();
+  await page.fill("#inst-search", "");
+  await page.waitForTimeout(200);
+  ok(await page.locator("#form-switch").isVisible(), "은행류와 보험사가 섞이면 종류 전환이 보임");
+  const missMix = await page.locator("#missing-list").innerText();
+  ok(/함께 선택/.test(missMix), "종류 혼합 확인 항목이 점검에 있음", missMix.slice(0, 200));
+  await page.locator("label:has(#form-insurance)").click();
+  await page.waitForTimeout(200);
+  ok(await page.locator("#ins-block").isVisible(), "보험사용에서 보험 기준일 영역이 보임");
+  ok(!(await page.locator("#wording-block").isVisible()), "보험사용에서는 5.가 호칭 선택이 숨겨짐");
+  let miss2 = await page.locator("#missing-list").innerText();
+  ok(/보험 기준일/.test(miss2), "기준일 미입력이 필수 점검에 걸림", miss2.slice(0, 200));
+  await page.fill("#ins-date", "2026-03-20");
+  await page.waitForTimeout(200);
+  const doc2 = await page.locator("#doc-preview").innerText();
+  const need2 = [
+    "삼성생명보험 주식회사",
+    "서울특별시 서초구 서초대로74길 11 (서초동)",
+    "귀 회사에 홍길동(주민등록번호: 800101-1234567) 명의로 가입된 보험계약 중, 요구대상 거래기간 동안 유효하게 존속하였던 보험계약(해지·실효되었거나 만기가 도래한 계약을 포함합니다)에 관하여 아래 각 항목의 자료를 제출하여 주시기 바랍니다.",
+    "보험·펀드·연금 등 가입내역 일체",
+    "(다만, 2026. 3. 20. 이후 신규로 체결되거나 변경된 계약이 있는 경우에는 해당 계약의 체결일 또는 변경일을 함께 기재하여 주시기 바랍니다.)",
+    "2026. 3. 20. 이전에 해지된 계약이 있는 경우, 해당 계약별 해지환급금의 지급내역 일체",
+    "2026. 3. 20. 기준 계약별 다음 사항",
+    "해약환급금 및 그 산출근거",
+    "보험계약대출의 실행 및 상환 내역, 2026. 3. 20. 기준 대출잔액 및 위 3)항 기재 해약환급금에서 보험계약대출금이 이미 공제되어 있는지 여부",
+    "현재 시점의 해약환급금만을 제출하지 마시고, 2026. 3. 20. 기준 해약환급금과 그 이후 현재까지의 변동내역을 구분하여 제출하여 주시기 바랍니다. 또한 각 항목별로 해당 사항이 없는 경우에는 “해당 없음”, 자료를 보유하고 있지 않은 경우에는 “자료 미보유”, 조회가 불가능한 경우에는 “조회 불가”라고 구분하여 회신하여 주시기 바랍니다.",
+  ];
+  for (const n of need2) ok(doc2.includes(n), "보험사용 미리보기 포함: " + n.slice(0, 36), doc2.includes(n) ? "" : doc2.slice(-900));
+  ok(!doc2.includes("카카오뱅크") && !doc2.includes("국민은행"), "보험사용 1.에는 은행류가 들어가지 않음");
+  ok(!doc2.includes("명의자로 하는 계좌"), "보험사용에는 은행 문안이 없음");
+  const ugly = await page.locator("#doc-preview u").count();
+  ok(ugly === 0, "보험사용 문서에는 밑줄이 없음", ugly);
+  await page.screenshot({ path: path.join(OUT, "desktop-insurance.png"), fullPage: false });
+  const missInsArm = await page.locator("#missing-list .miss-item").count();
+  const p2 = page.waitForEvent("download", { timeout: 20000 }).catch(() => null);
+  await page.click("#btn-docx");
+  const dl2 = await p2;
+  ok(!!dl2, "보험사용 DOCX 다운로드");
+  if (dl2) {
+    const fn2 = dl2.suggestedFilename();
+    ok(/_보험사\.docx$/.test(fn2), "보험사용 파일명에 _보험사", fn2);
+    await dl2.saveAs(path.join(OUT, "e2e-insurance.docx"));
+  }
+  // 은행류로 되돌리면 은행 문안
+  await page.locator("label:has(#form-bank)").click();
+  await page.waitForTimeout(200);
+  const doc3 = await page.locator("#doc-preview").innerText();
+  ok(doc3.includes("명의자로 하는 계좌") && !doc3.includes("삼성생명") && doc3.includes("카카오뱅크"), "은행·금융기관용으로 되돌아옴");
+
   // 10. 기관 추가 후 새로고침 지속
   await page.click("#btn-add-inst-open");
   await page.fill("#add-name", "가상저축은행 주식회사");
-  await page.fill("#add-zip", "12345");
+  ok((await page.locator("#add-zip").count()) === 0, "기관 추가 폼에 우편번호 칸이 없음");
   await page.fill("#add-addr", "서울특별시 종로구 세종대로 1");
   await page.fill("#add-note", "세종로");
   await page.selectOption("#add-cat", "savings");
@@ -164,14 +214,15 @@ const ok = (c, m, extra) => { if (c) { pass++; console.log("PASS", m); } else { 
   // hana override 지속
   await page.fill("#inst-search", "하나은행");
   await page.waitForTimeout(150);
-  const hanaStatus = await page.locator('.inst-item[data-id="hana"]').getAttribute("data-status");
-  ok(hanaStatus === "user_provided", "직원이 입력한 기관은 새로고침 후 user_provided", hanaStatus);
+  await page.locator('.inst-item[data-id="hana"]').first().click();
+  const hanaAfter = await page.locator('#inst-selected .sel-row[data-id="hana"] .sel-addr').innerText();
+  ok(hanaAfter.includes("을지로 36"), "직원이 수정한 주소가 새로고침 후에도 유지됨", hanaAfter);
 
   // 11. 최신화 패널: JSON 붙여넣기 -> 비교 -> 적용
   await page.fill("#inst-search", "");
   await page.click("#btn-update-open");
   ok(await page.locator("#update-panel").isVisible(), "최신화 패널 열림");
-  const upd = { institutions: [{ id: "kookmin", name: "주식회사 국민은행", zip: "07331", addr: "서울특별시 영등포구 국제금융로8길 26", note: "여의도동", sources: [{ label: "가상 출처 A", url: "https://example.com/a" }, { label: "가상 출처 B", url: "https://example.org/b" }] }, { id: "citi", name: "주식회사 한국씨티은행", zip: "03184", addr: "서울특별시 중구 청계천로 24", note: "서린동", sources: [{ label: "가상", url: "https://example.com/c" }] }, { id: "bogus", zip: "1", addr: "", sources: [] }] };
+  const upd = { institutions: [{ id: "kookmin", name: "주식회사 국민은행", addr: "서울특별시 영등포구 국제금융로8길 26", note: "여의도동", sources: [{ label: "가상 출처 A", url: "https://example.com/a" }, { label: "가상 출처 B", url: "https://example.org/b" }] }, { id: "citi", name: "주식회사 한국씨티은행", addr: "서울특별시 중구 청계천로 24", note: "서린동", sources: [{ label: "가상", url: "https://example.com/c" }] }, { id: "bogus", addr: "", sources: [] }] };
   await page.fill("#upd-paste", JSON.stringify(upd));
   await page.click("#upd-check");
   await page.waitForTimeout(200);

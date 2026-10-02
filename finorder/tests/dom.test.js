@@ -24,14 +24,17 @@ const DATA = {
   categories: [
     { id: "bank", label: "시중·특수·지방은행" }, { id: "post", label: "우체국" },
     { id: "inet", label: "인터넷전문은행" }, { id: "securities", label: "증권사" },
+    { id: "insurance", label: "보험사" },
   ],
   institutions: [
-    { id: "kookmin", cat: "bank", short: "국민은행", name: "주식회사 국민은행", aliases: ["KB국민은행", "KB", "국민"], wording: "은행", popular: true, zip: "07331", addr: "서울특별시 영등포구 국제금융로8길 26", note: "여의도동", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
-    { id: "shinhan", cat: "bank", short: "신한은행", name: "주식회사 신한은행", aliases: ["신한"], wording: "은행", popular: true, zip: "04513", addr: "서울특별시 중구 세종대로9길 20", note: "태평로2가", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
-    { id: "hana", cat: "bank", short: "하나은행", name: "주식회사 하나은행", aliases: ["하나"], wording: "은행", popular: false, zip: "", addr: "", note: "", status: "needs_check", checkedAt: "2026-10-02", sources: [], memo: "" },
-    { id: "post", cat: "post", short: "우체국", name: "우정사업본부(우체국예금)", aliases: ["우정"], wording: "은행", popular: true, zip: "30114", addr: "세종특별자치시 도움5로 19", note: "어진동", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
-    { id: "kakao", cat: "inet", short: "카카오뱅크", name: "주식회사 카카오뱅크", aliases: ["카뱅"], wording: "은행", popular: true, zip: "13529", addr: "경기도 성남시 분당구 분당내곡로 131, 11층", note: "백현동, 판교테크원", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
-    { id: "mirae", cat: "securities", short: "미래에셋증권", name: "미래에셋증권 주식회사", aliases: ["미래에셋"], wording: "기관", popular: false, zip: "", addr: "", note: "", status: "needs_check", checkedAt: "2026-10-02", sources: [], memo: "" },
+    { id: "kookmin", cat: "bank", short: "국민은행", name: "주식회사 국민은행", aliases: ["KB국민은행", "KB", "국민"], wording: "은행", popular: true, addr: "서울특별시 영등포구 국제금융로8길 26", note: "여의도동", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
+    { id: "shinhan", cat: "bank", short: "신한은행", name: "주식회사 신한은행", aliases: ["신한"], wording: "은행", popular: true, addr: "서울특별시 중구 세종대로9길 20", note: "태평로2가", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
+    { id: "hana", cat: "bank", short: "하나은행", name: "주식회사 하나은행", aliases: ["하나"], wording: "은행", popular: false, addr: "", note: "", status: "needs_check", checkedAt: "2026-10-02", sources: [], memo: "" },
+    { id: "post", cat: "post", short: "우체국", name: "우정사업본부(우체국예금)", aliases: ["우정"], wording: "은행", popular: true, addr: "세종특별자치시 도움5로 19", note: "어진동", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
+    { id: "kakao", cat: "inet", short: "카카오뱅크", name: "주식회사 카카오뱅크", aliases: ["카뱅"], wording: "은행", popular: true, addr: "경기도 성남시 분당구 분당내곡로 131, 11층", note: "백현동, 판교테크원", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
+    { id: "samsung-life", cat: "insurance", short: "삼성생명", name: "삼성생명보험 주식회사", aliases: ["삼성"], wording: "기관", popular: true, addr: "서울특별시 서초구 가상로 7", note: "서초동", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
+    { id: "hanwha-life", cat: "insurance", short: "한화생명", name: "주식회사 한화생명보험", aliases: ["한화"], wording: "기관", popular: true, addr: "서울특별시 영등포구 가상대로 50", note: "", status: "user_provided", checkedAt: "2026-10-02", sources: FORM, memo: "" },
+    { id: "mirae", cat: "securities", short: "미래에셋증권", name: "미래에셋증권 주식회사", aliases: ["미래에셋"], wording: "기관", popular: false, addr: "", note: "", status: "needs_check", checkedAt: "2026-10-02", sources: [], memo: "" },
   ],
 };
 
@@ -129,7 +132,7 @@ test("기동: 연결 알약, 분류 탭, 자주 쓰는 곳 그룹, 초기값", a
   eq(A.$("st-claude").textContent, "Claude 없음"); ok(A.$("st-claude").classList.contains("off"));
   ok(A.$("btn-polish").hidden, "claude 없으면 다듬기 버튼 숨김");
   const tabs = A.qa("#inst-cats .cat-tab");
-  eq(tabs.length, 4);
+  eq(tabs.length, 5);
   eq(tabs[0].getAttribute("aria-selected"), "true"); eq(tabs[1].getAttribute("aria-selected"), "false");
   ok(tabs[0].querySelector(".cat-n").textContent === "0/3");
   eq(A.qa("#inst-list .inst-group").map((g) => g.textContent), ["자주 쓰는 곳", "그 밖의 기관"]);
@@ -153,11 +156,11 @@ test("기관 체크 → 선택 목록 순서·순번·미리보기·이동·제�
   eq(rows.length, 1);
   eq(rows[0].querySelector(".sel-letter").textContent, "가.");
   eq(rows[0].querySelector(".sel-name").textContent, "주식회사 국민은행");
-  eq(rows[0].querySelector(".sel-addr").textContent, "(07331) 서울특별시 영등포구 국제금융로8길 26 (여의도동)");
+  eq(rows[0].querySelector(".sel-addr").textContent, "서울특별시 영등포구 국제금융로8길 26 (여의도동)");
   eq(A.$("inst-count").textContent, "1곳 선택");
   eq(A.chip("kookmin").dataset.checked, "true");
   eq(A.q("#doc-preview .d-inst .d-name").textContent, "주식회사 국민은행");
-  eq(A.q("#doc-preview .d-inst .d-addr").textContent, "(07331) 서울특별시 영등포구 국제금융로8길 26 (여의도동)");
+  eq(A.q("#doc-preview .d-inst .d-addr").textContent, "서울특별시 영등포구 국제금융로8길 26 (여의도동)");
   A.pick("shinhan");
   rows = A.qa("#inst-selected .sel-row");
   eq(rows.map((r) => r.querySelector(".sel-letter").textContent), ["가.", "나."]);
@@ -217,37 +220,41 @@ test("needs_check 기관: 선택 → 주소 입력행 → 점검에 걸림 → �
   const fill = row.querySelector(".sel-fill");
   ok(fill, "주소 입력행");
   eq(fill.querySelector(".sel-fill-name").value, "주식회사 하나은행", "상호 후보가 미리 채워짐");
-  ["sel-fill-zip", "sel-fill-addr", "sel-fill-note", "sel-fill-save"].forEach((c) => ok(fill.querySelector("." + c), c));
+  ["sel-fill-name", "sel-fill-addr", "sel-fill-note", "sel-fill-save"].forEach((c) => ok(fill.querySelector("." + c), c));
+  ok(!fill.querySelector(".sel-fill-zip") && !fill.querySelector("[class*=zip]"), "우편번호 입력칸 없음");
+  eq(fill.querySelectorAll("input").length, 3, "명칭·주소·참고 입력칸만");
   ok(!row.querySelector(".sel-addr"));
   ok(A.missing().includes("하나은행 주소 미입력"));
   ok(A.previewText().includes("「주소 미입력」"));
-  // 저장 시도: 우편번호 없음
+  // 저장 시도: 주소 없음, 명칭 없음
   A.click(fill.querySelector(".sel-fill-save"));
   await A.tick();
-  ok(A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill-err').textContent.includes("우편번호"));
+  ok(A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill-err').textContent.includes("도로명주소"));
   eq(A.ls("finorder.v1.institutions"), null, "검증 실패 시 저장하지 않음");
   const f = A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill');
-  A.type(f.querySelector(".sel-fill-zip"), "04520x");
-  eq(f.querySelector(".sel-fill-zip").value, "04520", "숫자 5자리만");
+  A.type(f.querySelector(".sel-fill-name"), "");
+  A.click(f.querySelector(".sel-fill-save"));
+  ok(A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill-err').textContent.includes("기관 명칭"));
+  A.type(f.querySelector(".sel-fill-name"), "주식회사 하나은행");
   A.type(f.querySelector(".sel-fill-addr"), "서울특별시 중구 을지로 35(을지로1가)");
   A.click(f.querySelector(".sel-fill-save"));
   await A.tick(30);
   const saved = A.ls("finorder.v1.institutions");
   eq(saved.length, 1);
   eq(saved[0].id, "hana"); eq(saved[0].origin, "override"); eq(saved[0].name, "주식회사 하나은행");
-  eq(saved[0].zip, "04520"); eq(saved[0].addr, "서울특별시 중구 을지로 35"); eq(saved[0].note, "을지로1가");
+  eq(saved[0].zip, undefined, "우편번호는 저장하지 않음"); eq(saved[0].addr, "서울특별시 중구 을지로 35"); eq(saved[0].note, "을지로1가");
   eq(saved[0].status, "user_provided");
   const row2 = A.q('#inst-selected .sel-row[data-id="hana"]');
   ok(!row2.querySelector(".sel-fill"));
-  eq(row2.querySelector(".sel-addr").textContent, "(04520) 서울특별시 중구 을지로 35 (을지로1가)");
+  eq(row2.querySelector(".sel-addr").textContent, "서울특별시 중구 을지로 35 (을지로1가)");
   eq(A.chip("hana").dataset.status, "user_provided"); eq(A.chip("hana").dataset.origin, "override");
   ok(!A.missing().includes("하나은행 주소 미입력"));
-  ok(A.previewText().includes("(04520) 서울특별시 중구 을지로 35 (을지로1가)"));
+  ok(A.previewText().includes("서울특별시 중구 을지로 35 (을지로1가)") && !A.previewText().includes("04520"));
   ok(!JSON.stringify(saved).match(/홍길동|김영희/));
   // 주소 수정
   A.click(A.q('#inst-selected .sel-row[data-id="hana"] .sel-edit'));
   const f2 = A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill');
-  ok(f2); eq(f2.querySelector(".sel-fill-zip").value, "04520"); eq(f2.querySelector(".sel-fill-note").value, "을지로1가");
+  ok(f2); eq(f2.querySelector(".sel-fill-addr").value, "서울특별시 중구 을지로 35"); eq(f2.querySelector(".sel-fill-note").value, "을지로1가");
   A.click(A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill-cancel'));
   ok(!A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill'));
 });
@@ -255,29 +262,24 @@ test("기관 추가: custom 저장·자동 선택·추가 배지·삭제 2단계
   const A = await boot();
   A.click(A.$("btn-add-inst-open"));
   ok(!A.$("add-inst").hidden);
+  eq(A.$("add-zip"), null, "우편번호 칸 없음"); eq(A.$("add-wording"), null, "호칭 선택 없음");
   A.type(A.$("add-name"), "국민은행");
-  A.type(A.$("add-zip"), "12345");
   A.type(A.$("add-addr"), "가상시 가상로 1");
   A.click(A.$("add-save"));
   await A.tick();
   ok(!A.$("add-msg").hidden && A.$("add-msg").textContent.includes("이미 목록에 있습니다"), "중복 안내");
   A.type(A.$("add-name"), "가상저축은행 <b>x</b>");
-  A.type(A.$("add-zip"), "1234");
-  A.click(A.$("add-save"));
-  await A.tick();
-  ok(A.$("add-msg").textContent.includes("5자리"));
-  A.type(A.$("add-zip"), "12345");
   A.type(A.$("add-addr"), "");
   A.click(A.$("add-save"));
   await A.tick();
   ok(A.$("add-msg").textContent.includes("도로명주소"));
   A.type(A.$("add-addr"), "가상시 가상구 가상로 1(가상동)");
-  A.$("add-wording").value = "기관";
+  A.$("add-cat").value = "securities"; // 분류가 5.가 호칭을 정한다(증권사는 귀 기관)
   A.click(A.$("add-save"));
   await A.tick(30);
   ok(A.$("add-inst").hidden);
   const docs = A.ls("finorder.v1.institutions");
-  eq(docs.length, 1); eq(docs[0].origin, "custom"); eq(docs[0].cat, "bank"); eq(docs[0].wording, "기관");
+  eq(docs.length, 1); eq(docs[0].origin, "custom"); eq(docs[0].cat, "securities"); eq(docs[0].wording, "기관"); eq(docs[0].zip, undefined);
   eq(docs[0].addr, "가상시 가상구 가상로 1"); eq(docs[0].note, "가상동");
   const id = docs[0].id;
   const chip = A.chip(id);
@@ -438,7 +440,7 @@ test("복사: 항목별·전체, 클립보드 거부 시 선택용 글상자 폴
   ok(A.toast().includes("복사했습니다"));
   A.click(A.q('#doc-preview .btn-copy[data-copy="1"]'));
   await A.tick();
-  eq(got, "가. 주식회사 국민은행\n(07331) 서울특별시 영등포구 국제금융로8길 26 (여의도동)\n나. 주식회사 신한은행\n(04513) 서울특별시 중구 세종대로9길 20 (태평로2가)");
+  eq(got, "가. 주식회사 국민은행\n서울특별시 영등포구 국제금융로8길 26 (여의도동)\n나. 주식회사 신한은행\n서울특별시 중구 세종대로9길 20 (태평로2가)");
   A.click(A.$("btn-copy-all"));
   await A.tick();
   ok(got.startsWith("금융거래정보 제출명령 신청서\n\n사    건    2026드단12345 이혼 등\n원    고    홍길동\n피    고    김영희\n\n위 사건에 관하여 원고 홍길동의 소송대리인은"));
@@ -511,7 +513,7 @@ test("초기화: 2단계 확인 후 입력만 지우고 기관 목록·세트는
   fillAll(A);
   A.type(A.$("set-name"), "시중 2곳"); A.click(A.$("set-save")); await A.tick(30);
   A.click(A.$("btn-add-inst-open"));
-  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-zip"), "12345"); A.type(A.$("add-addr"), "가상시 가상로 1");
+  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-addr"), "가상시 가상로 1");
   A.click(A.$("add-save")); await A.tick(30);
   const btn = A.$("btn-reset");
   A.click(btn);
@@ -564,7 +566,7 @@ test("최신화 패널: 요약, 요청문 복사, 붙여넣기 → 비교표 →
   ok(A.$("update-panel").hidden);
   A.click(A.$("btn-update-open"));
   ok(!A.$("update-panel").hidden);
-  eq(A.qa("#upd-summary tbody tr").length, 6);
+  eq(A.qa("#upd-summary tbody tr").length, 8);
   ok(A.$("upd-summary").textContent.includes("기준일 2026-10-02"));
   let got = null;
   A.clip(async (t) => { got = t; });
@@ -595,10 +597,10 @@ test("최신화 패널: 요약, 요청문 복사, 붙여넣기 → 비교표 →
   const docs = A.ls("finorder.v1.institutions");
   eq(docs.map((d) => d.id).sort(), ["kookmin", "newbank"]);
   const k = docs.find((d) => d.id === "kookmin");
-  eq(k.origin, "override"); eq(k.zip, "07332"); eq(k.status, "verified"); eq(k.sources.length, 2);
+  eq(k.origin, "override"); eq(k.zip, undefined, "응답의 zip은 무시"); eq(k.addr, "서울특별시 영등포구 국제금융로8길 27"); eq(k.status, "verified"); eq(k.sources.length, 2);
   const nb = docs.find((d) => d.id === "newbank");
-  eq(nb.origin, "custom"); eq(nb.name, "신규은행"); eq(nb.wording, "기관");
-  ok(A.chip("kookmin").title.includes("07332"));
+  eq(nb.origin, "custom"); eq(nb.name, "신규은행"); eq(nb.wording, "은행", "분류(bank)로 정함"); eq(nb.zip, undefined);
+  ok(A.chip("kookmin").title.includes("국제금융로8길 27") && !A.chip("kookmin").title.includes("07332"));
   ok(A.chip("newbank"));
   eq(A.chip("kookmin").dataset.status, "verified");
   eq(A.$("upd-diff").querySelector("table"), null);
@@ -635,15 +637,171 @@ test("출처 1곳으로 채워진 needs_check 항목은 직원이 확인·저장
   A.pick("hana");
   const fill = A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill');
   ok(fill, "주소가 있어도 needs_check면 입력행으로 확인을 받는다");
-  eq(fill.querySelector(".sel-fill-zip").value, "04520");
   eq(fill.querySelector(".sel-fill-addr").value, "서울특별시 중구 을지로 35");
   eq(fill.querySelector(".sel-fill-note").value, "을지로1가");
   ok(A.missing().includes("하나은행 주소 확인 필요(확인 후 저장)"), A.missing().join("|"));
-  ok(A.previewText().includes("(04520) 서울특별시 중구 을지로 35 (을지로1가)"), "미리보기에는 값이 나옴");
+  ok(A.previewText().includes("서울특별시 중구 을지로 35 (을지로1가)"), "미리보기에는 값이 나옴");
   A.click(fill.querySelector(".sel-fill-save")); await A.tick(40);
   eq(A.chip("hana").dataset.status, "user_provided");
   ok(!A.q('#inst-selected .sel-row[data-id="hana"] .sel-fill'));
   ok(!A.missing().some((m) => m.includes("하나은행")));
+});
+
+
+/* ---------- 신청서 종류(은행·금융기관용 / 보험사용) ---------- */
+const pickIn = (A, tabIndex, id) => { A.click(A.qa("#inst-cats .cat-tab")[tabIndex]); A.pick(id); };
+const INS_TAB = 4;
+test("종류 하나: 은행류만이면 전환·기준일 숨김, 보험사만이면 기준일 노출·호칭 숨김", async () => {
+  const A = await boot();
+  ok(A.$("form-switch").hidden && A.$("ins-block").hidden && !A.$("wording-block").hidden, "기본은 은행용");
+  A.pick("kookmin");
+  ok(A.$("form-switch").hidden && A.$("ins-block").hidden && !A.$("wording-block").hidden);
+  A.click(A.$("btn-reset")); A.click(A.$("btn-reset"));
+  pickIn(A, INS_TAB, "samsung-life");
+  ok(A.$("form-switch").hidden, "보험사만이면 전환 없음");
+  ok(!A.$("ins-block").hidden && A.$("wording-block").hidden);
+  ok(A.$("form-insurance").checked && !A.$("form-bank").checked);
+  // 보험사용 5.
+  eq(A.qa("#doc-preview p.d-l3").length, 7); eq(A.qa("#doc-preview p.d-l2c").length, 1);
+  eq(A.qa("#doc-preview p.d-l2").length, 5);
+  ok(A.q('#doc-preview p.d-p[data-sec="5"]').textContent.startsWith("귀 회사에 「이름」(주민등록번호: 「주민등록번호」)"), "5. 첫 문단");
+  eq(A.qa("#doc-preview .d-l1").length, 0); ok(!A.q("#doc-preview u"), "밑줄 없음");
+  eq(A.qa("#doc-preview p.d-l3 .d-mk").map((m) => m.textContent), ["가.", "나.", "다.", "라.", "마.", "바.", "사."]);
+  ok(A.qa("#doc-preview .d-blank").some((b) => b.textContent === "「보험 기준일」"));
+  ok(A.missing().includes("보험 기준일 미입력"));
+  // 기준일 입력
+  A.type(A.$("ins-date"), "2026-03-20");
+  ok(!A.missing().includes("보험 기준일 미입력"));
+  ok(A.q("#doc-preview p.d-l2c").textContent.startsWith("(다만, 2026. 3. 20. 이후 신규로"));
+  ok(!A.qa("#doc-preview .d-blank").some((b) => b.textContent === "「보험 기준일」"));
+  A.type(A.$("ins-date"), "");
+  ok(A.missing().includes("보험 기준일 미입력"));
+});
+test("종류 혼합: 전환 노출·기관 수·행 표시, 고른 종류의 기관만 1.에, 순번은 종류 안에서", async () => {
+  const A = await boot();
+  A.pick("kookmin");
+  pickIn(A, INS_TAB, "samsung-life");
+  ok(!A.$("form-switch").hidden);
+  eq(A.$("form-bank-n").textContent, "1곳"); eq(A.$("form-insurance-n").textContent, "1곳");
+  ok(A.$("form-bank").checked, "기본은 먼저 선택한 기관의 종류");
+  A.click(A.qa("#inst-cats .cat-tab")[0]); A.pick("shinhan");
+  pickIn(A, INS_TAB, "hanwha-life");
+  eq(A.$("form-bank-n").textContent, "2곳"); eq(A.$("form-insurance-n").textContent, "2곳");
+  const rows = A.qa("#inst-selected .sel-row");
+  eq(rows.map((r) => r.dataset.form), ["bank", "insurance", "bank", "insurance"]);
+  eq(rows.map((r) => r.querySelector(".sel-letter").textContent), ["가.", "가.", "나.", "나."], "순번은 종류 안에서");
+  eq(rows.map((r) => r.querySelector(".sel-grp").textContent), ["은행", "보험", "은행", "보험"]);
+  eq(rows[1].querySelector(".sel-name").firstChild.textContent, "삼성생명보험 주식회사");
+  eq(A.qa("#doc-preview .d-inst .d-name").map((n) => n.textContent), ["주식회사 국민은행", "주식회사 신한은행"]);
+  ok(A.qa("#doc-preview .d-l1").length === 2 && !A.q("#doc-preview p.d-l3"));
+  ok(A.$("ins-block").hidden && !A.$("wording-block").hidden);
+  const warn = A.qa("#missing-list .miss-item").find((l) => l.textContent.startsWith("은행류와 보험사가 함께 선택됨"));
+  ok(warn); eq(warn.dataset.sev, "warn");
+  eq(warn.textContent, "은행류와 보험사가 함께 선택됨: 신청서는 종류별로 따로 저장(지금은 은행·금융기관용)");
+  // 보험사용으로 전환
+  A.$("form-insurance").checked = true; A.change(A.$("form-insurance"));
+  eq(A.qa("#doc-preview .d-inst .d-name").map((n) => n.textContent), ["삼성생명보험 주식회사", "주식회사 한화생명보험"]);
+  eq(A.qa("#doc-preview .d-inst .d-letter").map((n) => n.textContent), ["가.", "나."]);
+  ok(A.q("#doc-preview p.d-l3") && !A.q("#doc-preview .d-l1"));
+  ok(!A.$("ins-block").hidden && A.$("wording-block").hidden);
+  ok(A.missing().includes("보험 기준일 미입력"));
+  ok(A.missing().some((m) => m.endsWith("(지금은 보험사용)")));
+  // 복사: 섹션 5와 전체는 고른 종류의 문서만
+  let got = null;
+  A.clip(async (t) => { got = t; });
+  A.type(A.$("ins-date"), "2026-03-20");
+  A.click(A.q('#doc-preview .btn-copy[data-copy="5"]')); await A.tick();
+  ok(got.startsWith("귀 회사에 ") && got.includes("\n1) 보험·펀드·연금 등 가입내역 일체\n(다만, 2026. 3. 20. 이후") && got.includes("\n3) 2026. 3. 20. 기준 계약별 다음 사항\n가. 보험의 종류\n"), got);
+  A.click(A.q('#doc-preview .btn-copy[data-copy="1"]')); await A.tick();
+  eq(got, "가. 삼성생명보험 주식회사\n서울특별시 서초구 가상로 7 (서초동)\n나. 주식회사 한화생명보험\n서울특별시 영등포구 가상대로 50");
+  A.click(A.$("btn-copy-all")); await A.tick();
+  ok(!got.includes("국민은행") && !got.includes("신한은행") && got.includes("귀 회사에"));
+  // 은행 쪽 기관을 모두 빼면 보험사 하나 종류만 남아 전환이 사라진다
+  A.click(A.q('#inst-selected .sel-row[data-id="kookmin"] .sel-del'));
+  A.click(A.q('#inst-selected .sel-row[data-id="shinhan"] .sel-del'));
+  ok(A.$("form-switch").hidden); ok(A.$("form-insurance").checked);
+  ok(!A.missing().some((m) => m.startsWith("은행류와 보험사가")));
+});
+test("고른 종류가 선택에서 사라지면 선택에 있는 첫 종류로 자동 변경, 비우면 은행용", async () => {
+  const A = await boot();
+  pickIn(A, INS_TAB, "samsung-life");
+  A.click(A.qa("#inst-cats .cat-tab")[0]); A.pick("kookmin");
+  A.$("form-bank").checked = true; A.change(A.$("form-bank"));
+  ok(A.$("form-bank").checked && A.$("ins-block").hidden);
+  A.click(A.q('#inst-selected .sel-row[data-id="kookmin"] .sel-del'));
+  ok(A.$("form-insurance").checked && !A.$("ins-block").hidden, "은행이 사라지면 보험사용으로");
+  A.click(A.q('#inst-selected .sel-row[data-id="samsung-life"] .sel-del'));
+  ok(A.$("form-bank").checked && A.$("ins-block").hidden && !A.$("wording-block").hidden && A.$("form-switch").hidden, "비우면 기본 은행용");
+  ok(A.qa("#doc-preview .d-l1").length === 2);
+});
+test("종류가 섞였을 때 위·아래 이동은 같은 종류 안에서 이뤄짐", async () => {
+  const A = await boot();
+  A.pick("kookmin");
+  pickIn(A, INS_TAB, "samsung-life");
+  A.click(A.qa("#inst-cats .cat-tab")[0]); A.pick("shinhan");
+  let rows = A.qa("#inst-selected .sel-row");
+  eq(rows.map((r) => r.dataset.id), ["kookmin", "samsung-life", "shinhan"]);
+  ok(rows[0].querySelector(".sel-up").disabled && !rows[0].querySelector(".sel-down").disabled, "kookmin은 아래(shinhan)로 이동 가능");
+  ok(rows[1].querySelector(".sel-up").disabled && rows[1].querySelector(".sel-down").disabled, "보험사 하나뿐이면 이동 불가");
+  A.click(A.q('#inst-selected .sel-row[data-id="shinhan"] .sel-up'));
+  rows = A.qa("#inst-selected .sel-row");
+  eq(rows.map((r) => r.dataset.id), ["shinhan", "samsung-life", "kookmin"], "보험사 행을 건너뛰고 은행끼리 맞바꿈");
+  eq(rows.map((r) => r.querySelector(".sel-letter").textContent), ["가.", "가.", "나."]);
+  eq(A.qa("#doc-preview .d-inst .d-name").map((n) => n.textContent), ["주식회사 신한은행", "주식회사 국민은행"]);
+});
+test("보험사용 DOCX 파일명 _보험사, 은행용은 그대로, 보험 기준일은 저장·전송되지 않음", async () => {
+  const f = fakeDb();
+  const fc = fakeClaude({ db: f.db, user: { can: async () => true, id: async () => "u_1" } });
+  const A = await boot({ claude: fc.claude });
+  await A.tick(40);
+  A.type(A.$("case-no"), "2026드단12345"); A.type(A.$("case-name"), "이혼 등");
+  A.type(A.$("plaintiff"), "홍길동"); A.type(A.$("defendant"), "김영희");
+  A.$("ours-plaintiff").checked = true; A.change(A.$("ours-plaintiff"));
+  A.type(A.q("#holders .h-no"), "9001012345678");
+  A.click(A.q('#per-presets [data-preset="3y"]'));
+  A.pick("kookmin");
+  pickIn(A, INS_TAB, "samsung-life");
+  // 혼합 + 은행용: soft 항목만 있으므로 확인 단계 없이 바로 저장
+  eq(A.missing().length, 1);
+  eq(A.qa("#missing-list .miss-item")[0].dataset.sev, "warn");
+  A.click(A.$("btn-docx")); await A.tick(60);
+  eq(fc.calls.saves.length, 1, "soft 항목은 2단계 확인에 세지 않음");
+  eq(fc.calls.saves[0].filename, "금융거래정보제출명령신청서_2026드단12345.docx");
+  // 보험사용으로 전환: 기준일 미입력(필수)이 걸려 첫 클릭은 확인 문구(필수만 센다)
+  A.$("form-insurance").checked = true; A.change(A.$("form-insurance"));
+  const btn = A.$("btn-docx");
+  A.click(btn);
+  eq(btn.textContent, "미입력 1건 — 한 번 더 누르면 그대로 저장합니다");
+  eq(fc.calls.saves.length, 1);
+  A.type(A.$("ins-date"), "2026-03-20"); // 채우면 필수 0건 → 확인 상태 해제
+  ok(!btn.dataset.armed);
+  A.click(btn); await A.tick(60);
+  eq(fc.calls.saves.length, 2);
+  eq(fc.calls.saves[1].filename, "금융거래정보제출명령신청서_2026드단12345_보험사.docx");
+  // 저장·전송 대상이 아님
+  const all = JSON.stringify({ db: f.cols, ls: { i: A.ls("finorder.v1.institutions"), s: A.ls("finorder.v1.sets") } });
+  ok(!all.includes("2026-03-20") && !all.includes("insDate"), "보험 기준일 비저장");
+  A.type(A.$("set-name"), "혼합 세트"); A.click(A.$("set-save")); await A.tick(40);
+  ok(!JSON.stringify(f.cols).includes("2026-03-20"));
+  // 초기화: 기준일·종류 선택이 지워짐
+  A.click(A.$("btn-reset")); A.click(A.$("btn-reset")); await A.tick();
+  eq(A.$("ins-date").value, ""); ok(A.$("form-switch").hidden && A.$("ins-block").hidden && !A.$("wording-block").hidden);
+  ok(A.$("form-bank").checked);
+  eq(A.w.__finorder.getState().insDate, ""); eq(A.w.__finorder.getState().formType, "");
+});
+test("우편번호 입력칸이 어디에도 없고 문서·목록에 우편번호가 나오지 않음", async () => {
+  const A = await boot();
+  ok(!A.$("add-zip") && !A.$("add-wording"));
+  A.pick("kookmin"); A.pick("hana");
+  eq(A.qa('#inst-selected input[class*="zip"], #add-inst input[id*="zip"]').length, 0);
+  ok(!/\(\d{5}\)/.test(A.previewText()), "문서에 (12345) 형태가 없음");
+  eq(A.chip("kookmin").title, "서울특별시 영등포구 국제금융로8길 26 (여의도동)");
+  A.click(A.$("btn-update-open"));
+  let got = null; A.clip(async (t) => { got = t; });
+  A.click(A.$("upd-copy")); await A.tick();
+  ok(!got.includes('"zip"') && !got.includes("5자리"), "요청문에 우편번호 안내 없음");
+  eq(A.$("upd-summary").textContent.includes("제공 목록 기준"), true, "user_provided는 제공 목록 기준으로 표시");
+  ok(!A.$("upd-summary").textContent.includes("양식 기준"));
 });
 
 /* ---------- 저장소(db) ---------- */
@@ -654,7 +812,7 @@ test("db 연결: 공용 저장, 알약 on, 다른 사용자의 쓰기 실시간 
   await A.tick(40);
   eq(A.$("st-db").textContent, "공용 저장 연결"); ok(A.$("st-db").classList.contains("on"));
   A.click(A.$("btn-add-inst-open"));
-  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-zip"), "12345"); A.type(A.$("add-addr"), "가상시 가상로 1");
+  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-addr"), "가상시 가상로 1");
   A.click(A.$("add-save")); await A.tick(40);
   const ids = Object.keys(f.cols.institutions);
   eq(ids.length, 1);
@@ -664,7 +822,7 @@ test("db 연결: 공용 저장, 알약 on, 다른 사용자의 쓰기 실시간 
   // 다른 팀원이 shinhan 주소를 override
   f.cols.institutions.shinhan = { id: "shinhan", origin: "override", zip: "99999", addr: "가상시 변경로 9", note: "", status: "user_provided", updatedAt: "2026-10-02T09:00:00.000Z" };
   f.notify("institutions"); await A.tick(20);
-  ok(A.chip("shinhan").title.includes("99999"));
+  ok(A.chip("shinhan").title.includes("가상시 변경로 9") && !A.chip("shinhan").title.includes("99999"), "저장된 zip은 무시");
   // 세트도 db에
   A.pick("shinhan");
   A.type(A.$("set-name"), "공용 세트"); A.click(A.$("set-save")); await A.tick(40);
@@ -681,7 +839,7 @@ test("db 쓰기 권한 없음(can=false): 이 브라우저에만 저장하고 �
   await A.tick(40);
   eq(A.$("st-db").textContent, "공용 저장 읽기 전용"); ok(A.$("st-db").classList.contains("off"));
   A.click(A.$("btn-add-inst-open"));
-  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-zip"), "12345"); A.type(A.$("add-addr"), "가상시 가상로 1");
+  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-addr"), "가상시 가상로 1");
   A.click(A.$("add-save")); await A.tick(40);
   eq(Object.keys(f.cols.institutions).length, 0);
   eq(A.ls("finorder.v1.institutions").length, 1);
@@ -696,7 +854,7 @@ test("db 쓰기 거부(can=null, set이 invalid_argument): 로컬 폴백 후 알
   await A.tick(40);
   eq(A.$("st-db").textContent, "공용 저장 연결");
   A.click(A.$("btn-add-inst-open"));
-  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-zip"), "12345"); A.type(A.$("add-addr"), "가상시 가상로 1");
+  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-addr"), "가상시 가상로 1");
   A.click(A.$("add-save")); await A.tick(40);
   eq(A.ls("finorder.v1.institutions").length, 1);
   ok(A.toast().includes("이 브라우저에만"));
@@ -718,7 +876,7 @@ test("개인정보 비저장: 이름·번호·사건번호·사건명은 localSt
   A.type(A.$("purpose-text"), "김영희 명의 부동산 대금 흐름을 보려고. 홍길동 900101-2345678 사건 2026드단12345");
   A.click(A.$("btn-polish")); await A.tick(40);
   A.click(A.$("btn-add-inst-open"));
-  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-zip"), "12345"); A.type(A.$("add-addr"), "가상시 가상로 1");
+  A.type(A.$("add-name"), "가상은행"); A.type(A.$("add-addr"), "가상시 가상로 1");
   A.click(A.$("add-save")); await A.tick(40);
   A.type(A.$("set-name"), "세트"); A.click(A.$("set-save")); await A.tick(40);
   const all = JSON.stringify({ db: f.cols, ls: { i: A.ls("finorder.v1.institutions"), s: A.ls("finorder.v1.sets") }, sample: sample.prompts });
@@ -729,7 +887,7 @@ test("개인정보 비저장: 이름·번호·사건번호·사건명은 localSt
   // 모든 키가 허용 목록 안에 있는지
   const keys = new Set();
   Object.values(f.cols.institutions).forEach((d) => Object.keys(d).forEach((k) => keys.add(k)));
-  ok([...keys].every((k) => ["id", "origin", "cat", "short", "name", "aliases", "wording", "popular", "zip", "addr", "note", "status", "checkedAt", "sources", "memo", "createdAt", "updatedAt", "updatedBy"].includes(k)), [...keys].join());
+  ok([...keys].every((k) => ["id", "origin", "cat", "short", "name", "aliases", "wording", "popular", "addr", "note", "status", "checkedAt", "sources", "memo", "createdAt", "updatedAt", "updatedBy"].includes(k)), [...keys].join());
 });
 
 /* ---------- Claude 다듬기 ---------- */
@@ -821,13 +979,13 @@ test("DOM 계약: SPEC 5장 id 66개와 동적 클래스가 모두 존재", asyn
   const sec = spec.split("정적(디자인이 마크업 작성):")[1].split("동적(코드가 만드는 조각")[0];
   const ids = new Set();
   sec.split("\n").forEach((l) => { if (l.startsWith("|") && !l.startsWith("|---") && !l.startsWith("| id")) (l.split("|")[1].match(/`([a-z][a-z0-9-]*)`/g) || []).forEach((x) => ids.add(x.replace(/`/g, ""))); });
-  ["inst-filter-ready", "missing-count", "add-msg"].forEach((x) => ids.add(x));
+  ["inst-filter-ready", "missing-count", "add-msg", "form-bank-n", "form-insurance-n", "wording-block"].forEach((x) => ids.add(x));
   const missing = [...ids].filter((id) => !A.$(id));
   eq(missing, []);
   ok(ids.size >= 60);
   // 동적 조각
   A.pick("hana");
-  const need = [".cat-tab", ".cat-all", ".cat-none", ".cat-n", ".inst-item", ".inst-cb", ".inst-short", ".inst-sub", ".inst-group", ".sel-row", ".sel-letter", ".sel-main", ".sel-name", ".sel-ctl", ".sel-up", ".sel-down", ".sel-del", ".sel-fill", ".sel-fill-zip", ".sel-fill-addr", ".sel-fill-save", ".holder", ".h-role", ".h-name", ".h-no", ".h-del", ".d-title", ".d-case", ".d-label", ".d-value", ".d-intro", ".d-next", ".d-h", ".d-inst", ".d-letter", ".d-name", ".d-addr", ".d-holder", ".d-p", ".d-l1", ".d-l2", ".d-mk", "u", ".d-blank", ".btn-copy"];
+  const need = [".cat-tab", ".cat-all", ".cat-none", ".cat-n", ".inst-item", ".inst-cb", ".inst-short", ".inst-sub", ".inst-group", ".sel-row", ".sel-letter", ".sel-main", ".sel-name", ".sel-ctl", ".sel-up", ".sel-down", ".sel-del", ".sel-fill", ".sel-fill-name", ".sel-fill-addr", ".sel-fill-note", ".sel-fill-save", ".holder", ".h-role", ".h-name", ".h-no", ".h-del", ".d-title", ".d-case", ".d-label", ".d-value", ".d-intro", ".d-next", ".d-h", ".d-inst", ".d-letter", ".d-name", ".d-addr", ".d-holder", ".d-p", ".d-l1", ".d-l2", ".d-mk", "u", ".d-blank", ".btn-copy"];
   const roots = need.filter((s) => !A.q(s));
   eq(roots, []);
   A.type(A.$("upd-paste"), '[{"id":"hana","zip":"04520","addr":"가","sources":[{"label":"a","url":"https://a.test"}]}]'); A.click(A.$("upd-check"));
