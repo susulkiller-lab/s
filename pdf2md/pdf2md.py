@@ -82,7 +82,7 @@ def usable_text(text):
     s = re.sub(r"\s", "", text or "")
     if len(s) < MIN_TEXT_CHARS:
         return False
-    bad = sum(1 for ch in s if ch == "�" or "" <= ch <= "")
+    bad = sum(1 for ch in s if ch == "\ufffd" or "\ue000" <= ch <= "\uf8ff")
     bad += s.count("(cid:") * 6
     return bad / len(s) < 0.3
 

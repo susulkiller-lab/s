@@ -135,7 +135,7 @@ class Classify(unittest.TestCase):
         self.assertEqual(pdf2md.convert(p).status, "error")
 
     def test_garbled_text_layer_counts_as_scan(self):
-        self.assertFalse(pdf2md.usable_text("" * 40))
+        self.assertFalse(pdf2md.usable_text("\ue001" * 40))
         self.assertFalse(pdf2md.usable_text("(cid:12)(cid:34)(cid:56)(cid:78)"))
         self.assertFalse(pdf2md.usable_text("짧음"))
         self.assertTrue(pdf2md.usable_text("원고는 피고에게 금전을 대여하였다." * 2))
