@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF → Markdown</title>
+<style>
+  :root { --ink:#1f2933; --sub:#617080; --line:#d5dbe3; --bg:#f5f7fa; --card:#fff; --accent:#2457a6; --ok:#1d7a46; --warn:#a15c00; --bad:#b3261e; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif; line-height:1.5; }
+  main { max-width:860px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .lead { color:var(--sub); margin:0 0 20px; font-size:14px; }
+  #drop { display:block; border:2px dashed var(--line); border-radius:12px; background:var(--card); padding:44px 16px; text-align:center; cursor:pointer; transition:border-color .15s, background .15s; }
+  #drop.over { border-color:var(--accent); background:#eef3fb; }
+  #drop strong { display:block; font-size:18px; margin-bottom:4px; }
+  #drop span { color:var(--sub); font-size:14px; }
+  .opt { margin:12px 2px 0; font-size:14px; color:var(--sub); }
+  .opt input { margin-right:6px; }
+  #jobs { margin-top:24px; display:grid; gap:14px; }
+  .job { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .head { display:flex; gap:10px; align-items:baseline; justify-content:space-between; flex-wrap:wrap; }
+  .name { font-weight:600; word-break:break-all; }
+  .badge { font-size:12px; padding:2px 8px; border-radius:999px; border:1px solid currentColor; white-space:nowrap; }
+  .b-ok { color:var(--ok); } .b-warn { color:var(--warn); } .b-bad { color:var(--bad); } .b-run { color:var(--accent); }
+  .bar { height:6px; background:#e6ebf1; border-radius:3px; margin:10px 0 4px; overflow:hidden; }
+  .bar i { display:block; height:100%; width:0; background:var(--accent); transition:width .3s; }
+  .meta { color:var(--sub); font-size:13px; }
+  .note { margin-top:8px; font-size:13px; padding:8px 10px; border-radius:8px; background:#fff6e5; color:#6b4300; }
+  .err { background:#fdecea; color:#7a1912; }
+  textarea { width:100%; height:240px; margin-top:10px; padding:10px; border:1px solid var(--line); border-radius:8px; font:13px/1.55 "Malgun Gothic",monospace; resize:vertical; background:#fbfcfd; }
+  .btns { display:flex; gap:8px; margin-top:8px; }
+  button { font:inherit; font-size:14px; padding:6px 14px; border-radius:8px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
+  button.sec { background:#fff; color:var(--accent); }
+  button:disabled { opacity:.5; cursor:default; }
+  footer { margin-top:28px; color:var(--sub); font-size:12px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>PDF → Markdown</h1>
+  <p class="lead">PDF를 아래 칸에 끌어놓으세요. 스캔본은 OCR로 읽습니다. 처리는 이 PC 안에서만 이뤄지며 문서는 외부로 전송되지 않습니다.</p>
+
+  <label id="drop" for="pick">
+    <strong>여기에 PDF를 끌어놓거나 눌러서 선택</strong>
+    <span>여러 파일을 한꺼번에 놓을 수 있습니다</span>
+  </label>
+  <input id="pick" type="file" accept=".pdf,application/pdf" multiple hidden>
+  <label class="opt"><input id="ocr" type="checkbox" checked>스캔 쪽은 OCR로 읽기 (끄면 텍스트가 있는 쪽만 변환)</label>
+
+  <div id="jobs"></div>
+  <footer>OCR 결과의 숫자·금액·날짜·고유명사는 반드시 원본과 대조하세요.</footer>
+</main>
+
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const jobsEl = $("#jobs");
+
+function addFiles(files) {
+  for (const f of files) {
+    if (!/\.pdf$/i.test(f.name) && f.type !== "application/pdf") continue;
+    submit(f);
+  }
+}
+
+async function submit(file) {
+  const card = document.createElement("div");
+  card.className = "job";
+  card.innerHTML = '<div class="head"><span class="name"></span><span class="badge b-run">업로드 중</span></div>' +
+    '<div class="bar"><i></i></div><div class="meta">대기 중</div><div class="extra"></div>';
+  $(".name", card).textContent = file.name;
+  jobsEl.prepend(card);
+  try {
+    const q = new URLSearchParams({ name: file.name, ocr: $("#ocr").checked ? "1" : "0" });
+    const r = await fetch("/api/convert?" + q, { method: "POST", headers: { "X-Pdf2md": "1" }, body: file });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || "전송 실패");
+    poll(j.id, card, file.name);
+  } catch (e) {
+    finish(card, file.name, { status: "error", message: String(e.message || e) });
+  }
+}
+
+function poll(id, card, name) {
+  const t = setInterval(async () => {
+    try {
+      const r = await fetch("/api/jobs/" + id);
+      if (!r.ok) throw new Error("작업 정보를 찾을 수 없습니다.");
+      const j = await r.json();
+      const badge = $(".badge", card);
+      if (j.state !== "done") {
+        badge.textContent = j.state === "queued" ? "대기" : "변환 중";
+        $(".bar i", card).style.width = j.total ? (100 * j.done / j.total) + "%" : "5%";
+        $(".meta", card).textContent = j.stage + (j.total ? ` (${j.done}/${j.total}쪽)` : "");
+        return;
+      }
+      clearInterval(t);
+      finish(card, name, j.result);
+    } catch (e) {
+      clearInterval(t);
+      finish(card, name, { status: "error", message: String(e.message || e) });
+    }
+  }, 700);
+}
+
+const LABEL = { ok: ["완료", "b-ok"], scan_suspected: ["스캔 의심", "b-warn"], encrypted: ["암호 PDF", "b-bad"], error: ["실패", "b-bad"] };
+const METHOD = { markitdown: "텍스트 PDF", ocr: "OCR", mixed: "텍스트+OCR" };
+
+function finish(card, name, res) {
+  const [text, cls] = LABEL[res.status] || LABEL.error;
+  const badge = $(".badge", card);
+  badge.textContent = text;
+  badge.className = "badge " + cls;
+  $(".bar i", card).style.width = "100%";
+  const bits = [];
+  if (res.pages) bits.push(res.pages + "쪽");
+  if (res.method) bits.push(METHOD[res.method]);
+  if (res.scanned_pages && res.method) bits.push("스캔 " + res.scanned_pages + "쪽");
+  if (res.seconds) bits.push(res.seconds.toFixed(1) + "초");
+  $(".meta", card).textContent = bits.join(" · ");
+  const extra = $(".extra", card);
+  extra.innerHTML = "";
+  if (res.message) {
+    const n = document.createElement("div");
+    n.className = "note" + (res.status === "ok" ? "" : " err");
+    n.textContent = res.message;
+    extra.append(n);
+  }
+  if (res.markdown) {
+    const ta = document.createElement("textarea");
+    ta.readOnly = true;
+    ta.value = res.markdown;
+    const btns = document.createElement("div");
+    btns.className = "btns";
+    const copy = document.createElement("button");
+    copy.textContent = "복사";
+    copy.onclick = async () => {
+      try { await navigator.clipboard.writeText(res.markdown); } catch { ta.select(); document.execCommand("copy"); }
+      copy.textContent = "복사됨";
+      setTimeout(() => copy.textContent = "복사", 1500);
+    };
+    const save = document.createElement("button");
+    save.className = "sec";
+    save.textContent = "md 저장";
+    save.onclick = () => {
+      const url = URL.createObjectURL(new Blob([res.markdown], { type: "text/markdown;charset=utf-8" }));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = name.replace(/\.pdf$/i, "") + ".md";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    };
+    btns.append(copy, save);
+    extra.append(ta, btns);
+  }
+}
+
+const drop = $("#drop");
+["dragenter", "dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+["dragleave", "drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", e => addFiles(e.dataTransfer.files));
+// 칸 밖에 놓아도 브라우저가 PDF를 열어 버리지 않게 한다
+window.addEventListener("dragover", e => e.preventDefault());
+window.addEventListener("drop", e => { e.preventDefault(); if (!drop.contains(e.target)) addFiles(e.dataTransfer.files); });
+$("#pick").addEventListener("change", e => { addFiles(e.target.files); e.target.value = ""; });
+</script>
+</body>
+</html>

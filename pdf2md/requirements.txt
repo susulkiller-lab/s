@@ -1,0 +1,5 @@
+markitdown[pdf]==0.1.7
+rapidocr==3.10.0
+onnxruntime>=1.20
+pypdfium2>=4.30
+pillow>=10.1
