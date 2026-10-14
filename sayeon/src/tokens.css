@@ -1,0 +1,79 @@
+/* 사건 연표 - 디자인 토큰. 레이아웃 개념: 종이 위의 연표. 차분한 청회색 바탕, 먹색 글자, 원고=남청, 피고=황갈, 도장 붉은색은 번복·모순 표시에만 쓴다. */
+:root {
+  --ink: #1b2230;
+  --ink-2: #4a5468;
+  --ink-3: #6f7a8e;
+  --bg: #f4f6f9;
+  --surface: #ffffff;
+  --surface-2: #eef1f6;
+  --rule: #d5dae3;
+  --rule-2: #e6e9f0;
+  --focus: #2a5db0;
+
+  --plaintiff: #1f4e8c;
+  --plaintiff-bg: #e3ecf8;
+  --defendant: #8f5410;
+  --defendant-bg: #f6ebd9;
+  --agreed: #2b3445;
+
+  --flag: #b3261e;
+  --flag-bg: #fbe6e3;
+  --ok: #2c6e49;
+  --ok-bg: #e2f1e8;
+  --warn: #9a6a00;
+  --warn-bg: #fbf0d0;
+  --adm: #5b3f9a;
+  --adm-bg: #ece6f7;
+
+  --font-ui: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", system-ui, sans-serif;
+  --font-doc: "Batang", "바탕", "AppleMyungjo", "Noto Serif KR", serif;
+  --font-num: "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-md: 14px;
+  --fs-lg: 16px;
+  --fs-xl: 20px;
+  --radius: 6px;
+  --gap: 12px;
+  --shadow: 0 1px 2px rgba(20, 28, 45, .08), 0 4px 14px rgba(20, 28, 45, .06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e6eaf2; --ink-2: #b4bdce; --ink-3: #8c97ac;
+    --bg: #12161e; --surface: #1a202b; --surface-2: #222a38;
+    --rule: #323b4d; --rule-2: #283042; --focus: #7aa7ee;
+    --plaintiff: #8fb6ee; --plaintiff-bg: #1d2c46;
+    --defendant: #e0b06a; --defendant-bg: #3a2c17;
+    --agreed: #d3d9e6;
+    --flag: #ff8f86; --flag-bg: #3f1f1d;
+    --ok: #7fd1a0; --ok-bg: #19332a;
+    --warn: #e8c15a; --warn-bg: #382d10;
+    --adm: #bfa6f0; --adm-bg: #2b2342;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #e6eaf2; --ink-2: #b4bdce; --ink-3: #8c97ac;
+  --bg: #12161e; --surface: #1a202b; --surface-2: #222a38;
+  --rule: #323b4d; --rule-2: #283042; --focus: #7aa7ee;
+  --plaintiff: #8fb6ee; --plaintiff-bg: #1d2c46;
+  --defendant: #e0b06a; --defendant-bg: #3a2c17;
+  --agreed: #d3d9e6;
+  --flag: #ff8f86; --flag-bg: #3f1f1d;
+  --ok: #7fd1a0; --ok-bg: #19332a;
+  --warn: #e8c15a; --warn-bg: #382d10;
+  --adm: #bfa6f0; --adm-bg: #2b2342;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 4px 14px rgba(0, 0, 0, .3);
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font-family: var(--font-ui); }
+/* 변화 판정 배지: 색 + 기호 + 글자 3중 표시 (흑백 출력·색맹 대응) */
+.rel { display: inline-flex; align-items: center; gap: 4px; padding: 1px 7px; border-radius: 999px; font-size: var(--fs-xs); font-weight: 600; border: 1px solid currentColor; white-space: nowrap; }
+.rel.keep, .rel.add, .rel.omit { color: var(--ink-2); background: var(--surface-2); }
+.rel.chg { color: var(--warn); background: var(--warn-bg); }
+.rel.rev, .rel.con { color: var(--flag); background: var(--flag-bg); }
+.rel.wd { color: var(--ink-2); background: var(--surface-2); border-style: dashed; }
+.rel.adm { color: var(--adm); background: var(--adm-bg); }
+.rel.review::after { content: "검토 필요"; margin-left: 4px; font-weight: 500; opacity: .85; }

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>변천 지도 시험</title>
+<!-- 변천 지도 단독 시험 페이지. http 로 열어야 한다(file:// 은 fetch 불가).
+     예: cd $R && npx http-server -p 8080 . 후 http://localhost:8080/test/harness_map.html?data=sample
+     data: sample(sample_min + 미반복 1건, 기본) | raw(sample_min 그대로) | synth(쟁점 9 x 서면 6) | perf(15 x 12) | nochg(판정 없음) | empty(진술 없음) | real(data/case_song.json)
+     theme: light | dark (없으면 시스템 설정) -->
+<link rel="stylesheet" href="../src/tokens.css">
+<link rel="stylesheet" href="../src/viz_map.css">
+<style>
+  body { margin: 0; padding: 16px; }
+  .hz { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; font-size: var(--fs-xs); color: var(--ink-3); }
+  .hz a { color: var(--focus); }
+  .hz[hidden] { display: none; }
+  #app { min-width: 0; }
+</style>
+</head>
+<body>
+<div class="hz" id="hz">시험 데이터:
+  <a href="?data=sample">sample</a><a href="?data=synth">synth 9x6</a><a href="?data=perf">perf 15x12</a>
+  <a href="?data=nochg">판정 없음</a><a href="?data=empty">진술 없음</a>
+</div>
+<main id="app"></main>
+<script src="../src/common.js"></script>
+<script src="../src/viz_map.js"></script>
+<script src="gen_synth_map.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var kind = q.get('data') || 'sample';
+  if (q.get('theme')) document.documentElement.setAttribute('data-theme', q.get('theme'));
+  if (q.get('bare')) document.getElementById('hz').hidden = true;
+  function withOmit(C) {
+    C.changes.push({ id: 'C5', issueId: 'I8', scope: 'same', fromId: 'S06', toId: null, toDocId: 'D3', type: '미반복',
+      basis: '답변서 제1쪽의 잔금 기한 연장 주장이 2099. 8. 8.자 준비서면에는 없음', review: false });
+    return C;
+  }
+  function load() {
+    if (window.__CASE__) return Promise.resolve(window.__CASE__);
+    if (kind === 'synth') return Promise.resolve(SYSynth.gen());
+    if (kind === 'perf') return Promise.resolve(SYSynth.gen({ issues: 15, docs: 12, statements: 360, changes: 180 }));
+    if (kind === 'real') return fetch('../data/case_song.json').then(function (r) { return r.json(); });
+    return fetch('../data/sample_min.json').then(function (r) { return r.json(); }).then(function (C) {
+      if (kind === 'raw') return C;
+      if (kind === 'nochg') { C.changes = []; return C; }
+      if (kind === 'empty') { C.statements = []; C.changes = []; return C; }
+      return withOmit(C);
+    });
+  }
+  load().then(function (C) {
+    window.__C__ = C;
+    var t0 = performance.now();
+    window.__ctrl = SY.Viz.map(document.getElementById('app'), C, {
+      onExport: function (text, filename) { window.__exported = { text: text, filename: filename }; return Promise.resolve(); },
+      onSelectionChange: function (ids) { window.__sel = ids; }
+    });
+    window.__mountMs = performance.now() - t0;
+    window.__ready = true;
+  }).catch(function (e) {
+    document.getElementById('app').textContent = '시험 데이터를 읽지 못했습니다: ' + e.message;
+    window.__ready = true;
+  });
+})();
+</script>
+</body>
+</html>

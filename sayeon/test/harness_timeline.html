@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>타임라인 단독 시험</title>
+<link rel="stylesheet" href="../src/tokens.css">
+<link rel="stylesheet" href="../src/viz_timeline.css">
+<style>
+  body { margin: 0; }
+  .h-top { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--rule); background: var(--surface); font-size: var(--fs-sm); }
+  .h-top label { display: inline-flex; gap: 4px; align-items: center; color: var(--ink-2); }
+  .h-top select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 3px 6px; max-width: 180px; }
+  .h-main { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 12px; padding: 12px 16px; align-items: start; }
+  .h-detail { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px; min-width: 0; max-height: calc(100vh - 90px); overflow: auto; position: sticky; top: 8px; }
+  @media (max-width: 760px) { .h-main { grid-template-columns: minmax(0, 1fr); padding: 10px 16px; } .h-detail { max-height: none; position: static; } }
+</style>
+</head>
+<body>
+<div class="h-top">
+  <strong>타임라인 단독 시험</strong>
+  <label>자료 <select id="data"><option value="sample">sample_min</option><option value="synth">합성 60건</option><option value="synth200">합성 200건</option><option value="empty">빈 사건</option></select></label>
+  <label>쟁점 <select id="issue"><option value="">전체 쟁점</option></select></label>
+  <label>테마 <select id="theme"><option value="">시스템</option><option value="light">라이트</option><option value="dark">다크</option></select></label>
+</div>
+<main class="h-main">
+  <section id="tl" aria-label="연표"></section>
+  <aside id="detail" class="h-detail" aria-label="사실 상세"></aside>
+</main>
+<script src="../src/common.js"></script>
+<script src="../src/viz_timeline.js"></script>
+<script src="gen_synth.js"></script>
+<script>
+(function () {
+  'use strict';
+  var P = new URLSearchParams(location.search);
+  var data = P.get('data') || 'sample', theme = P.get('theme') || '', scale = P.get('scale') || 'real';
+  var tlEl = document.getElementById('tl'), detEl = document.getElementById('detail');
+  if (theme) document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('data').value = data;
+  document.getElementById('theme').value = theme;
+  function nav(k, v) { P.set(k, v); location.search = P.toString(); }
+  document.getElementById('data').onchange = function () { nav('data', this.value); };
+  document.getElementById('theme').onchange = function () { nav('theme', this.value); };
+  window.__sel = [];
+  function load() {
+    if (data === 'synth') return Promise.resolve(window.genSynth(60));
+    if (data === 'synth200') return Promise.resolve(window.genSynth(200));
+    if (data === 'empty') return Promise.resolve({ id: 'c_empty', title: '빈 사건', docs: [], issues: [], statements: [], changes: [], facts: [] });
+    return fetch('../data/sample_min.json').then(function (r) { return r.json(); });
+  }
+  load().then(function (C) {
+    window.__C = C;
+    var sel = document.getElementById('issue');
+    (C.issues || []).forEach(function (is) { var o = document.createElement('option'); o.value = is.id; o.textContent = is.name; sel.appendChild(o); });
+    if (P.get('issue')) sel.value = P.get('issue');
+    function showDetail(id) {
+      SY.Viz.factDetail(detEl, C, id, { onClose: function () { ctrl.select(null); showDetail(null); } });
+    }
+    var t0 = performance.now();
+    var ctrl = SY.Viz.timeline(tlEl, C, {
+      scale: scale, issueId: P.get('issue') || null, selectedId: P.get('sel') || null,
+      onSelect: function (id) { window.__sel.push(id); showDetail(id); },
+      onChange: function (p) { window.__change = p; }
+    });
+    window.__mountMs = performance.now() - t0;
+    window.__tl = ctrl;
+    showDetail(P.get('sel') || null);
+    sel.onchange = function () { ctrl.update({ issueId: sel.value || null }); };
+    window.__ready = true;
+  }).catch(function (e) {
+    tlEl.textContent = '자료를 읽지 못했습니다: ' + e.message + ' (file:// 에서는 fetch 가 막히므로 합성 자료를 고르거나 http 로 여십시오)';
+    window.__ready = true;
+  });
+
+  /* 자동 점검: 화면에 그려진 카드의 실제 사각형(getBoundingClientRect)과 배치 계산 결과 모두 겹침·밖으로 나감을 센다 */
+  window.__check = function () {
+    var root = document.querySelector('.sy-tl'); if (!root) return { error: 'no root' };
+    var canvas = root.querySelector('.sy-tl-canvas'), cr = canvas.getBoundingClientRect();
+    var els = Array.prototype.slice.call(root.querySelectorAll('.sy-tl-card'));
+    var rs = els.map(function (b) { return { k: b.getAttribute('data-k'), r: b.getBoundingClientRect(), b: b }; });
+    var domOverlaps = [], domOutside = [], innerOverflow = [];
+    for (var i = 0; i < rs.length; i++) {
+      var a = rs[i].r;
+      for (var j = i + 1; j < rs.length; j++) {
+        var c = rs[j].r;
+        if (a.left < c.right - 0.5 && c.left < a.right - 0.5 && a.top < c.bottom - 0.5 && c.top < a.bottom - 0.5) domOverlaps.push(rs[i].k + '|' + rs[j].k);
+      }
+      if (a.left < cr.left - 0.5 || a.right > cr.right + 0.5 || a.top < cr.top - 0.5 || a.bottom > cr.bottom + 0.5) domOutside.push(rs[i].k);
+      Array.prototype.forEach.call(rs[i].b.children, function (ch) {
+        var q = ch.getBoundingClientRect();
+        if (q.left < a.left - 0.5 || q.right > a.right + 0.5 || q.top < a.top - 0.5 || q.bottom > a.bottom + 0.5) innerOverflow.push(rs[i].k + ':' + ch.className);
+      });
+    }
+    var dbg = window.__tl && window.__tl._debug ? window.__tl._debug() : {}, L = dbg.layout;
+    var layOverlaps = 0, layOutside = 0;
+    if (L) {
+      var cs = L.cards;
+      for (var x = 0; x < cs.length; x++) {
+        var p = cs[x];
+        if (p.x < 0 || p.y < 0 || p.x + p.w > L.width || p.y + p.h > L.height) layOutside++;
+        for (var y = x + 1; y < cs.length; y++) {
+          var q2 = cs[y];
+          if (p.x < q2.x + q2.w - 0.01 && q2.x < p.x + p.w - 0.01 && p.y < q2.y + q2.h - 0.01 && q2.y < p.y + p.h - 0.01) layOverlaps++;
+        }
+      }
+    }
+    // 시간선 컨트롤·범례·미니맵이 루트 폭을 넘지 않는지
+    var rr = root.getBoundingClientRect(), ctlOut = [];
+    Array.prototype.forEach.call(root.querySelectorAll('.sy-tl-bar > *, .sy-tl-bar button, .sy-tl-bar input, .sy-tl-legend, .sy-tl-mini, .sy-tl-vp'), function (n) {
+      var q = n.getBoundingClientRect(); if (q.width && (q.left < rr.left - 0.5 || q.right > rr.right + 0.5)) ctlOut.push(n.className || n.tagName);
+    });
+    var de = document.documentElement, det = document.getElementById('detail');
+    return {
+      renderedCards: rs.length, layoutCards: L ? L.cards.length : 0, tiers: L ? L.tiers : null, width: L ? L.width : 0, height: L ? L.height : 0,
+      zoom: dbg.zoom, breaks: L ? L.breaks.map(function (b) { return b.label; }) : [],
+      domOverlaps: domOverlaps, domOutside: domOutside, innerOverflow: innerOverflow,
+      layoutOverlaps: layOverlaps, layoutOutside: layOutside, controlsOutside: ctlOut,
+      pageHScroll: de.scrollWidth - de.clientWidth, detailHScroll: det.scrollWidth - det.clientWidth,
+      domNodes: root.getElementsByTagName('*').length
+    };
+  };
+})();
+</script>
+</body>
+</html>

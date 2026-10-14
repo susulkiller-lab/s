@@ -1,0 +1,485 @@
+{
+ "_dev": true,
+ "_note": "개발용 최소 샘플. 실제 사건 데이터가 아니라 화면 개발을 위해 모양만 갖춘 가상 값이다. 모든 필드 유형(approx, range, 일자 불일치, 자백후보)을 한 번씩 포함한다.",
+ "id": "c_dev",
+ "title": "가상 사건 계약금반환",
+ "caseNo": "2099가단00001",
+ "court": "○○지방법원",
+ "ourSide": "원고",
+ "parties": {
+  "원고": "갑",
+  "피고": "을"
+ },
+ "margins": {
+  "top": 45,
+  "bottom": 20,
+  "left": 30,
+  "right": 30
+ },
+ "docs": [
+  {
+   "id": "D1",
+   "kind": "소장",
+   "side": "원고",
+   "submitter": "원고 소송대리인",
+   "filedDate": "2099-04-11",
+   "fileName": "소장.pdf",
+   "source": "file",
+   "pageCount": 2,
+   "pages": [
+    {
+     "n": 1,
+     "text": "청구원인 1. 원고는 2098. 10. 3. 피고와 매매계약을 체결하고 계약금 4,000만 원을 지급하였습니다.",
+     "status": "text"
+    },
+    {
+     "n": 2,
+     "text": "피고는 2098. 12. 27.경 군청을 함께 방문하였습니다. 원고는 상수도 공사비가 1,000만 원을 초과한다고 주장합니다.",
+     "status": "text"
+    }
+   ]
+  },
+  {
+   "id": "D2",
+   "kind": "답변서",
+   "side": "피고",
+   "submitter": "피고",
+   "filedDate": "2099-06-07",
+   "fileName": "답변서.pdf",
+   "source": "file",
+   "pageCount": 1,
+   "pages": [
+    {
+     "n": 1,
+     "text": "피고는 2098. 10. 3. 매매계약을 체결하고 계약금을 받았음을 인정합니다. 상수도 문제는 없습니다. 잔금 기한은 2098. 10. 31.에서 2098. 12. 29.로 연장하였습니다.",
+     "status": "text"
+    }
+   ]
+  },
+  {
+   "id": "D3",
+   "kind": "준비서면",
+   "side": "피고",
+   "submitter": "피고",
+   "filedDate": "2099-08-08",
+   "fileName": "준비서면1.pdf",
+   "source": "file",
+   "pageCount": 1,
+   "pages": [
+    {
+     "n": 1,
+     "text": "토지는 상수도 미급수지역이고 인입경비는 약 3천만 원이 소요됩니다.",
+     "status": "text"
+    }
+   ]
+  },
+  {
+   "id": "D4",
+   "kind": "준비서면",
+   "side": "원고",
+   "submitter": "원고 소송대리인",
+   "filedDate": "2099-09-06",
+   "fileName": "준비서면2.pdf",
+   "source": "file",
+   "pageCount": 1,
+   "pages": [
+    {
+     "n": 1,
+     "text": "피고는 군청 방문에 동석하였습니다.",
+     "status": "text"
+    }
+   ]
+  }
+ ],
+ "issues": [
+  {
+   "id": "I0",
+   "name": "기초사실",
+   "elements": "계약 체결, 계약금"
+  },
+  {
+   "id": "I2",
+   "name": "상수도 인입(특약 제12항)",
+   "elements": "미급수지역, 공사비"
+  },
+  {
+   "id": "I8",
+   "name": "잔금 기한",
+   "elements": "연장 경위"
+  },
+  {
+   "id": "I9",
+   "name": "군청 방문",
+   "elements": "동석 여부"
+  }
+ ],
+ "statements": [
+  {
+   "id": "S01",
+   "docId": "D1",
+   "page": 1,
+   "item": "청구원인 1",
+   "issueIds": [
+    "I0"
+   ],
+   "side": "원고",
+   "gist": "2098. 10. 3. 피고와 매매계약을 체결하고 계약금 4,000만 원을 지급하였다",
+   "quote": "원고는 2098. 10. 3. 피고와 매매계약을 체결하고 계약금 4,000만 원을 지급하였습니다",
+   "factIds": [
+    "F1"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "S02",
+   "docId": "D2",
+   "page": 1,
+   "item": "1",
+   "issueIds": [
+    "I0"
+   ],
+   "side": "피고",
+   "gist": "매매계약 체결과 계약금 수령 사실을 인정한다",
+   "quote": "2098. 10. 3. 매매계약을 체결하고 계약금을 받았음을 인정합니다",
+   "factIds": [
+    "F1"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "S03",
+   "docId": "D1",
+   "page": 2,
+   "item": "청구원인 2",
+   "issueIds": [
+    "I2"
+   ],
+   "side": "원고",
+   "gist": "상수도 공사비가 1,000만 원을 초과한다",
+   "quote": "원고는 상수도 공사비가 1,000만 원을 초과한다고 주장합니다",
+   "factIds": [
+    "F4"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "S04",
+   "docId": "D2",
+   "page": 1,
+   "item": "2",
+   "issueIds": [
+    "I2"
+   ],
+   "side": "피고",
+   "gist": "상수도 문제는 없다",
+   "quote": "상수도 문제는 없습니다",
+   "factIds": [],
+   "evidence": []
+  },
+  {
+   "id": "S05",
+   "docId": "D3",
+   "page": 1,
+   "item": "2",
+   "issueIds": [
+    "I2"
+   ],
+   "side": "피고",
+   "gist": "토지는 상수도 미급수지역이고 인입경비는 약 3천만 원이 소요된다",
+   "quote": "토지는 상수도 미급수지역이고 인입경비는 약 3천만 원이 소요됩니다",
+   "factIds": [
+    "F4"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "S06",
+   "docId": "D2",
+   "page": 1,
+   "item": "3",
+   "issueIds": [
+    "I8"
+   ],
+   "side": "피고",
+   "gist": "잔금 기한을 2098. 10. 31.에서 2098. 12. 29.로 연장하였다",
+   "quote": "잔금 기한은 2098. 10. 31.에서 2098. 12. 29.로 연장하였습니다",
+   "factIds": [
+    "F3"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "S07",
+   "docId": "D1",
+   "page": 2,
+   "item": "청구원인 3",
+   "issueIds": [
+    "I9"
+   ],
+   "side": "원고",
+   "gist": "피고가 2098. 12. 27.경 군청을 함께 방문하였다",
+   "quote": "피고는 2098. 12. 27.경 군청을 함께 방문하였습니다",
+   "factIds": [
+    "F5"
+   ],
+   "evidence": []
+  },
+  {
+   "id": "S08",
+   "docId": "D4",
+   "page": 1,
+   "item": "1",
+   "issueIds": [
+    "I9"
+   ],
+   "side": "원고",
+   "gist": "피고가 군청 방문에 동석하였다",
+   "quote": "피고는 군청 방문에 동석하였습니다",
+   "factIds": [
+    "F5"
+   ],
+   "evidence": []
+  }
+ ],
+ "changes": [
+  {
+   "id": "C1",
+   "issueId": "I2",
+   "scope": "same",
+   "fromId": "S04",
+   "toId": "S05",
+   "type": "변경",
+   "basis": "답변서의 '상수도 문제 없음'에서 준비서면의 '미급수지역, 인입경비 약 3천만 원'으로 서술이 바뀜",
+   "review": false
+  },
+  {
+   "id": "C2",
+   "issueId": "I2",
+   "scope": "cross",
+   "fromId": "S03",
+   "toId": "S05",
+   "type": "자백후보",
+   "basis": "피고가 미급수지역과 약 3천만 원 소요를 서면에 적음. 변론기일 진술 여부는 조서로 확인하지 않음",
+   "review": true
+  },
+  {
+   "id": "C3",
+   "issueId": "I0",
+   "scope": "cross",
+   "fromId": "S01",
+   "toId": "S02",
+   "type": "자백후보",
+   "basis": "피고가 계약 체결과 계약금 수령을 인정",
+   "review": true
+  },
+  {
+   "id": "C4",
+   "issueId": "I9",
+   "scope": "same",
+   "fromId": "S07",
+   "toId": "S08",
+   "type": "보충",
+   "basis": "'동행'이 '동석'으로 표현됨",
+   "review": false
+  }
+ ],
+ "facts": [
+  {
+   "id": "F1",
+   "title": "매매계약 체결·계약금 지급",
+   "date": {
+    "start": "2098-10-03",
+    "end": null,
+    "precision": "day",
+    "label": ""
+   },
+   "plaintiff": {
+    "text": "매매계약을 체결하고 계약금 4,000만 원을 지급",
+    "stmtIds": [
+     "S01"
+    ],
+    "evidence": [
+     "갑1",
+     "갑2"
+    ]
+   },
+   "defendant": {
+    "text": "계약 체결과 계약금 수령 인정",
+    "stmtIds": [
+     "S02"
+    ],
+    "evidence": []
+   },
+   "dispute": "다툼없음",
+   "issueIds": [
+    "I0"
+   ],
+   "note": ""
+  },
+  {
+   "id": "F2",
+   "title": "건축설계사무소 방문",
+   "date": {
+    "start": "2098-10-07",
+    "end": null,
+    "precision": "approx",
+    "label": ""
+   },
+   "plaintiff": {
+    "text": "종전 설계도에서 20평 3동 확인",
+    "stmtIds": [],
+    "evidence": [
+     "갑5"
+    ]
+   },
+   "defendant": null,
+   "dispute": "미확정",
+   "issueIds": [
+    "I1"
+   ],
+   "note": ""
+  },
+  {
+   "id": "F3",
+   "title": "잔금 기한",
+   "date": {
+    "start": "2098-12-29",
+    "end": null,
+    "precision": "day",
+    "label": ""
+   },
+   "plaintiff": {
+    "text": "잔금 기한 2098. 12. 29.",
+    "stmtIds": [],
+    "evidence": [
+     "갑1"
+    ],
+    "date": {
+     "start": "2098-12-29",
+     "precision": "day"
+    }
+   },
+   "defendant": {
+    "text": "당초 10. 31.에서 12. 29.로 연장",
+    "stmtIds": [
+     "S06"
+    ],
+    "evidence": [],
+    "date": {
+     "start": "2098-10-31",
+     "precision": "day"
+    }
+   },
+   "dispute": "일부다툼",
+   "issueIds": [
+    "I8"
+   ],
+   "note": "기한 일자 불일치: 점선으로 연결"
+  },
+  {
+   "id": "F4",
+   "title": "상수도 인입 공사비",
+   "date": {
+    "start": "2099-01-05",
+    "end": null,
+    "precision": "day",
+    "label": ""
+   },
+   "plaintiff": {
+    "text": "통화에서 피고가 공사비 초과를 인정",
+    "stmtIds": [
+     "S03"
+    ],
+    "evidence": []
+   },
+   "defendant": {
+    "text": "인입경비 약 3천만 원이 소요된다는 전문가 의견",
+    "stmtIds": [
+     "S05"
+    ],
+    "evidence": [
+     "을5"
+    ]
+   },
+   "dispute": "일부다툼",
+   "issueIds": [
+    "I2"
+   ],
+   "note": ""
+  },
+  {
+   "id": "F5",
+   "title": "군청 방문",
+   "date": {
+    "start": "2098-12-27",
+    "end": null,
+    "precision": "approx",
+    "label": ""
+   },
+   "plaintiff": {
+    "text": "피고가 동행하여 공무원 면담",
+    "stmtIds": [
+     "S07",
+     "S08"
+    ],
+    "evidence": [
+     "갑13"
+    ]
+   },
+   "defendant": null,
+   "dispute": "미확정",
+   "issueIds": [
+    "I9"
+   ],
+   "note": ""
+  },
+  {
+   "id": "F6",
+   "title": "임대 기간(예시)",
+   "date": {
+    "start": "2098-11-01",
+    "end": "2099-02-15",
+    "precision": "range",
+    "label": ""
+   },
+   "plaintiff": {
+    "text": "건축신고 준비부터 반려 통지까지",
+    "stmtIds": [],
+    "evidence": []
+   },
+   "defendant": null,
+   "dispute": "다툼없음",
+   "issueIds": [
+    "I1"
+   ],
+   "note": "기간 표시 예시"
+  },
+  {
+   "id": "F7",
+   "title": "반려 통지",
+   "date": {
+    "start": "2099-02-15",
+    "end": null,
+    "precision": "day",
+    "label": ""
+   },
+   "plaintiff": {
+    "text": "건축신고 반려 통지 수령",
+    "stmtIds": [],
+    "evidence": [
+     "갑9"
+    ]
+   },
+   "defendant": {
+    "text": "반려 사실 인정",
+    "stmtIds": [],
+    "evidence": []
+   },
+   "dispute": "다툼없음",
+   "issueIds": [
+    "I1"
+   ],
+   "note": ""
+  }
+ ]
+}

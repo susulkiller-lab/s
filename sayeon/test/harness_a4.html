@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A4 별지 시험</title>
+<link rel="stylesheet" href="../src/tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; font-family: var(--font-ui); font-size: var(--fs-md); color: var(--ink); background: var(--bg); }
+  h1 { font-size: var(--fs-lg); margin: 0 0 12px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 12px; background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); }
+  .bar label { display: inline-flex; gap: 4px; align-items: center; }
+  .bar input[type=number] { width: 4.2em; }
+  .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
+  .seg button { border: 0; padding: 6px 12px; background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+  button.act { padding: 6px 12px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--surface-2); color: var(--ink); font: inherit; cursor: pointer; }
+  #warn { margin: 12px 0; padding: 8px 12px; background: var(--warn-bg); color: var(--ink); border-radius: var(--radius); font-size: var(--fs-sm); }
+  #warn:empty { display: none; }
+  #info { margin: 8px 0; color: var(--ink-2); font-size: var(--fs-sm); }
+  .page { margin: 16px 0; }
+  .page h2 { font-size: var(--fs-sm); color: var(--ink-2); margin: 0 0 6px; font-weight: 600; }
+  .paper { background: #fff; box-shadow: var(--shadow); max-width: 820px; overflow: hidden; }
+  .paper > svg { display: block; width: 100%; height: auto; }
+  #png img { max-width: 100%; border: 1px solid var(--rule); background: #fff; }
+</style>
+</head>
+<body>
+<h1>A4 별지 시험</h1>
+<div class="bar">
+  <label>자료 <select id="ds"><option value="sample">sample_min</option><option value="synthP">합성 60건(원고측)</option><option value="synthD">합성 60건(피고측)</option></select></label>
+  <span class="seg" role="group" aria-label="배치"><button data-layout="S" aria-pressed="true">S자</button><button data-layout="Z" aria-pressed="false">Z자</button></span>
+  <span class="seg" role="group" aria-label="용도"><button data-mode="submit" aria-pressed="true">제출용</button><button data-mode="internal" aria-pressed="false">내부용</button></span>
+  <span class="seg" role="group" aria-label="보기"><button data-view="sheet" aria-pressed="true">A4 미리보기</button><button data-view="figure" aria-pressed="false">본문 그림</button></span>
+  <label>위 <input type="number" id="mt" value="45" min="0"></label>
+  <label>아래 <input type="number" id="mb" value="20" min="0"></label>
+  <label>왼쪽 <input type="number" id="ml" value="30" min="0"></label>
+  <label>오른쪽 <input type="number" id="mr" value="30" min="0"></label>
+  <label><input type="checkbox" id="ev" checked> 증거번호</label>
+  <button class="act" id="pngBtn">1쪽 PNG 만들기</button>
+</div>
+<div id="info"></div>
+<div id="warn"></div>
+<div id="pages"></div>
+<div id="png"></div>
+
+<script src="../src/common.js"></script>
+<script src="../src/viz_a4.js"></script>
+<script src="./gen_synth_a4.js"></script>
+<script>
+(function () {
+  'use strict';
+  var DATA = { synthP: genSynthA4(20240607, '원고'), synthD: genSynthA4(20240607, '피고'), sample: null };
+  var st = { ds: 'sample', layout: 'S', mode: 'submit', view: 'sheet' };
+  var last = null;
+  function $(id) { return document.getElementById(id); }
+  function opts() {
+    return { layout: st.layout, mode: st.mode, showEvidence: $('ev').checked,
+      margins: { top: +$('mt').value, bottom: +$('mb').value, left: +$('ml').value, right: +$('mr').value } };
+  }
+  function render() {
+    var C = DATA[st.ds];
+    if (!C) { $('info').textContent = 'sample_min.json 을 읽지 못했습니다. 합성 자료를 선택해 주십시오.'; return; }
+    last = SY.Viz.a4(C, opts());
+    $('info').textContent = '본문 ' + last.widthMm + ' x ' + last.heightMm + 'mm, 한 줄 ' + last.itemsPerRow + '지점, ' + last.pages.length + '쪽';
+    $('warn').textContent = last.warnings.join(' / ');
+    var host = $('pages');
+    host.textContent = '';
+    last.pages.forEach(function (p, i) {
+      var box = document.createElement('section'); box.className = 'page';
+      var h = document.createElement('h2'); h.textContent = (i + 1) + '쪽 · ' + p.rangeLabel; box.appendChild(h);
+      var paper = document.createElement('div'); paper.className = 'paper';
+      paper.innerHTML = st.view === 'sheet' ? p.sheet : p.figure;
+      box.appendChild(paper); host.appendChild(box);
+    });
+  }
+  document.querySelectorAll('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.dataset.layout ? 'layout' : b.dataset.mode ? 'mode' : 'view';
+      st[k] = b.dataset[k];
+      b.parentNode.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      render();
+    });
+  });
+  ['ds', 'mt', 'mb', 'ml', 'mr', 'ev'].forEach(function (id) { $(id).addEventListener('change', function () { if (id === 'ds') st.ds = $('ds').value; render(); }); });
+  $('pngBtn').addEventListener('click', function () {
+    if (!last || !last.pages.length) return;
+    SY.Viz.toPngBlob(last.pages[0].figure, { dpi: 300, widthMm: last.widthMm, heightMm: last.heightMm }).then(function (b) {
+      var img = new Image(); img.src = URL.createObjectURL(b); img.alt = '1쪽 PNG';
+      $('png').textContent = 'PNG ' + Math.round(b.size / 1024) + 'KB'; $('png').appendChild(img);
+    }, function (e) { $('png').textContent = 'PNG 실패: ' + e.message; });
+  });
+
+  /* ---------- 시험용: 렌더링된 figure 를 실제 getBBox 로 검사 ---------- */
+  function bb(el) {
+    var b = el.getBBox(), sw = parseFloat(el.getAttribute('stroke-width') || '0');
+    if (el.getAttribute('stroke') === 'none') sw = 0;
+    return { x: b.x - sw / 2, y: b.y - sw / 2, w: b.width + sw, h: b.height + sw };
+  }
+  function hit(a, b, tol) { return a.x < b.x + b.w - tol && b.x < a.x + a.w - tol && a.y < b.y + b.h - tol && b.y < a.y + a.h - tol; }
+  function checkFigure(svgStr, W, H) {
+    var r = { parseError: false, texts: 0, shapes: 0, textShape: [], textText: [], outside: [], overWidth: [] };
+    var doc = new DOMParser().parseFromString(svgStr, 'image/svg+xml');
+    if (doc.getElementsByTagName('parsererror').length) { r.parseError = true; return r; }
+    var holder = document.createElement('div');
+    holder.style.cssText = 'position:absolute;left:0;top:0;visibility:hidden';
+    holder.appendChild(document.importNode(doc.documentElement, true));
+    document.body.appendChild(holder);
+    var svg = holder.firstChild;
+    var texts = [].slice.call(svg.querySelectorAll('text')).map(function (t) { return { el: t, b: bb(t), g: t.getAttribute('data-grp') || '', s: t.textContent }; });
+    var shapes = [].slice.call(svg.querySelectorAll('[data-shape]')).map(function (s) { return { el: s, b: bb(s) }; });
+    r.texts = texts.length; r.shapes = shapes.length;
+    var tol = 0.05;
+    texts.forEach(function (t) {
+      shapes.forEach(function (s) { if (hit(t.b, s.b, tol)) r.textShape.push(t.s + ' x ' + s.el.tagName + '(' + (s.el.getAttribute('d') || '').slice(0, 40) + ')'); });
+      var mw = parseFloat(t.el.getAttribute('data-maxw'));
+      if (mw && t.b.w > mw + 0.05) r.overWidth.push(t.s + ' ' + t.b.w.toFixed(2) + '>' + mw);
+    });
+    for (var i = 0; i < texts.length; i++) for (var j = i + 1; j < texts.length; j++) {
+      if (texts[i].g && texts[i].g === texts[j].g) continue;
+      if (hit(texts[i].b, texts[j].b, tol)) r.textText.push(texts[i].s + ' / ' + texts[j].s);
+    }
+    texts.concat(shapes).forEach(function (e) {
+      var b = e.b, eps = 0.05;
+      if (b.x < -eps || b.y < -eps || b.x + b.w > W + eps || b.y + b.h > H + eps) r.outside.push((e.s || e.el.tagName) + ' [' + [b.x, b.y, b.x + b.w, b.y + b.h].map(function (v) { return v.toFixed(2); }).join(',') + ']');
+    });
+    holder.remove();
+    return r;
+  }
+  function checkPng(svgStr, wMm, hMm) {
+    return SY.Viz.toPngBlob(svgStr, { dpi: 300, widthMm: wMm, heightMm: hMm }).then(function (blob) {
+      return blob.arrayBuffer().then(function (buf) {
+        var u8 = new Uint8Array(buf);
+        var sig = [137, 80, 78, 71, 13, 10, 26, 10].every(function (v, i) { return u8[i] === v; });
+        var phys = String.fromCharCode(u8[37], u8[38], u8[39], u8[40]) === 'pHYs';
+        return createImageBitmap(blob).then(function (bmp) {
+          var cv = document.createElement('canvas'), sw = Math.round(bmp.width / 4), sh = Math.round(bmp.height / 4);
+          cv.width = sw; cv.height = sh;
+          var g = cv.getContext('2d'); g.drawImage(bmp, 0, 0, sw, sh);
+          var px = g.getImageData(0, 0, sw, sh).data, dark = 0, colored = 0;
+          for (var i = 0; i < px.length; i += 4) {
+            if (px[i] < 128) dark++;
+            if (Math.abs(px[i] - px[i + 1]) > 8 || Math.abs(px[i] - px[i + 2]) > 8) colored++;
+          }
+          return { type: blob.type, bytes: blob.size, sig: sig, phys: phys, w: bmp.width, h: bmp.height,
+            expectW: Math.round(wMm / 25.4 * 300), expectH: Math.round(hMm / 25.4 * 300), dark: dark, colored: colored };
+        });
+      });
+    });
+  }
+  window.A4H = { data: DATA, render: render, checkFigure: checkFigure, checkPng: checkPng, ready: false };
+
+  fetch('../data/sample_min.json').then(function (r) { return r.json(); }).then(function (j) { DATA.sample = j; })
+    .catch(function () { st.ds = 'synthP'; $('ds').value = 'synthP'; })
+    .then(function () { render(); window.A4H.ready = true; });
+})();
+</script>
+</body>
+</html>
