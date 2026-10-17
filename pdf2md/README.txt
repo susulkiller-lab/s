@@ -1,8 +1,10 @@
 PDF → Markdown 변환기 (스캔 PDF 지원)
 
 1. 처음 한 번
-   - Python 3.10 이상이 있어야 합니다. https://www.python.org/downloads/ 에서 설치하고
+   - Python 3.13 (64비트)이 필요합니다. https://www.python.org/downloads/ 에서 설치하고
      설치 첫 화면에서 "Add python.exe to PATH"를 체크하세요.
+     너무 새 버전(예: 3.15)은 OCR 엔진 패키지가 아직 없어 설치가 실패할 수 있습니다.
+     다른 버전이 이미 있어도 3.13을 함께 설치하면 pdf2md.bat가 3.13을 먼저 씁니다.
    - pdf2md.bat를 더블클릭합니다. 필요한 프로그램과 OCR 모델을 자동으로 설치합니다.
      인터넷이 필요하고 수 분 걸립니다. 이후에는 인터넷 없이 동작합니다.
 

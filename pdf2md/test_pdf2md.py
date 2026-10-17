@@ -216,6 +216,67 @@ class Layout(unittest.TestCase):
         self.assertEqual(pdf2md.layout_to_markdown([], self.W), "")
 
 
+class Setup(unittest.TestCase):
+    """설치 흐름의 분기만 확인한다(pip와 venv 생성은 가짜로 대체)."""
+    def setUp(self):
+        import subprocess
+        self.sp = subprocess
+        self.tmp = Path(tempfile.mkdtemp())
+        self.old_here, self.old_cc, self.old_call = pdf2md.HERE, subprocess.check_call, subprocess.call
+        pdf2md.HERE = self.tmp
+        (self.tmp / "requirements.txt").write_text("x\n")
+        self.calls = []
+        self.fail_pip = False
+
+        def check_call(cmd, *a, **k):
+            self.calls.append([str(c) for c in cmd])
+            if self.fail_pip and "pip" in cmd:
+                raise subprocess.CalledProcessError(1, cmd)
+            return 0
+        subprocess.check_call = check_call
+        subprocess.call = lambda cmd, *a, **k: 0
+
+    def tearDown(self):
+        pdf2md.HERE = self.old_here
+        self.sp.check_call, self.sp.call = self.old_cc, self.old_call
+
+    def fake_venv(self, ver):
+        py = self.tmp / ".venv" / "bin" / "python"
+        py.parent.mkdir(parents=True)
+        py.write_text(f"#!/bin/sh\necho {ver}\n")
+        py.chmod(0o755)
+
+    def run_setup(self):
+        import contextlib
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            rc = pdf2md.setup()
+        return rc, buf.getvalue()
+
+    def test_venv_from_other_python_version_is_recreated(self):
+        self.fake_venv("3 15")
+        rc, out = self.run_setup()
+        self.assertEqual(rc, 0)
+        self.assertIn("새로 만듭니다", out)
+        self.assertTrue(any(c[1:3] == ["-m", "venv"] for c in self.calls))
+
+    def test_venv_from_same_python_version_is_kept(self):
+        import sys
+        self.fake_venv(f"{sys.version_info[0]} {sys.version_info[1]}")
+        rc, out = self.run_setup()
+        self.assertEqual(rc, 0)
+        self.assertFalse(any(c[1:3] == ["-m", "venv"] for c in self.calls))
+
+    def test_pip_failure_removes_half_built_venv_and_explains(self):
+        self.fake_venv("3 15")
+        self.fail_pip = True
+        rc, out = self.run_setup()
+        self.assertEqual(rc, 1)
+        self.assertFalse((self.tmp / ".venv").exists())
+        self.assertIn("Python 3.13", out)
+        self.assertIn("onnxruntime", out)
+
+
 class Server(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

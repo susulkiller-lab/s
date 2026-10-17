@@ -545,10 +545,29 @@ def run_files(files, *, ocr=True, page_marks=True, out_dir=None):
     return 1 if bad else 0
 
 
+def _venv_python(venv):
+    return venv / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+
+
+def _version_of(py):
+    try:
+        out = subprocess.check_output(
+            [str(py), "-c", "import sys; print(sys.version_info[0], sys.version_info[1])"], text=True, timeout=60)
+        return tuple(int(x) for x in out.split())
+    except Exception:
+        return None
+
+
 def setup():
     """가상환경을 만들고 패키지를 설치한 뒤 OCR 모델을 받는다. 표준 라이브러리만 쓴다."""
+    import shutil
+    import struct
     venv = HERE / ".venv"
-    py = venv / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+    py = _venv_python(venv)
+    cur = tuple(sys.version_info[:2])
+    if py.exists() and _version_of(py) != cur:
+        print("기존 가상환경이 다른 Python 버전으로 만들어져 있어 새로 만듭니다.")
+        shutil.rmtree(venv, ignore_errors=True)
     if not py.exists():
         print("가상환경을 만드는 중...")
         subprocess.check_call([sys.executable, "-m", "venv", str(venv)])
@@ -557,7 +576,12 @@ def setup():
         subprocess.check_call([str(py), "-m", "pip", "install", "--upgrade", "pip"])
         subprocess.check_call([str(py), "-m", "pip", "install", "-r", str(HERE / "requirements.txt")])
     except subprocess.CalledProcessError:
-        print("패키지 설치에 실패했습니다. 인터넷 연결을 확인하고, 위쪽의 오류 문구를 알려 주십시오.")
+        shutil.rmtree(venv, ignore_errors=True)       # 반쯤 깔린 환경이 다음 실행을 막지 않게 지운다
+        bits = struct.calcsize("P") * 8
+        print(f"패키지 설치에 실패했습니다. (사용한 Python: {cur[0]}.{cur[1]}, {bits}비트)")
+        print("Python이 너무 새 버전이거나 32비트면 OCR 엔진 패키지(onnxruntime)를 받을 수 없습니다.")
+        print("https://www.python.org/downloads/ 에서 Python 3.13 (64비트)을 설치한 뒤 pdf2md.bat를 다시 실행하십시오.")
+        print("그래도 안 되면 위쪽의 빨간 오류 문구를 알려 주십시오.")
         return 1
     if subprocess.call([str(py), str(HERE / "pdf2md.py"), "--warmup"]) != 0:
         print("OCR 모델은 지금 받지 못했습니다. 텍스트 PDF 변환은 바로 쓸 수 있고, "

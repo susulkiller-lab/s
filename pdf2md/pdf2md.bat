@@ -13,13 +13,22 @@ if errorlevel 1 goto setup
 goto run
 
 :setup
+rem Prefer 3.13 (the tested version). Newer Pythons may lack wheels for the OCR engine.
 set "PY="
-where py >nul 2>nul && set "PY=py -3"
+for %%V in (3.13 3.12 3.11 3.14) do (
+  if not defined PY (
+    py -%%V -c "import sys" >nul 2>nul && set "PY=py -%%V"
+  )
+)
+if not defined PY (
+  where py >nul 2>nul && set "PY=py -3"
+)
 if not defined PY (
   where python >nul 2>nul && set "PY=python"
 )
 if not defined PY goto nopython
-echo Setting up (first run or repair). This takes a few minutes and needs internet.
+echo Setting up with: %PY%
+echo This takes a few minutes and needs internet.
 %PY% pdf2md.py --setup
 if errorlevel 1 (
   pause
@@ -32,7 +41,7 @@ if not "%~1"=="" pause
 exit /b 0
 
 :nopython
-echo Python 3.10 or later is required.
+echo Python 3.13 (64-bit) is required.
 echo Install it from https://www.python.org/downloads/ and check "Add python.exe to PATH".
 pause
 exit /b 1
