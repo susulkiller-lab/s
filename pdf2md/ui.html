@@ -104,7 +104,7 @@ function poll(id, card, name) {
 }
 
 const LABEL = { ok: ["완료", "b-ok"], scan_suspected: ["스캔 의심", "b-warn"], encrypted: ["암호 PDF", "b-bad"], error: ["실패", "b-bad"] };
-const METHOD = { markitdown: "텍스트 PDF", ocr: "OCR", mixed: "텍스트+OCR" };
+const METHOD = { markitdown: "텍스트 PDF", text: "텍스트 PDF(기본 추출)", ocr: "OCR", mixed: "텍스트+OCR" };
 
 function finish(card, name, res) {
   const [text, cls] = LABEL[res.status] || LABEL.error;

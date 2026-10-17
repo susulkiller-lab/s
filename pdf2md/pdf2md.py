@@ -40,6 +40,20 @@ class OcrUnavailable(RuntimeError):
     pass
 
 
+def _missing_hint(name):
+    return (f"'{name}' 패키지가 이 Python에 설치되어 있지 않습니다 (사용 중인 Python: {sys.executable}). "
+            "pdf2md.bat로 실행하거나, 폴더의 .venv를 지우고 pdf2md.bat를 다시 실행하십시오.")
+
+
+def print_env():
+    """어느 Python으로 실행 중이고 필요한 패키지가 있는지 한 번 알려 준다(문제 확인용)."""
+    from importlib.util import find_spec
+    missing = [m for m in ("markitdown", "pypdfium2", "rapidocr") if find_spec(m) is None]
+    print(f"Python: {sys.executable}")
+    if missing:
+        print(f"경고: 설치되지 않은 패키지 {', '.join(missing)}. pdf2md.bat로 실행하거나 .venv를 지우고 pdf2md.bat를 다시 실행하십시오.")
+
+
 class _Encrypted(Exception):
     pass
 
@@ -278,6 +292,8 @@ def convert(path, *, ocr=True, page_marks=True, progress=None):
         doc = _open(path)
     except _Encrypted:
         return Result("encrypted", message="암호가 걸린 PDF입니다. 암호를 해제한 뒤 다시 올려 주세요.")
+    except ImportError as e:
+        return Result("error", message=_missing_hint(getattr(e, "name", None) or "pypdfium2"))
     except Exception as e:
         return Result("error", message=f"PDF를 열 수 없습니다 (손상된 파일일 수 있습니다): {str(e)[:160]}")
 
@@ -291,11 +307,17 @@ def convert(path, *, ocr=True, page_marks=True, progress=None):
 
     try:
         if n_scan == 0:
-            md = _markitdown(path).strip()
+            note = ""
+            try:
+                md = _markitdown(path).strip()
+            except ImportError as e:
+                md = ""
+                note = ("markitdown을 쓸 수 없어 기본 텍스트 추출로 변환했습니다. "
+                        + _missing_hint(getattr(e, "name", None) or "markitdown"))
             if not md:
-                md = "\n\n".join(t.strip() for t in texts)
+                md = "\n\n".join(re.sub(r"\r\n?", "\n", t).strip() for t in texts)
             report(n, n, "완료")
-            return Result("ok", md, n, 0, "markitdown", seconds=time.time() - t0)
+            return Result("ok", md, n, 0, "markitdown" if not note else "text", seconds=time.time() - t0, message=note)
 
         if not ocr:
             md = "\n\n".join(t.strip() for t, s in zip(texts, scan) if not s)
@@ -323,6 +345,9 @@ def convert(path, *, ocr=True, page_marks=True, progress=None):
                       low_total, low_pages, time.time() - t0, msg)
     except OcrUnavailable as e:
         return Result("error", "", n, n_scan, "", seconds=time.time() - t0, message=str(e))
+    except ImportError as e:
+        return Result("error", "", n, n_scan, "", seconds=time.time() - t0,
+                      message=_missing_hint(getattr(e, "name", None) or "필요한"))
     except Exception as e:
         return Result("error", "", n, n_scan, "", seconds=time.time() - t0,
                       message=f"변환 중 오류: {type(e).__name__}: {str(e)[:160]}")
@@ -463,6 +488,7 @@ def serve(port=0, open_browser=True):
     threading.Thread(target=_worker, daemon=True).start()
     threading.Thread(target=lambda: _try(_engine), daemon=True).start()     # OCR 모델 미리 로드
     url = f"http://127.0.0.1:{srv.server_port}/"
+    print_env()
     print(f"PDF → Markdown 화면: {url}")
     print("이 창을 닫으면 종료됩니다. 문서는 이 PC 밖으로 전송되지 않습니다.")
     if open_browser:
@@ -494,6 +520,7 @@ def _unique(p):
 
 
 def run_files(files, *, ocr=True, page_marks=True, out_dir=None):
+    print_env()
     bad = 0
     for k, f in enumerate(files, 1):
         src = Path(f)
@@ -508,7 +535,7 @@ def run_files(files, *, ocr=True, page_marks=True, out_dir=None):
             dest = _unique(Path(out_dir or src.parent) / (src.stem + ".md"))
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text(res.markdown, encoding="utf-8")
-            how = {"markitdown": "텍스트 PDF", "ocr": "OCR", "mixed": "텍스트+OCR"}.get(res.method, "")
+            how = {"markitdown": "텍스트 PDF", "text": "텍스트 PDF(기본 추출)", "ocr": "OCR", "mixed": "텍스트+OCR"}.get(res.method, "")
             print(f"    저장: {dest}  ({res.pages}쪽, {how}, {res.seconds:.1f}초)")
             if res.message:
                 print(f"    주의: {res.message}")
@@ -526,10 +553,17 @@ def setup():
         print("가상환경을 만드는 중...")
         subprocess.check_call([sys.executable, "-m", "venv", str(venv)])
     print("필요한 패키지를 설치하는 중... (수 분 걸릴 수 있습니다)")
-    subprocess.check_call([str(py), "-m", "pip", "install", "--upgrade", "pip"])
-    subprocess.check_call([str(py), "-m", "pip", "install", "-r", str(HERE / "requirements.txt")])
-    subprocess.check_call([str(py), str(HERE / "pdf2md.py"), "--warmup"])
+    try:
+        subprocess.check_call([str(py), "-m", "pip", "install", "--upgrade", "pip"])
+        subprocess.check_call([str(py), "-m", "pip", "install", "-r", str(HERE / "requirements.txt")])
+    except subprocess.CalledProcessError:
+        print("패키지 설치에 실패했습니다. 인터넷 연결을 확인하고, 위쪽의 오류 문구를 알려 주십시오.")
+        return 1
+    if subprocess.call([str(py), str(HERE / "pdf2md.py"), "--warmup"]) != 0:
+        print("OCR 모델은 지금 받지 못했습니다. 텍스트 PDF 변환은 바로 쓸 수 있고, "
+              "스캔 PDF를 처음 읽을 때 다시 받습니다(인터넷 필요).")
     print("설치가 끝났습니다.")
+    return 0
 
 
 def warmup():
@@ -560,8 +594,7 @@ def main(argv=None):
     ap.add_argument("--no-browser", action="store_true", help="브라우저를 자동으로 열지 않음")
     a = ap.parse_args(argv)
     if a.setup:
-        setup()
-        return 0
+        return setup()
     if a.warmup:
         return warmup()
     if a.files:

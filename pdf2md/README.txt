@@ -26,6 +26,11 @@ PDF → Markdown 변환기 (스캔 PDF 지원)
    - 암호가 걸린 PDF는 암호를 해제한 뒤 올려야 합니다.
 
 5. 문제 해결
+   - "No module named 'markitdown'" 같은 오류 또는 "패키지가 이 Python에 설치되어 있지 않습니다" 안내:
+     pdf2md.py를 직접 실행했거나 설치가 중간에 끊긴 경우입니다. 반드시 pdf2md.bat로 실행하세요.
+     pdf2md.bat는 실행할 때마다 필요한 패키지를 확인하고 없으면 다시 설치합니다.
+     그래도 안 되면 .venv 폴더를 지우고 pdf2md.bat를 다시 실행하세요.
+     검은 창 맨 위에 "Python: 경로" 줄이 나옵니다. 그 경로가 폴더 안 .venv\Scripts\python.exe가 아니면 다른 Python으로 실행된 것입니다.
    - "OCR 모델을 불러오지 못했습니다": 최초 1회 인터넷 연결이 필요합니다. 연결 후 pdf2md.bat를 다시 실행하세요.
      회사 보안망에서 막히면 모델 내려받기 주소(www.modelscope.cn) 허용을 요청하세요.
    - 설치를 처음부터 다시 하려면 .venv 폴더를 지우고 pdf2md.bat를 다시 실행합니다.

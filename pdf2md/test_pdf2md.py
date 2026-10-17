@@ -134,6 +134,38 @@ class Classify(unittest.TestCase):
         p.write_bytes(b"%PDF-1.4 not really a pdf")
         self.assertEqual(pdf2md.convert(p).status, "error")
 
+    def _without_module(self, name):
+        import sys
+        old = sys.modules.get(name, "absent")
+        sys.modules[name] = None          # import가 ModuleNotFoundError를 내게 한다
+        return lambda: (sys.modules.pop(name, None) if old == "absent" else sys.modules.__setitem__(name, old))
+
+    def test_missing_markitdown_falls_back_with_notice(self):
+        p = self.tmp / "t.pdf"
+        make_text_pdf(p, ["Plaintiff shall pay the defendant KRW 1,000,000 within thirty days."])
+        restore = self._without_module("markitdown")
+        pdf2md._MD = None
+        try:
+            r = pdf2md.convert(p)
+        finally:
+            restore()
+        self.assertEqual((r.status, r.method), ("ok", "text"))
+        self.assertIn("Plaintiff shall pay", r.markdown)
+        self.assertIn("markitdown", r.message)
+        self.assertIn("pdf2md.bat", r.message)
+
+    def test_missing_pdfium_is_install_problem_not_corruption(self):
+        p = self.tmp / "t.pdf"
+        make_text_pdf(p, ["Plaintiff shall pay the defendant KRW 1,000,000 within thirty days."])
+        restore = self._without_module("pypdfium2")
+        try:
+            r = pdf2md.convert(p)
+        finally:
+            restore()
+        self.assertEqual(r.status, "error")
+        self.assertIn("pypdfium2", r.message)
+        self.assertNotIn("손상", r.message)
+
     def test_garbled_text_layer_counts_as_scan(self):
         self.assertFalse(pdf2md.usable_text("\ue001" * 40))
         self.assertFalse(pdf2md.usable_text("(cid:12)(cid:34)(cid:56)(cid:78)"))
