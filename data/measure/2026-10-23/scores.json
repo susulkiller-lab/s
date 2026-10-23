@@ -4,127 +4,169 @@
    "naver": 0.0,
    "place": 0.0,
    "google": 10.7,
-   "index": 2.1
+   "ai": 9.2,
+   "ai_mention_rate": 12.5,
+   "index": 3.3
   },
   "시그널": {
    "naver": 0.0,
    "place": 0.7,
    "google": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
    "index": 0.2
   },
   "디에이치": {
    "naver": 1.4,
    "place": 13.6,
    "google": 25.7,
-   "index": 10.3
+   "ai": 26.7,
+   "ai_mention_rate": 29.2,
+   "index": 13.1
   },
   "장한": {
    "naver": 0.0,
    "place": 2.9,
    "google": 0.0,
-   "index": 1.0
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 0.8
   },
   "로운": {
    "naver": 0.0,
    "place": 18.6,
    "google": 4.3,
-   "index": 7.1
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 5.9
   },
   "강은실": {
    "naver": 0.0,
    "place": 5.0,
    "google": 0.0,
-   "index": 1.7
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 1.4
   },
   "김소연": {
    "naver": 0.0,
    "place": 10.7,
    "google": 0.0,
-   "index": 3.6
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 3.0
   },
   "사림": {
    "naver": 1.4,
    "place": 2.1,
    "google": 0.0,
-   "index": 1.4
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 1.1
   },
   "로펌나무": {
    "naver": 0.7,
    "place": 7.9,
    "google": 9.3,
-   "index": 4.8
+   "ai": 18.3,
+   "ai_mention_rate": 20.8,
+   "index": 7.1
   },
   "박인욱": {
    "naver": 0.0,
    "place": 0.0,
    "google": 7.1,
-   "index": 1.4
+   "ai": 15.8,
+   "ai_mention_rate": 16.7,
+   "index": 3.8
   },
   "더바로": {
    "naver": 0.0,
    "place": 9.3,
    "google": 0.0,
-   "index": 3.1
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 2.6
   },
   "샤": {
    "naver": 0.0,
    "place": 0.0,
    "google": 5.0,
-   "index": 1.0
+   "ai": 3.3,
+   "ai_mention_rate": 4.2,
+   "index": 1.4
   },
   "송명숙": {
    "naver": 0.0,
    "place": 0.0,
    "google": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
    "index": 0.0
   },
   "나우": {
    "naver": 0.0,
    "place": 22.1,
    "google": 2.1,
-   "index": 7.8
+   "ai": 3.3,
+   "ai_mention_rate": 4.2,
+   "index": 7.0
   },
   "오현": {
    "naver": 0.0,
    "place": 16.4,
    "google": 7.9,
-   "index": 7.0
+   "ai": 17.5,
+   "ai_mention_rate": 25.0,
+   "index": 8.8
   },
   "더킴": {
    "naver": 0.7,
    "place": 16.4,
    "google": 16.4,
-   "index": 9.1
+   "ai": 27.5,
+   "ai_mention_rate": 33.3,
+   "index": 12.1
   },
   "한강파트너스": {
    "naver": 0.0,
    "place": 3.6,
    "google": 0.0,
-   "index": 1.2
+   "ai": 3.3,
+   "ai_mention_rate": 4.2,
+   "index": 1.6
   },
   "율마루": {
    "naver": 0.0,
    "place": 5.7,
    "google": 23.6,
-   "index": 6.6
+   "ai": 22.5,
+   "ai_mention_rate": 25.0,
+   "index": 9.3
   },
   "아인": {
    "naver": 5.7,
    "place": 3.6,
    "google": 0.7,
-   "index": 4.0
+   "ai": 6.7,
+   "ai_mention_rate": 8.3,
+   "index": 4.5
   },
   "해정": {
    "naver": 0.0,
    "place": 0.0,
    "google": 0.7,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
    "index": 0.1
   },
   "YK창원": {
-   "naver": 1.4,
+   "naver": 2.1,
    "place": 27.9,
-   "google": 5.0,
-   "index": 11.0
+   "google": 6.4,
+   "ai": 21.7,
+   "ai_mention_rate": 29.2,
+   "index": 13.2
   }
  },
  "ranks": {
@@ -3999,12 +4041,12 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 9,
      "ad": true,
      "place_block": null,
      "place": null,
      "place_total": 1,
-     "google": null,
+     "google": 5,
      "gmap": false
     }
    },
@@ -6822,5 +6864,318 @@
    }
   }
  },
- "ai": []
+ "ai": [
+  {
+   "engine": "chatgpt",
+   "pid": "a01",
+   "file": "chatgpt__a01__1.txt",
+   "order": [
+    "디에이치",
+    "YK창원",
+    "더킴"
+   ],
+   "cites": [
+    "디에이치",
+    "더킴",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a02",
+   "file": "chatgpt__a02__1.txt",
+   "order": [
+    "진앤솔",
+    "한강파트너스",
+    "아인"
+   ],
+   "cites": [
+    "진앤솔",
+    "한강파트너스",
+    "율마루",
+    "아인"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a03",
+   "file": "chatgpt__a03__1.txt",
+   "order": [
+    "디에이치",
+    "더킴",
+    "YK창원"
+   ],
+   "cites": [
+    "더킴",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a04",
+   "file": "chatgpt__a04__1.txt",
+   "order": [
+    "디에이치",
+    "YK창원",
+    "진앤솔"
+   ],
+   "cites": [
+    "진앤솔",
+    "디에이치",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a05",
+   "file": "chatgpt__a05__1.txt",
+   "order": [
+    "로펌나무",
+    "디에이치",
+    "진앤솔",
+    "YK창원"
+   ],
+   "cites": [
+    "진앤솔",
+    "로펌나무",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a06",
+   "file": "chatgpt__a06__1.txt",
+   "order": [
+    "로펌나무",
+    "YK창원"
+   ],
+   "cites": [
+    "로펌나무",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a07",
+   "file": "chatgpt__a07__1.txt",
+   "order": [
+    "YK창원",
+    "디에이치",
+    "오현"
+   ],
+   "cites": [
+    "디에이치",
+    "오현",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a08",
+   "file": "chatgpt__a08__1.txt",
+   "order": [],
+   "cites": [
+    "율마루"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a01",
+   "file": "gemini__a01__1.txt",
+   "order": [
+    "더킴",
+    "율마루",
+    "오현"
+   ],
+   "cites": [
+    "더킴",
+    "율마루"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a02",
+   "file": "gemini__a02__1.txt",
+   "order": [
+    "율마루",
+    "더킴"
+   ],
+   "cites": [
+    "더킴",
+    "율마루"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a03",
+   "file": "gemini__a03__1.txt",
+   "order": [
+    "디에이치",
+    "더킴",
+    "율마루",
+    "오현"
+   ],
+   "cites": [
+    "디에이치",
+    "율마루"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a04",
+   "file": "gemini__a04__1.txt",
+   "order": [
+    "더킴",
+    "오현"
+   ],
+   "cites": [
+    "더킴"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a05",
+   "file": "gemini__a05__1.txt",
+   "order": [
+    "박인욱",
+    "샤",
+    "로펌나무"
+   ],
+   "cites": [
+    "로펌나무",
+    "박인욱",
+    "샤"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a06",
+   "file": "gemini__a06__1.txt",
+   "order": [
+    "오현",
+    "박인욱"
+   ],
+   "cites": [
+    "박인욱"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a07",
+   "file": "gemini__a07__1.txt",
+   "order": [
+    "율마루",
+    "오현"
+   ],
+   "cites": [
+    "율마루"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a08",
+   "file": "gemini__a08__1.txt",
+   "order": [
+    "박인욱",
+    "나우"
+   ],
+   "cites": [
+    "박인욱"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a01",
+   "file": "perplexity__a01__1.txt",
+   "order": [
+    "율마루",
+    "디에이치"
+   ],
+   "cites": [
+    "디에이치",
+    "더킴",
+    "율마루"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a02",
+   "file": "perplexity__a02__1.txt",
+   "order": [],
+   "cites": []
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a03",
+   "file": "perplexity__a03__1.txt",
+   "order": [
+    "더킴"
+   ],
+   "cites": [
+    "오현",
+    "더킴",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a04",
+   "file": "perplexity__a04__1.txt",
+   "order": [],
+   "cites": []
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a05",
+   "file": "perplexity__a05__1.txt",
+   "order": [
+    "박인욱",
+    "로펌나무",
+    "더킴"
+   ],
+   "cites": [
+    "로운",
+    "로펌나무",
+    "박인욱",
+    "더킴"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a06",
+   "file": "perplexity__a06__1.txt",
+   "order": [
+    "아인",
+    "YK창원"
+   ],
+   "cites": [
+    "디에이치",
+    "박인욱",
+    "아인",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a07",
+   "file": "perplexity__a07__1.txt",
+   "order": [
+    "율마루"
+   ],
+   "cites": [
+    "율마루"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a08",
+   "file": "perplexity__a08__1.txt",
+   "order": [
+    "로펌나무"
+   ],
+   "cites": [
+    "로펌나무"
+   ]
+  }
+ ]
 }

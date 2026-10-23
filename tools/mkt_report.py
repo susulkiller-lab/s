@@ -368,7 +368,13 @@ def main():
                 i = t.find(n)
                 if i < 0:
                     continue
-                for m in PHONE_RE.finditer(t[max(0, i - 50): i + 250]):
+                seg = t[i: i + 250]
+                # 우리 항목 안만 본다: 다음 순번 항목이나 다른 업체 이름이 나오면 거기서 끊는다
+                cut = [m.start() for m in re.finditer(r"\n\s*\d+\.\s", seg)]
+                for e in ents[1:]:
+                    cut += [seg.find(x) for x in e["names"] if seg.find(x) > 0]
+                seg = seg[: min(cut)] if cut else seg
+                for m in PHONE_RE.finditer(seg):
                     ph = re.sub(r"\D", "", m.group(0))
                     if ph not in phones:
                         flags.append(f"- AI 답변 전화번호 불일치 의심: {r['file']} ({m.group(0)})")
