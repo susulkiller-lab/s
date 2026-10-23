@@ -202,8 +202,8 @@ def is_network(name, entities_cfg):
 def match_item(item, ent):
     """수집 항목이 해당 업체 것인지 판단한다."""
     cls, key = item["cls"], str(item["key"])
-    if cls == "place" and key in [str(x) for x in ent["place_ids"]]:
-        return True
+    if cls == "place" and ent["place_ids"]:  # 번호가 있으면 번호로만(같은 이름의 타지역 분사무소 제외)
+        return key in [str(x) for x in ent["place_ids"]]
     if cls == "blog" and key.split("/")[0].lower() in [b.lower() for b in ent["blog_ids"]]:
         return True
     if cls in ("web", "gmap", "ad") and any(key == d or key.endswith("." + d) for d in ent["domains"]):

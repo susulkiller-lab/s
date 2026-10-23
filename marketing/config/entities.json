@@ -19,10 +19,285 @@
    "055-266-3605"
   ]
  },
- "competitors": [],
+ "competitors": [
+  {
+   "key": "시그널",
+   "names": [
+    "법무법인시그널"
+   ],
+   "place_ids": [
+    "2024344416"
+   ],
+   "blog_ids": [],
+   "domains": []
+  },
+  {
+   "key": "디에이치",
+   "names": [
+    "법무법인디에이치",
+    "법무법인dh"
+   ],
+   "place_ids": [
+    "1750217539",
+    "1361617891"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "dh-lawfirm.com"
+   ]
+  },
+  {
+   "key": "장한",
+   "names": [
+    "법무법인장한"
+   ],
+   "place_ids": [
+    "36322923",
+    "1813513108"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "janghan-lawfirm.com"
+   ]
+  },
+  {
+   "key": "로운",
+   "names": [
+    "법무법인로운"
+   ],
+   "place_ids": [
+    "1368510756"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "lawfirmlawoon.co.kr",
+    "divorce-lawoon.kr",
+    "lawoon119.com"
+   ]
+  },
+  {
+   "key": "강은실",
+   "names": [
+    "강은실"
+   ],
+   "place_ids": [
+    "32914936"
+   ],
+   "blog_ids": [],
+   "domains": []
+  },
+  {
+   "key": "김소연",
+   "names": [
+    "김소연법률사무소"
+   ],
+   "place_ids": [
+    "1939157381"
+   ],
+   "blog_ids": [],
+   "domains": []
+  },
+  {
+   "key": "사림",
+   "names": [
+    "법률사무소사림"
+   ],
+   "place_ids": [
+    "2026926208"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "sarimlaw.kr"
+   ]
+  },
+  {
+   "key": "로펌나무",
+   "names": [
+    "로펌나무"
+   ],
+   "place_ids": [
+    "1161454451"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "lawfirmnamu.com",
+    "rootforest.kr"
+   ]
+  },
+  {
+   "key": "박인욱",
+   "names": [
+    "박인욱"
+   ],
+   "place_ids": [
+    "37893821"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "inlawpark.com"
+   ]
+  },
+  {
+   "key": "더바로",
+   "names": [
+    "the바로",
+    "더바로"
+   ],
+   "place_ids": [
+    "1936124810"
+   ],
+   "blog_ids": [],
+   "domains": []
+  },
+  {
+   "key": "샤",
+   "names": [
+    "법무법인샤"
+   ],
+   "place_ids": [
+    "1098096640",
+    "2068613830"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "sha119.co.kr"
+   ]
+  },
+  {
+   "key": "송명숙",
+   "names": [
+    "송명숙"
+   ],
+   "place_ids": [],
+   "blog_ids": [],
+   "domains": []
+  },
+  {
+   "key": "나우",
+   "names": [
+    "법무법인나우"
+   ],
+   "place_ids": [
+    "1828302655"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "lawfirmnow.co.kr"
+   ]
+  },
+  {
+   "key": "오현",
+   "names": [
+    "법무법인오현"
+   ],
+   "place_ids": [
+    "1250445692"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "ohyunlaw.com",
+    "ohhyunlaw-hub.com",
+    "ohhyunlaw-school.com",
+    "ohhyunlaw-detective.com",
+    "ohhyunlaw-traffic.com",
+    "ohscrime.com",
+    "answerfield.kr"
+   ]
+  },
+  {
+   "key": "더킴",
+   "names": [
+    "더킴로펌"
+   ],
+   "place_ids": [
+    "1227815002",
+    "1421366441",
+    "1570237522",
+    "38642751"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "thekimlawfirm.co.kr",
+    "thekimlaw.co.kr",
+    "thekimlawfirm05.co.kr",
+    "thekimlawfirm06.co.kr"
+   ]
+  },
+  {
+   "key": "한강파트너스",
+   "names": [
+    "한강파트너스"
+   ],
+   "place_ids": [
+    "2045237102"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "hanriverlaw.com"
+   ]
+  },
+  {
+   "key": "율마루",
+   "names": [
+    "율마루"
+   ],
+   "place_ids": [
+    "2023530761"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "yulmaru.co.kr"
+   ]
+  },
+  {
+   "key": "아인",
+   "names": [
+    "아인법률사무소"
+   ],
+   "place_ids": [
+    "1838045736"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "ainlegalstudio.com"
+   ]
+  },
+  {
+   "key": "해정",
+   "names": [
+    "해정법률사무소"
+   ],
+   "place_ids": [
+    "38343105"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "haejunglaw.com"
+   ]
+  },
+  {
+   "key": "YK창원",
+   "names": [
+    "법무법인yk창원",
+    "yk창원"
+   ],
+   "place_ids": [
+    "1742116843"
+   ],
+   "blog_ids": [],
+   "domains": [
+    "yklawfirm.co.kr",
+    "yklawfirm-crime.co.kr",
+    "yklawfirm-drug.co.kr",
+    "yklawfirm-civil.co.kr",
+    "yklawfirm-inherit.co.kr",
+    "yklawfirm-divorce.co.kr",
+    "yklawfirm-traffic.co.kr",
+    "cangwonlaw.tistory.com"
+   ]
+  }
+ ],
  "network_firms": [
-  "대륜",
-  "YK",
-  "와이케이"
+  "대륜"
  ]
 }

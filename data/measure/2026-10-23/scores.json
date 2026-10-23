@@ -5,6 +5,126 @@
    "place": 0.0,
    "google": 10.7,
    "index": 2.1
+  },
+  "시그널": {
+   "naver": 0.0,
+   "place": 0.7,
+   "google": 0.0,
+   "index": 0.2
+  },
+  "디에이치": {
+   "naver": 1.4,
+   "place": 13.6,
+   "google": 25.7,
+   "index": 10.3
+  },
+  "장한": {
+   "naver": 0.0,
+   "place": 2.9,
+   "google": 0.0,
+   "index": 1.0
+  },
+  "로운": {
+   "naver": 0.0,
+   "place": 18.6,
+   "google": 4.3,
+   "index": 7.1
+  },
+  "강은실": {
+   "naver": 0.0,
+   "place": 5.0,
+   "google": 0.0,
+   "index": 1.7
+  },
+  "김소연": {
+   "naver": 0.0,
+   "place": 10.7,
+   "google": 0.0,
+   "index": 3.6
+  },
+  "사림": {
+   "naver": 1.4,
+   "place": 2.1,
+   "google": 0.0,
+   "index": 1.4
+  },
+  "로펌나무": {
+   "naver": 0.7,
+   "place": 7.9,
+   "google": 9.3,
+   "index": 4.8
+  },
+  "박인욱": {
+   "naver": 0.0,
+   "place": 0.0,
+   "google": 7.1,
+   "index": 1.4
+  },
+  "더바로": {
+   "naver": 0.0,
+   "place": 9.3,
+   "google": 0.0,
+   "index": 3.1
+  },
+  "샤": {
+   "naver": 0.0,
+   "place": 0.0,
+   "google": 5.0,
+   "index": 1.0
+  },
+  "송명숙": {
+   "naver": 0.0,
+   "place": 0.0,
+   "google": 0.0,
+   "index": 0.0
+  },
+  "나우": {
+   "naver": 0.0,
+   "place": 22.1,
+   "google": 2.1,
+   "index": 7.8
+  },
+  "오현": {
+   "naver": 0.0,
+   "place": 16.4,
+   "google": 7.9,
+   "index": 7.0
+  },
+  "더킴": {
+   "naver": 0.7,
+   "place": 16.4,
+   "google": 16.4,
+   "index": 9.1
+  },
+  "한강파트너스": {
+   "naver": 0.0,
+   "place": 3.6,
+   "google": 0.0,
+   "index": 1.2
+  },
+  "율마루": {
+   "naver": 0.0,
+   "place": 5.7,
+   "google": 23.6,
+   "index": 6.6
+  },
+  "아인": {
+   "naver": 5.7,
+   "place": 3.6,
+   "google": 0.7,
+   "index": 4.0
+  },
+  "해정": {
+   "naver": 0.0,
+   "place": 0.0,
+   "google": 0.7,
+   "index": 0.1
+  },
+  "YK창원": {
+   "naver": 1.4,
+   "place": 27.9,
+   "google": 5.0,
+   "index": 11.0
   }
  },
  "ranks": {
@@ -27,6 +147,322 @@
      "place_total": 192,
      "google": null,
      "gmap": true
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 170,
+      "visitor_score": "4.93",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 17,
+     "place_info": {
+      "visitor_reviews": 75,
+      "visitor_score": "4.8",
+      "image_count": 21,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 192,
+     "google": 10,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 388,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 335,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 15,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 18,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 23,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 31,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": 3,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": true,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 115,
+      "visitor_score": "5",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": 15,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 142,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": 7,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 70,
+      "visitor_score": "5",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 192,
+     "google": 2,
+     "gmap": true
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 32,
+     "place_info": {
+      "visitor_reviews": 28,
+      "visitor_score": "4.98",
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 28,
+     "place_info": {
+      "visitor_reviews": 9,
+      "visitor_score": null,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 22,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": 13,
+     "ad": true,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 431,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 192,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -54,6 +490,322 @@
      "place_total": 204,
      "google": 3,
      "gmap": true
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 170,
+      "visitor_score": "4.93",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 17,
+     "place_info": {
+      "visitor_reviews": 75,
+      "visitor_score": "4.8",
+      "image_count": 21,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 388,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 335,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 15,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 18,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 23,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": 10,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 31,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": 4,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 115,
+      "visitor_score": "5",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 142,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 70,
+      "visitor_score": "5",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 32,
+     "place_info": {
+      "visitor_reviews": 28,
+      "visitor_score": "4.98",
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 28,
+     "place_info": {
+      "visitor_reviews": 9,
+      "visitor_score": null,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": 14,
+     "ad": false,
+     "place_block": null,
+     "place": 22,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": 5,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 431,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": 6,
+     "gmap": false
     }
    },
    "measured": {
@@ -81,6 +833,314 @@
      "place_total": 69,
      "google": null,
      "gmap": true
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 47,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 170,
+      "visitor_score": "4.93",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 69,
+     "google": 3,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": 75,
+      "visitor_score": "4.8",
+      "image_count": 21,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 45,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 37,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": true,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 115,
+      "visitor_score": "5",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 142,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": 6,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": 5,
+     "gmap": true
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 36,
+     "place_info": {
+      "visitor_reviews": 28,
+      "visitor_score": "4.98",
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 69,
+     "google": 4,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 16,
+     "place_info": {
+      "visitor_reviews": 9,
+      "visitor_score": null,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 13,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 431,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": 7,
+     "gmap": false
     }
    },
    "measured": {
@@ -99,6 +1159,234 @@
      "place": null,
      "place_total": 11,
      "google": 5,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 75,
+      "visitor_score": "4.8",
+      "image_count": 21,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 335,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 11,
+     "google": 7,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": 4,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
      "gmap": false
     }
    },
@@ -119,6 +1407,266 @@
      "place_total": 20,
      "google": null,
      "gmap": true
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 18,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": 7,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 12,
+     "place_info": {
+      "visitor_reviews": 75,
+      "visitor_score": "4.8",
+      "image_count": 21,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": true,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 115,
+      "visitor_score": "5",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 142,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 20,
+     "google": 4,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 20,
+     "google": 8,
+     "gmap": true
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 28,
+      "visitor_score": "4.98",
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 431,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 20,
+     "google": 9,
+     "gmap": true
     }
    },
    "measured": {
@@ -138,6 +1686,194 @@
      "place_total": 3,
      "google": 5,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 1,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": 6,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 10,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 7,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -155,6 +1891,166 @@
      "place_block": null,
      "place": null,
      "google": 3,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": 6,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": 10,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": 7,
+     "gmap": false
+    },
+    "아인": {
+     "naver": 6,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
      "gmap": false
     }
    },
@@ -175,6 +2071,194 @@
      "place_total": 1,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": 8,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": 6,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 7,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 2,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": 16,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 28,
+      "visitor_score": "4.98",
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": 7,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 6,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -187,6 +2271,218 @@
    "weight": 1.0,
    "ranks": {
     "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": 14,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 335,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": 5,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
      "naver": null,
      "ad": false,
      "place_block": null,
@@ -213,6 +2509,194 @@
      "place_total": 5,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 170,
+      "visitor_score": "4.93",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 5,
+     "google": 5,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": 4,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": 7,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": 3,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -231,6 +2715,202 @@
      "place": null,
      "place_total": 24,
      "google": null,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": 16,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": true
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": 4,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": 5,
      "gmap": false
     }
    },
@@ -251,6 +2931,194 @@
      "place_total": 6,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 7,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 8,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": 15,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 5,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": 14,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": 5,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 9,
+      "visitor_score": null,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -263,6 +3131,166 @@
    "weight": 1.0,
    "ranks": {
     "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": 7,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": 4,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": 11,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
      "naver": null,
      "ad": false,
      "place_block": null,
@@ -288,6 +3316,202 @@
      "place_total": 9,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": 3,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 10,
+      "visitor_score": null,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": 5,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 9,
+     "google": null,
+     "gmap": true
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 9,
+     "google": 6,
+     "gmap": false
     }
    },
    "measured": {
@@ -307,6 +3531,282 @@
      "place_total": 57,
      "google": null,
      "gmap": true
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 170,
+      "visitor_score": "4.93",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 57,
+     "google": 4,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 388,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 27,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 57,
+     "google": 8,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 15,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 30,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": true,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 115,
+      "visitor_score": "5",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": true
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 142,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 57,
+     "google": 6,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 8,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 57,
+     "google": 5,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": 19,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 431,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 57,
+     "google": 9,
+     "gmap": true
     }
    },
    "measured": {
@@ -321,6 +3821,186 @@
     "진앤솔": {
      "naver": null,
      "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 3,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": 14,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 6,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 4,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": 4,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": 13,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 7,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
      "place_block": null,
      "place": null,
      "place_total": 1,
@@ -345,6 +4025,186 @@
      "place_total": 19,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": 4,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": 5,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 19,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -364,6 +4224,202 @@
      "place_total": 18,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": 26,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 16,
+      "visitor_score": null,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 18,
+     "google": 4,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": 8,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": 10,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": 9,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -376,6 +4432,202 @@
    "weight": 1.0,
    "ranks": {
     "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 16,
+      "visitor_score": null,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 4,
+     "google": 6,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": 9,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": 21,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": 6,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": 3,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": 1,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
      "naver": null,
      "ad": false,
      "place_block": null,
@@ -402,6 +4654,202 @@
      "place_total": 5,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": 4,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 16,
+      "visitor_score": null,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 5,
+     "google": 5,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": 4,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": true
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": 3,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": true
     }
    },
    "measured": {
@@ -416,6 +4864,186 @@
     "진앤솔": {
      "naver": null,
      "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 5,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
      "place_block": null,
      "place": null,
      "place_total": 1,
@@ -440,6 +5068,186 @@
      "place_total": 3,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 4,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 2,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 3,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -459,6 +5267,186 @@
      "place_total": 1,
      "google": null,
      "gmap": true
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 5,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 8,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 7,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 4,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 2,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -485,6 +5473,322 @@
      },
      "place_total": 322,
      "google": 2,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 170,
+      "visitor_score": "4.93",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 19,
+     "place_info": {
+      "visitor_reviews": 75,
+      "visitor_score": "4.8",
+      "image_count": 21,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 388,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 15,
+     "place_info": {
+      "visitor_reviews": 335,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 16,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 20,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 29,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 41,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": 6,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 115,
+      "visitor_score": "5",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 142,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 70,
+      "visitor_score": "5",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 46,
+     "place_info": {
+      "visitor_reviews": 28,
+      "visitor_score": "4.98",
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 37,
+     "place_info": {
+      "visitor_reviews": 9,
+      "visitor_score": null,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 28,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 431,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 322,
+     "google": null,
      "gmap": false
     }
    },
@@ -513,6 +5817,282 @@
      "place_total": 123,
      "google": null,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 170,
+      "visitor_score": "4.93",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 123,
+     "google": 3,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 12,
+     "place_info": {
+      "visitor_reviews": 75,
+      "visitor_score": "4.8",
+      "image_count": 21,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 17,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 115,
+      "visitor_score": "5",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 142,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 123,
+     "google": 5,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 123,
+     "google": 8,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 21,
+     "place_info": {
+      "visitor_reviews": 9,
+      "visitor_score": null,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 16,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 431,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -531,6 +6111,282 @@
      "place": null,
      "place_total": 101,
      "google": null,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 170,
+      "visitor_score": "4.93",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 101,
+     "google": 7,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 388,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 40,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 20,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 48,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 115,
+      "visitor_score": "5",
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 101,
+     "google": 3,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 142,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 101,
+     "google": 12,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 8,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 101,
+     "google": 9,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 12,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 431,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 101,
+     "google": 11,
      "gmap": false
     }
    },
@@ -551,6 +6407,234 @@
      "place_total": 15,
      "google": 7,
      "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 13,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "image_count": 9,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": 10,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 75,
+      "visitor_score": "4.8",
+      "image_count": 21,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 360,
+      "visitor_score": "4.99",
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 335,
+      "visitor_score": null,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": 14,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": true,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 44,
+      "visitor_score": null,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": 8,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": false
     }
    },
    "measured": {
@@ -565,6 +6649,166 @@
     "진앤솔": {
      "naver": null,
      "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "디에이치": {
+     "naver": 15,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": 2,
+     "gmap": false
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "google": 6,
+     "gmap": false
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "google": null,
+     "gmap": false
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
      "place_block": null,
      "place": null,
      "google": null,
