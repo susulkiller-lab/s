@@ -21,7 +21,13 @@
 - `config/collect.json`: office.lat, office.lng에 사무실 좌표(네이버 지도에서 확인)
 - `config/ai_prompts.csv`: AI에 던질 고정 질문 8개
 
-## 측정할 때마다
+## 원클릭(권장)
+저장소 맨 위 `원클릭리포트.bat` 더블클릭 한 번으로 준비 → 최신 코드 받기 → 검색 수집 → AI 답변 수집 → 리포트(docx 자동 열림) → 결과 올리기까지 진행한다(약 1시간 10분). 사람 손은 보안문자가 뜰 때만 필요하다. 바탕화면 바로가기: 파일 우클릭 → 보내기 → 바탕 화면에 바로 가기 만들기.
+- AI 수집은 Claude Code(`claude`)와 Claude in Chrome 연결이 되어 있어야 한다(AI_PROTOCOL.md). 없으면 건너뛰고 나머지는 진행
+- 자동 올리기는 git이 있어야 한다(Git for Windows 권장, 처음 한 번 GitHub 로그인). 없거나 실패하면 GitHub Desktop에서 Push origin
+- 중간에 끊겨도 다시 실행하면 끝난 부분은 건너뛴다
+
+## 측정할 때마다(수동 단계별)
 1. 상담 입력: `data/consults.csv`를 엑셀로 열어 지난 측정 이후 상담을 한 줄씩 넣는다
    - date: 2026-10-27 형식
    - channel: 네이버블로그, 플레이스, 파워링크, 로톡, 구글, AI, 홈페이지, 소개, 기타 중 하나
