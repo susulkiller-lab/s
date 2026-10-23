@@ -186,7 +186,7 @@ def reparse(outdir, urls):
             base = urls[kind].split("?")[0]
             v.update(parse_place(h) if kind == "place" else (parse_google if kind == "google" else parse_serp)(h, base))
             if kind == "place" and not v["places"]:
-                v["status"] = "empty"
+                v["status"] = "none" if v.get("total") == 0 else "empty"
         if data:
             write_json(outdir / f"{fname}.json", data)
             print(f"재분석: {fname} {len(data)}건")
@@ -260,8 +260,8 @@ def main():
             rec = {"status": st, "raw": raw, "places": []}
             if st == "ok":
                 rec.update(parse_place(h))
-                if not rec["places"]:
-                    rec["status"] = "empty"
+                if not rec["places"]:  # none: 네이버에 플레이스 결과 자체가 없음(정상 측정)
+                    rec["status"] = "none" if rec.get("total") == 0 else "empty"
             return rec
 
         if "naver" in steps:

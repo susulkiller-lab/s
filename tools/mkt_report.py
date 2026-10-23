@@ -41,6 +41,7 @@ def ranks_for(mdir, ents, kws):
         kw = k["keyword"]
         s_items = serp.get(kw, {}).get("items", []) if serp.get(kw, {}).get("status") == "ok" else None
         p_rows = plist.get(kw, {}).get("places", []) if plist.get(kw, {}).get("status") == "ok" else None
+        no_place = plist.get(kw, {}).get("status") == "none"  # 플레이스 결과가 없는 키워드는 플레이스 채널에서 뺀다
         g_items = goog.get(kw, {}).get("items", []) if goog.get(kw, {}).get("status") == "ok" else None
         row = {}
         for e in ents:
@@ -56,14 +57,14 @@ def ranks_for(mdir, ents, kws):
                 if hit:
                     r["place_info"] = {f: hit.get(f) for f in PLACE_FIELDS}
                 r["place_total"] = plist[kw].get("total")
-            elif s_items is not None:
+            elif s_items is not None and not no_place:
                 r["place"] = r.get("place_block")
             if g_items is not None:
                 r["google"] = best_rank([i for i in g_items if i["cls"] in CONTENT_CLASSES], e, "content_pos")
                 r["gmap"] = any(i["cls"] == "gmap" and match_item(i, e) for i in g_items)
             row[e["key"]] = r
         out[kw] = {"weight": k["weight"], "ranks": row,
-                   "measured": {"naver": s_items is not None, "place": p_rows is not None or s_items is not None,
+                   "measured": {"naver": s_items is not None, "place": not no_place and (p_rows is not None or s_items is not None),
                                 "google": g_items is not None}}
     return out, have
 
