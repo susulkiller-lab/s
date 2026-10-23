@@ -7,8 +7,9 @@
 import csv
 import json
 import re
+from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 MKT = ROOT / "marketing"
@@ -30,7 +31,10 @@ CAFE_RE = re.compile(r"cafe\.naver\.com/([A-Za-z0-9_-]+)/(\d+)")
 # 분류 대상이 아닌 네이버·구글 내부 링크
 SKIP_HOSTS = ("search.naver.com", "nid.naver.com", "help.naver.com", "www.naver.com",
               "m.naver.com", "keep.naver.com", "policy.naver.com", "accounts.google.com",
-              "support.google.com", "policies.google.com", "maps.google.com")
+              "support.google.com", "policies.google.com", "maps.google.com",
+              "openstreetmap.org", "navercorp.com")
+URL_IN_TEXT = re.compile(r"https?://[^\s|›]+")
+DOMAIN_IN_TEXT = re.compile(r"\b((?:[a-z0-9-]+\.)+(?:com|co\.kr|kr|net|org|law))\b", re.I)
 
 
 def norm(s):
@@ -49,8 +53,10 @@ def classify(href):
     if not href or not href.startswith("http"):
         return None
     h = host_of(href)
-    if "adcr.naver.com" in h or "ad.search.naver.com" in h or "/adcr" in href:
+    if "ader.naver.com" in h or "adcr.naver.com" in h or "/adcr" in href:
         return ("ad", href)
+    if "ad.search.naver.com" in h:  # 광고 '더보기' 링크
+        return None
     for r in PLACE_RES:
         if "place.naver.com" in h or "map.naver.com" in h:
             m = r.search(href)
@@ -79,13 +85,34 @@ def classify(href):
     return ("web", h[4:] if h.startswith("www.") else h)
 
 
+def resolve(href, text):
+    """구글 모바일의 암호화된 이동 링크(/goto, /url)는 링크 문구에 보이는 주소로 바꿔 분류한다."""
+    h = host_of(href)
+    path = urlparse(href).path
+    if "google." in h and path in ("/goto", "/url"):
+        q = parse_qs(urlparse(href).query).get("q") or parse_qs(urlparse(href).query).get("url") or []
+        if q and q[0].startswith("http"):
+            return q[0]
+        m = URL_IN_TEXT.search(text or "")
+        if m:
+            u = m.group(0)
+            b = re.search(r"blog\.naver\.com\s*›\s*([A-Za-z0-9_-]+)", text)
+            return f"https://blog.naver.com/{b.group(1)}/000000" if "blog.naver.com" in u and b else u
+    return href
+
+
 def group_links(links):
     """화면 순서대로 링크를 묶어 분류별 순위를 매긴다. 같은 대상의 링크 문구는 합친다."""
     items, index = [], {}
     for ln in links:
-        c = classify(ln.get("href", ""))
+        c = classify(resolve(ln.get("href", ""), ln.get("text", "")))
         if not c:
             continue
+        if c[0] == "ad":  # 광고 한 건에 링크가 여러 개라 문구 속 도메인으로 묶는다
+            m = DOMAIN_IN_TEXT.search(ln.get("text", ""))
+            if not m:
+                continue
+            c = ("ad", m.group(1).lower())
         key = c
         if key in index:
             it = items[index[key]]
@@ -103,6 +130,53 @@ def group_links(links):
             content_pos += 1
             it["content_pos"] = content_pos
     return items
+
+
+class _Anchors(HTMLParser):
+    SKIP = {"script", "style", "svg", "noscript"}
+
+    def __init__(self, base):
+        super().__init__(convert_charrefs=True)
+        self.base, self.out, self.stack, self.skip = base, [], [], 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.SKIP:
+            self.skip += 1
+        elif tag == "a":
+            href = dict(attrs).get("href")
+            self.stack.append([urljoin(self.base, href) if href else "", []])
+
+    def handle_endtag(self, tag):
+        if tag in self.SKIP and self.skip:
+            self.skip -= 1
+        elif tag == "a" and self.stack:
+            href, buf = self.stack.pop()
+            if href:
+                self.out.append({"href": href, "text": re.sub(r"\s+", " ", " ".join(buf)).strip()[:300]})
+
+    def handle_data(self, data):
+        if not self.skip and self.stack and data.strip():
+            for a in self.stack:
+                a[1].append(data.strip())
+
+
+def links_from_html(page_html, base):
+    """원본 HTML에서 화면 순서대로 링크 주소와 문구를 뽑는다(수집 때와 재분석 때 같은 코드)."""
+    p = _Anchors(base)
+    p.feed(page_html)
+    return p.out
+
+
+def apollo_from_html(page_html):
+    i = page_html.find("window.__APOLLO_STATE__")
+    if i < 0:
+        return None
+    j = page_html.find("=", i) + 1
+    try:
+        st, _ = json.JSONDecoder().raw_decode(page_html[j:].lstrip())
+        return st
+    except ValueError:
+        return None
 
 
 def load_entities():
@@ -132,9 +206,9 @@ def match_item(item, ent):
         return True
     if cls == "blog" and key.split("/")[0].lower() in [b.lower() for b in ent["blog_ids"]]:
         return True
-    if cls == "web" and any(key == d or key.endswith("." + d) for d in ent["domains"]):
+    if cls in ("web", "gmap", "ad") and any(key == d or key.endswith("." + d) for d in ent["domains"]):
         return True
-    if cls in ("place", "ad", "web", "lawtalk"):
+    if cls in ("place", "ad", "web", "gmap", "lawtalk"):
         t = norm(item.get("text", "") + " " + item.get("name", ""))
         return any(n and n in t for n in ent["_names"])
     return False

@@ -1,0 +1,367 @@
+{
+ "scores": {
+  "진앤솔": {
+   "naver": 6.7,
+   "place": 0.0,
+   "google": 30.0,
+   "index": 9.1
+  }
+ },
+ "ranks": {
+  "창원 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 21,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "5",
+      "image_count": 29,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 192
+    }
+   },
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": false
+   }
+  },
+  "창원 법률사무소": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": 10,
+     "ad": false,
+     "place_block": null,
+     "place": 21,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "5",
+      "image_count": 29,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 204,
+     "google": 3,
+     "gmap": true
+    }
+   },
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true
+   }
+  },
+  "창원 형사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 29,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "5",
+      "image_count": 29,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": false
+    }
+   },
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true
+   }
+  },
+  "창원 음주운전 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 성범죄 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 사기 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 폭행 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 마약 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 교통사고 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 학교폭력 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 민사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 손해배상 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 대여금 소송": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 상속 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 이혼변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 행정소송 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "창원 행정심판": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "마산 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "마산 형사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "마산 이혼변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "마산 민사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "진해 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "진해 형사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "경남 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "경남 형사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "경남 이혼변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "경남 음주운전 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  },
+  "경남 행정심판 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {}
+   },
+   "measured": {
+    "naver": false,
+    "place": false,
+    "google": false
+   }
+  }
+ },
+ "ai": []
+}

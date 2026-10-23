@@ -1,12 +1,28 @@
 {
  "us": {
   "key": "진앤솔",
-  "names": ["진앤솔"],
-  "place_ids": [],
-  "blog_ids": ["jinnsollaw", "jinnsol-law"],
-  "domains": ["jinnsol.tistory.com"],
-  "phones": []
+  "names": [
+   "진앤솔"
+  ],
+  "place_ids": [
+   "1824938205"
+  ],
+  "blog_ids": [
+   "jinnsollaw",
+   "jinnsol-law"
+  ],
+  "domains": [
+   "jinnsol.co.kr",
+   "jinnsol.tistory.com"
+  ],
+  "phones": [
+   "055-266-3605"
+  ]
  },
  "competitors": [],
- "network_firms": ["대륜", "YK", "와이케이"]
+ "network_firms": [
+  "대륜",
+  "YK",
+  "와이케이"
+ ]
 }

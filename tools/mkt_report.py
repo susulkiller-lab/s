@@ -21,6 +21,7 @@ from mkt_common import (CONSULTS, CONTENT_CLASSES, LEDGER, ROOT, is_network, loa
                         read_keywords, read_prompts, write_json)
 
 CHANNELS = [("naver", "네이버 콘텐츠"), ("place", "네이버 플레이스"), ("google", "구글"), ("ai", "AI 검색")]
+PLACE_FIELDS = ("visitor_reviews", "visitor_score", "image_count", "booking", "talktalk", "coupon")
 PHONE_RE = re.compile(r"0\d{1,2}[-.\s)]?\d{3,4}[-.\s]?\d{4}")
 
 
@@ -53,11 +54,13 @@ def ranks_for(mdir, ents, kws):
                 r["place"] = best_rank(pr, e, "rank")
                 hit = next((x for x in pr if match_item(x, e)), None)
                 if hit:
-                    r["place_info"] = {f: hit.get(f) for f in ("visitor_reviews", "blog_reviews", "total_reviews")}
+                    r["place_info"] = {f: hit.get(f) for f in PLACE_FIELDS}
+                r["place_total"] = plist[kw].get("total")
             elif s_items is not None:
                 r["place"] = r.get("place_block")
             if g_items is not None:
                 r["google"] = best_rank([i for i in g_items if i["cls"] in CONTENT_CLASSES], e, "content_pos")
+                r["gmap"] = any(i["cls"] == "gmap" and match_item(i, e) for i in g_items)
             row[e["key"]] = r
         out[kw] = {"weight": k["weight"], "ranks": row,
                    "measured": {"naver": s_items is not None, "place": p_rows is not None or s_items is not None,
@@ -195,6 +198,10 @@ def delta(a, b):
     return f" ({'+' if d >= 0 else ''}{d})"
 
 
+def yn(v):
+    return "-" if v is None else ("있음" if v else "없음")
+
+
 def rank_txt(r):
     return f"{r}위" if r else "미노출"
 
@@ -274,6 +281,13 @@ def main():
     if have["naver"]:
         p("파워링크 노출 키워드 수: " + ", ".join(
             f"{e['key']} {sum(1 for v in ranks.values() if v['ranks'][e['key']].get('ad'))}" for e in ranked))
+        serp = read_json(mdir / "naver_serp.json", {})
+        adv = Counter(it["key"] for v in serp.values() for it in v.get("items", []) if it["cls"] == "ad")
+        if adv:
+            p("파워링크 광고주(노출 키워드 수): " + ", ".join(f"{k} {n}" for k, n in adv.most_common(10)))
+    if have["google"]:
+        p("구글 지도 결과 노출 키워드 수: " + ", ".join(
+            f"{e['key']} {sum(1 for v in ranks.values() if v['ranks'][e['key']].get('gmap'))}" for e in ranked))
     if ai:
         p("AI 언급률: " + ", ".join(f"{e['key']} {fmt(per[e['key']].get('ai_mention_rate'), '%')}" for e in ranked))
     p("")
@@ -298,8 +312,10 @@ def main():
                 if ch == "place":
                     li, mi = v["ranks"][best[0]].get("place_info"), mine.get("place_info")
                     if li:
-                        note = (f" / 공개지표 방문자리뷰 {fmt(li.get('visitor_reviews'))} vs 우리 {fmt((mi or {}).get('visitor_reviews'))},"
-                                f" 블로그리뷰 {fmt(li.get('blog_reviews'))} vs 우리 {fmt((mi or {}).get('blog_reviews'))}")
+                        mi = mi or {}
+                        note = (f" / 방문자리뷰 {fmt(li.get('visitor_reviews'))} vs 우리 {fmt(mi.get('visitor_reviews'))},"
+                                f" 사진 {fmt(li.get('image_count'))} vs {fmt(mi.get('image_count'))},"
+                                f" 톡톡 {yn(li.get('talktalk'))} vs {yn(mi.get('talktalk'))}, 쿠폰 {yn(li.get('coupon'))} vs {yn(mi.get('coupon'))}")
                 gaps.append((g, f"- [{chn}] {kw}: 우리 {rank_txt(mine.get(ch))}, {best[0]} {best[1]}위{note}", ch, kw))
     gaps.sort(key=lambda x: -x[0])
     if gaps:
@@ -359,7 +375,12 @@ def main():
     mine_place = [v["ranks"][us].get("place_info") for v in ranks.values() if v["ranks"][us].get("place_info")]
     if mine_place:
         mi = mine_place[0]
-        flags.append(f"- 우리 플레이스 공개지표: 방문자리뷰 {fmt(mi.get('visitor_reviews'))}, 블로그리뷰 {fmt(mi.get('blog_reviews'))}")
+        flags.append(f"- 우리 플레이스 공개지표: 방문자리뷰 {fmt(mi.get('visitor_reviews'))}(평점 {fmt(mi.get('visitor_score'))}),"
+                     f" 사진 {fmt(mi.get('image_count'))}, 예약 {yn(mi.get('booking'))}, 톡톡 {yn(mi.get('talktalk'))}, 쿠폰 {yn(mi.get('coupon'))}")
+        pr = [f"{kw} {rank_txt(v['ranks'][us].get('place'))}/{fmt(v['ranks'][us].get('place_total'))}"
+              for kw, v in ranks.items() if v["measured"]["place"] and v["ranks"][us].get("place_total")]
+        if pr:
+            flags.append("- 우리 플레이스 순위(전체 업체 수 대비): " + ", ".join(pr))
     for fl in flags or ["- 관측된 감점 항목 없음"]:
         p(fl)
     p("")
@@ -368,7 +389,7 @@ def main():
     p("6. 플레이스 순위와 공개지표의 상관 (스피어만, -1에 가까울수록 지표가 클수록 상위)")
     plist = read_json(mdir / "place_list.json", {})
     rows = [x for v in plist.values() for x in v.get("places", []) if x.get("rank") and x["rank"] <= 20]
-    for f, n in (("visitor_reviews", "방문자리뷰"), ("blog_reviews", "블로그리뷰")):
+    for f, n in (("visitor_reviews", "방문자리뷰"), ("image_count", "사진 수")):
         pr = [(x["rank"], x[f]) for x in rows if x.get(f) is not None]
         rho = spearman([a1 for a1, _ in pr], [b1 for _, b1 in pr])
         p(f"- {n}: {fmt(rho)} (표본 {len(pr)}건)")
