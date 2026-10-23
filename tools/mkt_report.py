@@ -249,6 +249,11 @@ def main():
     if missing_ch:
         p(f"미측정 채널: {', '.join(missing_ch)} (종합지수는 측정된 채널 가중치로만 환산)")
     p("")
+    # 문서(DOCX)용 구조화 데이터. 텍스트 리포트와 같은 값을 담는다.
+    R = {"date": mdir.name, "prev": pdir.name if pdir else None,
+         "conditions": f"키워드 {meta.get('keywords', len(kws))}개, 기기 {meta.get('device', '-')}, 수집 단계 "
+                       f"{', '.join(meta.get('steps', [])) or '-'}, AI 답변 {len(ai)}건",
+         "missing_channels": missing_ch, "channel_names": [n for _, n in CHANNELS]}
 
     # 1. 결론
     s_us = per[us]
@@ -267,6 +272,19 @@ def main():
     if not comps:
         p("- 비교군 미등록: 아래 7번 후보에서 골라 marketing/config/entities.json의 competitors에 넣으면 다음 리포트부터 비교합니다.")
     p("")
+    R["summary"] = {"index": s_us.get("index"), "index_delta": delta(s_us.get("index"), pper.get(us, {}).get("index")),
+                    "pos": pos_us, "n": len(ents),
+                    "share": round((s_us.get("index") or 0) / total * 100, 1) if total and comps else None}
+    if comps and total:
+        lead = ranked[0] if ranked[0]["key"] != us else ranked[1]
+        R["summary"].update(lead=lead["key"], lead_index=per[lead["key"]].get("index"), lead_is_first=ranked[0]["key"] != us,
+                            gap=round((per[lead["key"]].get("index") or 0) - (s_us.get("index") or 0), 1))
+    ch_rank = {}
+    for ch, n in CHANNELS:
+        vals = sorted((per[e["key"]].get(ch) for e in ents if per[e["key"]].get(ch) is not None), reverse=True)
+        if s_us.get(ch) is not None and vals:
+            ch_rank[n] = (vals.index(s_us[ch]) + 1, len(vals), s_us[ch], vals[0], vals.count(s_us[ch]))
+    R["channel_rank"] = ch_rank
 
     # 2. 채널별 점수
     p("2. 채널별 점수 (0~100, 괄호는 직전 대비)")
@@ -292,10 +310,26 @@ def main():
     if ai:
         p("AI 언급률: " + ", ".join(f"{e['key']} {fmt(per[e['key']].get('ai_mention_rate'), '%')}" for e in ranked))
     p("")
+    R["channels"] = [(e["key"], e["key"] == us, [fmt(per[e["key"]].get(ch)) for ch, _ in CHANNELS], fmt(per[e["key"]].get("index")))
+                     for e in ranked]
+    R["counts"] = [(e["key"], e["key"] == us,
+                    sum(1 for v in ranks.values() if v["ranks"][e["key"]].get("ad")) if have["naver"] else None,
+                    sum(1 for v in ranks.values() if v["ranks"][e["key"]].get("gmap")) if have["google"] else None)
+                   for e in ranked]
+    R["advertisers"] = adv.most_common(10) if have["naver"] else []
+    engines = sorted({r["engine"] for r in ai})
+    R["ai_engines"] = engines
+    R["ai_total"] = {en: sum(1 for r in ai if r["engine"] == en) for en in engines}
+    R["ai_table"] = [(e["key"], e["key"] == us, [sum(1 for r in ai if r["engine"] == en and e["key"] in r["order"]) for en in engines],
+                      fmt(per[e["key"]].get("ai_mention_rate"), "%"), sum(1 for r in ai if e["key"] in r["cites"]))
+                     for e in sorted(ents, key=lambda e: -(per[e["key"]].get("ai_mention_rate") or 0))] if ai else []
+    ptext = {x["id"]: x["prompt"] for x in prompts}
+    R["ai_us"] = [(r["engine"], ptext.get(r["pid"], r["pid"]), r["order"].index(us) + 1, len(r["order"]))
+                  for r in ai if us in r["order"]]
 
     # 3. 약점 목록
     p("3. 약점 목록 (경쟁사가 우리보다 위에 있는 키워드, 가중치 × 점수 차 순)")
-    gaps = []
+    gaps, gap_rows = [], []
     for kw, v in ranks.items():
         mine = v["ranks"][us]
         for ch, chn in CHANNELS[:3]:
@@ -318,7 +352,12 @@ def main():
                                 f" 사진 {fmt(li.get('image_count'))} vs {fmt(mi.get('image_count'))},"
                                 f" 톡톡 {yn(li.get('talktalk'))} vs {yn(mi.get('talktalk'))}, 쿠폰 {yn(li.get('coupon'))} vs {yn(mi.get('coupon'))}")
                 gaps.append((g, f"- [{chn}] {kw}: 우리 {rank_txt(mine.get(ch))}, {best[0]} {best[1]}위{note}", ch, kw))
+                li, mi = (v["ranks"][best[0]].get("place_info") or {}), (mine.get("place_info") or {})
+                pair = (lambda f, fn: f"{fn(li.get(f))} / {fn(mi.get(f))}") if ch == "place" and li else (lambda f, fn: "-")
+                gap_rows.append((g, [chn.replace("네이버 ", ""), kw, rank_txt(mine.get(ch)), best[0],
+                                     pair("visitor_reviews", fmt), pair("image_count", fmt), pair("talktalk", yn), pair("coupon", yn)]))
     gaps.sort(key=lambda x: -x[0])
+    R["gaps"] = [r for _, r in sorted(gap_rows, key=lambda x: -x[0])][: sc.get("weak_top", 15)]
     if gaps:
         for _, line, _, _ in gaps[: sc.get("weak_top", 15)]:
             p(line)
@@ -339,6 +378,7 @@ def main():
                 moves.append(f"- [{chn}] {kw}: {rank_txt(b1)} -> {rank_txt(a1)}")
     for m in moves or ["- 해당 없음" if pranks else "- 직전 측정 없음"]:
         p(m)
+    R["moves"] = [m[2:] for m in (moves or ["- 해당 없음" if pranks else "- 직전 측정 없음"])]
     p("")
 
     # 5. 운영 점검(우리 측 감점 항목)
@@ -390,6 +430,10 @@ def main():
             flags.append("- 우리 플레이스 순위(전체 업체 수 대비): " + ", ".join(pr))
     for fl in flags or ["- 관측된 감점 항목 없음"]:
         p(fl)
+    R["flags"] = [fl[2:] for fl in flags if fl.startswith("- ") and not fl.startswith("- 우리 플레이스 순위")]
+    R["lost"] = [(v.get("date", ""), t) for t, v in lost[:10]]
+    R["place_ranks"] = [(kw, rank_txt(v["ranks"][us].get("place")), fmt(v["ranks"][us].get("place_total")))
+                        for kw, v in ranks.items() if v["measured"]["place"] and v["ranks"][us].get("place_total")]
     p("")
 
     # 6. 플레이스 상관 분석
@@ -400,18 +444,21 @@ def main():
         pr = [(x["rank"], x[f]) for x in rows if x.get(f) is not None]
         rho = spearman([a1 for a1, _ in pr], [b1 for _, b1 in pr])
         p(f"- {n}: {fmt(rho)} (표본 {len(pr)}건)")
+        R.setdefault("corr", []).append((n, fmt(rho), f"{len(pr)}건"))
     p("- 상관관계이며 인과가 아닙니다. 같은 업체가 여러 키워드에 중복 집계되고, 4주 이상 누적해야 경향으로 읽을 수 있습니다.")
     p("")
 
     # 7. 비교군 후보
     p("7. 비교군 후보 (우리·등록 업체·네트워크펌 제외, 상위 노출 가중 점수 순)")
     cand = discover(mdir, cfg, ents, kws)
+    R["candidates"] = cand[: sc.get("discovery_top", 15)]
     for name, pid, s in cand[: sc.get("discovery_top", 15)] or [("- 후보 없음", "", "")]:
         p(f"- {name} (플레이스 {pid}) 점수 {s}" if pid else name)
     p("")
 
     # 8. 상담 실적
     p("8. 상담·수임 실적 (data/consults.csv 입력분)")
+    n8 = len(L)
     start = pdir.name if pdir else (date.fromisoformat(mdir.name) - timedelta(days=7)).isoformat()
     cs = consult_summary(start, mdir.name)
     if cs is None:
@@ -426,6 +473,7 @@ def main():
         hist = [(d.name, read_json(d / "scores.json", {}).get("scores", {}).get(us, {}).get("index")) for d in dirs if d.name <= mdir.name]
         if len([h for h in hist if h[1] is not None]) >= 2:
             p("- 노출지수 추이: " + " / ".join(f"{d} {fmt(v)}" for d, v in hist[-8:]))
+    R["consults"] = [x[2:] for x in L[n8:]]
     p("")
 
     # 9. 다음 과제 후보
@@ -443,6 +491,10 @@ def main():
         todo.append(f"- 누락 의심 글 {len(lost)}건 원인 점검(중복 문구, 금지 표현, 발행 직후 수정 여부)")
     for t in todo or ["- 도출된 과제 없음"]:
         p(t)
+    R["todo"] = []
+    for t in todo or ["- 도출된 과제 없음"]:
+        head, _, items = t[2:].partition(": ")
+        R["todo"].append((head, items.split(", ") if items else []))
 
     outdir = ROOT / "output" / "marketing"
     outdir.mkdir(parents=True, exist_ok=True)
@@ -459,6 +511,14 @@ def main():
                             r.get("place_block") or "", r.get("google") or "", "Y" if r.get("ad") else ""])
     print("\n".join(L))
     print(f"\n저장: {rp}\n저장: {cp}")
+    try:
+        from mkt_docx import build
+    except ImportError:
+        print("DOCX 생략: python-docx 미설치(py -m pip install python-docx)")
+        return
+    dp = outdir / f"{mdir.name}_리포트.docx"
+    build(R, dp)
+    print(f"저장: {dp}")
 
 
 if __name__ == "__main__":

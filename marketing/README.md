@@ -29,7 +29,7 @@
    - 저장할 때 형식은 "CSV UTF-8"
 2. `marketing\측정.bat` 실행: 측정 전용 크롬 창이 뜨고 네이버 통합검색, 플레이스 목록, 구글, 발행 글 누락 점검 순으로 돈다. 보안문자가 뜨면 창에서 풀고 검은 창에서 Enter. 끊겨도 다시 실행하면 이어서 한다
 3. AI 검색 답변 수집: `AI_PROTOCOL.md` 절차(Claude에게 시키거나 수동 붙여넣기)
-4. `marketing\리포트.bat` 실행 → `output/marketing/<날짜>_리포트.txt`, `<날짜>_키워드표.csv`
+4. `marketing\리포트.bat` 실행 → `output/marketing/<날짜>_리포트.txt`, `<날짜>_키워드표.csv`, `<날짜>_리포트.docx`(보고용. python-docx가 없으면 건너뛴다: `py -m pip install python-docx`)
 5. (선택) 결과를 GitHub에 올리고 클라우드 세션에 "마케팅 리포트 분석해줘"라고 하면 편집장이 리포트를 읽고 과제를 정리한다
 
 ## 점수 산식(config/scoring.json)
