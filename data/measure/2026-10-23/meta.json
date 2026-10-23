@@ -1,0 +1,15 @@
+{
+ "date": "2026-10-23",
+ "keywords": 3,
+ "device": "Pixel 7",
+ "office": {
+  "lat": null,
+  "lng": null
+ },
+ "steps": [
+  "google",
+  "missing",
+  "naver",
+  "place"
+ ]
+}

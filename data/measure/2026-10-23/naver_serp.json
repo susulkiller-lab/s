@@ -1,0 +1,714 @@
+{
+ "창원 변호사": {
+  "status": "ok",
+  "items": [
+   {
+    "cls": "ad",
+    "key": "https://m.ad.search.naver.com/search.naver?where=m_expd&query=%EC%B0%BD%EC%9B%90%EB%B3%80%ED%98%B8%EC%82%AC&referenceId=jWqWolqXKZossm1iL3o-223110",
+    "href": "https://m.ad.search.naver.com/search.naver?where=m_expd&query=%EC%B0%BD%EC%9B%90%EB%B3%80%ED%98%B8%EC%82%AC&referenceId=jWqWolqXKZossm1iL3o-223110",
+    "text": "더보기",
+    "pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "openstreetmap.org",
+    "href": "http://www.openstreetmap.org/copyright",
+    "text": "/OpenStreetMap",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "place",
+    "key": "1742116843",
+    "href": "https://m.place.naver.com/place/1742116843/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사 톡톡 법률사무소 | 24시간 영업연중무휴",
+    "pos": 1
+   },
+   {
+    "cls": "place",
+    "key": "1828302655",
+    "href": "https://m.place.naver.com/place/1828302655/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 법무법인나우 창원형사이혼전문변호사 톡톡 쿠폰 법률사무소 | 음주운전 리뷰 1만 원 할인 쿠폰 외 | 24시간 영업연중무휴",
+    "pos": 2
+   },
+   {
+    "cls": "place",
+    "key": "1250445692",
+    "href": "https://m.place.naver.com/place/1250445692/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 법무법인 오현 변호사창원사무소 형사이혼전문법률사무소 | 24시간 영업연중무휴",
+    "pos": 3
+   },
+   {
+    "cls": "place",
+    "key": "1368510756",
+    "href": "https://m.place.naver.com/place/1368510756/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 이혼전문변호사 법무법인 로운 창원분사무소 쿠폰 법률사무소 | [대표변호사]상담비할인 리뷰 쿠폰 외 | 24시간 영업연중무휴",
+    "pos": 4
+   },
+   {
+    "cls": "place",
+    "key": "1227815002",
+    "href": "https://m.place.naver.com/place/1227815002/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 법무법인더킴로펌 개인회생파산 창원센터 톡톡 쿠폰 법률사무소 | 평일 야간, 주말 상담 가능 쿠폰 | 영업 중12:00에 휴게시간",
+    "pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "changwon.scourt.go.kr",
+    "href": "https://changwon.scourt.go.kr/main/new/Main.work",
+    "text": "창원지방법원 changwon.scourt.go.kr›changwon | 법률상담안내 - 변호사/법무사 | 변호사 상담은 매주 월요일~금요일 13:30~15:30에 진행합니다. 창원지방법원 1층 민원안내실(103호)에서 번호표를 받아 상담합니다. 변호사 1명이 상담을 진행합니다.",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "blog",
+    "key": "ec7_1tbmgvhe/224449833574",
+    "href": "https://m.blog.naver.com/ec7_1tbmgvhe/224449833574",
+    "text": "창원변호사 선임 변호가 필요하다면 | 창원변호사가 전하는 법률 가이드: 복잡한 사건 대응 방안 법적 분쟁에 휘말리게 되면 누구나 극심한 혼란과 불안을 겪게 됩니다. 민사, 형사, 가사 등 어떤 분야든 초기 대응을 어떻게 하느냐에 따라 사건의 향방이 완전히 달라집니다. 이때 지역 내 법원에 대한 이해와 법률",
+    "pos": 1,
+    "content_pos": 3
+   },
+   {
+    "cls": "blog",
+    "key": "qmluzu02901/224449100474",
+    "href": "https://m.blog.naver.com/qmluzu02901/224449100474",
+    "text": "창원변호사 법률 변호를 진행한다면 | 창원변호사 조력과 법적 대응, 실질적 권익 회복을 위한 종합 법률 가이드 지역 사회에서 발생하는 다양한 법적 분쟁과 형사 사건, 가사 소송 및 민사 갈등은 해당 지역의 실무 환경과 법원, 수사기관의 특성을 정확히 이해하고 있는 전문가의 조력이 뒷받침되어야 원만한 해결을",
+    "pos": 2,
+    "content_pos": 4
+   },
+   {
+    "cls": "blog",
+    "key": "stylelistoday/224446816335",
+    "href": "https://m.blog.naver.com/stylelistoday/224446816335",
+    "text": "창원스토킹변호사 성범죄 접근금지 위반 합의의 효력은? | 창원스토킹변호사를 찾고 있다면 먼저 확인할 것은 ‘연락의 목적’과 ‘법률상 허용되는 행동’이 일치하는지입니다. 아래에서는 혐의 성립부터 경찰조사 준비까지, 사건의 흐름에 따라 판단 기준을 살펴보겠습니다. 1. 헤어진 뒤 연락했을 뿐인데, 스토킹 혐의가 성립하나요? 「스",
+    "pos": 3,
+    "content_pos": 5
+   },
+   {
+    "cls": "cafe",
+    "key": "dgmom365/7418907",
+    "href": "https://m.cafe.naver.com/dgmom365/7418907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImRnbW9tMzY1IiwiYXJ0aWNsZUlkIjo3NDE4OTA3LCJpc3N1ZWRBdCI6MTc5MjcxNjE5NDYzM30.ZCtO5agfWzysYHRbj5JuXxX8SGu7XrN3Zk7TjITfpT8",
+    "text": "창원변호사 법률사무소 선임 상담 준비하려면 | 창원변호사는 그 세 가지로 사건이 어느 기관의 어느 단계에 있는지 읽어 내고, 창원변호사가 수사관에게 연락해 출석 날짜를 뒤로 잡는 일이 위임 뒤 처음 하는 일입니다. 창원지방법원 본원(성산구 사파동): 의창구·성산구·진해구와 김해·함안·창녕 등 경남 중부권 사건의 1 | 창원변호사 관련 내용 정말 도움이 되었습니다. 흩어져 있던 형사절차 정보가 한 글 안에 정리된 느낌이라 상담 전에 전체 상황을 이해하는 데 큰 도움이 된 것 같아요. 막연한 고민이 조금은 정리가 되었고, 어떤 방향으로",
+    "pos": 1,
+    "content_pos": 6
+   },
+   {
+    "cls": "cafe",
+    "key": "momspanggju/4632752",
+    "href": "https://m.cafe.naver.com/momspanggju/4632752?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Im1vbXNwYW5nZ2p1IiwiYXJ0aWNsZUlkIjo0NjMyNzUyLCJpc3N1ZWRBdCI6MTc5MjcxNjE5NDYzM30.ANBth0Hosmwv5Kwu7e0RqAlI4Za9sGyyCCGjGwkX-YE",
+    "text": "창원변호사 선임 법률사무소 성립은 | 국선변호인이 있는데 사선으로 창원변호사를 따로 선임할 필요가 있을까요? 답변. 국선변호인은 일정 요건을 갖춘 경우 주로 기소 이후에 선정됩니다. 수사 단계부터 도움이 필요하다면 사선 선임을 검토할 만합니다. (4) 질문. 상담 내용이 외부로 새어 나갈 걱정은 없나요?  | 창원변호사 알아볼 때는 처음부터 한 곳만 정하기보다 상담 스타일을 비교해보는 게 괜찮더라고요. 창원변호사마다 질문하는 방식이나 설명하는 포인트가 조금씩 달라서 직접 이야기해봐야 차이가 느껴졌습니다. 저는 창원변호사 상담 전에 ",
+    "pos": 2,
+    "content_pos": 7
+   },
+   {
+    "cls": "cafe",
+    "key": "gongju2008/694519",
+    "href": "https://m.cafe.naver.com/gongju2008/694519?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImdvbmdqdTIwMDgiLCJhcnRpY2xlSWQiOjY5NDUxOSwiaXNzdWVkQXQiOjE3OTI3MTYxOTQ2MzN9.fe26LAiEB06HSnA_AJxbYZs0gLbir_xp9vjUdq5qeXM",
+    "text": "창원스토킹변호사 법적 절차는 | 창원스토킹변호사 법적 절차는 연인이나 지인과 관계가 끝난 뒤 연락을 계속하거나 직접 찾아간 일 때문에 경찰 연락을 받게 되면 단순한 감정 문제로 생각하기 쉽습니다. 그러나 상대방의 의사에 반해 정당한 이유 없이 반복적으로 접근하거나 전화·메시지를 보내 불안감 또는 공포 | 창원스토킹변호사 알아보는 분들은 현재 상황에서 어떤 법적 조치가 가능한지부터 확인하고 싶을 것 같습니다. 연락이나 접근이 반복된 경위와 구체적인 행동에 따라 검토할 쟁점이 달라질 수 있겠네요.",
+    "pos": 3,
+    "content_pos": 8
+   },
+   {
+    "cls": "blog",
+    "key": "tllty/224441135435",
+    "href": "https://m.blog.naver.com/tllty/224441135435",
+    "text": "창원이혼전문변호사 선임 상담 비용과 이혼 방식별 절차, 재산분할 기한까지 | 창원이혼전문변호사 선임 상담 비용과 이혼 방식별 절차, 재산분할 기한까지 이혼을 결심하고 나서도 어디서 무엇부터 시작해야 할지 막막할 때가 있습니다. \"협의이혼과 재판이혼 중... 변호인은 부동산 가압류·예금 가압류 등 재산보전 조치가 필요한 경우 청구와 동시에 신청을",
+    "pos": 4,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "m.knnews.co.kr",
+    "href": "https://m.knnews.co.kr/mView.php?idxno=1553408",
+    "text": "창원공소청, '택시기사 살인사건' 재심 개시 결정 수용 경남신문 15시간 전",
+    "pos": 3,
+    "content_pos": 10
+   },
+   {
+    "cls": "cafe",
+    "key": "tictoc/6336345",
+    "href": "https://m.cafe.naver.com/tictoc/6336345?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6InRpY3RvYyIsImFydGljbGVJZCI6NjMzNjM0NSwiaXNzdWVkQXQiOjE3OTI3MTYxOTQ2MzN9.Dt9TYjZbWSDWExea7LzvE5RYZh5vxVF1sFedQBnPtcQ",
+    "text": "창원변호사 선임 기준은 | 창원변호사 선임 기준은 초기 대응이 전체 소송의 방향을 결정한다 법원으로부터 갑작스러운 민사 소장을 송달받거나, 반대로 오랜 기간 믿었던 상대방의 채무불이행에 대응해야 할 때 창원변호사 조력을 언제 구해야 할지 막막해지는 경우가 많습니다. 분쟁의 시작점에서 처음 법적  | 창원변호사 법률 상담 게시글 잘 읽었습니다. 상대방과의 언쟁보다는 법적 절차에 따라 객관적으로 풀어가는 것이 현명함을 깨달았습니다. 서둘러 대리인 선임 수순을 밟고 당당하게 권리를 찾겠습니다. 사건 처리 잘하는 법률 사무소 알아보는 중입",
+    "pos": 4,
+    "content_pos": 11
+   },
+   {
+    "cls": "blog",
+    "key": "kec7912/224435042709",
+    "href": "https://m.blog.naver.com/kec7912/224435042709",
+    "text": "창원형사전문변호사가 짚는 형사고소 사건 대응, 합의할 때와 끝까지 다툴 때 | 두 가지 가상 상황 ※ 이해를 돕기 위한 가상 상황으로, 실제 창원형사사건변호사의 사례나 판단 결과가 아닙니다. 상황 A: C씨는 다툼 중 상대방을 밀쳤다는 이유로 폭행으로 고소되었고, 행위 자체는 인정합니다. 폭행죄는 처벌불원 의사가 공소 여부에 영향을 줄 수 있는 ",
+    "pos": 5,
+    "content_pos": 12
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://changwon.daeryunlaw.com/",
+    "text": "창원 변호사 | 창원형사전문변호사 | 대륜 창원로펌 강점 | 창원이혼전문변호사 | 창원학교폭력변호사 | 창원부동산변호사 | 창원변호사 업무분야 | 창원변호사 | 창원형사변호사, 창원기업변호사, 창원이혼변호사, 창원민사변호사 분야별 창원변호사 | 창원변호사, 창원로펌, 창원변호사사무실 24시 창원법률상담 접수 | 창원변호사상담 대면진행 창원법률사무소",
+    "pos": 4,
+    "content_pos": 13
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "법무법인 YK www.yklawfirm.co.kr›office | 창원 분사무소 | 법무법인 YK | 법무법인 YK 창원 분사무소는 의뢰인의 사건을 체계적으로 대응합니다. 가까운 곳에서 전문 변호사의 상담과 법률 서비스를 받아보세요.",
+    "pos": 5,
+    "content_pos": 14
+   },
+   {
+    "cls": "web",
+    "key": "thekimcriminal.com",
+    "href": "https://thekimcriminal.com/",
+    "text": "창원형사전문변호사 | 변호사 소개 | 칼럼 | 사무실 오시는 길 | 자주 묻는 질문 | 판례 | 횡령·업무상횡령 | 창원형사전문변호사 | 창원형사변호사 | 창원형사사건변호사 | 창원변호사 | 창원성범죄변호사 | 창원성범죄전문변호사 | 창원음주운전변호사 | 창원음주운전전문변호사 | 창원마약전문변호사 | 창원강제추행변호사 | 창원사기전문변호사 | 창원보이스피싱변호사 | 창원횡령변호사 |",
+    "pos": 6,
+    "content_pos": 15
+   },
+   {
+    "cls": "web",
+    "key": "answerfield.kr",
+    "href": "https://answerfield.kr/",
+    "text": "창원변호사 | 창원변호사 법원장, 검사장, 부장판사, 지청장 역임 법조경력 37년차 74명의 베테랑 변호인단 법무법인 오현",
+    "pos": 7,
+    "content_pos": 16
+   },
+   {
+    "cls": "blog",
+    "key": "healthbody0/224440356362",
+    "href": "https://m.blog.naver.com/healthbody0/224440356362",
+    "text": "창원부동산변호사 매매 후 누수 하자 발견 시 계약 해제와 손해배상, 부동산전문변호사가 보는 기.... | 창원부동산변호사 매매 후 누수 하자 발견 시 계약 해제와 손해배상, 부동산전문변호사가 보는 기준은 이사하고 몇 달 지나지 않아 천장에서 물이 떨어지거나 벽에 금이 가 있는 것을 발견하는 경우가 있습니다. 계약할 때는 아무 설명도 듣지 못했는데 알고 보니 전부터 있던 문",
+    "pos": 6,
+    "content_pos": 17
+   },
+   {
+    "cls": "blog",
+    "key": "yej45864586/224427431634",
+    "href": "https://m.blog.naver.com/yej45864586/224427431634",
+    "text": "창원형사전문변호사 선임 준비와 대응 절차 알아보려면 | 구속영장 청구는 도주 우려나 증거 인멸의 염려가 있다고 판단될 때 신청되므로, 신속하게 구속 전 피의자 심문(영장실질심사)을 준비해야 해요 주거가 일정하고 증거를 인멸할 우려가 전혀 없다는 점과 영장 청구서의 사실관계에 중대한 오인이 있음을 창원형사전문변호사의 변호인 ",
+    "pos": 7,
+    "content_pos": 18
+   },
+   {
+    "cls": "blog",
+    "key": "kshh28/224428125774",
+    "href": "https://m.blog.naver.com/kshh28/224428125774",
+    "text": "창원변호사 선임비용 궁금하다면? 상담 전 알아둘 사건별 차이 | 창원변호사 선임비용 궁금하다면? 상담 전 알아둘 사건별 차이 목차 1. 상담료와 선임비용은 따로 봐야 한다 2. 형사 사건, 어느 단계에서 맡기느냐가 기준 3. 민사·가사 사건, 청구 금액과 쟁점 수가 기준 4. 창원 지역 사건에서 함께 확인할 부분 5. 선임비용을 두",
+    "pos": 8,
+    "content_pos": 19
+   },
+   {
+    "cls": "web",
+    "key": "navercorp.com",
+    "href": "https://www.navercorp.com/",
+    "text": "NAVER",
+    "pos": 8,
+    "content_pos": 20
+   }
+  ],
+  "at": "2026-10-23T09:43:17"
+ },
+ "창원 법률사무소": {
+  "status": "ok",
+  "items": [
+   {
+    "cls": "ad",
+    "key": "https://m.ad.search.naver.com/search.naver?where=m_expd&query=%EC%B0%BD%EC%9B%90%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C&referenceId=jWqWqlqpseKssD%2F1R1V-474059&buckets=N-CORE-RANK-26-UR%5E1%2CNS-SHP-UX-26-5TH%5E3",
+    "href": "https://m.ad.search.naver.com/search.naver?where=m_expd&query=%EC%B0%BD%EC%9B%90%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C&referenceId=jWqWqlqpseKssD%2F1R1V-474059&buckets=N-CORE-RANK-26-UR%5E1%2CNS-SHP-UX-26-5TH%5E3",
+    "text": "더보기",
+    "pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "openstreetmap.org",
+    "href": "http://www.openstreetmap.org/copyright",
+    "text": "/OpenStreetMap",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "place",
+    "key": "1742116843",
+    "href": "https://m.place.naver.com/place/1742116843/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C",
+    "text": " | 법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사 톡톡 법률사무소 | 24시간 영업연중무휴",
+    "pos": 1
+   },
+   {
+    "cls": "place",
+    "key": "1828302655",
+    "href": "https://m.place.naver.com/place/1828302655/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C",
+    "text": " | 법무법인나우 창원형사이혼전문변호사 톡톡 쿠폰 법률사무소 | 음주운전 리뷰 1만 원 할인 쿠폰 외 | 24시간 영업연중무휴",
+    "pos": 2
+   },
+   {
+    "cls": "place",
+    "key": "1250445692",
+    "href": "https://m.place.naver.com/place/1250445692/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C",
+    "text": " | 법무법인 오현 변호사창원사무소 형사이혼전문법률사무소 | 24시간 영업연중무휴",
+    "pos": 3
+   },
+   {
+    "cls": "place",
+    "key": "1368510756",
+    "href": "https://m.place.naver.com/place/1368510756/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C",
+    "text": " | 이혼전문변호사 법무법인 로운 창원분사무소 쿠폰 법률사무소 | [대표변호사]상담비할인 리뷰 쿠폰 외 | 24시간 영업연중무휴",
+    "pos": 4
+   },
+   {
+    "cls": "place",
+    "key": "1227815002",
+    "href": "https://m.place.naver.com/place/1227815002/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C",
+    "text": " | 법무법인더킴로펌 개인회생파산 창원센터 톡톡 쿠폰 법률사무소 | 평일 야간, 주말 상담 가능 쿠폰 | 영업 중12:00에 휴게시간",
+    "pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "jeonsonglaw.co.kr",
+    "href": "https://jeonsonglaw.co.kr/",
+    "text": "법률사무소 전송 | 창원 여성 대표 변호사 · 전명숙 변호사 | 오시는길 | 해결사례 | 업무분야 | 칼럼 | 방문상담 안내 | 인사말 | 경남 창원 법률사무소 전송 전명숙 대표변호사 · 대표변호사 직접 상담",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "cafe",
+    "key": "momspanggju/4632752",
+    "href": "https://m.cafe.naver.com/momspanggju/4632752?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Im1vbXNwYW5nZ2p1IiwiYXJ0aWNsZUlkIjo0NjMyNzUyLCJpc3N1ZWRBdCI6MTc5MjcxNjIwMzE3M30.0cLgYIlIt8qalR28zK9bjJHH_LODzo6bUH1I8CHzsow",
+    "text": "창원변호사 선임 법률사무소 성립은 | 창원변호사 선임 법률사무소 성립은 창원변호사 법률사무소에 형사사건 선임을 맡기기 전 살펴볼 것들 1. 출석 문자 한 통에서 시작되는 경남 형사 절차의 지도 어느 평일 오후, 성산구... 의창구 팔용동이든 진해구 경화동이든 거주지와 상관없이, 창원변호사 사무소에 연락하기 | 창원변호사 알아볼 때는 처음부터 한 곳만 정하기보다 상담 스타일을 비교해보는 게 괜찮더라고요. 창원변호사마다 질문하는 방식이나 설명하는 포인트가 조금씩 달라서 직접 이야기해봐야 차이가 느껴졌습니다. 저는 창원변호사 상담 전에 ",
+    "pos": 1,
+    "content_pos": 3
+   },
+   {
+    "cls": "cafe",
+    "key": "hotdealcommunity/3929685",
+    "href": "https://m.cafe.naver.com/hotdealcommunity/3929685?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImhvdGRlYWxjb21tdW5pdHkiLCJhcnRpY2xlSWQiOjM5Mjk2ODUsImlzc3VlZEF0IjoxNzkyNzE2MjAzMTczfQ.WL5YsLP7_QFNf-wtSDCi0zSBt5fRrL2VGnXTcZcvdCw",
+    "text": "창원변호사상담 법률 사무소 상담 절차는 | 창원변호사상담 법률 사무소 상담 절차는 창원변호사상담, 처음 찾는 분을 위한 사건별 준비와 진행 가이드 1. 창원 지역 법원 관할과 사건 진행 흐름 창원에서 법적 분쟁이 생기면 대부분 창원지방법원 본원이나 관할 지원에서 사건이 진행됩니다. 같은 창원시 안에서도 마산합포 | 창원변호사상담 이런 상담 절차가 있다는 걸 처음 알았네요. 수수료나 상담 내용이 투명하게 설명되어 있어서 좋았습니다. 앞으로 법률 문제가 생기면 꼭 참고할게요. 자세한 정보 감사합니다!",
+    "pos": 2,
+    "content_pos": 4
+   },
+   {
+    "cls": "cafe",
+    "key": "warcraftgamemap/3510032",
+    "href": "https://m.cafe.naver.com/warcraftgamemap/3510032?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6IndhcmNyYWZ0Z2FtZW1hcCIsImFydGljbGVJZCI6MzUxMDAzMiwiaXNzdWVkQXQiOjE3OTI3MTYyMDMxNzN9.MKwPxAgIZnhAyvChWEoDsWIq05sZodJsjAgxeulgspw",
+    "text": "창원형사변호사 법률사무소 상담 선임 비교 순서는 | 창원형사변호사 법률사무소 상담 선임 비교 순서는 창원형사변호사 선임 시기와 형사사건 대응법, 지역 법률사무소 상담 전 체크 창원대 앞 원룸에서 걸려온 새벽 전화 지난해 가을... 경찰서에 다녀와 하얗게 질린 조카를 데리고 다음 날 아침 창원형사변호사 사무실 문을 두드렸 | 창원형사변호사로서 상담 선임 시기와 대응법에 대한 정보가 정말 유용했습니다. 사건의 흐름이 어떻게 진행될지 미리 알 수 있어서 마음이 덜 불안해졌어요. 특히 지역별 법원에 대한 설명이 상세해서, 실제로 도움이 많",
+    "pos": 3,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "법무법인 YK www.yklawfirm.co.kr›office | 창원 분사무소 | 법무법인 YK | 법무법인 YK 창원 분사무소는 의뢰인의 사건을 체계적으로 대응합니다. 가까운 곳에서 전문 변호사의 상담과 법률 서비스를 받아보세요.",
+    "pos": 3,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "lawhwan.com",
+    "href": "https://lawhwan.com/",
+    "text": "창원 종합법률사무소·보험·교통사고 | 장봉환법률사무소 | 보험분쟁 | 성공사례 | 온라인 상담 | 창원 장봉환법률사무소는 민사·형사·이혼·상속·부동산 등 다양한 법률 사건을 다룹니다. 주력 분야인 보험분쟁·교통사고의 변호사·손해사정사 협업, 실제 사례와 상담 방법을 안내합니다.",
+    "pos": 4,
+    "content_pos": 7
+   },
+   {
+    "cls": "cafe",
+    "key": "dgmom365/7418907",
+    "href": "https://m.cafe.naver.com/dgmom365/7418907?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImRnbW9tMzY1IiwiYXJ0aWNsZUlkIjo3NDE4OTA3LCJpc3N1ZWRBdCI6MTc5MjcxNjIwMzE3M30.5R4ubnZs-0hhaCzbjFg25cvssVfMQ17GxA3rz48rqiA",
+    "text": "창원변호사 법률사무소 선임 상담 준비하려면 | 창원변호사와 예상 질문을 점검하고, 창원변호사의 조언에 따라 \"모르는 것은 모른다\"고 말할 지점을 정합니다. 법률 의견 제출: 혐의의 성립 요건과 사실관계의 간극을 서면으로 정리해 수사기관에 냅니다. 창원변호사는 자료가 붙은 의견서만 제출하고, 창원변호사가 쓴 의견서는 | 창원변호사 관련 내용 정말 도움이 되었습니다. 흩어져 있던 형사절차 정보가 한 글 안에 정리된 느낌이라 상담 전에 전체 상황을 이해하는 데 큰 도움이 된 것 같아요. 막연한 고민이 조금은 정리가 되었고, 어떤 방향으로",
+    "pos": 4,
+    "content_pos": 8
+   },
+   {
+    "cls": "cafe",
+    "key": "bubi2/42302",
+    "href": "https://m.cafe.naver.com/bubi2/42302?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImJ1YmkyIiwiYXJ0aWNsZUlkIjo0MjMwMiwiaXNzdWVkQXQiOjE3OTI3MTYyMDMxNzN9.JaQMLi0OoAW_zIKvEdD1bwTKxq_bQOQJhhHSxyTV_2s",
+    "text": "창원개인회생 어디서 신청하고 절차는 어떻게될까? | 창원개인회생 준비 중 형사사건 고소 위협까지, 법률사무소 선임으로 다시 일어선 가장의 편지 진해 바닷바람보다 차가웠던 독촉 문자 이 편지를 읽는 분께. 저는 진해구 석동에 사는 마흔여섯 살 가장입니다. 성산구 상남동에서 8년 동안 분식집을 하다 손님이 끊겨 문을 닫았습 | 창원개인회생 정말 유익한 글이네요. 개인회생 절차에 대해 이렇게 상세히 설명해주셔서 많은 도움이 되었습니다. 특히, 초기 단계에서 변호사와 상담하는 것이 얼마나 중요한지, 그리고 서류 작성 시 주의해야 할 점들을",
+    "pos": 5,
+    "content_pos": 9
+   },
+   {
+    "cls": "cafe",
+    "key": "move79/6230296",
+    "href": "https://m.cafe.naver.com/move79/6230296?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Im1vdmU3OSIsImFydGljbGVJZCI6NjIzMDI5NiwiaXNzdWVkQXQiOjE3OTI3MTYyMDMxNzN9.V0qCPwMhEtDqr4cOJUksvQ0V64rLdLqNsOKdfy7eXjY",
+    "text": "창원이혼법률사무소 선임 이혼 소송 절차는 | Q. 창원이혼법률사무소 상담에서 은행 명의 변경도 끝낼 수 있나요? A. 법률 검토와 금융기관의 대출 심사는 서로 다른 절차입니다. 부부 사이에 채무를 인수하기로 약속해도 종전 채무자를 면책시키는 인수에는 채권자의 승낙이 문제 됩니다. 은행이 필요한 소득과 담보 요건을 | 창원이혼법률사무소 선임 전 사무소 선임 전에는 서류 검토만 요청하는 경우와 소송 위임의 차이도 알고 싶습니다. 변호사 상담에서는 현재 필요한 도움을 적어 비용 안내에서 무엇이 포함되고 별도 협의할 일은 무엇인지 묻겠습니",
+    "pos": 6,
+    "content_pos": 10
+   },
+   {
+    "cls": "web",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "창원 변호사 | 형사·민사·이혼·상속·산재·부동산 | 진앤솔 법률사무소 | 주요 업무사례 | 언론보도 | 구성원 소개 | 법률정보 | 진앤솔 소개 | 자주하는질문 | 진심으로 듣고 끝까지 함께하는 진앤솔 법률사무소. 창원에서 형사, 민사, 이혼, 상속·행정, 산재, 부동산·건설 사건의 법률상담과 대응을 제공합니다.",
+    "pos": 5,
+    "content_pos": 11
+   },
+   {
+    "cls": "web",
+    "key": "kmolawyer.com",
+    "href": "http://www.kmolawyer.com/",
+    "text": "창원 김민오 법률사무소 | 창원마산진해 변호사, 형사/민사/행정/민사집행/이혼/가사/부동산 소송, 법률상담부터 종결까지 함께 합니다.",
+    "pos": 6,
+    "content_pos": 12
+   },
+   {
+    "cls": "web",
+    "key": "daekyumlaw.kr",
+    "href": "https://daekyumlaw.kr/",
+    "text": "창원변호사 | 형사·성범죄 전문 대겸법률사무소 | 창원변호사를 찾고 계신가요? 형사사건 및 성범죄 경찰조사 단계부터 재판까지 전문 변호사가 직접 상담합니다. 365일 24시간 상담 가능한 대겸법률사무소.",
+    "pos": 7,
+    "content_pos": 13
+   },
+   {
+    "cls": "web",
+    "key": "haejunglaw.com",
+    "href": "https://haejunglaw.com/",
+    "text": "창원변호사 해정법률사무소 | 변호사 소개 | 오시는길 | 상속 | 가족관계 | 손해배상 | 부동산분쟁 | 창원변호사, 마산변호사, 김해변호사, 진주변호사, 밀양변호사",
+    "pos": 8,
+    "content_pos": 14
+   },
+   {
+    "cls": "blog",
+    "key": "kks0790/224435525089",
+    "href": "https://m.blog.naver.com/kks0790/224435525089",
+    "text": "울산스토킹변호사 직장 내 호감에서 시작된 스토킹혐의 대응법 | 현재는 울산에 법률사무소를 운영 중이며 부산, 창원, 대구 전 지역에서 형사 전문이자 성범죄 전문 변호사로 사건을 담당하고 있습니다. “좋아하는 마음을 표현했을 뿐인데, 왜 스토킹 피의자가 되었을까요?” 같은 사업장에서 근무하던 여성 아르바이트생에게 관심을 느낀 남성이",
+    "pos": 1,
+    "content_pos": 15
+   },
+   {
+    "cls": "blog",
+    "key": "tllty/224441135435",
+    "href": "https://m.blog.naver.com/tllty/224441135435",
+    "text": "창원이혼전문변호사 선임 상담 비용과 이혼 방식별 절차, 재산분할 기한까지 | 창원이혼전문변호사를 찾아 법률 상담을 고민 중이라면, 이 글이 방식·절차·기한을 정리하는 데 도움이 될 것입니다. 한눈에 정리 이혼 방식은 협의·조정·재판으로 구분, 상황마다 다름 재판상 이혼사유는 「민법 제840조」 6가지 유형 재산분할 청구권은 이혼 후 2년(제척기",
+    "pos": 2,
+    "content_pos": 16
+   },
+   {
+    "cls": "blog",
+    "key": "dkfmawa/224426268309",
+    "href": "https://m.blog.naver.com/dkfmawa/224426268309",
+    "text": "창원가사변호사 상담으로 살펴보는 조정이혼절차 | 협의 절차로 법률혼을 청산하였는데 배우자가 약속했던 합의 결과를 지키지 않는다면, 법률상 절차를 별도로 진행해서 이행을 강제해야 되는 것과 비교되는 특징입니다. 또한... 201호 이혼전문변호사 강은실 법률사무소 광고책임변호사 강은실 변호사 이 포스팅은 강은실변호사사무",
+    "pos": 3,
+    "content_pos": 17
+   },
+   {
+    "cls": "blog",
+    "key": "dmstlf81/224424885342",
+    "href": "https://m.blog.naver.com/dmstlf81/224424885342",
+    "text": "이혼소송변호사 상담부터 선임까지 부담갖지 않아도 되는 이유(ft.창원법률사무소) | 그럼에도 왜 창원법률사무소를 비롯해 법률 전문가와 상의조차 하지 않았을까요? 바로 나홀로 이혼소송이 가능하다는 생각때문이었다고 합니다. 합의가 안되어도 법원만 찾으면 얼마든지 할 수 있다 여긴 셈이지요. 실제로도 이런 생각을 하고 있는 분들이 의외로 많은 편입니다. 일",
+    "pos": 4,
+    "content_pos": 18
+   },
+   {
+    "cls": "web",
+    "key": "cwip.or.kr",
+    "href": "https://www.cwip.or.kr/",
+    "text": "창원산업진흥원 www.cwip.or.kr›bbs | 특허법률사무소 제스트 남부지사 | 특허법률사무소 제스트 남부지사는 경남 창원시 의창구 차룡로48번길 44 · R208호에 있습니다. 연락처는 055-253-2750입니다. AI 생성",
+    "pos": 9,
+    "content_pos": 19
+   },
+   {
+    "cls": "web",
+    "key": "changwon.ac.kr",
+    "href": "https://www.changwon.ac.kr/intro/kor/index.html",
+    "text": "국립창원대학교 2026.08.11. www.changwon.ac.kr›self | [채용] 진앤솔 법률사무소 마케팅 직원 정규직 채용 | 역동적인 법률사무소입니다. ‘진솔한 법률전문가들이 제공하는 진심전력 법률서비스’라는 모토 아래, 의뢰인에게... 업무 · 사무실 관리 · 마케팅팀 부서 소속으로 함께할 예정이에요. <자격요건> · 경력 : 무관 (경력우대) · 성별... <근무조건> · 근무형태 : 정",
+    "pos": 10,
+    "content_pos": 20
+   },
+   {
+    "cls": "web",
+    "key": "navercorp.com",
+    "href": "https://www.navercorp.com/",
+    "text": "NAVER",
+    "pos": 11,
+    "content_pos": 21
+   }
+  ],
+  "at": "2026-10-23T09:43:25"
+ },
+ "창원 형사변호사": {
+  "status": "ok",
+  "items": [
+   {
+    "cls": "ad",
+    "key": "https://m.ad.search.naver.com/search.naver?where=m_expd&query=%EC%B0%BD%EC%9B%90%ED%98%95%EC%82%AC%EB%B3%80%ED%98%B8%EC%82%AC&referenceId=jWqWVlqpseKssD%2F1SmR-398727&buckets=N-CORE-RANK-26-UR%5E1%2CNS-SHP-UX-26-5TH%5E3",
+    "href": "https://m.ad.search.naver.com/search.naver?where=m_expd&query=%EC%B0%BD%EC%9B%90%ED%98%95%EC%82%AC%EB%B3%80%ED%98%B8%EC%82%AC&referenceId=jWqWVlqpseKssD%2F1SmR-398727&buckets=N-CORE-RANK-26-UR%5E1%2CNS-SHP-UX-26-5TH%5E3",
+    "text": "더보기",
+    "pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "openstreetmap.org",
+    "href": "http://www.openstreetmap.org/copyright",
+    "text": "/OpenStreetMap",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "place",
+    "key": "1742116843",
+    "href": "https://m.place.naver.com/place/1742116843/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%ED%98%95%EC%82%AC%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사 톡톡 법률사무소 | 24시간 영업연중무휴",
+    "pos": 1
+   },
+   {
+    "cls": "place",
+    "key": "1828302655",
+    "href": "https://m.place.naver.com/place/1828302655/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%ED%98%95%EC%82%AC%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 법무법인나우 창원형사이혼전문변호사 톡톡 쿠폰 법률사무소 | 음주운전 리뷰 1만 원 할인 쿠폰 외 | 24시간 영업연중무휴",
+    "pos": 2
+   },
+   {
+    "cls": "place",
+    "key": "1250445692",
+    "href": "https://m.place.naver.com/place/1250445692/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%ED%98%95%EC%82%AC%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 법무법인 오현 변호사창원사무소 형사이혼전문법률사무소 | 24시간 영업연중무휴",
+    "pos": 3
+   },
+   {
+    "cls": "place",
+    "key": "1368510756",
+    "href": "https://m.place.naver.com/place/1368510756/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%ED%98%95%EC%82%AC%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 이혼전문변호사 법무법인 로운 창원분사무소 쿠폰 법률사무소 | [대표변호사]상담비할인 리뷰 쿠폰 외 | 24시간 영업연중무휴",
+    "pos": 4
+   },
+   {
+    "cls": "place",
+    "key": "1209829687",
+    "href": "https://m.place.naver.com/place/1209829687/photo?entry=pll&bk_query=%EC%B0%BD%EC%9B%90%20%ED%98%95%EC%82%AC%EB%B3%80%ED%98%B8%EC%82%AC",
+    "text": " | 로엘법무법인 창원분사무소 형사이혼전문변호사법률사무소 | 24시간 영업연중무휴",
+    "pos": 5
+   },
+   {
+    "cls": "cafe",
+    "key": "momspanggju/4628619",
+    "href": "https://m.cafe.naver.com/momspanggju/4628619?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Im1vbXNwYW5nZ2p1IiwiYXJ0aWNsZUlkIjo0NjI4NjE5LCJpc3N1ZWRBdCI6MTc5MjcxNjIxMDU2NH0.k-GWT_-ttClB3OvP8VWn8I0xYmXLyhZ8Ha-7wRWu7Xg",
+    "text": "창원형사전문변호사 선임 법률 형사 재판 변호는 | 창원형사전문변호사 선임 법률 형사 재판 변호는 창원형사전문변호사 고르는 법, 형사사건 법률사무소 선임 전 확인할 열 가지 1. 상남동의 그 밤, 그리고 사파동 법원까지 작년 겨울, 성산구 상남동에서 회식을 마치고 나오던 길이었습니다. 옆 일행과 어깨가 스친 일이 말다툼 | 창원형사전문변호사 알아볼 때는 처음부터 선임 여부보다 상담에서 얼마나 구체적으로 얘기를 해주는지가 더 궁금했습니다. 직접 창원형사전문변호사 상담을 받아보니 제가 생각하지 못했던 질문도 꽤 많이 하더라고요. 덕분에 ",
+    "pos": 1,
+    "content_pos": 2
+   },
+   {
+    "cls": "cafe",
+    "key": "warcraftgamemap/3510032",
+    "href": "https://m.cafe.naver.com/warcraftgamemap/3510032?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6IndhcmNyYWZ0Z2FtZW1hcCIsImFydGljbGVJZCI6MzUxMDAzMiwiaXNzdWVkQXQiOjE3OTI3MTYyMTA1NjR9.ayeuHvcv4WBBywLoKag73MP0q5Ek0uIuO9WjABE0csU",
+    "text": "창원형사변호사 법률사무소 상담 선임 비교 순서는 | 창원형사변호사 법률사무소 상담 선임 비교 순서는 창원형사변호사 선임 시기와 형사사건 대응법, 지역 법률사무소 상담 전 체크 창원대 앞 원룸에서 걸려온 새벽 전화 지난해 가을, 의창구 사림동 창원대 근처에서 자취하던 조카가 새벽 세 시에 울먹이며 전화를 걸어왔습니다. 고 | 창원형사변호사로서 상담 선임 시기와 대응법에 대한 정보가 정말 유용했습니다. 사건의 흐름이 어떻게 진행될지 미리 알 수 있어서 마음이 덜 불안해졌어요. 특히 지역별 법원에 대한 설명이 상세해서, 실제로 도움이 많",
+    "pos": 2,
+    "content_pos": 3
+   },
+   {
+    "cls": "cafe",
+    "key": "dgmom365/7416173",
+    "href": "https://m.cafe.naver.com/dgmom365/7416173?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImRnbW9tMzY1IiwiYXJ0aWNsZUlkIjo3NDE2MTczLCJpc3N1ZWRBdCI6MTc5MjcxNjIxMDU2NH0.kz4NxYxD7y785howXTJ-d8_54UmCKbIQYQBpE6XKAfY",
+    "text": "창원형사전문변호사 선임 법률 사무소 형사 상담 순서는 | \"혐의를 부인하고 있는데도 변호인이 필요한가요.\" \"조사가 이미 한 번 끝났는데 지금 맡겨도 의미가 있나요.\" \"담당자가 중간에 바뀌면 처음부터 다시 설명해야 하나요.\" 이 글은 창원형사전문변호사와 마주 앉기 전에 알아 둘 것을 담당 기관, 상담 준비, 절차별 업무,  | 창원형사전문변호사 관련 내용 정말 도움이 되었습니다. 비슷한 고민을 가진 사람들에게 상담과 법률 선임의 필요성을 아주 구체적으로 설명해 주신 글 같아요. 각 상황별로 어떤 도움을 받을 수 있는지 조언을 들으",
+    "pos": 3,
+    "content_pos": 4
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224449004086",
+    "href": "https://blog.naver.com/lawyer0718/224449004086",
+    "text": "창원보이스피싱변호사 변호 전기통신금융사기죄 무죄 판결! 2일 전",
+    "pos": 1,
+    "content_pos": 5
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224446532989",
+    "href": "https://blog.naver.com/lawyer0718/224446532989",
+    "text": "무면허 수술 보조와 요양급여비용 청구 사기죄 성립 여부 | 대법원 2024도19179 판결 분석 4일 전",
+    "pos": 2,
+    "content_pos": 6
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224441580853",
+    "href": "https://blog.naver.com/lawyer0718/224441580853",
+    "text": "창원이혼변호사 | 상간소송 피고 대응방법과 위자료 감액 전략 1주 전",
+    "pos": 3,
+    "content_pos": 7
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224429348605",
+    "href": "https://blog.naver.com/lawyer0718/224429348605",
+    "text": "창원변호사 성범죄 무죄 심신상실과 블랙아웃의 경계 3주 전",
+    "pos": 4,
+    "content_pos": 8
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224427161638",
+    "href": "https://blog.naver.com/lawyer0718/224427161638",
+    "text": "공소청 출범과 개정 형사소송법으로 달라지는 수사 절차 3주 전",
+    "pos": 5,
+    "content_pos": 9
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224425613991",
+    "href": "https://blog.naver.com/lawyer0718/224425613991",
+    "text": "지체상금 부과 통보를 받았다면? 공사 지연 책임 줄이는 감면 전략 3주 전",
+    "pos": 6,
+    "content_pos": 10
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224413802479",
+    "href": "https://blog.naver.com/lawyer0718/224413802479",
+    "text": "군인 인터넷 도박 법적 대응, 도박에서 사기 범죄까지 이어진다면? 2026.09.16.",
+    "pos": 7,
+    "content_pos": 11
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224405747577",
+    "href": "https://blog.naver.com/lawyer0718/224405747577",
+    "text": "특별한정승인 인정 요건과 신청 인용사례 | 30년간 연락 끊긴 부친의 빚 독촉장 2026.09.09.",
+    "pos": 8,
+    "content_pos": 12
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224400837697",
+    "href": "https://blog.naver.com/lawyer0718/224400837697",
+    "text": "더킴로펌 박현철 대표변호사, 의학 전문지 '엠디저널(MD저널)' 의료·법률고문 위촉 2026.09.04.",
+    "pos": 9,
+    "content_pos": 13
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224393081449",
+    "href": "https://blog.naver.com/lawyer0718/224393081449",
+    "text": "투자사기 무죄 판결 사례 갚지 못하면 사기? 편취 고의 부정하고 무죄 선고받은 사건 2026.08.28.",
+    "pos": 10,
+    "content_pos": 14
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224390762718",
+    "href": "https://blog.naver.com/lawyer0718/224390762718",
+    "text": "[더킴로펌 소식] 법무법인 더킴로펌, 머스트골프와 상생발전 업무협약(MOU) 체결 2026.08.26.",
+    "pos": 11,
+    "content_pos": 15
+   },
+   {
+    "cls": "blog",
+    "key": "lawyer0718/224381955723",
+    "href": "https://blog.naver.com/lawyer0718/224381955723",
+    "text": "[종중 해임무효확인 소송 승소 사례] 부당한 직위해임, 가처분부터 본안 무효 확인까지 이끌어낸 전략 2026.08.18.",
+    "pos": 12,
+    "content_pos": 16
+   },
+   {
+    "cls": "web",
+    "key": "ryulawyer.com",
+    "href": "https://ryulawyer.com/",
+    "text": "창원 형사전문변호사 | 법무법인 인유 창원분사무소 | 변호사 소개 | 성공사례 | 성범죄 | 반부패 범죄 | 기업 관련 범죄 | 재산범죄 | 창원 검사 출신 변호사 류남경 대표변호사가 형사사건을 직접 상담하고 변론하는 법무법인 인유 창원분사무소입니다. 창원지검·부산지검 등 19년 검사 경력과 대한변협 등록 형사법 전문 자격을 바탕으로 수사 초기부터 재판까지 대응합니다.",
+    "pos": 2,
+    "content_pos": 17
+   },
+   {
+    "cls": "web",
+    "key": "lawandnow.co.kr",
+    "href": "https://lawandnow.co.kr/",
+    "text": "창원 변호사 | 형사·이혼·성범죄·음주운전 상담 | 로앤나우 법률사무소 | 창원 변호사 상담을 찾는 분들을 위해 로앤나우 법률사무소는 형사, 이혼, 성범죄, 음주운전, 손해배상, 미수금, 상간, 재산범죄 사건을 나자현 대표변호사가 직접 대응합니다.",
+    "pos": 3,
+    "content_pos": 18
+   },
+   {
+    "cls": "blog",
+    "key": "tllty/224443632723",
+    "href": "https://m.blog.naver.com/tllty/224443632723",
+    "text": "창원형사전문변호사 선임 수사 단계별 객관 자료 확보와 형사 사건 대응 흐름 | 창원형사전문변호사가 조사에 동행하면 피의자신문 변호인 참여권을 행사해 조사 현장에서 진술 내용을 실시간으로 확인하고, 조서 작성 후 열람·의견 제출 단계에서도 불리한 표현이 포함되지 않도록 조력합니다. 조사 당일 혼자 가지 않아도 된다는 사실을 많은 분들이 뒤늦게 알고",
+    "pos": 13,
+    "content_pos": 19
+   },
+   {
+    "cls": "web",
+    "key": "idomin.com",
+    "href": "https://www.idomin.com/news/articleView.html?idxno=2017699",
+    "text": "공소청 '창원 택시기사 살인사건' 재심개시 결정 불복 않기로 경남도민일보 17시간 전",
+    "pos": 4,
+    "content_pos": 20
+   },
+   {
+    "cls": "cafe",
+    "key": "move79/6233939",
+    "href": "https://m.cafe.naver.com/move79/6233939?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6Im1vdmU3OSIsImFydGljbGVJZCI6NjIzMzkzOSwiaXNzdWVkQXQiOjE3OTI3MTYyMTA1NjR9.skQV8S_I2RmGRwo719-U_1ZFQCPiQOfX2JIt_0ookH0",
+    "text": "창원형사전문변호사 형사사건 조력 선임은 | 변호인 위임 이후의 단계별 형사 절차 창원형사전문변호사를 선임하여 위임 계약을 체결한 이후에는 체계적이고 구체적인 방어 절차가 진행됩니다. 단계별 주요 과정은 다음과 같습니다. 가. 경찰 수사 단계 (피의자 신문 동석) 경찰 조사 전, 변호인과 함께 예상 질문과 답변을 | 창원형사전문변호사님, 형사사건 조력 선임에 관한 글 잘 읽었습니다. 특히 형사사건에서 변호사의 역할이 얼마나 중요한지 다시 한번 생각하게 되네요. 조력 선임 과정을 자세히 설명해 주셔서 도움이 많이 되었습니다. 앞으로 이",
+    "pos": 4,
+    "content_pos": 21
+   },
+   {
+    "cls": "blog",
+    "key": "yej45864586/224427431634",
+    "href": "https://m.blog.naver.com/yej45864586/224427431634",
+    "text": "창원형사전문변호사 선임 준비와 대응 절차 알아보려면 | 구속영장 청구는 도주 우려나 증거 인멸의 염려가 있다고 판단될 때 신청되므로, 신속하게 구속 전 피의자 심문(영장실질심사)을 준비해야 해요 주거가 일정하고 증거를 인멸할 우려가 전혀 없다는 점과 영장 청구서의 사실관계에 중대한 오인이 있음을 창원형사전문변호사의 변호인 ",
+    "pos": 14,
+    "content_pos": 22
+   },
+   {
+    "cls": "blog",
+    "key": "kec7912/224435042709",
+    "href": "https://m.blog.naver.com/kec7912/224435042709",
+    "text": "창원형사전문변호사가 짚는 형사고소 사건 대응, 합의할 때와 끝까지 다툴 때 | 두 가지 가상 상황 ※ 이해를 돕기 위한 가상 상황으로, 실제 창원형사사건변호사의 사례나 판단 결과가 아닙니다. 상황 A: C씨는 다툼 중 상대방을 밀쳤다는 이유로 폭행으로 고소되었고, 행위 자체는 인정합니다. 폭행죄는 처벌불원 의사가 공소 여부에 영향을 줄 수 있는 ",
+    "pos": 15,
+    "content_pos": 23
+   },
+   {
+    "cls": "cafe",
+    "key": "cantsb/3636036",
+    "href": "https://m.cafe.naver.com/cantsb/3636036?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImNhbnRzYiIsImFydGljbGVJZCI6MzYzNjAzNiwiaXNzdWVkQXQiOjE3OTI3MTYyMTA1NjR9.tnij8RdN5MkI2SM7DJNpm0bHPaCj2BWh3ChIdQlmsQQ",
+    "text": "창원형사변호사 형사사건의 핵심은 | 변호인 창원형사변호사 의 참여를 신청해 조사 과정에서 조력을 받을 수도 있습니다. 조사 전에는 사건 경위를 시간순으로 정리하고 관련 자료를 검토하는 것이 바람직합니다. 문자메시지나 통화 내역, CCTV, 금융 거래 자료, 진단서 등은 사건의 성격에 따라 의미가 달라집니 | 형사사건은 혐의가 제기된 이유와 증거 내용을 정확히 파악하는 것부터 시작해야겠네요. 창원형사변호사와 사건의 핵심 쟁점을 검토해보면 좋겠습니다.",
+    "pos": 5,
+    "content_pos": 24
+   },
+   {
+    "cls": "cafe",
+    "key": "cantsb/3595560",
+    "href": "https://m.cafe.naver.com/cantsb/3595560?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImNhbnRzYiIsImFydGljbGVJZCI6MzU5NTU2MCwiaXNzdWVkQXQiOjE3OTI3MTYyMTA1NjV9.d3jLYNGXmLiK25EMiXdMTOdPfjmDbX0eZXVKRqxoOn4",
+    "text": "창원형사전문변호사 형사 조력은 | 형사소송법 제244조의3은 피의자가 전체 또는 개별 질문에 대해 진술을 거부할 수 있고, 진술거부로 불이익을 받지 않으며, 변호인의 조력을 받을 수 있음을 고지하도록 규정합니다. 창원형사전문변호사와 조사 전에 권리 행사 여부와 설명할 내용을 검토하되, 진술하기로 했다면 | 형사사건은 처음에 어떤 내용을 정리해야 하는지부터 막막한데, 창원형사전문변호사 글을 통해 조사 전 준비의 중요성을 이해했습니다.",
+    "pos": 6,
+    "content_pos": 25
+   },
+   {
+    "cls": "cafe",
+    "key": "cosmania/38492619",
+    "href": "https://m.cafe.naver.com/cosmania/38492619?art=ZXh0ZXJuYWwtc2VydmljZS1uYXZlci1zZWFyY2gtY2FmZS1wcg.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYWZlVHlwZSI6IkNBRkVfVVJMIiwiY2FmZVVybCI6ImNvc21hbmlhIiwiYXJ0aWNsZUlkIjozODQ5MjYxOSwiaXNzdWVkQXQiOjE3OTI3MTYyMTA1NjV9.U1GNYn1Se3OtvGmp2BmxeOl-AI5KMh3gDoEsEHsKnDY",
+    "text": "창원형사전문변호사 선임 수사 단계별로 확인할 기준 | 창원형사전문변호사 선임 수사 단계별로 확인할 기준 창원형사전문변호사 선임 수사 단계별로 확인할 기준 창원형사전문변호사 상담에서 놓치기 쉬운 조사·공판·계약 범위 점검 창원형사전문변호사와 사건기록부터 처분 이후 절차까지 살피는 방법 형사사건은 경찰 연락을 받은 시점, 조 | 창원형사전문변호사의 중요성에 대해 정보 공유합니다. 형사사건은 법률 절차가 복잡하고 빠르게 진행되기 때문에 전문 변호인의 조력이 필수라는 점에서 창원형사전문변호사의 역할이 매우 큽니다. 특히 창원형사전문변호사는",
+    "pos": 7,
+    "content_pos": 26
+   },
+   {
+    "cls": "web",
+    "key": "thekimcriminal.com",
+    "href": "https://thekimcriminal.com/lawyers/",
+    "text": "창원형사변호사 | 창원형사전문변호사 소개 | 김형석 · 대한변호사협회 등록 형사, 도산(기업회생)전문변호사 ; 박현철 · 전 광주지방검찰청 검사장 ; 구본진 · 한국저작권위원회 위원 | 한기식 | 정문식 | 조용우 | 서경리 | 최은수 | 김세희 | 한영미",
+    "pos": 5,
+    "content_pos": 27
+   },
+   {
+    "cls": "blog",
+    "key": "stylelistoday/224440510509",
+    "href": "https://m.blog.naver.com/stylelistoday/224440510509",
+    "text": "창원성폭행변호사 강간치상 무혐의 변호사 선임 전 확인해야 할 사항은 | 조사에서는 형사소송법 제244조의3에 따른 진술거부권과 제243조의2에 따른 변호인 참여권을 확인할 수 있습니다. 제244조에 따라 조서를 읽고 진술 취지와 다르면 정정을 요구할 수도 있습니다. 창원성폭행변호사의 조력 범위는 예상 질문 검토부터 조사 동행, 자료 제출까",
+    "pos": 16,
+    "content_pos": 28
+   },
+   {
+    "cls": "blog",
+    "key": "bdsstore/224426999417",
+    "href": "https://m.blog.naver.com/bdsstore/224426999417",
+    "text": "부산형사전문변호사 형사사건 수사절차 단계별 대응 방법 | 현재는 울산에 법률사무소를 운영 중이며 부산, 창원, 대구 전 지역에서 형사 전문이자 성범죄 전문 변호사로 사건을 담당하고 있습니다. “경찰에서 연락이 왔습니다. 이제 처벌이... 형사소송법 제244조의3은 피의자신문 전 진술거부권과 변호인의 조력을 받을 권리 등을 고",
+    "pos": 17,
+    "content_pos": 29
+   },
+   {
+    "cls": "web",
+    "key": "navercorp.com",
+    "href": "https://www.navercorp.com/",
+    "text": "NAVER",
+    "pos": 6,
+    "content_pos": 30
+   }
+  ],
+  "at": "2026-10-23T09:43:32"
+ }
+}
