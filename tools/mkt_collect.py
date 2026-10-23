@@ -5,7 +5,7 @@
   py tools\\mkt_collect.py --limit 5           # 키워드 5개만(시험용)
 
 결과: data/measure/<오늘 날짜>/ 아래 naver_serp.json, place_list.json, google.json, missing.json,
-      원본 화면은 raw/(저장소에는 올리지 않음). 중간에 끊겨도 다시 실행하면 끝난 키워드는 건너뛴다.
+      원본 화면은 raw/(시범 기간에는 저장소에 함께 올림, .gitignore 참조). 중간에 끊겨도 다시 실행하면 끝난 키워드는 건너뛴다.
 설정: marketing/config/collect.json(주소 형식·지연 시간·사무실 좌표), keywords.csv, entities.json
 필요: 파이썬 3.10+, `py -m pip install playwright`, 크롬 설치. 측정 전용 프로필(로그아웃 상태)을 따로 쓴다.
 보안문자가 뜨면 창에서 직접 풀고 콘솔에서 Enter를 누르면 이어서 진행한다.
