@@ -1,0 +1,13 @@
+{
+ "urls": {
+  "naver": "https://m.search.naver.com/search.naver?query={q}",
+  "place": "https://pcmap.place.naver.com/place/list?query={q}{xy}",
+  "google": "https://www.google.com/search?q={q}&hl=ko&gl=kr&num=20",
+  "missing": "https://m.search.naver.com/search.naver?query={q}",
+  "missing_blog": "https://m.search.naver.com/search.naver?where=m_blog&query={q}"
+ },
+ "office": {"lat": null, "lng": null},
+ "delay_sec": [4, 8],
+ "device": "Pixel 7",
+ "profile_dir": "~/.jinnsol-measure-profile"
+}

@@ -1,0 +1,8 @@
+{
+ "rank_points": [[1, 10], [2, 8], [3, 6], [5, 4], [10, 2]],
+ "ai_mention_points": [[1, 10], [2, 8], [3, 6], [5, 4], [99, 2]],
+ "channel_weights": {"naver": 35, "place": 25, "google": 15, "ai": 15},
+ "publish_gap_days": 28,
+ "weak_top": 15,
+ "discovery_top": 15
+}

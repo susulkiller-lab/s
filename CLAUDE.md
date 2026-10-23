@@ -24,6 +24,7 @@
 A. "주제 추천해줘" → 1단계만 수행하고 후보 목록을 보여준 뒤 멈춘다.
 B. "○○ 주제로 (채널) 글 써줘" → 1단계의 키워드 설계만 하고 2~5단계로 진행한다.
 C. "이 글 검수해줘"(원고 제공) → 4단계만 수행한다.
+D. "마케팅 측정·리포트" → 이 세 단계 흐름과 별개다. `marketing/README.md` 절차를 따른다. 수집은 창원 사무실 PC(`tools/mkt_collect.py`, AI 답변은 `marketing/AI_PROTOCOL.md`), 산출은 `tools/mkt_report.py`. 편집장은 리포트의 약점 목록과 다음 과제 후보를 읽고, 콘텐츠 열세 키워드는 A 유형(주제 기획)으로 넘긴다. 리포트에 없는 원인·수치를 지어내지 않는다.
 
 ### 1단계 주제 기획
 - topic-planner에 지시서(분야, 채널, 편수, 제외 주제)를 준다.
@@ -65,9 +66,10 @@ C. "이 글 검수해줘"(원고 제공) → 4단계만 수행한다.
 - `app/`: 팀원용 원고실 아티팩트 원본과 빌드 스크립트
 - `kit/wonkosil-kit/`: 팀원 개인 원고실 설치 키트(Claude Code에서 "원고실 설치해줘"), `kit/wonkosil-kit.zip`이 배포본. app/wonkosil.html을 고치면 키트에 복사해 다시 압축한다
 - `skill/jinnsol-blog/`: 팀원 claude.ai에 올리는 스킬 원본, `skill/jinnsol-blog.zip`이 배포본. 규칙·코퍼스를 바꾸면 파일을 복사해 다시 압축한다
-- `data/published.csv`: 발행 기록
+- `data/published.csv`: 발행 기록. `data/consults.csv`: 상담 실적(직접 입력). `data/measure/<날짜>/`: 노출 측정 결과
+- `marketing/`: 노출 측정 설정(키워드·비교군·점수 산식)과 사용법
 - `output/`: 원고 저장 위치
-- `tools/seo_check.py`, `tools/corpus_stats.py`, `tools/ledger.py`: 사용법은 각 파일 머리 주석 참조
+- `tools/seo_check.py`, `tools/corpus_stats.py`, `tools/ledger.py`, `tools/mkt_collect.py`, `tools/mkt_report.py`: 사용법은 각 파일 머리 주석 참조
 
 ## 코퍼스 갱신 절차(관리자용)
 1. 팀 글을 `corpus/posts/<채널>/<글번호>.md`로 저장한다. 머리에 YAML(url, channel, title, published_at), 본문은 소제목을 `## `로 표시하고 원문 그대로 둔다.
