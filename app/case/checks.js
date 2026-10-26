@@ -103,7 +103,7 @@ const isSensitive = s => SENSITIVE.test(norm(s));
 /* ───── 원고 JSON 평탄화: 위치 표지별 항목 ───── */
 const TABLE_KEYS = ['분야', '사건유형', '의뢰인지위', '진행단계', '결과', '핵심쟁점', '담당변호사', '관할', '결과시점'];
 function items(d) {
-  const out = [], push = (loc, kind, o) => o && out.push({ loc, kind, text: norm(o.text ?? o.value ?? ''), fact_ids: o.fact_ids || [] });
+  const out = [], push = (loc, kind, o) => { const text = norm(o?.text ?? o?.value ?? '').trim(); if (o && text) out.push({ loc, kind, text, fact_ids: o.fact_ids || [] }); };
   if (!d) return out;
   push('title.list', 'title', d.list_title); push('title.sub', 'title', d.subtitle);
   (d.lead || []).forEach((o, i) => push('lead.' + (i + 1), 'lead', o));
@@ -258,7 +258,7 @@ function runAll(ctx) {
   if (forced) ID.push(['주의', /초등학생|중학생|고등학생|\d\s?학년|[○O]\s?학년|친부|친모|계부|계모|의붓/g, '학년·가족관계']);
   for (const it of list) for (const [lv, re, name, keep] of ID) for (const m of it.text.matchAll(re)) if (!keep || keep(m[0])) add('id', lv, it.loc, `${name}: ${m[0]}`);
   for (const g of ctx.generalized || []) if (g.from && nospace(g.from).length >= 2)
-    for (const it of list) if (cmp(it.text).includes(cmp(g.from))) add('id', '위반', it.loc, `확인 패널에서 일반화한 표현이 다시 나왔습니다: ${g.from}`);
+    for (const it of list) if (cmp(it.text).includes(cmp(g.from))) add('id', '위반', it.loc, `확인 패널에서 ${g.to ? '일반화하기로' : '빼기로'} 한 표현이 다시 나왔습니다(원래 표현은 저장하지 않음)`);
 
   // 6-9 문체
   for (const r of parseRules(ctx.rules?.style ?? DEFAULT_STYLE)) {
