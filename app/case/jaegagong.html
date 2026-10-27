@@ -238,6 +238,11 @@ mark.ov{background:var(--mark);color:inherit;padding:0}
 .st.검수{background:var(--accent-soft);color:var(--accent)}
 .btn.danger{color:var(--fail)}
 
+.l-rows{display:grid;gap:10px}
+.l-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.l-row label:nth-child(3),.l-row label:nth-child(4){grid-column:1/-1}
+.l-row [data-ldel]{justify-self:end;grid-column:2}
+
 /* 사용법 */
 .help{max-width:820px;margin:16px auto 0}
 .help .panel-b{gap:10px;padding:20px 22px;font-size:14.5px;line-height:1.75}
@@ -362,7 +367,7 @@ mark.ov{background:var(--mark);color:inherit;padding:0}
 
         <h3>처음 한 번만: 설정 채우기 <span class="tag">편집자</span></h3>
         <ol>
-          <li><b>변호사 목록</b>: 한 줄에 한 명씩 '이름 | 직함 | 프로필 URL | 등록 전문분야'로 적고 저장합니다. 여기 넣은 변호사가 작업 화면의 '담당 변호사'에 나옵니다.</li>
+          <li><b>변호사 목록</b>: '+ 변호사 추가'를 눌러 이름·직함·프로필 URL·등록 전문분야를 칸에 적고 저장합니다. 여기 넣은 변호사가 작업 화면의 '담당 변호사'에 나옵니다.</li>
           <li><b>게시된 사례 목록</b>: 홈페이지에 이미 올라간 업무사례 글입니다. 새 글 제목이 기존 글과 겹치는지 검사하고, 글 끝 '관련 링크'에 같은 분류의 사례를 고르는 데 씁니다. 엑셀에 A열 제목, B열 URL, C열 분류를 적고 행을 복사해 붙여 넣은 뒤 '일괄 등록'을 누릅니다.</li>
           <li><b>법률정보 목록</b>: 홈페이지 법률정보 글입니다. '관련 링크'에 같은 쟁점의 글을 고르는 데 씁니다. 엑셀 A열 제목, B열 URL, C열 분류, D열 태그(쉼표로 구분), E열 상태(게시 또는 테스트)로 같은 방법으로 넣습니다. 테스트 글은 링크에서 뺍니다.</li>
           <li><b>사무소 정보</b>: 주소를 넣고 저장합니다. 업무분야 URL은 미리 들어 있습니다.</li>
@@ -438,8 +443,9 @@ mark.ov{background:var(--mark);color:inherit;padding:0}
           <div class="f"><span>업무분야 URL</span><div id="o-areas" class="row2"></div></div>
         </div></div>
       <div class="panel"><div class="panel-h"><h2>변호사 목록</h2><button class="btn sm ed" id="sv-lawyers" type="button">저장</button></div>
-        <div class="panel-b"><p class="hint">작업 화면의 '담당 변호사'에 나올 사람입니다. 한 줄에 한 명씩 이름 | 직함 | 프로필 URL | 등록 전문분야 순서로, 세로 막대(|)로 나눠 적습니다. 등록 전문분야는 대한변협에 등록한 분야만 적고, 여럿이면 쉼표로 나눕니다.</p>
-          <textarea id="l-text" class="mono" rows="6"></textarea></div></div>
+        <div class="panel-b"><p class="hint">작업 화면의 '담당 변호사'에 나올 사람입니다. 등록 전문분야는 대한변협에 등록한 분야만 적습니다.</p>
+          <div id="l-rows" class="l-rows"></div>
+          <div class="btns"><button class="btn sm ed" id="l-add" type="button">+ 변호사 추가</button></div></div></div>
       <div class="panel"><div class="panel-h"><h2>게시된 사례 목록</h2><button class="btn sm ed" id="sv-cases" type="button">일괄 등록</button></div>
         <div class="panel-b"><p class="hint">홈페이지 '주요 업무사례'에 이미 올라간 글 목록입니다. 새 글 제목이 기존 글과 겹치는지 검사하고, 글 끝 '관련 링크'에 같은 분류 사례를 고르는 데 씁니다.<br>넣는 법: 엑셀에 A열 제목, B열 URL, C열 분류(형사·민사·이혼·상속·행정·산재·부동산·건설)를 적고, 그 행들을 복사해 아래 칸에 붙여 넣은 뒤 '일괄 등록'을 누릅니다. 이 도구에서 '게시 URL 기록'을 한 글은 저절로 들어갑니다.</p>
           <textarea id="c-paste" class="mono" rows="4" placeholder="엑셀에서 복사한 행을 여기에 붙여 넣으십시오"></textarea><div class="reg" id="c-list"></div></div></div>
@@ -1700,7 +1706,7 @@ async function delReg(col, id){
 function fillSettings(){
   const o=S.office; $("o-name").value=o.name||""; $("o-phone").value=o.phone||""; $("o-home").value=o.home||""; $("o-addr").value=o.address||""; $("o-cases").value=o.cases||"";
   $("o-areas").innerHTML=CATS.map(c=>`<label class="f">${c}<input type="url" data-area="${c}" value="${esc(o.areas?.[c]||"")}"></label>`).join("");
-  $("l-text").value=S.lawyers.map(l=>[l.name,l.title,l.url,l.spec].map(x=>x||"").join(" | ")).join("\n");
+  $("l-rows").innerHTML=(S.lawyers.length?S.lawyers:[{}]).map(lawyerRow).join("");
   const r=S.rules; $("r-banned").value=r.banned; $("r-ad").value=r.ad; $("r-style").value=r.style; $("r-disc").value=r.disclaimer; $("r-blog").value=r.blog;
   $("r-th").innerHTML=Object.keys(K.DEFAULT_TH).map(k=>`<label class="f">${TH_LABEL[k]}<input type="number" step="any" data-th="${k}" value="${r.th[k]}"></label>`).join("");
   $("r-tiers").innerHTML=[["s1","추출"],["s2","작성"],["s3","비판"],["s4","수정"]].map(([k,n])=>`<label class="f">${n}<select data-tier="${k}">${[["quick","빠름"],["default","보통"],["complex","꼼꼼"]].map(([t,l])=>`<option value="${t}" ${r.tiers[k]===t?"selected":""}>${l}</option>`).join("")}</select></label>`).join("");
@@ -1718,6 +1724,10 @@ function lockSettings(){
   document.querySelectorAll("#view-set input,#view-set textarea,#view-set select").forEach(i=>{ if(i.id!=="io") i.readOnly=i.disabled=!can; });
   $("set-note").textContent = S.local ? "공용 저장소를 쓸 수 없어 이 브라우저에만 저장합니다." : can ? "저장하면 이 재가공기를 쓰는 사람 모두에게 적용됩니다." : "설정은 편집자만 고칠 수 있습니다. 지금 값은 읽기 전용입니다.";
 }
+const LF=[["name","이름",""],["title","직함","예) 대표변호사"],["url","프로필 URL","https://jinnsol.co.kr/page/member_view.php?wr_id=번호"],["spec","등록 전문분야","여럿이면 쉼표로 구분"]];
+const lawyerRow = l => `<div class="l-row">${LF.map(([k,t,ph])=>`<label class="f"><span>${t}</span><input type="${k==="url"?"url":"text"}" data-lk="${k}" value="${esc(l[k]||"")}" placeholder="${esc(ph)}"></label>`).join("")}<button class="btn sm ed danger" type="button" data-ldel>빼기</button></div>`;
+$("l-add").onclick=()=>{ $("l-rows").insertAdjacentHTML("beforeend", lawyerRow({})); $("l-rows").lastElementChild.querySelector("input").focus(); };
+$("l-rows").addEventListener("click",e=>{ const b=e.target.closest("[data-ldel]"); if(!b) return; b.closest(".l-row").remove(); if(!$("l-rows").children.length) $("l-add").click(); toast("뺐습니다. 저장을 눌러야 반영됩니다"); });
 $("view-set").addEventListener("click",async e=>{
   const b=e.target.closest("[data-del]"); if(!b) return; const [col,id]=b.dataset.del.split("|");
   try{ await delReg(col,id); toast("삭제했습니다"); }catch(_){ toast("삭제하지 못했습니다"); }
@@ -1729,7 +1739,7 @@ $("sv-office").onclick=guard(async()=>{
   await saveSetting("office", S.office);
 });
 $("sv-lawyers").onclick=guard(async()=>{
-  S.lawyers=$("l-text").value.split("\n").map(l=>l.split("|").map(x=>x.trim())).filter(a=>a[0]).map(([name,title,url,spec])=>({name,title:title||"",url:url||"",spec:spec||""}));
+  S.lawyers=[...document.querySelectorAll("#l-rows .l-row")].map(row=>Object.fromEntries(LF.map(([k])=>[k, row.querySelector(`[data-lk="${k}"]`).value.trim()]))).filter(l=>l.name);
   renderLawyerPicks(); await saveSetting("lawyers",{list:S.lawyers});
 });
 $("sv-rules").onclick=guard(async()=>{
