@@ -1,0 +1,1831 @@
+<title>업무사례 재가공기</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 왼쪽 입력, 오른쪽 진행·결과의 작업대. 원고실과 같은 토큰을 쓴다. */
+:root{
+  --bg:#F3F5F2; --surface:#FFFFFF; --surface-2:#F8FAF7; --ink:#1A2320; --muted:#5B6863; --faint:#8A958F;
+  --line:#D9DFDA; --line-strong:#BFC8C2;
+  --accent:#1E5A48; --accent-hover:#174839; --accent-ink:#FFFFFF; --accent-soft:#E3EEE9;
+  --ok:#2C7A4B; --ok-soft:#E4F2E8; --warn:#9A6210; --warn-soft:#FBF0DC; --fail:#B02A20; --fail-soft:#FBE6E3;
+  --mark:#F6E3A1; --focus:#2F7FBF;
+  --serif:"Noto Serif KR","Nanum Myeongjo",serif;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#121715; --surface:#1A201E; --surface-2:#151A18; --ink:#E6ECE8; --muted:#A3AFA9; --faint:#76827C;
+    --line:#2B3431; --line-strong:#3A4541;
+    --accent:#5FB397; --accent-hover:#76C4AA; --accent-ink:#0E1A15; --accent-soft:#1F3029;
+    --ok:#6CC08C; --ok-soft:#1C2E23; --warn:#E0A94A; --warn-soft:#33291A; --fail:#EE7F74; --fail-soft:#3A1F1C;
+    --mark:#5A4A1A; --focus:#7BB6E6;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121715; --surface:#1A201E; --surface-2:#151A18; --ink:#E6ECE8; --muted:#A3AFA9; --faint:#76827C;
+  --line:#2B3431; --line-strong:#3A4541;
+  --accent:#5FB397; --accent-hover:#76C4AA; --accent-ink:#0E1A15; --accent-soft:#1F3029;
+  --ok:#6CC08C; --ok-soft:#1C2E23; --warn:#E0A94A; --warn-soft:#33291A; --fail:#EE7F74; --fail-soft:#3A1F1C;
+  --mark:#5A4A1A; --focus:#7BB6E6;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--sans);font-size:14px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1440px;margin:0 auto}
+h1,h2,h3{text-wrap:balance}
+
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding-block:16px 12px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand h1{font-family:var(--serif);font-size:20px;font-weight:700;margin:0;letter-spacing:-.01em}
+.brand span{color:var(--muted);font-size:12px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{border:1px solid transparent;background:none;padding:6px 12px;border-radius:999px;cursor:pointer;color:var(--muted)}
+.tab[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--line);font-weight:600}
+.status{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);white-space:nowrap}
+.pill.on{color:var(--ok)}
+.pill.off{color:var(--warn)}
+
+.grid{display:grid;grid-template-columns:400px minmax(0,1fr);gap:16px;margin-top:16px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+.col{display:grid;gap:16px;min-width:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0}
+.panel-h{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.panel-h h2{font-size:13px;font-weight:600;margin:0;letter-spacing:.02em}
+.panel-b{padding:14px;display:grid;gap:12px;min-width:0}
+label.f,.f{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+.f > span b{color:var(--ink);font-weight:600}
+input[type=text],input[type=url],input[type=number],select,textarea{width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-width:0}
+textarea{resize:vertical}
+textarea.mono{font-family:var(--mono);font-size:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:420px){.row3{grid-template-columns:1fr}}
+.hint{font-size:12px;color:var(--faint);margin:0}
+.checks{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink)}
+.checks label{display:inline-flex;gap:6px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line-strong);background:var(--surface);padding:8px 12px;border-radius:6px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn.sm{padding:3px 9px;font-size:12px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.note{font-size:13px;padding:10px 12px;border-radius:6px;background:var(--warn-soft);color:var(--ink);border:1px solid var(--line)}
+.note.fail{background:var(--fail-soft)}
+.note pre{white-space:pre-wrap;word-break:break-all;font-family:var(--mono);font-size:11px;max-height:200px;overflow:auto;margin:8px 0 0}
+
+/* 진행 */
+.stages{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.stage{display:flex;gap:6px;align-items:center;font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2);color:var(--muted)}
+.stage small{color:var(--faint);font-variant-numeric:tabular-nums}
+.stage[data-s="run"]{border-color:var(--accent);color:var(--accent);font-weight:600}
+.stage[data-s="done"]{color:var(--ok)}
+.stage[data-s="warn"],.stage[data-s="wait"]{color:var(--warn);border-color:var(--warn)}
+.stage[data-s="fail"]{color:var(--fail);border-color:var(--fail)}
+.stage[data-s="skip"]{opacity:.55}
+.think{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--line-strong);border-top-color:var(--accent);animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(1turn)}}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+
+/* 결과 탭 */
+.rtabs{display:flex;gap:4px;flex-wrap:wrap}
+.rtab{border:0;background:none;padding:6px 10px;border-radius:6px;cursor:pointer;color:var(--muted);font-size:13px}
+.rtab[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.empty{color:var(--muted);font-size:13px;display:grid;gap:8px}
+.empty ol{margin:0;padding-left:20px}
+
+/* 미리보기: 홈페이지 사례 상세 순서 */
+.case{max-width:760px;font-size:15px;line-height:1.8;display:grid;gap:18px}
+.case .cat{justify-self:start;font-size:12px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 10px}
+.case h2.ttl{font-family:var(--serif);font-size:24px;line-height:1.35;margin:0}
+.case .sub{color:var(--muted);margin:-10px 0 0}
+.case .lead{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:0}
+.case table{border-collapse:collapse;width:100%;font-size:14px}
+.case th,.case td{border-top:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.case th{width:7.5em;color:var(--muted);font-weight:500;white-space:nowrap}
+.case ul.chk{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.case ul.chk li::before{content:"✔ ";color:var(--accent)}
+.case h3{font-family:var(--serif);font-size:18px;margin:0}
+.case section{display:grid;gap:8px}
+.case section p{margin:0}
+.case .disc{font-size:12px;color:var(--faint);border-top:1px solid var(--line);padding-top:10px;margin:0}
+.case .links{font-size:13px;display:grid;gap:2px}
+.case .links a{color:var(--accent);word-break:break-all}
+.tblwrap{overflow-x:auto}
+[data-loc].hl{background:var(--mark);outline:2px solid var(--warn);border-radius:2px}
+
+/* 복사 */
+.cp{display:grid;gap:10px}
+.cp-i{display:grid;gap:4px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.cp-h{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:600}
+.cp-v{white-space:pre-wrap;word-break:break-word;font-size:13px;margin:0;max-height:220px;overflow:auto;background:var(--surface-2);border-radius:4px;padding:8px 10px}
+.cp-v.code{font-family:var(--mono);font-size:11.5px}
+
+/* 리포트 */
+.rep{display:grid;gap:8px}
+.rep details{border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+.rep summary{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;font-size:13px;font-weight:600}
+.rep summary .meta{margin-left:auto;font-weight:400;color:var(--faint);font-size:12px;font-variant-numeric:tabular-nums}
+.st{font-size:11px;font-weight:700;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.st.통과{background:var(--ok-soft);color:var(--ok)}
+.st.주의{background:var(--warn-soft);color:var(--warn)}
+.st.위반{background:var(--fail-soft);color:var(--fail)}
+.st.해당없음{background:var(--surface-2);color:var(--faint)}
+.fl{list-style:none;margin:0;padding:0 12px 10px;display:grid;gap:4px;font-size:13px}
+.fl li{display:flex;gap:8px;align-items:baseline}
+.fl button.loc{font-family:var(--mono);font-size:11px;border:1px solid var(--line);background:var(--surface-2);border-radius:4px;padding:0 6px;cursor:pointer;white-space:nowrap}
+.fl .lv{font-size:11px;font-weight:700;white-space:nowrap}
+.fl .lv.위반{color:var(--fail)} .fl .lv.주의{color:var(--warn)}
+.human label{display:flex;gap:8px;align-items:flex-start}
+
+/* 원문 대조 */
+.cmpt{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+.cmpt th,.cmpt td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.cmpt th{font-size:12px;color:var(--muted);font-weight:600}
+.cmpt td.l{font-family:var(--mono);font-size:11px;white-space:nowrap;color:var(--muted)}
+mark.ov{background:var(--mark);color:inherit;padding:0}
+.qt{font-size:12px;color:var(--muted)}
+
+.foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--line);padding:12px 14px}
+.foot input{flex:1 1 220px}
+
+/* 수정·복사 */
+.edhead{display:grid;gap:6px;font-size:13px;color:var(--muted)}
+.edhead p{margin:0}
+.ed-i input,.ed-i textarea,.tr-ed input{background:var(--surface);border-color:var(--line-strong)}
+.ed-i textarea{field-sizing:content;min-height:4.5em;line-height:1.7}
+.sec-ed{gap:8px}
+.der .cp-v{color:var(--muted)}
+.cp-h em{font-style:normal;font-weight:400;color:var(--faint);margin-left:6px}
+.cp-h em.auto{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:0 6px}
+.cnt.over{color:var(--fail)!important;font-weight:600}
+.tbl-ed{display:grid;gap:6px}
+.tr-ed{display:grid;grid-template-columns:7em minmax(0,1fr);gap:4px 8px;align-items:center;font-size:13px;color:var(--muted)}
+.tr-ed .ed-notes{grid-column:2}
+.ed-notes{display:grid;gap:4px}
+.ed-notes:empty{display:none}
+.ed-note{display:flex;gap:8px;align-items:baseline;font-size:12.5px;padding:4px 8px;border-radius:4px;background:var(--warn-soft)}
+.ed-note.위반{background:var(--fail-soft)}
+.ed-note.crit{background:var(--accent-soft)}
+.ed-note .lv{font-weight:700;font-size:11px;white-space:nowrap}
+.ed-note.위반 .lv{color:var(--fail)} .ed-note.주의 .lv{color:var(--warn)} .ed-note.crit .lv{color:var(--accent)}
+.ed-note > span:nth-child(2){flex:1;min-width:0}
+.ed-note .sug{display:block;color:var(--ink)}
+[data-box].has-fail > input,[data-box].has-fail > textarea,.tr-ed.has-fail input{border-color:var(--fail)}
+.hl-f{outline:3px solid var(--warn);outline-offset:3px;border-radius:4px}
+.fl .fm{flex:1;min-width:0}
+.fl .lv.반영{color:var(--ok)}
+.human{display:grid;gap:4px;font-size:13px;padding:0 12px 12px}
+
+.verdict{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}
+.verdict.bad{background:var(--fail-soft)} .verdict.bad b{color:var(--fail)}
+.verdict.ok{background:var(--ok-soft)} .verdict.ok b{color:var(--ok)}
+.verdict span{color:var(--ink)}
+.cp-more{border:1px solid var(--line);border-radius:6px;padding:8px 12px}
+.cp-more summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
+.cp-more .cp{margin-top:10px}
+@media (max-width:640px){
+  .cmpt{min-width:0}.cmpt thead{display:none}
+  .cmpt tr{display:grid;padding:8px 0;border-bottom:1px solid var(--line)}
+  .cmpt td{display:block;border:0;padding:2px 0}.cmpt td.l{white-space:normal}
+}
+
+/* 확인 패널 */
+.cf-lead{margin:0;font-size:14px;color:var(--ink);background:var(--accent-soft);border-radius:6px;padding:10px 12px}
+.cf-list{display:grid;gap:12px}
+.cf-card{border:1px solid var(--line);border-radius:8px;padding:12px;display:grid;gap:10px}
+.cf-top{display:flex;gap:10px;align-items:flex-start}
+.cf-n{flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:12px;font-weight:700}
+.cf-top h3{font-size:14px;margin:0}
+.cf-todo{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.cf-in{display:grid;gap:10px}
+.cf-ctx{font-size:13px;display:grid;gap:4px}
+.cf-src{font-size:12.5px;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--line-strong);padding:6px 10px;border-radius:0 4px 4px 0}
+.cf-id{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:10px;align-items:end;padding-top:10px;border-top:1px dashed var(--line)}
+.cf-id:first-child{border-top:0;padding-top:0}
+@media (max-width:640px){.cf-id{grid-template-columns:minmax(0,1fr)}}
+.cf-ans{display:grid;gap:6px}
+.tag{justify-self:start;display:inline-block;font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:4px;padding:0 6px}
+.radios{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.radios label,.chk{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--ink)}
+.cf-refrow{align-items:flex-start}
+.cf-two{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+@media (max-width:640px){.cf-two{grid-template-columns:1fr}}
+.cf-cf{display:grid;gap:6px;padding-top:10px;border-top:1px dashed var(--line)}
+.cf-cf:first-child{border-top:0;padding-top:0}
+
+/* 저장함 */
+.bx-list{display:grid;gap:8px}
+.bx{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:start;border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+@media (max-width:640px){.bx{grid-template-columns:minmax(0,1fr)}}
+.bx-main{display:grid;gap:2px;min-width:0}
+.bx-t b{font-size:14px}
+.bx-lead{font-size:12.5px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bx-url{font-size:12px;color:var(--accent);word-break:break-all}
+.bx-pub{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.bx-pub input{flex:1 1 220px}
+.st.검수{background:var(--accent-soft);color:var(--accent)}
+.btn.danger{color:var(--fail)}
+
+.l-rows{display:grid;gap:10px}
+.l-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.l-row label:nth-child(3),.l-row label:nth-child(4){grid-column:1/-1}
+.l-row [data-ldel]{justify-self:end;grid-column:2}
+
+/* 사용법 */
+.help{max-width:820px;margin:16px auto 0}
+.help .panel-b{gap:10px;padding:20px 22px;font-size:14.5px;line-height:1.75}
+.help h2{font-family:var(--serif);font-size:22px;margin:0}
+.help h3{font-size:16px;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.help p,.help ol,.help ul{margin:0}
+.help ol,.help ul{padding-left:22px;display:grid;gap:6px}
+.help .lede{font-size:15px;color:var(--ink)}
+.help .tip{font-size:13px;color:var(--muted);background:var(--surface-2);border-radius:6px;padding:8px 12px}
+
+/* 설정 */
+.sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px;margin-top:16px;align-items:start}
+.reg{max-height:240px;overflow:auto;font-size:12px}
+.reg table{border-collapse:collapse;width:100%}
+.reg td{border-bottom:1px solid var(--line);padding:3px 6px;vertical-align:top;word-break:break-all}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:6px;font-size:13px;z-index:20;max-width:calc(100% - 32px)}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><h1>업무사례 재가공기</h1><span>블로그 성공사례 → 홈페이지 주요 업무사례</span></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" id="tab-work" role="tab" aria-selected="true">작업</button>
+      <button class="tab" id="tab-box" role="tab" aria-selected="false">저장함</button>
+      <button class="tab" id="tab-set" role="tab" aria-selected="false">설정</button>
+      <button class="tab" id="tab-help" role="tab" aria-selected="false">사용법</button>
+    </nav>
+    <div class="status"><span class="pill" id="st-claude">Claude 확인 중</span><span class="pill" id="st-db">저장소 확인 중</span></div>
+  </header>
+
+  <section id="view-work" class="grid">
+    <form id="form" class="panel" autocomplete="off">
+      <div class="panel-h"><h2>입력</h2><span class="hint">원고·기록은 저장하지 않습니다</span></div>
+      <div class="panel-b">
+        <label class="f"><span><b>블로그 성공사례 원고</b> (필수)</span><textarea id="src" rows="10" placeholder="블로그에 올린 성공사례 원고 전문을 붙여 넣습니다"></textarea></label>
+        <label class="f"><span><b>분야</b></span>
+          <select id="field"><option>자동</option><option>형사</option><option>민사</option><option>이혼</option><option>상속·행정</option><option>산재</option><option>부동산·건설</option></select></label>
+        <div class="f"><span><b>담당 변호사</b></span><div class="checks" id="lawyers"><span class="hint">설정에 변호사를 등록하면 여기서 고릅니다</span></div></div>
+        <div class="f"><span><b>공개 설정</b></span>
+          <div class="row3">
+            <label class="f">의뢰인 동의<select id="consent"><option value="no">미확인</option><option value="yes">받음</option></select></label>
+            <label class="f">관할<select id="jur"><option value="no">미표기</option><option value="yes">표기</option></select></label>
+            <label class="f">결과 시점<select id="time"><option value="none">미표기</option><option value="y">연</option><option value="ym">연·월</option></select></label>
+          </div>
+          <label class="checks"><span><input type="checkbox" id="sensitive"> 민감 유형(성범죄·아동·청소년·아동학대·소년보호·학교폭력)</span></label>
+          <p class="hint" id="forced-note"></p>
+          <p class="note" id="disc-note" hidden>이미 쓴 원고는 작성 때 설정 기준입니다. 검사는 바뀐 설정으로 다시 했습니다. 원고에 반영하려면 '작성 다시'를 누르십시오.</p>
+        </div>
+        <label class="f"><span><b>사건 기록 확인 사실</b> (선택, 한 줄에 한 사실과 출처)</span><textarea id="rec" rows="4" placeholder="예) 결정 내용 [처분통지서]"></textarea></label>
+        <label class="f"><span><b>다른 채널 원고</b> (선택, 유사도 비교 전용)</span><textarea id="other" rows="3"></textarea></label>
+        <div class="btns"><button class="btn primary" id="run" type="submit">실행</button><button class="btn" id="stop" type="button" hidden>중지</button>
+          <label class="checks"><span><input type="checkbox" id="manual-on"> 수동 모드(프롬프트 복사·붙여넣기)</span></label></div>
+      </div>
+    </form>
+
+    <div class="col">
+      <div class="panel" id="prog">
+        <div class="panel-h"><h2>진행</h2><span class="hint" id="mode-note"></span></div>
+        <div class="panel-b">
+          <ol class="stages" id="stages"></ol>
+          <div class="think" id="think" hidden><span class="spin"></span><span id="think-t">생각 중…</span><button class="btn sm" id="stop2" type="button">중지</button></div>
+          <div id="msg" hidden></div>
+        </div>
+      </div>
+
+      <div class="panel" id="manual" hidden>
+        <div class="panel-h"><h2 id="man-h">수동 단계</h2><button class="btn sm" id="man-copy" type="button">프롬프트 복사</button></div>
+        <div class="panel-b">
+          <p class="hint">프롬프트를 복사해 Claude 대화창에 넣고, 돌려받은 JSON을 아래에 붙여 넣습니다. 자동 검사는 이 페이지가 그대로 합니다.</p>
+          <textarea id="man-prompt" class="mono" rows="6" readonly></textarea>
+          <label class="f"><span><b>결과 JSON</b></span><textarea id="man-json" class="mono" rows="6"></textarea></label>
+          <p class="hint" id="man-err"></p>
+          <div class="btns"><button class="btn primary" id="man-apply" type="button">결과 적용</button><button class="btn" id="man-cancel" type="button">중지</button></div>
+        </div>
+      </div>
+
+      <div class="panel" id="confirm" hidden>
+        <div class="panel-h cf-head"><h2>확인 패널 · 작성 전에 정할 것</h2></div>
+        <div class="panel-b"><p class="cf-lead" id="cf-lead"></p><div id="cf-body" class="cf-list"></div></div>
+        <div class="foot"><button class="btn primary" id="cf-go" type="button">이대로 작성</button><button class="btn" id="cf-skip" type="button">제안대로 바로 작성</button><span class="hint">'제안대로 바로 작성'은 입력한 내용을 무시하고 제안 표현을 적용하며 조문·판례는 뺍니다. 리포트에 '확인 생략'으로 남습니다.</span></div>
+      </div>
+
+      <div class="panel" id="result">
+        <div class="panel-h">
+          <div class="rtabs" role="tablist">
+            <button class="rtab" data-t="preview" aria-selected="true">미리보기</button>
+            <button class="rtab" data-t="copy" aria-selected="false">수정·복사</button>
+            <button class="rtab" data-t="report" aria-selected="false">검증 리포트</button>
+            <button class="rtab" data-t="cmp" aria-selected="false">원문 대조</button>
+          </div>
+        </div>
+        <div class="verdict" id="verdict" hidden></div>
+        <div class="panel-b" id="rbody"></div>
+        <div class="foot" id="rfoot" hidden>
+          <button class="btn" id="redo-write" type="button">작성 다시</button>
+          <button class="btn" id="redo-fix" type="button">지적 반영 다시</button>
+          <button class="btn" id="reopen-cf" type="button" hidden>확인 패널 다시 열기</button>
+          <button class="btn" id="undo" type="button" hidden>다시 쓰기 전으로 되돌리기</button>
+          <input type="url" id="pub-url" placeholder="게시 후 업무사례 URL (예: …bo_table=case&wr_id=110)">
+          <button class="btn" id="register" type="button">게시 URL 기록</button>
+          <button class="btn" id="copy-blog" type="button" hidden>블로그 연결 문구 복사</button>
+          <span class="hint" id="saved"></span>
+          <span class="hint" id="foot-note" hidden>원 자료가 이 브라우저에 없어 '작성 다시'와 재검사는 쓸 수 없습니다.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-box" hidden>
+    <div class="panel" style="margin-top:16px">
+      <div class="panel-h"><h2>저장함</h2><label class="checks"><span>보기 <select id="box-filter" style="width:auto"><option value="">전체</option><option>작성 중</option><option>작성 완료</option><option value="발행">게시됨</option></select></span></label></div>
+      <div class="panel-b"><p class="hint">작업은 단계마다 자동 저장됩니다. 결과 원고와 검사 결과는 팀 공용 저장함에, 블로그 원고·사건 기록·사실 목록은 작업한 브라우저에만 남습니다.</p><div id="box-list" class="bx-list"></div></div>
+    </div>
+  </section>
+
+  <section id="view-help" hidden>
+    <article class="panel help">
+      <div class="panel-b">
+        <h2>사용법</h2>
+        <p class="lede">블로그에 올린 성공사례 글을 붙여 넣으면, 홈페이지 '주요 업무사례'에 올릴 글을 새로 쓰고 문제를 검사해 줍니다. 검사하는 것은 근거 없는 수치·처분명, 광고 규정 위반, 사건 관계인 노출, 블로그와 지나치게 비슷한 문장입니다. 블로그 문장을 고쳐 쓰는 방식이 아니라, 사실만 뽑아 처음부터 다시 씁니다.</p>
+
+        <h3>처음 한 번만: 설정 채우기 <span class="tag">편집자</span></h3>
+        <ol>
+          <li><b>변호사 목록</b>: '+ 변호사 추가'를 눌러 이름·직함·프로필 URL·등록 전문분야를 칸에 적고 저장합니다. 여기 넣은 변호사가 작업 화면의 '담당 변호사'에 나옵니다.</li>
+          <li><b>게시된 사례 목록</b>: 홈페이지에 이미 올라간 업무사례 글입니다. 새 글 제목이 기존 글과 겹치는지 검사하고, 글 끝 '관련 링크'에 같은 분류의 사례를 고르는 데 씁니다. 엑셀에 A열 제목, B열 URL, C열 분류를 적고 행을 복사해 붙여 넣은 뒤 '일괄 등록'을 누릅니다.</li>
+          <li><b>법률정보 목록</b>: 홈페이지 법률정보 글입니다. '관련 링크'에 같은 쟁점의 글을 고르는 데 씁니다. 엑셀 A열 제목, B열 URL, C열 분류, D열 태그(쉼표로 구분), E열 상태(게시 또는 테스트)로 같은 방법으로 넣습니다. 테스트 글은 링크에서 뺍니다.</li>
+          <li><b>사무소 정보</b>: 주소를 넣고 저장합니다. 업무분야 URL은 미리 들어 있습니다.</li>
+        </ol>
+        <p class="tip">목록이 비어 있어도 작업은 됩니다. 제목 중복 검사와 관련 링크만 빠집니다.</p>
+
+        <h3>글 한 편 만들기</h3>
+        <ol>
+          <li><b>작업</b> 탭의 '블로그 성공사례 원고' 칸에 블로그 글 전체를 붙여 넣습니다.</li>
+          <li>분야(모르면 '자동')와 담당 변호사를 고릅니다.</li>
+          <li><b>공개 설정</b>을 고릅니다. 의뢰인이 공개에 동의했는지, 관할(법원·검찰청·경찰서 이름)과 결과 시점을 쓸지 정합니다. 동의가 '미확인'이거나 이혼·성범죄·아동·학대·소년·학교폭력 사건이면 관할과 시점은 저절로 빠집니다.</li>
+          <li>판결문·처분통지서에서 확인한 사실이 있으면 '사건 기록 확인 사실' 칸에 한 줄에 하나씩, 끝에 출처를 붙여 적습니다. 예) 검찰이 불기소(혐의없음) 처분을 함 [처분통지서]. 블로그보다 정확한 글이 됩니다.</li>
+          <li>같은 사건을 다룬 다른 글(네플라 등)이 있으면 '다른 채널 원고'에 넣습니다. 비슷한지 비교만 하고 글에는 쓰지 않습니다.</li>
+          <li><b>실행</b>을 누릅니다. 처음에는 Claude 사용을 허락하는 창이 뜹니다. 사용량은 각자의 claude.ai 계정에서 나갑니다. '진행' 칸에서 지금 어느 단계인지 보이고, 멈추려면 '중지'를 누릅니다.</li>
+        </ol>
+
+        <h3>확인 패널이 뜨면</h3>
+        <p>사람이 정해야 할 것이 있을 때만 작성 전에 멈추고 뜹니다. 번호 카드마다 할 일이 적혀 있습니다.</p>
+        <ul>
+          <li><b>결과의 정식 명칭</b>: 처분통지서·판결문에 적힌 그대로 씁니다. 예) 불송치(혐의없음) 결정</li>
+          <li><b>관계인을 알아볼 수 있는 표현</b>: 홈페이지에 쓸 말로 고치거나 '아예 빼기'를 체크합니다.</li>
+          <li><b>조문·판례</b>: 원문과 대조해 확인한 것만 체크합니다. 체크하지 않으면 글에서 뺍니다.</li>
+          <li><b>원고와 기록이 다른 부분</b>: 어느 쪽으로 쓸지 고릅니다.</li>
+          <li><b>요약표 빈칸</b>: 아는 값을 적습니다. 비워 두면 '확인 필요'로 나갑니다.</li>
+        </ul>
+        <p>다 정했으면 <b>이대로 작성</b>을 누릅니다.</p>
+
+        <h3>결과 보고 고치기</h3>
+        <ul>
+          <li><b>맨 위 띠</b>가 결론입니다. 빨간 띠에 '고칠 것 n건'이 있으면 '첫 번째 고치기'를 누르면 그 칸으로 갑니다. 초록 띠 '위반 없음'이면 올려도 되는 상태입니다.</li>
+          <li><b>미리보기</b>: 홈페이지에 올라갈 모습입니다.</li>
+          <li><b>수정·복사</b>: 흰 칸에서 바로 고칩니다. 칸 밖을 누르면 반영되고 다시 검사합니다. 칸 아래 빨간 줄은 꼭 고칠 것, 노란 줄은 살펴볼 것, 초록 줄은 검수 의견입니다. 초록 줄의 '제안 적용'을 누르면 제안대로 바뀝니다. 회색 칸은 흰 칸에서 자동으로 만들어지니 고치지 않아도 됩니다.</li>
+          <li><b>검증 리포트</b>: 항목별 결과입니다. '고치기'를 누르면 해당 칸으로 갑니다. 아래 '게시 전 확인' 7개는 사람이 직접 확인하고 체크합니다.</li>
+          <li><b>원문 대조</b>: 노란 글자가 블로그 글과 똑같은 부분입니다.</li>
+        </ul>
+        <p>결과 아래 버튼으로 다시 쓸 수 있습니다. '작성 다시'는 같은 사실로 새로 쓰고, '지적 반영 다시'는 지적만 다시 고쳐 쓰고, '확인 패널 다시 열기'는 정식 명칭 같은 결정을 바꿔 다시 씁니다. 직접 고친 내용이 있으면 한 번 더 눌러야 실행되고, 실행 뒤에도 '다시 쓰기 전으로 되돌리기'로 돌아갈 수 있습니다.</p>
+
+        <h3>홈페이지에 올리기</h3>
+        <ol>
+          <li>맨 위 띠가 '위반 없음'인지, 검증 리포트의 '게시 전 확인' 7개를 다 체크했는지 봅니다.</li>
+          <li><b>수정·복사</b> 탭에서 칸마다 '복사'를 눌러 홈페이지 관리자 화면에 붙여 넣습니다. 관리자 화면이 HTML을 받으면 맨 아래 '다른 형식'을 펼쳐 씁니다.</li>
+          <li>올린 뒤 결과 아래 칸에 그 글의 주소(URL)를 넣고 <b>게시 URL 기록</b>을 누릅니다. 게시된 사례 목록에도 저절로 추가됩니다.</li>
+          <li><b>블로그 연결 문구 복사</b>를 눌러 블로그 원글 끝에 붙입니다.</li>
+        </ol>
+
+        <h3>저장함</h3>
+        <ul>
+          <li>작업은 단계마다 저절로 저장됩니다. 창을 닫았다 다시 열면 '마치지 못한 작업' 안내가 뜨고, '열기' 다음 '이어서 진행'을 누르면 멈춘 곳부터 다시 합니다.</li>
+          <li>상태는 작성 중, 작성 완료, 게시됨 셋입니다. '열기', '게시 URL 기록', '삭제'를 쓸 수 있고, 삭제는 두 번 눌러야 지워집니다.</li>
+          <li>블로그 원고와 사건 기록은 작업한 컴퓨터의 브라우저에만 남습니다. 다른 컴퓨터에서 열면 보기·고치기·복사만 되고, 다시 쓰기와 재검사는 작업한 컴퓨터에서 합니다.</li>
+        </ul>
+
+        <h3>막힐 때</h3>
+        <ul>
+          <li><b>'수동 모드'로 바뀜</b>: 이 화면에서 Claude를 바로 부를 수 없을 때입니다. 단계마다 '프롬프트 복사' → claude.ai 새 대화에 붙여 넣기 → 받은 답 전체를 '결과 JSON' 칸에 붙여 넣고 '결과 적용'. 최대 4번 반복합니다.</li>
+          <li><b>저장이나 기록이 안 됨</b>: 공유받은 권한이 '참여자' 이상이어야 합니다. 설정을 고치려면 '편집자'여야 합니다.</li>
+          <li><b>'JSON으로 읽지 못했습니다'</b>: '다시 시도'를 누릅니다. 되풀이되면 원고에서 홍보 문단·연락처·해시태그를 지우고 다시 실행합니다.</li>
+          <li><b>'근거 구절이 맞지 않아 멈췄습니다'</b>: 실행을 다시 누릅니다.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section id="view-set" hidden>
+    <p class="hint" id="set-note" style="margin-top:12px"></p>
+    <div class="sets">
+      <div class="panel"><div class="panel-h"><h2>사무소 정보</h2><button class="btn sm ed" id="sv-office" type="button">저장</button></div>
+        <div class="panel-b">
+          <div class="row2"><label class="f">사무소명<input type="text" id="o-name"></label><label class="f">대표전화<input type="text" id="o-phone"></label></div>
+          <label class="f">홈<input type="url" id="o-home"></label>
+          <label class="f">주소<input type="text" id="o-addr"></label>
+          <label class="f">업무사례 목록 URL<input type="url" id="o-cases"></label>
+          <div class="f"><span>업무분야 URL</span><div id="o-areas" class="row2"></div></div>
+        </div></div>
+      <div class="panel"><div class="panel-h"><h2>변호사 목록</h2><button class="btn sm ed" id="sv-lawyers" type="button">저장</button></div>
+        <div class="panel-b"><p class="hint">작업 화면의 '담당 변호사'에 나올 사람입니다. 등록 전문분야는 대한변협에 등록한 분야만 적습니다.</p>
+          <div id="l-rows" class="l-rows"></div>
+          <div class="btns"><button class="btn sm ed" id="l-add" type="button">+ 변호사 추가</button></div></div></div>
+      <div class="panel"><div class="panel-h"><h2>게시된 사례 목록</h2><button class="btn sm ed" id="sv-cases" type="button">일괄 등록</button></div>
+        <div class="panel-b"><p class="hint">홈페이지 '주요 업무사례'에 이미 올라간 글 목록입니다. 새 글 제목이 기존 글과 겹치는지 검사하고, 글 끝 '관련 링크'에 같은 분류 사례를 고르는 데 씁니다.<br>넣는 법: 엑셀에 A열 제목, B열 URL, C열 분류(형사·민사·이혼·상속·행정·산재·부동산·건설)를 적고, 그 행들을 복사해 아래 칸에 붙여 넣은 뒤 '일괄 등록'을 누릅니다. 이 도구에서 '게시 URL 기록'을 한 글은 저절로 들어갑니다.</p>
+          <textarea id="c-paste" class="mono" rows="4" placeholder="엑셀에서 복사한 행을 여기에 붙여 넣으십시오"></textarea><div class="reg" id="c-list"></div></div></div>
+      <div class="panel"><div class="panel-h"><h2>법률정보 목록</h2><button class="btn sm ed" id="sv-legal" type="button">일괄 등록</button></div>
+        <div class="panel-b"><p class="hint">홈페이지 법률정보 글 목록입니다. 글 끝 '관련 링크'에 같은 쟁점의 글을 고르는 데 씁니다.<br>넣는 법: 엑셀에 A열 제목, B열 URL, C열 분류, D열 태그(쉼표로 구분), E열 상태(게시 또는 테스트)를 적고, 행들을 복사해 붙여 넣은 뒤 '일괄 등록'을 누릅니다. 테스트 글은 링크에서 뺍니다.</p>
+          <textarea id="g-paste" class="mono" rows="4" placeholder="엑셀에서 복사한 행을 여기에 붙여 넣으십시오"></textarea><div class="reg" id="g-list"></div></div></div>
+      <div class="panel"><div class="panel-h"><h2>검사 규칙</h2><button class="btn sm ed" id="sv-rules" type="button">저장</button></div>
+        <div class="panel-b">
+          <label class="f">프롬프트용 금지 표현(작성·비판 단계에 그대로 들어갑니다)<textarea id="r-banned" rows="5"></textarea></label>
+          <label class="f">광고 규정 정규식(한 줄에 '위반: 정규식' 또는 '주의: 정규식')<textarea id="r-ad" class="mono" rows="6"></textarea></label>
+          <label class="f">문체 정규식('상투:', '비유:', '문형:'. 비유는 원고에 같은 말이 있으면 표시하지 않음)<textarea id="r-style" class="mono" rows="5"></textarea></label>
+          <div class="f"><span>기준값</span><div class="row3" id="r-th"></div></div>
+          <label class="f">고지문<textarea id="r-disc" rows="3"></textarea></label>
+          <label class="f">블로그 글 끝 연결 문구<textarea id="r-blog" rows="2"></textarea></label>
+          <div class="f"><span>단계별 모델 등급</span><div class="row2" id="r-tiers"></div></div>
+          <button class="btn sm" id="r-reset" type="button">규칙을 처음 값으로 되돌리기</button>
+        </div></div>
+      <div class="panel" id="local-io" hidden><div class="panel-h"><h2>설정 내보내기·가져오기</h2></div>
+        <div class="panel-b"><p class="hint" id="io-note"></p>
+          <textarea id="io" class="mono" rows="6"></textarea>
+          <div class="btns"><button class="btn sm" id="io-out" type="button">내보내기(복사)</button><button class="btn sm" id="io-in" type="button">가져오기</button></div></div></div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>/* 업무사례 재가공기 기계 검사(지시서 6장). Claude 호출 없음. 브라우저는 window.Checks, node는 require. */
+(function (root) {
+'use strict';
+
+/* ───── 기본 규칙(설정에서 덮어씀) ───── */
+const DEFAULT_AD = [
+  '위반: 승소율|성공률|석방률|무혐의율|인용률|\\d+\\s?%\\s?(승소|성공|석방|무죄|감형)',
+  '위반: 100\\s?%\\s?(승소|성공|무죄|석방|해결|보장)',
+  '위반: (결과|승소|무죄|석방|성공|감형|해결)[^.\\n]{0,8}보장|보장(해\\s?드|합니다|해드립)',
+  '위반: 무조건|반드시\\s?(승소|무죄|석방|해결|이길|이깁)',
+  '위반: 최고의|최고\\s?(변호사|로펌|수준|실력)|(국내|업계|지역|경남|창원)\\s?최초|유일한\\s?(변호사|로펌|사무소|법인)|1위|넘버\\s?원|압도적|독보적',
+  '위반: (같은|비슷한)\\s?결과를\\s?(얻|받|기대)',
+  '위반: 무료\\s?(법률\\s?)?상담|상담\\s?무료|최저가',
+  '위반: 전관',
+  '위반: 강정한',
+  '주의: (검사|판사|부장판사|경찰|검찰)\\s?출신',
+  '주의: 전문\\s?(변호사|로펌|법인|사무소|센터)|전담\\s?(변호사|팀|센터)',
+  '주의: 확실(히|하게)|(다른|타)\\s?(변호사|사무소|로펌|법인)'
+].join('\n');
+
+const DEFAULT_STYLE = [
+  '상투: 심층적으로|다각적으로|포괄적으로|체계적으로|면밀히|아울러|더불어|나아가|매우 중요합니다|절대적으로|전문가들은|많은 이들이|안녕하세요|알아보겠습니다|살펴보겠습니다|도움이 되셨으면',
+  '비유: 갈래|세 축|두 축|(?<![가-힣])축으로|층위|같은 결(?=[이을로에은의\\s,.]|$)|(?<![가-힣])결이 (같|다르)|지형|그림을 그리|문을 열|통로|경로를 (두|남기|열어)|장치를 마련|분절|반대 방향|방향을 가리키|흩어지|새어나가|무너지|빠져나가|어긋나|보여준다|보여주는|앞세운|앞세워|달라지기 시작|곁을 지킬|(이|가) 선다',
+  '문형: (이|가) 아니라[^.!?]{0,40}(입니다|이다|였습니다)',
+  '문형: (하는|한|된|인) 것은[^.!?]{0,40}(입니다|이다)'
+].join('\n');
+
+const DEFAULT_BANNED = [
+  'AI 상투어: 심층적으로, 다각적으로, 포괄적으로, 체계적으로, 면밀히, 아울러, 더불어, 나아가, 매우 중요합니다, 절대적으로, 전문가들은, 많은 이들이, 안녕하세요, 알아보겠습니다, 살펴보겠습니다, 도움이 되셨으면',
+  '비유·번역투: 갈래, 세 축, 두 축, 축으로, 층위, 같은 결, 결이 같다·다르다, 지형, 그림을 그리다, 문을 열다, 통로, 경로를 두다·남기다·열다, 장치를 마련하다, 분절, 반대 방향, 방향을 가리키다, 흩어지다, 새어나가다, 무너지다, 빠져나가다, 어긋나다, 보여준다, 보여주는, 앞세운·앞세워, 달라지기 시작하다, 곁을 지키다, ~이/가 선다',
+  '문형: "~이/가 아니라 ~입니다" 대비 문형, "~하는 것은 ~입니다" 분열문, 문장 첫머리의 \'또한\'·\'게다가\', 따옴표 직접 인용',
+  '광고: 승소율·성공률·석방률 등 비율, 결과 보장·예측, 무조건·반드시 승소, 최고·최초·유일·1위·압도적·독보적, 같은 결과를 기대하게 하는 문장, 무료 상담·최저가, 전관, 검사·판사·경찰 출신 표시, 전문·전담 표방, 다른 사무소와의 비교'
+].join('\n');
+
+const DEFAULT_TH = { run20: 0, sentPct: 60, totalPct: 30, dice: 0.8, listMax: 25, pageMax: 45, leadMax: 180, leadFirstMax: 120, bodyMin: 700, bodyMax: 1800 };
+
+const TERMS_A = ['불송치','혐의없음','죄가안됨','공소권없음','불기소','기소유예','기소중지','약식명령','구약식','구공판','구속영장 기각','영장 기각','구속적부심','보석','집행유예','선고유예','무죄','공소기각','면소','항소기각','상고기각','파기환송','파기자판','보호처분','감호위탁','사회봉사','수강명령','보호관찰','전부 인용','일부 인용','청구 기각','각하','화해권고결정','강제조정','조정 성립','이행권고결정','지급명령','위자료','재산분할','친권','양육권','면접교섭','처분 취소','무효확인','집행정지','재결','산재 승인','불승인'];
+const TERMS_B = ['확정','전부','전액','인용','기각','취소','조정','승인','승소','패소','감형','벌금','징역','금고'];
+const termRe = list => new RegExp(list.slice().sort((a, b) => b.length - a.length)
+  .map(t => [...t.replace(/\s/g, '')].join('\\s?')).join('|') + (list === TERMS_A ? '|\\d\\s?호\\s?조치' : ''), 'g');
+const RE_A = termRe(TERMS_A), RE_B = termRe(TERMS_B);
+const NUM_RE = /(\d{1,3}(?:,\d{3})+|\d+)(\.\d+)?\s*(%|퍼센트|억\s*원|천만\s*원|백만\s*원|만\s*원|원|년|개월|월|일|시간|분|회|명|건|차|호|세|살)?/g;
+const CRIME_RE = /[가-힣ㆍ·]{2,30}(?:법|법률)\s?위반(?:\([^)]{1,30}\))?|[가-힣]{1,8}죄/g;
+const ENDING_RE = /하였습니다|되었습니다|있었습니다|받았습니다|했습니다|였습니다|습니다|의뢰인[은이의을]/g;
+const VAGUE_NUM = /(?<![가-힣])수\s?(?:십|백|천|만|억)|몇\s?(?:차례|번|명|건|개월|년|회)/g;
+const SENSITIVE = /성범죄|성폭력|성추행|강제추행|강간|추행|카메라등이용촬영|불법촬영|통신매체이용음란|성매매|성착취|아동|청소년|아청|학대|소년보호|소년부|보호사건|학교폭력|학폭/;
+
+/* ───── 정규화 ───── */
+const norm = s => String(s ?? '').normalize('NFC').replace(/[​-‍⁠﻿]/g, '')
+  .replace(/[  -   　]/g, ' ').replace(/[ \t]+/g, ' ');
+const nospace = s => norm(s).replace(/\s+/g, '');
+
+const NATIVE = { 한: 1, 두: 2, 세: 3, 네: 4, 다섯: 5, 여섯: 6, 일곱: 7, 여덟: 8, 아홉: 9, 열: 10 };
+const DIG = { 일: 1, 이: 2, 삼: 3, 사: 4, 오: 5, 육: 6, 륙: 6, 칠: 7, 팔: 8, 구: 9 };
+const SMALL = { 십: 10, 백: 100, 천: 1000 };
+function sino(s) {
+  let total = 0, sect = 0, n = 0;
+  for (const ch of s) {
+    if (DIG[ch]) n = DIG[ch];
+    else if (SMALL[ch]) { sect += (n || 1) * SMALL[ch]; n = 0; }
+    else if (ch === '만' || ch === '억') { total += ((sect + n) || 1) * (ch === '만' ? 1e4 : 1e8); sect = 0; n = 0; }
+    else return null;
+  }
+  return total + sect + n;
+}
+// 한글 수사를 숫자로(천오백만 원 → 15000000 원, 두 차례 → 2차례)
+function toArabic(s) {
+  return norm(s)
+    .replace(/(?<![가-힣])(한|두|세|네|다섯|여섯|일곱|여덟|아홉|열)\s?(차례|번|명|건|회|개월|달|곳|가지|살)/g,
+      (m, n, u) => NATIVE[n] + (u === '달' ? '개월' : u))
+    .replace(/(?<![가-힣])([일이삼사오육륙칠팔구십백천만억]{2,})(?=\s*(?:원|명|건|회|년|개월|일|세|차례|퍼센트))/g,
+      m => { if (!/[십백천만억]/.test(m)) return m; const v = sino(m); return v == null ? m : String(v); });
+}
+// 비교용: 공백·문장부호 제거, 숫자 쉼표 제거, 만 원=만원, 개월=월
+const cmp = s => toArabic(s).replace(/(\d),(?=\d{3})/g, '$1').replace(/개월/g, '월').replace(/[\s\p{P}\p{S}]/gu, '');
+
+function numTokens(s) {
+  const out = [];
+  for (const m of toArabic(s).matchAll(NUM_RE)) {
+    let v = parseFloat(m[1].replace(/,/g, '') + (m[2] || '')), u = (m[3] || '').replace(/\s/g, '');
+    const mult = { 억원: 1e8, 천만원: 1e7, 백만원: 1e6, 만원: 1e4 }[u];
+    if (mult) { v *= mult; u = '원'; }
+    u = { 퍼센트: '%', 개월: '월', 살: '세' }[u] || u;
+    out.push({ raw: m[0].trim(), value: Math.round(v * 1000) / 1000, unit: u });
+  }
+  return out;
+}
+function bigrams(s) { const t = nospace(s), b = new Set(); for (let i = 0; i + 2 <= t.length; i++) b.add(t.slice(i, i + 2)); return b; }
+function dice(a, b) {
+  const A = bigrams(a), B = bigrams(b); if (!A.size || !B.size) return 0;
+  let n = 0; for (const x of A) if (B.has(x)) n++; return 2 * n / (A.size + B.size);
+}
+function parseRules(text) {
+  const out = [];
+  for (const line of String(text || '').split('\n')) {
+    const m = line.match(/^\s*([^:]{1,4}):\s?(.+)$/); if (!m) continue;
+    try { out.push({ tag: m[1].trim(), re: new RegExp(m[2], 'g'), src: m[2] }); } catch (e) { out.push({ tag: m[1].trim(), error: e.message, src: m[2] }); }
+  }
+  return out;
+}
+const isSensitive = s => SENSITIVE.test(norm(s));
+
+/* ───── 원고 JSON 평탄화: 위치 표지별 항목 ───── */
+const TABLE_KEYS = ['분야', '사건유형', '의뢰인지위', '진행단계', '결과', '핵심쟁점', '담당변호사', '관할', '결과시점'];
+function items(d) {
+  const out = [], push = (loc, kind, o) => { const text = norm(o?.text ?? o?.value ?? '').trim(); if (o && text) out.push({ loc, kind, text, fact_ids: o.fact_ids || [] }); };
+  if (!d) return out;
+  push('title.list', 'title', d.list_title); push('title.sub', 'title', d.subtitle);
+  (d.lead || []).forEach((o, i) => push('lead.' + (i + 1), 'lead', o));
+  for (const k of TABLE_KEYS) { const o = d.summary_table?.[k]; if (o && o.value != null && o.value !== '') push('table.' + k, 'table', o); }
+  (d.sections || []).forEach((s, si) => {
+    const n = si + 1; push(`s${n}.h`, 'heading', s.heading);
+    (s.paragraphs || []).forEach((p, pi) => (p || []).forEach((o, k) => push(`s${n}.p${pi + 1}.${k + 1}`, 'body', o)));
+  });
+  (d.points || []).forEach((o, i) => push('points.' + (i + 1), 'point', o));
+  (d.final_points || []).forEach((o, i) => push('final.' + (i + 1), 'point', o));
+  return out;
+}
+const stripNo = t => t.replace(/^\s*\d+\s*[.)]\s*/, '');
+const pageTitle = d => [d?.list_title?.text, d?.subtitle?.text].filter(Boolean).join(' | ');
+const bodyText = d => [(d?.lead || []).map(o => o.text).join(' '),
+  ...(d?.sections || []).flatMap(s => [s.heading?.text || '', ...(s.paragraphs || []).map(p => (p || []).map(o => o.text).join(' '))])].join('\n');
+
+/* ───── 6-1 / C1 근거 구절 ───── */
+function c1(facts, source, record) {
+  const S = cmp(source), lines = String(record || '').split('\n').map(l => l.trim()).filter(Boolean);
+  const ok = [], bad = [];
+  for (const f of facts || []) {
+    let pass = false, why = '';
+    if (f.source === '기록') {
+      const src = String(f.quote || '').replace(/^기록\s*:\s*/, '').trim();
+      const best = Math.max(0, ...lines.map(l => dice(f.text, l)));
+      pass = lines.length > 0 && (!src || src === '기록' || norm(record).includes(src)) && best >= 0.35;
+      why = !lines.length ? '사건 기록 확인 사실이 입력되지 않았습니다' : '입력된 확인 사실 목록에서 찾지 못했습니다';
+    } else {
+      const q = cmp(f.quote); pass = q.length > 0 && S.includes(q); why = '근거 구절이 원고에 없습니다';
+    }
+    (pass ? ok : bad).push(pass ? f : { ...f, why });
+  }
+  const total = ok.length + bad.length;
+  return { ok, bad, ratio: total ? bad.length / total : 0 };
+}
+
+/* ───── 6-5 원문 유사도 ───── */
+function mask(s, office) {
+  let t = toArabic(s).replace(NUM_RE, '□').replace(RE_A, '□').replace(RE_B, '□').replace(CRIME_RE, '□');
+  if (office) t = t.split(office).join('□');
+  return t.replace(ENDING_RE, '□').replace(/\s+/g, '');
+}
+function grams(t, n = 6) { const a = []; for (let i = 0; i + n <= t.length; i++) a.push(t.slice(i, i + n)); return a; }
+function similarity(list, source, office, th, label = '블로그 원고') {
+  const S = mask(source, office), G = new Set(grams(S)), runs = [], sent = [];
+  let hit = 0, all = 0;
+  for (const it of list) {
+    const m = mask(it.text, office);
+    for (let i = 0; i + 20 <= m.length;) {
+      let len = 0; while (i + len < m.length && S.includes(m.slice(i, i + len + 1))) len++;
+      if (len >= 20) { runs.push({ loc: it.loc, len, text: m.slice(i, i + len) }); i += len; } else i++;
+    }
+    const g = grams(m), h = g.filter(x => G.has(x)).length; hit += h; all += g.length;
+    if (nospace(it.text).length >= 30 && g.length) sent.push({ loc: it.loc, pct: Math.round(100 * h / g.length) });
+  }
+  const total = all ? Math.round(100 * hit / all) : 0, f = [];
+  if (runs.length > th.run20) runs.forEach(r => f.push({ level: '위반', loc: r.loc, msg: `${label}와 ${r.len}자가 그대로 같습니다(사무소명·처분명 등은 빼고 셈): ${r.text}` }));
+  sent.filter(s => s.pct > th.sentPct).forEach(s => f.push({ level: '위반', loc: s.loc, msg: `이 문장이 ${label}와 ${s.pct}% 겹칩니다(기준 ${th.sentPct}% 이하)` }));
+  if (total > th.totalPct) f.push({ level: '위반', loc: null, msg: `글 전체가 ${label}와 ${total}% 겹칩니다(기준 ${th.totalPct}% 이하)` });
+  return { runs, sent, total, findings: f };
+}
+// 원문 대조 화면용: 문장 글자별로 원고와 겹치는 6글자 구간 표시
+function overlapMask(text, source) {
+  const S = nospace(source), chars = [...norm(text)], idx = [];
+  chars.forEach((c, i) => { if (!/\s/.test(c)) idx.push(i); });
+  const ns = idx.map(i => chars[i]).join(''), mark = new Array(chars.length).fill(false);
+  for (let i = 0; i + 6 <= ns.length; i++) if (S.includes(ns.slice(i, i + 6))) for (let k = i; k < i + 6; k++) mark[idx[k]] = true;
+  return chars.map((c, i) => [c, mark[i]]);
+}
+
+/* ───── 전체 검사(C2·C3) ───── */
+/* ctx: draft, facts(활성), excluded(제외 id 배열), source, record, other, refs(본문 허용 조문·판례 문자열),
+        extra(확인 패널 입력 등 사용자 확정 문자열), generalized([{from,to}]), disclosure{jur,time:'ym'|'y'|'none',forced},
+        office, titles(게시된 사례 제목), rules{ad,style,th} */
+function runAll(ctx) {
+  const d = ctx.draft, th = { ...DEFAULT_TH, ...(ctx.rules?.th || {}) }, list = items(d);
+  const evid = [ctx.source, ctx.record, ...(ctx.refs || []), ...(ctx.extra || []), ...(ctx.generalized || []).map(g => g.to)].join('\n');
+  const E = cmp(evid), Etok = numTokens(evid), srcN = norm(ctx.source);
+  const active = new Set((ctx.facts || []).map(f => f.id)), excluded = new Set(ctx.excluded || []);
+  const C = {}, add = (k, level, loc, msg) => (C[k] = C[k] || []).push({ level, loc, msg });
+  const textual = list.filter(it => it.kind !== 'table');
+
+  // 6-1 근거 구절은 c1 결과를 페이지가 넣는다. 6-2 근거 연결
+  for (const it of list) {
+    if (it.kind === 'table' && (/^(확인 필요|미표기)$/.test(it.text) || it.loc === 'table.담당변호사')) continue;
+    const ids = it.fact_ids, live = ids.filter(id => active.has(id));
+    if (!ids.length) add('ground', '위반', it.loc, '근거 사실 id가 없습니다');
+    else if (!live.length) add('ground', '위반', it.loc, ids.some(id => excluded.has(id)) ? `제외된 사실만 인용합니다(${ids.join(', ')})` : `존재하지 않는 사실 id입니다(${ids.join(', ')})`);
+  }
+
+  // 6-3 수치
+  for (const it of list) {
+    if (it.loc === 'table.담당변호사') continue;
+    const t = it.kind === 'heading' ? stripNo(it.text) : it.text;
+    for (const tk of numTokens(t)) {
+      const ok = Etok.some(e => e.value === tk.value && (!tk.unit || e.unit === tk.unit));
+      if (!ok) add('num', '위반', it.loc, `근거 범위에 없는 수치: ${tk.raw}`);
+    }
+    for (const m of norm(t).matchAll(VAGUE_NUM)) add('num', '주의', it.loc, `숫자로 바꾸지 못한 수량 표현(사람 확인): ${m[0]}`);
+  }
+
+  // 6-4 처분·결과 용어
+  for (const it of list) {
+    const t = toArabic(it.text);
+    for (const m of t.matchAll(RE_A)) if (!E.includes(cmp(m[0]))) add('term', '위반', it.loc, `근거 범위에 없는 처분·결과 용어: ${m[0]}`);
+    for (const m of t.replace(RE_A, x => '□'.repeat(x.length)).matchAll(RE_B)) if (!E.includes(cmp(m[0]))) add('term', '주의', it.loc, `근거 범위에 없는 문맥어: ${m[0]}`);
+  }
+
+  // 6-5 원문 유사도
+  const sim = { blog: similarity(textual, ctx.source || '', ctx.office, th), other: ctx.other ? similarity(textual, ctx.other, ctx.office, th, '다른 채널 원고') : null };
+  sim.blog.findings.forEach(f => add('simBlog', f.level, f.loc, f.msg));
+  sim.other?.findings.forEach(f => add('simOther', f.level, f.loc, f.msg));
+
+  // 6-6 제목 중복
+  for (const [loc, t] of [['title.list', d?.list_title?.text || ''], ['title.list', pageTitle(d)]]) {
+    if (!t) continue;
+    for (const p of ctx.titles || []) {
+      if (!p) continue;
+      if (nospace(p) === nospace(t)) add('dup', '위반', loc, `게시된 사례 제목과 같습니다: ${p}`);
+      else { const s = dice(t, p); if (s >= th.dice) add('dup', '주의', loc, `게시된 사례 제목과 비슷합니다(${s.toFixed(2)}): ${p}`); }
+    }
+  }
+
+  // 6-7 광고 규정
+  for (const r of parseRules(ctx.rules?.ad ?? DEFAULT_AD)) {
+    if (r.error) { add('ad', '주의', null, `규칙 오류(${r.src}): ${r.error}`); continue; }
+    for (const it of list) for (const m of it.text.matchAll(r.re)) add('ad', r.tag === '위반' ? '위반' : '주의', it.loc, `광고 규정 표현: ${m[0]}`);
+  }
+
+  // 6-8 식별 정보
+  const dz = ctx.disclosure || {}, forced = !!dz.forced, refN = (ctx.refs || []).map(nospace).join('|');
+  const ID = [
+    ['위반', /(?:19|20)\d{2}\s?(?!년)[가-힣]{1,3}\s?\d{2,7}(?![\d년월일만원명건회개조])/g, '사건번호', m => !refN.includes(nospace(m))],
+    ['위반', /0\d{1,2}[-.\s]?\d{3,4}[-.\s]?\d{4}/g, '전화번호'],
+    ['위반', /\d{6}[-\s]?[1-4]\d{6}/g, '주민등록번호'],
+    ['주의', /\d{4}\s*\.\s*\d{1,2}\s*\.\s*\d{1,2}\.?|\d{4}년\s*\d{1,2}월\s*\d{1,2}일|\d{1,2}월\s*\d{1,2}일/g, '날짜'],
+    ['주의', /\d{1,2}시(?!간)/g, '시각'],
+    [forced ? '위반' : '주의', /[가-힣A-Za-z0-9]{2,}(?:초등학교|중학교|고등학교|대학교|병원|의원|어린이집|유치원|아파트|교회)/g, '기관명'],
+    ['주의', /(?<![가-힣])[가-힣]{1,8}(?:대로|로\s?\d{1,4}번길)\s?\d{1,4}(?![\d가-힣])/g, '도로명'],
+    [forced ? '위반' : '주의', /\d{1,2}\s?(?:세|살)(?!\s?(?:미만|이상|이하|초과))/g, '나이'],
+    ['주의', /(?<![가-힣])[가-힣]{2,3}\s?(?:씨|양|군)(?=[은는이가을를의에와도께]|\s|[,.]|$)|[가-힣](?:모|OO|○○)\s?씨/g, '실명 의심',
+      m => !/^(의뢰인|피해자|상대방|고소인|피고소인|신고인)/.test(m)]
+  ];
+  if (!dz.jur) {
+    ID.push(['위반', /[가-힣]{2,}(?:지방법원|가정법원|고등법원|지방검찰청|지청|경찰서)|(?:마산|진주|통영|밀양|거창)지원/g, '관할(미표기 설정)']);
+    ID.push(['주의', /[가-힣]{2,}지원(?=[은는이가을를의에서\s,.]|$)/g, '관할 의심(미표기 설정)',
+      m => !/(법률|생활|경제|재정|정부|양육|주거|의료|심리|피해|학습|취업|자금|금융|복지|행정|기술|교육|소송|법적)지원$/.test(m) && !/(마산|진주|통영|밀양|거창)지원/.test(m)]);
+  }
+  if (dz.time !== 'ym') ID.push(['위반', /\d{4}\s*(?:년|\.)\s*\d{1,2}\s*(?:월|\.)/g, dz.time === 'y' ? '연월(연만 표기 설정)' : '연월(시점 미표기 설정)']);
+  if (dz.time === 'none') ID.push(['주의', /(?:19|20)\d{2}\s?년/g, '연도(시점 미표기 설정)']);
+  if (forced) ID.push(['주의', /초등학생|중학생|고등학생|\d\s?학년|[○O]\s?학년|친부|친모|계부|계모|의붓/g, '학년·가족관계']);
+  for (const it of list) for (const [lv, re, name, keep] of ID) for (const m of it.text.matchAll(re)) if (!keep || keep(m[0])) add('id', lv, it.loc, `${name}: ${m[0]}`);
+  for (const g of ctx.generalized || []) if (g.from && nospace(g.from).length >= 2)
+    for (const it of list) if (cmp(it.text).includes(cmp(g.from))) add('id', '위반', it.loc, `확인 패널에서 ${g.to ? '일반화하기로' : '빼기로'} 한 표현이 다시 나왔습니다(원래 표현은 저장하지 않음)`);
+
+  // 6-9 문체
+  for (const r of parseRules(ctx.rules?.style ?? DEFAULT_STYLE)) {
+    if (r.error) { add('style', '주의', null, `규칙 오류(${r.src}): ${r.error}`); continue; }
+    for (const it of list) for (const m of it.text.matchAll(r.re)) {
+      if (r.tag === '비유' && srcN.includes(m[0])) continue;
+      add('style', '주의', it.loc, `${r.tag}: ${m[0]}`);
+    }
+  }
+  const starts = textual.filter(it => /^(또한|게다가)/.test(it.text));
+  if (starts.length >= 2) starts.forEach(it => add('style', '주의', it.loc, `문장 첫머리 '또한'·'게다가' ${starts.length}회`));
+  const quotes = textual.filter(it => /“[^”]+”|"[^"]+"|‘[^’]+’|'[^']+'|「[^」]+」/.test(it.text));
+  if (quotes.length >= 2) quotes.forEach(it => add('style', '주의', it.loc, `따옴표 직접 인용 ${quotes.length}회`));
+
+  // 6-10 구조
+  const lt = d?.list_title?.text || '', pt = pageTitle(d), lead = d?.lead || [], secs = d?.sections || [];
+  if (lt.length > th.listMax) add('struct', '위반', 'title.list', `목록 제목 ${lt.length}자(${th.listMax}자 이하)`);
+  if (pt.length > th.pageMax) add('struct', '위반', 'title.sub', `페이지 제목 ${pt.length}자(${th.pageMax}자 이하)`);
+  const leadLen = lead.map(o => o.text).join(' ').length;
+  if (lead.length < 2 || lead.length > 3) add('struct', '위반', 'lead.1', `요약 문단 ${lead.length}문장(2~3문장)`);
+  if (leadLen > th.leadMax) add('struct', '위반', 'lead.1', `요약 문단 ${leadLen}자(${th.leadMax}자 이하)`);
+  const l1 = lead[0]?.text || '', resV = d?.summary_table?.결과?.value || '';
+  if (l1.length > th.leadFirstMax) add('struct', '위반', 'lead.1', `요약 첫 문장 ${l1.length}자(${th.leadFirstMax}자 이하)`);
+  const hasResult = t => { RE_A.lastIndex = 0; return RE_A.test(toArabic(t)) || (resV && !/확인 필요/.test(resV) && cmp(t).includes(cmp(resV))); };
+  if (l1 && !hasResult(l1)) add('struct', '위반', 'lead.1', '요약 첫 문장에 결과 처분명이 없습니다');
+  if (secs.length !== 4) add('struct', '위반', null, `섹션 ${secs.length}개(정확히 4개)`);
+  secs.forEach((s, i) => {
+    const ps = (s.paragraphs || []).filter(p => p && p.length);
+    if (!ps.length) add('struct', '위반', `s${i + 1}.h`, `${i + 1}번 섹션에 문단이 없습니다`);
+    const first = ps[0]?.[0]?.text || '';
+    if (/^(이|위|해당|그|이러한|이와 같은)\s/.test(norm(first))) add('struct', '위반', `s${i + 1}.p1.1`, `섹션 첫 문장이 지시어로 시작합니다: ${first.slice(0, 12)}…`);
+  });
+  const bl = bodyText(d).length;
+  if (bl < th.bodyMin || bl > th.bodyMax) add('struct', '주의', null, `본문 ${bl}자(${th.bodyMin}~${th.bodyMax}자 기준)`);
+  for (const k of TABLE_KEYS.slice(0, 7)) if (!d?.summary_table?.[k]?.value) add('struct', '위반', 'table.' + k, `요약표 '${k}' 칸이 비었습니다`);
+  [...(d?.points || []).map((o, i) => ['points.' + (i + 1), o]), ...(d?.final_points || []).map((o, i) => ['final.' + (i + 1), o])]
+    .forEach(([loc, o]) => { if ((o.text || '').length > 40) add('struct', '주의', loc, `항목 ${o.text.length}자(40자 이내)`); });
+
+  // 6-11 요약표-본문 일치
+  if (resV && !/확인 필요/.test(resV)) {
+    const s4 = (secs[3]?.paragraphs || []).flat().map(o => o.text).join(' '), leadT = lead.map(o => o.text).join(' ');
+    const keys = [...toArabic(resV).matchAll(RE_A)].map(m => m[0]).concat(numTokens(resV).map(t => t.raw));
+    for (const k of keys) {
+      if (!cmp(leadT).includes(cmp(k))) add('struct', '주의', 'lead.1', `요약표 결과의 '${k}'가 요약 문단에 없습니다`);
+      if (!cmp(s4).includes(cmp(k))) add('struct', '주의', 's4.h', `요약표 결과의 '${k}'가 4번 섹션에 없습니다`);
+    }
+  }
+  const typeV = d?.summary_table?.사건유형?.value || '';
+  if (typeV && !/확인 필요/.test(typeV) && !cmp(bodyText(d)).includes(cmp(typeV))) add('struct', '주의', 'table.사건유형', `사건유형 '${typeV}'가 본문에 그대로 나오지 않습니다`);
+
+  const status = k => (C[k] || []).some(f => f.level === '위반') ? '위반' : (C[k] || []).length ? '주의' : '통과';
+  return { findings: C, status, sim, items: list };
+}
+
+/* ───── S4 패치 적용 ───── */
+function applyPatches(draft, patches) {
+  const d = JSON.parse(JSON.stringify(draft)), applied = [], skipped = [];
+  for (const p of patches || []) {
+    const loc = String(p.location || ''), del = p.action === 'delete', val = { text: p.text || '', fact_ids: p.fact_ids || [] };
+    let m, ok = true;
+    if (loc === 'title.list' || loc === 'title.sub') { const k = loc === 'title.list' ? 'list_title' : 'subtitle'; if (del) ok = false; else d[k] = val; }
+    else if ((m = loc.match(/^(lead|points|final)\.(\d+)$/))) {
+      const arr = d[{ lead: 'lead', points: 'points', final: 'final_points' }[m[1]]] || [], i = +m[2] - 1;
+      if (!arr[i]) ok = false; else arr[i] = del ? null : val;
+    } else if ((m = loc.match(/^table\.(.+)$/))) {
+      if (!d.summary_table?.[m[1]]) ok = false; else d.summary_table[m[1]] = del ? { value: '확인 필요', fact_ids: [] } : { value: val.text, fact_ids: val.fact_ids };
+    } else if ((m = loc.match(/^s(\d+)\.h$/))) {
+      const s = d.sections?.[+m[1] - 1]; if (!s || del) ok = false; else s.heading = val;
+    } else if ((m = loc.match(/^s(\d+)\.p(\d+)\.(\d+)$/))) {
+      const p2 = d.sections?.[+m[1] - 1]?.paragraphs?.[+m[2] - 1];
+      if (!p2 || !p2[+m[3] - 1]) ok = false; else p2[+m[3] - 1] = del ? null : val;
+    } else ok = false;
+    (ok ? applied : skipped).push(p);
+  }
+  // 삭제는 표시만 해 두었다가 마지막에 걷어 내야 뒤 위치 번호가 밀리지 않는다
+  d.lead = (d.lead || []).filter(Boolean); d.points = (d.points || []).filter(Boolean); d.final_points = (d.final_points || []).filter(Boolean);
+  (d.sections || []).forEach(s => { s.paragraphs = (s.paragraphs || []).map(p => (p || []).filter(Boolean)).filter(p => p.length); });
+  return { draft: d, applied, skipped };
+}
+
+const api = { DEFAULT_AD, DEFAULT_STYLE, DEFAULT_BANNED, DEFAULT_TH, TERMS_A, TERMS_B, TABLE_KEYS,
+  norm, nospace, cmp, toArabic, numTokens, dice, parseRules, isSensitive, items, pageTitle, bodyText, stripNo,
+  c1, mask, similarity, overlapMask, runAll, applyPatches };
+if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Checks = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+<script>
+"use strict";
+const K = window.Checks, $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const CATS = ["형사","민사","이혼","상속·행정","산재","부동산·건설"];
+const DEF = {
+  office: {name:"진앤솔 법률사무소", home:"https://jinnsol.co.kr/", phone:"055-266-3605", address:"", cases:"https://jinnsol.co.kr/bbs/board.php?bo_table=case",
+    areas:{"형사":"https://jinnsol.co.kr/page/criminal.php","민사":"https://jinnsol.co.kr/page/civil.php","이혼":"https://jinnsol.co.kr/page/divorce.php","상속·행정":"https://jinnsol.co.kr/page/inherit.php","산재":"https://jinnsol.co.kr/page/industrial.php","부동산·건설":"https://jinnsol.co.kr/page/property.php"}},
+  lawyers: [],
+  rules: {banned:K.DEFAULT_BANNED, ad:K.DEFAULT_AD, style:K.DEFAULT_STYLE, th:{...K.DEFAULT_TH},
+    disclaimer:"이 사례는 개별 사건의 결과이며, 사실관계와 증거에 따라 결과는 달라질 수 있습니다. 사건 관계인을 알아볼 수 있는 정보는 생략하였습니다.",
+    blog:"이 사건의 요약과 결과는 진앤솔 법률사무소 홈페이지 업무사례에서 확인하실 수 있습니다.",
+    tiers:{s1:"default", s2:"complex", s3:"complex", s4:"default"}}
+};
+const TH_LABEL = {run20:"블로그와 20자 이상 같은 구간 허용 수", sentPct:"문장별 블로그 겹침 상한(%)", totalPct:"전체 블로그 겹침 상한(%)", dice:"기존 제목과 비슷함 경고 기준(0~1)", listMax:"목록 제목 최대(자)", pageMax:"페이지 제목 최대(자)", leadMax:"요약 문단 최대(자)", leadFirstMax:"요약 첫 문장 최대(자)", bodyMin:"본문 최소(자)", bodyMax:"본문 최대(자)"};
+const STAGES = [["s1","추출"],["c1","근거 확인"],["cf","확인 패널"],["s2","작성"],["c2","자동 검사"],["s3","비판"],["s4","수정"],["c3","재검사"]];
+const HUMAN = ["의뢰인 동의 또는 식별 불가 판단","결과의 정식 명칭·수치를 처분통지서·판결문과 대조","관할·결과 시점 공개 여부와 법정 공개 금지 유형 해당 여부","담당 변호사 표기","조문·판례를 본문에 넣었다면 원문 대조","관련 링크가 실제 게시 글인지","함께 올릴 이미지(판결문·통지서 캡처 등)의 가림 처리"];
+const CHECK_CATS = [["ground","근거 대조"],["num","수치"],["term","처분명"],["simBlog","원문 유사도(블로그)"],["simOther","원문 유사도(다른 채널)"],["dup","제목 중복"],["ad","광고 규정"],["id","식별 정보"],["style","문체"],["struct","구조"]];
+
+const S = {sample:null, manual:false, db:null, user:null, canEdit:false, local:false,
+  office:structuredClone(DEF.office), lawyers:[], rules:structuredClone(DEF.rules), cases:[], legal:[],
+  run:null, box:[], ctl:null, busy:false, tab:"preview", man:null, jsonFails:0};
+
+/* ───── 프롬프트(지시서 5장 원문) ───── */
+const P1 = `너는 법률사무소 성공사례 원고에서 사실만 뽑는 추출기다. [원고]와 [사건 기록 확인 사실]만 근거로 삼는다. 추정, 일반 법률 지식, 두 입력에 없는 사정은 넣지 않는다.
+규칙
+1. 사실은 한 항목에 하나만 담아 짧은 평서문(text)으로 쓰고, 근거 구절을 글자 그대로(quote) 붙인다. 원고 출처는 원고에 실제로 있는 연속 문자열이어야 하고 고치거나 요약하지 않는다(필요하면 40자 안팎으로 잘라도 된다). 사건 기록 출처는 quote에 "기록:출처명"(예: 기록:판결문)이라고 쓰고 source를 "기록"으로 둔다.
+2. type은 상황, 당사자지위, 사건유형, 절차, 쟁점, 난점, 대응, 증거, 결과, 수치, 관할, 시점, 기타 중 하나다.
+3. 처분·판결·조치 명칭은 입력 표기를 그대로 둔다. '무혐의', '무죄 받았다', '풀려났다'처럼 정식 명칭이 아니거나 확정 여부가 불분명한 표현은 formal_name_check에 올린다.
+4. 홍보 문구, 상담 권유, 연락처, 해시태그, 사무소 소개, 일반 법률 설명은 사실로 뽑지 않는다. 원고에 나온 조문·판례 번호는 legal_refs에만 원문 그대로 올린다.
+5. 의뢰인뿐 아니라 피해자, 고소인, 신고인, 아동, 공범, 증인 등 사건 관계인 누구든 알아볼 수 있는 정보(이름, 정확한 날짜·시각, 학교·회사·기관명, 동·읍·면 이하 지명, 사건번호, 나이, 드문 직업·지위의 조합, 관계 서술)는 identity_risks에 근거 구절, 대상 관계인, 일반화 제안과 함께 올린다.
+6. 요약표 항목(분야, 사건유형, 의뢰인지위, 진행단계, 결과, 핵심쟁점, 관할, 결과시점)마다 값과 근거 사실 id를 채운다. 입력에 없으면 value를 null로 두고 missing에 항목명을 올린다.
+7. 분야는 형사, 민사, 이혼, 상속·행정, 산재, 부동산·건설 중 하나다. 애매하면 category_note에 후보와 이유를 쓴다.
+8. 결과가 여러 단계면(예: 1심 실형, 항소심 집행유예) 단계별로 따로 뽑는다.
+9. 원고와 사건 기록 확인 사실이 서로 다르면 conflicts에 올린다.
+다른 말 없이 아래 형식의 JSON 하나만 출력한다.
+{"facts":[{"id":"F1","type":"상황","source":"원고|기록","text":"","quote":""}],
+ "profile":{"분야":{"value":null,"fact_ids":[]},"사건유형":{"value":null,"fact_ids":[]},"의뢰인지위":{"value":null,"fact_ids":[]},"진행단계":{"value":null,"fact_ids":[]},"결과":{"value":null,"fact_ids":[]},"핵심쟁점":{"value":null,"fact_ids":[]},"관할":{"value":null,"fact_ids":[]},"결과시점":{"value":null,"fact_ids":[]}},
+ "formal_name_check":[{"quote":"","reason":""}],
+ "identity_risks":[{"quote":"","person":"의뢰인|피해자|고소인|신고인|아동|공범|증인|기타","kind":"이름|날짜|시각|기관명|지명|사건번호|나이|관계|드문속성","suggest":""}],
+ "legal_refs":[{"quote":"","kind":"조문|판례"}],
+ "conflicts":[{"원고":"","기록":"","note":""}],
+ "missing":[],"category_note":""}
+[사건 기록 확인 사실] {{CASE_RECORD_FACTS}}
+[원고] {{SOURCE}}`;
+
+const P2 = `너는 진앤솔 법률사무소 홈페이지 '주요 업무사례' 원고 작성자다. 아래 [사실 목록]만 근거로 쓴다. 원래 블로그 글은 주지 않았다. 사실 목록에 없는 사실, 수치, 지역명, 평가, 법리, 일반론, 인과관계를 만들지 않는다.
+이 페이지의 역할
+- 사무소가 직접 확인해 주는 사건 기록이다.
+- 같은 처지의 사람이 검색이나 AI에게 묻는 질문에 답하는 페이지다. 상황은 의뢰인이 실제로 쓸 법한 말로, 쟁점과 결과는 정확한 법률 용어로 쓴다.
+- 상담 계기나 감정으로 풀어 가지 않는다.
+구성
+1. list_title: 25자 이내. 사건 유형 + 이 사건만의 사실 + 결과. [기존 사례 제목]과 같거나 비슷하면 수치, 절차 단계, 특이 사정을 넣어 다르게 짓는다.
+2. subtitle: 핵심 수치나 이 사건만의 사정. 페이지 제목은 "list_title | subtitle"로 조합되며 45자 이내여야 한다.
+3. lead(요약 문단): 2~3문장, 180자 이내. 첫 문장은 120자 이내로, 사건 유형과 결과의 정식 명칭(수치 포함)을 넣는다. 의뢰인의 지위와 진앤솔 법률사무소의 결정적 대응까지 담아 이 문단만 떼어 읽어도 사건이 이해되게 쓴다.
+4. summary_table: 고정 키 객체. 분야, 사건유형, 의뢰인지위, 진행단계, 결과, 핵심쟁점, 담당변호사. [공개 설정]이 허용할 때만 관할, 결과시점(연·월까지)을 넣는다. 사실 목록에 없으면 value는 "확인 필요". 담당변호사는 [설정] 값을 쓴다.
+5. sections: 정확히 4개.
+   1번 개요: 의뢰인이 처한 상황과 사건이 시작된 경위.
+   2번 쟁점: 법적으로 다툼이 된 점과 의뢰인에게 불리했던 사정.
+   3번 대응: 진앤솔 법률사무소가 실제로 한 일을 절차 순서대로, 행동 단위로. '면밀히 검토' 같은 추상 표현 금지.
+   4번 결과: 정식 처분·판결 명칭과 수치, 결과의 의미 한 문장(사실 목록 안에서, 과장 없이).
+   heading은 "번호. 그 사건에만 해당하는 구체적 표현". '사건 개요', '대응 전략' 같은 일반어만으로 짓지 않고, 네 개를 모두 문장형으로 만들지 않는다.
+   각 섹션 첫 문장은 '이', '위', '해당', '그', '이러한', '이와 같은'으로 시작하지 않고 사건 유형이나 주체를 다시 밝혀, 그 섹션만 인용되어도 뜻이 통하게 한다.
+   문단은 2~4문장, 섹션당 1~2문단.
+6. points(✔ 핵심 항목 2~3개)와 final_points(최종 결과 항목 1~3개): 각 40자 이내의 짧은 어구.
+7. 제목·소제목·문장·항목마다 근거 사실 id를 단다. 근거가 없으면 쓰지 않는다.
+문체
+- 경어체(~습니다). 주어를 분명히 한다(의뢰인, 진앤솔 법률사무소, 담당 변호사, 경찰, 검찰, 법원).
+- 수치, 처분명, 죄명, 조치명은 사실 목록 표기 그대로, 단위 생략 없이.
+- 결과 보장·예측, 승소율·석방률 같은 비율, 다른 사무소와의 비교, 최고·유일·1위, 무료 상담, 공무원·전직과의 연고 암시, 감정 과장, 상담 유도 문장을 쓰지 않는다. '전문'이라는 표현은 쓰지 않는다(담당 변호사 칸이 등록 전문분야를 표시한다).
+- [금지 표현]을 쓰지 않는다. "~가 아니라 ~입니다" 대비 문형, "~하는 것은 ~입니다" 분열문, 따옴표 직접 인용, '또한'·'게다가'로 문장 잇기를 쓰지 않는다.
+- 본문 길이는 사실 밀도에 맞춘다. 700~1,800자를 기준으로 하되 사실이 적으면 짧게 끝내고 채우지 않는다.
+다른 말 없이 아래 형식의 JSON 하나만 출력한다. 관할·결과시점은 [공개 설정]이 허용하지 않으면 null로 둔다.
+{"category":"","list_title":{"text":"","fact_ids":[]},"subtitle":{"text":"","fact_ids":[]},
+ "lead":[{"text":"","fact_ids":[]}],
+ "summary_table":{"분야":{"value":"","fact_ids":[]},"사건유형":{"value":"","fact_ids":[]},"의뢰인지위":{"value":"","fact_ids":[]},"진행단계":{"value":"","fact_ids":[]},"결과":{"value":"","fact_ids":[]},"핵심쟁점":{"value":"","fact_ids":[]},"담당변호사":{"value":"","fact_ids":[]},"관할":{"value":"","fact_ids":[]},"결과시점":{"value":"","fact_ids":[]}},
+ "sections":[{"no":1,"role":"개요","heading":{"text":"","fact_ids":[]},"paragraphs":[[{"text":"","fact_ids":[]}]]}],
+ "points":[{"text":"","fact_ids":[]}],"final_points":[{"text":"","fact_ids":[]}],
+ "link_hints":{"쟁점_키워드":[],"사례_키워드":[]},
+ "needs_user":[]}
+[설정] {{SETTINGS}}
+[공개 설정] {{DISCLOSURE}}
+[기존 사례 제목] {{EXISTING_TITLES}}
+[금지 표현] {{BANNED}}
+[사실 목록] {{FACTS}}`;
+
+const P3 = `너는 법률사무소 홈페이지 사례 원고의 독립 검수자다. 이 원고를 쓰지 않았고 작성 의도를 모른다. 오류가 있다고 전제하고 찾는다. 칭찬, 총평, 요약은 쓰지 않는다. [원고 원문]과 [사건 기록 확인 사실]을 근거로 인정한다.
+점검 순서
+1. 사실 초과: 문장마다 근거를 찾는다. 근거 없는 사실, 수치, 지역명, 평가, 인과("~덕분에", "~결과로")를 지적한다.
+2. 과장·왜곡: 근거보다 강한 표현. 예: 일부 인용을 전부 승소로, 1심 무죄를 무죄 확정으로, 기소유예를 혐의없음으로, 불송치와 불기소 혼동, 구형과 선고 혼동, 감형 폭 과장.
+3. 누락: 결과의 정식 명칭, 결과를 좌우한 대응, 불리했던 사정이 빠졌는지.
+4. 식별 위험: 의뢰인·피해자·고소인·신고인·아동·공범 등 사건 관계인 누구든 알아볼 수 있는 정보와 그 조합(관할 지원 + 죄명 + 연월, 드문 직업 + 지역, 관계 서술 등). 성범죄·아동·청소년·아동학대·소년·가사 사건은 더 엄격하게 본다.
+5. 광고 규정: 결과 보장·예측, 비율 표현, 비교, 최고·유일, 무료 상담, 연고 암시, '전문' 표현, 같은 결과를 기대하게 하는 문장.
+6. 단독 가독성: 지시어로 시작해 앞 섹션 없이는 뜻이 통하지 않는 섹션 첫 문장.
+7. 원문 유사: 원고 문장을 거의 그대로 옮긴 문장([기계 검사 결과]의 유사 문장 목록 참고).
+8. 문체: [금지 표현] 위반, 상투적인 AI 문투.
+사실초과·과장·식별위험·광고규정은 high다. 문제가 없으면 issues는 빈 배열이다.
+다른 말 없이 아래 형식의 JSON 하나만 출력한다.
+{"issues":[{"id":"I1","location":"lead.1","type":"사실초과|과장|누락|식별위험|광고규정|단독가독성|원문유사|문체","severity":"high|mid|low","evidence":"근거 구절 또는 '근거 없음'","problem":"","fix":"대체 문장 또는 '삭제'"}],
+ "verdict":"게시 가능|수정 후 게시|사람 확인 필요"}
+[금지 표현] {{BANNED}}
+[기계 검사 결과] {{CHECKS}}
+[사건 기록 확인 사실] {{CASE_RECORD_FACTS}}
+[원고 원문] {{SOURCE}}
+[홈페이지 원고] {{RENDERED_WITH_LOCATIONS}}`;
+
+const P4 = `너는 홈페이지 사례 원고 수정자다. [지적 목록]의 위치만 고친다. 지적되지 않은 위치는 출력하지 않는다. [사실 목록]에 없는 내용을 넣지 않는다. 식별위험 지적은 일반화 표현으로 반영하고 원래 표현으로 되돌리지 않는다. 사실 목록으로 고칠 수 없는 지적은 delete로 처리한다.
+다른 말 없이 아래 형식의 JSON 하나만 출력한다.
+{"patches":[{"issue_id":"I1","location":"s2.p1.3","action":"replace|delete","text":"","fact_ids":[]}]}
+[사실 목록] {{FACTS}}
+[지적 목록] {{ISSUES}}
+[원고 JSON] {{DRAFT}}`;
+
+const fill = (t, v) => t.replace(/\{\{(\w+)\}\}/g, (_, k) => v[k] ?? "");
+
+/* ───── 공용 ───── */
+function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2800);}
+async function copy(text, el, okMsg="복사했습니다"){
+  try{await navigator.clipboard.writeText(text);toast(okMsg);return true;}
+  catch(_){ if(el){ if(el.select){el.focus();el.select();} else {const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);} } toast("복사가 막혀 내용을 선택해 두었습니다. Ctrl+C로 복사하십시오"); return false; }
+}
+// 위반이 남았으면 복사할 때마다 알린다(실제 게시는 복사하는 순간이다)
+async function copyOut(text, el, btn){
+  const f=S.run?.draft?tallyAll().fail:0;
+  if(await copy(text, el, f?`복사했습니다 · 위반 ${f}건이 남아 있습니다. 게시 전에 고치십시오`:"복사했습니다") && btn) btn.textContent="복사함 ✓";
+}
+// 되돌릴 수 없는 동작은 한 번 더 눌러야 실행(alert·confirm을 쓸 수 없는 환경)
+function arm(btn, msg, fn){
+  if(btn.dataset.armed){ clearTimeout(btn._armT); btn.textContent=btn.dataset.orig; delete btn.dataset.armed; fn(); return; }
+  btn.dataset.orig=btn.textContent; btn.dataset.armed="1"; btn.textContent=msg;
+  btn._armT=setTimeout(()=>{ if(btn.dataset.armed){ btn.textContent=btn.dataset.orig; delete btn.dataset.armed; } },4000);
+}
+function parseLoose(t){
+  const s=String(t||"").trim(), f=s.match(/```(?:json)?\s*([\s\S]*?)```/);
+  for(const c of [s, f&&f[1], s.slice(s.indexOf("{"), s.lastIndexOf("}")+1)]){ if(!c) continue; try{return JSON.parse(c);}catch(_){} }
+  throw {code:"invalid_json", text:s};
+}
+const factsFor = fs => JSON.stringify(fs.map(f=>({id:f.id,type:f.type,text:f.text})));
+const uid = () => "w"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const now = () => new Date().toISOString();
+const fmt = iso => { if(!iso) return ""; const d=new Date(iso); return isNaN(d)?"":d.toLocaleString("ko-KR",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"}); };
+
+/* 위치 표지를 사람이 읽는 이름과 편집 칸으로 */
+function locName(loc){
+  let m; if(!loc) return "";
+  if(loc==="title.list") return "목록 제목"; if(loc==="title.sub") return "부제";
+  if((m=loc.match(/^lead\.(\d+)$/))) return `요약 문단 ${m[1]}번째 문장`;
+  if((m=loc.match(/^table\.(.+)$/))) return `요약표 '${m[1]}'`;
+  if((m=loc.match(/^s(\d+)\.h$/))) return `${m[1]}번 소제목`;
+  if((m=loc.match(/^s(\d+)\.p(\d+)\.(\d+)$/))) return `${m[1]}번 섹션 ${m[2]}문단 ${m[3]}번째 문장`;
+  if((m=loc.match(/^s(\d+)\.p(\d+)$/))) return `${m[1]}번 섹션 ${m[2]}문단`;
+  if((m=loc.match(/^points\.(\d+)$/))) return `핵심 항목 ${m[1]}`;
+  if((m=loc.match(/^final\.(\d+)$/))) return `최종 결과 항목 ${m[1]}`;
+  return loc;
+}
+function fieldOf(loc){ let m; if(!loc) return null;
+  if(/^lead\./.test(loc)) return "lead"; if((m=loc.match(/^(s\d+\.p\d+)\./))) return m[1];
+  if(/^points\./.test(loc)) return "points"; if(/^final\./.test(loc)) return "final"; return loc; }
+
+/* ───── 입력·공개 설정 ───── */
+function disclosure(){
+  const cat = currentCat(), forced = $("sensitive").checked || cat==="이혼", consent = $("consent").value==="yes";
+  const lock = forced || !consent;
+  return {consent, forced, lock, jur: !lock && $("jur").value==="yes", time: lock ? "none" : $("time").value};
+}
+function currentCat(){
+  if(S.run?.cat) return S.run.cat;
+  const f=$("field").value; if(f!=="자동") return f;
+  return S.run?.confirm?.category || S.run?.s1?.profile?.분야?.value || S.run?.draft?.category || "";
+}
+function syncDisclosure(){
+  const d=disclosure();
+  $("jur").disabled=$("time").disabled=d.lock;
+  $("forced-note").textContent = d.lock ? (d.forced ? "이혼·민감 유형이라 관할·시점은 미표기로 고정하고 식별 검사를 강화합니다." : "의뢰인 동의가 확인되지 않아 관할·시점은 미표기로 고정합니다.") : "";
+}
+function selectedLawyers(){ return [...document.querySelectorAll("#lawyers input:checked")].map(i=>S.lawyers[+i.value]).filter(Boolean); }
+const lawyerLabel = l => [l.name, l.title].filter(Boolean).join(" ");
+function renderLawyerPicks(keepNames){
+  const keep=new Set(keepNames||selectedLawyers().map(l=>l.name));
+  $("lawyers").innerHTML = S.lawyers.length ? S.lawyers.map((l,i)=>`<label><input type="checkbox" value="${i}" ${keep.has(l.name)?"checked":""}> ${esc(lawyerLabel(l))}</label>`).join("")
+    : `<span class="hint">설정에 변호사를 등록하면 여기서 고릅니다</span>`;
+}
+function readForm(){ return {src:$("src").value, rec:$("rec").value, other:$("other").value, field:$("field").value, consent:$("consent").value, jur:$("jur").value, time:$("time").value, sensitive:$("sensitive").checked, lawyers:selectedLawyers().map(l=>l.name)}; }
+function writeForm(f){ if(!f) return; ["src","rec","other","field","consent","jur","time"].forEach(k=>{ if(f[k]!=null) $(k).value=f[k]; }); $("sensitive").checked=!!f.sensitive; renderLawyerPicks(f.lawyers||[]); syncDisclosure(); }
+
+/* ───── 진행 표시 ───── */
+function resetStages(from){
+  const idx = from ? STAGES.findIndex(s=>s[0]===from) : 0;
+  if(!$("stages").children.length || !from) $("stages").innerHTML = STAGES.map(([k,t])=>`<li class="stage" id="sg-${k}"><span>${t}</span><small></small></li>`).join("");
+  STAGES.slice(Math.max(0,idx)).forEach(([k])=>{const el=$("sg-"+k);el.dataset.s="";el.querySelector("small").textContent="";});
+}
+function stage(k,s,note){
+  const el=$("sg-"+k); if(!el) return; el.dataset.s=s;
+  if(s==="run") el._t0=performance.now();
+  const sec = el._t0 && s!=="run" && s!=="skip" ? ((performance.now()-el._t0)/1000).toFixed(1)+"초" : "";
+  el.querySelector("small").textContent=[note,sec].filter(Boolean).join(" · ");
+  if(s!=="run") el._t0=0;
+}
+function setBusy(b){ S.busy=b; ["run","redo-write","redo-fix","reopen-cf","undo","register","cf-go","cf-skip"].forEach(id=>$(id).disabled=b); $("stop").hidden=!b; if(!b){ $("think").hidden=true; footState(); } }
+$("msg").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.retry==="cf"){ say(""); stage("cf","wait","입력 대기"); renderConfirm(S.run.needCat); }
+  else if(b.dataset.retry) go(b.dataset.retry);
+  else if(b.dataset.open) openBox(b.dataset.open);
+  else if(b.dataset.discard){ workDel(b.dataset.discard); say(""); renderBox(); toast("버렸습니다"); }
+});
+function say(html, fail){ const m=$("msg"); if(!html){m.hidden=true;m.innerHTML="";return;} m.className="note"+(fail?" fail":""); m.innerHTML=html; m.hidden=false; }
+
+/* ───── Claude 호출(자동·수동 공용) ───── */
+async function ask(key, label, prompt, tier){
+  if(S.manual) return manualStep(label, prompt, {s1:1,s2:2,s3:3,s4:4}[key]);
+  S.ctl=new AbortController();
+  $("think").hidden=false; $("think-t").textContent=`${label}: 생각 중…`;
+  const opts={signal:S.ctl.signal, modelTier:tier, cache:false, onText:({text})=>{$("think-t").textContent=`${label}: 받는 중 ${text.length.toLocaleString()}자`;}};
+  try{ return await S.sample.json(prompt, opts); }
+  catch(e){
+    if(e?.code!=="capability_removed") throw e;
+    S.ctl=new AbortController();
+    const r=await S.sample(prompt,{...opts, signal:S.ctl.signal});
+    return parseLoose(r.text);
+  } finally { $("think").hidden=true; }
+}
+function manualStep(label, prompt, n){
+  $("manual").hidden=false; $("man-h").textContent=`수동 단계: ${label}(Claude 왕복 최대 4번 중 ${n}번째)`; $("man-prompt").value=prompt; $("man-json").value=""; $("man-err").textContent="";
+  $("manual").scrollIntoView({block:"nearest"});
+  return new Promise((res,rej)=>{ S.man={res:v=>{$("manual").hidden=true;S.man=null;res(v);}, rej:e=>{$("manual").hidden=true;S.man=null;rej(e);}}; });
+}
+$("man-copy").onclick=()=>copy($("man-prompt").value,$("man-prompt"));
+$("man-apply").onclick=()=>{ try{ S.man?.res(parseLoose($("man-json").value)); }catch(_){ $("man-err").textContent="JSON으로 읽을 수 없습니다. 응답 전체를 그대로 붙여 넣으십시오."; } };
+$("man-cancel").onclick=()=>S.man?.rej({code:"cancelled"});
+function stopAll(){ S.ctl?.abort(); S.man?.rej({code:"cancelled"}); }
+$("stop").onclick=stopAll; $("stop2").onclick=stopAll;
+
+function handleErr(e){
+  const c=e?.code, at=S.at, label=(STAGES.find(s=>s[0]===at)||[])[1]||"";
+  if(at) stage(at, c==="cancelled"?"":"fail");
+  const retry = `<div class="btns" style="margin-top:8px"><button class="btn sm" type="button" data-retry="${at}">다시 시도</button></div>`;
+  if(c==="cancelled"){ say(`${esc(label)} 단계에서 중지했습니다. 작업은 저장함에 남아 있습니다.<div class="btns" style="margin-top:8px"><button class="btn sm" type="button" data-retry="${at}">이어서 진행</button></div>`); return; }
+  if(["not_granted","sampling_disabled","not_declared","capability_disabled"].includes(c)){
+    setManual(true); say("이 화면에서는 Claude 자동 호출을 쓸 수 없어 수동 모드로 바꿨습니다. 실행을 누르면 단계별 프롬프트가 나옵니다."); return; }
+  if(c==="invalid_json"){
+    S.jsonFails++;
+    say(`${esc(label)} 단계 응답을 JSON으로 읽지 못했습니다.${S.jsonFails>=2?" 반복되면 원고에서 홍보 문단·연락처·해시태그를 지우고 다시 실행하십시오.":""}<pre>${esc((e.text||"").slice(0,4000))}</pre>${retry}`,1); return; }
+  if(c==="refused"){ if(at==="s1"){ S.run.s1=null; } else if(S.run){ S.run.draft=null; S.run.c2=S.run.c3=S.run.crit=null; } renderResult(); say("Claude가 이 입력을 처리하지 않아 표시했던 결과를 지웠습니다. 원고에서 문제 될 만한 문단을 빼고 다시 실행하십시오.",1); return; }
+  const m={rate_limited:"Claude 사용량 한도에 걸렸습니다. 잠시 뒤 '다시 시도'를 누르십시오.", session_expired:"claude.ai에 다시 로그인한 뒤 '다시 시도'를 누르십시오.", prompt_too_large:"입력이 너무 깁니다. 원고나 다른 채널 원고를 줄여 주십시오."}[c];
+  if(m){ say(m+(c==="prompt_too_large"?"":retry),1); return; }
+  console.error(e);
+  say(`${esc(label)} 단계에서 호출이 실패했습니다(${esc(c||e?.message||"알 수 없는 오류")}).${retry}`,1);
+}
+
+/* ───── 처리 순서 ───── */
+const FLOW=["s1","c1","s2","c2","s3","s4","c3"];
+async function go(from){
+  if(S.busy||!S.run) return;
+  setBusy(true); say(""); resetStages(from==="s1"?null:from);
+  try{
+    for(const k of FLOW.slice(FLOW.indexOf(from))){
+      S.at=k; S.run.next=k; workSave();
+      const r=await STEP[k](); persist(true);
+      if(r==="pause") return;
+    }
+    S.at=null; S.run.next="done"; persist(true);
+    const t=tallyAll(); S.tab=(t.fail||t.highOpen)?"copy":"preview"; renderResult();
+  }catch(e){ handleErr(e); }
+  finally{ setBusy(false); }
+}
+const STEP = {
+  async s1(){
+    stage("s1","run");
+    const r=S.run; Object.assign(r, {src:$("src").value.trim(), rec:$("rec").value.trim(), other:$("other").value.trim()});
+    const out=await ask("s1","추출",fill(P1,{CASE_RECORD_FACTS:r.rec||"(없음)", SOURCE:r.src}),S.rules.tiers.s1);
+    if(!out||!Array.isArray(out.facts)) throw {code:"invalid_json", text:JSON.stringify(out).slice(0,2000)};
+    out.facts.forEach((f,i)=>{ f.id=String(f.id||"F"+(i+1)); f.text=String(f.text||""); });
+    ["formal_name_check","identity_risks","legal_refs","conflicts","missing"].forEach(k=>{ if(!Array.isArray(out[k])) out[k]=[]; });
+    out.profile=out.profile||{}; r.s1=out;
+    const typeText=[out.profile.사건유형?.value, ...out.facts.filter(f=>f.type==="사건유형").map(f=>f.text)].join(" ");
+    if(K.isSensitive(typeText) && !$("sensitive").checked){ $("sensitive").checked=true; syncDisclosure(); toast("민감 유형으로 보여 관할·시점 미표기를 적용했습니다"); }
+    stage("s1","done",`사실 ${out.facts.length}건`);
+  },
+  async c1(){
+    stage("c1","run");
+    const r=S.run, v=K.c1(r.s1.facts, r.src, r.rec); r.c1=v;
+    if(v.ratio>=0.3){
+      stage("c1","fail",`불일치 ${v.bad.length}/${r.s1.facts.length}`);
+      say(`추출한 사실 중 ${Math.round(v.ratio*100)}%의 근거 구절이 원고·확인 사실과 맞지 않아 멈췄습니다. 실행을 다시 누르거나 수동 모드로 추출하십시오.<pre>${esc(v.bad.map(f=>`${f.id} ${f.text} / 근거: ${f.quote} (${f.why})`).join("\n"))}</pre>`,1);
+      return "pause";
+    }
+    stage("c1", v.bad.length?"warn":"done", `통과 ${v.ok.length} · 제외 ${v.bad.length}`);
+    const s=r.s1, p=s.profile;
+    r.needCat = $("field").value==="자동" && (!!s.category_note || !CATS.includes(p.분야?.value));
+    const need = !p.결과?.value || s.formal_name_check.length || r.needCat || s.identity_risks.length || s.legal_refs.length || s.conflicts.length || missingKeys().length;
+    if(!need){ r.confirm={formal:"", category:"", ids:[], refs:[], conflicts:[], missing:{}, skipped:false}; stage("cf","skip","해당 없음"); return; }
+    r.next="cf"; stage("cf","wait","입력 대기"); renderConfirm(r.needCat); return "pause";
+  },
+  async s2(){
+    stage("s2","run");
+    const r=S.run; preprocess();
+    const d=disclosure(), law=selectedLawyers();
+    const settings={사무소명:S.office.name, 분야:currentCat()||"사실 목록에서 판단", 담당변호사: law.length ? law.map(l=>lawyerLabel(l)+(l.spec?`(등록 전문분야: ${l.spec})`:"")).join(", ") : "확인 필요"};
+    const discText=`의뢰인 동의: ${d.consent?"받음":"미확인"}. 관할: ${d.jur?"표기 허용":"미표기(관할 기관명·지역을 쓰지 않는다)"}. 결과시점: ${d.time==="ym"?"연·월까지 허용":d.time==="y"?"연도까지만 허용":"미표기(연·월·일을 쓰지 않는다)"}. 민감 유형: ${d.forced?"예(관계인을 알아볼 수 있는 표현을 더 엄격히 뺀다)":"아니오"}.`;
+    const titles=S.cases.map(c=>c.listTitle).filter(Boolean).slice(0,300).join("\n")||"(없음)";
+    const out=await ask("s2","작성",fill(P2,{SETTINGS:JSON.stringify(settings), DISCLOSURE:discText, EXISTING_TITLES:titles, BANNED:S.rules.banned, FACTS:factsFor(r.facts)}),S.rules.tiers.s2);
+    if(!out||!Array.isArray(out.sections)) throw {code:"invalid_json", text:JSON.stringify(out).slice(0,2000)};
+    Object.assign(r, {draft0:out, draft:structuredClone(out), crit:null, c3:null, patch:null, applied:[], edited:0, disc:disclosure(), undone:false});
+    stage("s2","done",`본문 ${K.bodyText(out).length.toLocaleString()}자`);
+  },
+  async c2(){ stage("c2","run"); const r=S.run; r.c2=check(r.draft); stage("c2", tally(r.c2).fail?"warn":"done", summary(r.c2)); renderResult(); },
+  async s3(){
+    stage("s3","run");
+    const r=S.run, c=r.c2, lines=[];
+    for(const [k,n] of CHECK_CATS) for(const f of c.findings[k]||[]) lines.push(`[${n}][${f.level}]${f.loc?`[${f.loc}]`:""} ${f.msg}`);
+    lines.push("유사 문장 목록: "+(c.sim.blog.sent.filter(s=>s.pct>=30).map(s=>`${s.loc} ${s.pct}%`).join(", ")||"없음"));
+    const out=await ask("s3","비판",fill(P3,{BANNED:S.rules.banned, CHECKS:lines.join("\n").slice(0,12000), CASE_RECORD_FACTS:r.rec||"(없음)", SOURCE:r.src, RENDERED_WITH_LOCATIONS:rendered(r.draft)}),S.rules.tiers.s3);
+    r.crit={issues:Array.isArray(out?.issues)?out.issues:[], verdict:out?.verdict||""};
+    stage("s3","done",`지적 ${r.crit.issues.length} · ${r.crit.verdict}`);
+  },
+  async s4(){
+    const r=S.run, issues=fixList();
+    if(!issues.length){ stage("s4","skip","수정할 지적 없음"); r.patch=null; return; }
+    stage("s4","run");
+    const out=await ask("s4","수정",fill(P4,{FACTS:factsFor(r.facts), ISSUES:JSON.stringify(issues), DRAFT:JSON.stringify(r.draft0)}),S.rules.tiers.s4);
+    const p=K.applyPatches(r.draft0, Array.isArray(out?.patches)?out.patches:[]);
+    r.draft=p.draft; r.patch={applied:p.applied, skipped:p.skipped};
+    r.applied=p.applied.map(x=>x.issue_id);
+    stage("s4","done",`반영 ${p.applied.length} · 미반영 ${p.skipped.length}`);
+  },
+  async c3(){
+    const r=S.run;
+    if(!r.patch){ r.c3=r.c2; stage("c3","skip","수정 없음"); return; }
+    stage("c3","run"); r.c3=check(r.draft); stage("c3", tally(r.c3).fail?"warn":"done", summary(r.c3));
+  }
+};
+function check(draft){
+  const r=S.run;
+  return K.runAll({draft, facts:r.facts, excluded:r.excluded, source:r.src, record:r.rec, other:r.other, refs:r.refsAllowed, extra:r.extra,
+    generalized:r.generalized, disclosure:disclosure(), office:S.office.name, titles:S.cases.filter(c=>c.id!==r.id && !(r.url && c.url===r.url)).flatMap(c=>[c.listTitle,c.pageTitle]).filter(Boolean),
+    rules:{ad:S.rules.ad, style:S.rules.style, th:S.rules.th}});
+}
+const tally = c => { let fail=0,warn=0; for(const k in c.findings) for(const f of c.findings[k]) f.level==="위반"?fail++:warn++; return {fail,warn}; };
+const summary = c => { const t=tally(c); return `위반 ${t.fail} · 주의 ${t.warn}`; };
+const ISSUE_TYPE = {ground:"사실초과",num:"사실초과",term:"과장",simBlog:"원문유사",simOther:"원문유사",dup:"문체",ad:"광고규정",id:"식별위험",style:"문체",struct:"단독가독성"};
+function fixList(){
+  const r=S.run, out=(r.crit?.issues||[]).filter(i=>i.severity==="high"||i.severity==="mid");
+  let n=0; for(const [k] of CHECK_CATS) for(const f of r.c2.findings[k]||[]) if(f.level==="위반"&&f.loc)
+    out.push({id:"M"+(++n), location:f.loc, type:ISSUE_TYPE[k], severity:"high", evidence:"기계 검사", problem:f.msg, fix:"사실 목록 안에서 고치거나 '삭제'"});
+  return out;
+}
+function rendered(d){ return K.items(d).map(it=>`[${it.loc}] ${it.text}`).join("\n"); }
+
+/* P0 기계 전처리: 공개 설정, 식별 표현 일반화, 충돌 선택, 허용 조문·판례·사용자 입력값 추가 */
+function preprocess(){
+  const r=S.run, cf=r.confirm||{}, d=disclosure(), drop=new Set(r.c1.bad.map(f=>f.id));
+  const keep = (f, ok) => ok || !drop.add(f.id);   // 걸러 낸 사실은 drop에 넣어 '제외된 사실만 인용' 검사에 쓴다
+  let facts=r.c1.ok.map(f=>({...f}));
+  if(!d.jur) facts=facts.filter(f=>keep(f, f.type!=="관할"));
+  if(d.time==="none") facts=facts.filter(f=>keep(f, f.type!=="시점"));
+  for(const c of cf.conflicts||[]){
+    const o=K.cmp(c.원고), useSrc=c.pick==="원고", useRec=c.pick==="기록";
+    facts=facts.filter(f=>{
+      if(!useRec && f.source==="기록" && K.dice(f.text, c.기록)>=0.4) return keep(f,false);
+      if(!useSrc && f.source!=="기록" && o && f.quote && (o.includes(K.cmp(f.quote))||K.cmp(f.quote).includes(o))) return keep(f,false);
+      return true;
+    });
+  }
+  r.generalized=[];
+  for(const g of cf.ids||[]){
+    const q=String(g.quote||"").trim(); if(!q) continue;
+    if(g.action==="delete"){ facts=facts.filter(f=>keep(f, !(K.cmp(f.text).includes(K.cmp(q))||K.cmp(f.quote).includes(K.cmp(q))))); r.generalized.push({from:q,to:""}); continue; }
+    const to=String(g.to||"").trim(); r.generalized.push({from:q,to});
+    const core=(q.match(/[가-힣A-Za-z0-9○]{2,}/g)||[]).sort((a,b)=>b.length-a.length)[0];
+    for(const f of facts){
+      if(f.text.includes(q)) f.text=f.text.split(q).join(to);
+      else if(core && K.cmp(f.quote).includes(K.cmp(q)) && f.text.includes(core)) f.text=f.text.split(core).join(to);
+    }
+  }
+  r.refsAllowed=(cf.refs||[]).slice();
+  r.refsAllowed.forEach((q,i)=>facts.push({id:"L"+(i+1), type:"기타", source:"기록", text:q, quote:q}));
+  r.extra=[]; let u=0;
+  if(cf.formal){ facts.push({id:"U"+(++u), type:"결과", source:"기록", text:"결과의 정식 명칭: "+cf.formal, quote:"기록:확인 패널"}); r.extra.push(cf.formal); }
+  for(const [k,v] of Object.entries(cf.missing||{})){ facts.push({id:"U"+(++u), type:k, source:"기록", text:`${k}: ${v}`, quote:"기록:확인 패널"}); r.extra.push(v); }
+  r.facts=facts; r.excluded=[...drop];
+}
+
+/* ───── 확인 패널 ───── */
+function missingKeys(){
+  const s=S.run.s1, d=disclosure();
+  return (s.missing||[]).filter(k=>K.TABLE_KEYS.includes(k) && k!=="담당변호사" && !(k==="관할"&&!d.jur) && !(k==="결과시점"&&d.time==="none"));
+}
+function srcCtx(q){
+  const s=S.run.src||"", i=q?s.indexOf(q):-1; if(i<0) return "";
+  const a=Math.max(0,i-35), b=Math.min(s.length,i+q.length+35);
+  return `${a>0?"…":""}${esc(s.slice(a,i))}<mark class="ov">${esc(q)}</mark>${esc(s.slice(i+q.length,b))}${b<s.length?"…":""}`;
+}
+function renderConfirm(needCat, prev){
+  const s=S.run.s1, p=s.profile, cards=[]; let n=0;
+  const pv=i=>prev?.ids?.[i];
+  const card=(title,todo,inner)=>`<section class="cf-card"><div class="cf-top"><span class="cf-n">${++n}</span><div><h3>${title}</h3><p class="cf-todo">${todo}</p></div></div><div class="cf-in">${inner}</div></section>`;
+  if(!p.결과?.value || s.formal_name_check.length) cards.push(card("결과의 정식 명칭",
+    "홈페이지에는 처분통지서·판결문에 적힌 명칭을 그대로 씁니다. 아래 칸에 적어 주십시오. 비워 두면 원고 표기를 그대로 씁니다.",
+    s.formal_name_check.map(x=>`<div class="cf-ctx"><span class="tag">원고 표기</span> <b>${esc(x.quote)}</b> <span class="hint">${esc(x.reason||"")}</span>${srcCtx(x.quote)?`<div class="cf-src">${srcCtx(x.quote)}</div>`:""}</div>`).join("")
+    + (!p.결과?.value?`<p class="hint">원고에서 결과를 찾지 못했습니다.</p>`:"")
+    + `<label class="f"><span><b>정식 명칭(수치 포함)</b></span><input type="text" id="cf-formal" value="${esc(prev?.formal||"")}" placeholder="예) 불송치(혐의없음) 결정 / 벌금 300만 원 약식명령"></label>`));
+  if(needCat) cards.push(card("분야", "홈페이지 업무사례 분류 중 하나를 고르십시오."+(s.category_note?` 추출 메모: ${esc(s.category_note)}`:""),
+    `<div class="radios">${CATS.map(c=>`<label><input type="radio" name="cf-cat" value="${c}" ${c===(prev?.category||p.분야?.value||"형사")?"checked":""}> ${c}</label>`).join("")}</div>`));
+  if(s.identity_risks.length) cards.push(card(`사건 관계인을 알아볼 수 있는 표현 ${s.identity_risks.length}건`,
+    "그대로 쓰면 관계인이 드러날 수 있습니다. 표현마다 홈페이지에 쓸 말을 '홈페이지에는 이렇게 씀' 칸에서 고치거나, '아예 빼기'를 체크하십시오. 제안 표현이 미리 들어가 있습니다.",
+    s.identity_risks.map((x,i)=>`<div class="cf-id" data-i="${i}">
+      <div class="cf-ctx"><span class="tag">${esc(x.person||"관계인")} · ${esc(x.kind||"")}</span> <b>${esc(x.quote)}</b>${srcCtx(x.quote)?`<div class="cf-src">${srcCtx(x.quote)}</div>`:""}</div>
+      <div class="cf-ans"><label class="f"><span>홈페이지에는 이렇게 씀</span><input type="text" class="cf-to" value="${esc(pv(i)?.action==="delete"?(x.suggest||""):(pv(i)?.to??x.suggest??""))}" ${pv(i)?.action==="delete"?"disabled":""}></label>
+      <label class="chk"><input type="checkbox" class="cf-del" ${pv(i)?.action==="delete"?"checked":""}> 아예 빼기</label></div></div>`).join("")));
+  if(s.legal_refs.length) cards.push(card(`원고에 나온 조문·판례 ${s.legal_refs.length}건`,
+    "원문과 대조해 확인한 것만 체크하십시오. 체크한 것만 홈페이지 글에 들어가고, 체크하지 않은 것은 뺍니다.",
+    s.legal_refs.map((x,i)=>`<label class="chk cf-refrow"><input type="checkbox" class="cf-ref" value="${i}" ${prev?.refs?.includes(x.quote)?"checked":""}> <span><span class="tag">${esc(x.kind||"")}</span> ${esc(x.quote)}</span></label>`).join("")));
+  if(s.conflicts.length) cards.push(card(`원고와 사건 기록이 다른 부분 ${s.conflicts.length}건`,
+    "어느 쪽 내용으로 쓸지 고르십시오. 기본은 사건 기록입니다.",
+    s.conflicts.map((x,i)=>`<div class="cf-cf" data-i="${i}"><div class="cf-two"><div><span class="tag">원고</span> ${esc(x.원고)}</div><div><span class="tag">기록</span> ${esc(x.기록)}</div></div>
+      ${x.note?`<p class="hint">${esc(x.note)}</p>`:""}
+      <div class="radios">${[["기록","기록대로 씀"],["원고","원고대로 씀"],["빼기","둘 다 빼기"]].map(([v,t])=>`<label><input type="radio" name="cf-c${i}" value="${v}" ${(prev?.conflicts?.[i]?.pick||"기록")===v?"checked":""}> ${t}</label>`).join("")}</div></div>`).join("")));
+  const miss=missingKeys();
+  if(miss.length) cards.push(card("요약표 빈칸", "원고와 기록에 없는 요약표 항목입니다. 아는 값을 적으면 그대로 쓰고, 비워 두면 '확인 필요'로 나갑니다.",
+    `<div class="row2">${miss.map(k=>`<label class="f"><span>${esc(k)}</span><input type="text" class="cf-miss" data-k="${esc(k)}" value="${esc(prev?.missing?.[k]||"")}"></label>`).join("")}</div>`));
+  $("cf-lead").textContent=`작성 전에 정할 것 ${n}가지입니다. 아래에서 정한 대로 홈페이지 글이 작성됩니다. 다 정했으면 맨 아래 '이대로 작성'을 누르십시오.`;
+  $("cf-body").innerHTML=cards.join(""); $("confirm").hidden=false; $("confirm").scrollIntoView({block:"start"});
+}
+$("cf-body").addEventListener("change",e=>{ const c=e.target.closest(".cf-del"); if(c) c.closest(".cf-ans").querySelector(".cf-to").disabled=c.checked; });
+function readConfirm(skip){
+  const s=S.run.s1, q=sel=>document.querySelector(sel);
+  return {skipped:skip, formal: skip?"":(q("#cf-formal")?.value.trim()||""),
+    category: skip?(CATS.includes(s.profile.분야?.value)?s.profile.분야.value:""):(q('input[name="cf-cat"]:checked')?.value||""),
+    ids: s.identity_risks.map((x,i)=>{
+      if(skip) return {quote:x.quote, action:"accept", to:x.suggest||""};
+      const row=q(`.cf-id[data-i="${i}"]`), to=row.querySelector(".cf-to").value.trim();
+      return row.querySelector(".cf-del").checked ? {quote:x.quote, action:"delete"} : {quote:x.quote, action: to===(x.suggest||"")?"accept":"edit", to}; }),
+    refs: skip?[]:[...document.querySelectorAll(".cf-ref:checked")].map(c=>s.legal_refs[+c.value].quote),
+    conflicts: s.conflicts.map((x,i)=>({원고:x.원고, 기록:x.기록, pick: skip?"기록":(q(`input[name="cf-c${i}"]:checked`)?.value||"기록")})),
+    missing: skip?{}:Object.fromEntries([...document.querySelectorAll(".cf-miss")].map(i=>[i.dataset.k, i.value.trim()]).filter(a=>a[1]))};
+}
+function cfTouched(){ const a=readConfirm(false), b=readConfirm(true); for(const o of [a,b]){ delete o.skipped; delete o.category; } return JSON.stringify(a)!==JSON.stringify(b); }
+function continueConfirm(skip, btn){
+  const r=S.run;
+  const warn = skip&&cfTouched() ? "입력한 내용을 버리고 제안대로 씁니다 · 한 번 더 누르면 진행"
+    : r.draft&&r.edited>0 ? `직접 고친 내용(${r.edited}회)이 사라집니다 · 한 번 더 누르면 실행` : "";
+  const run=()=>{ backup(); r.confirm=readConfirm(skip); $("confirm").hidden=true; stage("cf", skip?"warn":"done", skip?"제안대로 진행":"확인 완료"); syncDisclosure(); go("s2"); };
+  warn ? arm(btn, warn, run) : run();
+}
+$("cf-go").onclick=e=>continueConfirm(false, e.currentTarget);
+$("cf-skip").onclick=e=>continueConfirm(true, e.currentTarget);
+
+/* ───── 출력 패키지 ───── */
+function finalChecks(){ return S.run?.c3 || S.run?.c2 || null; }
+const TABLE_LABEL = {담당변호사:"담당 변호사", 의뢰인지위:"의뢰인 지위", 진행단계:"진행 단계", 핵심쟁점:"핵심 쟁점", 사건유형:"사건 유형", 결과시점:"결과 시점"};
+function tableKeys(){ const dz=disclosure(); return K.TABLE_KEYS.filter(k=>!(k==="관할"&&!dz.jur) && !(k==="결과시점"&&dz.time==="none")); }
+function tableRows(d){
+  const law=selectedLawyers();
+  return tableKeys().map(k=>{
+    const o=d.summary_table?.[k]; let v=o?.value;
+    if(k==="담당변호사" && law.length && !o?.edited) v=law.map(lawyerLabel).join(", ");
+    return v ? [TABLE_LABEL[k]||k, String(v), k] : null;
+  }).filter(Boolean);
+}
+const joinT = arr => (arr||[]).map(o=>o.text).filter(Boolean).join(" ");
+function metaDesc(d){ let out=""; for(const [i,o] of (d.lead||[]).filter(o=>o.text).entries()){ const n=out?out+" "+o.text:o.text; if(i&&n.length>150) break; out=n; } return out; }
+function related(d){
+  const cat=currentCat(), hint=d.link_hints||{}, kw=a=>(a||[]).map(String).filter(Boolean);
+  const score=(text,words)=>words.reduce((n,w)=>n+(K.nospace(text).includes(K.nospace(w))?1:0),0);
+  const legal=S.legal.filter(g=>g.status!=="테스트").map(g=>({g,s:score(g.title+" "+(g.tags||[]).join(" "),kw(hint.쟁점_키워드))+(g.category===cat?0.5:0)}))
+    .filter(x=>x.s>=1).sort((a,b)=>b.s-a.s).slice(0,2).map(x=>({title:x.g.title,url:x.g.url}));
+  const cases=S.cases.filter(c=>c.category===cat && c.id!==S.run?.id && c.url!==S.run?.url).map(c=>({c,s:score(c.listTitle||"",kw(hint.사례_키워드))}))
+    .sort((a,b)=>b.s-a.s).slice(0,3).map(x=>({title:x.c.listTitle,url:x.c.url}));
+  const area=S.office.areas?.[cat];
+  return {area: area?{title:`${cat} 업무분야`,url:area}:null, legal, cases};
+}
+function pkg(){
+  const d=S.run.draft, rows=tableRows(d), secs=d.sections||[], lead=joinT(d.lead);
+  const paras=s=>(s.paragraphs||[]).map(joinT).filter(Boolean);
+  const rel=related(d), relLines=[rel.area&&`[업무분야] ${rel.area.title} — ${rel.area.url}`, ...rel.legal.map(x=>`[법률정보] ${x.title} — ${x.url}`), ...rel.cases.map(x=>`[사례] ${x.title} — ${x.url}`)].filter(Boolean);
+  const url=$("pub-url").value.trim()||S.run.url||"";
+  return {
+    cat: currentCat(), list: d.list_title?.text||"", sub: d.subtitle?.text||"", page: K.pageTitle(d), meta: metaDesc(d), lead,
+    tableText: rows.map(r=>r[0]+"\t"+r[1]).join("\n"),
+    tableHtml: "<table>\n<tbody>\n"+rows.map(r=>`<tr><th scope="row">${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join("\n")+"\n</tbody>\n</table>",
+    secJson: JSON.stringify({sections:secs.map(s=>({title:s.heading?.text||"", content:paras(s).join("\n\n")}))},null,2),
+    bodyHtml: [lead&&`<p>${esc(lead)}</p>`, ...secs.flatMap(s=>[`<h2>${esc(s.heading?.text||"")}</h2>`, ...paras(s).map(t=>`<p>${esc(t)}</p>`)])].filter(Boolean).join("\n"),
+    bodyText: [lead, ...secs.flatMap(s=>[s.heading?.text||"", ...paras(s)])].filter(Boolean).join("\n\n"),
+    points: (d.points||[]).map(o=>o.text).filter(Boolean).join("\n"), final: (d.final_points||[]).map(o=>o.text).filter(Boolean).join("\n"),
+    links: relLines.join("\n")||"없음", disc: S.rules.disclaimer,
+    blog: S.rules.blog+(url?"\n"+url:"\n(게시 후 URL을 아래 칸에 넣으면 붙습니다)")
+  };
+}
+
+/* ───── 검사 결과 보기(현재 작업 또는 저장함 스냅숏) ───── */
+function liveView(){
+  const r=S.run, c=finalChecks(); if(!c) return null;
+  const statuses={}; for(const [k] of CHECK_CATS) statuses[k]=c.status(k);
+  const sm=s=>s&&{runs:s.runs.length, max:Math.max(0,...s.sent.map(x=>x.pct)), total:s.total};
+  return {findings:c.findings, statuses, sim:{blog:sm(c.sim.blog), other:sm(c.sim.other)}, c1:r.c1?{ok:r.c1.ok.length, bad:r.c1.bad.length}:null};
+}
+const hasSource = () => !!S.run?.src && !!S.run?.facts;
+function view(){ return hasSource() ? liveView() : S.run?.view || null; }
+function humanList(v){
+  const r=S.run, out=[];
+  if(r.confirm?.skipped) out.push({level:"주의",loc:null,msg:"확인 패널을 제안대로 넘겼습니다. 정식 명칭·식별 표현·조문을 직접 확인하십시오."});
+  if(r.edited) out.push({level:"주의",loc:null,msg:`직접 고친 곳 ${r.edited}회. 고친 문장은 문단의 근거 사실 전체에 연결되므로 근거와 맞는지 확인하십시오.`});
+  if(v?.stale) out.push({level:"주의",loc:null,msg:"원 자료가 없는 브라우저에서 고쳐 아래 검사 결과는 고치기 전 기준입니다."});
+  if(v) for(const [k,n] of CHECK_CATS) for(const f of v.findings[k]||[]) if(f.level==="위반") out.push({...f, msg:`${n}: ${f.msg}`});
+  const fixed=new Set(r.applied||[]);
+  for(const i of r.crit?.issues||[]) if(!fixed.has(i.id)) out.push({level:i.severity==="high"?"위반":"주의", loc:i.location, msg:`비판 지적(미반영): ${i.problem}`, crit:i.id, fix:i.fix});
+  for(const p of r.patch?.skipped||[]) out.push({level:"주의",loc:p.location,msg:`자동 수정이 적용되지 못했습니다(${p.issue_id})`});
+  return out;
+}
+
+/* ───── 결과 렌더링 ───── */
+function renderResult(){
+  document.querySelectorAll(".rtab").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.t===S.tab)));
+  const d=S.run?.draft, body=$("rbody"); $("rfoot").hidden=!d; footState();
+  if(!d){ $("verdict").hidden=true; body.innerHTML=`<div class="empty"><p>처음 쓰시면 위쪽 '사용법' 탭을 먼저 보십시오.</p><p>원고를 붙여 넣고 실행하면 이 자리에 홈페이지 사례 미리보기, 수정·복사 칸, 검증 리포트, 원문 대조가 나옵니다. 작업은 단계마다 저장함에 자동 저장됩니다.</p>
+    <ol><li>원고와 사건 기록에서 사실만 뽑고 근거 구절을 자동으로 대조합니다.</li><li>사람이 정할 항목(정식 처분명, 식별 표현, 조문·판례)은 확인 패널에서 멈춥니다.</li><li>원고 문장을 보지 않고 사실 목록만으로 새로 씁니다.</li><li>자동 검사, 독립 비판, 한 번의 자동 수정을 거친 뒤 '수정·복사' 탭에서 직접 고칠 수 있습니다.</li></ol></div>`; return; }
+  ({preview:renderPreview, copy:renderCopy, report:renderReport, cmp:renderCmp})[S.tab](body, d);
+  renderVerdict();
+}
+function footState(){
+  const r=S.run, live=hasSource();
+  $("redo-write").disabled=S.busy||!live||!r?.c1; $("redo-fix").disabled=S.busy||!live||!r?.draft0||!r?.c2;
+  $("pub-url").value = $("pub-url").value || r?.url || "";
+  $("saved").textContent = !r?.draft ? "" : r.savedAt ? `저장함 ${fmt(r.savedAt)} 저장${r.status==="발행"?" · 게시됨":""}` : "저장 중…";
+  $("foot-note").hidden = live || !r?.draft;
+  $("reopen-cf").hidden=!(live && r?.s1 && r?.draft); $("undo").hidden=!(live && r?.prev);
+  $("undo").textContent = r?.undone ? "다시 쓴 원고로 돌아가기" : "다시 쓰기 전으로 되돌리기";
+  $("copy-blog").hidden = r?.status!=="발행";
+  $("register").classList.toggle("primary", /^https?:\/\//.test($("pub-url").value.trim()));
+  $("disc-note").hidden = !(r?.draft && r.disc && JSON.stringify(r.disc)!==JSON.stringify(disclosure()));
+}
+function sp(o, loc){ return `<span data-loc="${loc}">${esc(o?.text??"")}</span>`; }
+function renderPreview(body, d){
+  const rel=related(d), rows=tableRows(d);
+  body.innerHTML=`<article class="case">
+    <span class="cat">${esc(currentCat()||"분류 미정")}</span>
+    <h2 class="ttl">${sp(d.list_title,"title.list")}</h2>
+    <p class="sub">${sp(d.subtitle,"title.sub")}</p>
+    <p class="lead">${(d.lead||[]).map((o,i)=>sp(o,"lead."+(i+1))).join(" ")}</p>
+    <div class="tblwrap"><table><tbody>${rows.map(r=>`<tr><th scope="row">${esc(r[0])}</th><td data-loc="table.${r[2]}">${esc(r[1])}</td></tr>`).join("")}</tbody></table></div>
+    ${(d.points||[]).length?`<ul class="chk">${d.points.map((o,i)=>o.text?`<li>${sp(o,"points."+(i+1))}</li>`:"").join("")}</ul>`:""}
+    ${(d.sections||[]).map((s,si)=>`<section><h3>${sp(s.heading,`s${si+1}.h`)}</h3>${(s.paragraphs||[]).map((p,pi)=>joinT(p)?`<p>${(p||[]).map((o,k)=>sp(o,`s${si+1}.p${pi+1}.${k+1}`)).join(" ")}</p>`:"").join("")}</section>`).join("")}
+    ${(d.final_points||[]).length?`<section><h3>최종 결과</h3><ul class="chk">${d.final_points.map((o,i)=>o.text?`<li>${sp(o,"final."+(i+1))}</li>`:"").join("")}</ul></section>`:""}
+    <div class="links"><b>관련 링크</b>${[rel.area,...rel.legal,...rel.cases].filter(Boolean).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a>`).join("")||`<span class="hint">없음</span>`}</div>
+    <p class="disc">${esc(S.rules.disclaimer)}</p></article>`;
+}
+
+/* 수정·복사: 원고 칸은 직접 고치고, 회색 칸은 고친 내용에서 자동으로 만든다 */
+function renderCopy(body, d){
+  const ta=(f,v,rows)=>`<textarea data-f="${f}" rows="${rows}">${esc(v)}</textarea>`;
+  const EF=(label,f,input,cnt)=>`<div class="cp-i ed-i" data-box="${f}"><div class="cp-h"><span>${label}${cnt?` <em class="cnt" data-cnt="${f}"></em>`:""}</span><button class="btn sm" type="button" data-cpf="${f}">복사</button></div>${input}<div class="ed-notes" data-n="${f}"></div></div>`;
+  const DF=(label,k)=>`<div class="cp-i der"><div class="cp-h"><span>${label} <em class="auto">자동 생성</em></span><button class="btn sm" type="button" data-cpd="${k}">복사</button></div><pre class="cp-v${/Html|Json/.test(k)?" code":""}" id="der-${k}"></pre></div>`;
+  const tbl=tableKeys().map(k=>{ const o=d.summary_table?.[k]; const v=k==="담당변호사"&&!o?.edited&&selectedLawyers().length?selectedLawyers().map(lawyerLabel).join(", "):(o?.value||"");
+    return `<label class="tr-ed" data-box="table.${k}"><span>${esc(TABLE_LABEL[k]||k)}</span><input type="text" data-f="table.${k}" value="${esc(v)}"><span class="ed-notes" data-n="table.${k}"></span></label>`; }).join("");
+  const secs=(d.sections||[]).map((s,si)=>`<div class="cp-i ed-i sec-ed"><div class="cp-h"><span>${si+1}번 섹션 <em class="auto">${esc(s.role||"")}</em></span></div>
+    <div data-box="s${si+1}.h"><input type="text" data-f="s${si+1}.h" value="${esc(s.heading?.text||"")}" aria-label="${si+1}번 소제목"><div class="ed-notes" data-n="s${si+1}.h"></div></div>
+    ${(s.paragraphs||[]).map((p,pi)=>`<div data-box="s${si+1}.p${pi+1}">${ta(`s${si+1}.p${pi+1}`, joinT(p), 4)}<div class="ed-notes" data-n="s${si+1}.p${pi+1}"></div></div>`).join("")}</div>`).join("");
+  body.innerHTML=`<div class="edhead"><p>흰 칸은 바로 고칠 수 있습니다. 칸 밖을 누르면 반영되고 ${hasSource()?"자동 검사를 다시 돌린 뒤 칸 아래에 남은 지적을 보여 줍니다":"저장됩니다(원 자료가 이 브라우저에 없어 재검사는 하지 않습니다)"}. 회색 칸은 흰 칸에서 자동으로 만들어집니다. 문장을 지우려면 칸에서 지우면 됩니다.</p></div>
+    <div class="cp">
+    ${EF("분류","category",`<select data-f="category">${CATS.map(c=>`<option ${c===currentCat()?"selected":""}>${c}</option>`).join("")}</select>`)}
+    ${EF("목록 제목","title.list",`<input type="text" data-f="title.list" value="${esc(d.list_title?.text||"")}">`,1)}
+    ${EF("부제","title.sub",`<input type="text" data-f="title.sub" value="${esc(d.subtitle?.text||"")}">`,1)}
+    ${DF("페이지 제목","page")}${DF("메타 설명","meta")}
+    ${EF("요약 문단","lead",ta("lead",joinT(d.lead),4))}
+    <div class="cp-i ed-i"><div class="cp-h"><span>요약표</span></div><div class="tbl-ed">${tbl}</div></div>
+    ${DF("요약표(텍스트)","tableText")}
+    ${secs}
+    ${DF("본문 텍스트","bodyText")}
+    ${EF("체크 항목(✔, 한 줄에 하나)","points",ta("points",(d.points||[]).map(o=>o.text).filter(Boolean).join("\n"),3))}
+    ${EF("최종 결과 항목(한 줄에 하나)","final",ta("final",(d.final_points||[]).map(o=>o.text).filter(Boolean).join("\n"),2))}
+    ${DF("관련 링크","links")}${DF("고지문","disc")}${DF("블로그 글 끝 연결 문구","blog")}
+    </div>
+    <details class="cp-more"><summary>다른 형식(HTML·JSON) — 홈페이지 관리자 화면이 HTML이나 JSON을 받을 때만</summary><div class="cp">${DF("요약표(HTML)","tableHtml")}${DF("섹션 JSON","secJson")}${DF("본문 HTML","bodyHtml")}</div></details>`;
+  refreshDerived(); refreshNotes(); counters();
+}
+function refreshDerived(){ const P=pkg(); for(const k in P){ const el=$("der-"+k); if(el) el.textContent=P[k]; } }
+function counters(){
+  const th=S.rules.th, l=$("rbody").querySelector('[data-f="title.list"]'), s=$("rbody").querySelector('[data-f="title.sub"]'); if(!l||!s) return;
+  const page=[l.value.trim(),s.value.trim()].filter(Boolean).join(" | ");
+  const set=(f,txt,over)=>{ const e=$("rbody").querySelector(`[data-cnt="${f}"]`); if(e){ e.textContent=txt; e.classList.toggle("over",over); } };
+  set("title.list", `${l.value.trim().length}/${th.listMax}자`, l.value.trim().length>th.listMax);
+  set("title.sub", `페이지 제목 ${page.length}/${th.pageMax}자`, page.length>th.pageMax);
+}
+function refreshNotes(){
+  const r=S.run, v=view(), byF={}, fixed=new Set(r.applied||[]);
+  const put=(loc,html)=>{ const f=fieldOf(loc); if(f) (byF[f]=byF[f]||[]).push(html); };
+  const hereName=loc=>/\.\d+$/.test(loc)&&!/^table\./.test(loc)?`<b>${esc(locName(loc))}</b> `:"";
+  if(v) for(const [k,n] of CHECK_CATS) for(const f of v.findings[k]||[]) if(f.loc) put(f.loc, `<div class="ed-note ${f.level}"><span class="lv">${f.level}</span><span>${hereName(f.loc)}${esc(n)}: ${esc(f.msg)}</span></div>`);
+  for(const i of r.crit?.issues||[]) if(!fixed.has(i.id) && i.location) put(i.location, `<div class="ed-note crit"><span class="lv">비판</span><span>${hereName(i.location)}${esc(i.problem)}${i.fix?` <span class="sug">제안: ${esc(i.fix)}</span>`:""}</span>${i.fix?`<button class="btn sm" type="button" data-crit="${esc(i.id)}">${/^\s*삭제\s*$/.test(i.fix)?"삭제":"제안 적용"}</button>`:""}</div>`);
+  $("rbody").querySelectorAll(".ed-notes").forEach(el=>{ el.innerHTML=(byF[el.dataset.n]||[]).join(""); el.closest("[data-box]")?.classList.toggle("has-fail", (byF[el.dataset.n]||[]).some(h=>h.includes("ed-note 위반"))); });
+  renderVerdict();
+}
+function resplit(old, text, byLine){
+  const parts=(byLine?text.split("\n"):text.split(/(?<=[.?!])\s+|\n+/)).map(s=>s.trim()).filter(Boolean);
+  const union=[...new Set((old||[]).flatMap(o=>o.fact_ids||[]))];
+  return parts.map(t=>(old||[]).find(o=>o.text===t) || {text:t, fact_ids:union, edited:true});
+}
+function applyEdit(f, value){
+  const d=S.run.draft, v=value.trim(); let m;
+  if(f==="category"){ S.run.cat=v; return; }
+  if(f==="title.list"||f==="title.sub"){ const k=f==="title.list"?"list_title":"subtitle"; d[k]={...(d[k]||{fact_ids:[]}), text:v, edited:true}; return; }
+  if(f==="lead"){ d.lead=resplit(d.lead,v); return; }
+  if(f==="points"){ d.points=resplit(d.points,v,true); return; }
+  if(f==="final"){ d.final_points=resplit(d.final_points,v,true); return; }
+  if((m=f.match(/^table\.(.+)$/))){ d.summary_table=d.summary_table||{}; d.summary_table[m[1]]={fact_ids:d.summary_table[m[1]]?.fact_ids||[], value:v||"확인 필요", edited:true}; return; }
+  if((m=f.match(/^s(\d+)\.h$/))){ const s=d.sections[+m[1]-1]; s.heading={...(s.heading||{fact_ids:[]}), text:v, edited:true}; return; }
+  if((m=f.match(/^s(\d+)\.p(\d+)$/))){ const s=d.sections[+m[1]-1]; s.paragraphs[+m[2]-1]=resplit(s.paragraphs[+m[2]-1],v); }
+}
+function afterEdit(){
+  const r=S.run; r.edited=(r.edited||0)+1;
+  if(hasSource()){ r.c3=check(r.draft); stage("c3", tally(r.c3).fail?"warn":"done", "수정본 재검사 "+summary(r.c3)); }
+  else if(r.view) r.view.stale=true;
+  persist();
+}
+function applyCrit(id){
+  const r=S.run, i=r.crit?.issues.find(x=>x.id===id); if(!i) return;
+  const cur=K.items(r.draft).find(it=>it.loc===i.location);
+  if(!cur){ toast("그 위치가 이미 바뀌어 제안을 적용할 수 없습니다. 칸에서 직접 고쳐 주십시오"); return; }
+  const del=/^\s*삭제\s*$/.test(i.fix||"");
+  // 삭제도 빈 문장으로 바꿔 둔다: 뒤 문장의 위치 번호가 밀리지 않게
+  const p=K.applyPatches(r.draft,[{location:i.location, action:"replace", text:del?"":i.fix, fact_ids:cur.fact_ids}]);
+  if(!p.applied.length){ toast("이 위치에는 제안을 적용할 수 없습니다. 칸에서 직접 고쳐 주십시오"); return; }
+  r.draft=p.draft; (r.applied=r.applied||[]).push(id); afterEdit(); renderResult(); toast(del?"삭제했습니다":"제안을 적용했습니다");
+}
+function openEdit(loc){
+  S.tab="copy"; renderResult();
+  const f=fieldOf(loc), el=f&&$("rbody").querySelector(`[data-f="${CSS.escape(f)}"]`);
+  if(!el){ jump(loc); return; }
+  const box=el.closest("[data-box]")||el; box.classList.add("hl-f"); setTimeout(()=>box.classList.remove("hl-f"),3500);
+  el.scrollIntoView({block:"center"}); el.focus({preventScroll:true});
+  const it=K.items(S.run.draft).find(x=>x.loc===loc), at=it&&el.value?el.value.indexOf(it.text):-1;
+  if(at>=0 && el.setSelectionRange) el.setSelectionRange(at, at+it.text.length);
+}
+function jump(loc){
+  S.tab="preview"; renderResult();
+  const el=document.querySelector(`#rbody [data-loc="${CSS.escape(loc)}"]`);
+  if(!el){ toast("미리보기에 해당 위치가 없습니다"); return; }
+  el.classList.add("hl"); el.scrollIntoView({block:"center"}); setTimeout(()=>el.classList.remove("hl"),4000);
+}
+function renderReport(body){
+  const r=S.run, v=view(); if(!v){ body.innerHTML=`<p class="hint">검사 전입니다.</p>`; return; }
+  const fixed=new Set(r.applied||[]);
+  const li=f=>`<li><span class="lv ${esc(f.level)}">${esc(f.level)}</span><span class="fm">${f.loc?`<b>${esc(locName(f.loc))}</b> `:""}${esc(f.msg)}</span>${f.crit&&f.fix&&!fixed.has(f.crit)?`<button class="btn sm" type="button" data-crit="${esc(f.crit)}">${/^\s*삭제\s*$/.test(f.fix||"")?"삭제":"제안 적용"}</button>`:""}${f.loc?`<button class="btn sm" type="button" data-fix="${esc(f.loc)}">고치기</button>`:""}</li>`;
+  const fl=list=>list.length?`<ul class="fl">${list.map(li).join("")}</ul>`:"";
+  const blk=(name,st,meta,list,open)=>`<details ${open?"open":""}><summary><span class="st ${st}">${st}</span>${esc(name)}<span class="meta">${esc(meta||"")}</span></summary>${fl(list)}</details>`;
+  const out=[`<p class="hint">'고치기'를 누르면 수정·복사 탭의 해당 칸으로 이동합니다. 고친 뒤 칸 밖을 누르면 다시 검사합니다.${v.stale?" 지금 결과는 고치기 전 기준입니다.":""}</p>`];
+  for(const [k,n] of CHECK_CATS){
+    let list=(v.findings[k]||[]).slice(), st=v.statuses[k], meta=`${list.length}건`;
+    if(k==="ground" && v.c1){ if(hasSource()) list=r.c1.bad.map(f=>({level:"주의",loc:null,msg:`근거 확인에서 제외한 사실 ${f.id}: ${f.text} (${f.why})`})).concat(list); if(st==="통과"&&v.c1.bad) st="주의"; meta=`근거 통과 ${v.c1.ok} · 제외 ${v.c1.bad}`; }
+    if(k==="simBlog"||k==="simOther"){ const s=v.sim[k==="simBlog"?"blog":"other"]; if(!s){ out.push(blk(n,"해당없음","비교 원고 없음",[])); continue; } meta=`같은 구간 ${s.runs}곳 · 가장 많이 겹친 문장 ${s.max}% · 전체 ${s.total}%`; }
+    out.push(blk(n, st, meta, list, st==="위반"));
+  }
+  const crit=r.crit;
+  out.push(blk("독립 비판", !crit?"해당없음":crit.issues.some(i=>i.severity==="high"&&!fixed.has(i.id))?"위반":crit.issues.some(i=>!fixed.has(i.id))?"주의":"통과",
+    crit?`${crit.verdict} · 지적 ${crit.issues.length}건 · 반영 ${crit.issues.filter(i=>fixed.has(i.id)).length}건`:"",
+    (crit?.issues||[]).map(i=>({level:fixed.has(i.id)?"반영":i.severity==="high"?"위반":"주의", loc:i.location, crit:i.id, fix:i.fix, msg:`[${i.type}·${i.severity}] ${i.problem}${i.fix?` → 제안: ${i.fix}`:""}`})), false));
+  const human=humanList(v);
+  out.push(`<details open><summary><span class="st ${human.length?"주의":"통과"}">${human.length?"확인 필요":"남은 지적 없음"}</span>사람 확인<span class="meta">${human.length}건</span></summary>${fl(human)}
+    <div class="human"><span class="hint">게시 전 확인 목록(항상 표시)</span>${HUMAN.map((h,i)=>`<label><input type="checkbox" id="hc-${i}" data-hc="${i}" ${r.human?.[i]?"checked":""}> ${i+1}. ${esc(h)}</label>`).join("")}</div></details>`);
+  body.innerHTML=`<div class="rep">${out.join("")}</div>`;
+}
+function renderCmp(body, d){
+  if(!hasSource()){ body.innerHTML=`<p class="hint">원 자료(원고·사실 목록)가 이 브라우저에 없어 원문 대조를 보여 줄 수 없습니다. 작업한 브라우저에서 저장함으로 열면 볼 수 있습니다.</p>`; return; }
+  const r=S.run, byId=Object.fromEntries((r.facts||[]).map(f=>[f.id,f]));
+  const rows=K.items(d).filter(it=>it.kind!=="table").map(it=>{
+    const marked=K.overlapMask(it.text, r.src).map(([ch,m])=>m?`<mark class="ov">${esc(ch)}</mark>`:esc(ch)).join("").replace(/<\/mark><mark class="ov">/g,"");
+    const qs=it.fact_ids.map(id=>byId[id]?`<div class="qt"><b>${esc(id)}</b> ${esc(byId[id].quote||"")}</div>`:`<div class="qt"><b>${esc(id)}</b> 없음</div>`).join("");
+    return `<tr><td class="l">${esc(locName(it.loc))}</td><td>${marked}</td><td class="l">${esc(it.fact_ids.join(", "))}</td><td>${qs}</td></tr>`;
+  });
+  body.innerHTML=`<p class="hint">노란 글자는 블로그 원고와 6글자 이상 그대로 겹치는 부분입니다(처분명·수치·어미 포함, 자동 검사의 유사도는 이를 가리고 셉니다).</p>
+    <div class="tblwrap"><table class="cmpt"><thead><tr><th>위치</th><th>결과 문장</th><th>근거 사실</th><th>원고 근거 구절</th></tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
+}
+document.querySelectorAll(".rtab").forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;renderResult();});
+$("rbody").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.fix) openEdit(b.dataset.fix);
+  else if(b.dataset.crit) applyCrit(b.dataset.crit);
+  else if(b.dataset.cpf){ const el=$("rbody").querySelector(`[data-f="${CSS.escape(b.dataset.cpf)}"]`); copyOut(el.value, el, b); }
+  else if(b.dataset.cpd) copyOut(pkg()[b.dataset.cpd], $("der-"+b.dataset.cpd), b);
+  else if(b.hasAttribute("data-goreport")){ S.tab="report"; renderResult(); }
+});
+$("rbody").addEventListener("change",e=>{
+  if(e.target.dataset.hc!=null && S.run){ const r=S.run; r.human=r.human||Array(7).fill(false); r.human[+e.target.dataset.hc]=e.target.checked; persist(); renderVerdict(); return; }
+  const el=e.target.closest("[data-f]"); if(!el||S.tab!=="copy"||!S.run?.draft) return;
+  applyEdit(el.dataset.f, el.value); afterEdit(); refreshDerived(); refreshNotes(); counters();
+  $("rbody").querySelectorAll("[data-cpf],[data-cpd]").forEach(b=>b.textContent="복사");
+});
+
+/* 판정 띠: 네 탭 공통 결론 한 줄 */
+function tallyAll(){
+  const r=S.run, v=view(), fixed=new Set(r?.applied||[]); let fail=0, warn=0;
+  if(v) for(const k in v.findings) for(const f of v.findings[k]) f.level==="위반"?fail++:warn++;
+  const open=(r?.crit?.issues||[]).filter(i=>!fixed.has(i.id)), hm=open.filter(i=>i.severity!=="low");
+  return {fail, crit:hm.length, warn:warn+open.length-hm.length, human:(r?.human||[]).filter(Boolean).length, highOpen:open.some(i=>i.severity==="high"), stale:!!v?.stale};
+}
+function renderVerdict(){
+  const el=$("verdict"), r=S.run; if(!r?.draft){ el.hidden=true; return; }
+  const t=tallyAll(), n=t.fail+t.crit, tail=`게시 전 확인 ${t.human}/7${t.stale?" · 검사는 고치기 전 기준":""}`;
+  el.className="verdict "+(n?"bad":"ok"); el.hidden=false;
+  el.innerHTML = n ? `<b>고칠 것 ${n}건</b><span>(위반 ${t.fail} · 비판 미반영 ${t.crit}) · 주의 ${t.warn} · ${tail}</span><button class="btn sm" type="button" data-first>첫 번째 고치기</button>`
+    : `<b>위반 없음</b><span>주의 ${t.warn} · ${tail}</span><button class="btn sm" type="button" data-goreport>검증 리포트</button>`;
+}
+$("verdict").addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  if(b.hasAttribute("data-goreport")){ S.tab="report"; renderResult(); return; }
+  const h=humanList(view()), first=h.find(f=>f.loc&&(f.level==="위반"||f.crit))||h.find(f=>f.loc);
+  first ? openEdit(first.loc) : (S.tab="report", renderResult());
+});
+$("rbody").addEventListener("input",e=>{ if(e.target.closest('[data-f^="title."]')) counters(); });
+
+/* ───── 하단 버튼 ───── */
+const PREV_KEYS=["draft0","draft","crit","patch","applied","edited","facts","excluded","generalized","refsAllowed","extra","confirm","disc"];
+function backup(){ const r=S.run; if(!r?.draft) return; r.prev=structuredClone(Object.fromEntries(PREV_KEYS.map(k=>[k,r[k]??null]))); r.undone=false; }
+function guardRedo(btn, fn){ const r=S.run; if(!r) return; r.edited>0 ? arm(btn, `직접 고친 내용(${r.edited}회)이 사라집니다 · 한 번 더 누르면 실행`, fn) : fn(); }
+$("redo-write").onclick=e=>{ if(S.run?.c1) guardRedo(e.currentTarget, ()=>{ backup(); go("s2"); }); };
+$("redo-fix").onclick=e=>{ if(!S.run?.draft0||!S.run.c2) return; guardRedo(e.currentTarget, ()=>{ backup(); S.run.draft=structuredClone(S.run.draft0); S.run.edited=0; go("s4"); }); };
+$("undo").onclick=()=>{
+  const r=S.run; if(!r?.prev||!hasSource()) return;
+  const cur=structuredClone(Object.fromEntries(PREV_KEYS.map(k=>[k,r[k]??null])));
+  Object.assign(r, r.prev); r.prev=cur; r.undone=!r.undone;
+  r.c2=r.draft0?check(r.draft0):null; r.c3=check(r.draft); renderResult(); persist(true);
+  toast(r.undone?"다시 쓰기 전 원고로 되돌렸습니다":"다시 쓴 원고로 돌아왔습니다");
+};
+$("reopen-cf").onclick=()=>{ const r=S.run; if(!r?.s1||!hasSource()) return; stage("cf","wait","다시 확인"); renderConfirm(r.needCat, r.confirm); };
+$("copy-blog").onclick=e=>copyOut(pkg().blog, null, e.currentTarget);
+$("pub-url").addEventListener("input",()=>{ if(S.tab==="copy") refreshDerived(); $("register").classList.toggle("primary", /^https?:\/\//.test($("pub-url").value.trim())); });
+const docId=(prefix,url)=>{ const m=String(url).match(/wr_id=(\d+)/); return prefix+(m?m[1]:Date.now().toString(36)+Math.random().toString(36).slice(2,6)); };
+async function markPublished(id, url, fields){
+  const doc={listTitle:fields.listTitle||"", pageTitle:fields.pageTitle||"", url, category:fields.category||"", createdAt:now()};
+  await saveReg("registry_cases", docId("case-",url), doc);
+}
+$("register").onclick=e=>{
+  const r=S.run, d=r?.draft, url=$("pub-url").value.trim();
+  if(!d) return; if(!/^https?:\/\//.test(url)){ toast("게시한 업무사례 URL을 넣어 주십시오"); return; }
+  const save=async()=>{
+    try{ await markPublished(r.id, url, {listTitle:d.list_title?.text, pageTitle:K.pageTitle(d), category:currentCat()}); r.status="발행"; r.url=url; persist(true); footState(); if(S.tab==="copy") refreshDerived();
+      toast("게시 URL을 기록했습니다. '블로그 연결 문구 복사'로 블로그 글 끝에 붙이십시오"); }
+    catch(_){ toast("기록하지 못했습니다. 쓰기 권한(참여자 이상)이 필요합니다"); }
+  };
+  const f=tallyAll().fail; f ? arm(e.currentTarget, `위반 ${f}건 남음 · 한 번 더 누르면 기록`, save) : save();
+};
+
+/* ───── 작업 보존: 원 자료는 이 브라우저에만, 결과는 저장함(공용) ───── */
+const WK="jcase.work.";
+function workSave(){
+  const r=S.run; if(!r?.id||r.remote) return;
+  const {c2,c3,view:_v,...keep}=r;
+  const w={...keep, inputs:readForm(), savedAt:now()};
+  try{ localStorage.setItem(WK+r.id, JSON.stringify(w)); }
+  catch(_){ const old=workList().filter(x=>x.next==="done").slice(10); old.forEach(x=>workDel(x.id)); try{ localStorage.setItem(WK+r.id, JSON.stringify(w)); }catch(_){ } }
+}
+function workLoad(id){ try{ return JSON.parse(localStorage.getItem(WK+id)||"null"); }catch(_){ return null; } }
+function workDel(id){ try{ localStorage.removeItem(WK+id); }catch(_){} }
+function workList(){
+  const out=[]; try{ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k&&k.startsWith(WK)){ const w=workLoad(k.slice(WK.length)); if(w&&w.id) out.push(w); } } }catch(_){}
+  return out.sort((a,b)=>(b.savedAt||"").localeCompare(a.savedAt||""));
+}
+function boxDoc(){
+  const r=S.run, d=r.draft, v=hasSource()?liveView():r.view, t=v?{fail:0,warn:0}:{fail:null,warn:null};
+  if(v) for(const k in v.findings) for(const f of v.findings[k]) f.level==="위반"?t.fail++:t.warn++;
+  return {listTitle:d?.list_title?.text||"", pageTitle:d?K.pageTitle(d):"", category:currentCat(), lead:joinT(d?.lead).slice(0,120),
+    status: r.status==="발행"?"발행":(r.next==="done"?"작성 완료":"작성 중"), stage:r.next||"", url:r.url||"",
+    draft:d||null, view:v||null, crit:r.crit?{verdict:r.crit.verdict, issues:r.crit.issues.map(({evidence,...x})=>x)}:null,
+    applied:r.applied||[], confirmSkipped:!!r.confirm?.skipped, edited:r.edited||0, human:r.human||[], fail:t.fail, warn:t.warn,
+    lawyers:selectedLawyers().map(l=>l.name), owner:S.me||null, createdAt:r.createdAt||now(), updatedAt:now()};
+}
+let boxTimer=null;
+function persist(soon){
+  workSave(); clearTimeout(boxTimer);
+  if(!S.run?.draft) return;
+  boxTimer=setTimeout(boxSave, soon?0:900);
+}
+function boxSave(){
+  const r=S.run; if(!r?.draft) return;
+  const doc=boxDoc();
+  S.boxChain=(S.boxChain||Promise.resolve()).then(()=> S.local ? localBoxSet(r.id, doc) : S.db.collection("box").doc(r.id).set(doc))
+    .then(()=>{ r.savedAt=doc.updatedAt; footState(); })
+    .catch(e=>{ console.error(e); $("saved").textContent="저장함 저장 실패(이 브라우저에는 남아 있음)"; });
+}
+const LB="jcase.box";
+function localBoxAll(){ try{ return JSON.parse(localStorage.getItem(LB)||"{}"); }catch(_){ return {}; } }
+function localBoxSet(id, doc){ const all=localBoxAll(); if(doc) all[id]=doc; else delete all[id]; try{ localStorage.setItem(LB, JSON.stringify(all)); }catch(_){ throw {code:"quota"}; } refreshLocalBox(); }
+function refreshLocalBox(){ S.box=Object.entries(localBoxAll()).map(([id,x])=>({id,...x})).sort((a,b)=>(b.updatedAt||"").localeCompare(a.updatedAt||"")); renderBox(); }
+
+function restoreWork(w, b){
+  writeForm(w.inputs);
+  const r=S.run={...w}; delete r.inputs;
+  if(b){ if(b.status==="발행"){ r.status="발행"; r.url=b.url; } if(b.updatedAt>(w.savedAt||"") && b.draft){ r.draft=b.draft; r.applied=b.applied||r.applied; r.edited=b.edited||r.edited; r.human=b.human||r.human; } }
+  if(r.draft0 && r.facts) r.c2=check(r.draft0);
+  if(r.draft && r.facts) r.c3=check(r.draft);
+  r.savedAt=b?.updatedAt||null;
+  resetStages(); markStages(r);
+}
+function markStages(r){
+  const order=["s1","c1","cf","s2","c2","s3","s4","c3"], at=r.next==="done"?order.length:Math.max(0,order.indexOf(r.next));
+  order.forEach((k,i)=>{ if(i<at) stage(k,"done","저장본"); });
+}
+function openBox(id){
+  if(S.busy){ toast("진행 중인 작업을 중지한 뒤 여십시오"); return; }
+  const w=workLoad(id), b=S.box.find(x=>x.id===id);
+  $("confirm").hidden=true; $("manual").hidden=true; say("");
+  if(w) restoreWork(w,b);
+  else if(b){ S.run={id, remote:true, draft:b.draft, view:b.view, crit:b.crit, applied:b.applied||[], human:b.human||[], confirm:{skipped:b.confirmSkipped}, status:b.status, url:b.url, createdAt:b.createdAt, next:b.stage==="done"||b.status!=="작성 중"?"done":b.stage, cat:b.category, edited:b.edited||0, savedAt:b.updatedAt};
+    renderLawyerPicks(b.lawyers||[]); resetStages(); markStages(S.run); }
+  else return;
+  $("pub-url").value=S.run.url||"";
+  show("work"); S.tab="preview"; renderResult();
+  const r=S.run;
+  if(r.next && r.next!=="done"){
+    if(r.remote) say("이 작업은 다른 브라우저에서 진행 중이던 것이라 이어서 실행할 수 없습니다. 작성된 부분까지는 보고 고칠 수 있습니다.");
+    else { const label=r.next==="cf"?"확인 패널":(STAGES.find(s=>s[0]===r.next)||[])[1]; say(`이 작업은 '${esc(label)}' 단계에서 멈춰 있습니다.<div class="btns" style="margin-top:8px"><button class="btn sm primary" type="button" data-retry="${r.next}">이어서 진행</button></div>`); }
+  } else if(r.remote) say("원 자료(원고·사실 목록)는 작업한 브라우저에만 있어 여기서는 보기·고치기·복사·게시 URL 기록만 됩니다. 재작성과 재검사는 작업한 브라우저에서 하십시오.");
+}
+
+/* ───── 저장함 화면 ───── */
+const stNorm = s => s==="검수 완료"?"작성 완료":s;   // 예전 저장본의 상태 이름
+const stLabel = s => s==="발행"?"게시됨":stNorm(s);
+function renderBox(){
+  const el=$("box-list"); if(!el) return;
+  const filt=$("box-filter").value, local=workList(), ids=new Set(S.box.map(b=>b.id));
+  const pending=local.filter(w=>!ids.has(w.id)).map(w=>({id:w.id, listTitle:"", lead:(w.inputs?.src||"").replace(/\s+/g," ").slice(0,60), status:"작성 중", stage:w.next, updatedAt:w.savedAt, localOnly:true}));
+  const rows=[...pending, ...S.box].filter(b=>!filt||stNorm(b.status)===filt).sort((a,b)=>(b.updatedAt||"").localeCompare(a.updatedAt||""));
+  const stName=k=>k==="cf"?"확인 패널":((STAGES.find(s=>s[0]===k)||[])[1]||"");
+  el.innerHTML = rows.length ? rows.map(b=>{
+    const here=!!workLoad(b.id);
+    return `<div class="bx" data-id="${esc(b.id)}">
+      <div class="bx-main"><div class="bx-t"><span class="st ${b.status==="발행"?"통과":b.status==="작성 중"?"주의":"검수"}">${esc(stLabel(b.status))}</span> <b>${esc(b.listTitle||"(제목 없음)")}</b></div>
+        <div class="hint">${[b.category, b.status==="작성 중"&&b.stage?`${stName(b.stage)} 단계`:"", b.fail!=null?`위반 ${b.fail} · 주의 ${b.warn}`:"", `수정 ${fmt(b.updatedAt)}`, b.owner&&b.owner===S.me?"내 작업":"", here?"원 자료 있음(이 브라우저)":"", b.localOnly?"작성 전 단계라 이 브라우저에만 있음":""].filter(Boolean).map(esc).join(" · ")}</div>
+        ${b.lead?`<div class="bx-lead">${esc(b.lead)}</div>`:""}
+        ${b.url?`<a class="bx-url" href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.url)}</a>`:""}</div>
+      <div class="btns"><button class="btn sm primary" type="button" data-bx="open">${b.status==="작성 중"&&here?"이어서":"열기"}</button>
+        ${b.localOnly?"":`<button class="btn sm" type="button" data-bx="pub">게시 URL 기록</button>`}
+        <button class="btn sm danger" type="button" data-bx="del">삭제</button></div>
+      <div class="bx-pub" hidden><input type="url" placeholder="게시한 업무사례 URL" value="${esc(b.url||"")}"><button class="btn sm primary" type="button" data-bx="pubok">기록</button></div>
+    </div>`; }).join("")
+    : `<p class="hint">저장된 작업이 없습니다. 작업 탭에서 실행하면 단계마다 여기에 자동으로 저장됩니다.</p>`;
+}
+$("box-filter").addEventListener("change",renderBox);
+$("box-list").addEventListener("click",async e=>{
+  const b=e.target.closest("[data-bx]"); if(!b) return;
+  const row=b.closest(".bx"), id=row.dataset.id, doc=S.box.find(x=>x.id===id), act=b.dataset.bx;
+  if(act==="open") openBox(id);
+  else if(act==="pub"){ const p=row.querySelector(".bx-pub"); p.hidden=!p.hidden; if(!p.hidden) p.querySelector("input").focus(); }
+  else if(act==="pubok"){
+    const url=row.querySelector(".bx-pub input").value.trim();
+    if(!/^https?:\/\//.test(url)){ toast("게시한 업무사례 URL을 넣어 주십시오"); return; }
+    try{
+      await markPublished(id, url, doc);
+      const upd={...doc, status:"발행", url, updatedAt:now()}; delete upd.id;
+      if(S.local) localBoxSet(id, upd); else await S.db.collection("box").doc(id).set(upd);
+      if(S.run?.id===id){ S.run.status="발행"; S.run.url=url; $("pub-url").value=url; footState(); }
+      toast("게시 URL을 기록하고 게시된 사례 목록에 등록했습니다");
+    }catch(_){ toast("기록하지 못했습니다. 쓰기 권한(참여자 이상)이 필요합니다"); }
+  }
+  else if(act==="del"){
+    if(!b.dataset.armed){ b.dataset.armed="1"; b.textContent="한 번 더 누르면 삭제"; setTimeout(()=>{ if(b.isConnected){ delete b.dataset.armed; b.textContent="삭제"; } },4000); return; }
+    try{
+      if(doc){ if(S.local) localBoxSet(id,null); else await S.db.collection("box").doc(id).delete(); }
+      workDel(id); if(S.run?.id===id){ S.run=null; renderResult(); resetStages(); }
+      renderBox(); toast("삭제했습니다");
+    }catch(_){ toast("삭제하지 못했습니다. 쓰기 권한(참여자 이상)이 필요합니다"); }
+  }
+});
+
+/* ───── 저장소(db, 없으면 브라우저) ───── */
+const LS="jcase.settings";
+function localLoad(){ try{ return JSON.parse(localStorage.getItem(LS)||"null"); }catch(_){ return null; } }
+function localSave(){ try{ localStorage.setItem(LS, JSON.stringify({office:S.office, lawyers:S.lawyers, rules:S.rules, cases:S.cases, legal:S.legal})); }catch(_){ toast("이 브라우저에 저장할 수 없습니다. 내보내기로 보관하십시오"); } }
+function applyLocal(o){ if(!o) return; if(o.office) S.office={...S.office,...o.office}; if(o.lawyers) S.lawyers=o.lawyers; if(o.rules) S.rules={...S.rules,...o.rules,th:{...S.rules.th,...(o.rules.th||{})},tiers:{...S.rules.tiers,...(o.rules.tiers||{})}}; if(o.cases) S.cases=o.cases; if(o.legal) S.legal=o.legal; }
+async function saveSetting(name, data){
+  if(S.local){ localSave(); return; }
+  await S.db.doc("settings/"+name).set(data);
+}
+async function saveReg(col, id, data){
+  if(S.local){ const arr=col==="registry_cases"?S.cases:S.legal, i=arr.findIndex(x=>x.id===id); if(i>=0) arr[i]={id,...data}; else arr.push({id,...data}); localSave(); renderRegs(); return; }
+  await S.db.collection(col).doc(id).set(data);
+}
+async function delReg(col, id){
+  if(S.local){ const arr=col==="registry_cases"?S.cases:S.legal, i=arr.findIndex(x=>x.id===id); if(i>=0) arr.splice(i,1); localSave(); renderRegs(); return; }
+  await S.db.collection(col).doc(id).delete();
+}
+
+/* ───── 설정 화면 ───── */
+function fillSettings(){
+  const o=S.office; $("o-name").value=o.name||""; $("o-phone").value=o.phone||""; $("o-home").value=o.home||""; $("o-addr").value=o.address||""; $("o-cases").value=o.cases||"";
+  $("o-areas").innerHTML=CATS.map(c=>`<label class="f">${c}<input type="url" data-area="${c}" value="${esc(o.areas?.[c]||"")}"></label>`).join("");
+  $("l-rows").innerHTML=(S.lawyers.length?S.lawyers:[{}]).map(lawyerRow).join("");
+  const r=S.rules; $("r-banned").value=r.banned; $("r-ad").value=r.ad; $("r-style").value=r.style; $("r-disc").value=r.disclaimer; $("r-blog").value=r.blog;
+  $("r-th").innerHTML=Object.keys(K.DEFAULT_TH).map(k=>`<label class="f">${TH_LABEL[k]}<input type="number" step="any" data-th="${k}" value="${r.th[k]}"></label>`).join("");
+  $("r-tiers").innerHTML=[["s1","추출"],["s2","작성"],["s3","비판"],["s4","수정"]].map(([k,n])=>`<label class="f">${n}<select data-tier="${k}">${[["quick","빠름"],["default","보통"],["complex","꼼꼼"]].map(([t,l])=>`<option value="${t}" ${r.tiers[k]===t?"selected":""}>${l}</option>`).join("")}</select></label>`).join("");
+  renderRegs(); lockSettings();
+}
+function renderRegs(){
+  const row=(col,x,cells)=>`<tr>${cells.map(c=>`<td>${esc(c)}</td>`).join("")}<td><button class="btn sm ed" type="button" data-del="${col}|${esc(x.id)}">삭제</button></td></tr>`;
+  $("c-list").innerHTML=`<p class="hint">${S.cases.length?`등록된 글 ${S.cases.length}건`:"아직 등록된 글이 없습니다"}</p><table>${S.cases.map(x=>row("registry_cases",x,[x.id,x.listTitle,x.category])).join("")}</table>`;
+  $("g-list").innerHTML=`<p class="hint">${S.legal.length?`등록된 글 ${S.legal.length}건`:"아직 등록된 글이 없습니다"}</p><table>${S.legal.map(x=>row("registry_legal",x,[x.id,x.title,x.category,x.status])).join("")}</table>`;
+  lockSettings();
+}
+function lockSettings(){
+  const can=S.local||S.canEdit;
+  document.querySelectorAll("#view-set .ed").forEach(b=>b.disabled=!can);
+  document.querySelectorAll("#view-set input,#view-set textarea,#view-set select").forEach(i=>{ if(i.id!=="io") i.readOnly=i.disabled=!can; });
+  $("local-io").hidden=!can;
+  $("io-note").textContent = S.local ? "공용 저장소를 쓸 수 없어 설정을 이 브라우저에만 둡니다. 내보내기로 복사해 보관하고, 붙여 넣어 가져옵니다."
+    : "다른 계정의 재가공기로 설정을 옮길 때 씁니다. 사무소 정보·변호사·게시된 사례·법률정보·검사 규칙이 함께 옮겨집니다. 내보내기로 복사한 내용을 받는 쪽 재가공기의 이 칸에 붙여 넣고 가져오기를 누릅니다. 같은 이름의 설정은 덮어씁니다.";
+  $("set-note").textContent = S.local ? "공용 저장소를 쓸 수 없어 이 브라우저에만 저장합니다." : can ? "저장하면 이 재가공기를 쓰는 사람 모두에게 적용됩니다." : "설정은 편집자만 고칠 수 있습니다. 지금 값은 읽기 전용입니다.";
+}
+const LF=[["name","이름",""],["title","직함","예) 대표변호사"],["url","프로필 URL","https://jinnsol.co.kr/page/member_view.php?wr_id=번호"],["spec","등록 전문분야","여럿이면 쉼표로 구분"]];
+const lawyerRow = l => `<div class="l-row">${LF.map(([k,t,ph])=>`<label class="f"><span>${t}</span><input type="${k==="url"?"url":"text"}" data-lk="${k}" value="${esc(l[k]||"")}" placeholder="${esc(ph)}"></label>`).join("")}<button class="btn sm ed danger" type="button" data-ldel>빼기</button></div>`;
+$("l-add").onclick=()=>{ $("l-rows").insertAdjacentHTML("beforeend", lawyerRow({})); $("l-rows").lastElementChild.querySelector("input").focus(); };
+$("l-rows").addEventListener("click",e=>{ const b=e.target.closest("[data-ldel]"); if(!b) return; b.closest(".l-row").remove(); if(!$("l-rows").children.length) $("l-add").click(); toast("뺐습니다. 저장을 눌러야 반영됩니다"); });
+$("view-set").addEventListener("click",async e=>{
+  const b=e.target.closest("[data-del]"); if(!b) return; const [col,id]=b.dataset.del.split("|");
+  try{ await delReg(col,id); toast("삭제했습니다"); }catch(_){ toast("삭제하지 못했습니다"); }
+});
+const guard = fn => async()=>{ try{ await fn(); toast("저장했습니다"); }catch(e){ console.error(e); toast(e?.msg||"저장하지 못했습니다. 편집자 권한이 필요합니다"); } };
+$("sv-office").onclick=guard(async()=>{
+  const areas={}; document.querySelectorAll("[data-area]").forEach(i=>areas[i.dataset.area]=i.value.trim());
+  S.office={name:$("o-name").value.trim(), phone:$("o-phone").value.trim(), home:$("o-home").value.trim(), address:$("o-addr").value.trim(), cases:$("o-cases").value.trim(), areas};
+  await saveSetting("office", S.office);
+});
+$("sv-lawyers").onclick=guard(async()=>{
+  S.lawyers=[...document.querySelectorAll("#l-rows .l-row")].map(row=>Object.fromEntries(LF.map(([k])=>[k, row.querySelector(`[data-lk="${k}"]`).value.trim()]))).filter(l=>l.name);
+  renderLawyerPicks(); await saveSetting("lawyers",{list:S.lawyers});
+});
+$("sv-rules").onclick=guard(async()=>{
+  const th={}; document.querySelectorAll("[data-th]").forEach(i=>th[i.dataset.th]=Number(i.value));
+  const tiers={}; document.querySelectorAll("[data-tier]").forEach(s=>tiers[s.dataset.tier]=s.value);
+  const bad=[...K.parseRules($("r-ad").value),...K.parseRules($("r-style").value)].filter(r=>r.error);
+  if(bad.length) throw {msg:"정규식 오류로 저장하지 않았습니다: "+bad[0].src};
+  S.rules={banned:$("r-banned").value, ad:$("r-ad").value, style:$("r-style").value, th, disclaimer:$("r-disc").value.trim(), blog:$("r-blog").value.trim(), tiers};
+  await saveSetting("rules", S.rules);
+});
+$("r-reset").onclick=()=>{ const r=DEF.rules; $("r-banned").value=r.banned; $("r-ad").value=r.ad; $("r-style").value=r.style; document.querySelectorAll("[data-th]").forEach(i=>i.value=r.th[i.dataset.th]); toast("기본값을 채웠습니다. 저장을 눌러야 적용됩니다"); };
+async function bulk(col, text, map){
+  const rows=text.split("\n").map(l=>l.split("\t").map(x=>x.trim())).filter(a=>a[0]&&a[1]); let n=0;
+  for(const a of rows){ const [id,doc]=map(a); await saveReg(col,id,doc); n++; }
+  return n;
+}
+$("sv-cases").onclick=async()=>{
+  try{ const n=await bulk("registry_cases",$("c-paste").value,a=>[docId("case-",a[1]),{listTitle:a[0],pageTitle:"",url:a[1],category:a[2]||"",createdAt:now()}]); $("c-paste").value=""; toast(`${n}건 등록했습니다`); }
+  catch(_){ toast("등록하지 못했습니다. 탭으로 구분했는지, 쓰기 권한이 있는지 확인하십시오"); }
+};
+$("sv-legal").onclick=async()=>{
+  try{ const n=await bulk("registry_legal",$("g-paste").value,a=>[docId("legal-",a[1]),{title:a[0],url:a[1],category:a[2]||"",tags:(a[3]||"").split(",").map(x=>x.trim()).filter(Boolean),status:a[4]==="테스트"?"테스트":"게시"}]); $("g-paste").value=""; toast(`${n}건 등록했습니다`); }
+  catch(_){ toast("등록하지 못했습니다. 탭으로 구분했는지, 쓰기 권한이 있는지 확인하십시오"); }
+};
+$("io-out").onclick=()=>{ $("io").value=JSON.stringify({office:S.office,lawyers:S.lawyers,rules:S.rules,cases:S.cases,legal:S.legal},null,1); copy($("io").value,$("io")); };
+$("io-in").onclick=async()=>{
+  let o; try{ o=JSON.parse($("io").value); }catch(_){ toast("내보내기로 복사한 내용 전체를 그대로 붙여 넣으십시오"); return; }
+  if(S.local){ applyLocal(o); localSave(); fillSettings(); renderLawyerPicks(); toast("가져왔습니다"); return; }
+  try{
+    if(o.office) await saveSetting("office", {...DEF.office, ...o.office, areas:{...DEF.office.areas, ...(o.office.areas||{})}});
+    if(Array.isArray(o.lawyers)) await saveSetting("lawyers", {list:o.lawyers});
+    if(o.rules) await saveSetting("rules", {...DEF.rules, ...o.rules, th:{...DEF.rules.th, ...(o.rules.th||{})}, tiers:{...DEF.rules.tiers, ...(o.rules.tiers||{})}});
+    let n=0;
+    for(const [col,list,pre] of [["registry_cases",o.cases,"case-"],["registry_legal",o.legal,"legal-"]])
+      for(const {id,...doc} of list||[]){ await saveReg(col, /^[A-Za-z0-9_-]+$/.test(id||"")?id:docId(pre,doc.url||""), doc); n++; }
+    $("io").value=""; toast(`가져왔습니다(게시글 목록 ${n}건 포함)`);
+  }catch(e){ console.error(e); toast("가져오지 못했습니다. 편집자 권한이 필요합니다"); }
+};
+
+/* ───── 화면 전환·입력 이벤트 ───── */
+function show(v){ for(const k of ["work","box","set","help"]){ $("view-"+k).hidden=v!==k; $("tab-"+k).setAttribute("aria-selected",String(v===k)); } if(v==="box") renderBox(); }
+$("tab-work").onclick=()=>show("work"); $("tab-box").onclick=()=>show("box"); $("tab-help").onclick=()=>show("help"); $("tab-set").onclick=()=>{ fillSettings(); show("set"); };
+// 잠그지 않는다: '작성 다시'가 새 설정을 읽어야 한다. 대신 검사는 바로 새 설정으로 다시 돌린다
+["field","consent","jur","time","sensitive"].forEach(id=>$(id).addEventListener("change",()=>{
+  syncDisclosure(); const r=S.run;
+  if(r?.draft){ if(hasSource()) r.c3=check(r.draft); renderResult(); persist(); } else workSave();
+}));
+function setManual(on){ S.manual=on; $("manual-on").checked=on; $("mode-note").textContent=on?"수동 모드: 단계별 프롬프트를 복사해 결과를 붙여 넣습니다":""; }
+$("manual-on").addEventListener("change",e=>{ if(!e.target.checked&&!S.sample){ e.target.checked=true; toast("이 화면에서는 자동 호출을 쓸 수 없습니다"); return; } setManual(e.target.checked); });
+$("form").addEventListener("submit",e=>{
+  e.preventDefault(); if(S.busy) return;
+  if(!$("src").value.trim()){ toast("블로그 원고를 붙여 넣어 주십시오"); return; }
+  $("confirm").hidden=true; $("pub-url").value=""; S.jsonFails=0; S.tab="preview";
+  S.run={id:uid(), createdAt:now()}; renderResult(); $("prog").scrollIntoView({block:"start"}); go("s1");
+});
+window.addEventListener("pagehide",()=>{ if(S.run&&!S.run.remote) workSave(); });
+
+/* ───── 시작: 호출 없이 연결 상태와 중단된 작업만 확인 ───── */
+function pill(id,on,t){ const p=$(id); p.textContent=t; p.className="pill "+(on?"on":"off"); }
+function offerResume(){
+  const w=workList().find(x=>x.next&&x.next!=="done"); if(!w||S.run) return;
+  const title=w.draft?.list_title?.text || (w.inputs?.src||"").replace(/\s+/g," ").slice(0,40)+"…";
+  say(`마치지 못한 작업이 있습니다: <b>${esc(title)}</b> (${esc(fmt(w.savedAt))})<div class="btns" style="margin-top:8px"><button class="btn sm primary" type="button" data-open="${esc(w.id)}">열기</button><button class="btn sm" type="button" data-discard="${esc(w.id)}">버리기</button></div>`);
+}
+function goLocal(){ S.local=true; applyLocal(localLoad()); renderLawyerPicks(); pill("st-db",false,"브라우저 저장"); lockSettings(); refreshLocalBox(); offerResume(); }
+resetStages(); renderResult(); syncDisclosure(); renderLawyerPicks();
+(async()=>{
+  const C=window.claude;
+  if(!C?.use){ setManual(true); pill("st-claude",false,"수동 모드"); goLocal(); return; }
+  C.use("sample").then(s=>{ S.sample=s; if(!s){ setManual(true); pill("st-claude",false,"수동 모드"); } else pill("st-claude",true,"Claude 사용 가능"); });
+  C.use("user").then(async u=>{ S.user=u; if(u){ S.canEdit=await u.canEdit(); S.me=await u.id(); } lockSettings(); });
+  C.use("db").then(db=>{
+    S.db=db;
+    if(!db){ goLocal(); return; }
+    pill("st-db",true,"공용 저장소");
+    const doc=(name,fn)=>db.doc("settings/"+name).onSnapshot(s=>{ if(s.exists){ fn(s.data()); if(!$("view-set").hidden) fillSettings(); } },()=>{});
+    doc("office",d=>{ S.office={...DEF.office,...d, areas:{...DEF.office.areas,...(d.areas||{})}}; });
+    doc("lawyers",d=>{ S.lawyers=Array.isArray(d.list)?d.list:[]; renderLawyerPicks(S.run?.remote?undefined:workLoad(S.run?.id)?.inputs?.lawyers); });
+    doc("rules",d=>{ S.rules={...DEF.rules,...d, th:{...DEF.rules.th,...(d.th||{})}, tiers:{...DEF.rules.tiers,...(d.tiers||{})}}; });
+    db.collection("registry_cases").limit(1000).onSnapshot(s=>{ S.cases=s.docs.map(x=>({id:x.id,...x.data()})); if(!$("view-set").hidden) renderRegs(); },()=>{});
+    db.collection("registry_legal").limit(1000).onSnapshot(s=>{ S.legal=s.docs.map(x=>({id:x.id,...x.data()})); if(!$("view-set").hidden) renderRegs(); },()=>{});
+    db.collection("box").orderBy("updatedAt","desc").limit(300).onSnapshot(s=>{ S.box=s.docs.map(x=>({id:x.id,...x.data()})); if(!$("view-box").hidden) renderBox(); },()=>pill("st-db",false,"저장함 연결 끊김"));
+    offerResume();
+  });
+})();
+</script>
