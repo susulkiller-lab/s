@@ -238,6 +238,16 @@ mark.ov{background:var(--mark);color:inherit;padding:0}
 .st.검수{background:var(--accent-soft);color:var(--accent)}
 .btn.danger{color:var(--fail)}
 
+/* 사용법 */
+.help{max-width:820px;margin:16px auto 0}
+.help .panel-b{gap:10px;padding:20px 22px;font-size:14.5px;line-height:1.75}
+.help h2{font-family:var(--serif);font-size:22px;margin:0}
+.help h3{font-size:16px;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.help p,.help ol,.help ul{margin:0}
+.help ol,.help ul{padding-left:22px;display:grid;gap:6px}
+.help .lede{font-size:15px;color:var(--ink)}
+.help .tip{font-size:13px;color:var(--muted);background:var(--surface-2);border-radius:6px;padding:8px 12px}
+
 /* 설정 */
 .sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px;margin-top:16px;align-items:start}
 .reg{max-height:240px;overflow:auto;font-size:12px}
@@ -254,6 +264,7 @@ mark.ov{background:var(--mark);color:inherit;padding:0}
       <button class="tab" id="tab-work" role="tab" aria-selected="true">작업</button>
       <button class="tab" id="tab-box" role="tab" aria-selected="false">저장함</button>
       <button class="tab" id="tab-set" role="tab" aria-selected="false">설정</button>
+      <button class="tab" id="tab-help" role="tab" aria-selected="false">사용법</button>
     </nav>
     <div class="status"><span class="pill" id="st-claude">Claude 확인 중</span><span class="pill" id="st-db">저장소 확인 중</span></div>
   </header>
@@ -343,6 +354,78 @@ mark.ov{background:var(--mark);color:inherit;padding:0}
     </div>
   </section>
 
+  <section id="view-help" hidden>
+    <article class="panel help">
+      <div class="panel-b">
+        <h2>사용법</h2>
+        <p class="lede">블로그에 올린 성공사례 글을 붙여 넣으면, 홈페이지 '주요 업무사례'에 올릴 글을 새로 쓰고 문제를 검사해 줍니다. 검사하는 것은 근거 없는 수치·처분명, 광고 규정 위반, 사건 관계인 노출, 블로그와 지나치게 비슷한 문장입니다. 블로그 문장을 고쳐 쓰는 방식이 아니라, 사실만 뽑아 처음부터 다시 씁니다.</p>
+
+        <h3>처음 한 번만: 설정 채우기 <span class="tag">편집자</span></h3>
+        <ol>
+          <li><b>변호사 목록</b>: 한 줄에 한 명씩 '이름 | 직함 | 프로필 URL | 등록 전문분야'로 적고 저장합니다. 여기 넣은 변호사가 작업 화면의 '담당 변호사'에 나옵니다.</li>
+          <li><b>게시된 사례 목록</b>: 홈페이지에 이미 올라간 업무사례 글입니다. 새 글 제목이 기존 글과 겹치는지 검사하고, 글 끝 '관련 링크'에 같은 분류의 사례를 고르는 데 씁니다. 엑셀에 A열 제목, B열 URL, C열 분류를 적고 행을 복사해 붙여 넣은 뒤 '일괄 등록'을 누릅니다.</li>
+          <li><b>법률정보 목록</b>: 홈페이지 법률정보 글입니다. '관련 링크'에 같은 쟁점의 글을 고르는 데 씁니다. 엑셀 A열 제목, B열 URL, C열 분류, D열 태그(쉼표로 구분), E열 상태(게시 또는 테스트)로 같은 방법으로 넣습니다. 테스트 글은 링크에서 뺍니다.</li>
+          <li><b>사무소 정보</b>: 주소를 넣고 저장합니다. 업무분야 URL은 미리 들어 있습니다.</li>
+        </ol>
+        <p class="tip">목록이 비어 있어도 작업은 됩니다. 제목 중복 검사와 관련 링크만 빠집니다.</p>
+
+        <h3>글 한 편 만들기</h3>
+        <ol>
+          <li><b>작업</b> 탭의 '블로그 성공사례 원고' 칸에 블로그 글 전체를 붙여 넣습니다.</li>
+          <li>분야(모르면 '자동')와 담당 변호사를 고릅니다.</li>
+          <li><b>공개 설정</b>을 고릅니다. 의뢰인이 공개에 동의했는지, 관할(법원·검찰청·경찰서 이름)과 결과 시점을 쓸지 정합니다. 동의가 '미확인'이거나 이혼·성범죄·아동·학대·소년·학교폭력 사건이면 관할과 시점은 저절로 빠집니다.</li>
+          <li>판결문·처분통지서에서 확인한 사실이 있으면 '사건 기록 확인 사실' 칸에 한 줄에 하나씩, 끝에 출처를 붙여 적습니다. 예) 검찰이 불기소(혐의없음) 처분을 함 [처분통지서]. 블로그보다 정확한 글이 됩니다.</li>
+          <li>같은 사건을 다룬 다른 글(네플라 등)이 있으면 '다른 채널 원고'에 넣습니다. 비슷한지 비교만 하고 글에는 쓰지 않습니다.</li>
+          <li><b>실행</b>을 누릅니다. 처음에는 Claude 사용을 허락하는 창이 뜹니다. 사용량은 각자의 claude.ai 계정에서 나갑니다. '진행' 칸에서 지금 어느 단계인지 보이고, 멈추려면 '중지'를 누릅니다.</li>
+        </ol>
+
+        <h3>확인 패널이 뜨면</h3>
+        <p>사람이 정해야 할 것이 있을 때만 작성 전에 멈추고 뜹니다. 번호 카드마다 할 일이 적혀 있습니다.</p>
+        <ul>
+          <li><b>결과의 정식 명칭</b>: 처분통지서·판결문에 적힌 그대로 씁니다. 예) 불송치(혐의없음) 결정</li>
+          <li><b>관계인을 알아볼 수 있는 표현</b>: 홈페이지에 쓸 말로 고치거나 '아예 빼기'를 체크합니다.</li>
+          <li><b>조문·판례</b>: 원문과 대조해 확인한 것만 체크합니다. 체크하지 않으면 글에서 뺍니다.</li>
+          <li><b>원고와 기록이 다른 부분</b>: 어느 쪽으로 쓸지 고릅니다.</li>
+          <li><b>요약표 빈칸</b>: 아는 값을 적습니다. 비워 두면 '확인 필요'로 나갑니다.</li>
+        </ul>
+        <p>다 정했으면 <b>이대로 작성</b>을 누릅니다.</p>
+
+        <h3>결과 보고 고치기</h3>
+        <ul>
+          <li><b>맨 위 띠</b>가 결론입니다. 빨간 띠에 '고칠 것 n건'이 있으면 '첫 번째 고치기'를 누르면 그 칸으로 갑니다. 초록 띠 '위반 없음'이면 올려도 되는 상태입니다.</li>
+          <li><b>미리보기</b>: 홈페이지에 올라갈 모습입니다.</li>
+          <li><b>수정·복사</b>: 흰 칸에서 바로 고칩니다. 칸 밖을 누르면 반영되고 다시 검사합니다. 칸 아래 빨간 줄은 꼭 고칠 것, 노란 줄은 살펴볼 것, 초록 줄은 검수 의견입니다. 초록 줄의 '제안 적용'을 누르면 제안대로 바뀝니다. 회색 칸은 흰 칸에서 자동으로 만들어지니 고치지 않아도 됩니다.</li>
+          <li><b>검증 리포트</b>: 항목별 결과입니다. '고치기'를 누르면 해당 칸으로 갑니다. 아래 '게시 전 확인' 7개는 사람이 직접 확인하고 체크합니다.</li>
+          <li><b>원문 대조</b>: 노란 글자가 블로그 글과 똑같은 부분입니다.</li>
+        </ul>
+        <p>결과 아래 버튼으로 다시 쓸 수 있습니다. '작성 다시'는 같은 사실로 새로 쓰고, '지적 반영 다시'는 지적만 다시 고쳐 쓰고, '확인 패널 다시 열기'는 정식 명칭 같은 결정을 바꿔 다시 씁니다. 직접 고친 내용이 있으면 한 번 더 눌러야 실행되고, 실행 뒤에도 '다시 쓰기 전으로 되돌리기'로 돌아갈 수 있습니다.</p>
+
+        <h3>홈페이지에 올리기</h3>
+        <ol>
+          <li>맨 위 띠가 '위반 없음'인지, 검증 리포트의 '게시 전 확인' 7개를 다 체크했는지 봅니다.</li>
+          <li><b>수정·복사</b> 탭에서 칸마다 '복사'를 눌러 홈페이지 관리자 화면에 붙여 넣습니다. 관리자 화면이 HTML을 받으면 맨 아래 '다른 형식'을 펼쳐 씁니다.</li>
+          <li>올린 뒤 결과 아래 칸에 그 글의 주소(URL)를 넣고 <b>게시 URL 기록</b>을 누릅니다. 게시된 사례 목록에도 저절로 추가됩니다.</li>
+          <li><b>블로그 연결 문구 복사</b>를 눌러 블로그 원글 끝에 붙입니다.</li>
+        </ol>
+
+        <h3>저장함</h3>
+        <ul>
+          <li>작업은 단계마다 저절로 저장됩니다. 창을 닫았다 다시 열면 '마치지 못한 작업' 안내가 뜨고, '열기' 다음 '이어서 진행'을 누르면 멈춘 곳부터 다시 합니다.</li>
+          <li>상태는 작성 중, 작성 완료, 게시됨 셋입니다. '열기', '게시 URL 기록', '삭제'를 쓸 수 있고, 삭제는 두 번 눌러야 지워집니다.</li>
+          <li>블로그 원고와 사건 기록은 작업한 컴퓨터의 브라우저에만 남습니다. 다른 컴퓨터에서 열면 보기·고치기·복사만 되고, 다시 쓰기와 재검사는 작업한 컴퓨터에서 합니다.</li>
+        </ul>
+
+        <h3>막힐 때</h3>
+        <ul>
+          <li><b>'수동 모드'로 바뀜</b>: 이 화면에서 Claude를 바로 부를 수 없을 때입니다. 단계마다 '프롬프트 복사' → claude.ai 새 대화에 붙여 넣기 → 받은 답 전체를 '결과 JSON' 칸에 붙여 넣고 '결과 적용'. 최대 4번 반복합니다.</li>
+          <li><b>저장이나 기록이 안 됨</b>: 공유받은 권한이 '참여자' 이상이어야 합니다. 설정을 고치려면 '편집자'여야 합니다.</li>
+          <li><b>'JSON으로 읽지 못했습니다'</b>: '다시 시도'를 누릅니다. 되풀이되면 원고에서 홍보 문단·연락처·해시태그를 지우고 다시 실행합니다.</li>
+          <li><b>'근거 구절이 맞지 않아 멈췄습니다'</b>: 실행을 다시 누릅니다.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
   <section id="view-set" hidden>
     <p class="hint" id="set-note" style="margin-top:12px"></p>
     <div class="sets">
@@ -355,14 +438,14 @@ mark.ov{background:var(--mark);color:inherit;padding:0}
           <div class="f"><span>업무분야 URL</span><div id="o-areas" class="row2"></div></div>
         </div></div>
       <div class="panel"><div class="panel-h"><h2>변호사 목록</h2><button class="btn sm ed" id="sv-lawyers" type="button">저장</button></div>
-        <div class="panel-b"><p class="hint">한 줄에 한 명: 이름 | 직함 | 프로필 URL | 등록 전문분야(대한변협 등록 분야만, 쉼표 구분)</p>
+        <div class="panel-b"><p class="hint">작업 화면의 '담당 변호사'에 나올 사람입니다. 한 줄에 한 명씩 이름 | 직함 | 프로필 URL | 등록 전문분야 순서로, 세로 막대(|)로 나눠 적습니다. 등록 전문분야는 대한변협에 등록한 분야만 적고, 여럿이면 쉼표로 나눕니다.</p>
           <textarea id="l-text" class="mono" rows="6"></textarea></div></div>
       <div class="panel"><div class="panel-h"><h2>게시된 사례 목록</h2><button class="btn sm ed" id="sv-cases" type="button">일괄 등록</button></div>
-        <div class="panel-b"><p class="hint">한 줄에 하나: 제목[탭]URL[탭]분류. 문서 id는 URL의 wr_id로 정합니다(case-110).</p>
-          <textarea id="c-paste" class="mono" rows="4"></textarea><div class="reg" id="c-list"></div></div></div>
+        <div class="panel-b"><p class="hint">홈페이지 '주요 업무사례'에 이미 올라간 글 목록입니다. 새 글 제목이 기존 글과 겹치는지 검사하고, 글 끝 '관련 링크'에 같은 분류 사례를 고르는 데 씁니다.<br>넣는 법: 엑셀에 A열 제목, B열 URL, C열 분류(형사·민사·이혼·상속·행정·산재·부동산·건설)를 적고, 그 행들을 복사해 아래 칸에 붙여 넣은 뒤 '일괄 등록'을 누릅니다. 이 도구에서 '게시 URL 기록'을 한 글은 저절로 들어갑니다.</p>
+          <textarea id="c-paste" class="mono" rows="4" placeholder="엑셀에서 복사한 행을 여기에 붙여 넣으십시오"></textarea><div class="reg" id="c-list"></div></div></div>
       <div class="panel"><div class="panel-h"><h2>법률정보 목록</h2><button class="btn sm ed" id="sv-legal" type="button">일괄 등록</button></div>
-        <div class="panel-b"><p class="hint">한 줄에 하나: 제목[탭]URL[탭]분류[탭]태그(쉼표)[탭]상태(게시/테스트)</p>
-          <textarea id="g-paste" class="mono" rows="4"></textarea><div class="reg" id="g-list"></div></div></div>
+        <div class="panel-b"><p class="hint">홈페이지 법률정보 글 목록입니다. 글 끝 '관련 링크'에 같은 쟁점의 글을 고르는 데 씁니다.<br>넣는 법: 엑셀에 A열 제목, B열 URL, C열 분류, D열 태그(쉼표로 구분), E열 상태(게시 또는 테스트)를 적고, 행들을 복사해 붙여 넣은 뒤 '일괄 등록'을 누릅니다. 테스트 글은 링크에서 뺍니다.</p>
+          <textarea id="g-paste" class="mono" rows="4" placeholder="엑셀에서 복사한 행을 여기에 붙여 넣으십시오"></textarea><div class="reg" id="g-list"></div></div></div>
       <div class="panel"><div class="panel-h"><h2>검사 규칙</h2><button class="btn sm ed" id="sv-rules" type="button">저장</button></div>
         <div class="panel-b">
           <label class="f">프롬프트용 금지 표현(작성·비판 단계에 그대로 들어갑니다)<textarea id="r-banned" rows="5"></textarea></label>
@@ -1245,7 +1328,7 @@ function humanList(v){
 function renderResult(){
   document.querySelectorAll(".rtab").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.t===S.tab)));
   const d=S.run?.draft, body=$("rbody"); $("rfoot").hidden=!d; footState();
-  if(!d){ $("verdict").hidden=true; body.innerHTML=`<div class="empty"><p>원고를 붙여 넣고 실행하면 이 자리에 홈페이지 사례 미리보기, 수정·복사 칸, 검증 리포트, 원문 대조가 나옵니다. 작업은 단계마다 저장함에 자동 저장됩니다.</p>
+  if(!d){ $("verdict").hidden=true; body.innerHTML=`<div class="empty"><p>처음 쓰시면 위쪽 '사용법' 탭을 먼저 보십시오.</p><p>원고를 붙여 넣고 실행하면 이 자리에 홈페이지 사례 미리보기, 수정·복사 칸, 검증 리포트, 원문 대조가 나옵니다. 작업은 단계마다 저장함에 자동 저장됩니다.</p>
     <ol><li>원고와 사건 기록에서 사실만 뽑고 근거 구절을 자동으로 대조합니다.</li><li>사람이 정할 항목(정식 처분명, 식별 표현, 조문·판례)은 확인 패널에서 멈춥니다.</li><li>원고 문장을 보지 않고 사실 목록만으로 새로 씁니다.</li><li>자동 검사, 독립 비판, 한 번의 자동 수정을 거친 뒤 '수정·복사' 탭에서 직접 고칠 수 있습니다.</li></ol></div>`; return; }
   ({preview:renderPreview, copy:renderCopy, report:renderReport, cmp:renderCmp})[S.tab](body, d);
   renderVerdict();
@@ -1625,8 +1708,8 @@ function fillSettings(){
 }
 function renderRegs(){
   const row=(col,x,cells)=>`<tr>${cells.map(c=>`<td>${esc(c)}</td>`).join("")}<td><button class="btn sm ed" type="button" data-del="${col}|${esc(x.id)}">삭제</button></td></tr>`;
-  $("c-list").innerHTML=`<p class="hint">${S.cases.length}건</p><table>${S.cases.map(x=>row("registry_cases",x,[x.id,x.listTitle,x.category])).join("")}</table>`;
-  $("g-list").innerHTML=`<p class="hint">${S.legal.length}건</p><table>${S.legal.map(x=>row("registry_legal",x,[x.id,x.title,x.category,x.status])).join("")}</table>`;
+  $("c-list").innerHTML=`<p class="hint">${S.cases.length?`등록된 글 ${S.cases.length}건`:"아직 등록된 글이 없습니다"}</p><table>${S.cases.map(x=>row("registry_cases",x,[x.id,x.listTitle,x.category])).join("")}</table>`;
+  $("g-list").innerHTML=`<p class="hint">${S.legal.length?`등록된 글 ${S.legal.length}건`:"아직 등록된 글이 없습니다"}</p><table>${S.legal.map(x=>row("registry_legal",x,[x.id,x.title,x.category,x.status])).join("")}</table>`;
   lockSettings();
 }
 function lockSettings(){
@@ -1675,8 +1758,8 @@ $("io-out").onclick=()=>{ $("io").value=JSON.stringify({office:S.office,lawyers:
 $("io-in").onclick=()=>{ try{ applyLocal(JSON.parse($("io").value)); localSave(); fillSettings(); renderLawyerPicks(); toast("가져왔습니다"); }catch(_){ toast("JSON 형식이 아닙니다"); } };
 
 /* ───── 화면 전환·입력 이벤트 ───── */
-function show(v){ for(const k of ["work","box","set"]){ $("view-"+k).hidden=v!==k; $("tab-"+k).setAttribute("aria-selected",String(v===k)); } if(v==="box") renderBox(); }
-$("tab-work").onclick=()=>show("work"); $("tab-box").onclick=()=>show("box"); $("tab-set").onclick=()=>{ fillSettings(); show("set"); };
+function show(v){ for(const k of ["work","box","set","help"]){ $("view-"+k).hidden=v!==k; $("tab-"+k).setAttribute("aria-selected",String(v===k)); } if(v==="box") renderBox(); }
+$("tab-work").onclick=()=>show("work"); $("tab-box").onclick=()=>show("box"); $("tab-help").onclick=()=>show("help"); $("tab-set").onclick=()=>{ fillSettings(); show("set"); };
 // 잠그지 않는다: '작성 다시'가 새 설정을 읽어야 한다. 대신 검사는 바로 새 설정으로 다시 돌린다
 ["field","consent","jur","time","sensitive"].forEach(id=>$(id).addEventListener("change",()=>{
   syncDisclosure(); const r=S.run;
