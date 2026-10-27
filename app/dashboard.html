@@ -950,7 +950,8 @@ function openAdmin(view="tasks"){const td=today(),ts=taskList(),mem=Object.entri
         <div class="fld"><label for="n-a">담당</label>${asel("n-a","team")}</div></div>
       <div class="fld"><label><input type="checkbox" id="n-l"> 링크로 체크(발행 업무)</label></div>
       <div class="fld"><label for="n-s">시작일</label><input type="date" id="n-s" value="${td}"></div>
-      <button type="button" class="main-btn" id="n-go">업무 추가</button></details>`;
+      <button type="button" class="main-btn" id="n-go">업무 추가</button></details>
+    ${ts.length?'<button type="button" class="link-btn" id="wipe-btn" style="margin-top:8px;color:var(--late)">업무 목록 비우기</button>':""}`;
   if(view==="members")body=mem.length?mem.map(([u,m],i)=>`<div class="adm-task"><div class="l">${esc(m.name)}<small>${m.active===false?"비활성":"활성"}</small></div>
       <button type="button" class="icon-btn" data-mmv="${u}" data-d="-1" aria-label="위로"${i?"":" disabled"}>${ICON.up}</button><button type="button" class="icon-btn" data-mmv="${u}" data-d="1" aria-label="아래로"${i<mem.length-1?"":" disabled"}>${ICON.down}</button>
       <button type="button" class="link-btn" data-act-m="${u}">${m.active===false?"활성으로":"비활성으로"}</button></div>`).join("")+'<p class="muted">팀원은 업무판을 처음 열 때 이름을 직접 등록해요.</p>':'<p class="empty">등록한 팀원이 없어요. 팀원이 업무판을 처음 열면 이름을 등록해요.</p>';
@@ -963,6 +964,7 @@ function openAdmin(view="tasks"){const td=today(),ts=taskList(),mem=Object.entri
     sh.querySelectorAll("[data-mv]").forEach(b=>b.onclick=async()=>{const i=ts.findIndex(X=>X.id===b.dataset.mv),j=i+ +b.dataset.d;if(j<0||j>=ts.length)return;
       const a=ts[i],c=ts[j];[a.order,c.order]=[j,i];dirty();await writeDoc("tasks/"+a.id,{order:j});await writeDoc("tasks/"+c.id,{order:i});ts.forEach((X,k)=>{if(X.order==null)X.order=k;});openAdmin("tasks");});
     sh.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>openTaskEdit(S.tasks[b.dataset.edit]));
+    $("wipe-btn")&&($("wipe-btn").onclick=openWipe);
     $("n-go")&&($("n-go").onclick=async()=>{const t=$("n-t").value.trim();if(!t)return toast("업무 이름을 적어 주세요");const kind=$("n-k").value,st=$("n-s").value||td;
       let due=$("n-due").value;if(kind==="monthly"&&due!=="last")due="last";if(kind==="weekly"&&due==="last")due="5";
       const id="t"+rid(),X={title:t,ch:$("n-ch").value,kind,unit:$("n-u").value,link:$("n-l").checked,match:"",versions:[{from:st,qty:Math.max(1,+$("n-q").value||1),due:kind==="daily"?0:kind==="weekly"?+due:"last",assignee:$("n-a").value}],pauses:[],startAt:st,endAt:"",order:ts.length,createdAt:new Date().toISOString(),updatedAt:new Date().toISOString()};
@@ -998,6 +1000,20 @@ function openTaskEdit(X){const td=today(),v=ver(X,td),mem=Object.entries(S.membe
     $("e-stop").onclick=async()=>{const has=index().all.some(e=>e.t===X.id);
       if(!has){delete S.tasks[X.id];dirty();await writeDoc("tasks/"+X.id,{},"delete");toast("기록이 없어 업무를 지웠어요");}
       else{S.tasks[X.id].endAt=td;dirty();await writeDoc("tasks/"+X.id,{endAt:td});toast("오늘까지만 하고 그만해요. 기록은 남아요");}openAdmin("tasks");};});}
+// 업무 목록 비우기: 반복 업무를 지워 [초기 업무 불러오기]가 다시 나오게 한다. 지시·체크 기록·문의는 골라서 함께 지운다
+function openWipe(){const sps=Object.keys(S.sp),logs=[];for(const[u,ws]of Object.entries(S.logs))for(const wk of Object.keys(ws))logs.push(`logs/${u}/w/${wk}`);
+  const inq=[];for(const[ym,items]of Object.entries(S.inq))for(const id of Object.keys(items))inq.push(`inq/${ym}/items/${id}`);
+  sheet(`<h3 id="sh-t">업무 목록 비우기</h3><p class="note">반복 업무 ${taskList().length}개를 지워요. 비우면 오늘 화면에 [초기 업무 불러오기]가 다시 나와요. 지운 것은 되돌릴 수 없어요.</p>
+    <label class="ck"><input type="checkbox" id="w-s" ${sps.length?"checked":"disabled"}> 지시 ${sps.length}건도 지우기</label>
+    <label class="ck"><input type="checkbox" id="w-l" ${logs.length?"checked":"disabled"}> 체크·붙여넣기 기록도 모두 지우기 <span class="muted">(팀 전체 ${logs.length}주치)</span></label>
+    ${S.inqOK?`<label class="ck"><input type="checkbox" id="w-q" ${inq.length?"":"disabled"}> 문의 기록 ${inq.length}건도 지우기</label>`:""}
+    <div class="row-actions"><button type="button" class="main-btn danger" id="w-go">비우기</button><button type="button" class="sub-btn" id="w-x">취소</button></div>`,()=>{
+    $("w-x").onclick=()=>openAdmin("tasks");
+    $("w-go").onclick=async()=>{$("w-go").disabled=true;const paths=[...Object.keys(S.tasks).map(id=>"tasks/"+id),...($("w-s").checked?sps.map(id=>"specials/"+id):[]),...($("w-l").checked?logs:[]),...($("w-q")?.checked?inq:[])];
+      const wipeSp=$("w-s").checked;closeSheet();S.tasks={};if(wipeSp)S.sp={};
+      for(const path of paths)await writeDoc(path,{},"delete");
+      if(paths.some(x=>x.startsWith("logs/"))){S.pend={};S.known.clear();}
+      S.seen.clear();S.prevPct=null;dirty();go("today");toast(`${paths.length}개 항목을 지웠어요`);};});}
 async function seed(){const b=$("seed-btn");if(b)b.disabled=true;const td=today(),now=new Date().toISOString();
   for(const[i,[title,ch,kind,unit,qty,due,link,match]]of SEED.entries()){const id="t"+rid(),X={title,ch,kind,unit,link:!!link,match,versions:[{from:td,qty,due,assignee:"team"}],pauses:[],startAt:td,endAt:"",order:i,createdAt:now,updatedAt:now};
     if(!await writeDoc("tasks/"+id,X,"set"))return;S.tasks[id]={id,...X};}
