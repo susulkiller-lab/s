@@ -148,7 +148,7 @@ function mask(s, office) {
   return t.replace(ENDING_RE, '□').replace(/\s+/g, '');
 }
 function grams(t, n = 6) { const a = []; for (let i = 0; i + n <= t.length; i++) a.push(t.slice(i, i + n)); return a; }
-function similarity(list, source, office, th) {
+function similarity(list, source, office, th, label = '블로그 원고') {
   const S = mask(source, office), G = new Set(grams(S)), runs = [], sent = [];
   let hit = 0, all = 0;
   for (const it of list) {
@@ -161,9 +161,9 @@ function similarity(list, source, office, th) {
     if (nospace(it.text).length >= 30 && g.length) sent.push({ loc: it.loc, pct: Math.round(100 * h / g.length) });
   }
   const total = all ? Math.round(100 * hit / all) : 0, f = [];
-  if (runs.length > th.run20) runs.forEach(r => f.push({ level: '위반', loc: r.loc, msg: `원고와 ${r.len}자 연속 일치(마스킹 후): ${r.text}` }));
-  sent.filter(s => s.pct > th.sentPct).forEach(s => f.push({ level: '위반', loc: s.loc, msg: `문장 6-gram 포함률 ${s.pct}% (기준 ${th.sentPct}% 이하)` }));
-  if (total > th.totalPct) f.push({ level: '위반', loc: null, msg: `전체 6-gram 포함률 ${total}% (기준 ${th.totalPct}% 이하)` });
+  if (runs.length > th.run20) runs.forEach(r => f.push({ level: '위반', loc: r.loc, msg: `${label}와 ${r.len}자가 그대로 같습니다(사무소명·처분명 등은 빼고 셈): ${r.text}` }));
+  sent.filter(s => s.pct > th.sentPct).forEach(s => f.push({ level: '위반', loc: s.loc, msg: `이 문장이 ${label}와 ${s.pct}% 겹칩니다(기준 ${th.sentPct}% 이하)` }));
+  if (total > th.totalPct) f.push({ level: '위반', loc: null, msg: `글 전체가 ${label}와 ${total}% 겹칩니다(기준 ${th.totalPct}% 이하)` });
   return { runs, sent, total, findings: f };
 }
 // 원문 대조 화면용: 문장 글자별로 원고와 겹치는 6글자 구간 표시
@@ -214,7 +214,7 @@ function runAll(ctx) {
   }
 
   // 6-5 원문 유사도
-  const sim = { blog: similarity(textual, ctx.source || '', ctx.office, th), other: ctx.other ? similarity(textual, ctx.other, ctx.office, th) : null };
+  const sim = { blog: similarity(textual, ctx.source || '', ctx.office, th), other: ctx.other ? similarity(textual, ctx.other, ctx.office, th, '다른 채널 원고') : null };
   sim.blog.findings.forEach(f => add('simBlog', f.level, f.loc, f.msg));
   sim.other?.findings.forEach(f => add('simOther', f.level, f.loc, f.msg));
 
