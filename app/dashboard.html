@@ -108,6 +108,9 @@ svg.i{width:16px;height:16px;flex:none;vertical-align:-3px;fill:none;stroke:curr
 .main-btn{width:100%;min-height:52px;border-radius:var(--r-ctl);background:var(--accent-strong);color:var(--on-accent);font-size:17px;font-weight:700;margin-top:16px}
 .main-btn:hover{filter:brightness(1.06)}
 .main-btn:disabled{opacity:.45;cursor:default}
+.main-btn.danger{background:var(--late);color:var(--surface)}
+.ck{display:flex;align-items:center;gap:10px;min-height:44px;font-size:15px}
+.ck input{width:20px;height:20px;accent-color:var(--accent)}
 .sub-btn{min-height:44px;padding:0 16px;border-radius:var(--r-ctl);background:var(--surface-2);font-weight:500;font-size:15px}
 .sub-btn:hover{background:var(--line)}
 .link-btn{min-height:44px;color:var(--ink-2);font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:4px}
@@ -810,6 +813,7 @@ function renderRec(){const k=S.rec.kind,p=period(S.rec,k),cur=perf(p.from,p.to,k
       ${Object.keys(by).length?`<ul class="list">${Object.entries(by).sort((a,b)=>b[1]-a[1]).map(([u,n])=>`<li><span class="l">${esc(who(u))}</span><span class="num">${n}개</span></li>`).join("")}</ul>`:'<p class="empty">기록이 없어요.</p>'}
       ${sks.length||offs.length?`<div class="fld"><span class="lb">건너뛰기·쉬는 날</span><ul class="list">${sks.map(([key,v])=>`<li><span class="l">${esc(S.tasks[key.slice(0,key.lastIndexOf("_"))]?.title||"업무")} ${esc(key.slice(key.lastIndexOf("_")+1))}</span><span class="muted">${who(v.uid)} · ${WHY[v.why]||""}</span></li>`).join("")}${offs.map(o=>`<li><span class="l">${o}</span></li>`).join("")}</ul></div>`:""}
       ${k==="week"&&ended?`<div class="row-actions"><button type="button" class="sub-btn" data-act="close-week" data-k="${p.key}">${S.closed[p.key]?"주간 마감 다시 하기":"주간 마감"}</button></div>`:""}</div>`;}
+  if(k==="day"&&p.from<=td)h+=`<button type="button" class="sub-btn w-only" data-act="reset-day" data-k="${p.from}">${mdw(p.from)} 기록 초기화</button>`;
   h+=`<button type="button" class="main-btn" data-act="export" ${S.dl?"":"hidden"}>엑셀·워드로 저장</button></div>`;
   $("v-rec").innerHTML=h;}
 
@@ -884,6 +888,34 @@ async function buildDocx(p,kind,doc){const d=await lib("docx"),R=reportData(p,ki
   const blob=await Packer.toBlob(D);
   return{filename:weekly?`${dot(td)}-마케팅 주간보고(${mdd(p.from)}~${mdd(p.to)}).docx`:`${dot(td)}-마케팅 월간보고(${p.from.slice(0,4)}.${p.from.slice(5,7)}.).docx`,data:blob};}
 function writeClosed(p,kind){const R=reportData(p,kind);writeDoc("closed/"+p.key,{summary:{tasks:Object.fromEntries(R.rows.map(r=>[r.X.id,{T:r.t,N:r.n}])),N:R.cur.N,D:R.cur.D,pubs:R.cur.pubs.length,inq:R.inq.length,sp:R.spc},closedAt:new Date().toISOString(),closedBy:S.me},"set").then(ok=>{if(ok)S.closed[p.key]=true;});}
+
+/* 하루 초기화: 업무·지시 체크와 건너뛰기는 무효 표시(되돌리기 가능), 문의는 지운다. 사무장은 팀 전체, 팀원은 본인 것만 */
+function resetTargets(day){index();const me=u=>S.owner||u===S.me,ym=day.slice(0,7);
+  const ents=IX.all.filter(e=>e.for===day&&valid(e,Infinity)&&me(e.uid));
+  const sps=[];for(const Z of Object.values(S.sp))for(const[k,e]of Object.entries(Z.done||{}))if(e&&e.day===day&&valid(e,Infinity)&&me(e.by))sps.push([Z.id,k]);
+  const sks=[];for(const[uid,weeks]of Object.entries(S.logs))if(me(uid))for(const[wk,doc]of Object.entries(weeks))for(const[k,v]of Object.entries(doc.skips||{}))if(v&&v.why&&!v.void&&k.endsWith("_"+day))sks.push([uid,wk,k]);
+  const inq=Object.values(S.inq[ym]||{}).filter(q=>q.day===day&&me(q.by));
+  return{ents,sps,sks,inq};}
+async function applyReset(T,v){const byDoc={};const put=(path,sec,k)=>{((byDoc[path]??={})[sec]??={})[k]={void:v};};
+  T.ents.forEach(e=>put(`logs/${e.uid}/w/${e.wk}`,"entries",e.k));T.sks.forEach(([u,wk,k])=>put(`logs/${u}/w/${wk}`,"skips",k));
+  T.sps.forEach(([id,k])=>{put("specials/"+id,"done",k);if(S.sp[id]?.done?.[k])S.sp[id].done[k].void=v;});
+  let ok=true;for(const[path,patch]of Object.entries(byDoc))ok=(await writeDoc(path,patch))&&ok;return ok;}
+function openReset(day){const T=resetTargets(day),who_=S.owner?"팀 전체":"내";
+  const byUser={};T.ents.forEach(e=>byUser[e.uid]=(byUser[e.uid]||0)+1);
+  sheet(`<h3 id="sh-t">${mdw(day)} 기록 초기화</h3><p class="note">${who_} 기록 가운데 이 날 몫으로 들어간 것을 지워요. 업무·지시 체크는 바로 뒤 '되돌리기'로 살릴 수 있어요.</p>
+    <label class="ck"><input type="checkbox" id="r-e" ${T.ents.length?"checked":"disabled"}> 업무 체크 ${T.ents.length}건${S.owner&&T.ents.length?` <span class="muted">(${Object.entries(byUser).map(([u,n])=>esc(who(u))+" "+n).join(" · ")})</span>`:""}</label>
+    <label class="ck"><input type="checkbox" id="r-s" ${T.sps.length?"checked":"disabled"}> 지시 체크 ${T.sps.length}건</label>
+    <label class="ck"><input type="checkbox" id="r-k" ${T.sks.length?"checked":"disabled"}> 건너뛰기 ${T.sks.length}건</label>
+    ${S.inqOK?`<label class="ck"><input type="checkbox" id="r-q" ${T.inq.length?"":"disabled"}> 문의 기록 ${T.inq.length}건 <span class="muted">(지우면 되돌릴 수 없어요)</span></label>`:""}
+    <div class="row-actions"><button type="button" class="main-btn danger" id="r-go">초기화</button><button type="button" class="sub-btn" id="r-x">취소</button></div>`,()=>{
+    $("r-x").onclick=closeSheet;
+    $("r-go").onclick=async()=>{const pick={ents:$("r-e").checked?T.ents:[],sps:$("r-s").checked?T.sps:[],sks:$("r-k").checked?T.sks:[],inq:$("r-q")?.checked?T.inq:[]};
+      const n=pick.ents.length+pick.sps.length+pick.sks.length+pick.inq.length;if(!n)return toast("고른 항목이 없어요");
+      closeSheet();const v=new Date().toISOString(),ym=day.slice(0,7);S.act=Date.now();
+      const ok=await applyReset(pick,v);
+      for(const q of pick.inq){delete S.inq[ym][q.id];await writeDoc(`inq/${ym}/items/${q.id}`,{},"delete");}
+      dirty();if(!ok)return;
+      toast(`${mdw(day)} 기록 ${n}건을 초기화했어요`,pick.ents.length+pick.sps.length+pick.sks.length?async()=>{await applyReset({...pick,inq:[]},null);dirty();toast("초기화를 되돌렸어요");}:null);};});}
 
 /* ---------- 내 정보·관리 ---------- */
 function openMe(first){const m=S.members[S.me]||{},td=today();
@@ -992,6 +1024,7 @@ document.addEventListener("click",e=>{const t=e.target.closest("button,[data-go]
     case"inq-todo":S.iq.todoOnly=true;return render();case"inq-all":S.iq.todoOnly=false;return render();
     case"note-save":{const f=$("n-f").value.trim(),m=$("n-m").value;if(pii(f)||pii(m))return toast("전화번호나 주민번호처럼 보여서 저장하지 않았어요");
       S.notes[d.k]={focus:f,memo:m};writeDoc("notes/"+d.k,{focus:f,memo:m,updatedAt:new Date().toISOString(),updatedBy:S.me},"set").then(ok=>ok&&toast("메모를 저장했어요"));renderHead();return;}
+    case"reset-day":return openReset(d.k);
     case"close-week":{const p=period(S.rec,"week");writeClosed(p,"week");toast("주간 마감을 저장했어요");return;}}
   if(t.id==="paste-btn")return openPaste(null);
   if(t.id==="warn"){const c=$("c-late");c?.scrollIntoView({behavior:RM.matches?"auto":"smooth",block:"start"});return;}
