@@ -63,6 +63,7 @@ C. "이 글 검수해줘"(원고 제공) → 4단계만 수행한다.
 - `corpus/posts/<채널>/`: 팀 기존 글 원문(문체·유사도 기준). 채널 미상 글은 `common/`. 사무소 소개·서명 문단은 빼고 저장한다
 - `corpus/lawrewrite/ANALYSIS.md`: 로리라이트 화면 분석
 - `app/`: 팀원용 원고실 아티팩트 원본과 빌드 스크립트
+- `app/dashboard.html`: 마케팅 업무판 아티팩트(https://claude.ai/artifact/YbtrdJEa43T8vkALYXgs83) 원본. 빌드 없이 그대로 재게시한다. 기획·규격은 `docs/marketing-dashboard/`(00 최종안, 06 세부계획), 자체 점검은 `node tools/dashboard_check.js`
 - `kit/wonkosil-kit/`: 팀원 개인 원고실 설치 키트(Claude Code에서 "원고실 설치해줘"), `kit/wonkosil-kit.zip`이 배포본. app/wonkosil.html을 고치면 키트에 복사해 다시 압축한다
 - `skill/jinnsol-blog/`: 팀원 claude.ai에 올리는 스킬 원본, `skill/jinnsol-blog.zip`이 배포본. 규칙·코퍼스를 바꾸면 파일을 복사해 다시 압축한다
 - `data/published.csv`: 발행 기록
