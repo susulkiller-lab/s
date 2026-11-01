@@ -67,7 +67,7 @@ D. "마케팅 측정·리포트" → 이 세 단계 흐름과 별개다. `market
 - `kit/wonkosil-kit/`: 팀원 개인 원고실 설치 키트(Claude Code에서 "원고실 설치해줘"), `kit/wonkosil-kit.zip`이 배포본. app/wonkosil.html을 고치면 키트에 복사해 다시 압축한다
 - `kit/measure-kit/`: 새 윈도우 PC에 마케팅 측정 프로그램을 설치하는 키트(`setup.bat` → `install.ps1`), `kit/measure-kit.zip`이 배포본. 고치면 다시 압축한다
 - `skill/jinnsol-blog/`: 팀원 claude.ai에 올리는 스킬 원본, `skill/jinnsol-blog.zip`이 배포본. 규칙·코퍼스를 바꾸면 파일을 복사해 다시 압축한다
-- `data/published.csv`: 발행 기록. `data/consults.csv`: 상담 실적(직접 입력). `data/measure/<날짜>/`: 노출 측정 결과
+- `data/published.csv`: 발행 기록. `data/consults_local.csv`: 상담 실적(직접 입력, 이 PC에만 두고 올리지 않음). `data/measure/<날짜>/`: 노출 측정 결과
 - `marketing/`: 노출 측정 설정(키워드·비교군·점수 산식)과 사용법
 - `output/`: 원고 저장 위치
 - `tools/seo_check.py`, `tools/corpus_stats.py`, `tools/ledger.py`, `tools/mkt_collect.py`, `tools/mkt_report.py`: 사용법은 각 파일 머리 주석 참조

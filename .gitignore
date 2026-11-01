@@ -2,3 +2,10 @@ __pycache__/
 *.pyc
 # 시범 측정 기간에는 원본 화면(raw)도 올려 분류 규칙을 고친다. 규칙이 안정되면 아래 줄의 #을 지운다
 # data/measure/*/raw/
+# 상담 입력은 이 PC에만 둔다(저장소가 공개라 올리지 않는다)
+data/consults_local.csv
+output/local/
+# 문서를 연 채 실행할 때 생기는 임시 파일
+output/marketing/~$*
+output/marketing/*.tmp.docx
+output/marketing/*(새본*

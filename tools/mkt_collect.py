@@ -14,7 +14,9 @@
 import argparse
 import csv
 import gzip
+import hashlib
 import json
+import platform
 import random
 import re
 import sys
@@ -24,8 +26,9 @@ from pathlib import Path
 from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from mkt_common import (CONFIG, LEDGER, MEASURE, apollo_from_html, group_links,  # noqa: E402
-                        links_from_html, read_json, read_keywords, write_json)
+from mkt_common import (CONFIG, LEDGER, MEASURE, PARSER_VERSION, apollo_from_html, classify,  # noqa: E402
+                        group_links, has_post, links_from_html, owner_names_from, read_json, read_keywords,
+                        resolve, unclassified_hosts, write_json)
 
 SCROLL_JS = """() => { document.querySelectorAll('*').forEach(el => {
   if (el.scrollHeight > el.clientHeight + 50) el.scrollTop = el.scrollHeight; });
@@ -98,25 +101,44 @@ def parse_place(page_html):
     return {"places": places, "ads": ad_list, "total": total, "input": inp}
 
 
+def serp_result(items, links):
+    out = {"items": items}
+    other = unclassified_hosts(links)
+    if other:
+        out["unclassified"] = dict(other)
+    owners = owner_names_from(links)
+    if owners:
+        out["blog_owners"] = owners  # 글이 없는 화면의 프로필 문구도 다른 화면의 글을 맞추는 데 쓴다
+    return out
+
+
 def parse_serp(page_html, base):
-    return {"items": group_links(links_from_html(page_html, base))}
+    links = links_from_html(page_html, base)
+    return serp_result(group_links(links), links)
 
 
 def parse_google(page_html, base):
     """구글 모바일: '웹 검색결과' 제목 앞은 광고와 지도 결과, 뒤가 자연검색이다.
-    앞부분의 '웹사이트' 버튼은 지도 결과(gmap), 그 밖의 외부 주소는 광고(ad)로 센다."""
+    '웹사이트' 버튼은 제목 앞뒤와 무관하게 지도 결과(gmap)다. 뒤쪽의 '방문' 버튼이 있는 주소는 뒤로 버튼이 달린
+    미리보기 창이라 순위에서 뺀다. 같은 주소라도 버튼과 결과 문구가 합쳐지지 않게 묶기 전에 나눈다."""
     i = page_html.find("웹 검색결과")
-    if i < 0:
-        return parse_serp(page_html, base)
-    head = group_links(links_from_html(page_html[:i], base))
-    pre = []
-    for it in head:
-        if it["cls"] in ("web", "blog", "lawtalk"):
-            cls = "gmap" if it["text"].strip() == "웹사이트" else "ad"
-            pre.append({"cls": cls, "key": it["key"], "href": it["href"], "text": it["text"]})
-    for n, it in enumerate([x for x in pre if x["cls"] == "gmap"], 1):
-        it["pos"] = n
-    return {"items": pre + group_links(links_from_html(page_html[i:], base))}
+    head_links = links_from_html(page_html[:i], base) if i >= 0 else []
+    tail_links = links_from_html(page_html[i:] if i >= 0 else page_html, base)
+    viewer = {ln["href"] for ln in tail_links if ln["text"].strip().startswith("방문")}
+
+    def is_button(ln):
+        return ln["text"].strip() == "웹사이트"
+    gmap, seen = [], set()
+    for ln in head_links + tail_links:
+        c = classify(resolve(ln["href"], ln["text"])) if is_button(ln) else None
+        if c and c[0] in ("web", "blog", "lawtalk") and c[1] not in seen:
+            seen.add(c[1])
+            gmap.append({"cls": "gmap", "key": c[1], "href": ln["href"], "text": ln["text"], "pos": len(gmap) + 1})
+    ads = [{"cls": "ad", "key": it["key"], "href": it["href"], "text": it["text"]}
+           for it in group_links([ln for ln in head_links if not is_button(ln)])
+           if it["cls"] in ("web", "blog", "lawtalk")]
+    organic = [ln for ln in tail_links if not is_button(ln) and ln["href"] not in viewer]
+    return serp_result(ads + gmap + group_links(organic), head_links + tail_links)
 
 
 class Collector:
@@ -161,9 +183,13 @@ class Collector:
         return any(m.lower() in body for m in BLOCK_MARKS)
 
 
-def run_step(name, targets, out_json, fn):
+def run_step(name, targets, out_json, fn, field=None):
+    """끝난 키워드는 건너뛴다. field를 주면 정상 수집이어도 내용이 빈 화면은 다시 수집한다."""
     data = read_json(out_json, {})
-    todo = [t for t in targets if data.get(t, {}).get("status") != "ok"]
+
+    def done(rec):
+        return rec.get("status") == "ok" and (not field or rec.get(field))
+    todo = [t for t in targets if not done(data.get(t, {}))]
     print(f"[{name}] {len(targets)}건 중 {len(todo)}건 수집")
     for i, t in enumerate(todo, 1):
         data[t] = fn(t)
@@ -174,22 +200,60 @@ def run_step(name, targets, out_json, fn):
 
 
 def reparse(outdir, urls):
-    """저장된 원본 화면(raw)을 현재 분류 규칙으로 다시 분석한다."""
-    def load(name):
-        return gzip.decompress((outdir / "raw" / name).read_bytes()).decode("utf-8")
+    """저장된 원본 화면(raw)을 현재 분류 규칙으로 다시 분석한다. 원본이 빠진 기록이 있으면 판 번호를 올리지 않는다."""
+    if not outdir.is_dir():
+        print(f"{outdir.name} 측정 폴더가 없습니다.")
+        return False
+    missing = 0
     for fname, kind in (("naver_serp", "naver"), ("google", "google"), ("place_list", "place")):
         data = read_json(outdir / f"{fname}.json", {})
         for k, v in data.items():
-            if v.get("status") != "ok" or not v.get("raw"):
+            if v.get("status") not in ("ok", "empty", "none") or not v.get("raw"):
                 continue
-            h = load(v["raw"])
+            raw = outdir / "raw" / v["raw"]
+            if not raw.exists():
+                missing += 1
+                continue
+            h = gzip.decompress(raw.read_bytes()).decode("utf-8")
             base = urls[kind].split("?")[0]
+            v.pop("unclassified", None)
+            v.pop("blog_owners", None)
             v.update(parse_place(h) if kind == "place" else (parse_google if kind == "google" else parse_serp)(h, base))
-            if kind == "place" and not v["places"]:
-                v["status"] = "none" if v.get("total") == 0 else "empty"
+            if kind == "place":
+                v["status"] = "ok" if v["places"] else ("none" if v.get("total") == 0 else "empty")
         if data:
             write_json(outdir / f"{fname}.json", data)
             print(f"재분석: {fname} {len(data)}건")
+    if missing:
+        print(f"원본이 없어 다시 분석하지 못한 기록 {missing}건")
+        return False
+    meta = read_json(outdir / "meta.json", {})
+    meta["parser_version"] = PARSER_VERSION
+    write_json(outdir / "meta.json", meta)
+    return True
+
+
+def reparse_if_old(outdir):
+    """저장된 측정의 규칙 판이 현재와 다르면 원본으로 다시 분석한다. 현재 규칙으로 맞추지 못하면 False."""
+    if read_json(outdir / "meta.json", {}).get("parser_version") == PARSER_VERSION:
+        return True
+    if not (outdir / "raw").exists():
+        return False
+    return reparse(outdir, json.loads((CONFIG / "collect.json").read_text(encoding="utf-8"))["urls"])
+
+
+def start_meta(outdir, day, kws, cfg, office, steps):
+    """회차 기록을 쓴다. 옛 규칙으로 저장된 회차를 이어서 수집할 때는 기존 기록을 먼저 현재 규칙으로 맞춘다."""
+    fresh = reparse_if_old(outdir) or not (outdir / "raw").exists()
+    meta = read_json(outdir / "meta.json", {})
+    meta.update({"date": day, "keywords": len(kws), "device": cfg.get("device"),
+                 "office": office, "steps": sorted(set(meta.get("steps", [])) | set(steps)),
+                 "platform": platform.platform(),
+                 "pc": hashlib.sha256(platform.node().encode("utf-8")).hexdigest()[:8]})  # 공개 저장소라 PC 이름은 남기지 않는다
+    if fresh:
+        meta["parser_version"] = PARSER_VERSION
+    write_json(outdir / "meta.json", meta)
+    return meta
 
 
 def main():
@@ -221,10 +285,7 @@ def main():
     office = cfg.get("office") or {}
     xy = f"&x={office['lng']}&y={office['lat']}" if office.get("lat") and office.get("lng") else ""
 
-    meta = read_json(outdir / "meta.json", {})
-    meta.update({"date": a.date, "keywords": len(kws), "device": cfg.get("device"),
-                 "office": office, "steps": sorted(set(meta.get("steps", [])) | set(steps))})
-    write_json(outdir / "meta.json", meta)
+    meta = start_meta(outdir, a.date, kws, cfg, office, steps)
 
     with sync_playwright() as p:
         dev = dict(p.devices[cfg.get("device", "Pixel 7")])
@@ -241,6 +302,11 @@ def main():
         ctx = p.chromium.launch_persistent_context(str(profile), **opts)
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
         c = Collector(page, outdir, cfg, a.headless)
+        try:
+            meta["user_agent"] = page.evaluate("navigator.userAgent")
+            write_json(outdir / "meta.json", meta)
+        except Exception:  # noqa: BLE001
+            pass
 
         def serp(url_key, step):
             parser = parse_google if step == "google" else parse_serp
@@ -265,11 +331,11 @@ def main():
             return rec
 
         if "naver" in steps:
-            run_step("네이버 통합검색", kws, outdir / "naver_serp.json", serp("naver", "naver"))
+            run_step("네이버 통합검색", kws, outdir / "naver_serp.json", serp("naver", "naver"), "items")
         if "place" in steps:
-            run_step("네이버 플레이스 목록", kws, outdir / "place_list.json", place)
+            run_step("네이버 플레이스 목록", kws, outdir / "place_list.json", place, "places")
         if "google" in steps:
-            run_step("구글", kws, outdir / "google.json", serp("google", "google"))
+            run_step("구글", kws, outdir / "google.json", serp("google", "google"), "items")
         if "missing" in steps:
             posts = []
             if LEDGER.exists():
@@ -291,7 +357,7 @@ def main():
                         res["status"] = st
                         return res
                     res["raw"].append(raw)
-                    if any(it["cls"] == "blog" and it["key"] == key for it in parse_serp(h, page.url)["items"]):
+                    if has_post(parse_serp(h, page.url)["items"], key):
                         res.update(found=True, where=uk)
                         break
                 res["status"] = "ok"

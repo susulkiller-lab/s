@@ -1,12 +1,15 @@
 """원클릭 측정·리포트. 저장소 맨 위의 '원클릭리포트.bat'을 더블클릭하면 이 파일이 돈다.
 
 순서: 준비(패키지 자동 설치) → 최신 코드 받기 → 검색 수집 → AI 답변 수집(Claude Code + Chrome)
-      → 리포트(txt·csv·docx) → 리포트 열기 → 결과 저장소에 올리기
+      → 리포트(txt·csv·docx) → 결과 저장소에 올리기 → 리포트 열기
 사람 손이 필요한 때: 보안문자가 뜰 때뿐(창에서 풀고 Enter). 그 밖의 실패는 건너뛰고 마지막에 알려준다.
+수집이 기준(scoring.json의 min_channel_coverage)에 못 미치면 리포트만 만들고 올리지 않는다.
+상담 입력 파일(data/consults_local.csv)은 올리지 않는다.
 
   py tools\\mkt_all.py                # 전체
   py tools\\mkt_all.py --no-ai        # AI 답변 수집 생략
   py tools\\mkt_all.py --skip-collect # 검색 수집 생략(이미 수집한 날 리포트만 다시)
+  py tools\\mkt_all.py --push-anyway  # 수집이 기준에 못 미쳐도 올리기
 """
 import argparse
 import glob
@@ -90,12 +93,55 @@ def git(g, *args):
     return subprocess.run([g, *args], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
 
 
+def publish(g, d):
+    """측정 결과와 리포트만 올린다. 거부되면 최신 내용을 합쳐 한 번 더 시도한다. 성공하면 True.
+    합칠 때 rebase를 쓰지 않는다. rebase는 이번 커밋의 파일을 다시 쓰므로 문서가 열려 있으면 중간에 멈춘다."""
+    paths = [p for p in ("data/measure", "output/marketing") if (ROOT / p).exists()]
+    r = git(g, "add", *paths)
+    if r.returncode:
+        notes.append(f"올릴 파일 고르기 실패: {r.stderr.strip()[-200:]}")
+        return False
+    if git(g, "diff", "--cached", "--quiet").returncode:
+        c = git(g, "commit", "-m", f"측정 {d}")
+        print(c.stdout.strip()[-300:])
+        if c.returncode:
+            notes.append(f"결과 저장 실패: {(c.stderr or c.stdout).strip()[-200:]}")
+            return False
+    p = git(g, "push")
+    if p.returncode:
+        print("올리기가 거부되어 최신 내용을 합쳐 다시 시도합니다.")
+        r = git(g, "pull", "--no-rebase", "--no-edit")
+        if r.returncode:
+            git(g, "merge", "--abort")
+            notes.append(f"최신 내용 합치기 실패: {(r.stderr or r.stdout).strip()[-200:]}")
+            return False
+        p = git(g, "push")
+    print((p.stdout + p.stderr).strip()[-300:])
+    if p.returncode:
+        notes.append(f"올리기 실패(다음 실행 때 다시 시도합니다): {p.stderr.strip()[-200:]}")
+        return False
+    return True
+
+
+def newest_report(d):
+    """이번에 만든 문서를 고른다. 열린 문서 때문에 새 이름으로 저장됐으면 그 파일이다."""
+    out = ROOT / "output" / "marketing"
+    hits = [p for p in out.glob(f"{d}_리포트*.docx") if not p.name.endswith(".tmp.docx")]
+    return max(hits, key=lambda p: p.stat().st_mtime) if hits else out / f"{d}_리포트.docx"
+
+
+def open_report(path):
+    if hasattr(os, "startfile"):
+        os.startfile(path)  # 윈도우: 워드로 바로 열기
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", default=date.today().isoformat())
     ap.add_argument("--no-ai", action="store_true")
     ap.add_argument("--skip-collect", action="store_true")
     ap.add_argument("--no-push", action="store_true")
+    ap.add_argument("--push-anyway", action="store_true", help="수집이 기준에 못 미쳐도 결과를 올린다")
     a = ap.parse_args()
     d = a.date
 
@@ -110,14 +156,18 @@ def main():
         r = git(g, "pull", "--ff-only")
         print(r.stdout.strip() or r.stderr.strip())
         if r.returncode:
-            notes.append("최신 코드 받기 실패: GitHub Desktop에서 Pull origin을 눌러 주세요.")
+            notes.append("최신 코드 받기 실패: 지금 PC에 있는 코드로 진행했습니다. 계속되면 이 창을 캡처해 주세요.")
         elif Path(__file__).read_bytes() != me and not os.environ.get("MKT_RESTARTED"):
             print("프로그램이 새로 바뀌어 새 버전으로 다시 시작합니다.")
             os.environ["MKT_RESTARTED"] = "1"
             sys.exit(subprocess.run([PY, __file__, *sys.argv[1:]]).returncode)
     else:
-        notes.append("git이 없어 최신 코드 받기와 결과 올리기를 건너뜀(GitHub Desktop에서 직접).")
+        notes.append("git이 없어 최신 코드 받기와 결과 올리기를 건너뜀.")
         print("git 없음: 건너뜀")
+
+    # 최신 코드를 받은 뒤에 불러와야 이번 실행부터 새 규칙이 적용된다
+    sys.path.insert(0, str(ROOT / "tools"))
+    from mkt_common import MEASURE, ai_expected, check_ai_files, collection_problems, read_prompts
 
     if not a.skip_collect:
         step("3/6 네이버·플레이스·구글 수집 (20~30분, 보안문자가 뜨면 창에서 풀고 Enter)")
@@ -134,29 +184,33 @@ def main():
             print("Claude Code:", claude)
             (ROOT / "data" / "measure" / d / "ai").mkdir(parents=True, exist_ok=True)
             r = subprocess.run([claude, "-p", "--chrome", "--permission-mode", "auto", AI_PROMPT.format(d=d)], cwd=ROOT)
-            n = len(list((ROOT / "data" / "measure" / d / "ai").glob("*.txt")))
-            print(f"AI 답변 파일 {n}건")
-            if r.returncode or n < 24:
-                notes.append(f"AI 답변 {n}/24건. 빠진 것은 원클릭리포트.bat을 다시 실행하면 이어서 수집합니다.")
+            prompts = read_prompts()
+            good, bad = check_ai_files(MEASURE / d, prompts)
+            n, want = len(good), ai_expected(prompts)
+            print(f"AI 답변 유효 {n}건, 제외 {len(bad)}건")
+            if r.returncode or n < want or bad:
+                notes.append(f"AI 답변 유효 {n}/{want}건" + (f", 제외 {len(bad)}건" if bad else "")
+                             + ". 제외된 파일을 지우고 원클릭리포트.bat을 다시 실행하면 빠진 것만 이어서 수집합니다.")
 
     step("5/6 리포트 만들기")
     r = subprocess.run([PY, str(ROOT / "tools" / "mkt_report.py"), "--date", d], cwd=ROOT)
-    docx = ROOT / "output" / "marketing" / f"{d}_리포트.docx"
-    if r.returncode or not docx.exists():
+    docx = newest_report(d)
+    report_ok = not r.returncode and docx.exists()
+    if not report_ok:
         notes.append("리포트 생성 실패: 화면의 오류를 캡처해 주세요.")
-    elif hasattr(os, "startfile"):
-        os.startfile(docx)  # 윈도우: 워드로 바로 열기
+    elif docx.name != f"{d}_리포트.docx":
+        notes.append(f"문서가 열려 있어 새 리포트를 '{docx.name}'으로 저장했습니다. 예전 문서를 닫고 다시 실행하면 정리됩니다.")
 
     step("6/6 결과 올리기")
-    if g and not a.no_push:
-        git(g, "add", f"data/measure/{d}", "output/marketing", "data/consults.csv")
-        c = git(g, "commit", "-m", f"측정 {d}")
-        p = git(g, "push")
-        print((c.stdout + p.stdout + p.stderr).strip()[-500:])
-        if p.returncode:
-            notes.append("올리기 실패: GitHub Desktop에서 Push origin을 눌러 주세요.")
+    problems = collection_problems(MEASURE / d)
+    if problems:
+        notes.append("수집이 기준에 못 미침: " + ", ".join(problems) + ". 다시 실행하면 빠진 것만 이어서 수집합니다.")
+    if g and not a.no_push and (not problems or a.push_anyway):
+        publish(g, d)
     else:
-        print("건너뜀")
+        print("수집이 기준에 못 미쳐 올리지 않았습니다." if problems and not a.no_push else "건너뜀")
+    if report_ok:  # 올리기가 끝난 뒤에 연다. 문서가 열려 있으면 git이 그 파일을 바꾸지 못한다
+        open_report(docx)
 
     print("\n===== 끝 =====")
     print(f"리포트: {docx}")

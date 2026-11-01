@@ -197,15 +197,19 @@ def build(R, path):
     para(doc, "진앤솔법률사무소 마케팅 노출 리포트", 17, True, NAVY, WD_ALIGN_PARAGRAPH.CENTER, after=40)
     para(doc, f"측정일 {dot(R['date'])}", 10, color=GRAY, align=WD_ALIGN_PARAGRAPH.CENTER, after=200)
     meta = [("비교 기준", dot(R["prev"]) + " 측정" if R["prev"] else "직전 측정 없음(이번이 기준선)"),
-            ("측정 조건", R["conditions"])]
+            ("수집 현황", R["collect"])]
+    if R["compare"]:
+        meta.append(("변동 비교 범위", f"두 회차 공통/이번 회차: {R['compare']}"))
+    meta.append(("측정 조건", R["conditions"]))
     if R["missing_channels"]:
         meta.append(("미측정 채널", f"{', '.join(R['missing_channels'])} (종합지수는 측정된 채널 가중치로만 환산)"))
+    meta.extend(("주의", w) for w in R["warnings"])
     table(doc, ["항목", "내용"], meta, [1800, WIDTH - 1800], ["c", "l"])
 
     # 1. 결론
     heading(doc, "1. 결론")
     S = R["summary"]
-    items = [("종합 노출지수", str(S["index"]), f"비교군 {S['n']}곳 중 {S['pos']}위")]
+    items = [("종합 노출지수", S["index"] + S["index_delta"], f"비교군 {S['n']}곳 중 {S['pos_text']}")]
     if S.get("share") is not None:
         items.append(("노출 점유율", f"{S['share']}%", "비교군 지수 합 대비"))
     if S.get("lead"):
@@ -220,7 +224,8 @@ def build(R, path):
 
     # 2. 채널별 점수
     heading(doc, "2. 채널별 점수")
-    note(doc, "점수 범위 0~100. 진앤솔 행은 음영 표시." + (" 괄호는 직전 대비." if R["prev"] else ""))
+    note(doc, "점수 범위 0~100. 진앤솔 행은 음영 표시."
+         + (" 괄호는 직전 대비로, 두 회차 모두 측정된 같은 키워드·답변으로 다시 계산한 값입니다." if R["has_delta"] else ""))
     names = R["channel_names"]
     w0 = 1838
     table(doc, ["업체"] + names + ["종합"],
@@ -251,7 +256,7 @@ def build(R, path):
         if R["ai_us"]:
             subhead(doc, "진앤솔이 언급된 AI 답변")
             table(doc, ["엔진", "질문", "언급 순서"],
-                  [[ENGINE.get(e, e), q, f"{pos}번째 / 언급 업체 {n}곳"] for e, q, pos, n in R["ai_us"]],
+                  [[ENGINE.get(e, e), q, f"등록 업체 중 {pos}번째 / 등록 업체 {n}곳 언급"] for e, q, pos, n in R["ai_us"]],
                   [1400, 5838, 2400], ["c", "l", "c"])
 
     # 3. 약점 목록
@@ -299,10 +304,15 @@ def build(R, path):
               [6038, 2000, 1600], ["l", "c", "c"])
     else:
         bullet(doc, "후보 없음")
+    if R["blog_candidates"]:
+        subhead(doc, "상위 노출 블로그 중 등록 업체와 연결되지 않은 주인")
+        note(doc, "비교군이면 marketing/config/entities.json의 blog_ids에 넣습니다.")
+        table(doc, ["블로그 아이디", "블로그 이름", "점수"], [[o, n or "-", s] for o, n, s in R["blog_candidates"]],
+              [3000, 5038, 1600], ["l", "l", "c"])
 
     # 8. 상담
     heading(doc, "8. 상담·수임 실적")
-    note(doc, "data/consults.csv 입력분")
+    note(doc, "상담 수치는 저장소에 올라가지 않도록 이 문서에 넣지 않습니다.")
     for c in R["consults"]:
         bullet(doc, dot(c))
 

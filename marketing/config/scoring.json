@@ -4,5 +4,7 @@
  "channel_weights": {"naver": 35, "place": 25, "google": 15, "ai": 15},
  "publish_gap_days": 28,
  "weak_top": 15,
- "discovery_top": 15
+ "discovery_top": 15,
+ "min_channel_coverage": 0.7,
+ "min_ai_coverage": 0.5
 }

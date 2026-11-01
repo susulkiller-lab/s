@@ -5,22 +5,29 @@
 
 결과: output/marketing/<날짜>_리포트.txt, <날짜>_키워드표.csv(엑셀용), data/measure/<날짜>/scores.json
 AI 답변: data/measure/<날짜>/ai/<엔진>__<질문id>__<회차>.txt (marketing/AI_PROTOCOL.md 참조)
-상담 실적: data/consults.csv
+상담 실적: data/consults_local.csv(이 PC에만 둔다). 요약은 output/local/<날짜>_상담요약.txt로 따로 남기고 리포트에는 넣지 않는다
+
+변동값은 저장된 점수를 빼지 않는다. 두 회차를 현재 설정으로 다시 계산하고, 두 회차 모두 측정된 같은 키워드·같은 답변만 비교한다.
 """
 import argparse
 import csv
+import os
 import re
 import sys
 from collections import Counter
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from mkt_common import (CONSULTS, CONTENT_CLASSES, LEDGER, ROOT, is_network, load_entities,  # noqa: E402
-                        load_scoring, match_item, measure_dirs, norm, points, read_json,
-                        read_keywords, read_prompts, write_json)
+from mkt_collect import reparse_if_old  # noqa: E402
+from mkt_common import (AI_EXPECTED_ENGINES, CONSULTS, CONSULTS_OLD, CONTENT_CLASSES, LEDGER, ROOT, UNKNOWN_OWNER,  # noqa: E402
+                        ai_expected, channel_status, check_ai_files, is_network, load_entities, load_scoring,
+                        match_item, measure_dirs, norm, points, read_json, read_keywords, read_prompts,
+                        read_rows, write_json)
 
 CHANNELS = [("naver", "네이버 콘텐츠"), ("place", "네이버 플레이스"), ("google", "구글"), ("ai", "AI 검색")]
+SEARCH = ("naver", "place", "google")
+CONSULT_HEADER = "date,channel,area,region,retained,memo"
 PLACE_FIELDS = ("visitor_reviews", "visitor_score", "image_count", "booking", "talktalk", "coupon")
 PHONE_RE = re.compile(r"0\d{1,2}[-.\s)]?\d{3,4}[-.\s]?\d{4}")
 
@@ -30,19 +37,45 @@ def best_rank(items, ent, field):
     return min(ranks) if ranks else None
 
 
-def ranks_for(mdir, ents, kws):
-    """키워드 × 업체별 채널 순위."""
+def owner_names_all(dirs):
+    """모든 회차에서 블로그 주인 이름을 모은다. 프로필 링크가 없는 화면도 같은 주인으로 맞추기 위해서다."""
+    out = {}
+    for d in dirs:
+        for fname in ("naver_serp.json", "google.json"):
+            for rec in read_json(d / fname, {}).values():
+                for owner, name in rec.get("blog_owners", {}).items():
+                    if name not in out.get(owner, ""):
+                        out[owner] = (out[owner] + " | " + name) if owner in out else name
+    return out
+
+
+def fill_owner_names(pages, owner_names):
+    for rec in pages.values():
+        for it in rec.get("items", []):
+            if it["cls"] == "blog" and owner_names.get(it["key"].split("/")[0]):
+                it["owner_name"] = owner_names[it["key"].split("/")[0]]
+
+
+def usable(rec, field):
+    """정상 수집이고 내용이 있는 화면만 돌려준다. 그 밖에는 None(미측정)."""
+    return rec[field] if rec and rec.get("status") == "ok" and rec.get(field) else None
+
+
+def ranks_for(mdir, ents, kws, sc, owner_names=None):
+    """키워드 × 업체별 채널 순위. 수집이 기준에 못 미친 채널은 미측정으로 돌린다."""
     serp = read_json(mdir / "naver_serp.json", {})
     plist = read_json(mdir / "place_list.json", {})
     goog = read_json(mdir / "google.json", {})
-    have = {"naver": bool(serp), "place": bool(plist) or bool(serp), "google": bool(goog)}
+    fill_owner_names(serp, owner_names or {})
+    fill_owner_names(goog, owner_names or {})
+    status = channel_status(mdir, kws)
     out = {}
     for k in kws:
         kw = k["keyword"]
-        s_items = serp.get(kw, {}).get("items", []) if serp.get(kw, {}).get("status") == "ok" else None
-        p_rows = plist.get(kw, {}).get("places", []) if plist.get(kw, {}).get("status") == "ok" else None
+        s_items = usable(serp.get(kw), "items")
+        p_rows = usable(plist.get(kw), "places")
         no_place = plist.get(kw, {}).get("status") == "none"  # 플레이스 결과가 없는 키워드는 플레이스 채널에서 뺀다
-        g_items = goog.get(kw, {}).get("items", []) if goog.get(kw, {}).get("status") == "ok" else None
+        g_items = usable(goog.get(kw), "items")
         row = {}
         for e in ents:
             r = {}
@@ -64,22 +97,27 @@ def ranks_for(mdir, ents, kws):
                 r["gmap"] = any(i["cls"] == "gmap" and match_item(i, e) for i in g_items)
             row[e["key"]] = r
         out[kw] = {"weight": k["weight"], "ranks": row,
+                   "place_src": "list" if p_rows is not None else ("block" if s_items is not None and not no_place else None),
                    "measured": {"naver": s_items is not None, "place": not no_place and (p_rows is not None or s_items is not None),
                                 "google": g_items is not None}}
-    return out, have
+    least = sc.get("min_channel_coverage", 0.7)
+    have = {}
+    for ch in SEARCH:
+        n = sum(1 for v in out.values() if v["measured"][ch])
+        have[ch] = bool(n) and n / max(status[ch]["target"], 1) >= least
+        if not have[ch]:
+            for v in out.values():
+                v["measured"][ch] = False
+    return out, have, status, serp
 
 
 def ai_results(mdir, ents, prompts, sc):
-    """AI 답변 파일에서 업체별 언급 순서를 센다."""
-    d = mdir / "ai"
-    files = sorted(d.glob("*.txt")) if d.exists() else []
-    pid_ok = {p["id"] for p in prompts}
+    """유효한 AI 답변에서 업체별 언급 순서를 센다. 유효 답변이 기준에 못 미치면 AI 채널을 미측정으로 돌린다."""
+    good, bad = check_ai_files(mdir, prompts)
+    usable_ai = len(good) / max(ai_expected(prompts), 1) >= sc.get("min_ai_coverage", 0.5)
     res = []
-    for f in files:
-        parts = f.stem.split("__")
-        if len(parts) < 2 or parts[1] not in pid_ok:
-            continue
-        text = f.read_text(encoding="utf-8")
+    for g in good if usable_ai else []:
+        text = g["text"]
         t = norm(text)
         firsts = {}
         for e in ents:
@@ -88,9 +126,161 @@ def ai_results(mdir, ents, prompts, sc):
                 firsts[e["key"]] = min(idx)
         order = sorted(firsts, key=firsts.get)
         cites = [e["key"] for e in ents if any(x and x.lower() in text.lower() for x in e["domains"] + e["blog_ids"])]
-        res.append({"engine": parts[0], "pid": parts[1], "file": f.name, "order": order, "cites": cites,
-                    "text": text})
-    return res
+        res.append({"engine": g["engine"], "pid": g["pid"], "round": g["round"], "file": g["file"], "order": order,
+                    "cites": cites, "text": text})
+    return res, good, bad
+
+
+def load_measure(mdir, ents, kws, prompts, sc, owner_names=None):
+    """한 회차를 현재 설정으로 계산한다. 저장된 scores.json은 쓰지 않는다."""
+    ranks, have, status, serp = ranks_for(mdir, ents, kws, sc, owner_names)
+    ai, ai_good, ai_bad = ai_results(mdir, ents, prompts, sc)
+    return {"dir": mdir, "name": mdir.name, "ranks": ranks, "have": have, "status": status, "serp": serp, "ai": ai,
+            "ai_good": ai_good, "ai_bad": ai_bad, "per": score(ranks, have, ai, ents, sc)}
+
+
+def ai_key(r):
+    return (r["engine"], r["pid"], r["round"])
+
+
+def common_keys(measures):
+    """모든 회차에서 측정된 키워드와 AI 답변만 남긴다. 플레이스는 출처(목록·통합검색 영역)까지 같아야 한다."""
+    common = {}
+    for ch in SEARCH:
+        kws = [kw for kw in measures[0]["ranks"]
+               if all(kw in m["ranks"] and m["ranks"][kw]["measured"][ch] for m in measures)]
+        if ch == "place":
+            kws = [kw for kw in kws if len({m["ranks"][kw].get("place_src") for m in measures}) == 1]
+        common[ch] = set(kws)
+    return common, set.intersection(*[{ai_key(r) for r in m["ai"]} for m in measures])
+
+
+def rescored(m, common, ai_keys, ents, sc):
+    ranks = {kw: dict(v, measured={ch: v["measured"][ch] and kw in common[ch] for ch in SEARCH})
+             for kw, v in m["ranks"].items()}
+    return score(ranks, {ch: bool(common[ch]) for ch in SEARCH}, [r for r in m["ai"] if ai_key(r) in ai_keys], ents, sc)
+
+
+def compare(cur, prev, ents, sc):
+    """같은 키워드·채널·답변으로 두 회차를 다시 계산한 변동. 겹치는 범위가 기준보다 좁은 채널은 변동을 숨긴다."""
+    least = sc.get("min_channel_coverage", 0.7)
+    common, ai_keys = common_keys([cur, prev])
+    counts, hidden = {}, {}
+    for ch in SEARCH:
+        mine = sum(1 for v in cur["ranks"].values() if v["measured"][ch])
+        counts[ch] = (len(common[ch]), mine)
+        if mine and len(common[ch]) / mine < least:
+            hidden[ch] = counts[ch]
+            common[ch] = set()
+    counts["ai"] = (len(ai_keys), len(cur["ai"]))
+    if cur["ai"] and len(ai_keys) / len(cur["ai"]) < least:
+        hidden["ai"] = counts["ai"]
+        ai_keys = set()
+    c, p = rescored(cur, common, ai_keys, ents, sc), rescored(prev, common, ai_keys, ents, sc)
+    delta = {}
+    for e in ents:
+        a, b = c[e["key"]], p[e["key"]]
+        delta[e["key"]] = {x: round(a[x] - b[x], 1) for x in ("naver", "place", "google", "ai", "index")
+                           if a.get(x) is not None and b.get(x) is not None}
+    return {"delta": delta, "counts": counts, "hidden": hidden}
+
+
+def rank_moves(cur, prev, us):
+    """두 회차 모두 측정된 키워드에서만 우리 순위 변동을 찾는다."""
+    moves = []
+    for kw, v in cur["ranks"].items():
+        old = prev["ranks"].get(kw)
+        if not old:
+            continue
+        for ch, chn in CHANNELS[:3]:
+            if not (v["measured"][ch] and old["measured"][ch]):
+                continue
+            if ch == "place" and v.get("place_src") != old.get("place_src"):
+                continue
+            a1, b1 = v["ranks"][us].get(ch), old["ranks"][us].get(ch)
+            if (a1 is None) != (b1 is None) or (a1 and b1 and abs(a1 - b1) >= 3):
+                moves.append(f"- [{chn}] {kw}: {rank_txt(b1)} -> {rank_txt(a1)}")
+    return moves
+
+
+def index_trend(measures, us, ents, sc):
+    """여러 회차에 공통인 키워드·답변만으로 종합지수 추이를 다시 계산한다."""
+    common, ai_keys = common_keys(measures)
+    return [(m["name"], rescored(m, common, ai_keys, ents, sc)[us].get("index")) for m in measures]
+
+
+def status_line(m, prompts):
+    """수집 현황 한 줄: 채널별 성공 수와 실패 이유."""
+    parts = []
+    for ch, name in CHANNELS[:3]:
+        st = m["status"][ch]
+        notes = [f"{k} {v}" for k, v in st["failed"].items()]
+        if st["none"]:
+            notes.append(f"결과 없음 {st['none']}")
+        if ch == "place":
+            n = sum(1 for v in m["ranks"].values() if v.get("place_src") == "block")
+            if n:
+                notes.append(f"통합검색 영역으로 대체 {n}")
+        parts.append(f"{name} {st['ok']}/{st['target']}" + (f"({', '.join(notes)})" if notes else "")
+                     + ("" if m["have"][ch] else " 미측정 처리"))
+    by = Counter(g["engine"] for g in m["ai_good"])
+    parts.append(f"AI 검색 {len(m['ai_good'])}/{ai_expected(prompts)}" + (f"({', '.join(f'{k} {v}' for k, v in sorted(by.items()))})" if by else "")
+                 + (" 미측정 처리" if m["ai_good"] and not m["ai"] else ""))
+    return ", ".join(parts)
+
+
+def compare_line(cmp):
+    names = dict(CHANNELS)
+    return ", ".join(f"{names[ch]} {cmp['counts'][ch][0]}/{cmp['counts'][ch][1]}" for ch, _ in CHANNELS if cmp["counts"][ch][1])
+
+
+def measure_warnings(m, ents, prompts):
+    """측정값을 읽을 때 알아야 할 것. 텍스트 리포트 첫머리와 문서에 같이 넣는다."""
+    out = []
+    comps = [e for e in ents if e["role"] == "competitor"]
+    items = [it for rec in m["serp"].values() for it in rec.get("items", []) if it["cls"] == "blog"]
+    by_id, by_name, none = 0, 0, []
+    for e in comps:
+        hits = [it for it in items if match_item(it, e)]
+        if not hits:
+            none.append(e["key"])
+        elif any(it["key"].split("/")[0].lower() in [b.lower() for b in e["blog_ids"]] for it in hits):
+            by_id += 1
+        else:
+            by_name += 1
+    if comps and items:
+        out.append(f"비교군 블로그: 등록 ID {by_id}곳, 블로그명 일치 {by_name}곳, 못 찾음 {len(none)}곳"
+                   + (f"({', '.join(none)})" if none else "") + ". 못 찾은 곳의 네이버 블로그 노출은 점수에 들어가지 않습니다")
+    if m["ai_bad"]:
+        shown = ", ".join(f"{n}({why})" for n, why in m["ai_bad"][:5])
+        out.append(f"AI 답변 제외 {len(m['ai_bad'])}건: {shown}")
+    by = Counter(g["engine"] for g in m["ai_good"])
+    short = [en for en in AI_EXPECTED_ENGINES if by[en] < len(prompts)]
+    if m["ai"] and short:
+        out.append(f"AI 부분 측정: {', '.join(short)} 답변이 질문 수보다 적습니다")
+    other = Counter()
+    for fname in ("naver_serp.json", "google.json"):
+        for rec in read_json(m["dir"] / fname, {}).values():
+            other.update(rec.get("unclassified", {}))
+    if other:
+        top = ", ".join(f"{h} {n}" for h, n in other.most_common(5))
+        out.append(f"분류하지 못한 링크 {sum(other.values())}건({top}). 새 주소가 보이면 화면 구조가 바뀐 것일 수 있습니다")
+    return out
+
+
+def blog_owner_candidates(serp, ents, kws, top=10):
+    """상위 노출 블로그 중 등록 업체와 연결되지 않은 주인. 비교군 blog_ids에 넣을 후보다."""
+    w = {k["keyword"]: k["weight"] for k in kws}
+    pts, names = Counter(), {}
+    for kw, rec in serp.items():
+        for it in rec.get("items", []):
+            pos = it.get("content_pos")
+            owner = it["key"].split("/")[0] if it["cls"] == "blog" else None
+            if not owner or owner == UNKNOWN_OWNER or not pos or pos > 10 or any(match_item(it, e) for e in ents):
+                continue
+            pts[owner] += w.get(kw, 1) * (11 - pos)
+            names[owner] = it.get("owner_name", "").split(" | ")[0][:30]
+    return [(o, names[o], round(n)) for o, n in pts.most_common(top)]
 
 
 def score(ranks, have, ai, ents, sc):
@@ -173,30 +363,101 @@ def discover(mdir, cfg, ents, kws):
     return out
 
 
-def consult_summary(start, end):
+def prepare_consults():
+    """상담 입력 파일을 준비한다. 예전 위치(data/consults.csv)에 입력한 행이 있으면 이 PC 전용 파일로 옮기고
+    예전 파일은 머리글만 남긴다. 예전 파일은 저장소에 있어 내용이 남아 있으면 올라갈 수 있다."""
+    fields = CONSULT_HEADER.split(",")
+    CONSULTS.parent.mkdir(parents=True, exist_ok=True)
     if not CONSULTS.exists():
+        CONSULTS.write_text(CONSULT_HEADER + "\n", encoding="utf-8-sig")
+    old = [r for r in read_rows(CONSULTS_OLD) if any(isinstance(v, str) and v.strip() for v in r.values())] if CONSULTS_OLD.exists() else []
+    if not old:
+        return
+    try:
+        rows = read_rows(CONSULTS) + old
+        with CONSULTS.open("w", encoding="utf-8-sig", newline="") as f:
+            w = csv.DictWriter(f, fields, extrasaction="ignore")
+            w.writeheader()
+            w.writerows(rows)
+        CONSULTS_OLD.write_text(CONSULT_HEADER + "\n", encoding="utf-8")
+        print(f"상담 입력 {len(old)}행을 data/{CONSULTS.name}로 옮겼습니다.")
+    except PermissionError:
+        print("상담 입력 파일이 열려 있어 옮기지 못했습니다. 닫고 다시 실행해 주세요.")
+
+
+def parse_date(s):
+    """2026-10-27, 2026.10.27, 2026/1/5 같은 날짜를 ISO 형식으로 바꾼다. 못 읽으면 None."""
+    m = re.fullmatch(r"(\d{4})[-./](\d{1,2})[-./](\d{1,2})\.?", s.strip())
+    if not m:
         return None
-    with CONSULTS.open(encoding="utf-8-sig") as f:
-        rows = [r for r in csv.DictReader(f) if (r.get("date") or "").strip()]
+    try:
+        return date(int(m.group(1)), int(m.group(2)), int(m.group(3))).isoformat()
+    except ValueError:
+        return None
+
+
+def consult_summary(start, end):
+    """(이번 기간 행, 앞선 같은 기간 행, 날짜를 못 읽은 행 수)."""
+    if not CONSULTS.exists():
+        return [], [], 0
+    rows = [r for r in read_rows(CONSULTS) if (r.get("date") or "").strip()]
+    for r in rows:
+        r["_date"] = parse_date(r["date"])
+    bad = sum(1 for r in rows if not r["_date"])
 
     def pick(a, b):
-        return [r for r in rows if a < r["date"].strip() <= b]
+        return [r for r in rows if r["_date"] and a < r["_date"] <= b]
     cur = pick(start, end)
     span = (date.fromisoformat(end) - date.fromisoformat(start)).days
     prev_start = (date.fromisoformat(start) - timedelta(days=span)).isoformat()
     prev = pick(prev_start, start)
-    return cur, prev
+    return cur, prev, bad
+
+
+def consult_lines(start, end, cs):
+    """상담 요약 문장. 공개 저장소에 올리지 않는 파일에만 쓴다."""
+    cur, prv, bad = cs
+    ret = sum(1 for r in cur if (r.get("retained") or "").strip().upper() in ("Y", "O", "수임"))
+    lines = [f"기간 {start} 다음날 ~ {end}: 상담 {len(cur)}건 (앞선 같은 기간 {len(prv)}건), 수임 {ret}건"]
+    by = Counter((r.get("channel") or "미기재").strip() for r in cur)
+    if by:
+        lines.append("유입 경로: " + ", ".join(f"{k} {v}" for k, v in by.most_common()))
+    if bad:
+        lines.append(f"날짜를 읽지 못한 행 {bad}건은 빠졌습니다(2026-10-27 형식으로 고쳐 주세요)")
+    return lines
+
+
+def save_docx(build, R, dp):
+    """임시 이름으로 만든 뒤 교체한다. 문서가 열려 있어 못 바꾸면 '(새본)'으로 남겨 옛 문서와 어긋나지 않게 한다."""
+    tmp = dp.with_name(dp.stem + ".tmp.docx")
+    build(R, tmp)
+    try:
+        os.replace(tmp, dp)
+    except PermissionError:
+        pass
+    else:
+        for stale in dp.parent.glob(dp.stem + "(새본*).docx"):  # 지난번 새본이 열려 있으면 그대로 둔다
+            try:
+                stale.unlink()
+            except PermissionError:
+                pass
+        return dp
+    alt = dp.with_name(dp.stem + "(새본).docx")
+    try:
+        os.replace(tmp, alt)
+    except PermissionError:  # 새본까지 열려 있을 때
+        alt = dp.with_name(f"{dp.stem}(새본 {datetime.now():%H%M%S}).docx")
+        os.replace(tmp, alt)
+    print(f"문서가 열려 있어 새 이름으로 저장했습니다: {alt}")
+    return alt
 
 
 def fmt(v, suffix=""):
     return "-" if v is None else f"{v}{suffix}"
 
 
-def delta(a, b):
-    if a is None or b is None:
-        return ""
-    d = round(a - b, 1)
-    return f" ({'+' if d >= 0 else ''}{d})"
+def delta(d):
+    return "" if d is None else f" ({'+' if d >= 0 else ''}{d})"
 
 
 def yn(v):
@@ -221,6 +482,9 @@ def main():
         sys.exit(f"{a.date} 측정 결과가 없습니다.")
     earlier = [d for d in dirs if d.name < mdir.name]
     pdir = next((d for d in dirs if d.name == a.prev), None) if a.prev else (earlier[-1] if earlier else None)
+    if a.prev and pdir is None:
+        sys.exit(f"{a.prev} 측정 결과가 없습니다.")
+    prepare_consults()
 
     cfg = load_entities()
     ents = cfg["_list"]
@@ -231,27 +495,48 @@ def main():
     prompts = read_prompts()
     us = ents[0]["key"]
 
-    ranks, have = ranks_for(mdir, ents, kws)
-    ai = ai_results(mdir, ents, prompts, sc)
-    per = score(ranks, have, ai, ents, sc)
+    trend_dirs = [d for d in dirs if d.name <= mdir.name][-8:]
+    fresh = {d.name: reparse_if_old(d) for d in {mdir, *trend_dirs, *([pdir] if pdir else [])}}
+    owner_names = owner_names_all(dirs)
+    cur = load_measure(mdir, ents, kws, prompts, sc, owner_names)
+    ranks, have, ai, per = cur["ranks"], cur["have"], cur["ai"], cur["per"]
     write_json(mdir / "scores.json", {"scores": per, "ranks": ranks, "ai": [{k: v for k, v in r.items() if k != "text"} for r in ai]})
-    prev = read_json(pdir / "scores.json", {}) if pdir else {}
-    pper = prev.get("scores", {})
-    pranks = prev.get("ranks", {})
+    # 두 회차의 분류 규칙이 같을 때만 비교한다
+    prev = load_measure(pdir, ents, kws, prompts, sc, owner_names) if pdir and fresh[pdir.name] and fresh[mdir.name] else None
+    cmp = compare(cur, prev, ents, sc) if prev else None
+    deltas = cmp["delta"] if cmp else {}
+    has_delta = any(deltas.values())
+
+    warnings = measure_warnings(cur, ents, prompts)
+    if not fresh[mdir.name]:
+        warnings.append("이번 회차 원본이 없어 옛 분류 규칙 결과를 그대로 썼습니다")
+    if pdir and not prev:
+        warnings.append(f"원본이 없어 {pdir.name} 측정과 분류 규칙을 맞추지 못했습니다. 변동을 표시하지 않습니다")
+    if cmp and cmp["hidden"]:
+        names = dict(CHANNELS)
+        warnings.append("변동 미표시: " + ", ".join(f"{names[ch]}(겹치는 범위 {n}/{m})" for ch, (n, m) in cmp["hidden"].items()))
 
     L = []
     p = L.append
     p(f"진앤솔법률사무소 마케팅 노출 리포트 ({mdir.name} 측정)")
     p(f"비교 기준: {pdir.name + ' 측정' if pdir else '직전 측정 없음(이번이 기준선)'}")
+    collect = status_line(cur, prompts)
+    p(f"수집 현황: {collect}")
+    compare_txt = compare_line(cmp) if cmp else ""
+    if compare_txt:
+        p(f"변동 비교 범위(두 회차 공통/이번 회차): {compare_txt}")
     meta = read_json(mdir / "meta.json", {})
-    p(f"측정 조건: 키워드 {meta.get('keywords', len(kws))}개, 기기 {meta.get('device', '-')}, 수집 단계 {', '.join(meta.get('steps', [])) or '-'}, AI 답변 {len(ai)}건")
+    p(f"측정 조건: 키워드 {len(kws)}개, 기기 {meta.get('device', '-')}, 수집 단계 {', '.join(meta.get('steps', [])) or '-'}, AI 답변 {len(ai)}건")
     missing_ch = [n for ch, n in CHANNELS if (ch == "ai" and not ai) or (ch != "ai" and not have[ch])]
     if missing_ch:
         p(f"미측정 채널: {', '.join(missing_ch)} (종합지수는 측정된 채널 가중치로만 환산)")
+    for w_line in warnings:
+        p(f"주의: {w_line}")
     p("")
     # 문서(DOCX)용 구조화 데이터. 텍스트 리포트와 같은 값을 담는다.
-    R = {"date": mdir.name, "prev": pdir.name if pdir else None,
-         "conditions": f"키워드 {meta.get('keywords', len(kws))}개, 기기 {meta.get('device', '-')}, 수집 단계 "
+    R = {"date": mdir.name, "prev": pdir.name if pdir else None, "collect": collect, "compare": compare_txt,
+         "warnings": warnings, "has_delta": has_delta,
+         "conditions": f"키워드 {len(kws)}개, 기기 {meta.get('device', '-')}, 수집 단계 "
                        f"{', '.join(meta.get('steps', [])) or '-'}, AI 답변 {len(ai)}건",
          "missing_channels": missing_ch, "channel_names": [n for _, n in CHANNELS]}
 
@@ -259,9 +544,16 @@ def main():
     s_us = per[us]
     comps = [e for e in ents if e["role"] == "competitor"]
     ranked = sorted(ents, key=lambda e: per[e["key"]].get("index") or 0, reverse=True)
-    pos_us = [e["key"] for e in ranked].index(us) + 1
+    idx_us = s_us.get("index")
+    d_us = deltas.get(us, {})
+    if idx_us is None:
+        pos_text = "순위 없음(측정된 채널 없음)"
+    else:
+        pos_us = 1 + sum(1 for e in ents if (per[e["key"]].get("index") or 0) > idx_us)
+        ties = sum(1 for e in ents if per[e["key"]].get("index") == idx_us)
+        pos_text = f"공동 {pos_us}위({ties}곳)" if ties > 1 else f"{pos_us}위"
     p("1. 결론")
-    p(f"- 우리 종합 노출지수 {fmt(s_us.get('index'))}{delta(s_us.get('index'), pper.get(us, {}).get('index'))}, 비교군 {len(ents)}곳 중 {pos_us}위")
+    p(f"- 우리 종합 노출지수 {fmt(idx_us)}{delta(d_us.get('index'))}, 비교군 {len(ents)}곳 중 {pos_text}")
     total = sum(per[e['key']].get('index') or 0 for e in ents)
     if total and comps:
         p(f"- 노출 점유율 {round((s_us.get('index') or 0) / total * 100, 1)}% (비교군 지수 합 대비)")
@@ -272,8 +564,8 @@ def main():
     if not comps:
         p("- 비교군 미등록: 아래 7번 후보에서 골라 marketing/config/entities.json의 competitors에 넣으면 다음 리포트부터 비교합니다.")
     p("")
-    R["summary"] = {"index": s_us.get("index"), "index_delta": delta(s_us.get("index"), pper.get(us, {}).get("index")),
-                    "pos": pos_us, "n": len(ents),
+    R["summary"] = {"index": fmt(idx_us), "index_delta": delta(d_us.get("index")),
+                    "pos_text": pos_text, "n": len(ents),
                     "share": round((s_us.get("index") or 0) / total * 100, 1) if total and comps else None}
     if comps and total:
         lead = ranked[0] if ranked[0]["key"] != us else ranked[1]
@@ -287,15 +579,15 @@ def main():
     R["channel_rank"] = ch_rank
 
     # 2. 채널별 점수
-    p("2. 채널별 점수 (0~100, 괄호는 직전 대비)")
+    p("2. 채널별 점수 (0~100" + (", 괄호는 직전 대비: 두 회차 모두 측정된 같은 키워드·답변으로 다시 계산" if has_delta else "") + ")")
     head = "업체".ljust(16) + "".join(n.ljust(14) for _, n in CHANNELS) + "종합"
     p(head)
     for e in ranked:
-        s, ps = per[e["key"]], pper.get(e["key"], {})
+        s, ds = per[e["key"]], deltas.get(e["key"], {})
         line = (e["key"][:14] + ("*" if e["key"] == us else "")).ljust(16)
         for ch, _ in CHANNELS:
-            line += (fmt(s.get(ch)) + delta(s.get(ch), ps.get(ch))).ljust(14)
-        line += fmt(s.get("index")) + delta(s.get("index"), ps.get("index"))
+            line += (fmt(s.get(ch)) + delta(ds.get(ch))).ljust(14)
+        line += fmt(s.get("index")) + delta(ds.get("index"))
         p(line)
     if have["naver"]:
         p("파워링크 노출 키워드 수: " + ", ".join(
@@ -310,7 +602,9 @@ def main():
     if ai:
         p("AI 언급률: " + ", ".join(f"{e['key']} {fmt(per[e['key']].get('ai_mention_rate'), '%')}" for e in ranked))
     p("")
-    R["channels"] = [(e["key"], e["key"] == us, [fmt(per[e["key"]].get(ch)) for ch, _ in CHANNELS], fmt(per[e["key"]].get("index")))
+    R["channels"] = [(e["key"], e["key"] == us,
+                      [fmt(per[e["key"]].get(ch)) + delta(deltas.get(e["key"], {}).get(ch)) for ch, _ in CHANNELS],
+                      fmt(per[e["key"]].get("index")) + delta(deltas.get(e["key"], {}).get("index")))
                      for e in ranked]
     R["counts"] = [(e["key"], e["key"] == us,
                     sum(1 for v in ranks.values() if v["ranks"][e["key"]].get("ad")) if have["naver"] else None,
@@ -367,18 +661,10 @@ def main():
 
     # 4. 키워드 변동
     p("4. 우리 순위 변동 (직전 대비, 3계단 이상 또는 노출·미노출 전환)")
-    moves = []
-    for kw, v in ranks.items():
-        old = pranks.get(kw, {}).get("ranks", {}).get(us, {})
-        for ch, chn in CHANNELS[:3]:
-            a1, b1 = v["ranks"][us].get(ch), old.get(ch)
-            if not v["measured"][ch] or kw not in pranks:
-                continue
-            if (a1 is None) != (b1 is None) or (a1 and b1 and abs(a1 - b1) >= 3):
-                moves.append(f"- [{chn}] {kw}: {rank_txt(b1)} -> {rank_txt(a1)}")
-    for m in moves or ["- 해당 없음" if pranks else "- 직전 측정 없음"]:
+    moves = rank_moves(cur, prev, us) if prev else []
+    for m in moves or ["- 해당 없음" if prev else "- 직전 측정 없음"]:
         p(m)
-    R["moves"] = [m[2:] for m in (moves or ["- 해당 없음" if pranks else "- 직전 측정 없음"])]
+    R["moves"] = [m[2:] for m in (moves or ["- 해당 없음" if prev else "- 직전 측정 없음"])]
     p("")
 
     # 5. 운영 점검(우리 측 감점 항목)
@@ -454,25 +740,29 @@ def main():
     R["candidates"] = cand[: sc.get("discovery_top", 15)]
     for name, pid, s in cand[: sc.get("discovery_top", 15)] or [("- 후보 없음", "", "")]:
         p(f"- {name} (플레이스 {pid}) 점수 {s}" if pid else name)
+    R["blog_candidates"] = blog_owner_candidates(cur["serp"], ents, kws)
+    if R["blog_candidates"]:
+        p("상위 노출 블로그 중 등록 업체와 연결되지 않은 주인(비교군이면 entities.json의 blog_ids에 넣는다)")
+        for owner, name, s in R["blog_candidates"]:
+            p(f"- {owner}{' (' + name + ')' if name else ''} 점수 {s}")
     p("")
 
     # 8. 상담 실적
-    p("8. 상담·수임 실적 (data/consults.csv 입력분)")
+    p("8. 상담·수임 실적")
     n8 = len(L)
     start = pdir.name if pdir else (date.fromisoformat(mdir.name) - timedelta(days=7)).isoformat()
     cs = consult_summary(start, mdir.name)
-    if cs is None:
-        p("- 입력 파일 없음")
+    if any(cs):
+        lp = ROOT / "output" / "local" / f"{mdir.name}_상담요약.txt"
+        lp.parent.mkdir(parents=True, exist_ok=True)
+        lp.write_text("\n".join(consult_lines(start, mdir.name, cs)) + "\n", encoding="utf-8")
+        p("- 리포트가 저장소에 올라가므로 상담 수치는 넣지 않았습니다. 이 PC의 output/local 폴더에 있는 상담요약 파일을 보세요")
     else:
-        cur, prv = cs
-        ret = sum(1 for r in cur if (r.get("retained") or "").strip().upper() in ("Y", "O", "수임"))
-        p(f"- 기간 {start} 다음날 ~ {mdir.name}: 상담 {len(cur)}건 (앞선 같은 기간 {len(prv)}건), 수임 {ret}건")
-        by = Counter((r.get("channel") or "미기재").strip() for r in cur)
-        if by:
-            p("- 유입 경로: " + ", ".join(f"{k} {v}" for k, v in by.most_common()))
-        hist = [(d.name, read_json(d / "scores.json", {}).get("scores", {}).get(us, {}).get("index")) for d in dirs if d.name <= mdir.name]
-        if len([h for h in hist if h[1] is not None]) >= 2:
-            p("- 노출지수 추이: " + " / ".join(f"{d} {fmt(v)}" for d, v in hist[-8:]))
+        p(f"- 입력 없음(data/{CONSULTS.name}는 이 PC에만 남고 올라가지 않습니다)")
+    measures = [load_measure(d, ents, kws, prompts, sc, owner_names) for d in trend_dirs if fresh[d.name]]
+    hist = index_trend(measures, us, ents, sc) if len(measures) >= 2 else []
+    if len([h for h in hist if h[1] is not None]) >= 2:
+        p("- 노출지수 추이(모든 회차에 공통인 키워드·답변 기준): " + " / ".join(f"{d} {fmt(v)}" for d, v in hist))
     R["consults"] = [x[2:] for x in L[n8:]]
     p("")
 
@@ -516,8 +806,7 @@ def main():
     except ImportError:
         print("DOCX 생략: python-docx 미설치(py -m pip install python-docx)")
         return
-    dp = outdir / f"{mdir.name}_리포트.docx"
-    build(R, dp)
+    dp = save_docx(build, R, outdir / f"{mdir.name}_리포트.docx")
     print(f"저장: {dp}")
 
 
