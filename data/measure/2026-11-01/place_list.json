@@ -3335,12 +3335,12 @@
  },
  "창원 폭행 변호사": {
   "status": "none",
-  "raw": "place__035.html.gz",
+  "raw": "place__087.html.gz",
   "places": [],
   "ads": [],
   "total": 0,
   "input": "{\"input\":{\"adult\":false,\"businessType\":\"place\",\"deviceType\":\"pcmap\",\"display\":50,\"query\":\"창원 폭행 변호사\",\"queryRank\":\"\",\"spq\":false,\"start\":1,\"x\":\"128.6977575\",\"y\":\"35.2381984\"}}",
-  "at": "2026-11-01T22:32:41"
+  "at": "2026-11-01T23:01:41"
  },
  "창원 마약 변호사": {
   "status": "ok",
@@ -4142,12 +4142,12 @@
  },
  "창원 대여금 소송": {
   "status": "none",
-  "raw": "place__041.html.gz",
+  "raw": "place__088.html.gz",
   "places": [],
   "ads": [],
   "total": 0,
   "input": "{\"input\":{\"adult\":false,\"businessType\":\"place\",\"deviceType\":\"pcmap\",\"display\":50,\"query\":\"창원 대여금 소송\",\"queryRank\":\"\",\"spq\":false,\"start\":1,\"x\":\"128.6977575\",\"y\":\"35.2381984\"}}",
-  "at": "2026-11-01T22:33:54"
+  "at": "2026-11-01T23:01:54"
  },
  "창원 상속 변호사": {
   "status": "ok",
@@ -9137,11 +9137,11 @@
  },
  "경남 행정심판 변호사": {
   "status": "none",
-  "raw": "place__056.html.gz",
+  "raw": "place__089.html.gz",
   "places": [],
   "ads": [],
   "total": 0,
   "input": "{\"input\":{\"adult\":false,\"businessType\":\"place\",\"deviceType\":\"pcmap\",\"display\":50,\"query\":\"경남 행정심판 변호사\",\"queryRank\":\"\",\"spq\":false,\"start\":1,\"x\":\"128.6977575\",\"y\":\"35.2381984\"}}",
-  "at": "2026-11-01T22:36:53"
+  "at": "2026-11-01T23:02:04"
  }
 }
