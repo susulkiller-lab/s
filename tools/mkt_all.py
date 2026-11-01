@@ -105,10 +105,15 @@ def main():
 
     step("2/6 최신 코드 받기")
     if g:
+        me = Path(__file__).read_bytes()
         r = git(g, "pull", "--ff-only")
         print(r.stdout.strip() or r.stderr.strip())
         if r.returncode:
             notes.append("최신 코드 받기 실패: GitHub Desktop에서 Pull origin을 눌러 주세요.")
+        elif Path(__file__).read_bytes() != me and not os.environ.get("MKT_RESTARTED"):
+            print("프로그램이 새로 바뀌어 새 버전으로 다시 시작합니다.")
+            os.environ["MKT_RESTARTED"] = "1"
+            sys.exit(subprocess.run([PY, __file__, *sys.argv[1:]]).returncode)
     else:
         notes.append("git이 없어 최신 코드 받기와 결과 올리기를 건너뜀(GitHub Desktop에서 직접).")
         print("git 없음: 건너뜀")
