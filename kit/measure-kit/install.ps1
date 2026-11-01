@@ -1,4 +1,4 @@
-﻿# 진앤솔 마케팅 측정 프로그램 설치(윈도우). '설치하기.bat'을 더블클릭하면 이 파일이 실행된다.
+﻿# 진앤솔 마케팅 측정 프로그램 설치(윈도우). 'setup.bat'을 더블클릭하면 이 파일이 실행된다.
 # 하는 일: 크롬·파이썬·Git·Claude Code 설치 → 저장소 받기 → 파이썬 패키지 → 바탕화면 바로가기 → 로그인 안내
 $ErrorActionPreference = 'Continue'
 $Repo   = 'https://github.com/susulkiller-lab/s.git'
@@ -48,8 +48,8 @@ if (Has 'py') { Write-Host "파이썬 있음: $(py --version 2>&1)" } else {
 }
 if (Has 'git') { Write-Host "Git 있음: $(git --version)" } else { WingetInstall 'Git.Git' 'Git' }
 RefreshPath
-if (-not (Has 'py'))  { $Todo.Add('파이썬이 잡히지 않습니다. PC를 다시 시작한 뒤 설치하기.bat을 한 번 더 실행하세요.') }
-if (-not (Has 'git')) { $Todo.Add('Git이 잡히지 않습니다. PC를 다시 시작한 뒤 설치하기.bat을 한 번 더 실행하세요.') }
+if (-not (Has 'py'))  { $Todo.Add('파이썬이 잡히지 않습니다. PC를 다시 시작한 뒤 setup.bat을 한 번 더 실행하세요.') }
+if (-not (Has 'git')) { $Todo.Add('Git이 잡히지 않습니다. PC를 다시 시작한 뒤 setup.bat을 한 번 더 실행하세요.') }
 
 Step '3/7 Claude Code'
 if (Has 'claude') { Write-Host "Claude Code 있음: $(claude --version 2>&1)" } else {
