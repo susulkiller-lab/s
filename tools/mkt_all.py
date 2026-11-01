@@ -82,6 +82,7 @@ def find_claude():
     home = os.path.expanduser("~")
     return shutil.which("claude") or first(
         os.path.join(home, ".local", "bin", "claude.exe"),
+        os.path.join(os.environ.get("LOCALAPPDATA", ""), "Microsoft", "WinGet", "Links", "claude.exe"),
         os.path.join(os.environ.get("APPDATA", ""), "npm", "claude.cmd"))
 
 
@@ -128,8 +129,9 @@ def main():
         step("4/6 AI 답변 수집 (40~50분, 크롬을 닫지 마세요)")
         claude = find_claude()
         if not claude:
-            notes.append("Claude Code를 찾지 못해 AI 수집을 건너뜀. 윈도우를 다시 시작한 뒤 원클릭리포트를 다시 실행해 주세요.")
+            notes.append("Claude Code를 찾지 못해 AI 수집을 건너뜀. 명령 프롬프트에서 where claude 를 입력한 결과를 캡처해 주세요.")
         else:
+            print("Claude Code:", claude)
             (ROOT / "data" / "measure" / d / "ai").mkdir(parents=True, exist_ok=True)
             r = subprocess.run([claude, "-p", "--chrome", "--permission-mode", "auto", AI_PROMPT.format(d=d)], cwd=ROOT)
             n = len(list((ROOT / "data" / "measure" / d / "ai").glob("*.txt")))
