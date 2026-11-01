@@ -216,6 +216,74 @@ class Layout(unittest.TestCase):
         self.assertEqual(pdf2md.layout_to_markdown([], self.W), "")
 
 
+class Shortcuts(unittest.TestCase):
+    """바로가기 생성 로직만 확인한다(PowerShell 호출은 가짜로 대체). 실제 .lnk 생성은 Windows에서만 확인할 수 있다."""
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.old_here = pdf2md.HERE
+        pdf2md.HERE = self.tmp
+
+    def tearDown(self):
+        pdf2md.HERE = self.old_here
+
+    def test_not_windows_makes_nothing(self):
+        self.assertEqual(pdf2md.make_shortcuts(is_windows=False), [])
+
+    def test_powershell_call_shape(self):
+        import base64
+        (self.tmp / "pdf2md.ico").write_bytes(b"\x00\x00\x01\x00")
+        seen = {}
+
+        def fake_run(cmd, env=None, capture_output=None, timeout=None):
+            seen["cmd"], seen["env"] = cmd, env
+            return SimpleNamespace(returncode=0, stderr=b"",
+                                   stdout="\ufeffC:\\폴더\\PDF 변환기.lnk\r\nC:\\바탕화면\\PDF 변환기.lnk\r\n".encode("utf-8"))
+        made = pdf2md.make_shortcuts(run=fake_run, is_windows=True)
+        self.assertEqual(len(made), 2)
+        self.assertTrue(all(m.endswith("PDF 변환기.lnk") for m in made))
+        self.assertEqual(seen["cmd"][0], "powershell")
+        self.assertIn("-EncodedCommand", seen["cmd"])
+        script = base64.b64decode(seen["cmd"][-1]).decode("utf-16-le")
+        self.assertIn("CreateShortcut", script)
+        self.assertIn("GetFolderPath('Desktop')", script)
+        self.assertTrue(seen["env"]["P2M_TARGET"].endswith("pdf2md.bat"))
+        self.assertTrue(seen["env"]["P2M_ICON"].endswith("pdf2md.ico"))
+        self.assertEqual(seen["env"]["P2M_NAME"], "PDF 변환기.lnk")
+
+    def test_icon_omitted_when_file_missing(self):
+        seen = {}
+
+        def fake_run(cmd, env=None, **k):
+            seen["env"] = env
+            return SimpleNamespace(returncode=0, stderr=b"", stdout=b"x.lnk\n")
+        pdf2md.make_shortcuts(run=fake_run, is_windows=True)
+        self.assertEqual(seen["env"]["P2M_ICON"], "")
+
+    def test_powershell_failure_raises_with_message(self):
+        def fake_run(cmd, **k):
+            return SimpleNamespace(returncode=1, stderr="접근 거부".encode("utf-8"), stdout=b"")
+        with self.assertRaises(RuntimeError) as cm:
+            pdf2md.make_shortcuts(run=fake_run, is_windows=True)
+        self.assertIn("접근 거부", str(cm.exception))
+
+    def test_ensure_runs_once_and_respects_deleted_shortcuts(self):
+        calls = []
+        pdf2md.ensure_shortcuts(is_windows=True, make=lambda: calls.append(1) or ["a.lnk"])
+        self.assertEqual(len(calls), 1)
+        self.assertTrue((self.tmp / ".shortcut_done").exists())
+        pdf2md.ensure_shortcuts(is_windows=True, make=lambda: calls.append(1) or ["a.lnk"])
+        self.assertEqual(len(calls), 1)             # 표시 파일이 있으면 다시 만들지 않는다
+
+    def test_ensure_failure_is_quiet_and_retries_next_time(self):
+        def boom():
+            raise RuntimeError("막힘")
+        pdf2md.ensure_shortcuts(is_windows=True, make=boom)      # 예외를 밖으로 내보내지 않는다
+        self.assertFalse((self.tmp / ".shortcut_done").exists())
+
+    def test_ensure_skips_on_non_windows(self):
+        pdf2md.ensure_shortcuts(is_windows=False, make=lambda: self.fail("호출되면 안 됨"))
+
+
 class Setup(unittest.TestCase):
     """설치 흐름의 분기만 확인한다(pip와 venv 생성은 가짜로 대체)."""
     def setUp(self):
@@ -330,6 +398,11 @@ class Server(unittest.TestCase):
     def test_rejects_non_pdf(self):
         st, _ = self.req("POST", "/api/convert?name=a.pdf", b"hello world", {"X-Pdf2md": "1"})
         self.assertEqual(st, 400)
+
+    def test_favicon_is_the_app_icon(self):
+        st, data = self.req("GET", "/favicon.ico")
+        self.assertEqual(st, 200)
+        self.assertEqual(data[:4], b"\x00\x00\x01\x00")        # ICO 시그니처
 
     def test_unknown_job(self):
         st, _ = self.req("GET", "/api/jobs/nope")

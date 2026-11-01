@@ -10,6 +10,7 @@
 (OCR 모델 파일만 최초 1회 인터넷에서 내려받는다.)
 """
 import argparse
+import base64
 import json
 import os
 import re
@@ -423,7 +424,11 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/":
             self._send(200, (HERE / "ui.html").read_bytes(), "text/html; charset=utf-8")
         elif path == "/favicon.ico":
-            self._send(204, b"", "image/x-icon")
+            ico = HERE / "pdf2md.ico"
+            if ico.exists():
+                self._send(200, ico.read_bytes(), "image/x-icon")
+            else:
+                self._send(204, b"", "image/x-icon")
         elif path.startswith("/api/jobs/"):
             job = JOBS.get(path.rsplit("/", 1)[1])
             if job:
@@ -590,6 +595,92 @@ def setup():
     return 0
 
 
+SHORTCUT_NAME = "PDF 변환기.lnk"
+# 경로·이름은 환경변수로 넘겨 한글 경로도 안전하게 다룬다. 스크립트 자체는 ASCII만 쓴다.
+_PS_SHORTCUT = """
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+$ws = New-Object -ComObject WScript.Shell
+$desk = [Environment]::GetFolderPath('Desktop')
+foreach ($dir in @($env:P2M_DIR, $desk)) {
+  if (-not $dir -or -not (Test-Path -LiteralPath $dir)) { continue }
+  $lnk = Join-Path $dir $env:P2M_NAME
+  $s = $ws.CreateShortcut($lnk)
+  $s.TargetPath = $env:P2M_TARGET
+  $s.WorkingDirectory = $env:P2M_DIR
+  if ($env:P2M_ICON) { $s.IconLocation = $env:P2M_ICON + ',0' }
+  $s.Description = $env:P2M_DESC
+  $s.Save()
+  Write-Output $lnk
+}
+"""
+
+
+def make_shortcuts(*, run=None, is_windows=None):
+    """이 폴더와 바탕화면에 아이콘이 붙은 바로가기를 만든다(Windows 전용). 만든 경로 목록을 돌려준다."""
+    if is_windows is None:
+        is_windows = os.name == "nt"
+    if not is_windows:
+        return []
+    run = run or subprocess.run
+    icon = HERE / "pdf2md.ico"
+    env = dict(os.environ, P2M_DIR=str(HERE), P2M_TARGET=str(HERE / "pdf2md.bat"), P2M_NAME=SHORTCUT_NAME,
+               P2M_ICON=str(icon) if icon.exists() else "", P2M_DESC="PDF를 Markdown으로 변환")
+    enc = base64.b64encode(_PS_SHORTCUT.encode("utf-16-le")).decode("ascii")
+    args = ["-NoProfile", "-ExecutionPolicy", "Bypass", "-EncodedCommand", enc]
+    sysroot = os.environ.get("SystemRoot", r"C:\Windows")
+    last = None
+    for exe in ("powershell", sysroot + r"\System32\WindowsPowerShell\v1.0\powershell.exe"):
+        try:
+            r = run([exe] + args, env=env, capture_output=True, timeout=90)
+            break
+        except FileNotFoundError as e:
+            last = e
+    else:
+        raise RuntimeError(f"PowerShell을 찾을 수 없습니다: {last}")
+    if r.returncode != 0:
+        raise RuntimeError((r.stderr or b"").decode("utf-8", "replace").strip()[:300] or f"종료 코드 {r.returncode}")
+    out = (r.stdout or b"").decode("utf-8-sig", "replace")
+    return [ln.strip() for ln in out.splitlines() if ln.strip().lower().endswith(".lnk")]
+
+
+def ensure_shortcuts(*, is_windows=None, make=None):
+    """처음 한 번만 바로가기를 만든다. 표시 파일(.shortcut_done)이 있으면 건너뛰어 지운 바로가기를 되살리지 않는다."""
+    if is_windows is None:
+        is_windows = os.name == "nt"
+    marker = HERE / ".shortcut_done"
+    if not is_windows or marker.exists():
+        return
+    try:
+        made = (make or make_shortcuts)()
+    except Exception as e:
+        print(f"바로가기를 만들지 못했습니다({e}). pdf2md_shortcut.bat를 실행하면 다시 시도합니다.")
+        return
+    if made:
+        marker.write_text("\n".join(made), encoding="utf-8")
+        print("바로가기를 만들었습니다(바탕화면과 이 폴더의 'PDF 변환기'):")
+        for m in made:
+            print(f"  {m}")
+
+
+def shortcut_command():
+    if os.name != "nt":
+        print("바로가기 만들기는 Windows에서만 지원합니다.")
+        return 1
+    try:
+        made = make_shortcuts()
+    except Exception as e:
+        print(f"바로가기를 만들지 못했습니다: {e}")
+        return 1
+    if not made:
+        print("바로가기를 만들지 못했습니다(생성된 파일이 없습니다).")
+        return 1
+    (HERE / ".shortcut_done").write_text("\n".join(made), encoding="utf-8")
+    print("바로가기를 만들었습니다:")
+    for m in made:
+        print(f"  {m}")
+    return 0
+
+
 def warmup():
     print("OCR 모델을 준비하는 중... (최초 1회 인터넷 연결 필요)")
     try:
@@ -611,6 +702,7 @@ def main(argv=None):
     ap.add_argument("files", nargs="*", help="변환할 PDF (없으면 브라우저 화면 실행)")
     ap.add_argument("--setup", action="store_true", help="가상환경·패키지·OCR 모델 설치")
     ap.add_argument("--warmup", action="store_true", help="OCR 모델만 내려받기")
+    ap.add_argument("--shortcut", action="store_true", help="바탕화면과 이 폴더에 아이콘 바로가기 만들기(Windows)")
     ap.add_argument("--no-ocr", action="store_true", help="OCR을 쓰지 않음(스캔 쪽은 경고만)")
     ap.add_argument("--no-page-marks", action="store_true", help="OCR 결과에 [N쪽] 표시를 넣지 않음")
     ap.add_argument("--out", help="저장 폴더(기본: 각 PDF와 같은 폴더)")
@@ -621,6 +713,9 @@ def main(argv=None):
         return setup()
     if a.warmup:
         return warmup()
+    if a.shortcut:
+        return shortcut_command()
+    ensure_shortcuts()
     if a.files:
         return run_files(a.files, ocr=not a.no_ocr, page_marks=not a.no_page_marks, out_dir=a.out)
     serve(a.port, not a.no_browser)
