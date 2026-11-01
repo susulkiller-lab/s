@@ -44,13 +44,45 @@ def ensure_packages():
         subprocess.run([PY, "-m", "pip", "install", "-q", *need], check=False)
 
 
+def refresh_path():
+    """설치 직후 바탕화면 바로가기로 실행하면 새로 깔린 프로그램 경로가 PATH에 없을 수 있다.
+    윈도우 레지스트리의 사용자·시스템 PATH를 다시 읽어 붙인다."""
+    if os.name != "nt":
+        return
+    import winreg
+    extra = []
+    for hive, key in ((winreg.HKEY_LOCAL_MACHINE, r"SYSTEM\CurrentControlSet\Control\Session Manager\Environment"),
+                      (winreg.HKEY_CURRENT_USER, r"Environment")):
+        try:
+            with winreg.OpenKey(hive, key) as k:
+                extra.append(os.path.expandvars(winreg.QueryValueEx(k, "Path")[0]))
+        except OSError:
+            pass
+    os.environ["PATH"] = os.pathsep.join([os.environ.get("PATH", ""), *extra])
+
+
+def first(*patterns):
+    for pat in patterns:
+        hits = sorted(glob.glob(pat))
+        if hits:
+            return hits[-1]
+    return None
+
+
 def find_git():
-    g = shutil.which("git")
-    if g:
-        return g
-    local = os.environ.get("LOCALAPPDATA", "")
-    hits = sorted(glob.glob(os.path.join(local, "GitHubDesktop", "app-*", "resources", "app", "git", "cmd", "git.exe")))
-    return hits[-1] if hits else None
+    home, local = os.path.expanduser("~"), os.environ.get("LOCALAPPDATA", "")
+    return shutil.which("git") or first(
+        os.path.join(os.environ.get("ProgramFiles", r"C:\Program Files"), "Git", "cmd", "git.exe"),
+        os.path.join(local, "Programs", "Git", "cmd", "git.exe"),
+        os.path.join(local, "GitHubDesktop", "app-*", "resources", "app", "git", "cmd", "git.exe"),
+        os.path.join(home, "scoop", "shims", "git.exe"))
+
+
+def find_claude():
+    home = os.path.expanduser("~")
+    return shutil.which("claude") or first(
+        os.path.join(home, ".local", "bin", "claude.exe"),
+        os.path.join(os.environ.get("APPDATA", ""), "npm", "claude.cmd"))
 
 
 def git(g, *args):
@@ -67,6 +99,7 @@ def main():
     d = a.date
 
     step("1/6 준비")
+    refresh_path()
     ensure_packages()
     g = find_git()
 
@@ -88,9 +121,9 @@ def main():
 
     if not a.no_ai:
         step("4/6 AI 답변 수집 (40~50분, 크롬을 닫지 마세요)")
-        claude = shutil.which("claude")
+        claude = find_claude()
         if not claude:
-            notes.append("Claude Code가 없어 AI 수집을 건너뜀.")
+            notes.append("Claude Code를 찾지 못해 AI 수집을 건너뜀. 윈도우를 다시 시작한 뒤 원클릭리포트를 다시 실행해 주세요.")
         else:
             (ROOT / "data" / "measure" / d / "ai").mkdir(parents=True, exist_ok=True)
             r = subprocess.run([claude, "-p", "--chrome", "--permission-mode", "auto", AI_PROMPT.format(d=d)], cwd=ROOT)
