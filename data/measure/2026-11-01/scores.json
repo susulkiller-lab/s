@@ -1,12 +1,12 @@
 {
  "scores": {
   "진앤솔": {
-   "naver": 0.0,
+   "naver": 2.1,
    "place": 0.0,
-   "google": 10.7,
+   "google": 2.9,
    "ai": 3.3,
    "ai_mention_rate": 8.3,
-   "index": 2.3
+   "index": 1.9
   },
   "시그널": {
    "naver": 0.0,
@@ -17,44 +17,44 @@
    "index": 0.2
   },
   "디에이치": {
-   "naver": 5.7,
+   "naver": 5.0,
    "place": 20.0,
-   "google": 28.6,
+   "google": 30.0,
    "ai": 19.2,
    "ai_mention_rate": 25.0,
    "index": 15.7
   },
   "장한": {
-   "naver": 0.0,
+   "naver": 6.4,
    "place": 31.2,
    "google": 0.0,
    "ai": 7.5,
    "ai_mention_rate": 8.3,
-   "index": 9.9
+   "index": 12.4
   },
   "로운": {
    "naver": 1.4,
    "place": 13.6,
-   "google": 7.1,
+   "google": 6.4,
    "ai": 0.0,
    "ai_mention_rate": 0.0,
-   "index": 5.5
+   "index": 5.4
   },
   "강은실": {
-   "naver": 0.0,
+   "naver": 1.4,
    "place": 4.0,
    "google": 0.0,
    "ai": 4.2,
    "ai_mention_rate": 4.2,
-   "index": 1.8
+   "index": 2.4
   },
   "김소연": {
-   "naver": 0.0,
+   "naver": 0.7,
    "place": 12.0,
    "google": 0.0,
    "ai": 0.0,
    "ai_mention_rate": 0.0,
-   "index": 3.3
+   "index": 3.6
   },
   "사림": {
    "naver": 0.0,
@@ -75,10 +75,10 @@
   "박인욱": {
    "naver": 3.6,
    "place": 0.0,
-   "google": 12.1,
+   "google": 11.4,
    "ai": 13.3,
    "ai_mention_rate": 16.7,
-   "index": 5.6
+   "index": 5.5
   },
   "더바로": {
    "naver": 0.0,
@@ -89,12 +89,12 @@
    "index": 3.4
   },
   "샤": {
-   "naver": 0.0,
+   "naver": 0.7,
    "place": 0.0,
    "google": 2.1,
    "ai": 12.5,
    "ai_mention_rate": 16.7,
-   "index": 2.4
+   "index": 2.7
   },
   "송명숙": {
    "naver": 0.0,
@@ -107,42 +107,42 @@
   "나우": {
    "naver": 0.0,
    "place": 20.0,
-   "google": 2.9,
+   "google": 0.0,
    "ai": 6.7,
    "ai_mention_rate": 8.3,
-   "index": 7.2
+   "index": 6.7
   },
   "오현": {
    "naver": 0.0,
    "place": 13.6,
-   "google": 7.9,
+   "google": 6.4,
    "ai": 9.2,
    "ai_mention_rate": 12.5,
-   "index": 6.6
+   "index": 6.4
   },
   "더킴": {
-   "naver": 9.3,
+   "naver": 24.3,
    "place": 14.4,
-   "google": 10.7,
+   "google": 13.6,
    "ai": 26.7,
    "ai_mention_rate": 29.2,
-   "index": 13.8
+   "index": 20.2
   },
   "한강파트너스": {
-   "naver": 0.0,
+   "naver": 7.1,
    "place": 4.0,
    "google": 0.0,
    "ai": 12.5,
    "ai_mention_rate": 12.5,
-   "index": 3.2
+   "index": 6.0
   },
   "율마루": {
    "naver": 0.0,
    "place": 1.6,
-   "google": 23.6,
+   "google": 25.0,
    "ai": 20.0,
    "ai_mention_rate": 20.8,
-   "index": 7.7
+   "index": 7.9
   },
   "아인": {
    "naver": 6.4,
@@ -161,12 +161,12 @@
    "index": 0.7
   },
   "YK창원": {
-   "naver": 0.0,
+   "naver": 5.7,
    "place": 26.4,
-   "google": 17.9,
+   "google": 10.7,
    "ai": 20.0,
    "ai_mention_rate": 25.0,
-   "index": 13.7
+   "index": 14.7
   }
  },
  "ranks": {
@@ -405,7 +405,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 1,
      "ad": false,
      "place_block": null,
      "place": 6,
@@ -422,7 +422,7 @@
      "gmap": false
     },
     "한강파트너스": {
-     "naver": null,
+     "naver": 9,
      "ad": true,
      "place_block": null,
      "place": 23,
@@ -490,7 +490,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 10,
      "ad": true,
      "place_block": 2,
      "place": 2,
@@ -507,6 +507,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -517,7 +518,7 @@
    "weight": 1.0,
    "ranks": {
     "진앤솔": {
-     "naver": 16,
+     "naver": 6,
      "ad": false,
      "place_block": null,
      "place": 18,
@@ -560,7 +561,7 @@
      "gmap": false
     },
     "장한": {
-     "naver": null,
+     "naver": 3,
      "ad": false,
      "place_block": 1,
      "place": 1,
@@ -594,7 +595,7 @@
      "gmap": false
     },
     "강은실": {
-     "naver": null,
+     "naver": 9,
      "ad": false,
      "place_block": null,
      "place": 9,
@@ -799,7 +800,7 @@
      "gmap": false
     },
     "아인": {
-     "naver": null,
+     "naver": 14,
      "ad": false,
      "place_block": null,
      "place": 36,
@@ -816,7 +817,7 @@
      "gmap": false
     },
     "해정": {
-     "naver": 25,
+     "naver": 15,
      "ad": false,
      "place_block": null,
      "place": 28,
@@ -833,7 +834,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 13,
      "ad": true,
      "place_block": 2,
      "place": 2,
@@ -850,6 +851,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -873,8 +875,8 @@
       "coupon": false
      },
      "place_total": 69,
-     "google": 4,
-     "gmap": false
+     "google": null,
+     "gmap": true
     },
     "시그널": {
      "naver": null,
@@ -907,7 +909,7 @@
       "coupon": true
      },
      "place_total": 69,
-     "google": 6,
+     "google": 3,
      "gmap": false
     },
     "장한": {
@@ -1079,11 +1081,11 @@
       "coupon": false
      },
      "place_total": 69,
-     "google": 10,
+     "google": 7,
      "gmap": false
     },
     "더킴": {
-     "naver": 13,
+     "naver": 1,
      "ad": false,
      "place_block": null,
      "place": 9,
@@ -1096,7 +1098,7 @@
       "coupon": false
      },
      "place_total": 69,
-     "google": 8,
+     "google": 5,
      "gmap": false
     },
     "한강파트너스": {
@@ -1130,7 +1132,7 @@
       "coupon": true
      },
      "place_total": 69,
-     "google": 9,
+     "google": 6,
      "gmap": false
     },
     "아인": {
@@ -1168,7 +1170,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 13,
      "ad": true,
      "place_block": 2,
      "place": 2,
@@ -1181,10 +1183,11 @@
       "coupon": false
      },
      "place_total": 69,
-     "google": 3,
-     "gmap": false
+     "google": 8,
+     "gmap": true
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -1260,7 +1263,7 @@
       "coupon": true
      },
      "place_total": 11,
-     "google": 8,
+     "google": 9,
      "gmap": false
     },
     "강은실": {
@@ -1370,7 +1373,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": 17,
+     "naver": 5,
      "ad": false,
      "place_block": 4,
      "place": 4,
@@ -1383,7 +1386,7 @@
       "coupon": false
      },
      "place_total": 11,
-     "google": 7,
+     "google": 8,
      "gmap": false
     },
     "한강파트너스": {
@@ -1401,7 +1404,7 @@
      "place_block": null,
      "place": null,
      "place_total": 11,
-     "google": 10,
+     "google": 11,
      "gmap": false
     },
     "아인": {
@@ -1428,10 +1431,11 @@
      "place_block": null,
      "place": null,
      "place_total": 11,
-     "google": 4,
+     "google": 5,
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -1477,7 +1481,7 @@
      "gmap": false
     },
     "장한": {
-     "naver": null,
+     "naver": 13,
      "ad": false,
      "place_block": 2,
      "place": 2,
@@ -1642,7 +1646,7 @@
      "gmap": false
     },
     "한강파트너스": {
-     "naver": null,
+     "naver": 8,
      "ad": false,
      "place_block": null,
      "place": 14,
@@ -1708,9 +1712,10 @@
      },
      "place_total": 20,
      "google": null,
-     "gmap": false
+     "gmap": true
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -1726,8 +1731,8 @@
      "place_block": null,
      "place": null,
      "place_total": 3,
-     "google": 8,
-     "gmap": false
+     "google": null,
+     "gmap": true
     },
     "시그널": {
      "naver": null,
@@ -1864,7 +1869,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": 21,
+     "naver": 19,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -1896,7 +1901,7 @@
      "place_block": null,
      "place": null,
      "place_total": 3,
-     "google": 10,
+     "google": 8,
      "gmap": false
     },
     "해정": {
@@ -1914,10 +1919,11 @@
      "place_block": null,
      "place": null,
      "place_total": 3,
-     "google": 11,
+     "google": 9,
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -1931,8 +1937,8 @@
      "naver": null,
      "ad": false,
      "place_block": null,
-     "google": 3,
-     "gmap": false
+     "google": null,
+     "gmap": true
     },
     "시그널": {
      "naver": null,
@@ -2033,10 +2039,10 @@
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 10,
      "ad": false,
      "place_block": null,
-     "google": 7,
+     "google": 4,
      "gmap": false
     },
     "한강파트너스": {
@@ -2050,7 +2056,7 @@
      "naver": null,
      "ad": true,
      "place_block": null,
-     "google": 6,
+     "google": 3,
      "gmap": false
     },
     "아인": {
@@ -2071,10 +2077,11 @@
      "naver": null,
      "ad": true,
      "place_block": null,
-     "google": 4,
-     "gmap": false
+     "google": null,
+     "gmap": true
     }
    },
+   "place_src": null,
    "measured": {
     "naver": true,
     "place": false,
@@ -2085,7 +2092,7 @@
    "weight": 1.0,
    "ranks": {
     "진앤솔": {
-     "naver": 11,
+     "naver": 12,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -2220,7 +2227,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": 19,
+     "naver": 20,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -2229,7 +2236,7 @@
      "gmap": false
     },
     "한강파트너스": {
-     "naver": null,
+     "naver": 1,
      "ad": false,
      "place_block": 1,
      "place": 1,
@@ -2282,6 +2289,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -2354,7 +2362,7 @@
      "gmap": false
     },
     "김소연": {
-     "naver": null,
+     "naver": 15,
      "ad": false,
      "place_block": 1,
      "place": 1,
@@ -2393,7 +2401,7 @@
       "coupon": true
      },
      "place_total": 8,
-     "google": 7,
+     "google": 6,
      "gmap": false
     },
     "박인욱": {
@@ -2451,7 +2459,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 9,
      "ad": false,
      "place_block": 3,
      "place": 3,
@@ -2482,7 +2490,7 @@
      "place_block": null,
      "place": null,
      "place_total": 8,
-     "google": 8,
+     "google": 7,
      "gmap": false
     },
     "아인": {
@@ -2509,10 +2517,11 @@
      "place_block": null,
      "place": null,
      "place_total": 8,
-     "google": 3,
-     "gmap": false
+     "google": null,
+     "gmap": true
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -2541,7 +2550,7 @@
      "gmap": false
     },
     "디에이치": {
-     "naver": 2,
+     "naver": 3,
      "ad": false,
      "place_block": 1,
      "place": 1,
@@ -2608,7 +2617,7 @@
      "place_block": null,
      "place": null,
      "place_total": 5,
-     "google": 7,
+     "google": 8,
      "gmap": false
     },
     "박인욱": {
@@ -2684,7 +2693,7 @@
      "gmap": false
     },
     "율마루": {
-     "naver": 20,
+     "naver": 21,
      "ad": true,
      "place_block": null,
      "place": null,
@@ -2720,6 +2729,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -2824,7 +2834,7 @@
      "place_block": null,
      "place": null,
      "place_total": 24,
-     "google": 6,
+     "google": 7,
      "gmap": false
     },
     "더바로": {
@@ -2881,7 +2891,7 @@
      "gmap": true
     },
     "더킴": {
-     "naver": null,
+     "naver": 17,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -2890,7 +2900,7 @@
      "gmap": false
     },
     "한강파트너스": {
-     "naver": null,
+     "naver": 7,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -2926,7 +2936,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 10,
      "ad": true,
      "place_block": null,
      "place": null,
@@ -2935,6 +2945,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -2981,7 +2992,7 @@
      "gmap": false
     },
     "로운": {
-     "naver": null,
+     "naver": 17,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -3031,7 +3042,7 @@
      "place_block": null,
      "place": null,
      "place_total": 6,
-     "google": 4,
+     "google": 5,
      "gmap": false
     },
     "더바로": {
@@ -3080,12 +3091,12 @@
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 11,
      "ad": false,
      "place_block": null,
      "place": null,
      "place_total": 6,
-     "google": 6,
+     "google": 7,
      "gmap": false
     },
     "한강파트너스": {
@@ -3133,7 +3144,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 16,
      "ad": true,
      "place_block": null,
      "place": null,
@@ -3142,6 +3153,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -3211,11 +3223,11 @@
      "naver": null,
      "ad": false,
      "place_block": null,
-     "google": 6,
+     "google": 7,
      "gmap": false
     },
     "박인욱": {
-     "naver": null,
+     "naver": 20,
      "ad": false,
      "place_block": null,
      "google": null,
@@ -3229,7 +3241,7 @@
      "gmap": false
     },
     "샤": {
-     "naver": null,
+     "naver": 10,
      "ad": false,
      "place_block": null,
      "google": null,
@@ -3257,7 +3269,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 16,
      "ad": false,
      "place_block": null,
      "google": null,
@@ -3299,6 +3311,7 @@
      "gmap": false
     }
    },
+   "place_src": null,
    "measured": {
     "naver": true,
     "place": false,
@@ -3309,13 +3322,13 @@
    "weight": 1.0,
    "ranks": {
     "진앤솔": {
-     "naver": 20,
+     "naver": 9,
      "ad": false,
      "place_block": null,
      "place": null,
      "place_total": 10,
-     "google": 6,
-     "gmap": false
+     "google": null,
+     "gmap": true
     },
     "시그널": {
      "naver": null,
@@ -3403,7 +3416,7 @@
      "place_block": null,
      "place": null,
      "place_total": 10,
-     "google": 8,
+     "google": 6,
      "gmap": false
     },
     "더바로": {
@@ -3514,6 +3527,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -3585,7 +3599,7 @@
      "gmap": false
     },
     "강은실": {
-     "naver": null,
+     "naver": 17,
      "ad": false,
      "place_block": null,
      "place": 6,
@@ -3723,7 +3737,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 16,
      "ad": false,
      "place_block": null,
      "place": 8,
@@ -3809,6 +3823,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -4008,6 +4023,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -4207,6 +4223,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -4270,7 +4287,7 @@
      "gmap": false
     },
     "강은실": {
-     "naver": null,
+     "naver": 13,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -4368,7 +4385,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 1,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -4377,7 +4394,7 @@
      "gmap": false
     },
     "한강파트너스": {
-     "naver": null,
+     "naver": 4,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -4413,7 +4430,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 9,
      "ad": true,
      "place_block": null,
      "place": null,
@@ -4422,6 +4439,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -4579,8 +4597,8 @@
      "place_block": null,
      "place": null,
      "place_total": 4,
-     "google": 5,
-     "gmap": false
+     "google": null,
+     "gmap": true
     },
     "더킴": {
      "naver": 1,
@@ -4588,7 +4606,7 @@
      "place_block": null,
      "place": null,
      "place_total": 4,
-     "google": 6,
+     "google": 4,
      "gmap": false
     },
     "한강파트너스": {
@@ -4606,7 +4624,7 @@
      "place_block": null,
      "place": null,
      "place_total": 4,
-     "google": 7,
+     "google": 5,
      "gmap": false
     },
     "아인": {
@@ -4628,15 +4646,16 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 9,
      "ad": true,
      "place_block": null,
      "place": null,
      "place_total": 4,
-     "google": 4,
-     "gmap": false
+     "google": null,
+     "gmap": true
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -4700,7 +4719,7 @@
      "gmap": false
     },
     "강은실": {
-     "naver": null,
+     "naver": 8,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -4785,8 +4804,8 @@
      "place_block": null,
      "place": null,
      "place_total": 5,
-     "google": 4,
-     "gmap": false
+     "google": null,
+     "gmap": true
     },
     "오현": {
      "naver": null,
@@ -4798,7 +4817,7 @@
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 18,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -4834,7 +4853,7 @@
      "gmap": false
     },
     "해정": {
-     "naver": 28,
+     "naver": 17,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -4843,7 +4862,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 15,
      "ad": true,
      "place_block": null,
      "place": null,
@@ -4852,6 +4871,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -4997,12 +5017,12 @@
      "gmap": false
     },
     "더킴": {
-     "naver": 14,
+     "naver": 4,
      "ad": false,
      "place_block": null,
      "place": null,
      "place_total": 1,
-     "google": 6,
+     "google": 7,
      "gmap": false
     },
     "한강파트너스": {
@@ -5020,7 +5040,7 @@
      "place_block": null,
      "place": null,
      "place_total": 1,
-     "google": 3,
+     "google": 4,
      "gmap": false
     },
     "아인": {
@@ -5042,7 +5062,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 3,
      "ad": true,
      "place_block": null,
      "place": null,
@@ -5051,6 +5071,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -5102,7 +5123,7 @@
      "place_block": null,
      "place": null,
      "place_total": 3,
-     "google": 3,
+     "google": 4,
      "gmap": false
     },
     "강은실": {
@@ -5147,7 +5168,7 @@
      "place_block": null,
      "place": null,
      "place_total": 3,
-     "google": 5,
+     "google": 6,
      "gmap": false
     },
     "더바로": {
@@ -5214,12 +5235,12 @@
      "gmap": false
     },
     "율마루": {
-     "naver": 17,
+     "naver": 21,
      "ad": true,
      "place_block": null,
      "place": null,
      "place_total": 3,
-     "google": 2,
+     "google": 3,
      "gmap": false
     },
     "아인": {
@@ -5241,7 +5262,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 22,
      "ad": true,
      "place_block": null,
      "place": null,
@@ -5250,6 +5271,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -5265,8 +5287,8 @@
      "place_block": null,
      "place": null,
      "place_total": 1,
-     "google": 2,
-     "gmap": false
+     "google": null,
+     "gmap": true
     },
     "시그널": {
      "naver": null,
@@ -5283,7 +5305,7 @@
      "place_block": null,
      "place": null,
      "place_total": 1,
-     "google": 9,
+     "google": 8,
      "gmap": false
     },
     "장한": {
@@ -5337,7 +5359,7 @@
      "place_block": null,
      "place": null,
      "place_total": 1,
-     "google": 8,
+     "google": 6,
      "gmap": false
     },
     "박인욱": {
@@ -5418,7 +5440,7 @@
      "place_block": null,
      "place": null,
      "place_total": 1,
-     "google": 5,
+     "google": 2,
      "gmap": false
     },
     "아인": {
@@ -5440,15 +5462,16 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 18,
      "ad": true,
      "place_block": null,
      "place": null,
      "place_total": 1,
-     "google": 4,
-     "gmap": false
+     "google": null,
+     "gmap": true
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -5635,7 +5658,7 @@
      "place_block": null,
      "place": null,
      "place_total": 322,
-     "google": 8,
+     "google": 6,
      "gmap": false
     },
     "송명숙": {
@@ -5759,7 +5782,7 @@
      "gmap": false
     },
     "YK창원": {
-     "naver": null,
+     "naver": 10,
      "ad": true,
      "place_block": 2,
      "place": 2,
@@ -5776,6 +5799,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -5829,7 +5853,7 @@
      "gmap": false
     },
     "장한": {
-     "naver": null,
+     "naver": 3,
      "ad": false,
      "place_block": 1,
      "place": 1,
@@ -5998,7 +6022,7 @@
       "coupon": false
      },
      "place_total": 123,
-     "google": 8,
+     "google": 5,
      "gmap": false
     },
     "한강파트너스": {
@@ -6032,7 +6056,7 @@
       "coupon": true
      },
      "place_total": 123,
-     "google": 10,
+     "google": 7,
      "gmap": false
     },
     "아인": {
@@ -6083,10 +6107,11 @@
       "coupon": false
      },
      "place_total": 123,
-     "google": 6,
-     "gmap": false
+     "google": 8,
+     "gmap": true
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -6097,7 +6122,7 @@
    "weight": 1.0,
    "ranks": {
     "진앤솔": {
-     "naver": 17,
+     "naver": 7,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -6132,7 +6157,7 @@
      "gmap": false
     },
     "장한": {
-     "naver": null,
+     "naver": 3,
      "ad": false,
      "place_block": null,
      "place": null,
@@ -6267,8 +6292,8 @@
       "coupon": false
      },
      "place_total": 101,
-     "google": 4,
-     "gmap": false
+     "google": null,
+     "gmap": true
     },
     "오현": {
      "naver": null,
@@ -6284,11 +6309,11 @@
       "coupon": false
      },
      "place_total": 101,
-     "google": 10,
+     "google": 7,
      "gmap": false
     },
     "더킴": {
-     "naver": null,
+     "naver": 14,
      "ad": false,
      "place_block": null,
      "place": 8,
@@ -6314,7 +6339,7 @@
      "gmap": false
     },
     "율마루": {
-     "naver": 20,
+     "naver": 11,
      "ad": false,
      "place_block": null,
      "place": 10,
@@ -6370,10 +6395,11 @@
       "coupon": false
      },
      "place_total": 101,
-     "google": 6,
-     "gmap": false
+     "google": 8,
+     "gmap": true
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -6462,7 +6488,7 @@
      "gmap": false
     },
     "김소연": {
-     "naver": null,
+     "naver": 9,
      "ad": false,
      "place_block": 1,
      "place": 1,
@@ -6621,6 +6647,7 @@
      "gmap": false
     }
    },
+   "place_src": "list",
    "measured": {
     "naver": true,
     "place": true,
@@ -6750,7 +6777,7 @@
      "gmap": false
     },
     "율마루": {
-     "naver": 12,
+     "naver": 13,
      "ad": false,
      "place_block": null,
      "google": null,
@@ -6778,6 +6805,7 @@
      "gmap": false
     }
    },
+   "place_src": null,
    "measured": {
     "naver": true,
     "place": false,
@@ -6789,6 +6817,7 @@
   {
    "engine": "chatgpt",
    "pid": "a01",
+   "round": "1",
    "file": "chatgpt__a01__1.txt",
    "order": [
     "한강파트너스",
@@ -6804,6 +6833,7 @@
   {
    "engine": "chatgpt",
    "pid": "a02",
+   "round": "1",
    "file": "chatgpt__a02__1.txt",
    "order": [
     "한강파트너스",
@@ -6818,6 +6848,7 @@
   {
    "engine": "chatgpt",
    "pid": "a03",
+   "round": "1",
    "file": "chatgpt__a03__1.txt",
    "order": [
     "디에이치",
@@ -6830,6 +6861,7 @@
   {
    "engine": "chatgpt",
    "pid": "a04",
+   "round": "1",
    "file": "chatgpt__a04__1.txt",
    "order": [
     "한강파트너스",
@@ -6842,6 +6874,7 @@
   {
    "engine": "chatgpt",
    "pid": "a05",
+   "round": "1",
    "file": "chatgpt__a05__1.txt",
    "order": [
     "로펌나무",
@@ -6854,6 +6887,7 @@
   {
    "engine": "chatgpt",
    "pid": "a06",
+   "round": "1",
    "file": "chatgpt__a06__1.txt",
    "order": [
     "장한",
@@ -6864,6 +6898,7 @@
   {
    "engine": "chatgpt",
    "pid": "a07",
+   "round": "1",
    "file": "chatgpt__a07__1.txt",
    "order": [
     "율마루",
@@ -6876,6 +6911,7 @@
   {
    "engine": "chatgpt",
    "pid": "a08",
+   "round": "1",
    "file": "chatgpt__a08__1.txt",
    "order": [
     "샤"
@@ -6885,6 +6921,7 @@
   {
    "engine": "gemini",
    "pid": "a01",
+   "round": "1",
    "file": "gemini__a01__1.txt",
    "order": [
     "더킴",
@@ -6898,6 +6935,7 @@
   {
    "engine": "gemini",
    "pid": "a02",
+   "round": "1",
    "file": "gemini__a02__1.txt",
    "order": [
     "율마루",
@@ -6912,6 +6950,7 @@
   {
    "engine": "gemini",
    "pid": "a03",
+   "round": "1",
    "file": "gemini__a03__1.txt",
    "order": [
     "율마루",
@@ -6922,6 +6961,7 @@
   {
    "engine": "gemini",
    "pid": "a04",
+   "round": "1",
    "file": "gemini__a04__1.txt",
    "order": [
     "로펌나무",
@@ -6933,6 +6973,7 @@
   {
    "engine": "gemini",
    "pid": "a05",
+   "round": "1",
    "file": "gemini__a05__1.txt",
    "order": [
     "더킴",
@@ -6946,6 +6987,7 @@
   {
    "engine": "gemini",
    "pid": "a06",
+   "round": "1",
    "file": "gemini__a06__1.txt",
    "order": [
     "오현"
@@ -6955,6 +6997,7 @@
   {
    "engine": "gemini",
    "pid": "a07",
+   "round": "1",
    "file": "gemini__a07__1.txt",
    "order": [
     "율마루"
@@ -6966,6 +7009,7 @@
   {
    "engine": "gemini",
    "pid": "a08",
+   "round": "1",
    "file": "gemini__a08__1.txt",
    "order": [
     "더킴",
@@ -6977,6 +7021,7 @@
   {
    "engine": "perplexity",
    "pid": "a01",
+   "round": "1",
    "file": "perplexity__a01__1.txt",
    "order": [
     "디에이치",
@@ -6991,6 +7036,7 @@
   {
    "engine": "perplexity",
    "pid": "a02",
+   "round": "1",
    "file": "perplexity__a02__1.txt",
    "order": [
     "더킴"
@@ -7000,6 +7046,7 @@
   {
    "engine": "perplexity",
    "pid": "a03",
+   "round": "1",
    "file": "perplexity__a03__1.txt",
    "order": [
     "나우"
@@ -7014,6 +7061,7 @@
   {
    "engine": "perplexity",
    "pid": "a04",
+   "round": "1",
    "file": "perplexity__a04__1.txt",
    "order": [],
    "cites": []
@@ -7021,6 +7069,7 @@
   {
    "engine": "perplexity",
    "pid": "a05",
+   "round": "1",
    "file": "perplexity__a05__1.txt",
    "order": [
     "박인욱",
@@ -7034,6 +7083,7 @@
   {
    "engine": "perplexity",
    "pid": "a06",
+   "round": "1",
    "file": "perplexity__a06__1.txt",
    "order": [
     "박인욱",
@@ -7047,6 +7097,7 @@
   {
    "engine": "perplexity",
    "pid": "a07",
+   "round": "1",
    "file": "perplexity__a07__1.txt",
    "order": [
     "강은실",
@@ -7059,6 +7110,7 @@
   {
    "engine": "perplexity",
    "pid": "a08",
+   "round": "1",
    "file": "perplexity__a08__1.txt",
    "order": [
     "해정"

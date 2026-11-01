@@ -3334,7 +3334,7 @@
   "at": "2026-10-23T10:01:25"
  },
  "창원 폭행 변호사": {
-  "status": "empty",
+  "status": "none",
   "raw": "place__035.html.gz",
   "places": [],
   "ads": [],
@@ -4141,7 +4141,7 @@
   "at": "2026-10-23T10:02:33"
  },
  "창원 대여금 소송": {
-  "status": "empty",
+  "status": "none",
   "raw": "place__041.html.gz",
   "places": [],
   "ads": [],
@@ -9110,7 +9110,7 @@
   "at": "2026-10-23T10:05:31"
  },
  "경남 행정심판 변호사": {
-  "status": "empty",
+  "status": "none",
   "raw": "place__056.html.gz",
   "places": [],
   "ads": [],
