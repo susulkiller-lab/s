@@ -1,0 +1,2508 @@
+{
+ "창원 변호사": {
+  "status": "blocked",
+  "raw": "",
+  "items": [],
+  "at": "2026-11-01T22:38:02"
+ },
+ "창원 법률사무소": {
+  "status": "ok",
+  "raw": "google__057.html.gz",
+  "items": [
+   {
+    "cls": "gmap",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 1
+   },
+   {
+    "cls": "gmap",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 2
+   },
+   {
+    "cls": "gmap",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "웹사이트",
+    "pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAVMPCFF8z9XVYoRy-1FoJ3fM-61IhrkLSi344g-HSNAtuJiyzyuuorJMFNKdozSqw2khNume0WzWV0m3HJaBBUsi6tY0kqxYyBTI0vD0UZvtN8P8ss5mBEM-vDhZ7Y",
+    "text": "법무법인(유한) 대륜 https://www.daeryunlaw.com 창원변호사상담 - 창원법률상담",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "jinnsol.co.kr",
+    "href": "https://www.google.com/goto?url=CAESUQHrOzAVc6OydrxG240mBHdHJNMfddqOks1TSYb5PGYW4XVX7CCfZGRTBk9irj1RMWXM93fCSsh_BGA1UiPFdn63F4P6XxAgVGjePDy4arUbig",
+    "text": "진앤솔 법률사무소 https://jinnsol.co.kr 진앤솔 법률사무소: 창원 변호사 | 형사·민사·이혼·상속·산재·부동산",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.com",
+    "href": "https://www.google.com/goto?url=CAESUAHrOzAVzi8ov5NI0dI5nrbNs-xYui0QBIMQhCBLQqoGXmY8S3k95DTnWpSOsbvLS7ECuBN2rP82DewdX-hCtmIKqBd5qlPusuY8sP52AE_M",
+    "text": "박인욱 법률사무소 http://inlawpark.com 박인욱 법률사무소",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAEScQHrOzAVI3uRBULI8SCX0oF04ySNPrXeijv04F3uXedQ_5BcastAkt-b_1Er0uJJ6U5FPvKCf6bRs4jLwljStHh03DaGrzGPBU5Hg2ibaNuoEoPITm_msouXhCAxZVBT-vvuJE7iGU4snzDu1UJdLAkN",
+    "text": "법무법인 YK https://www.yklawfirm.co.kr 법무법인 YK 창원 분사무소",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "gnbar.or.kr",
+    "href": "https://www.google.com/goto?url=CAESfwHrOzAVS44AO6iajtmjUBYzmPn8XSgaHBay6MatRrZOpJk36NGWCoeLwlUynsUSlhStirVfnrnEGyhRL1ND57c-B5NfNhGhsz7AiranxPKiICw2CcbfmVprPhtg5mx2crVBf8T2wz9VI8Sn9nPI7WJkp8k9MpGymZRWDkIpqDw",
+    "text": "경남지방변호사회 https://www.gnbar.or.kr 변호사 안내",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "sha119.co.kr",
+    "href": "https://www.google.com/goto?url=CAESUAHrOzAVyDrQ2pcZHw9zL5k2wMIbPXC00ZpEJbSi1Fvt-iscOnWz4kSL06Ehp9JWaAn3WxOHykYYMQSfZKtE9iImi7eLzWIGTfBPIolyDukN",
+    "text": "법무법인 샤 https://sha119.co.kr 법무법인 샤",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "jihyelaw.com",
+    "href": "https://www.google.com/goto?url=CAESbQHrOzAVGT0Q3EIDJGRxTURX3p8VDXRAuvzoDB0vQoAbQurl-qVux-35zAMrKGJeKWxhkETvmklK-aqya4ZHyJp3n3P4m4uLT0dES7P0ir9srNb6lTP3U_836eo-XVm-kB43oXv54DO8UEMI8Rg",
+    "text": "법률사무소 지혜 http://jihyelaw.com 오시는 길 | 창원변호사 법률사무소 지혜",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "changwon.go.kr",
+    "href": "https://www.google.com/goto?url=CAESdAHrOzAVf6OzHEm49QDi6ZI3qT4OkoL00UO6vS3MJ3eA5oRXYcH0CO0zQQySdT5Fcne33mPxgpCRYDiZLhiFH15rBnxqfmd6XE4BBePGouALpa4qTy-QJyDFoTbblMjxzvHIF5rpN8IzYxxdWCsqrvUE1ye8",
+    "text": "창원시청 https://www.changwon.go.kr 무료상담기관 | 창원특례시",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "gasalaw.com",
+    "href": "https://www.google.com/goto?url=CAESUwHrOzAV2gAd4zAgyfPrWPZrfMcBQetuANn0LKWMhdVcMqdpAd5HC0SWtOvUXVjzwmrTEObEAM-zpzp5tEuWVInYueW8UUF-vkp1mgqIFdi-iY8q",
+    "text": "gasalaw.com https://www.gasalaw.com 창원 여성 이혼전문변호사 손명숙 | 경남 최초 개업 여성변호사 · 25년 경력",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "lawwinner.net",
+    "href": "https://www.google.com/goto?url=CAESUQHrOzAV0yO5TdK5Z0jh9xjXzpU7zT28SFJQUw11ExutwdQH6YFbE925W-5FqR9o0f7RYguKBSAQMhE5NYORoN0QC9CIiD8_IV1W0n25LciPSA",
+    "text": "위너종합법률사무소 https://lawwinner.net Home - 위너종합법률사무소 | 부동산, 상속, 형사, 이혼 법률상담, 창원, 경남 변호사",
+    "pos": 10,
+    "content_pos": 10
+   }
+  ],
+  "at": "2026-11-01T22:38:09"
+ },
+ "창원 형사변호사": {
+  "status": "ok",
+  "raw": "google__058.html.gz",
+  "items": [
+   {
+    "cls": "ad",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVwHrOzAVENsj5yB38lhmyWEvFTrXH28sk6-iR1B269cb72GHVBSF-YTIQxDBPokJrIjI3c9SKUohZG15XLAzaaN3JB9uzmsXKpnPAMwW4Gel0vvPcxcwjA",
+    "text": "법무법인 YK https://www.yklawfirm.co.kr 변호사 선임이 고민이라면?"
+   },
+   {
+    "cls": "ad",
+    "key": "namsangkwonlaw.waveon.me",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAVyRKxdO4gTpax9TSRIYKQQRVgEU2V8KLy88YlgTawji3Y9fSn7vx1cPfDA3vxmTo-aHMhnlJZeGRG7er-zmUU_5iGwJq9Xoeq7cxP9T_fRPJMAL_dvqq6",
+    "text": "namsangkwonlaw.waveon.me https://namsangkwonlaw.waveon.me 창원형사변호사 - 변호사남상권법률사무소"
+   },
+   {
+    "cls": "ad",
+    "key": "lawl-crime.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVAHrOzAVaEgO-DRYhWudtg0klfEaPxf0E_44os9bInHyN0wZrBDcjWOBdY9qD_OaRkCogSizL6KD8TP1E_PjZXL9jp037geFC1cXfcV42vCWwjrBbw",
+    "text": "로엘법무법인 https://www.lawl-crime.co.kr 창원형사변호사 로엘법무법인"
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-detective.com",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAV_rWocINYb8HeJkIDCqH5-VOCI69hLwJI1v4DVL8_yedGxCycXJSRctdiLlVKCYMqjgWizBi2okow6MKSXXEsTg_f9FePZtfy5U7n6Uflu7D3gGUyD5fRcbHeAQ83PzwEa-pMvAa78A",
+    "text": "daeryunlaw-detective.com https://www.daeryunlaw-detective.com 창원형사전문변호사 오시는 길 | 창원형사전문변호사ㅣ요양원 치매노인 학대 형사사건? 불송치 ... | 방문",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트 | 법무법인 대륜 | 창원형사전문변호사ㅣ사기죄 혐의 의뢰인, 집행유예 받아낸 창원 ... | 방문",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "웹사이트 | 법무법인 YK https://www.yklawfirm.co.kr 법무법인 YK 창원 분사무소",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "웹사이트",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVh0fcfvyKDI_AbfdKJsnuJwRm9jkjAhPPPCP-zVxz366vBqG6sTnFYbaUpuxMS_YCp-Oi5G64WXtdpYA5R-ilCDQ6jMm77CZJzfdAbrxiLE30JOZa63bK9ry3NEsvvks",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원형사전문변호사 - 창원 변호사 - 법무법인 대륜",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAVad4Qj8PbFhYBAX0HlO4fmzRSpiO2A6z6N5eFmIwcQFLbTmOhCpfLjz2zxqoIeKHjhIZilP4qZRuaznHWQOoDEmS2GzfSbmqzui1B0jNlpNozfw3XI5FDjg",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원형사전문변호사",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "changwon.lawl.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVwHrOzAVeNmuBb0ly4uFghXXktF7i-Jh7kNEW7k9h0EBozwoKygpjdUF5VAptLXurMJUO29A9FL3JLpLFfQ-U8OXlUBrD1g4oBjwQ2SGXzZ_5QSBgJs66A",
+    "text": "로엘법무법인 https://changwon.lawl.co.kr 창원형사변호사 | 창원형사전문 로펌 로엘법무법인",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "thekimlawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAVP5f3GzN1a-yvUoXSFioXfR1Hwenmq6XLSHT-OHiAZnkrRWGb3q-sW1W9Xl9P7yHneHNvUxvJDguZ2uNKZ8iusy5svDAnO-cCaIpwGb_keF1vfoPiX5-Kh1ZZo-oMpF7OCbxcLXMdeQ",
+    "text": "김형석 변호사 http://www.thekimlawfirm.co.kr 창원성범죄전문변호사",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYwHrOzAVOG5TO21UqQkL7FpJsoD_kLNH_jb0JTzSqeN9ct6mJPIIqaFNUiQfQZS0W9C-NdGzN37DcuPDWrpqBC7LFsDzaHZfBmovsvmq1PA3_a5XDqy-PkbiuLEC5xrrvvMYdw",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 형사전문변호사, 첫 조사 전에 상담하세요",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "ohyunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVvvcdeQPzpCojhYiURi2E8cIzWAaKo2j450pEMzkYcXnfkFqMOcj_Dttj3YeoTr6IxB1pucZcPIx5KJcJuQ-PGD8DbLFTPeRDuxa6vi0EZV4ThOOq9rMsktQYb4C4myo",
+    "text": "ohyunlaw.com https://www.ohyunlaw.com 방문상담 예약·오시는 길 | 법무법인 오현 - 창원형사변호사",
+    "pos": 10,
+    "content_pos": 10
+   },
+   {
+    "cls": "web",
+    "key": "lawl-crime.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVAHrOzAVaEgO-DRYhWudtg0klfEaPxf0E_44os9bInHyN0wZrBDcjWOBdY9qD_OaRkCogSizL6KD8TP1E_PjZXL9jp037geFC1cXfcV42vCWwjrBbw",
+    "text": "로엘법무법인 https://www.lawl-crime.co.kr 창원형사변호사 로엘법무법인",
+    "pos": 11,
+    "content_pos": 11
+   },
+   {
+    "cls": "web",
+    "key": "epnc.co.kr",
+    "href": "https://www.epnc.co.kr/news/articleView.html?idxno=206483",
+    "text": "테크월드 | 이수경 창원형사전문변호사, 명예훼손 대응 팁 제시 < 커머셜 ... | 방문",
+    "pos": 12,
+    "content_pos": 12
+   },
+   {
+    "cls": "web",
+    "key": "instagram.com",
+    "href": "https://www.instagram.com/p/DbXcmo9j4X_/",
+    "text": "Instagram | ⚖️ 억울하게 신고 당했다면, 반드시 확인하세요! ✓ 허위 사실 ... | 방문",
+    "pos": 13,
+    "content_pos": 13
+   }
+  ],
+  "at": "2026-11-01T22:38:19"
+ },
+ "창원 음주운전 변호사": {
+  "status": "ok",
+  "raw": "google__059.html.gz",
+  "items": [
+   {
+    "cls": "ad",
+    "key": "lawl-crime.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVAHrOzAV2BhHiH_ayY6av-5AAraF1k8-sHyWMLFa6qk-5F7_HNYCLHTmNf_x8rW5k7-QaVrvIEkFvo-9QX4bgRDoUmuZhW3l8t8Xc4u5FyI2Y4cKHA",
+    "text": "로엘법무법인 https://www.lawl-crime.co.kr 창원변호사 로엘법무법인 - 24시간 상담 긴급상담"
+   },
+   {
+    "cls": "ad",
+    "key": "namsangkwonlaw.waveon.me",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAVv5SLUVIPg56eJlzxe3p4ABV79DPWaInUuhCJg_HTKqQIVWq_QYOSPRsQi5l45drdiAdpk-m4i1uTufZdp-EzB0xrmH62Dp3dbxWMAEZ2B9kAkWCr_UU-",
+    "text": "namsangkwonlaw.waveon.me https://namsangkwonlaw.waveon.me 창원음주운전변호사 - 변호사남상권법률사무소"
+   },
+   {
+    "cls": "ad",
+    "key": "heedo-traffic.com",
+    "href": "https://www.google.com/goto?url=CAESVQHrOzAVpx0Pf8WR31m-wgbef5p1ycUCN1lSIxOBeUexbL5GEw1Jta16jWb7vy4OJKrA8W5mDMTFYVMxUwL21SJrfOoi5aCHzkjL9QmBgNxuDZtI1ag",
+    "text": "법률사무소 희도 https://www.heedo-traffic.com 교통사고 전문 법률사무소 희도 - 무면허운전 변호사 선임 상담중"
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-traffic.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVXfu6atJlF68DdHenZM5iijLlS6l_cnZjtnRYdKbXENpMheOc5pg_RzByFBooYgpISC0l_743MJUEur1dRJLzlo6T_LJh_VLR7M2aU7ThpsXxO1eeQiQgv1incuEtjKQs4WKFW3c",
+    "text": "daeryunlaw-traffic.com https://www.daeryunlaw-traffic.com 창원교통사고전문변호사 오시는 길 | 창원음주운전변호사의 실형 방어] 창원음주운전변호사 도움받아 ... | 방문",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAV1YkeJ0zQlLQo_MIaBaroadI-BZ0jEYoand2-Hsl0ojwVyKCdpQzqPwBcgViYdrvJx84cwAf0XzI-4Ou5NNhpcxYV1rLb-PcZKSu7QMKHdTNmttmteGf-N_XFQZIB",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원음주운전·교통사고변호사",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "21clawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESegHrOzAVbi1FQnj-UWvB2yY3IT1XKP5dFFpbtSpwdopRKWFgtvHlBlwSGTb6CbFUwGz4KN6d_AIQRo8rkBcI4KhEEYwbU4-uxg19gyuxfrEWjAh7iixlwhOr75T435msAVFKXFoAym92yJZedRZxOoEiyhNne1m9MxnB",
+    "text": "21세기 법률사무소 http://21clawfirm.co.kr 창원 음주운전변호사 집행유예 > 성공사례",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVwHrOzAVpwISpd40Izoeell6Vj_4XFAXuHa7DjIlpqoXBE3n-B_daTdYrAYayEOkwGZMbnhKL4Ezh4RZEiGwNeR24XXpSS2FViFjFA8l0Z5BquZAtAY9_Q",
+    "text": "법무법인 YK https://www.yklawfirm.co.kr 법무법인 YK - 사건경험 풍부한 변호사 노하우 - 변호사 상담은 법무법인 YK",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "lawl-crime.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVAHrOzAV2BhHiH_ayY6av-5AAraF1k8-sHyWMLFa6qk-5F7_HNYCLHTmNf_x8rW5k7-QaVrvIEkFvo-9QX4bgRDoUmuZhW3l8t8Xc4u5FyI2Y4cKHA",
+    "text": "로엘법무법인 https://www.lawl-crime.co.kr 창원형사전문변호사 로엘법무법인 | 24시간 상담 긴급상담",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "criminal-lawoon.com",
+    "href": "https://www.google.com/goto?url=CAESaAHrOzAVasj-0Tfmi0e2ij6d3u30cqLeLxpvGxXdLNBxU703JN8cU6lrwViJl5inSJa0LXVqHqNS4gVRZpSlE5oWV83qSOJYFqukG3tpYmCgyzRnvsnp7hqbBZ0s8QNbIEh2EZThLK_r",
+    "text": "criminal-lawoon.com https://www.criminal-lawoon.com 구성원 소개",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "thekimlawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAEStwEB6zswFQ8_CeeppyoArjoXsqaEJF6rcrWd2alo7oj4KdCUK2KRzZ0TpCRrIBuUZkm-THFXGMLKQu7LSI944yoExpqp-VGeARGoM2GB7Oj-snuyqAuellUNRCWEwQknByxKZ2jvq3jnyiXlAQ9lXH7dhJ_GFMYt9BWSRwKWXWdYZxaeQ1-IBzUKpQxOGT-0OsglLx9dCRkwzhOO5MYG0Z7UTC2n0tJ5G2oQhmAuW8KqzDMW_HXLnE4",
+    "text": "김형석 변호사 https://www.thekimlawfirm.co.kr 법무법인 더킴로펌 형사전문변호사 “숙취운전도 음주운전 혐의, 섣부른 대처 말아야”",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "lawoon119.com",
+    "href": "https://www.google.com/goto?url=CAESUQHrOzAVH2_3GY_M7SyVqcAkq5xo6wfsfSDOAZ8qzFKeflHdA_o_5TozZ62VtFgOMS3RCpoZHv9Ths_hKDMmB30ORJxSb0WuuRNFaVxd798-Hw",
+    "text": "lawoon119.com https://lawoon119.com 법무법인 로운",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "lawtalk",
+    "key": "",
+    "href": "https://www.google.com/goto?url=CAESYQHrOzAVowS4vF_tIrHkuvjcdv8i73dOa-JWqz3F4o6zLP5HBzRHfovjGWaEZ4a7ItCxbpzSfMYyLXi_JmIGzvjSjxYA0nNJgazOMnhZYNW6qzbpsRVGA1poNwBMHIxqjp4",
+    "text": "로톡 https://www.lawtalk.co.kr 창원 음주 면허취소 구제 변호사 상담 필요하다면",
+    "pos": 1,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESeAHrOzAViKw8murH4PBBwob2meHhXWj5SWjBKNFbJOkj22r99vf_w2LIbsDHXKpZDNc8Hf1utogvybkRQndkU_Cim2MrFPBxOFtn8K6ANIRgbTk0FA7o26pCWtBa7EZZ6i60k230QIj9RACG1UxK_2sRgg44iUkocA",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 음주운전 변호사, 세 번째 적발이면 무조건 실형일까요?",
+    "pos": 9,
+    "content_pos": 10
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 10,
+    "content_pos": 11
+   },
+   {
+    "cls": "web",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 11,
+    "content_pos": 12
+   },
+   {
+    "cls": "web",
+    "key": "trafficdrinking-law-dongju.com",
+    "href": "https://trafficdrinking-law-dongju.com/bbs/board.php?bo_table=column&wr_id=1571",
+    "text": "음주운전변호사 | 창원음주운전변호사 인사사고 발생했을 때 상담 필수인 이유 ... | 방문",
+    "pos": 12,
+    "content_pos": 13
+   }
+  ],
+  "at": "2026-11-01T22:38:28"
+ },
+ "창원 성범죄 변호사": {
+  "status": "ok",
+  "raw": "google__060.html.gz",
+  "items": [
+   {
+    "cls": "ad",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVwHrOzAV93HBOl8kK9V6EeoBeZyWZxaotL1ySb1kA_QY4iNCe-z3DwJqkBDDROVc0MeMBA9Htg73ywx-S1eh-ShzyOoRBoyQtAgVhygSyua3Pr-xWXM43w",
+    "text": "법무법인 YK https://www.yklawfirm.co.kr | 웹사이트"
+   },
+   {
+    "cls": "ad",
+    "key": "namsangkwonlaw.waveon.me",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAVlFc_gV6UNZ9yGTlLPE4TJgny3-AEPl31ZURd2kic_bwDZhATZS4cw2-HgvJ-uYM0A_7jfi-4d_g6U2MVaRCoazk70LjCtq5h5k0DsFQ39R2TiZ2mbDBu",
+    "text": "namsangkwonlaw.waveon.me https://namsangkwonlaw.waveon.me 창원성범죄변호사 | 변호사남상권법률사무소"
+   },
+   {
+    "cls": "ad",
+    "key": "ohscrime.com",
+    "href": "https://www.google.com/goto?url=CAESVAHrOzAVduNX8588q0FhyeRQAdYYWX6XrTc96QaRCg6yC-QiF1av5Pw_AV6utvpXJWPkvk_-fzGFfyBN0mO-E6AvU7SA_Yg4nAfoWSwf7baEUnPKiA",
+    "text": "법무법인 오현 https://www.ohscrime.com 판사/검사역임 성범죄전문변호사"
+   },
+   {
+    "cls": "gmap",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "웹사이트",
+    "pos": 1
+   },
+   {
+    "cls": "gmap",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-assault.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVJtFItafQ-0H3PKZfzN7xwxDPojiVhKu1kr4wBakm2GfP4xfw92WbVk82J6dmTnnmg0YmGOhiFOwwbYeGGddeDp4Tr1m3sqZ970O43W83mTe40EyKYpgeoQoY-i_S7wW3AcXBQU4",
+    "text": "daeryunlaw-assault.com https://www.daeryunlaw-assault.com 창원성범죄전문변호사 오시는 길",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVy2bfT0HOiITIbzrpQd3tXhI-N7vtqA9OZ3DeMA_RR8LpxEthudE3-CCIIeoNWcn4F2See1bPpWV8CZBoj8O69WEj70BjJwaqdWhJ7W9HOXB7eC2Gx7GYwH66iU_oDAQ",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원성범죄변호사와 알아보는 성범죄",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "ohscrime.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVMEs6vmn-JlAlyUOPg4FiEXCoIbUSIl_Yf7CiEU_FjPIAIpY25k2vwaplobBlB_33_W9DqKxcNX_i6hpKhLoC7woOkZdr9FxJVuPz6m-95L8Bb9ZEJRK-cjq5lyiknlw",
+    "text": "ohscrime.com https://www.ohscrime.com 오시는 길 - 법무법인 오현 - 창원성범죄전문변호사 | 법무법인 오현 https://www.ohscrime.com 판사/검사역임 성범죄전문변호사 | 성범죄 상담부터 느껴지는 차이",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-detective.com",
+    "href": "https://www.google.com/goto?url=CAEScAHrOzAV6cxMsxiCohscn-3Ywiu-AyeYjs2YDd0S6_2fcphDUa8DaWohVM57QFdejhpiPye4yuUpVb0cDjb8Geis_0218Lu9hA9cNqM3oUizxhxVA4YSUdDZ7iFy1iB430bP27Lz9noF49vgItzVoYk",
+    "text": "daeryunlaw-detective.com https://www.daeryunlaw-detective.com 창원성범죄전문변호사 | 창원변호사 도움으로 강간 의뢰인 무죄 | 법무법인 대륜",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "mnjlawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESeAHrOzAVABcDP_iLl1YfhIrfQpfrM4LttXI8B9k_NmbaqF8yXVdkJ0yHXNqWHJ5YrQMobVa5h4DcuEuePct4M-novKojdLOl6JKwLrxdz05U4XZ-H4igZNuiajpbt-gJ11XKK3xrlQWswHm3ZhFPLyR9U1Z-z45G_w",
+    "text": "법률사무소 민앤정 https://mnjlawfirm.com 창원 성범죄전문변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "thekimlawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESaQHrOzAVddKBuUzxTloacauFkWW-6ThvUhHOrA_UrK0pvr6ihVEkJbcfYLQ9ow3h_EwWfBz2Bu-ka68fH8YnCFwu5fgEB4SVBqpg9U8Y-0s4ejucF8l7mzrO-nnRt6eB_HO_AYPrN5evnw",
+    "text": "김형석 변호사 http://www.thekimlawfirm.co.kr 창원형사전문변호사 | 창원성범죄전문변호사 | 창원음주운전변호사 | 김해변호사",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "lfind.kr",
+    "href": "https://www.google.com/goto?url=CAESdQHrOzAVnn5ukOaK3iMlCv9FD7btv87Kwyp9BFscrxQNYus-X4Q8pYJMED9lMGW9JvplS_KjMyFLUlIrUoDutOay1NAgPbgnXWZ2GklR5PHVOKPq0bxeGSHhrB6GKXCzzLUSBeWm69VRVqQQMJGIWHPI8UXS7A",
+    "text": "엘파인드 https://lfind.kr 정택화 변호사 | 창원형사전문&성범죄 변호사 21세기법률사무소",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "21clawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESegHrOzAVx5v9zD86bhbzAtWZ4lytxHQoosO0tlJXXxsVTgBZsKZ0Jk-Z929Zqmd6vM7E8oB0S6i1WrVYcOEgi_UVx-kCn71_NH2WRYalZz_CtSF7JHwCeUBG_3mSK4dlSSqPAse2dEtNvYGkueYRT1FejE9ZyUZVhOt2",
+    "text": "21세기 법률사무소 http://21clawfirm.co.kr 창원 성범죄전문변호사 무죄 > 성공사례",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAV42mKwz-eqRPkFUIIcVr5iGaiAm1UQGUHiNDofWYO0NVSujQkA16R8Tydv9L65iVYyekuxwlzCn-RT7JGpessxdhGiE5tvTnmwPalFA_EIcdZTpeUQCZxvQ",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원형사전문변호사",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "daehanlaw.com",
+    "href": "https://www.google.com/goto?url=CAESjAEB6zswFUAgqzFPwUYQIHhmnYU2igBSd5WzIb8iacWhLA-1Ls3N13O3KCNPrq0eViXtahg8ATcwBm-pEUmBKzzZQfGP92Q97IG-pGc-ukXLVQAwlvSaxrjzRB-ZA1UTUChXWeaYnmcYXv2yxKNp0qAtKhj3ksU4qYX24inKfAUOi_juY7LZuD_uu7ZSmA",
+    "text": "법무법인 대한중앙 해운대 사무소 https://www.daehanlaw.com 경남 창원 성범죄전문변호사 추천",
+    "pos": 10,
+    "content_pos": 10
+   }
+  ],
+  "at": "2026-11-01T22:38:37"
+ },
+ "창원 사기 변호사": {
+  "status": "ok",
+  "raw": "google__061.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAVf4A3_NsxNWD737jIy52ui3BE_hqXGRUA9OIzPJgKxD5CGLgwdI1j1o0KNokGgCb02oS_raXMvNgXEDsOMsPTq1xteW0OtsuPraR-ofh1yoUZrYx0c3eDJg",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원형사전문변호사",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "21clawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESegHrOzAVEvvuV0JJn2t9vhc93SMvQpXmWyhu2gg3q0nhCOKPV5KOgxCxjZkohvdyGlmAxaDD8n09_lZ5fUPa4tdnyFq2paFfUgMsFWqhJIlhEQ3CuiDrF_jLBb-BkW1hWjD6MYXtTh5Cgbc3UohkrwmSP9081Ab_BHf1",
+    "text": "21세기 법률사무소 http://21clawfirm.co.kr 창원 사기전문변호사 혐의없음 > 성공사례",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-detective.com",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAVkGhoNlhMrf6ktippIi3OM9Z0A-3tz_ifotiS5jMk7fr7TmVm4UjC5QiT175ImthrZZSdsvUw0_XxDjfFqH8B49cD6aKK0UM_GQHGo_tEJNNaT-VyjBDoyJ3NFY4qMm2dwdCyUEYpIw",
+    "text": "daeryunlaw-detective.com https://www.daeryunlaw-detective.com [창원사기변호사 방어사례] 사기범죄를 저지른 의뢰인, 창원사기변호사의 조력 ... | daeryunlaw-detective.com https://www.daeryunlaw-detective.com 창원형사소송변호사 방어 사례 | 사기 의뢰인 창원변호사 조력으로 무죄 입증",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "thekimcriminal.com",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAVmSn-Np6TsARiBcQpzvHDW6weDj0CEOYISgTmzsEfYyMhcZ68NQa9L14koddcDZMXQ0cjuq4d8wno341jC7lHQ4m4aBM7QidlNbWLo8B92Rkf73f5vSuL",
+    "text": "thekimcriminal.com https://thekimcriminal.com 창원사기변호사 - 더킴로펌",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESWwHrOzAVnuZ7xRZZLuMQgWyUu4J0IG8KU7-PO74ZvJqCRe-L92px01BQOCxnVQ5wBI8HOew6HL3-qUF-ELsDOWzE_0_ooMmTUcw0RXosf8YQXUgyJjWrqbUbd4g",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원 변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "lawus.kr",
+    "href": "https://www.google.com/goto?url=CAESjAEB6zswFa-n8JmwVgQIlRTq973ylSVEZnT8VpCQGQMRmOsa-t1uFZvBV8MsNcKLrisP59pMWJsB801xdDkFPVAfnig2zP0ClHTvgQaZjY3x3kaFyziXkVp25zwngMfQnMxZXh2dEvN5Et_Vo80xC69VPeZHkM-qKxhNlptp-rkU3f8pRomXSPQ1RnEGqw",
+    "text": "lawus.kr https://lawus.kr 창원 사기변호사 - 법무법인 로어스",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "웹사이트",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "ainlegalstudio.com",
+    "href": "https://www.google.com/goto?url=CAESbQHrOzAVzPXED0ljbv39OLsDMrv1Ek9our_vnuTpQWYw9aSGbAPfNBCLJ4-Jce-ESDNynfufEXDKUSFt2OqaX0NKL3fmI9QxXxRPO0TMZT4RRdF3KoAdZZlxG0NoqkIqudFfv8PDp0FJxO_pYGc",
+    "text": "아인법률사무소 https://ainlegalstudio.com 창원 사기·재산범죄 변호사 - 횡령·배임·절도",
+    "pos": 10,
+    "content_pos": 10
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESVwHrOzAVi5q46QmemtdMGZ6BJwqiat5wOxeKM7yH-LMflcL6zxUuwcnPO0FSJ3LMpL6Nwr41uYUPfeMR9wbjyQ3hSsN4SDd_bXjMdyv_Prsmz9uaL3X7UQ",
+    "text": "법무법인 YK https://www.yklawfirm.co.kr 변호사 선임이 고민이라면? | 300여명의 각 분야별 변호사",
+    "pos": 11,
+    "content_pos": 11
+   }
+  ],
+  "at": "2026-11-01T22:38:43"
+ },
+ "창원 폭행 변호사": {
+  "status": "ok",
+  "raw": "google__062.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "lawfirmnamu.com",
+    "href": "https://www.google.com/goto?url=CAESaAHrOzAV-0zmi5YbZipg3cEFRrzGY_a6PmJGYNyWNadXQ8ayDasLOfdlFQ5tOAl65ThzwaYv7HRjI_2j_99dUzGIMjitaR80bzVRKuqjAxMJRBkGiT3F6oGcgWKmATp9AKWEWCiLPPqB",
+    "text": "법무법인 로펌나무 https://lawfirmnamu.com 일반 및 공동폭행죄 성립요건과 형사 방어 전략 : 유형력 행사의 법리적 조율과 공동성 ...",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "웹사이트",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "웹사이트",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAV9mtbWiY7SxEen1DK3hEDOh_zF8SVddX92zHZS0xWks_G9o9lCXFE8jZggjbw-4J4JwYlwxB3IjsEiosd0GzRmxCd69_SxwSv3FNkp3yMZuYztpOyiZLTauA6Cg44mZzm6KcUbm2qEQ",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원형사변호사 | 특수폭행 혐의 의뢰인, 실형 위기에서 집행유예로",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVmOwseHIFa1YFSvwDSNImoFjpB6r38u778sHGOjgLBS8B9egoofcb4x_G8ogW0f-9R5hxFuoHbA9XJrMbuWaL659B8BWjlxm93jps5eRgKFHigX174fj61awLuKmay2U",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 형사사건 변호사, 폭행 합의만 하면 사건이 끝날까요?",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "thekimcriminal.com",
+    "href": "https://www.google.com/goto?url=CAESZQHrOzAVBy2S6IFbmClxEzguNehYxww2K4gMufP5vjU_0_QloiTmsU68zDt9NkPkIi1_8uPe1wI2vB7L-reAjm7mGtXUksnRuGfCH51pw3vSwaTUpi4MzZkuWSf4ygiyy-yXQ5vG",
+    "text": "thekimcriminal.com https://thekimcriminal.com 창원폭행변호사 | 폭행·상해죄 - 더킴로펌",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmleen.com",
+    "href": "https://www.google.com/goto?url=CAESlgEB6zswFTJ16nLofUyAc21QgagBoWrpBoUbKfuHB3CNCmfMvTlvAsfTJ6Ny3MNkEFdBTi3_IKlWRooC1seuJE2pmj_KbRvPvK_s-gFQCW-jhVY4C0cjKIIYGMH8eqBTQ6i5PAAkf1vwPI8wp_LcZIRZL5h_f14bQ5_oGbcMUV6sABQmH04R1ze17Od0EWzqLKTFYxrI6Zo",
+    "text": "법무법인 리앤 https://www.lawfirmleen.com 창원형사전문변호사, 폭행 사건 공소기각 판결 성공 | 창원형사전문변호사 가정 내 폭행 사건 선고유예 판결 > 성공사례 ... | 방문",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-detective.com",
+    "href": "https://www.google.com/goto?url=CAEScAHrOzAVX3sVmVdiLXW0OcXx1lTJp7yI_k4HDD0dogs00AnW-ZHWYB6T5HIMz9A6ZLgjQCxmTwkPSWRVZEbL-zkGm8NSFIy1oqPhDtD4TDZvJ6w0XLhIn78RPZ4Pw9IXtbsi6Da-dglWEbHbyTygZDo",
+    "text": "daeryunlaw-detective.com https://www.daeryunlaw-detective.com 존속폭행 형사 처벌 방어한 창원형사전문변호사 | 대륜",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "21clawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESeQHrOzAVSUdQf3hr0je0PUqbz5Jr73IUlgKodOcdEqSZV5D5fpV6s7YNAXnBGXZS3e7c64uyUhB8vovUsu0G6vwcoHMMqBSQWOrGPS5NiL8LyJYdKs4xub7Q3BL_fplCcwYADlZ9ZMQfVznRF8BVwJMoPXGOyTzNuj4",
+    "text": "21세기 법률사무소 http://21clawfirm.co.kr 창원 상해전문변호사 벌금형 > 성공사례",
+    "pos": 10,
+    "content_pos": 10
+   },
+   {
+    "cls": "web",
+    "key": "splaw-violence.com",
+    "href": "https://splaw-violence.com/changwon-special-assault",
+    "text": "폭행변호사 · 절도변호사 | 창원 특수폭행 변호사 · 창원 특수폭행 전문변호사 상담 | 법무 ... | 방문",
+    "pos": 11,
+    "content_pos": 11
+   },
+   {
+    "cls": "blog",
+    "key": "mirychoi/222999118702",
+    "href": "https://m.blog.naver.com/mirychoi/222999118702",
+    "text": "네이버 블로그 | 성공사례] 상해, 업무방해, 폭행 벌금형, 창원상해변호사 ... | 방문",
+    "pos": 1,
+    "content_pos": 12
+   },
+   {
+    "cls": "blog",
+    "key": "lawoffice_daham/223191802514",
+    "href": "https://blog.naver.com/lawoffice_daham/223191802514?viewType=pc",
+    "text": "Naver Blog | 창원폭행죄변호사 폭행 합의 어떻게 해야 할까 (공소기각 성공 ... | 방문",
+    "pos": 2,
+    "content_pos": 13
+   }
+  ],
+  "at": "2026-11-01T22:38:52"
+ },
+ "창원 마약 변호사": {
+  "status": "ok",
+  "raw": "google__063.html.gz",
+  "items": [
+   {
+    "cls": "ad",
+    "key": "anlab-drug.com",
+    "href": "https://www.google.com/goto?url=CAESYAHrOzAVR1Xjbf0S1fOnEOOdNYc6ygnX-ZNtRNa9ksSHoFkqOEiMVr0jp2bPSg7YAhNUqluLhyhVX5zKvujDnTnHqWMQzESYXUJNtvjzi-idw1KQMMvCYM8B9jkQiND3jw",
+    "text": "anlab-drug.com https://www.anlab-drug.com 마약 경찰조사 대응"
+   },
+   {
+    "cls": "ad",
+    "key": "ohhyunlaw-drug.com",
+    "href": "https://www.google.com/goto?url=CAESVgHrOzAVS7ktBt1lD66a3L2SSg2nQfKldPOk8bvcoivrjbUu5M6Ol1QsyNxXYh3muGTY5kliO-4HlvUJsyQJhOUrkbkfv08yYPPhLv4AykCkWPcKD3Cz",
+    "text": "법무법인 오현 https://www.ohhyunlaw-drug.com"
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-drug.com",
+    "href": "https://www.google.com/goto?url=CAESZwHrOzAVxF_AjGgU5NLWFaOFGzZ1UJcRvpEPxjQ5w1yMnWe6cFG-iOXGMXyojkZtiRezsBUOmaAAawKs8fEoauv8x7R6uVQ9cN1vnu3dDxE9SSx8ddgT0arbutmgWkGS_umw9SHNHl0",
+    "text": "daeryunlaw-drug.com https://www.daeryunlaw-drug.com 창원마약전문변호사 오시는 길 | daeryunlaw-drug.com https://www.daeryunlaw-drug.com 창원마약변호사 조력으로 검사 항소에도 대마 흡연 마약 혐의 무죄 유지 | 법무법인 ...",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "mnjlawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESdAHrOzAV_lngqwk24hHEDFI9n43GJGfZrKg6cvuKQQcZ4Km18IWqaUTMrebRv-uIW9LqbSLS2i9bCtgZqAkjtM0BlR_uftT-dfViqeRI9Aup9CWbEgjg0CsQGFljS4e2ze6zPH9DJgZTmVEjSKX4MQCIZ2oK",
+    "text": "법률사무소 민앤정 https://mnjlawfirm.com 창원 마약전문변호사",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "ohdcrime.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAV5dzT8PB921oHQJJbrpYXMW_AWh6jfxGwP6B9QXYTzqT0t7A28M9viYkcVe7j0V6kckrHDtg-QeSaV48LmDb9fhfZoPj5TFBMdFKAA5kFA3knWp9Uzaja5YoLcuqtAnU",
+    "text": "ohdcrime.com https://www.ohdcrime.com 오시는 길 - 법무법인 오현 - 창원마약전문변호사",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "ainlegalstudio.com",
+    "href": "https://www.google.com/goto?url=CAESbgHrOzAVFJuFUWg1M5hM_ecg84VlPn9OalT6yJCPURZidg5XlnnW4iL-kKY_wiKrlnHaF1K2ciZWEO5On0F_Y9kv_Gho6MW6rAg-M5Yljwlmog9XnXPVqJglWW4szfNXtaP3KEwbtd7sFP76g0iA",
+    "text": "아인법률사무소 https://ainlegalstudio.com 창원 마약 변호사 — 투약·수입·소지",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "anlab-drug.com",
+    "href": "https://www.google.com/goto?url=CAESYAHrOzAVR1Xjbf0S1fOnEOOdNYc6ygnX-ZNtRNa9ksSHoFkqOEiMVr0jp2bPSg7YAhNUqluLhyhVX5zKvujDnTnHqWMQzESYXUJNtvjzi-idw1KQMMvCYM8B9jkQiND3jw",
+    "text": "anlab-drug.com https://www.anlab-drug.com 형사법 전문 변호사 | 판사 검사 경찰 출신",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESaQHrOzAV9WP_TjEjFqZ8QOrz54ri2500FVS6YVG4PRtygYxa4hOrfOp8SKmOn_asfRIQMjAS_MIySI9Ega88KdYp8bxtLBR85dDc-t2xK9eQfyf0J5W5yd948_Z-EnPEUa4o7qjRKcpEPA",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원 마약투약/소지변호사가 알려주는 마약투약/소지 - 창원 변호사",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "thekimcriminal.com",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAVWzhZ7BN8QFAk_rfeJulumliP1QepcG_bb3BZO6v_2luE5LCPv1ELvsEfT6Vw8HoWculxx8TaCbuemW1zZOz3zMSoaizs-WmD-OPv9oX0FcC2caDzvdAu",
+    "text": "thekimcriminal.com https://thekimcriminal.com 창원마약변호사",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "21clawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESeQHrOzAVcXDWHmce8PWHw6rIN6IlYPa48z2bKEKfiFbrWZ7RCQ285Z8u5-H9bIArzV4FQvfFRtjBwO1aDYIrhYPKk2FkDEmph3sHcS9dYf86CAC_1Q_2y19jduda_Nu_jj5ynrJfvaWCcToRAc0aVD15Y8GVqUEEXcI",
+    "text": "21세기 법률사무소 http://21clawfirm.co.kr 창원 마약전문변호사 무죄 > 성공사례",
+    "pos": 8,
+    "content_pos": 8
+   }
+  ],
+  "at": "2026-11-01T22:38:59"
+ },
+ "창원 교통사고 변호사": {
+  "status": "ok",
+  "raw": "google__064.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "daeryunlaw-traffic.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVUriP991WbHZ1XWBnPAayZDMqSwmHLjA0F3rc8IJ8KjCS_hOYlZG9yIi009IFJCRGJL2d_D5AJWczReX1OdmWX0cwSrcFbkUhYLBpnnMmGOgOoScecpyNDQ4oX0EAa29C3204Uko",
+    "text": "daeryunlaw-traffic.com https://www.daeryunlaw-traffic.com 창원교통사고전문변호사 오시는 길",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "웹사이트",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAVot-OecBv_extfWD3aXHHXS1AIqNoIkYtCkKW8CDNbB7duYYaCNECLH4z4MARzhnlJUR2XCeEMSV7nkioN4PM_6lMuLK19e5r0PNp_eIH7T4EBW1oTbgS14MRHkDL",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원음주운전·교통사고변호사 | 창원 변호사 - 법무법인 대륜 | 창원교통사고변호사 | 방문",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "whiteskylawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESZwHrOzAV6kciG_hQdT35nIpGz4oGMXagqGMDQtejgYIV40_BFYBxZYc-KE8n5V7pY1wp4M2ZEvFMu3hzCOBd_eyrwr9Gu2OMQfTmqfH75M96-zoa8VYFYk2RtgoXNbyUsJjLCyGhfEU",
+    "text": "법무법인 백천 https://whiteskylawfirm.com 창원 교통사고변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "korealegaladvice.com",
+    "href": "https://www.google.com/goto?url=CAESxQEB6zswFQbBXVeB2dupZq6h1ajvqcH-D0jconGUNrNkESPo2PDuBcxYwzNLjXWg7XiHM3FjcdvHZd4VfhMgXHr0mqmt_rkjNYsQixTjumb28GtvWAGRbwuqpIGBIxs_wIPgIq-I62f-Tk-lRiPAghGRJLG9Glj-tIxePapFDY1m667JtTXv0vqQ2y52B0niBtBTM8owTBB_n0e-YYE1oaYiB_IdLKYd3xjQ2JGzUQ7dYGRPHCqxBW840K2pSolxQw-rVSp_zw",
+    "text": "korealegaladvice.com https://korealegaladvice.com Listings in 창원 교통사고전문변호사 | 변호사!로펌!법무법인! | Trusted 창원교통사고전문변호사 | 창원교통사고 법무법인 추천. | 방문",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmnamu.com",
+    "href": "https://www.google.com/goto?url=CAESYAHrOzAVILvN-UuAuKEwiJf8Lj6VuPCz74Bv6mNoYF3Ea4qVjLG0X1omr1kTCU5fuwLummvkip9sGmUI47-JkZ0w-FDa6ZXHwn0DvSjsywOsuU7-6vKLyCASbD5PDAfa3g",
+    "text": "법무법인 로펌나무 https://lawfirmnamu.com 창원·부산 음주운전 교통사고 변호사",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESZQHrOzAVCjdpIhMhPxa24wMZhxgupC0Vk9KhtX_O2Gh4cc-DeRyRwlxyysCsqMa1wXnVAn-srowb08IxEPYbuWdcvHT-mk99bo_bxqcOGDCIn2mhzjADQzOrtjBgPf9OiM-53kGY",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 교통사고 상담 12대 중과실 사고, 합의해도 처벌받나요?",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-consulting.com",
+    "href": "https://www.google.com/goto?url=CAEScQHrOzAVboSkh_yCgfHGLqQPg7FQhr9d52jWGFX9je-Fcbd2aNCqIdvxphWLqQ3DO05TNm3PU5XTNvUsxek2JHm_pgH3UBwkcCKKfvElxoXxZPHi_1R_fVbId5ttUQHfpcobqxbmVOr2219vJum9t__D",
+    "text": "daeryunlaw-consulting.com https://www.daeryunlaw-consulting.com 창원교통사고변호사, 뺑소니 혐의 불기소 처벌 방어 성공 | 법무법인(유한) 대륜",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "traffic-accident-law.tistory.com",
+    "href": "https://traffic-accident-law.tistory.com/370",
+    "text": "교통사고전문변호사의 교통사고 소송 상담소 - 티스토리 | 창원교통사고전문변호사, 중과실 및 사망 사고의 위기에서 일상을 ... | 방문",
+    "pos": 10,
+    "content_pos": 10
+   },
+   {
+    "cls": "blog",
+    "key": "tnrud0329/223319223734",
+    "href": "https://m.blog.naver.com/PostView.naver?blogId=tnrud0329&logNo=223319223734",
+    "text": "블로그 - NAVER | 창원교통사고변호사 뺑소니처벌불원서 필요한 이유 : 네이버 블로그 | 방문",
+    "pos": 1,
+    "content_pos": 11
+   }
+  ],
+  "at": "2026-11-01T22:39:09"
+ },
+ "창원 학교폭력 변호사": {
+  "status": "ok",
+  "raw": "google__065.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "daeryunlaw-school.com",
+    "href": "https://www.google.com/goto?url=CAESaQHrOzAV9cKXSkVF1dwtHffElqRstNlw5d0iWjS71LIKKTRu9KpZRUzUjru_SEqIRFdzO5NLdSoJL0d18tkM_176p-v8Bkr0tIFEKxveKGhrL6E4mJb6Wi2uRi9o5E7eCbyVV-ltpaI4tg",
+    "text": "daeryunlaw-school.com https://www.daeryunlaw-school.com 창원학교폭력전문변호사 오시는 길 | 창원변호사 | 변호사님 덕분에 학교폭력 소년 재판, 재판 전 종결 ... | 방문",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESYQHrOzAVereb2D0m1qNGyS5jQxtWhvkGnBRriozZB7DAdckMU3OmfcGtaoikbfkI0MeK_sYqWaHV_FZ4n01R8njbppuayESS7WFB5f3jQy5bbYtK2hAlBzm7zriIsLLMuXo",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원학교폭력변호사",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVg1INsvNfrlWiaava9_pTqkc7zhj-zUOlcEaPMwkiSBAjWYZzO2j-Mcr4mKb7TGmdPjB9e7XreoUn0PfZ0JofsYsesLZKd-4a0NlBqkbe0_sPsc5UdvYtavL6Nfh-aj0E26UKwiw",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 학폭변호사 | 경남 학교폭력 심의 대응 법무법인 율마루 | 방문",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "gasalaw.com",
+    "href": "https://www.google.com/goto?url=CAESYQHrOzAVYITVwbREaS1ZgUDjROas5tCQ_2uonB2XFh5PJMai-HHJa24Qht21xsHHzMcewDI1AGyH5M_Yt44gT-3CauPx2vhYzWPzPPAVxXFl9FzDliltazKagpyxZxQ0_uA",
+    "text": "gasalaw.com https://www.gasalaw.com 창원 아동학대·학교폭력 전문 변호사 | 변호사 손명숙 법률사무소",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAVptzmDY1jL-bJl4t3lZKMWFncYRBoxdDj8LI32qt2pt7ep4IN7BSt4_esQeryWRlaXvjD6R2E5oGoUsJq0EIAxU9n-af77puMM0L0PL48pqia6na7UeTT1Q",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원형사전문변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-detective.com",
+    "href": "https://www.google.com/goto?url=CAEScAHrOzAVahuSkElj4x01xyh3z1PhS0spS7HTsTrS68FC2oHLInSBHLHCeL36tbwaVOIwVhYZaYZOzOg57tCXIaTuRthjdnBqxuoS6H0NDsTS7mjKmn9n4WwagKOn8QXEPEj6kgfS-AirS36SyGIjFns",
+    "text": "daeryunlaw-detective.com https://www.daeryunlaw-detective.com 창원학폭변호사 조력으로 강제추행 등 학폭 저지른 중학생 보호처분 결정",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmnamu.com",
+    "href": "https://www.google.com/goto?url=CAESZgHrOzAVimMRBM7FnJQ5yS1qojXYp9iyKyX4AGNSPBonHo44vQp8jjjguBqbuGkwHxDguVAo7ipBP32ky7Jg294kkt1asVEqtbQIekuo88eiwSNv_mou_BdYGtqI4lf2ipjW0bM-zg",
+    "text": "법무법인 로펌나무 https://lawfirmnamu.com 창원·부산 소년법 학교폭력 변호사",
+    "pos": 7,
+    "content_pos": 7
+   }
+  ],
+  "at": "2026-11-01T22:39:17"
+ },
+ "창원 민사변호사": {
+  "status": "ok",
+  "raw": "google__066.html.gz",
+  "items": [
+   {
+    "cls": "gmap",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 1
+   },
+   {
+    "cls": "gmap",
+    "key": "ohhyunlaw-hub.com",
+    "href": "http://ohhyunlaw-hub.com/",
+    "text": "웹사이트",
+    "pos": 2
+   },
+   {
+    "cls": "gmap",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-compensation.com",
+    "href": "https://www.google.com/goto?url=CAESbwHrOzAVyqTnbTlf6s73IVGlbeWYDousMJ0JJGS1Ee_wIf1jJhZmnJ3hxEdrJH0H0Y_jCscMqmkSzsm_IT9aYxSUSRIP35woDiGQH2AfB5vxpxyE1bvZRNTKzi3aj9skr7729Zoa1iffpGyFpPPLww",
+    "text": "민사 전문 변호사 https://www.daeryunlaw-compensation.com 창원손해배상 · 민사전문변호사 오시는 길",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESWwHrOzAVtREPZl14xCPuMBpDw98z-7TDLCf6Re1TWVqoVgVt4PbtY-7bBZ9nCVfpK8a6pu6agIHRxa7i8iznRikP-OHeBY3Tfa4Tjysm-0Nk1Cjbpxzo8MmI1Y4",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원 변호사",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "gnbar.or.kr",
+    "href": "https://www.google.com/goto?url=CAESfwHrOzAVRsLfPaF-rWYTP0DK9lEGiFo-J7uDZIWKn2nUQgV9tPaPCXia3xJzwj6Xa4T230UvyllzVBaQsHIYdKq1HcMYFKTNGA9D4uvRQtYLnh42tbD6Tr_1SwN5X3kG7Inb_Dd3SogMeOPjxeZcxxa4nxpRGs8POeimcvtipTs",
+    "text": "경남지방변호사회 https://www.gnbar.or.kr 변호사 안내",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAEScQHrOzAVbNKFFCmNSRkfqnULkSncIvxYPvYjdYAQiR-_8lKmYGvE33E-K9AszFMdC9-X4GnAlBs7xq8Ir_RXhDpTeUVANOmgFvK2kUgWh7f0LF9xerc9BXNEbgtrhEPvw_2JBXpzR9ARTeVFIVFQodGw",
+    "text": "법무법인 YK https://www.yklawfirm.co.kr 법무법인 YK 창원 분사무소",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESWgHrOzAVyfxHPYXcW3PakPAwcYHNddSvnfccZ13s9e1ItkgUT6HE1E-0LiVchl6VOM_BETrikORHikrYEzeTETHxrZYi5RLgPF7zzhsjMKkoJa9OvJZobjfToA",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원변호사 | 창원 변호사 법무법인 율마루 창원점, 창원지방법원 앞 법조빌딩",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.com",
+    "href": "https://www.google.com/goto?url=CAESUAHrOzAVh4QqKQSXllPFcpqGmr9P6LBCv6q_zUMomPpOcYl5SLbPCTd6SXW9Wxt-X9FP6X48AYxuVDf1UDIABrMop7sTGuMVOBeREo2VKRaF",
+    "text": "박인욱 법률사무소 http://inlawpark.com 창원 변호사 박인욱 변호사 | 창원형사전문변호사 | 창원이혼전문변호사 | 창원개인 ...",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "changwon.scourt.go.kr",
+    "href": "https://www.google.com/goto?url=CAEShwEB6zswFdMhs4-A94r1o6OAgwqd8mbdo-10yhaG92jj03L7nuo-PiaVzKmcRdevEBDz_stupNIHKlH6Y_WQmqb4TRxyVOn8ErSOp1dydF1mudRYCdeNdzzUxnW3aGqQ0Wotwt6xXPKfCIF3Md8UV0ohPRy6vDxHNPvFTczSWhjvq6_cSkI_4CY",
+    "text": "대한민국 법원 http://changwon.scourt.go.kr 법률상담안내 - 변호사/법무사 - 창원지방법원",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-estate.com",
+    "href": "https://www.google.com/goto?url=CAESbQHrOzAV2ROzZFHlLfeIKlsoW_sUZXC30GjZCfg80wCcUYbRC3gtBGQqtOuUgUXXEyRQCWD4BuW-P3CV6EdVR45wVhQmETs9AeK_1h-Av_HaMyiu3utkj8e4wxrDHcMn0yYZfB8HMo4NZD6f_kY",
+    "text": "daeryunlaw-estate.com https://www.daeryunlaw-estate.com 창원민사소송변호사의 조력으로 보증금 전액 반환 성공 | 법무법인 대륜",
+    "pos": 8,
+    "content_pos": 8
+   }
+  ],
+  "at": "2026-11-01T22:39:25"
+ },
+ "창원 손해배상 변호사": {
+  "status": "ok",
+  "raw": "google__067.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "daeryunlaw-compensation.com",
+    "href": "https://www.google.com/goto?url=CAESbwHrOzAVHP1ynI5vAlewetPm9VhdZemw04A6UV1vqD8QYhtchjY_n-N999U-2Po4BPb19GhsbX7oOcP0jZIKYApmpuq8yjaE7FwChZsizQZXnovHgem2Rpov63KJkVfLcatN-ls1542IzX3wLsEYuA",
+    "text": "민사 전문 변호사 https://www.daeryunlaw-compensation.com 창원손해배상 · 민사전문변호사 오시는 길 | 창원손해배상변호사 | 상간자소송 피고 입장 방어해 감액받아 ... | 방문",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "lawus.kr",
+    "href": "https://www.google.com/goto?url=CAESngEB6zswFTYCAwFh2B1uzr3aLm5S_O2wJL8u_wWZ2j6obILf4XTeuQZ-OG3eetV65sqpP0W4k5Wg2g6wChaui5HDKoyYLRUjmXaDHfZIIyrceJlfGpdJKSpKIuaQthUClhBCXZcHNNNAGsXH6RbrmIWwRY9qq54D7j07zGRcWcpAwqSkXYcZOkgLkcHoE0Swuazbgk4iXDclhJ--04zs1w",
+    "text": "lawus.kr https://lawus.kr 창원 손해배상변호사 - 법무법인 로어스",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "lawandnow.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYwHrOzAV4xFse6fPxNlUBUioUlu-yY0Q--IF8ExUZb-WCitHUQBbS2O9MkSL-69lJky5_pPTtxAhAOfUkEmuJUItQdGY4xjcFLg37ULnbhXhEvLsV-Decs9hkVCn305_x-yRFA",
+    "text": "로앤나우 법률사무소 https://lawandnow.co.kr 창원 손해배상소송 변호사 상담 | 불법행위·위자료·민사소송",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.com",
+    "href": "https://www.google.com/goto?url=CAESUAHrOzAVP49P_Yo9CXwPibI_qAjCvlYKN_MMlEygbuSNQP41vS_KHaV16jHD_cOe_q2G4sGAPpOWCweSCSWPA1tR9SOdGpBS4mKUWHDawwnq",
+    "text": "박인욱 법률사무소 http://inlawpark.com 창원 변호사 박인욱 변호사 | 창원형사전문변호사 | 창원이혼전문변호사 | 창원개인 ...",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESWwHrOzAVUTjfU2KVJ5KgGd8Zay7lWn1Nv-4PbtKGoG7dUgJGjkzOZUyQRPk0n7HHg9NvN7-seXXXmY66msgT70mUTvSwl3yaF7jF5fj_ofgNNjhMN3lXNPBTjjc",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원 변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "thekimlawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESaQHrOzAVKVBsYdJ79KAhoAeRmY1Gbc-aJqfOouHz1scW3ri57SaWFM0x2AE5tRRlQEh7WmWvg_wxWr-Oxxb9kyxykDCgox0JguGAg0oTHhVM4hxXKOx3ZkHeSPGsuPguTCuJL5c9Ldy__w",
+    "text": "김형석 변호사 http://www.thekimlawfirm.co.kr 민사소송의 유형",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "gnbar.or.kr",
+    "href": "https://www.google.com/goto?url=CAESfwHrOzAVCTBjkl7cgiS9JXNwVIxs0ymH5vTQrYhgHSER7w5RubPjb5W4TXLTb6K8kD7KS64IJH2LofZ232TNgUWI7c6XM633Elid1NCSWh4oeS68DSmyoXC9jdqcAb9bH8r07HXiVHZ_nuzoujjN5O3xPE_EAw8vPDDytpmlfs8",
+    "text": "경남지방변호사회 https://www.gnbar.or.kr 변호사 안내",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "blog",
+    "key": "twinkle0514/223121848407",
+    "href": "https://m.blog.naver.com/twinkle0514/223121848407",
+    "text": "블로그 - NAVER | 창원기업변호사 기업손해배상소송 진행하려면 : 네이버 블로그 | 방문",
+    "pos": 1,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmleen.com",
+    "href": "https://www.lawfirmleen.com/bbs/board.php?bo_table=success&wr_id=483",
+    "text": "법무법인 리앤 | 창원민사전문변호사 개물림 사고 손해배상청구, 장해 인정으로 ... | 방문",
+    "pos": 8,
+    "content_pos": 9
+   }
+  ],
+  "at": "2026-11-01T22:39:33"
+ },
+ "창원 대여금 소송": {
+  "status": "ok",
+  "raw": "google__068.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "lawfirmlawoon.co.kr",
+    "href": "https://www.google.com/goto?url=CAESrAEB6zswFa3lTQ6Cit8MQ5jNsODrlCYpNVkasNjX3xpgDxGmFSVtBm6S6ryzLW92-62GNCgPCpfnAMSayU4Rzv86CzVxfzc8oIST2qGTF3sWFQSQZhnFHHs_1HNpLq9q9CUiKUvRAru26t9LQTDeKeg1qthdDbHiOG-V_c1ZMJmwF7WXrC7Tgyhj0Xq5dS9Z0n_g4yyNx3qhOxQLINBpQ_vS4gEmtWvF1ahTekdB",
+    "text": "법무법인로운 https://www.lawfirmlawoon.co.kr 창원대여금소송 차용증만 쓰고 연락끊은 지인에게 3700만원 반환 성공(박해생 ...",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-compensation.com",
+    "href": "https://www.google.com/goto?url=CAESawHrOzAVoM6EpDRAbnLw248AlwrQvhuyaoBfYwaVfL_DLtxVd4FEiWkh8zuRoop6gZILHq0Gq4ck9Zi_MCitJ1B6LeGxulcrzWG19OWmgri8Osg-HxhYchGMt1ygCiC-kDbmi_QGOT9aZKJN",
+    "text": "민사 전문 변호사 https://www.daeryunlaw-compensation.com 창원로펌이 묻는 대여금반환소송이란 무엇인가? | 법무법인 대륜 | 민사 전문 변호사 https://www.daeryunlaw-compensation.com [창원대여금변호사 승소] 반환받지 못한 대여금, 창원전문변호사 도움받아 전액 ... | 방문",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESZgHrOzAVGUCWzdhTDHa54hzuDUtZagKzDPq0ReWibdASxnZ3AWoXfmRJb3P3VeaSTqhRzT94l8IAe4YDvVkjfO1Jtn93S24qk2WFNU5-_dqruRbaZt2jBHhi26oMKTXAGwH5hR1X-g",
+    "text": "법무법인(유한) 대륜 https://www.daeryunlaw.com 돈 갚지 않는 피고에게 대여금반환청구소송 제기해 전액 돌려 받은 사례 | 법무법인 대륜 | 창원대여금변호사 | 돈 갚지 않는 피고에게 대여금반환청구소송 ... | 방문",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "changwon.scourt.go.kr",
+    "href": "https://www.google.com/goto?url=CAEShQEB6zswFfX8HmjAzJJXE8my8zeNrrIUlYhVGed4DbQrlcacGAwQc13vc0rRDgCyoWU-lNa2lNgy4bETMAFt05d36K6BTZmFIcyt6-b55MgLZ7aFUh7Jzpy1aK84SRqxDSrjRq316R6rCphJbtFNabGUd9wRmDwGp2sgNEHIRihrO0Io5Li3",
+    "text": "대한민국 법원 https://changwon.scourt.go.kr 자주묻는질문 - 창원지방법원",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "lbox.kr",
+    "href": "https://www.google.com/goto?url=CAESowEB6zswFS7davtZZdcYjYK6An1r8ad8aqhbVgFdi-uBPhblWt5cZGbULtzT4oOgysyPxlyDiGDr1H2mw8v7J_MR-Tm-7KLhWRqjDbYaFHNDeS-Qt9T5R5BkUC84vEM6nB9dzTpWqu1SgCl4tXjHGx0WOk1f2p2YRnySMXggYtko6V3FE98jCJw057LF8AsxxzORoeHvFNOxYwORjbR58-_alo89",
+    "text": "엘박스 https://lbox.kr 창원지방법원 2021. 1. 21. 선고 2018가단103504 판결 [대여금]",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmnamu.com",
+    "href": "https://www.google.com/goto?url=CAESXgHrOzAVrYUoTRQoboa9YeqMcbNFzkvv_6hq_CKJgVHBVGb0QLnuWFK4JAraoPmr30zTXB7gENwGXEpRrqBeMyUvlWliFYZGB1W6SFsb8SmdJI_h25o9nn1gPnxQbjo",
+    "text": "법무법인 로펌나무 https://lawfirmnamu.com 창원·부산 대여금 반환청구 변호사",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "blog",
+    "key": "dslee3685/224226753441",
+    "href": "https://blog.naver.com/dslee3685/224226753441?viewType=pc",
+    "text": "Naver Blog | 창원대여금소송변호사 대여금 문제 헤어진 연인 상대로 소송이 ... | 방문",
+    "pos": 1,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmleen.com",
+    "href": "https://www.lawfirmleen.com/bbs/board.php?bo_table=success&wr_id=399",
+    "text": "법무법인 리앤 | 창원지주택변호사 분담금 반환소송 승소, 조합 대여금까지 반환 ... | 방문",
+    "pos": 7,
+    "content_pos": 8
+   }
+  ],
+  "at": "2026-11-01T22:39:41"
+ },
+ "창원 상속 변호사": {
+  "status": "ok",
+  "raw": "google__069.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "daeryunlaw-inherit.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVDC8o_SkEW0devS-ZAHJGakBOYBnmaCzzzBUNET-ustmJHp9vRnN0NxS6B2HAInZbSF2CpTSijecc99sBYfsXU2TDfj34P928-tGJnN6eLe-yeXog3ATEma8h3Gf7alG5IreU4Po",
+    "text": "상속전문변호사 https://www.daeryunlaw-inherit.com 창원가사·상속전문변호사 오시는 길 | 상속전문변호사 https://www.daeryunlaw-inherit.com 상속세 세무조사 의뢰인 조력한 창원상속변호사 | 창원상속전문변호사 창원상속변호사 사례 | 법무법인 대륜 | 방문",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESaAHrOzAVkPfY37KCUB0Fp6ncFi_fnjMiymriK6KTaWE1kpcIIemIiqY_QyiUf422tXoNnScxqVIkWClcAGbv9s27_VOepslqU-nJ49t9cm1gTpY9ERi4MoJgIGoMRwylDtqR-ynk0hMH",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원상속전문변호사 | 창원 변호사 https://changwon.daeryunlaw.com 창원상속재산파산변호사와 알아보는 상속재산파산 - 창원 변호사 - 법무법인 대륜",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "daehanlaw.com",
+    "href": "https://www.google.com/goto?url=CAESgwEB6zswFZKWImqqEJRD8zAAashsM3Lu0fh8k4-ERc4guQqLaOZbVDRLgtXwcpGpIiVEDoFJQi7x7_Ob4OG051gIC_iss_dlea4-agM_Kif_Xmq65oWTkPI5rKS4ubcj-U7kPBhFpJ6AMIC_u22Ei2dGfjS2KTiu1JTBWvwCdI1mGaHZnQ",
+    "text": "법무법인 대한중앙 해운대 사무소 https://www.daehanlaw.com 경남 창원 상속전문변호사 추천",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESYAHrOzAVheIZ43aiJf3D59llv231JdXpUc4OYHHlHPo4lFFaL1WC9Tj9nBZESLVC9nOv_Ep7ixjcJenYNOWkGlj0MVHyLCxMonZ6ntsDSZlZEXOrwdESQm2SxPsDgqqwZA",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원변호사",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "웹사이트",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.com",
+    "href": "https://www.google.com/goto?url=CAEScQHrOzAV6OSbbICe7Cqy8E5kfjmkKBC0pxCfWOTYKuUz0AMj4fOVgoxQsd1CbQDNyTY_yYIyzGCQeCkIDi9z8KgaTuORxppypIDpXG7OiA1c8-y4OrBC95qaGYAWPJR6nQc4QzI6aEheNR3DYh3iyo2i",
+    "text": "박인욱 법률사무소 https://inlawpark.com 주요업무 - 상속 | 창원 변호사 박인욱 변호사 | 창원형사전문변호사 | 창원이혼전문변호사",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmleen.com",
+    "href": "https://www.lawfirmleen.com/bbs/board.php?bo_table=success&wr_id=448&sca=%EC%83%81%EC%86%8D%C2%B7%EC%84%B1%EB%85%84%ED%9B%84%EA%B2%AC%EC%9D%B8",
+    "text": "법무법인 리앤 | 창원상속전문변호사 계좌이체금 상속재산 제외 인정 분할 대응 ... | 방문",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "blog",
+    "key": "dslee3685/224311906922",
+    "href": "https://m.blog.naver.com/dslee3685/224311906922",
+    "text": "탐색 : 네이버 블로그 - NAVER | 창원상속전문변호사 유류분 청구로 최소한의 상속액 지켜내야 ... | 방문",
+    "pos": 1,
+    "content_pos": 10
+   },
+   {
+    "cls": "blog",
+    "key": "rope4482/223929945362",
+    "href": "https://blog.naver.com/rope4482/223929945362?viewType=pc",
+    "text": "Naver Blog | 창원상속전문변호사 | 상속재산분할 분쟁, 현명하게 해결하려면 ... | 방문",
+    "pos": 2,
+    "content_pos": 11
+   }
+  ],
+  "at": "2026-11-01T22:39:50"
+ },
+ "창원 이혼변호사": {
+  "status": "ok",
+  "raw": "google__070.html.gz",
+  "items": [
+   {
+    "cls": "gmap",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "웹사이트",
+    "pos": 1
+   },
+   {
+    "cls": "gmap",
+    "key": "lawfirmnow.co.kr",
+    "href": "https://lawfirmnow.co.kr/",
+    "text": "웹사이트",
+    "pos": 2
+   },
+   {
+    "cls": "gmap",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-divorce.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVJ1O6upftLfuAjXxBYVZkfs-Ywc7lWTh3BRlYvdgjDwaK47sIjTh8VOsSCMgRFQaZ8GP7ECxIy60DcVjgCgy8KDhiegK0AxiuqW7ZhyG3hASk01IJqX-enVH491CqrzO7cAE5EhY",
+    "text": "daeryunlaw-divorce.com https://www.daeryunlaw-divorce.com 창원이혼전문변호사 오시는 길",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAVrIGgMybJ3hC6n6ekE6gNxc5Fxic_d8YOkszCUqA5PzwB5sS-56eKWxBpbz7Hq4bBqKnixVPGCJhV3zw9xJif_h7H2smXAOh4svFJOSHRt0V8_7bmIgPB7_7H4RdH",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원이혼전문변호사 | 창원 변호사 https://changwon.daeryunlaw.com 창원 변호사",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "gasalaw.com",
+    "href": "https://www.google.com/goto?url=CAESUwHrOzAVEDrfqKyem-5YTyeO8CSi_z62UQZKnrt-Zc3vMHRuecZjqE0jMtzgcNCaqUUHChh42mxfoDqyouWvopCva8HQzO8vG4TN35n20prvmuG1",
+    "text": "gasalaw.com https://www.gasalaw.com 창원 여성 이혼전문변호사 손명숙 | 경남 최초 개업 여성변호사 · 25년 경력",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAVD0w7pKxpaBNkI2oBRwgs64pbXK3lxAHNxGKe8fC__t79QAmQFMgw_SUQtWvV2aybDo68GnSgVaaTEqdamk7M_YImrQ7KkvFHoR_hIP_WLGQJEbaaXr4d",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원이혼전문변호사",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAVMevx6qoiTWaiEIvEj_QJl2kkZm9t-G9wdFl6tXg9e0g-qLFVtY-AqqYjSqVLMBzoY37wj4oFZK7EfmzhFg7dDRYSMtipGPRxd3b4SnGtxlTSGh8s4rWg3fFqU5e_",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 이혼전문변호사, 재산과 자녀 문제까지 한 번에 정리합니다",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "ohehon.com",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAVgaqqS46aWemVsqypazPCKkfj0aS4O0QF9ITCZdRjxC_M6E3886-k0npMEHCdouOD834t8PhWpL06AgX3-7djdWZilUtKfDXtG09Y8PH4eV6jWoWJk2yLQeVQnsqg-HXl5BIyFMuZFA",
+    "text": "ohehon.com https://www.ohehon.com 재산분할 상담 사무소 안내 | 법무법인 오현 - 창원이혼변호사",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "divorce-lawoon.kr",
+    "href": "https://www.google.com/goto?url=CAESZQHrOzAV7Ctcf94ykr3C21ZeHJW5H7rdB3DaBKO0A1_iUUrdRfDN-qyibQo_CTsNJHroENnyOtRRCCwpAmdnJS4CqVogqrruRLtIguLx3-H6wh8AQj6p0FBIHX75yqXGSTLHa6Jn",
+    "text": "divorce-lawoon.kr https://divorce-lawoon.kr 로운 변호사 소개 - 창원 부산이혼전문변호사 박해생 법무법인 로운 이혼소송 상담",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmleen.com",
+    "href": "https://www.google.com/goto?url=CAESVwHrOzAV4Hqsm3GOsVTu2gcPXcCF_C38_mKUeAhBNkIsMy1fo91u9RFOFmYvNc6AuZQIns8icvWSaTtvSNPLlCC-8ptWIUxS2XBVNEuoUrrZJOcG5MU_qw",
+    "text": "lawfirmleen.com https://www.lawfirmleen.com 창원 부산 울산형사전문변호사 | 부산 창원 울산이혼전문변호사 법무법인 리앤",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAEScQHrOzAVnWwHDwfkV828SJxoKZ4WXxdekAesAhgIbmb_7wEqOHtUklgcDgIkAJIxxAHWK31F5r5XFLTYbV2YiZ56MEc6dLdOlOgGz2B1oPsEf2vx1BWp8NQXqa0WMUCzvRSWlRafdO6tMuSnutjSBwRk",
+    "text": "법무법인 YK https://www.yklawfirm.co.kr 법무법인 YK 창원 분사무소",
+    "pos": 9,
+    "content_pos": 9
+   }
+  ],
+  "at": "2026-11-01T22:39:59"
+ },
+ "창원 행정소송 변호사": {
+  "status": "ok",
+  "raw": "google__071.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "daeryunlaw-administration.com",
+    "href": "https://www.google.com/goto?url=CAEScQHrOzAV0ygxr2QGoHsEhSP9qJTob-DIowXaNSp7Mi27sp58aVLe3y5VC64ToMYAh9om_wANyrU3FxwvaPrzPKWt_N5zEQEW7w5XB2xtKqXC2NSYMFlNpki0qSJFuW0x4wcdxf3Y8PJQXS-FEapFiPpo",
+    "text": "행정변호사 https://www.daeryunlaw-administration.com 창원행정전문변호사 오시는 길",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVo3gaqwbFG5mpsEjm3IpMrmoa-XpJiJnVyPXsZpYIjOfZqiloWiP6pAUKXZ-Ci1g66lh-xqBl42WdFlYzzVeICCVSkVkraVQ2GchUju48yW1lZa16hOU3UAkNH3Us5SndUIvOZMI",
+    "text": "법무법인 DH https://dh-lawfirm.com 행정소송",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVJgtpNLixg2pET5sa5qjQ5Fib74HTyH5gDLUBOgNsBQx-BgPhb_3NH7oWglLiu_9-HHqFWOYbwdCRhzKNm4LMQATGCNIKLV6yHcTd5LE94EOHRgJkb2NRT7bInikjZ-8",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 행정소송변호사와 알아보는 행정심판 - 창원 변호사 - 법무법인 대륜 | 창원 변호사 https://changwon.daeryunlaw.com 창원 변호사",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.com",
+    "href": "https://www.google.com/goto?url=CAESdQHrOzAV3_KywBEvZ5RoEOE2oR8YTcPGQWl6TJfjFnLTr2jaiqBHWHgPo97Ck_oEt4OoNhrehsn5zJfWdF_Xc7AWw0-3kDl_dPytx4LXZ86DGkdyiAeNEr0dv66UAZsWpdL3-TcHEBfcYUrUjIwf3GmF-QnuFg",
+    "text": "박인욱 법률사무소 https://inlawpark.com 주요업무 - 행정 | 창원 변호사 박인욱 변호사 | 창원형사전문변호사 | 창원이혼전문변호사",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "ainlegalstudio.com",
+    "href": "https://www.google.com/goto?url=CAESbgHrOzAVf7ig4BhMsHr0cCNAk7fzxCuj3Gli-te4ozAG7YF-96nJPIt4N8bnWEQBusCoJCEcw1nZdIXRWlwtmQCeBhKaOq97d_iRHFB-K3a9R_Kx4A1pFBGZ0STS4d9Xl4E88JU0HCOVB5mccfZx",
+    "text": "아인법률사무소 https://ainlegalstudio.com 창원 행정소송 변호사 — 집행정지·행정심판",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "thekimlawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAVllSAL2qF2dYnvGQuSjCkpW0mZL-5RIs4W0kXSLno2a27XbiIBFQl_9MfZ5m-4_sRrqnT5pRD5U2goe_fT6-92-EVFHRRWnK7-MAQ-RMZroZuV1973aTL-lH9yCe53ptbMciRXi92oA",
+    "text": "김형석 변호사 http://www.thekimlawfirm.co.kr 창원성범죄전문변호사",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "ykforeigner.com",
+    "href": "https://www.google.com/goto?url=CAEShAEB6zswFbb8vJIaYgkj7pEg_7cOwZrrsCPSrucbz4aT_nzYuOw9a_m37jKv0CfhCjyNFgV-IF7aUElhv8Psu9-L6jZtz_YfJwkiE8TIlC36AcmCieHkBAeg89wh7VHI1TwzTvDqGu5xqjhnee0hjvApOeOA6mvdRpeO5WXkNztQC4gTjcQ",
+    "text": "ykforeigner.com https://www.ykforeigner.com 창원변호사 | 법무법인 YK 중국인법률지원센터",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "blog",
+    "key": "mirychoi/222245429045",
+    "href": "https://blog.naver.com/mirychoi/222245429045?viewType=pc",
+    "text": "Naver Blog | 성공사례] 국가 상대 손해배상 창원행정소송변호사 : 네이버 블로그 | 방문",
+    "pos": 1,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "gasalaw.com",
+    "href": "https://www.gasalaw.com/",
+    "text": "www.gasalaw.com | 창원 여성 이혼전문변호사 손명숙 | 경남 최초 개업 여성변호사 ... | 방문",
+    "pos": 8,
+    "content_pos": 9
+   }
+  ],
+  "at": "2026-11-01T22:40:08"
+ },
+ "창원 행정심판": {
+  "status": "ok",
+  "raw": "google__072.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "changwon.go.kr",
+    "href": "https://www.google.com/goto?url=CAESaAHrOzAV7oBPloSORYdnm_3s88C5lxp8tY1l7uisJd88lI4iQ14vTAMKlAnRICGadXAQlvsqHCgfqblsoijaQdpqktX3csWVqa-J2kRhPE3gSsDd-PuXHudzJxlPoK6YPKZOcdxSgEV2",
+    "text": "창원시청 https://www.changwon.go.kr 행정심판제도 | 창원특례시 | 창원시청 https://www.changwon.go.kr 행정심판처리절차 | 창원특례시",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESaQHrOzAV_-5Vq-_GxGZDSHWQQonVn5OxOVisfqoFIX_iZvoUm9nhUGrCq5dzxbEwfKHwjc5fSIAyjDVR2lAcaGkJhGlC8oHSAzR_yBVWskWfOQeQ_MnVkWgqYl6v0-yNb8oq4HAbK-M_7Q",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원행정심판청구변호사가 알려주는 행정심판청구 - 창원 변호사",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "gsnd.simpan.go.kr",
+    "href": "https://www.google.com/goto?url=CAESVQHrOzAV8Y6EvJ-JwVrcAOQ2mWyFHQmfoEqckpBJguc5BRjCY-QxwdfRDfOem58S-UqhkwBzvYcaJkVumBD2qk82KmwIv5eFLtuyR-oyndVEC4-JZGY",
+    "text": "경상남도행정심판위원회 https://gsnd.simpan.go.kr 경상남도행정심판위원회 홈페이지",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "laweom.com",
+    "href": "https://www.google.com/goto?url=CAESWQHrOzAVwiwrwHGUB0MdnGJ8K23kSyq1vNhHrhDcWvaA0oz7iIaIG9XnaBpy2kU5SQWz03v5n5TTM5rULOtPRaBupu5XHfY16fGrU0ogo793wWKILbjeXPbX",
+    "text": "laweom.com http://laweom.com 행정심판/행정소송 - 창원법무사 엄익삼",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.com",
+    "href": "https://www.google.com/goto?url=CAESdQHrOzAVcnDas6Ka0P7r1Q-ZoLCDK1xGpAxMEmFdoBsuhE9_DNZP6X5Qa1evTfuVVsmu8R5C-JznDr2dkqqKcMYMIvAfwhSnjJm62SLGjFoEoplnd1eQLV8t56nXpnJC9xnXqoiWFZc-UePWFcJTv3UyKZ1Onw",
+    "text": "박인욱 법률사무소 https://inlawpark.com 주요업무 - 행정 | 창원 변호사 박인욱 변호사 | 창원형사전문변호사 | 창원이혼전문변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "idomin.com",
+    "href": "https://www.google.com/goto?url=CAESdAHrOzAVwG5TuCbG1falaXRaRPeKj0SaL-57ucKV5yK2lQ0SRVgdBY9GhHjAOUQC7sfkrJPPD95RnH_68G8BSoOCcrM4ymWIay4AIorn4QLPr0TZGMuI6aE3Lwc0DiYFsfL8zO8JTBDihhomCI03N9cdnQlO",
+    "text": "경남도민일보 https://www.idomin.com 창원시 소송 정보 공개 위한 행정심판 제기 | 창원시 소송 정보 공개 위한 행정심판 제기 < 지방의회 < 자치 ... | 방문",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-administration.com",
+    "href": "https://www.daeryunlaw-administration.com/info/584",
+    "text": "행정변호사 | 창원변호사사무실이 언급한 학교폭력가해자 행정심판, 청구기간 ... | 방문",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "blog",
+    "key": "essesoon77/221238042993",
+    "href": "https://m.blog.naver.com/essesoon77/221238042993",
+    "text": "네이버 블로그 | 행정심판 재결 기간과 효력 - 경남 창원 행정사무소 : 네이버 블로그 | 방문",
+    "pos": 1,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "ohmynews.com",
+    "href": "https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=A0003117456",
+    "text": "오마이뉴스 | 창원시 소송 몰아주기 의혹, 행정심판으로 밝히겠다\" - 오마이뉴스 | 방문",
+    "pos": 8,
+    "content_pos": 9
+   }
+  ],
+  "at": "2026-11-01T22:40:15"
+ },
+ "마산 변호사": {
+  "status": "ok",
+  "raw": "google__073.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "gnbar.or.kr",
+    "href": "https://www.google.com/goto?url=CAESfwHrOzAVDgK07v9xB88ilR2f6rr5QaXkwbPyaILcNOWXrXFHSjhsYWQ-gmPuq8qTUfdm8fHf39Du1hwCA5y-J0GRHz3X_Wvje5Vus0TUfd_Mr8WGUaIBB-_twjiwCyV1OiUZnV4zkTOS_guf_uXqFPbpwho_k7uIkexFEgwoRX8",
+    "text": "경남지방변호사회 https://www.gnbar.or.kr 변호사 안내",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "daniel025.creatorlink.net",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAVqLEIDoWhoG-6sjvLB0GowvHLa0YkSHLX5g037NLgHjawlxhxQBEJgybX_qnMHjSA66UM8B9jMxjHQWol3ABn9GqwvoHaWNo6OF0jpCzDyJSVQ0RiTOr8BQ",
+    "text": "크리에이터링크 https://daniel025.creatorlink.net 마산개인회생 법무법인 더킴로펌",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "woorinurilaw.com",
+    "href": "https://www.google.com/goto?url=CAESkQEB6zswFY3Mab3RxrDxJZ9ZgE41UrUztO7PnCxgXXEsK9X5Wp8Ot-cbcI6hXnEI1p-9yJb6T_8sNvNsjG_Ur8-xYzM8nTOYT0KIQpccDYlwhitY4ekh2vERfBgIXlNGysSelxHKHUXERlmvyctwjPOQxBFQ9fgHZLUqxotUOfpf2RwsNVnMhuRtWMpkb1kPqUtF",
+    "text": "법무법인 우리누리 https://woorinurilaw.com 정원욱 대표변호사(창원 분사무소) – Woorinuri Law",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "myoungjae.co.kr",
+    "href": "https://www.google.com/goto?url=CAESdAHrOzAVMjQp4jbwwuSC7e6mv_qDxEUp0UQOosyuEUbrMAFtcgxXGdJWZWtleeyB-rxokNZrHtjAdhsGRD1ttEX8rRJ7BLDM7CYftalFXZJvuwF2Y7A8YHz2ol8Fy4gii5l92pPqYtFCEBFWN66MnYIw_dBg",
+    "text": "법무법인 명재 https://myoungjae.co.kr 최한겨레 대표변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "일성법률사무소.com",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAVlTsT5Qt0215bo1bWC6WhssSucb87o-TQcNktG_Wetpk0DTc4s0eA1y3U0FpXuVPbPZPMuGm3-rqVqCJpIeMBonbO6HghANUl2Ot0_-r7mMype6-ASQ03oFHQVRmwd8m_H-s27uXXHA",
+    "text": "일성법률사무소.com https://www.일성법률사무소.com 변호사 경력 - 일성 법률사무소",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAVqeAFEDninqDiyQYcRoKIxV-UgO-ur8-wwdO8QM_vmlRUEOxH7T3AI3ajwMrOJ-g3CbuuSQvA38oT_2P66muBAYSatIzZCG75_OTcQVGmemtTzJU7wnLAxw",
+    "text": "법무법인 DH https://dh-lawfirm.com 대표 변호사",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "yusulaw.com",
+    "href": "https://www.google.com/goto?url=CAESWwHrOzAVLMHaGcWbpQKf2bx3eomoxsm0f5LAC14OdX5hzsyuKRF92uRBiormTYjb0GYPb7pmZ351fxDMugH8DFea6ygpguct1LJ-7E_heoSWPUKc8DiohVhRoa8",
+    "text": "yusulaw.com https://yusulaw.com 마산변호사 | 형사·성범죄·학교폭력·이혼·상속·개인회생 상담 - 법무법인 유수",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYAHrOzAVLBbXhbpATAmPZdsAid4iqeu2rhUh-xBZXx0h5synCWDsjLQaDB_D25kJVKUjdBunA-atclLN13yhcNbUpkqXMJ5NH3PmmmCnAjQ_bo39-9msTzDOh_KvkGQj2g",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 마산변호사 명도소송기간 '꼭' 기억하세요",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "youtube.com",
+    "href": "https://www.youtube.com/watch?v=fUX2guOQJZM",
+    "text": "YouTube | 방문",
+    "pos": 10,
+    "content_pos": 10
+   },
+   {
+    "cls": "blog",
+    "key": "leeandlaw/222286547562",
+    "href": "https://m.blog.naver.com/leeandlaw/222286547562",
+    "text": "네이버 블로그 | 마산에서 변호사를 찾고 계신가요? 마산변호사 사무실 법무법인 ... | 방문",
+    "pos": 1,
+    "content_pos": 11
+   }
+  ],
+  "at": "2026-11-01T22:40:22"
+ },
+ "마산 형사변호사": {
+  "status": "ok",
+  "raw": "google__074.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "yusulaw.com",
+    "href": "https://www.google.com/goto?url=CAESWwHrOzAVphSAzsIT37nO1UMzmeGHhhRCeq9d-eUJq0SMRRJH3vcEwW-8zkAn44UYVn303AItqLh8pK9aI0njj6ELZGoxP8fP-n1XTSxfXfGVr4szQMIt7RclZKg",
+    "text": "yusulaw.com https://yusulaw.com 마산변호사 | 형사·성범죄·학교폭력·이혼·상속·개인회생 상담 - 법무법인 유수",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "myoungjae.co.kr",
+    "href": "https://www.google.com/goto?url=CAESdAHrOzAV_yQE8SCZeY_lQVRsVFf0oOr19xHaYIx4DiaRas9vpxvf3Dix2kmhwos0kTbfeRJUarsR2ng1NTEBB9YqQhY4FxpFgXRh9MC3vj15dlNChL_DYVuf67-ghah1y_p19DwWBPe62lYfp6eU076s5HeY",
+    "text": "법무법인 명재 https://myoungjae.co.kr 최한겨레 대표변호사",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "웹사이트",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "ohhyunlaw-hub.com",
+    "href": "http://ohhyunlaw-hub.com/",
+    "text": "웹사이트",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "daniel025.creatorlink.net",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAVrjnDjcaQAY-gh0PoO-HR40EqRHHgeJeJ_Fm283oKCqCw88jrn8Xt-UMXdS-UVrEaYOyNxN_doZaF0ulrss6wN0Pyswjw0sXO95hbMGA91O4DHx_XwcPjXw",
+    "text": "크리에이터링크 https://daniel025.creatorlink.net 마산개인회생 법무법인 더킴로펌",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYwHrOzAVgfmgbpda8RbXvnziB-yHbRJveJB8Pxeuo-VSanE60DFTdKFW_3a_WEiE0BW3fR0fl8751Jr2gYIyydTiRVBxb9RKzabntcTcMzZPc2DnQ_tYsH4KRGw5yJNXOvp6-g",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 형사전문변호사, 첫 조사 전에 상담하세요 | 부산 변호사, 법무법인 율마루 | 창원형사전문변호사 | 창원 형사전문변호사 수사·재판 대응 법무 ... | 방문",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "woorinurilaw.com",
+    "href": "https://www.google.com/goto?url=CAESkQEB6zswFWOdKRcln6Itiz5tMSH1YSYuYh1_bjyQjmt1dbZs69-mCfdqpRfbXc-IVRxU2rXNdGrMMf6-P5ifZOaikvFDoyQaEaIqqCcziXTKy1Ywf1O3hquhOQZxhHW3E1pjfL9IbYg77tiW4wPdGd5cRYwmagFxx_LBSOVj8gPGSTn0Qfwc6ln663_iDQkKmCTa",
+    "text": "법무법인 우리누리 https://woorinurilaw.com 정원욱 대표변호사(창원 분사무소) – Woorinuri Law",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmleen.com",
+    "href": "https://www.google.com/goto?url=CAEShgEB6zswFafNBZEPm-pfRsq9zSRvBL9y2vVGTnp4zm7XfPbIMgldynTbqHTXfjgJIWVaDEklrErzWL_FBe27FQZS00TVt0RyrN_4VAk2DVQkL5O65939p6drWj8Dq27USBhc9RSv_ZWgvE919Y0IxgGC07hyIYzEIeK126E6HPnreDJXQAQKQA",
+    "text": "lawfirmleen.com https://www.lawfirmleen.com 마산형사전문변호사 주택법위반 혐의 경찰 불송치 성공 | 창원 부산 울산형사전문변호사 | 부산 창원 울산이혼전문변호사 ... | 마산형사전문변호사 주택법위반 혐의 경찰 불송치 성공 > 성공 ... | 방문",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "검사출신변호사.kr",
+    "href": "https://www.google.com/goto?url=CAESeQHrOzAVn-okQf_2MiXApVfoLuodSG3ojZmV4HRZQKsNgjQLGXFZ2aJl2hZ-x6o8YKhXUOobDGag3sdav6qFxJV1V_oBywq38eCi2KT0Bf9y22b48tyI_W_9LMvU_aSkUGwj3yWD2Bi2xqHYcrPh8qvEewoaZs61juA",
+    "text": "검사출신변호사.kr https://www.검사출신변호사.kr 경남 창원시 마산합포구 형사변호사·형사전문변호사 | 경남 형사사건 · 검사출신 ...",
+    "pos": 10,
+    "content_pos": 10
+   }
+  ],
+  "at": "2026-11-01T22:40:32"
+ },
+ "마산 이혼변호사": {
+  "status": "ok",
+  "raw": "google__075.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAVxmlctuL7k3loXWerwvZNrPxvxQVDUjNja3KJh_3UK-9n2ROo72NqGlIOLyICxWXevE0tMMIN-kwsGgMHTSgIsxdXTpS7kfF0asL8a4axu5n-18Eccs9R",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원이혼전문변호사",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAVkIaC-1HIaANeSqQ42kdOwPz3gUKRLIdKaiiKyLwDV3rJOjpAntOigxLT8S8JCAvxk0k4G694knOCf4E-a5FvsZz5tHd1e1pXUcIJL-pp_pT1LxAZlWqE1sTIkl3T",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 이혼전문변호사, 재산과 자녀 문제까지 한 번에 정리합니다",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "gasalaw.com",
+    "href": "https://www.google.com/goto?url=CAESUwHrOzAVq8tUd8LX0H55hYArYyQSYO_1mI08QT9yVA2j9XmzmJVK-Wr1x02b_9dYpYBUsXgv94XjxtQs5HjHYLaQtG_GIekRMWIL1fhW6GnUgyGH",
+    "text": "gasalaw.com https://www.gasalaw.com 창원 여성 이혼전문변호사 손명숙 | 경남 최초 개업 여성변호사 · 25년 경력",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmnow.co.kr",
+    "href": "https://lawfirmnow.co.kr/",
+    "text": "웹사이트",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "korealegaladvice.com",
+    "href": "https://www.google.com/goto?url=CAEStQEB6zswFVefN0sMYTk_oQP589NYTPQ32mLG5JMxAwcTGBj0KVYxaNaFl1bE890mCaxnpcLToUExEG4LNRyoxtDtkFmgWO_tAnPCxwymDE_lv2KUv_pbNnfsDBFm-WmjkE2xQPoGQREJjhofSOsvspRw8d8U9MwOc8sQhdHjOKYLR4tE-xyUa1-DBuLw9AWLK1FGivKNuPLB3eEleVZi8CZUCWFHuxQ4K0kN6Edbvk-4PonAmY0A",
+    "text": "korealegaladvice.com https://www.korealegaladvice.com Trusted 마산이혼전문변호사 - 변호사!로펌!법무법인!",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAV38CbwV-_9cbpNIwfy4UtVJ0BsCdA6eEz9ej2S8HibxJL_2y_UltjC_YvSNbHh9OpodNlnAgv1Tpz9Po10zYdympcv93INq30CGVmXy9-49XZlz5yaCn_BUpZolVx",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원이혼전문변호사",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "soonwidot.co.kr",
+    "href": "https://www.google.com/goto?url=CAESqwEB6zswFTZmUw1kg53CAIsSvS0hX9ltNLPgdKSFrHVMzgb8TtJxZr1VYcM4M0xdscysYw3dWu-oDH4KKAOqDfZB893g9oeQ4h2cnDG2omRvQcsvwQlF-mNSugcnJaru3W8ahUObLIotMAksr81E5doBVLMzosUWZAXSMTPzSxVl1Mg2GvRkIYzmqesJLLiQP-B6NsAskn2kqepZqu-vtwlV4vLr-KDISnqrswI",
+    "text": "인기순위 순위닷 https://www.soonwidot.co.kr 마산 이혼변호사",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "kimosu207.dothome.co.kr",
+    "href": "https://www.google.com/goto?url=CAESZwHrOzAVXjZWzShkfXtskBaHMpub-tdw0KhkcFzbV7sSzFga44I-sYX9UcVMZ4xUmBQ7idEQiU7SZbTPXxRpAG4m-x9n5x870tx8nOV6Dh3vLKHhiOVpWtsckn2JEKSuJzIJZ7WgQeY",
+    "text": "Dothome https://kimosu207.dothome.co.kr 창원 마산합포구 월포동 이혼전문변호사 전문가와의 상담",
+    "pos": 9,
+    "content_pos": 9
+   }
+  ],
+  "at": "2026-11-01T22:40:39"
+ },
+ "마산 민사변호사": {
+  "status": "ok",
+  "raw": "google__076.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "changwon.scourt.go.kr",
+    "href": "https://www.google.com/goto?url=CAESlQEB6zswFfH7iiRX1x9E_XJlIcb_umCAKqFaKgCOB1Lzi9hP94X3sxGIQikIMG9wSsB5p_FNXA9TMyLKMtSDYrWQnDMubOTEn3X_QFDZo9vdHQimPU7t6gPOZEborD-gLXL7sj0caGITDR5tBHHy7TGAMBTKrwDT2arloC4xIOZ_R_QvNZ3UB33cexkwI4GMVPZIvyZVfw",
+    "text": "대한민국 법원 https://changwon.scourt.go.kr 마산지원 - 부서별 위치/전화번호 - 창원지방법원",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmleen.com",
+    "href": "https://www.google.com/goto?url=CAEShgEB6zswFSK2YZsrz-AJje5ySt-E0oPqLJ5vgUlCpMjffoMW_kpUMVuvqOccUomfTlAJpUJuNQ2NzcUsZ52gAXO70RdaqU_Lycclfi61nks7h1w5ojV_GTki3f6YZq6NSCI-OwiOJvUWFlnrPORARXzL2M6lBEsDe8Ua4JrEbjXsWikfkkqgQw",
+    "text": "lawfirmleen.com https://www.lawfirmleen.com 마산민사전문변호사, 청구이의 소송 승소로 1억 6천만 원 강제집행 배제 > 성공사례 | 창원 부산 울산형사전문변호사 | 부산 창원 울산이혼전문변호사 ... | 마산민사전문변호사 지역주택조합 분담금 반환 전부 승소 > 성공 ... | 방문 | 마산민사전문변호사, 청구이의 소송 승소로 1억 6천만 원 강제 ...",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESWgHrOzAV5_XJOU8hyfmQMqASv0W5dCPYR7Hf1DJmOWBMq8-mKJmGXjmL6ZCdo9C1blEO4MCO1yiM04Nk5SUrRyxz1szS7Q7TIS8wbjM_BB1ZGQcl5K_pBqeqRA",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원변호사 | 창원 변호사 법무법인 율마루 창원점, 창원지방법원 앞 법조빌딩 | 법무법인 율마루 https://yulmaru.co.kr 마산변호사 명도소송기간 '꼭' 기억하세요",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "yusulaw.com",
+    "href": "https://www.google.com/goto?url=CAESWwHrOzAV7SlZpnhICmAY_I1iwvCDX-0Q2UgdtVDd4tPSHWoFdGb05HY7C46iSpTK4Z5Bxpo93OB0nkb4wSh7euUWjJe6ksqigJepbHdyn44DIhHzmHPB7fHZeC4",
+    "text": "yusulaw.com https://yusulaw.com 마산변호사 | 형사·성범죄·학교폭력·이혼·상속·개인회생 상담 - 법무법인 유수",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "woorinurilaw.com",
+    "href": "https://www.google.com/goto?url=CAESkQEB6zswFalzi7s-ATz77V_Z8F_uiuGwS6qEC_Upz5r3pV9xvecTIqoMFGIIRCZP1amxT6ffjWkXqJE8sLSPObNnSv-cs8Zdwu_mLGafsKIaKOtO5UCYNhbJxMYd0FDvnjM0mft4LRWocLFweG6IE-a7Ad-R8ZBV1Ch9rFxm9QLbBQsILEFxxNxW9DT75ZjQ3ZtM",
+    "text": "법무법인 우리누리 https://woorinurilaw.com 정원욱 대표변호사(창원 분사무소) – Woorinuri Law",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "daniel025.creatorlink.net",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAVy-A_ddpKm6J7qXfucklu57v7I6C7AshPc57F_vPEAtoWcLJ1KVjjsF33bzCozUCBn-VZADAB1WffmYiLBWTdNnT15OCfqL5uLTmEeBmT80Q-s5X-bUY-BQ",
+    "text": "크리에이터링크 https://daniel025.creatorlink.net 마산개인회생 법무법인 더킴로펌",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "youtube.com",
+    "href": "https://www.youtube.com/watch?v=fUX2guOQJZM",
+    "text": "YouTube | 방문",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "instagram.com",
+    "href": "https://www.instagram.com/p/DRyvZvQEahP/",
+    "text": "Instagram | 마산민사변호사, 부동산 명도 소송, 부당이득반환청구 소송 1 ... | 방문",
+    "pos": 8,
+    "content_pos": 8
+   }
+  ],
+  "at": "2026-11-01T22:40:49"
+ },
+ "진해 변호사": {
+  "status": "ok",
+  "raw": "google__077.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "dongbulaw.com",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAVIoGUCzTTHiSgKLkIb-Fo4zUaoMuagPzwyzFd4bF5Cgj19kLdXOwQg1pylKsNH9LOnCj0wpprSGNYq1o35xtfkEX9mfTd6Nm79nI8GYQxNo8YFEPvD2yn2AYWM77kwyO_jD2lGWJkCg",
+    "text": "법률사무소 동부 http://dongbulaw.com 변호사 소개 | 법률사무소 동부 http://dongbulaw.com 법률사무소 동부 | 웹사이트 | 법률사무소 동부 - 법률사무소 동부 | 방문",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYwHrOzAVJp-RY1PVwQQUn2DHL7D0qyjUpiAMZh_fAckCDOOXwJRAnVfnDmyXq-uuLGmS_2Zcl0BQMUfIKDWPiLlRaQ2cueiqR6HFnbgXLMHoKL485rPQipHC5rOmU4yvLcTOiQ",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 형사전문변호사, 첫 조사 전에 상담하세요 | 진해개인회생 변호사ㅣ기각 0건ㅣ야간, 주말 24시간 상담 | 법무 ... | 방문",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmlawoon.co.kr",
+    "href": "https://www.google.com/goto?url=CAESaQHrOzAV58UER-DMKVsVA5eWhnRon-BWsDDoAC1spGAMFzmdFZVk6i-fCSCTDyaw2dZy_uWfF1D4Dqv0inexIKRl7Ip1TfBzamB_E0lEb_S_Ez9rSDFRfu3JBJvETUMc3bFbp9JtNQrADA",
+    "text": "법무법인로운 https://www.lawfirmlawoon.co.kr 구성원소개",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "gnbar.or.kr",
+    "href": "https://www.google.com/goto?url=CAESfwHrOzAVtCxoqMSN-EPZQtZMUbrDQYkLIGor4PZGh93YKmXUgvMiFFm9NcityD5y23pImcgJ4TuInaAkgdtZfjkKmMSQUkP-voGOVXZOXiZrHV8Besmydm2hsDrWmptmFhynIFkCafdHOhlTZxLDrdvAoNxJWsJoTjki2G7ua0A",
+    "text": "경남지방변호사회 https://www.gnbar.or.kr 변호사 안내",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.com",
+    "href": "https://www.google.com/goto?url=CAESeQHrOzAVj--j12XRhaPxalwlCTF0qJ8GKNNYDV3KElOFDlL2Oytd7eRSpGkqklqeSM3BrzFrRB6Y7rF-wG_Ib4K465pENrftJjIecYr_TM4z-AVnZb2wd_p5k4Ys3bI6Uu3EeIj906OAjeQ0DAwjEilWgPJ7zBXWvgg",
+    "text": "박인욱 법률사무소 https://inlawpark.com 성공사례 | 창원 변호사 박인욱 변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "lkpartner.co.kr",
+    "href": "https://www.google.com/goto?url=CAESegHrOzAV6WUsbLJR1ZF2m43e1s9Czy_a4O8lXC2qTxIdyAXiGvOhH_wTHvUOc6RFwhSQfi1uhY2TC2yVNf4b3qSItwLxnuEbrCQUOQHxkF4oJt4sxD2QXx_CPZuYUKWk6dwg85075YbrzUbQx_aSZe-xAjp7pgzEQVh6",
+    "text": "법무법인(유) 엘케이파트너스 https://www.lkpartner.co.kr 경남 창원시 형사사건 변호사 상담 — 관할·조사 대응 안내",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "blog",
+    "key": "mirychoi/222466789945",
+    "href": "https://m.blog.naver.com/mirychoi/222466789945",
+    "text": "네이버 블로그 - NAVER | 성공사례포함] 양수금 농협 대출 소멸시효 진해변호사 : 네이버 ... | 방문",
+    "pos": 1,
+    "content_pos": 7
+   },
+   {
+    "cls": "blog",
+    "key": "mirychoi/221177593232",
+    "href": "https://m.blog.naver.com/mirychoi/221177593232",
+    "text": "네이버 블로그 - NAVER | 퇴직금 채권가압류, 재산분할 성공사례 판결문 소개 [마산변호사 ... | 방문",
+    "pos": 2,
+    "content_pos": 8
+   }
+  ],
+  "at": "2026-11-01T22:40:55"
+ },
+ "진해 형사변호사": {
+  "status": "ok",
+  "raw": "google__078.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "dongbulaw.com",
+    "href": "https://www.google.com/goto?url=CAESUAHrOzAVkClPkXa55P67BmchdTL3c1DV22jCybUVEoiPPekbXOGaLsttQJW4KEamMhsOVe1eG-bgV8S213HaW5dF9Irk1aKasz1gAuMGcpE4",
+    "text": "법률사무소 동부 http://dongbulaw.com 법률사무소 동부",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "jinnsol.co.kr",
+    "href": "https://jinnsol.co.kr/",
+    "text": "웹사이트",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.kr",
+    "href": "http://inlawpark.kr/",
+    "text": "웹사이트",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "웹사이트",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYwHrOzAVQAqy6ae_YwPJITPp4H9say1NQspQr-bolYtSQz0M5u286KKkAp2ezNbDn4FWAI6M5bLwkAXMHr4b3ZmwYCk0Fe96_-auYM1kxrl-ozTCgkgP0svDqzTP954VLOxnkg",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 형사전문변호사, 첫 조사 전에 상담하세요",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVVlZn5OMK_-JOTe9K_YlI-9CPipCrMIsMpgLYYkiSUhAtdmcWm6U6MR5Dixicvp5QT2r9Xtj2e-Lz-S03g6WuKE8mj18A9EClhSdkF_XVQPuifRvtTXUZzHI_fysMNLY",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원형사전문변호사 - 창원 변호사 - 법무법인 대륜",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-detective.com",
+    "href": "https://www.google.com/goto?url=CAEScAHrOzAVdfThSshRJGe3R4WwJSXAAgXWktbgBwtg871Vki1a3vNhVyqEPe2AoAu4jDZeyhLGVS4LJIRaEp_khEgWXIAIEv4avOIN61vWIuEOVevVTBNtznMcaXQJRQQ68hC_vL8-R0JuWHOERcoWHQs",
+    "text": "daeryunlaw-detective.com https://www.daeryunlaw-detective.com 진해형사전문변호사 | 필로폰 매수하려다 미수에 그친 의뢰인 변호해 “약식명령”",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmnamu.com",
+    "href": "https://www.google.com/goto?url=CAESdAHrOzAVaJ1SQSJ4fpTFRUVsIQCZBYdsEy0fYLOhzuA2D2_Rx5jSfp9gCHoB97AFVUN4yfTSOcT9WBX4qQhLR4jeuH-UUvTKtdzh4FLmTx89HeNyFVEDXUM89zkgZXN3UYfYN-jG7EWD6LpxJtvSMZ4mrfPx",
+    "text": "법무법인 로펌나무 https://lawfirmnamu.com 진해형사변호사 유흥주점 성매매 알선 혐의 경찰 단계 '혐의없음' 불송치 성공사례 | 진해형사변호사 유흥주점 성매매 알선 혐의 경찰 단계 '혐의없음 ... | 방문",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAV9c023IWd-yDHTh7AJ21eouQ1lus31yPNQ-Ohlwxjf7OD87-QBHvh6TsOQR7ckPrdodp96hf6ZKQpVe-x1ChXnx2Czbe1kxBfKr6FtDrxXzKoV-X5evPJSA",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원형사전문변호사",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "blog",
+    "key": "dslee3685/222855911446",
+    "href": "https://m.blog.naver.com/dslee3685/222855911446",
+    "text": "네이버 블로그 | 진해형사전문변호사 원나잇 성관계 후 강간죄로 고소당했다면 ... | 방문",
+    "pos": 1,
+    "content_pos": 10
+   }
+  ],
+  "at": "2026-11-01T22:41:02"
+ },
+ "경남 변호사": {
+  "status": "ok",
+  "raw": "google__079.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "gnbar.or.kr",
+    "href": "https://www.google.com/goto?url=CAESfwHrOzAV67nfgIYRn1kNsCRICdbyaxUSwO8Or9IjbEpcO0tXetLrYpYsm--evWJrGuX0EeHEH3N3Cf1SrkHLLKDZ9s_avuKr80fM9T0LJBdkyikHI_nEqhPM3654kZEcWDg7jTvsmb92bPgW6yOdcpW_DmHXhCuvZKjG5QpdVrc",
+    "text": "경남지방변호사회 https://www.gnbar.or.kr 변호사검색 | 경남지방변호사회 https://www.gnbar.or.kr 변호사 안내",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "via.gnbar.or.kr",
+    "href": "https://via.gnbar.or.kr/",
+    "text": "웹사이트",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "pklc.co.kr",
+    "href": "https://www.google.com/goto?url=CAESUgHrOzAV2voipZ5CyJR-Ew9nRCXxxvl0Ai95tWVfT68o-LOaoLo1JKF4BeeY3rXbCVgFeb36V5g20YCzSY85hU9Dx-MEwg0QNjyNvFR1bVLWuEc",
+    "text": "법무법인 PK https://www.pklc.co.kr 법무법인 PK: 부산·울산·창원·통영변호사 | 검사출신 형사·이혼·중대재해·해양",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "lawtalk",
+    "key": "",
+    "href": "https://www.google.com/goto?url=CAESfwHrOzAVyDeE72nPP8y9vQoskIC77LUVzCkncntA_EwmiarQ_rqQSitkFar8TvXhvbWBW8Td3tegdFmr4UgsUV-p88eEgxu0aoLilHGFa7stsgIdMm2svjG-vYshhjV4GKGmFeWtmCktAM6WP7DrADGUh3OPBnaZhFLwDXvE3d8",
+    "text": "로톡 https://www.lawtalk.co.kr 부산/울산/경남 지역에서 활동하는 변호사",
+    "pos": 1,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "gne.go.kr",
+    "href": "https://www.google.com/goto?url=CAEScgHrOzAV1NvXFmXHC4ZkXp2mjm-yk8DXkHTgT3pmJUkfQ7VdULWztRkeUYMALUGuc8mUIthAgpVaZlY5ZT9fGgQvt7YRxqgVDSUlFlyjNLdossoqYYqtDMMyPmXDX90jXsAn6FPN2D3_jXBs2xjK6m0s3w",
+    "text": "경남교육청 https://www.gne.go.kr HOME > 교육활동보호기구 > 법률지원단",
+    "pos": 6,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "sha119.co.kr",
+    "href": "https://www.google.com/goto?url=CAESUAHrOzAVcFuAxkEKo3-N-GFIeg2Dx7ox7VcW9N37q3OVgxOf--hOQVg6TPd4a7O3YXdbXeCHXDaAkQfcee3PEBaiYjHwRpf4L9QNdw3YU33X",
+    "text": "법무법인 샤 https://sha119.co.kr 법무법인 샤",
+    "pos": 7,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "gnsinbo.or.kr",
+    "href": "https://www.google.com/goto?url=CAESdgHrOzAV_MB0DJZL2xUAmbD6ny7NGVLZgZD4W45kz5nyHTF5vj-ZpAZHp1dO_nJqQfUY9gufiS_JWj5MewHOPh5-fznmBcfrKm9LFSNaacWorVWtlPb2yJryW7EKuMo_DS8Sw2mHoIEuf37sy0e3P-_faX3Znbg",
+    "text": "경남신용보증재단 https://www.gnsinbo.or.kr 변호사 운영현황",
+    "pos": 8,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "news.koreanbar.or.kr",
+    "href": "https://news.koreanbar.or.kr/news/articleView.html?idxno=32525",
+    "text": "법조신문 | 김주복 변호사, 제22대 경남변회 회장 당선… “어려운 시기 ... | 방문",
+    "pos": 9,
+    "content_pos": 10
+   },
+   {
+    "cls": "web",
+    "key": "idomin.com",
+    "href": "https://www.idomin.com/news/articleView.html?idxno=815423",
+    "text": "경남도민일보 | 경남변호사회 21대 집행부 닻 올려 < 법원·검찰 < 사회 < 기사 ... | 방문",
+    "pos": 10,
+    "content_pos": 11
+   }
+  ],
+  "at": "2026-11-01T22:41:12"
+ },
+ "경남 형사변호사": {
+  "status": "ok",
+  "raw": "google__080.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXQHrOzAVN-NgVhWaufiUiI9UhvbJ0RBYLGd22tgtrGtLz_HJUKdxYuqx3p35dGUEgFt43lFGkdC6iY8QDWNb2m0kUqK1eNzTEuealvgoWB2-eSWhhzHMvx1xNkRAgQ",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원형사전문변호사",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "daehanlaw.com",
+    "href": "https://www.google.com/goto?url=CAESgwEB6zswFfOjlZfUQPg2u0RWfRars97MnT5TDHv6iWIUiiroTeBvrcykLZlqgQQqYLH0dM5s-4e2MFpbv0s3JF5Qjx9u3ZaCutCaXwNu6VuaNsNiygW7kNWvhfFJ6esyLOdLK602RAFflRgQgeotQgD_mQoMYgFQnxXs8LDAkDTa4KqgeA",
+    "text": "법무법인 대한중앙 해운대 사무소 https://www.daehanlaw.com 경남 형사전문변호사 추천",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVVoOsGIap9vckl8qZww98OYgpfC_QYo6QKjY2fsZ6l4yvHmOHfKebhWi615KA5inkQVK5KUGP1rGEIdLsoxLsnk8Tgm8cO2L3UK4ApE3kGbrsLv6jEseVYLTrNUcdI3A",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원형사전문변호사 - 창원 변호사 - 법무법인 대륜",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "웹사이트 | 법무법인 YK https://www.yklawfirm.co.kr 법무법인 YK 창원 분사무소",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-detective.com",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAVWb0JZ3kiZz8cqZxtOqHXrU4dCzeOd2XpTVku4jO19vhIRoa9ERPi1UoL_6b0gtvjoRttSZtuypo-GKTFBSMDqckINLzSkv3Wc6dyPBY3YMk9jwmY-eDrJyHMdpdcIyAPUikmMOp2xg",
+    "text": "daeryunlaw-detective.com https://www.daeryunlaw-detective.com 창원형사전문변호사 오시는 길",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "thekimlawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAVtTZWIMm93G5SX37QcUhrgMpoenMQFrKxbstyij_NH7Nlkn_KMIiiDQ9pWYVnzDr4PRX4X6Ta_S98mQ24QRfUNzgvASQTcg6j8BLtqTuVONCnt1R_m9pGP5_uwtBazPJhRSKHZhbvjQ",
+    "text": "김형석 변호사 http://www.thekimlawfirm.co.kr 창원성범죄전문변호사",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "pklc.co.kr",
+    "href": "https://www.google.com/goto?url=CAESUgHrOzAVBNGHqViSGxpFHak-AjcWiaXk8tm7fCjej4batZlPSDW096k394YCVynxxV-Mwset3MHSPE7a8NQcvY0BcrslkH056_8FsZV-krFC7fw",
+    "text": "법무법인 PK https://www.pklc.co.kr 법무법인 PK: 부산·울산·창원·통영변호사 | 검사출신 형사·이혼·중대재해·해양",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYwHrOzAV94xpM0mb3RBvvqWA5x08wf_5O3-CgDRBvP3tR5AuwRaV1fGEHTR8zTxWcC5oSkf5qlXftacCUqGW8Fgxdlb8NohRXb2dWvw__swanTa4XLZFhXwfU_x95PLOhqYYiw",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 형사전문변호사, 첫 조사 전에 상담하세요",
+    "pos": 10,
+    "content_pos": 10
+   }
+  ],
+  "at": "2026-11-01T22:41:19"
+ },
+ "경남 이혼변호사": {
+  "status": "ok",
+  "raw": "google__081.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "gasalaw.com",
+    "href": "https://www.google.com/goto?url=CAESUwHrOzAV4zHq_BwPzcdM9gMXpRBcOSlNZxawVuapgBebbn_n9aIdc6QeEVu__I7cJ5Qf4_FNZXGsRccL5LN50jiHoB3LZDmZvZcckIirklXMcox4",
+    "text": "gasalaw.com https://www.gasalaw.com 창원 여성 이혼전문변호사 손명숙 | 경남 최초 개업 여성변호사 · 25년 경력",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAVff45lfr2TCUfhH9BjR-oJAxXetaWTu7flmEknovGRJND9bwd6Ai8xfBWOZq4H85OSRgEUR7ky6q5VePtXcSKPBO2JvS1dgU1JYZ9Dfx87h3_Ig1asTD-c3x_F_CJ",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 창원 이혼전문변호사, 재산과 자녀 문제까지 한 번에 정리합니다",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAVHTtaYGwxGICL7JF-Aa5BdRPZhbDdyF24OqpV31OUl_HNSMEHCkuvvNBmpgp7__aD4mzfehX_tOA1E4ox4XKXBAjmRY1MoyYxs4ZBIsn8UTvfxdc6Zkdw",
+    "text": "법무법인 DH https://dh-lawfirm.com 창원이혼전문변호사",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmnow.co.kr",
+    "href": "https://lawfirmnow.co.kr/",
+    "text": "웹사이트",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm.co.kr",
+    "href": "https://www.yklawfirm.co.kr/",
+    "text": "웹사이트",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "daehanlaw.com",
+    "href": "https://www.google.com/goto?url=CAESgwEB6zswFUttWtxjmAAV-Ky6usmM9jGfw6_y9r2gETputKTzHHM_z01Ibw1egistWwSHDvwbuhwlgXnm-0WphjkB-lSQEamvF4cyuG8TZd4Qk2Tk376WkdG_p_d7PFSlpR4uDgTXRUgE67D5J6bH3ZXxLeGqbdRDNIFVU5HvzxR1tahySg",
+    "text": "법무법인 대한중앙 해운대 사무소 https://www.daehanlaw.com 경남 이혼전문변호사 추천",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-divorce.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVofptTOjAQAav65SHKzPhkRkgNUQRfrtsMSjvHe3u6X1UkdSKT_yrVTdZjet6jP0yFHud5D9dMiX93ncLBXVqR9AQFPswCbmq1JAZYd1-2na3848V2UEJ4Jkdb3QLltoqfOJ2ZLw",
+    "text": "daeryunlaw-divorce.com https://www.daeryunlaw-divorce.com 창원이혼전문변호사 오시는 길",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESYgHrOzAVdgm-KZ0MqnttjRZuNpDVitNLJm8aPIgZoSt52JhvdnVnovu04y2P1jszXTNBQ5mZRVmuPZ_yUHkJuc2y-van4wfLngGPeKbQEVCmFqITBI4VmURaBiRAm67rK4qR",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 창원이혼전문변호사",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "ohehon.com",
+    "href": "https://www.google.com/goto?url=CAESbAHrOzAV2CK20TLTMUqdjbfdfnseiJ0olkMwVfSibld7UPBqhSd2E-v67CaXru6YVyeocf-forTv8QDQPu_W_LjTMVV-TIOhiP4_EG9fhhpsaR-kMgvRX4473gJWQV1wX_GXwQMeO6rOVutwDA",
+    "text": "ohehon.com https://www.ohehon.com 재산분할 상담 사무소 안내 | 법무법인 오현 - 창원이혼변호사",
+    "pos": 10,
+    "content_pos": 10
+   },
+   {
+    "cls": "web",
+    "key": "yklawfirm-divorce.co.kr",
+    "href": "https://www.google.com/goto?url=CAESawHrOzAVzaqKYktZMg0lXgdqzmXT4V1PMjO1g7-HuV0pywlenq8ptzRE3HeikVtsSk0_hDNdl5VxwRPY9VEmYFTVtfIS76huqXI4Hip7k3NULUTTElsubeg7OJ67QQ5MzoR4Q_Kg8OCI10ka",
+    "text": "YK 이혼센터 https://www.yklawfirm-divorce.co.kr YK 이혼전문변호사 사무소 (전체) 오시는 길",
+    "pos": 11,
+    "content_pos": 11
+   },
+   {
+    "cls": "web",
+    "key": "pklc.co.kr",
+    "href": "https://www.google.com/goto?url=CAESUgHrOzAVKl6I34HYPbW1kZgeKHapcvDgkmDvmq1TR44YEVYs7I120xyMYbDXm4ffppD58qRfoFIP6ur2QOAkUFl95Y9naaYEtkKGXgnQ5CEhVzg",
+    "text": "법무법인 PK https://www.pklc.co.kr 법무법인 PK: 부산·울산·창원·통영변호사 | 검사출신 형사·이혼·중대재해·해양",
+    "pos": 12,
+    "content_pos": 12
+   }
+  ],
+  "at": "2026-11-01T22:41:28"
+ },
+ "경남 음주운전 변호사": {
+  "status": "ok",
+  "raw": "google__082.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "daeryunlaw-traffic.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVFrJGaufSvhQBxsYQyzqyvkSbx47xl5H6a7xnFBcTJwuOKjg7sRnkWG63w4CWX9RnBQkQ-I6JGFHMzwG_vshN46bLbRy5YRhI4W5u3Yh0AImMw4EL0kCRd-JsJfAdoRL_2Zp6koE",
+    "text": "daeryunlaw-traffic.com https://www.daeryunlaw-traffic.com 창원교통사고전문변호사 오시는 길",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESXAHrOzAV3Qs8cBsyQ-4JVb9TXckrNrrigV8LdJAgX2ty-yw4hPxborfrQ9Gk6kSDwbRP_YBTVXJcQ18TEDvFAEbl_X1FiJHnhRkB9P-4Dbug6KWl0tLg1ZEHOGR3",
+    "text": "법무법인 DH https://dh-lawfirm.com 음주/교통범죄",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "lawfirmnamu.com",
+    "href": "https://www.google.com/goto?url=CAESYAHrOzAVejDu3CRzVm-h2zEo-0OVI6KBgap3sVMvag60io9_69hiX7weK-ZR3NTRGzUSOIP5UPAIQlgw0FZ734f4omzxs8oXlEDQ9dHdgwO2tnkXtojWyryxEdVSuI1rBw",
+    "text": "법무법인 로펌나무 https://lawfirmnamu.com 창원·부산 음주운전 교통사고 변호사",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "soomgo.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVXtapSi23EBSfV_b_X81Q6GhOXHG5Ii4Vp6KpQ-Oyx5zJBeyfiBMnddnzjHG5_SUmbwGcT2CdsCCJF8r0cMPbYB2ApmLHE22GMJjlwU8oJ1fYDHweHogwLHN30-BwDEg",
+    "text": "숨고 https://soomgo.com 윤형동 고수의 교통사고/음주운전 서비스, 경남 창원시",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "21clawfirm.co.kr",
+    "href": "https://www.google.com/goto?url=CAESegHrOzAVCdWsSBsXp4dcUDUo134rNhl3SjZUTet0KGVTxyClYvTKZLcdUidrEu2H7Z2WFZRxX4917MkIdr4FkXJMOtEf334SAy_0VsXOcvDbexuyn84XM1jHqIhLC9SBSdfiGZs1Rur-ecZRdEqAhybOrPkghCBAErUU",
+    "text": "21세기 법률사무소 http://21clawfirm.co.kr 창원 음주운전변호사 집행유예 > 성공사례",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "yulmaru.co.kr",
+    "href": "https://www.google.com/goto?url=CAESXgHrOzAVa0lj-J4bW7jYOZvuHFurqnHSSby3YoyJfdvEh7DlSwU4js7P9RqzDHy6HFsyezUgz4HRt_CIpqURGMO8kQzckDxQMCv5DR-zBgp-ChedWPwtPkAk81WxuUM",
+    "text": "법무법인 율마루 https://yulmaru.co.kr 부산 음주운전변호사, 형사처벌과 면허를 함께 챙기세요",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw.com",
+    "href": "https://www.daeryunlaw.com/",
+    "text": "웹사이트",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "lawsland.com",
+    "href": "https://www.lawsland.com/",
+    "text": "웹사이트",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "ryulawyer.com",
+    "href": "https://ryulawyer.com/",
+    "text": "웹사이트",
+    "pos": 9,
+    "content_pos": 9
+   },
+   {
+    "cls": "web",
+    "key": "criminal-lawoon.com",
+    "href": "https://www.google.com/goto?url=CAESaAHrOzAVsR-Jm9xRPoKKtw62UR11-Nxj4gXrXftiadRO6qs3b4cmWHYQH0eRKpqHIBUFg1SC9FxhUp5kkvtp39RlhZaDrFR8RgDi3MOofAzdTY0YtvDPxP6ZXVXzT457vQ4NJnY75p5B",
+    "text": "criminal-lawoon.com https://www.criminal-lawoon.com 구성원 소개",
+    "pos": 10,
+    "content_pos": 10
+   },
+   {
+    "cls": "blog",
+    "key": "lawfirm777/222552308966",
+    "href": "https://blog.naver.com/lawfirm777/222552308966?viewType=pc",
+    "text": "Naver Blog | 창원 경남 음주운전 변호사 선임 / 창원형사전문변호사 법무법인 ... | 방문",
+    "pos": 1,
+    "content_pos": 11
+   },
+   {
+    "cls": "web",
+    "key": "instagram.com",
+    "href": "https://www.instagram.com/reel/DclQKwihP-P/",
+    "text": "Instagram 0:17 | 창원경남 교통사고 특화로펌 샤, 누구에게나 일어날 수 있는 위기의 순간,, 혼자 고민하지 마세요. ⚖️, 음주운전 치상, 뺑소니, 음주측정거부, 그리고 교통사고 치사까지., 막막하고 절망적인 상황 속에서도 철저한 분석과 대응을 통해, 의뢰인들은 모두 일상으로 돌아갈 수 있었습니다., 결과를 바꾸는 것은 골든타임과 실질적인 조력입니다., 변호사 전원 서울대 ... | 시청하기",
+    "pos": 11,
+    "content_pos": 12
+   },
+   {
+    "cls": "blog",
+    "key": "lawoffice_daham/222998208184",
+    "href": "https://m.blog.naver.com/lawoffice_daham/222998208184",
+    "text": "NAVER | 경남변호사, 이종범죄 집행유예 중 높은 혈중알코올농도 음주운전 ... | 방문",
+    "pos": 2,
+    "content_pos": 13
+   },
+   {
+    "cls": "web",
+    "key": "frontierlaw.co.kr",
+    "href": "https://frontierlaw.co.kr/drive/",
+    "text": "법무법인 프런티어 | 음주운전변호사 음주운전전문변호사 교통사고전문변호사 교통사고 ... | 방문",
+    "pos": 12,
+    "content_pos": 14
+   }
+  ],
+  "at": "2026-11-01T22:41:38"
+ },
+ "경남 행정심판 변호사": {
+  "status": "ok",
+  "raw": "google__083.html.gz",
+  "items": [
+   {
+    "cls": "web",
+    "key": "haenae.co.kr",
+    "href": "https://www.google.com/goto?url=CAESbwHrOzAVQILenyGTCBtLbXlqVFb75v9r5zMKXjgCZ00kms-VfZ8yBs9ltHwvWOW2Z9CBOQwGHeDpzc4SZ6jJ9vI4djvVlxcoEvR5WdaabEB60UBo0t4AShXTqzBTn5PhAfjefTRcDzJ5JyAOYRX5eg",
+    "text": "법률사무소 해내 https://haenae.co.kr 경남 행정심판·행정소송 변호사 상담",
+    "pos": 1,
+    "content_pos": 1
+   },
+   {
+    "cls": "web",
+    "key": "changwon.daeryunlaw.com",
+    "href": "https://www.google.com/goto?url=CAESZAHrOzAVmZb-9Se_j48BGxSk97MHwuyC6-vpR2jkaaqXJ3SqSikZ-BSJKLww3z57zV3KiFA9BtnzotX-P96ZgV2o5tJ9ddhu5BkSDttjqBC97s__Sofeuy8lqIawlt-4GvtzEuc",
+    "text": "창원 변호사 https://changwon.daeryunlaw.com 행정소송변호사와 알아보는 행정심판 - 창원 변호사 - 법무법인 대륜",
+    "pos": 2,
+    "content_pos": 2
+   },
+   {
+    "cls": "web",
+    "key": "inlawpark.com",
+    "href": "https://www.google.com/goto?url=CAESdQHrOzAVdfCQm6-hM-pFF1j0MYYrD87YgvPuKLbIHsArceA1Fm8WmEekZvroNmS9yZr1pDl2IHp_BKqzCxhJ1VBD4pP3gRqhj_JL88LZ4RBOhqbNHEoGPitBuHLDElgEgYAGRkd6W-ghWIqRstQZTUjgLlEkUw",
+    "text": "박인욱 법률사무소 https://inlawpark.com 주요업무 - 행정 | 창원 변호사 박인욱 변호사 | 창원형사전문변호사 | 창원이혼전문변호사",
+    "pos": 3,
+    "content_pos": 3
+   },
+   {
+    "cls": "web",
+    "key": "dh-lawfirm.com",
+    "href": "https://www.google.com/goto?url=CAESagHrOzAVSM1KPB4GOK8R9VrnwZTcTWccApM38Vej0ki9hvpnzA46wYfG8IAKyvU6muKHIoPbvo0tZ14pNfGtFkWSxdJZscbrZk17PiBdH7cXLOE7oBiy440mJrAgbT1xPSl7ADDVlom-7Ns",
+    "text": "법무법인 DH https://dh-lawfirm.com 행정소송",
+    "pos": 4,
+    "content_pos": 4
+   },
+   {
+    "cls": "web",
+    "key": "mlaw.co.kr",
+    "href": "https://www.google.com/goto?url=CAESYwHrOzAVe0jQz-_YyGGWnPmpClcTtdVWHeYuXKiOiTr83AaGHNzzemnvF7qJENfWFZI_v9133foXQPnoGfk63qYJyCnDmYs0F1b1LYHFTsJq2gRW8mkVsySm8Mu6kvWp3Wjrxw",
+    "text": "법무법인 미래로 http://mlaw.co.kr 문지영 대표변호사",
+    "pos": 5,
+    "content_pos": 5
+   },
+   {
+    "cls": "web",
+    "key": "pklc.co.kr",
+    "href": "https://www.google.com/goto?url=CAESbQHrOzAVi75KakUs9SRgxViZthDouZl1KCAe0HQGr23_Lo3DPfSFt1egtQvfnzwHU78epGBPrfONVTfbxwhQUhtguYpkYyVm5Nd9ejTkxgwrRtDiOCm0wLFwHitgiAHXdtIy0n_ppFmNZmwpbtI",
+    "text": "법무법인 PK https://www.pklc.co.kr 행정 | 법무법인 PK | 부산⋅울산⋅창원⋅통영 형사, 중대재해, 해양 전문 변호사",
+    "pos": 6,
+    "content_pos": 6
+   },
+   {
+    "cls": "web",
+    "key": "klaw.or.kr",
+    "href": "https://www.google.com/goto?url=CAESYQHrOzAVbQ_sK62NpDbkdEavYtiYF2f89QGb8OzudlozX9NngRGH-v5SNEKITUjbseEAENHaw4lXrd-_8LwXn7itb2Yp5Fbv19BbQW7SWh7y3TDSc5wUjcUZiurzA5awi-Y",
+    "text": "대한변협 나의 변호사 https://www.klaw.or.kr 손호관 변호사 - 대한변협 나의변호사",
+    "pos": 7,
+    "content_pos": 7
+   },
+   {
+    "cls": "web",
+    "key": "daeryunlaw-administration.com",
+    "href": "https://www.google.com/goto?url=CAESbgHrOzAV2EAyxEo6ztHnZCcHmwSTOGTHNfNyZDCYIUmB0qkS5QVs_nDsizPE_fMKtQCfsJ8iCf7ibdA34IRV23OA6rkn5IkURb-MGtGjHACxJejtJiTbZ-wnH_roZzwxQ1J2YZkrZdF1BBo07j5y",
+    "text": "행정변호사 https://www.daeryunlaw-administration.com 공무원 소청심사 - 전문 변호사 | 대륜",
+    "pos": 8,
+    "content_pos": 8
+   },
+   {
+    "cls": "web",
+    "key": "gnbar.or.kr",
+    "href": "https://www.google.com/goto?url=CAESyAEB6zswFczGfdKJmo88W7jA5ZIDpqbLbMMSEVM3EAViZw-VYTVd0KvajPFluarBiu-FAVbI_4MNjZz1LU3AqGyKbbjM4QWHlbRM17EqlBLjxyqQLhM5XZ4a9z3irIQfjnLBl1Yz8HcsDi7FgIKvVgP_zcNObZf-ny5eDOxYETYOh0Bqw9Yu70D1cqA68ISycqFXnu7xMwy1LJQzwSZBlRuZLd4QbyIw6BQYdnrSCqDdMgnf5Smz58TQPm4oFfZtE_Ca6D6cIbYU_Q",
+    "text": "경남지방변호사회 https://www.gnbar.or.kr 변호사 안내",
+    "pos": 9,
+    "content_pos": 9
+   }
+  ],
+  "at": "2026-11-01T22:41:48"
+ }
+}
