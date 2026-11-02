@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PY = sys.executable
 AI_PROMPT = (
     "marketing/AI_PROTOCOL.md 절차대로 data/measure/{d}/ai 폴더에 AI 답변을 수집해줘. "
-    "엔진은 chatgpt, gemini, perplexity, 질문 전체, 회차 1회. 이미 저장된 파일은 다시 하지 마. "
+    "엔진은 chatgpt, gemini, perplexity, 질문 전체, 회차 {r}. 이미 저장된 파일은 다시 하지 마. "
     "사람에게 묻지 말고 끝까지 진행하고, 막힌 항목은 건너뛰고 마지막에 목록으로 알려줘. "
     "답변 저장 외에 다른 파일은 고치지 마."
 )
@@ -167,23 +167,24 @@ def main():
 
     # 최신 코드를 받은 뒤에 불러와야 이번 실행부터 새 규칙이 적용된다
     sys.path.insert(0, str(ROOT / "tools"))
-    from mkt_common import MEASURE, ai_expected, check_ai_files, collection_problems, read_prompts
+    from mkt_common import MEASURE, ai_expected, ai_rounds, check_ai_files, collection_problems, read_prompts
 
     if not a.skip_collect:
-        step("3/6 네이버·플레이스·구글 수집 (20~30분, 보안문자가 뜨면 창에서 풀고 Enter)")
+        step("3/6 네이버·플레이스·구글 수집과 핵심 키워드 재측정 (30~40분, 보안문자가 뜨면 창에서 풀고 Enter)")
         r = subprocess.run([PY, str(ROOT / "tools" / "mkt_collect.py"), "--date", d], cwd=ROOT)
         if r.returncode:
             notes.append("검색 수집 중 오류: 다시 실행하면 끝난 키워드는 건너뛰고 이어서 합니다.")
 
     if not a.no_ai:
-        step("4/6 AI 답변 수집 (40~50분, 크롬을 닫지 마세요)")
+        step("4/6 AI 답변 수집 (회차당 40~50분, 크롬을 닫지 마세요)")
         claude = find_claude()
         if not claude:
             notes.append("Claude Code를 찾지 못해 AI 수집을 건너뜀. 명령 프롬프트에서 where claude 를 입력한 결과를 캡처해 주세요.")
         else:
             print("Claude Code:", claude)
             (ROOT / "data" / "measure" / d / "ai").mkdir(parents=True, exist_ok=True)
-            r = subprocess.run([claude, "-p", "--chrome", "--permission-mode", "auto", AI_PROMPT.format(d=d)], cwd=ROOT)
+            rounds = "1회" if ai_rounds() == 1 else f"1~{ai_rounds()}회(회차마다 새 대화)"
+            r = subprocess.run([claude, "-p", "--chrome", "--permission-mode", "auto", AI_PROMPT.format(d=d, r=rounds)], cwd=ROOT)
             prompts = read_prompts()
             good, bad = check_ai_files(MEASURE / d, prompts)
             n, want = len(good), ai_expected(prompts)

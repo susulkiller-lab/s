@@ -22,6 +22,7 @@ import mkt_all  # noqa: E402
 import mkt_collect  # noqa: E402
 import mkt_common  # noqa: E402
 import mkt_report  # noqa: E402
+import mkt_stats  # noqa: E402
 from mkt_common import classify, group_links, match_item  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
@@ -896,6 +897,117 @@ class StoredRawTests(unittest.TestCase):
         cur = mkt_common.read_json(self.mdir / "place_list.json", {})
         self.assertEqual({k for k, v in prev.items() if v.get("status") == "none"},
                          {k for k, v in cur.items() if v.get("status") == "none"})
+
+
+class PrecisionTests(unittest.TestCase):
+    """세부·신뢰도 보완: 순위 곡선, 오차 범위, 재측정, 지역 좌표, 분야별 지수."""
+    CURVE = dict(SCORING, rank_curve={"decay": 0.85, "max_rank": 30},
+                 channel_weights={"naver": 35, "place": 25, "google": 10, "gmap": 5, "ai": 15}, bootstrap=50)
+
+    def test_curve_gives_points_beyond_tenth_place(self):
+        self.assertEqual(mkt_common.curve_points(1, self.CURVE), 10)
+        self.assertGreater(mkt_common.curve_points(18, self.CURVE), mkt_common.curve_points(21, self.CURVE))
+        self.assertGreater(mkt_common.curve_points(18, self.CURVE), 0)
+        self.assertEqual(mkt_common.curve_points(31, self.CURVE), 0)
+        self.assertEqual(mkt_common.curve_points(7, SCORING), 2)  # rank_curve가 없으면 예전 계단식
+
+    def test_wilson_interval(self):
+        lo, hi = mkt_stats.wilson(2, 24)
+        self.assertAlmostEqual(lo, 2.3, places=1)
+        self.assertAlmostEqual(hi, 25.8, places=1)
+        self.assertIsNone(mkt_stats.wilson(0, 0))
+
+    def test_post_age_is_read_from_snippet(self):
+        self.assertEqual(mkt_stats.age_days("43분 전 | 제목", "2026-11-01"), 0)
+        self.assertEqual(mkt_stats.age_days("3주 전 | 제목", "2026-11-01"), 21)
+        self.assertEqual(mkt_stats.age_days("2026.10.02. | 제목", "2026-11-01"), 30)
+        self.assertIsNone(mkt_stats.age_days("제목만 있음", "2026-11-01"))
+
+    def test_keyword_words_in_firm_name(self):
+        self.assertEqual(mkt_stats.name_kw("법무법인나우 창원형사이혼전문변호사", "창원 형사변호사"), (2, 2))
+        self.assertEqual(mkt_stats.name_kw("진앤솔 법률사무소", "창원 형사변호사"), (0, 2))
+        self.assertEqual(mkt_stats.distance_km("330m"), 0.33)
+
+    def test_region_keyword_uses_region_coordinates(self):
+        cfg = {"office": {"lat": 35.1, "lng": 128.1}, "regions": {"마산": {"lat": 35.2, "lng": 128.5}}}
+        self.assertIn("x=128.5", mkt_collect.place_xy("마산", cfg)[0])
+        self.assertIn("x=128.1", mkt_collect.place_xy("창원", cfg)[0])
+
+    def test_place_lists_from_different_coordinates_are_not_compared(self):
+        with Sandbox() as sb:
+            sb.write("2026-01-01", place={k: [place_row("100", 1)] for k in KEYWORDS})
+            sb.write("2026-01-08", place={k: [place_row("100", 2)] for k in KEYWORDS})
+            for date, x in (("2026-01-01", 128.1), ("2026-01-08", 128.5)):
+                f = sb.measure / date / "place_list.json"
+                data = json.loads(f.read_text(encoding="utf-8"))
+                data["k1"]["xy"] = {"lat": 35.2, "lng": x}
+                f.write_text(json.dumps(data), encoding="utf-8")
+            cmp = mkt_report.compare(sb.load("2026-01-08"), sb.load("2026-01-01"), mkt_common.load_entities()["_list"], SCORING)
+            self.assertEqual(cmp["counts"]["place"], (3, 4))
+
+    def test_map_result_is_scored_as_its_own_channel(self):
+        with Sandbox() as sb:
+            (sb.config / "scoring.json").write_text(json.dumps(self.CURVE), encoding="utf-8")
+            gm = {"cls": "gmap", "key": "our.example", "href": "", "text": "웹사이트", "pos": 1}
+            sb.write("2026-01-01", google={k: [gm, web("ga.example", 1)] for k in KEYWORDS})
+            m = sb.load("2026-01-01")
+            self.assertEqual(m["per"]["우리"]["gmap"], 100.0)
+            self.assertEqual(m["per"]["우리"]["google"], 0.0)
+            self.assertEqual(m["ranks"]["k1"]["ranks"]["우리"]["gmap"], 1)
+
+    def test_uncertainty_and_delta_band(self):
+        with Sandbox() as sb:
+            (sb.config / "scoring.json").write_text(json.dumps(self.CURVE), encoding="utf-8")
+            sb.write("2026-01-01", naver={"k1": [web("our.example", 1)], "k2": [web("ga.example", 1)],
+                                          "k3": [web("our.example", 2)], "k4": [web("ga.example", 1)]})
+            sb.write("2026-01-08", naver=full_naver())
+            ents = mkt_common.load_entities()["_list"]
+            cur, prev = sb.load("2026-01-08"), sb.load("2026-01-01")
+            unc = mkt_report.uncertainty(prev, ents, self.CURVE, "우리")
+            self.assertLess(unc["index"][0], unc["index"][1])
+            band = mkt_report.compare(cur, prev, ents, self.CURVE)["band"]["우리"]
+            self.assertGreater(band[1], 0)
+            self.assertEqual(mkt_report.judge(1.0, (0.5, 2.0)), "상승(범위 밖)")
+            self.assertIn("판단 불가", mkt_report.judge(0.2, (-1.0, 1.5)))
+
+    def test_same_day_repeat_measures_noise(self):
+        with Sandbox() as sb:
+            d = sb.write("2026-01-01", naver={k: [web("our.example", 1), web("ga.example", 2)] for k in KEYWORDS})
+            (d / "naver_serp_rep.json").write_text(json.dumps({
+                "k1": {"status": "ok", "items": [web("ga.example", 1), web("our.example", 3)]},
+                "k2": {"status": "ok", "items": [web("our.example", 1), web("ga.example", 2)]}}), encoding="utf-8")
+            ents = mkt_common.load_entities()["_list"]
+            m = sb.load("2026-01-01")
+            n = mkt_report.repeat_noise(d, m, ents, mkt_common.read_keywords(), SCORING, {})
+            self.assertEqual(n["n"], 2)
+            self.assertEqual(n["ch"]["naver"]["mean"], 0.8)  # 우리 1→3, 가나 2→1, 나머지 그대로: (2+1+0+0)/4
+            self.assertEqual(n["ch"]["naver"]["agree"], 100)
+
+    def test_area_index_uses_only_that_area(self):
+        with Sandbox() as sb:
+            (sb.config / "keywords.csv").write_text(
+                "keyword,area,region,priority,volume\nk1,형사,창원,1,\nk2,형사,창원,1,\nk3,민사,마산,1,\nk4,민사,마산,1,\n",
+                encoding="utf-8")
+            sb.write("2026-01-01", naver={"k1": [web("our.example", 1)], "k2": [web("our.example", 1)],
+                                          "k3": [web("ga.example", 1)], "k4": [web("ga.example", 1)]})
+            ents = mkt_common.load_entities()["_list"]
+            g = {(x["kind"], x["group"]): x for x in mkt_report.group_indices(sb.load("2026-01-01"), ents, SCORING, "우리", [])}
+            self.assertGreater(g[("분야", "형사")]["index"], 50)  # 통합검색 플레이스 영역(0점)도 같이 환산된다
+            self.assertEqual(g[("분야", "민사")]["index"], 0.0)
+            self.assertEqual(g[("분야", "형사")]["kws"], 2)
+            self.assertEqual(g[("지역", "마산")]["top"], "가나")
+
+    def test_report_has_new_sections(self):
+        with Sandbox() as sb:
+            (sb.config / "scoring.json").write_text(json.dumps(self.CURVE), encoding="utf-8")
+            sb.write("2026-01-01", naver=full_naver(), place={k: [place_row("200", 1, "가나법무법인 k1"), place_row("100", 2)] for k in KEYWORDS})
+            sb.write("2026-01-08", naver=full_naver(), place={k: [place_row("100", 1), place_row("200", 2)] for k in KEYWORDS})
+            sb.run_report("--date", "2026-01-08")
+            text = sb.txt("2026-01-08")
+            for head in ("3. 채널별 세부 지표", "4. 분야·지역별", "5. 측정 신뢰도", "오차 범위", "직전 대비 판정", "13. 다음 과제 후보"):
+                self.assertIn(head, text)
+            doc = sb.docx_text("2026-01-08")
+            self.assertIn("5. 측정 신뢰도", doc)
 
 
 if __name__ == "__main__":

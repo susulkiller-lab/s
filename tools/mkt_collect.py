@@ -5,6 +5,11 @@
   py tools\\mkt_collect.py --limit 5           # 키워드 5개만(시험용)
   py tools\\mkt_collect.py --reparse 2026-10-23  # 브라우저 없이 저장된 원본 화면을 현재 규칙으로 다시 분석
 
+재측정(repeat): collect.json의 repeat_keywords를 다른 단계가 끝난 뒤 한 번 더 수집해 *_rep.json에 둔다.
+같은 날 같은 조건의 흔들림 폭을 재서 리포트가 변동을 '오차 범위 안/밖'으로 가른다.
+지역 좌표: collect.json의 regions에 지역별 좌표가 있으면 그 지역 키워드(keywords.csv의 region)의 플레이스 목록은
+그 좌표 기준으로 잰다. 없으면 사무실 좌표(office).
+
 결과: data/measure/<오늘 날짜>/ 아래 naver_serp.json, place_list.json, google.json, missing.json,
       원본 화면은 raw/(시범 기간에는 저장소에 함께 올림, .gitignore 참조). 중간에 끊겨도 다시 실행하면 끝난 키워드는 건너뛴다.
 설정: marketing/config/collect.json(주소 형식·지연 시간·사무실 좌표), keywords.csv, entities.json
@@ -205,7 +210,8 @@ def reparse(outdir, urls):
         print(f"{outdir.name} 측정 폴더가 없습니다.")
         return False
     missing = 0
-    for fname, kind in (("naver_serp", "naver"), ("google", "google"), ("place_list", "place")):
+    for fname, kind in (("naver_serp", "naver"), ("google", "google"), ("place_list", "place"),
+                        ("naver_serp_rep", "naver"), ("google_rep", "google"), ("place_list_rep", "place")):
         data = read_json(outdir / f"{fname}.json", {})
         for k, v in data.items():
             if v.get("status") not in ("ok", "empty", "none") or not v.get("raw"):
@@ -242,12 +248,23 @@ def reparse_if_old(outdir):
     return reparse(outdir, json.loads((CONFIG / "collect.json").read_text(encoding="utf-8"))["urls"])
 
 
+def place_xy(region, cfg):
+    """지역 키워드의 플레이스 목록 기준 좌표. regions에 없으면 사무실 좌표. (주소 조각, 좌표 dict)"""
+    pt = (cfg.get("regions") or {}).get(region or "") or cfg.get("office") or {}
+    if pt.get("lat") and pt.get("lng"):
+        return f"&x={pt['lng']}&y={pt['lat']}", {"lat": pt["lat"], "lng": pt["lng"]}
+    return "", {}
+
+
 def start_meta(outdir, day, kws, cfg, office, steps):
     """회차 기록을 쓴다. 옛 규칙으로 저장된 회차를 이어서 수집할 때는 기존 기록을 먼저 현재 규칙으로 맞춘다."""
     fresh = reparse_if_old(outdir) or not (outdir / "raw").exists()
     meta = read_json(outdir / "meta.json", {})
+    meta.setdefault("started_at", datetime.now().isoformat(timespec="seconds"))
     meta.update({"date": day, "keywords": len(kws), "device": cfg.get("device"),
-                 "office": office, "steps": sorted(set(meta.get("steps", [])) | set(steps)),
+                 "office": office, "regions": cfg.get("regions") or {},
+                 "weekday": "월화수목금토일"[date.fromisoformat(day).weekday()],
+                 "steps": sorted(set(meta.get("steps", [])) | set(steps)),
                  "platform": platform.platform(),
                  "pc": hashlib.sha256(platform.node().encode("utf-8")).hexdigest()[:8]})  # 공개 저장소라 PC 이름은 남기지 않는다
     if fresh:
@@ -258,7 +275,7 @@ def start_meta(outdir, day, kws, cfg, office, steps):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--only", default="naver,place,google,missing")
+    ap.add_argument("--only", default="naver,place,google,missing,repeat")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--date", default=date.today().isoformat())
     ap.add_argument("--headless", action="store_true")
@@ -277,13 +294,14 @@ def main():
     from playwright.sync_api import sync_playwright
 
     steps = [s.strip() for s in a.only.split(",") if s.strip()]
-    kws = [r["keyword"] for r in read_keywords()]
+    kw_rows = read_keywords()
+    region_of = {r["keyword"]: (r.get("region") or "").strip() for r in kw_rows}
+    kws = [r["keyword"] for r in kw_rows]
     if a.limit:
         kws = kws[: a.limit]
     outdir = MEASURE / a.date
     outdir.mkdir(parents=True, exist_ok=True)
     office = cfg.get("office") or {}
-    xy = f"&x={office['lng']}&y={office['lat']}" if office.get("lat") and office.get("lng") else ""
 
     meta = start_meta(outdir, a.date, kws, cfg, office, steps)
 
@@ -322,8 +340,9 @@ def main():
 
         def place(q):
             c.wait()
+            xy, pt = place_xy(region_of.get(q), cfg)
             st, h, raw = c.open(urls["place"].format(q=quote(q), xy=xy), "place")
-            rec = {"status": st, "raw": raw, "places": []}
+            rec = {"status": st, "raw": raw, "places": [], "xy": pt}
             if st == "ok":
                 rec.update(parse_place(h))
                 if not rec["places"]:  # none: 네이버에 플레이스 결과 자체가 없음(정상 측정)
@@ -363,6 +382,15 @@ def main():
                 res["status"] = "ok"
                 return res
             run_step("발행 글 누락 점검", list(by_title), outdir / "missing.json", missing)
+        rep = [k for k in cfg.get("repeat_keywords", []) if k in kws]
+        if "repeat" in steps and rep:
+            print("같은 날 재측정: 흔들림 폭을 재기 위해 핵심 키워드를 한 번 더 수집합니다")
+            run_step("재측정 네이버", rep, outdir / "naver_serp_rep.json", serp("naver", "naver"), "items")
+            run_step("재측정 플레이스", rep, outdir / "place_list_rep.json", place, "places")
+            run_step("재측정 구글", rep, outdir / "google_rep.json", serp("google", "google"), "items")
+        meta = read_json(outdir / "meta.json", {})
+        meta["finished_at"] = datetime.now().isoformat(timespec="seconds")
+        write_json(outdir / "meta.json", meta)
         ctx.close()
     print(f"완료: {outdir}")
 

@@ -345,6 +345,17 @@ def load_scoring():
     return json.loads((CONFIG / "scoring.json").read_text(encoding="utf-8"))
 
 
+def curve_points(rank, sc):
+    """검색 채널 순위 점수. scoring.json에 rank_curve가 있으면 1위 10점에서 한 계단마다 decay배로 줄어
+    max_rank위까지 점수를 준다(10위 밖 변동도 보이게). 없으면 예전 계단식 rank_points를 쓴다."""
+    cv = sc.get("rank_curve")
+    if not cv:
+        return points(rank, sc["rank_points"])
+    if not rank or rank > cv.get("max_rank", 30):
+        return 0
+    return 10 * cv.get("decay", 0.85) ** (rank - 1)
+
+
 def points(rank, table):
     """순위를 점수로 바꾼다. table = [[이 순위까지, 점수], ...]."""
     if not rank:
@@ -380,12 +391,13 @@ def _failure_label(status):
     return "오류" if str(status).startswith("error") else str(status)
 
 
-def channel_status(mdir, kws):
-    """채널별 수집 결과를 키워드 단위로 센다. target은 결과 없음(none)을 뺀 측정 대상 수."""
+def channel_status(mdir, kws, suffix=""):
+    """채널별 수집 결과를 키워드 단위로 센다. target은 결과 없음(none)을 뺀 측정 대상 수.
+    suffix="_rep"이면 같은 날 재측정 파일(naver_serp_rep.json 등)을 센다."""
     out = {}
-    for ch, fname, field in (("naver", "naver_serp.json", "items"), ("place", "place_list.json", "places"),
-                             ("google", "google.json", "items")):
-        data = read_json(Path(mdir) / fname, {})
+    for ch, fname, field in (("naver", "naver_serp", "items"), ("place", "place_list", "places"),
+                             ("google", "google", "items")):
+        data = read_json(Path(mdir) / f"{fname}{suffix}.json", {})
         ok, none, failed = 0, 0, Counter()
         for k in kws:
             rec = data.get(k["keyword"])
@@ -430,8 +442,16 @@ def check_ai_files(mdir, prompts):
     return good, bad
 
 
+def ai_rounds():
+    """질문당 AI 답변 회차(collect.json의 ai_rounds, 기본 1)."""
+    try:
+        return max(int(read_json(CONFIG / "collect.json", {}).get("ai_rounds", 1)), 1)
+    except (TypeError, ValueError):
+        return 1
+
+
 def ai_expected(prompts):
-    return len(prompts) * len(AI_EXPECTED_ENGINES)
+    return len(prompts) * len(AI_EXPECTED_ENGINES) * ai_rounds()
 
 
 def collection_problems(mdir):

@@ -1,10 +1,14 @@
 {
  "rank_points": [[1, 10], [2, 8], [3, 6], [5, 4], [10, 2]],
+ "rank_curve": {"decay": 0.85, "max_rank": 30},
  "ai_mention_points": [[1, 10], [2, 8], [3, 6], [5, 4], [99, 2]],
- "channel_weights": {"naver": 35, "place": 25, "google": 15, "ai": 15},
+ "channel_weights": {"naver": 35, "place": 25, "google": 10, "gmap": 5, "ai": 15},
  "publish_gap_days": 28,
  "weak_top": 15,
  "discovery_top": 15,
  "min_channel_coverage": 0.7,
- "min_ai_coverage": 0.5
+ "min_ai_coverage": 0.5,
+ "bootstrap": 300,
+ "fresh_days": 30,
+ "law_blog_alert": 0.4
 }
