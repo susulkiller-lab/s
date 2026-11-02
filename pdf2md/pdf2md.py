@@ -563,13 +563,21 @@ def _version_of(py):
         return None
 
 
-def setup():
+MAX_PYTHON = (3, 14)      # onnxruntime 설치 파일이 있는 가장 새로운 버전
+
+
+def setup(cur=None):
     """가상환경을 만들고 패키지를 설치한 뒤 OCR 모델을 받는다. 표준 라이브러리만 쓴다."""
     import shutil
     import struct
     venv = HERE / ".venv"
     py = _venv_python(venv)
-    cur = tuple(sys.version_info[:2])
+    cur = cur or tuple(sys.version_info[:2])
+    if cur > MAX_PYTHON:
+        print(f"Python {cur[0]}.{cur[1]}은(는) 너무 새 버전이라 OCR 엔진 패키지(onnxruntime)를 설치할 수 없습니다.")
+        print("https://www.python.org/downloads/windows/ 에서 Python 3.13 (64비트)을 함께 설치한 뒤 pdf2md.bat를 다시 실행하십시오.")
+        print("지금 쓰시는 Python은 지우지 않아도 됩니다.")
+        return 1
     if py.exists() and _version_of(py) != cur:
         print("기존 가상환경이 다른 Python 버전으로 만들어져 있어 새로 만듭니다.")
         shutil.rmtree(venv, ignore_errors=True)

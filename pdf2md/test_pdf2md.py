@@ -321,6 +321,18 @@ class Setup(unittest.TestCase):
             rc = pdf2md.setup()
         return rc, buf.getvalue()
 
+    def test_too_new_python_is_rejected_before_pip(self):
+        rc, out = (lambda buf: (self._run_with(buf), buf.getvalue()))(io.StringIO())
+        self.assertEqual(rc, 1)
+        self.assertIn("3.15", out)
+        self.assertIn("Python 3.13", out)
+        self.assertEqual(self.calls, [])            # pip도 venv 생성도 시도하지 않는다
+
+    def _run_with(self, buf):
+        import contextlib
+        with contextlib.redirect_stdout(buf):
+            return pdf2md.setup(cur=(3, 15))
+
     def test_venv_from_other_python_version_is_recreated(self):
         self.fake_venv("3 15")
         rc, out = self.run_setup()
