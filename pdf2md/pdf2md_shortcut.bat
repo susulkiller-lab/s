@@ -9,17 +9,17 @@ if exist ".venv\Scripts\python.exe" (
   ".venv\Scripts\python.exe" pdf2md.py --shortcut
   goto done
 )
-where py >nul 2>nul
+py -3 -c "import sys" >nul 2>nul
 if not errorlevel 1 (
   py -3 pdf2md.py --shortcut
   goto done
 )
-where python >nul 2>nul
+python -c "import sys" >nul 2>nul
 if not errorlevel 1 (
   python pdf2md.py --shortcut
   goto done
 )
-echo Python was not found. Run pdf2md.bat first (it installs everything), then run this again.
+echo Python was not found. Run pdf2md.bat first (it explains how to install Python), then run this again.
 
 :done
 pause

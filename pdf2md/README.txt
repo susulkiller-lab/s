@@ -39,6 +39,10 @@ PDF → Markdown 변환기 (스캔 PDF 지원)
      pdf2md.bat는 실행할 때마다 필요한 패키지를 확인하고 없으면 다시 설치합니다.
      그래도 안 되면 .venv 폴더를 지우고 pdf2md.bat를 다시 실행하세요.
      검은 창 맨 위에 "Python: 경로" 줄이 나옵니다. 그 경로가 폴더 안 .venv\Scripts\python.exe가 아니면 다른 Python으로 실행된 것입니다.
+   - 검은 창에 "Python was not found; run without arguments to install from the Microsoft Store"가 뜨는 경우:
+     이 PC에 진짜 Python이 없다는 뜻입니다(Microsoft Store용 가짜 python 바로가기만 있는 상태).
+     https://www.python.org/downloads/ 에서 Python 3.13 (64비트)을 설치하고, 설치 첫 화면의
+     "Add python.exe to PATH"를 체크한 뒤 pdf2md.bat를 다시 실행하세요.
    - "OCR 모델을 불러오지 못했습니다": 최초 1회 인터넷 연결이 필요합니다. 연결 후 pdf2md.bat를 다시 실행하세요.
      회사 보안망에서 막히면 모델 내려받기 주소(www.modelscope.cn) 허용을 요청하세요.
    - 설치를 처음부터 다시 하려면 .venv 폴더를 지우고 pdf2md.bat를 다시 실행합니다.
