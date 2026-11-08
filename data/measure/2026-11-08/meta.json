@@ -1,0 +1,35 @@
+{
+ "started_at": "2026-11-08T21:52:09",
+ "date": "2026-11-08",
+ "keywords": 31,
+ "device": "Pixel 7",
+ "office": {
+  "lat": 35.2381984,
+  "lng": 128.6977575
+ },
+ "regions": {
+  "마산": {
+   "lat": 35.1975,
+   "lng": 128.566,
+   "note": "창원지법 마산지원 인근 법률사무소 밀집지(완월동·장장군로). 2026-11-01 플레이스 수집 데이터의 업체 좌표"
+  },
+  "진해": {
+   "lat": 35.1554,
+   "lng": 128.7045,
+   "note": "진해 석동로 법률사무소 밀집지. 2026-11-01 플레이스 수집 데이터의 업체 좌표"
+  }
+ },
+ "weekday": "일",
+ "steps": [
+  "google",
+  "missing",
+  "naver",
+  "place",
+  "repeat"
+ ],
+ "platform": "Windows-11-10.0.26200-SP0",
+ "pc": "da7f6801",
+ "parser_version": 2,
+ "user_agent": "Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Mobile Safari/537.36",
+ "finished_at": "2026-11-08T22:15:14"
+}

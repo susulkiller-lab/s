@@ -1,0 +1,8546 @@
+{
+ "scores": {
+  "진앤솔": {
+   "naver": 0.9,
+   "place": 0.3,
+   "google": 3.7,
+   "gmap": 26.6,
+   "ai": 13.3,
+   "ai_mention_rate": 20.8,
+   "index": 4.5
+  },
+  "시그널": {
+   "naver": 0.0,
+   "place": 1.3,
+   "google": 0.0,
+   "gmap": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 0.4
+  },
+  "디에이치": {
+   "naver": 2.3,
+   "place": 35.0,
+   "google": 34.0,
+   "gmap": 0.0,
+   "ai": 16.7,
+   "ai_mention_rate": 16.7,
+   "index": 17.2
+  },
+  "장한": {
+   "naver": 1.0,
+   "place": 28.8,
+   "google": 7.6,
+   "gmap": 0.0,
+   "ai": 7.5,
+   "ai_mention_rate": 8.3,
+   "index": 10.5
+  },
+  "로운": {
+   "naver": 8.1,
+   "place": 19.8,
+   "google": 7.5,
+   "gmap": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 9.5
+  },
+  "강은실": {
+   "naver": 1.7,
+   "place": 8.0,
+   "google": 0.0,
+   "gmap": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 2.9
+  },
+  "김소연": {
+   "naver": 2.4,
+   "place": 11.6,
+   "google": 0.0,
+   "gmap": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 4.2
+  },
+  "사림": {
+   "naver": 0.0,
+   "place": 9.1,
+   "google": 0.0,
+   "gmap": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 2.5
+  },
+  "로펌나무": {
+   "naver": 0.0,
+   "place": 10.0,
+   "google": 6.0,
+   "gmap": 0.0,
+   "ai": 21.7,
+   "ai_mention_rate": 29.2,
+   "index": 7.1
+  },
+  "박인욱": {
+   "naver": 1.2,
+   "place": 0.9,
+   "google": 11.9,
+   "gmap": 0.0,
+   "ai": 5.8,
+   "ai_mention_rate": 8.3,
+   "index": 3.0
+  },
+  "더바로": {
+   "naver": 0.0,
+   "place": 9.8,
+   "google": 0.0,
+   "gmap": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 2.7
+  },
+  "샤": {
+   "naver": 0.7,
+   "place": 0.5,
+   "google": 4.1,
+   "gmap": 0.0,
+   "ai": 18.3,
+   "ai_mention_rate": 20.8,
+   "index": 3.9
+  },
+  "송명숙": {
+   "naver": 0.0,
+   "place": 0.0,
+   "google": 0.0,
+   "gmap": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 0.0
+  },
+  "나우": {
+   "naver": 2.3,
+   "place": 31.0,
+   "google": 8.9,
+   "gmap": 12.8,
+   "ai": 11.7,
+   "ai_mention_rate": 12.5,
+   "index": 13.2
+  },
+  "오현": {
+   "naver": 0.0,
+   "place": 22.2,
+   "google": 13.2,
+   "gmap": 2.4,
+   "ai": 15.8,
+   "ai_mention_rate": 20.8,
+   "index": 10.4
+  },
+  "더킴": {
+   "naver": 21.8,
+   "place": 30.7,
+   "google": 16.8,
+   "gmap": 0.0,
+   "ai": 30.8,
+   "ai_mention_rate": 37.5,
+   "index": 24.0
+  },
+  "한강파트너스": {
+   "naver": 0.3,
+   "place": 4.1,
+   "google": 0.0,
+   "gmap": 0.0,
+   "ai": 10.0,
+   "ai_mention_rate": 12.5,
+   "index": 2.9
+  },
+  "율마루": {
+   "naver": 4.5,
+   "place": 4.5,
+   "google": 32.8,
+   "gmap": 0.0,
+   "ai": 15.8,
+   "ai_mention_rate": 16.7,
+   "index": 9.3
+  },
+  "아인": {
+   "naver": 5.1,
+   "place": 4.0,
+   "google": 3.0,
+   "gmap": 0.0,
+   "ai": 9.2,
+   "ai_mention_rate": 12.5,
+   "index": 5.0
+  },
+  "해정": {
+   "naver": 5.9,
+   "place": 2.7,
+   "google": 0.0,
+   "gmap": 0.0,
+   "ai": 0.0,
+   "ai_mention_rate": 0.0,
+   "index": 3.0
+  },
+  "YK창원": {
+   "naver": 17.9,
+   "place": 14.2,
+   "google": 7.9,
+   "gmap": 13.0,
+   "ai": 13.3,
+   "ai_mention_rate": 20.8,
+   "index": 14.7
+  }
+ },
+ "ranks": {
+  "창원 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 22,
+     "place_info": {
+      "visitor_reviews": 61,
+      "visitor_score": "5",
+      "blog_reviews": 412,
+      "image_count": 29,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "0m",
+      "hours": "24시간 영업",
+      "name": "진앤솔 법률사무소"
+     },
+     "place_total": 192
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 192
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 192
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 103,
+      "visitor_score": "4.87",
+      "blog_reviews": 11483,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인장한 창원사무소 형사가사도산전문 이동성변호사"
+     },
+     "place_total": 192
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 192
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 390,
+      "visitor_score": null,
+      "blog_reviews": 2180,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "이혼전문변호사 강은실 법률사무소"
+     },
+     "place_total": 192
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 16,
+     "place_info": {
+      "visitor_reviews": 337,
+      "visitor_score": null,
+      "blog_reviews": 1328,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": null,
+      "name": "김소연법률사무소 개인회생파산 음주운전 교통사고전문변호사"
+     },
+     "place_total": 192
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "blog_reviews": 1095,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "330m",
+      "hours": "영업 종료",
+      "name": "법률사무소 사림 창원 형사전문변호사"
+     },
+     "place_total": 192
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 21,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 192
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 24,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "blog_reviews": 5201,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사전문 가사전문 변호사 박인욱 법률사무소"
+     },
+     "place_total": 192
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 192
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 30,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 446,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 샤"
+     },
+     "place_total": 192
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 192
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 192
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 192
+    },
+    "더킴": {
+     "naver": 1,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 124,
+      "visitor_score": null,
+      "blog_reviews": 1293,
+      "image_count": 14,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 더킴로펌"
+     },
+     "place_total": 192
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 28,
+     "place_info": {
+      "visitor_reviews": 32,
+      "visitor_score": "4.98",
+      "blog_reviews": 802,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "2.2km",
+      "hours": "24시간 영업",
+      "name": "법무법인 한강 파트너스"
+     },
+     "place_total": 192
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 17,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "blog_reviews": 268,
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사이혼도산전문 법무법인 율마루 창원점"
+     },
+     "place_total": 192
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 40,
+     "place_info": {
+      "visitor_reviews": 13,
+      "visitor_score": "5",
+      "blog_reviews": 128,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "150m",
+      "hours": "오늘 휴무",
+      "name": "아인법률사무소 형사전문변호사 김영빈"
+     },
+     "place_total": 192
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 20,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "blog_reviews": 3768,
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "해정법률사무소 형사 이혼전문 변호사 남혜진"
+     },
+     "place_total": 192
+    },
+    "YK창원": {
+     "naver": 6,
+     "ad": true,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 437,
+      "visitor_score": null,
+      "blog_reviews": 6172,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사"
+     },
+     "place_total": 192
+    }
+   },
+   "area": "종합",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": false,
+    "gmap": false
+   }
+  },
+  "창원 법률사무소": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 22,
+     "place_info": {
+      "visitor_reviews": 61,
+      "visitor_score": "5",
+      "blog_reviews": 412,
+      "image_count": 29,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "0m",
+      "hours": "24시간 영업",
+      "name": "진앤솔 법률사무소"
+     },
+     "place_total": 204,
+     "google": 2,
+     "gmap": 3
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 103,
+      "visitor_score": "4.87",
+      "blog_reviews": 11483,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인장한 창원사무소 형사가사도산전문 이동성변호사"
+     },
+     "place_total": 204,
+     "google": 8,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 390,
+      "visitor_score": null,
+      "blog_reviews": 2180,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "이혼전문변호사 강은실 법률사무소"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 16,
+     "place_info": {
+      "visitor_reviews": 337,
+      "visitor_score": null,
+      "blog_reviews": 1328,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": null,
+      "name": "김소연법률사무소 개인회생파산 음주운전 교통사고전문변호사"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "blog_reviews": 1095,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "330m",
+      "hours": "영업 종료",
+      "name": "법률사무소 사림 창원 형사전문변호사"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 21,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 24,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "blog_reviews": 5201,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사전문 가사전문 변호사 박인욱 법률사무소"
+     },
+     "place_total": 204,
+     "google": 3,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 30,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 446,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 샤"
+     },
+     "place_total": 204,
+     "google": 5,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 124,
+      "visitor_score": null,
+      "blog_reviews": 1293,
+      "image_count": 14,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 더킴로펌"
+     },
+     "place_total": 204,
+     "google": 10,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 28,
+     "place_info": {
+      "visitor_reviews": 32,
+      "visitor_score": "4.98",
+      "blog_reviews": 802,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "2.2km",
+      "hours": "24시간 영업",
+      "name": "법무법인 한강 파트너스"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 17,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "blog_reviews": 268,
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사이혼도산전문 법무법인 율마루 창원점"
+     },
+     "place_total": 204,
+     "google": 9,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 40,
+     "place_info": {
+      "visitor_reviews": 13,
+      "visitor_score": "5",
+      "blog_reviews": 128,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "150m",
+      "hours": "오늘 휴무",
+      "name": "아인법률사무소 형사전문변호사 김영빈"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": 1,
+     "ad": false,
+     "place_block": null,
+     "place": 20,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "blog_reviews": 3768,
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "해정법률사무소 형사 이혼전문 변호사 남혜진"
+     },
+     "place_total": 204,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 5,
+     "ad": true,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 437,
+      "visitor_score": null,
+      "blog_reviews": 6172,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사"
+     },
+     "place_total": 204,
+     "google": 4,
+     "gmap": null
+    }
+   },
+   "area": "종합",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 형사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 31,
+     "place_info": {
+      "visitor_reviews": 61,
+      "visitor_score": "5",
+      "blog_reviews": 412,
+      "image_count": 29,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "0m",
+      "hours": "24시간 영업",
+      "name": "진앤솔 법률사무소"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": 1
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 69,
+     "google": 3,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 103,
+      "visitor_score": "4.87",
+      "blog_reviews": 11483,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인장한 창원사무소 형사가사도산전문 이동성변호사"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 8,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "blog_reviews": 1095,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "330m",
+      "hours": "영업 종료",
+      "name": "법률사무소 사림 창원 형사전문변호사"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 15,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "blog_reviews": 5201,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사전문 가사전문 변호사 박인욱 법률사무소"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 47,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "blog_reviews": 2,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "13km",
+      "hours": "오늘 휴무",
+      "name": "The 바로 법률사무소"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 40,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 446,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 샤"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 69,
+     "google": 7,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 1,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 69,
+     "google": 6,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 34,
+     "place_info": {
+      "visitor_reviews": 32,
+      "visitor_score": "4.98",
+      "blog_reviews": 802,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "2.2km",
+      "hours": "24시간 영업",
+      "name": "법무법인 한강 파트너스"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "blog_reviews": 268,
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사이혼도산전문 법무법인 율마루 창원점"
+     },
+     "place_total": 69,
+     "google": 5,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 17,
+     "place_info": {
+      "visitor_reviews": 13,
+      "visitor_score": "5",
+      "blog_reviews": 128,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "150m",
+      "hours": "오늘 휴무",
+      "name": "아인법률사무소 형사전문변호사 김영빈"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 13,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "blog_reviews": 3768,
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "해정법률사무소 형사 이혼전문 변호사 남혜진"
+     },
+     "place_total": 69,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 15,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 437,
+      "visitor_score": null,
+      "blog_reviews": 6172,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사"
+     },
+     "place_total": 69,
+     "google": 8,
+     "gmap": null
+    }
+   },
+   "area": "형사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 음주운전 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 147,
+      "image_count": 9,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인 시그널"
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 103,
+      "visitor_score": "4.87",
+      "blog_reviews": 11483,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인장한 창원사무소 형사가사도산전문 이동성변호사"
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 11,
+     "google": 7,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": 16,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 337,
+      "visitor_score": null,
+      "blog_reviews": 1328,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": null,
+      "name": "김소연법률사무소 개인회생파산 음주운전 교통사고전문변호사"
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 3,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 11,
+     "google": 4,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 8,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 11,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "형사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 성범죄 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 19,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 147,
+      "image_count": 9,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인 시그널"
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": 7,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 103,
+      "visitor_score": "4.87",
+      "blog_reviews": 11483,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인장한 창원사무소 형사가사도산전문 이동성변호사"
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "blog_reviews": 1095,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "330m",
+      "hours": "영업 종료",
+      "name": "법률사무소 사림 창원 형사전문변호사"
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 12,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 20,
+     "google": 3,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 3,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 20,
+     "google": 6,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 32,
+      "visitor_score": "4.98",
+      "blog_reviews": 802,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "2.2km",
+      "hours": "24시간 영업",
+      "name": "법무법인 한강 파트너스"
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "blog_reviews": 268,
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사이혼도산전문 법무법인 율마루 창원점"
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 10,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 437,
+      "visitor_score": null,
+      "blog_reviews": 6172,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사"
+     },
+     "place_total": 20,
+     "google": null,
+     "gmap": 1
+    }
+   },
+   "area": "형사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 사기 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": 2
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 2,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 15,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 8,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "형사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 폭행 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": 2
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": 2,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": 9,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 19,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "google": 5,
+     "gmap": null
+    },
+    "아인": {
+     "naver": 2,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 9,
+     "ad": true,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "형사",
+   "region": "창원",
+   "place_src": null,
+   "measured": {
+    "naver": true,
+    "place": false,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 마약 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": 9,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 10,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 3,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": 15,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 32,
+      "visitor_score": "4.98",
+      "blog_reviews": 802,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "2.2km",
+      "hours": "24시간 영업",
+      "name": "법무법인 한강 파트너스"
+     },
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 6,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 11,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "형사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 교통사고 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": 3,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": 9,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 337,
+      "visitor_score": null,
+      "blog_reviews": 1328,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": null,
+      "name": "김소연법률사무소 개인회생파산 음주운전 교통사고전문변호사"
+     },
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 19,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": 7,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 6,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 8,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "형사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 학교폭력 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": 3,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": 3,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 10,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "행정",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 민사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": 9,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": 7,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 15,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 446,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 샤"
+     },
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": 3,
+     "gmap": 3
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": 5,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": 8,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 13,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 24,
+     "google": 6,
+     "gmap": null
+    }
+   },
+   "area": "민사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 손해배상 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 8,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 17,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 9,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 13,
+      "visitor_score": "5",
+      "blog_reviews": 128,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "150m",
+      "hours": "오늘 휴무",
+      "name": "아인법률사무소 형사전문변호사 김영빈"
+     },
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 10,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 4,
+     "gmap": null
+    }
+   },
+   "area": "민사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 대여금 소송": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": 4,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": 6,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": 10,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 15,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "민사",
+   "region": "창원",
+   "place_src": null,
+   "measured": {
+    "naver": true,
+    "place": false,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 상속 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": 2
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": 5,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 10,
+      "visitor_score": null,
+      "blog_reviews": 3359,
+      "image_count": 17,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 장한 창원분사무소"
+     },
+     "place_total": 10,
+     "google": 7,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": 8,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 8,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 10,
+     "google": null,
+     "gmap": 3
+    }
+   },
+   "area": "민사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 이혼변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": 2
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 57,
+     "google": 3,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": 7,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 57,
+     "google": 9,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 390,
+      "visitor_score": null,
+      "blog_reviews": 2180,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "이혼전문변호사 강은실 법률사무소"
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 26,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "blog_reviews": 5201,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사전문 가사전문 변호사 박인욱 법률사무소"
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "blog_reviews": 2,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "13km",
+      "hours": "오늘 휴무",
+      "name": "The 바로 법률사무소"
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 30,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 446,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 샤"
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 57,
+     "google": 8,
+     "gmap": 1
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 57,
+     "google": 6,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 17,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "blog_reviews": 268,
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사이혼도산전문 법무법인 율마루 창원점"
+     },
+     "place_total": 57,
+     "google": 5,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "blog_reviews": 3768,
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "해정법률사무소 형사 이혼전문 변호사 남혜진"
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 437,
+      "visitor_score": null,
+      "blog_reviews": 6172,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사"
+     },
+     "place_total": 57,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "가사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 행정소송 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 2,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": 11,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 5,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 4,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 6,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 14,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "행정",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 행정심판": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": 4,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": 3,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 20,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "행정",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "마산 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 16,
+      "visitor_score": null,
+      "blog_reviews": 103,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "10m",
+      "hours": null,
+      "name": "법무법인 디에이치 마산분사무소"
+     },
+     "place_total": 18,
+     "google": 3,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": 9,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "blog_reviews": 2,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "40m",
+      "hours": "오늘 휴무",
+      "name": "The 바로 법률사무소"
+     },
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 1,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": 5,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 13,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 18,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "종합",
+   "region": "마산",
+   "place_src": "list@128.5660,35.1975",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "마산 형사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 16,
+      "visitor_score": null,
+      "blog_reviews": 103,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "10m",
+      "hours": null,
+      "name": "법무법인 디에이치 마산분사무소"
+     },
+     "place_total": 4,
+     "google": 3,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "blog_reviews": 2,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "40m",
+      "hours": "오늘 휴무",
+      "name": "The 바로 법률사무소"
+     },
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 1,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": 17,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": 4,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 15,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 4,
+     "google": null,
+     "gmap": 3
+    }
+   },
+   "area": "형사",
+   "region": "마산",
+   "place_src": "list@128.5660,35.1975",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "마산 이혼변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 16,
+      "visitor_score": null,
+      "blog_reviews": 103,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "10m",
+      "hours": null,
+      "name": "법무법인 디에이치 마산분사무소"
+     },
+     "place_total": 5,
+     "google": 2,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": 16,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": 12,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "blog_reviews": 2,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "40m",
+      "hours": "오늘 휴무",
+      "name": "The 바로 법률사무소"
+     },
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": 4,
+     "gmap": 1
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 10,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": 17,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": 6,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": 8,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 9,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 5,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "가사",
+   "region": "마산",
+   "place_src": "list@128.5660,35.1975",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "마산 민사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 7,
+     "gmap": null
+    },
+    "장한": {
+     "naver": 14,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 6,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": 8,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": 12,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": 4,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 2,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 19,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "민사",
+   "region": "마산",
+   "place_src": "list@128.5660,35.1975",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "진해 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": 2
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 7,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 6,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": 17,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": 4,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 13,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 3,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "종합",
+   "region": "진해",
+   "place_src": "list@128.7045,35.1554",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "진해 형사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": 1
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 8,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 6,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": 19,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": 2,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 6,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 1,
+     "google": null,
+     "gmap": 3
+    }
+   },
+   "area": "형사",
+   "region": "진해",
+   "place_src": "list@128.7045,35.1554",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "경남 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 26,
+     "place_info": {
+      "visitor_reviews": 61,
+      "visitor_score": "5",
+      "blog_reviews": 412,
+      "image_count": 29,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "0m",
+      "hours": "24시간 영업",
+      "name": "진앤솔 법률사무소"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 103,
+      "visitor_score": "4.87",
+      "blog_reviews": 11483,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인장한 창원사무소 형사가사도산전문 이동성변호사"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 15,
+     "place_info": {
+      "visitor_reviews": 390,
+      "visitor_score": null,
+      "blog_reviews": 2180,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "이혼전문변호사 강은실 법률사무소"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 17,
+     "place_info": {
+      "visitor_reviews": 337,
+      "visitor_score": null,
+      "blog_reviews": 1328,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": null,
+      "name": "김소연법률사무소 개인회생파산 음주운전 교통사고전문변호사"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "blog_reviews": 1095,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "330m",
+      "hours": "영업 종료",
+      "name": "법률사무소 사림 창원 형사전문변호사"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 25,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 30,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "blog_reviews": 5201,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사전문 가사전문 변호사 박인욱 법률사무소"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 38,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 446,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 샤"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 124,
+      "visitor_score": null,
+      "blog_reviews": 1293,
+      "image_count": 14,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 더킴로펌"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 34,
+     "place_info": {
+      "visitor_reviews": 32,
+      "visitor_score": "4.98",
+      "blog_reviews": 802,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "2.2km",
+      "hours": "24시간 영업",
+      "name": "법무법인 한강 파트너스"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 18,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "blog_reviews": 268,
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사이혼도산전문 법무법인 율마루 창원점"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 22,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "blog_reviews": 3768,
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "해정법률사무소 형사 이혼전문 변호사 남혜진"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 9,
+     "ad": true,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 437,
+      "visitor_score": null,
+      "blog_reviews": 6172,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사"
+     },
+     "place_total": 322,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "종합",
+   "region": "경남",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "경남 형사변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 48,
+     "place_info": {
+      "visitor_reviews": 61,
+      "visitor_score": "5",
+      "blog_reviews": 412,
+      "image_count": 29,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "0m",
+      "hours": "24시간 영업",
+      "name": "진앤솔 법률사무소"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": 1
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 123,
+     "google": 1,
+     "gmap": null
+    },
+    "장한": {
+     "naver": 11,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 103,
+      "visitor_score": "4.87",
+      "blog_reviews": 11483,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인장한 창원사무소 형사가사도산전문 이동성변호사"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 8,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 1,
+      "visitor_score": null,
+      "blog_reviews": 1095,
+      "image_count": 15,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "330m",
+      "hours": "영업 종료",
+      "name": "법률사무소 사림 창원 형사전문변호사"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 18,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "blog_reviews": 5201,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사전문 가사전문 변호사 박인욱 법률사무소"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 123,
+     "google": 4,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": 14,
+     "ad": false,
+     "place_block": null,
+     "place": 11,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "blog_reviews": 268,
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사이혼도산전문 법무법인 율마루 창원점"
+     },
+     "place_total": 123,
+     "google": 5,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 22,
+     "place_info": {
+      "visitor_reviews": 13,
+      "visitor_score": "5",
+      "blog_reviews": 128,
+      "image_count": 11,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "150m",
+      "hours": "오늘 휴무",
+      "name": "아인법률사무소 형사전문변호사 김영빈"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "blog_reviews": 3768,
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "해정법률사무소 형사 이혼전문 변호사 남혜진"
+     },
+     "place_total": 123,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 437,
+      "visitor_score": null,
+      "blog_reviews": 6172,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사"
+     },
+     "place_total": 123,
+     "google": 7,
+     "gmap": null
+    }
+   },
+   "area": "형사",
+   "region": "경남",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "경남 이혼변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 101,
+     "google": 6,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 6,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": 19,
+     "ad": false,
+     "place_block": null,
+     "place": 9,
+     "place_info": {
+      "visitor_reviews": 390,
+      "visitor_score": null,
+      "blog_reviews": 2180,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "이혼전문변호사 강은실 법률사무소"
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 39,
+     "place_info": {
+      "visitor_reviews": 29,
+      "visitor_score": null,
+      "blog_reviews": 5201,
+      "image_count": 30,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사전문 가사전문 변호사 박인욱 법률사무소"
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 19,
+     "place_info": {
+      "visitor_reviews": 4,
+      "visitor_score": null,
+      "blog_reviews": 2,
+      "image_count": 2,
+      "booking": false,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "13km",
+      "hours": "오늘 휴무",
+      "name": "The 바로 법률사무소"
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 47,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 446,
+      "image_count": 16,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 샤"
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 101,
+     "google": 4,
+     "gmap": 1
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 101,
+     "google": 8,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": 7,
+     "ad": false,
+     "place_block": null,
+     "place": 10,
+     "place_info": {
+      "visitor_reviews": 34,
+      "visitor_score": "4.91",
+      "blog_reviews": 268,
+      "image_count": 20,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "형사이혼도산전문 법무법인 율마루 창원점"
+     },
+     "place_total": 101,
+     "google": 2,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 12,
+     "place_info": {
+      "visitor_reviews": 58,
+      "visitor_score": "4.79",
+      "blog_reviews": 3768,
+      "image_count": 27,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "해정법률사무소 형사 이혼전문 변호사 남혜진"
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 437,
+      "visitor_score": null,
+      "blog_reviews": 6172,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인 YK 창원 분사무소 형사의료가사이혼전문변호사"
+     },
+     "place_total": 101,
+     "google": null,
+     "gmap": 3
+    }
+   },
+   "area": "가사",
+   "region": "경남",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "경남 음주운전 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 14,
+     "place_info": {
+      "visitor_reviews": null,
+      "visitor_score": null,
+      "blog_reviews": 147,
+      "image_count": 9,
+      "booking": false,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인 시그널"
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 103,
+      "visitor_score": "4.87",
+      "blog_reviews": 11483,
+      "image_count": 22,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인장한 창원사무소 형사가사도산전문 이동성변호사"
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": 7,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 337,
+      "visitor_score": null,
+      "blog_reviews": 1328,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": null,
+      "name": "김소연법률사무소 개인회생파산 음주운전 교통사고전문변호사"
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 7,
+     "place_info": {
+      "visitor_reviews": 2,
+      "visitor_score": null,
+      "blog_reviews": 4975,
+      "image_count": 19,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 로펌나무"
+     },
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 15,
+     "google": 5,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 15,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "형사",
+   "region": "경남",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "경남 행정심판 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": 3,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "google": 4,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": 8,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "행정",
+   "region": "경남",
+   "place_src": null,
+   "measured": {
+    "naver": true,
+    "place": false,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 이혼소송": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 23,
+     "google": 1,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": 2,
+     "ad": false,
+     "place_block": 5,
+     "place": 5,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 390,
+      "visitor_score": null,
+      "blog_reviews": 2180,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "이혼전문변호사 강은실 법률사무소"
+     },
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 23,
+     "google": 9,
+     "gmap": 2
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 150,
+      "visitor_score": null,
+      "blog_reviews": 6554,
+      "image_count": 8,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.6km",
+      "hours": "24시간 영업",
+      "name": "법무법인 오현 변호사창원사무소 형사이혼전문"
+     },
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 12,
+     "place_info": {
+      "visitor_reviews": 85,
+      "visitor_score": null,
+      "blog_reviews": 4842,
+      "image_count": 18,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": null,
+      "name": "법무법인 더킴로펌 변호사 창원사무소 형사이혼전문"
+     },
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": 4,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 23,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "가사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "창원 상간소송 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": 2,
+     "ad": false,
+     "place_block": 3,
+     "place": 3,
+     "place_info": {
+      "visitor_reviews": 353,
+      "visitor_score": "4.99",
+      "blog_reviews": 1971,
+      "image_count": 114,
+      "booking": true,
+      "talktalk": false,
+      "coupon": true,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "이혼전문변호사 법무법인 로운 창원분사무소"
+     },
+     "place_total": 12,
+     "google": 1,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": 4,
+     "place": 4,
+     "place_info": {
+      "visitor_reviews": 390,
+      "visitor_score": null,
+      "blog_reviews": 2180,
+      "image_count": 9,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "이혼전문변호사 강은실 법률사무소"
+     },
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": 3,
+     "ad": false,
+     "place_block": 2,
+     "place": 2,
+     "place_info": {
+      "visitor_reviews": 131,
+      "visitor_score": "5",
+      "blog_reviews": 278,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": false,
+      "distance": "1.8km",
+      "hours": "24시간 영업",
+      "name": "법무법인나우 창원형사이혼전문변호사"
+     },
+     "place_total": 12,
+     "google": 2,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": 1,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 124,
+      "visitor_score": null,
+      "blog_reviews": 1293,
+      "image_count": 14,
+      "booking": true,
+      "talktalk": false,
+      "coupon": false,
+      "distance": "1.7km",
+      "hours": "오늘 휴무",
+      "name": "법무법인 더킴로펌"
+     },
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": 7,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": 10,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 12,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "가사",
+   "region": "창원",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  },
+  "경남 학교폭력 변호사": {
+   "weight": 1.0,
+   "ranks": {
+    "진앤솔": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "시그널": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "디에이치": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": 1,
+     "place_info": {
+      "visitor_reviews": 202,
+      "visitor_score": "4.95",
+      "blog_reviews": 6491,
+      "image_count": 23,
+      "booking": true,
+      "talktalk": true,
+      "coupon": true,
+      "distance": "1.7km",
+      "hours": "24시간 영업",
+      "name": "법무법인디에이치 창원법률사무소 정성원변호사 형사이혼전문"
+     },
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "장한": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "로운": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "강은실": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "김소연": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "사림": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "로펌나무": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "박인욱": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "더바로": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "샤": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 3,
+     "gmap": null
+    },
+    "송명숙": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "나우": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "오현": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 7,
+     "gmap": null
+    },
+    "더킴": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "한강파트너스": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "율마루": {
+     "naver": 4,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": 2,
+     "gmap": null
+    },
+    "아인": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "해정": {
+     "naver": null,
+     "ad": false,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    },
+    "YK창원": {
+     "naver": null,
+     "ad": true,
+     "place_block": null,
+     "place": null,
+     "place_total": 6,
+     "google": null,
+     "gmap": null
+    }
+   },
+   "area": "행정",
+   "region": "경남",
+   "place_src": "list@128.6978,35.2382",
+   "measured": {
+    "naver": true,
+    "place": true,
+    "google": true,
+    "gmap": true
+   }
+  }
+ },
+ "ai": [
+  {
+   "engine": "chatgpt",
+   "pid": "a01",
+   "round": "1",
+   "file": "chatgpt__a01__1.txt",
+   "order": [
+    "디에이치",
+    "한강파트너스",
+    "YK창원",
+    "더킴",
+    "진앤솔"
+   ],
+   "cites": [
+    "디에이치",
+    "한강파트너스"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a02",
+   "round": "1",
+   "file": "chatgpt__a02__1.txt",
+   "order": [
+    "진앤솔",
+    "한강파트너스",
+    "샤",
+    "아인"
+   ],
+   "cites": [
+    "진앤솔"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a03",
+   "round": "1",
+   "file": "chatgpt__a03__1.txt",
+   "order": [
+    "디에이치",
+    "율마루",
+    "YK창원",
+    "진앤솔"
+   ],
+   "cites": [
+    "디에이치",
+    "율마루"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a04",
+   "round": "1",
+   "file": "chatgpt__a04__1.txt",
+   "order": [
+    "나우",
+    "한강파트너스",
+    "YK창원"
+   ],
+   "cites": [
+    "나우"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a05",
+   "round": "1",
+   "file": "chatgpt__a05__1.txt",
+   "order": [
+    "로펌나무",
+    "진앤솔"
+   ],
+   "cites": [
+    "진앤솔",
+    "로펌나무"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a06",
+   "round": "1",
+   "file": "chatgpt__a06__1.txt",
+   "order": [
+    "장한",
+    "로펌나무",
+    "YK창원"
+   ],
+   "cites": [
+    "로펌나무"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a07",
+   "round": "1",
+   "file": "chatgpt__a07__1.txt",
+   "order": [
+    "율마루",
+    "YK창원"
+   ],
+   "cites": [
+    "율마루"
+   ]
+  },
+  {
+   "engine": "chatgpt",
+   "pid": "a08",
+   "round": "1",
+   "file": "chatgpt__a08__1.txt",
+   "order": [
+    "샤"
+   ],
+   "cites": []
+  },
+  {
+   "engine": "gemini",
+   "pid": "a01",
+   "round": "1",
+   "file": "gemini__a01__1.txt",
+   "order": [
+    "더킴",
+    "박인욱",
+    "오현"
+   ],
+   "cites": [
+    "박인욱",
+    "더킴"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a02",
+   "round": "1",
+   "file": "gemini__a02__1.txt",
+   "order": [
+    "샤",
+    "더킴",
+    "박인욱"
+   ],
+   "cites": [
+    "박인욱",
+    "더킴"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a03",
+   "round": "1",
+   "file": "gemini__a03__1.txt",
+   "order": [
+    "디에이치",
+    "더킴",
+    "오현"
+   ],
+   "cites": [
+    "더킴"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a04",
+   "round": "1",
+   "file": "gemini__a04__1.txt",
+   "order": [
+    "오현",
+    "더킴",
+    "로펌나무"
+   ],
+   "cites": [
+    "오현"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a05",
+   "round": "1",
+   "file": "gemini__a05__1.txt",
+   "order": [
+    "디에이치",
+    "샤",
+    "더킴",
+    "로펌나무"
+   ],
+   "cites": []
+  },
+  {
+   "engine": "gemini",
+   "pid": "a06",
+   "round": "1",
+   "file": "gemini__a06__1.txt",
+   "order": [
+    "오현",
+    "아인"
+   ],
+   "cites": []
+  },
+  {
+   "engine": "gemini",
+   "pid": "a07",
+   "round": "1",
+   "file": "gemini__a07__1.txt",
+   "order": [
+    "율마루",
+    "장한",
+    "오현"
+   ],
+   "cites": [
+    "장한"
+   ]
+  },
+  {
+   "engine": "gemini",
+   "pid": "a08",
+   "round": "1",
+   "file": "gemini__a08__1.txt",
+   "order": [
+    "더킴"
+   ],
+   "cites": []
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a01",
+   "round": "1",
+   "file": "perplexity__a01__1.txt",
+   "order": [
+    "더킴",
+    "나우"
+   ],
+   "cites": [
+    "진앤솔",
+    "나우",
+    "오현",
+    "더킴",
+    "한강파트너스",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a02",
+   "round": "1",
+   "file": "perplexity__a02__1.txt",
+   "order": [],
+   "cites": []
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a03",
+   "round": "1",
+   "file": "perplexity__a03__1.txt",
+   "order": [
+    "나우"
+   ],
+   "cites": [
+    "오현",
+    "더킴",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a04",
+   "round": "1",
+   "file": "perplexity__a04__1.txt",
+   "order": [],
+   "cites": []
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a05",
+   "round": "1",
+   "file": "perplexity__a05__1.txt",
+   "order": [
+    "더킴"
+   ],
+   "cites": [
+    "로운",
+    "박인욱",
+    "더킴"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a06",
+   "round": "1",
+   "file": "perplexity__a06__1.txt",
+   "order": [
+    "아인",
+    "로펌나무"
+   ],
+   "cites": [
+    "로펌나무",
+    "아인",
+    "YK창원"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a07",
+   "round": "1",
+   "file": "perplexity__a07__1.txt",
+   "order": [
+    "율마루",
+    "로펌나무"
+   ],
+   "cites": [
+    "로펌나무",
+    "율마루"
+   ]
+  },
+  {
+   "engine": "perplexity",
+   "pid": "a08",
+   "round": "1",
+   "file": "perplexity__a08__1.txt",
+   "order": [
+    "샤",
+    "로펌나무",
+    "진앤솔"
+   ],
+   "cites": [
+    "진앤솔",
+    "디에이치",
+    "로펌나무",
+    "샤"
+   ]
+  }
+ ],
+ "scoring": {
+  "rank_curve": {
+   "decay": 0.85,
+   "max_rank": 30
+  },
+  "channel_weights": {
+   "naver": 35,
+   "place": 25,
+   "google": 10,
+   "gmap": 5,
+   "ai": 15
+  }
+ }
+}
