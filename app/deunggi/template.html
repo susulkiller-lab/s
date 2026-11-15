@@ -1,0 +1,748 @@
+<title>등기부 판독기</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* 레이아웃: 등기소 서류철. 상단 접수대(파일·목적) → 문서 탭 → 한 장씩 넘기는 판독지(요약 → 위험 순위 → 특이사항 → 시간순 → 사해행위 → 경매 → 금액 → 원문 → Claude) */
+:root{
+  --paper:#F4F6F8; --sheet:#FFFFFF; --sheet-2:#F0F3F6; --ink:#15202B; --ink-2:#465363; --ink-3:#7A8592;
+  --rule:#DCE1E7; --rule-2:#C3CBD4;
+  --accent:#23466E; --accent-hover:#1B3858; --accent-ink:#FFFFFF; --accent-soft:#E5ECF4;
+  --strike:#D2302C;
+  --crit:#B3261E; --crit-soft:#FBE8E6; --high:#B8470F; --high-soft:#FCEDE2; --caut:#8E6400; --caut-soft:#FAF1D8; --info:#38598A; --info-soft:#E7EDF6; --ok:#2B7A4B; --ok-soft:#E3F2E8;
+  --focus:#2F7FBF;
+  --ui:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --doc:"Nanum Myeongjo","Noto Serif KR","Batang",serif;
+  --num:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:6px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0E1318; --sheet:#151C23; --sheet-2:#1B242D; --ink:#E4E9EF; --ink-2:#A7B2BE; --ink-3:#7A8693;
+    --rule:#26303A; --rule-2:#35404B;
+    --accent:#8FB5E3; --accent-hover:#A9C7EC; --accent-ink:#0D1722; --accent-soft:#1C2939;
+    --strike:#FF6A5D;
+    --crit:#FF8A7E; --crit-soft:#3A1D1A; --high:#FFA36E; --high-soft:#382417; --caut:#E7C35C; --caut-soft:#322A13; --info:#9EB9E7; --info-soft:#1B2637; --ok:#7CD2A0; --ok-soft:#17291F;
+    --focus:#7BB6E6;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0E1318; --sheet:#151C23; --sheet-2:#1B242D; --ink:#E4E9EF; --ink-2:#A7B2BE; --ink-3:#7A8693;
+  --rule:#26303A; --rule-2:#35404B;
+  --accent:#8FB5E3; --accent-hover:#A9C7EC; --accent-ink:#0D1722; --accent-soft:#1C2939;
+  --strike:#FF6A5D;
+  --crit:#FF8A7E; --crit-soft:#3A1D1A; --high:#FFA36E; --high-soft:#382417; --caut:#E7C35C; --caut-soft:#322A13; --info:#9EB9E7; --info-soft:#1B2637; --ok:#7CD2A0; --ok-soft:#17291F;
+  --focus:#7BB6E6;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 56px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.num{font-family:var(--num);font-variant-numeric:tabular-nums}
+.muted{color:var(--ink-2)} .faint{color:var(--ink-3)}
+h1,h2,h3{margin:0;text-wrap:balance}
+
+/* 머리 */
+.top{display:flex;gap:16px;align-items:flex-start;margin-bottom:18px}
+.stamp{flex:none;width:52px;height:52px;border:2px solid var(--strike);border-radius:4px;display:grid;place-items:center;color:var(--strike);font-family:var(--doc);font-weight:700;font-size:15px;line-height:1.1;text-align:center;transform:rotate(-4deg)}
+.top h1{font-size:26px;font-weight:700;letter-spacing:-.01em}
+.lede{margin:4px 0 0;color:var(--ink-2);max-width:72ch;font-size:14px}
+
+/* 접수대 */
+.intake{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:16px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px}
+@media (max-width:760px){.intake{grid-template-columns:minmax(0,1fr)}}
+.drop{position:relative;display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:132px;border:1.5px dashed var(--rule-2);border-radius:var(--r);padding:16px;cursor:pointer;background:var(--sheet-2);transition:border-color .15s,background .15s}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.drop strong{font-size:17px}
+.drop span{color:var(--ink-2);font-size:13px}
+.controls{display:flex;flex-direction:column;gap:12px;min-width:0}
+.lbl{font-size:12px;letter-spacing:.04em;color:var(--ink-3);font-weight:600}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--rule-2);background:var(--sheet);border-radius:999px;padding:5px 12px;font-size:13.5px;cursor:pointer}
+.seg button[aria-checked="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+details.opts summary{cursor:pointer;font-size:13.5px;color:var(--accent);font-weight:500}
+.optgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;margin-top:10px}
+@media (max-width:480px){.optgrid{grid-template-columns:minmax(0,1fr)}}
+.optgrid label{display:flex;flex-direction:column;gap:3px;font-size:12.5px;color:var(--ink-2)}
+.optgrid input{border:1px solid var(--rule-2);border-radius:5px;padding:6px 8px;background:var(--sheet);min-width:0}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px}
+.btn{border:1px solid var(--rule-2);background:var(--sheet);border-radius:5px;padding:6px 11px;font-size:13px;cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.primary:hover{background:var(--accent-hover);color:var(--accent-ink)}
+.btn:disabled{opacity:.5;cursor:default}
+.files{list-style:none;margin:0;padding:0;grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.files li{display:flex;align-items:center;gap:8px;border:1px solid var(--rule);border-radius:5px;padding:4px 6px 4px 10px;font-size:13px;background:var(--sheet-2);max-width:100%}
+.files li .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:260px}
+.files li button{border:0;background:none;cursor:pointer;color:var(--ink-3);padding:2px 6px}
+.note-sample{grid-column:1/-1;font-size:13px;color:var(--caut);background:var(--caut-soft);border-radius:5px;padding:6px 10px}
+
+/* 탭 */
+.tabs{display:flex;gap:4px;overflow-x:auto;margin:18px 0 0;border-bottom:1px solid var(--rule-2)}
+.tabs button{flex:none;border:1px solid transparent;border-bottom:0;background:none;padding:8px 14px;border-radius:6px 6px 0 0;cursor:pointer;font-size:14px;color:var(--ink-2);margin-bottom:-1px}
+.tabs button[aria-selected="true"]{background:var(--sheet);border-color:var(--rule-2);color:var(--ink);font-weight:600}
+.tabs .k{font-size:11.5px;color:var(--ink-3);margin-left:6px}
+
+/* 판독지 */
+.sheet{background:var(--sheet);border:1px solid var(--rule-2);border-top:0;border-radius:0 0 var(--r) var(--r);padding:0 0 8px}
+.secnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sheet);border-bottom:1px solid var(--rule);display:flex;gap:2px;overflow-x:auto;padding:6px 10px}
+.secnav button{flex:none;border:0;background:none;padding:4px 9px;font-size:13px;color:var(--ink-2);border-radius:4px;cursor:pointer}
+.secnav button:hover{background:var(--sheet-2);color:var(--ink)}
+.sec{padding:22px 22px 6px;border-bottom:1px solid var(--rule)}
+.sec:last-child{border-bottom:0}
+@media (max-width:560px){.sec{padding:18px 14px 4px}}
+.sec>header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:12px}
+.sec h2{font-size:18px;font-weight:700}
+.sec .sub{font-size:13px;color:var(--ink-3)}
+.empty{color:var(--ink-3);font-size:14px;padding:4px 0 14px}
+
+/* 개요 */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:5px;overflow:hidden}
+.meta>div{background:var(--sheet);padding:9px 12px;min-width:0}
+.meta dt{font-size:11.5px;color:var(--ink-3);letter-spacing:.04em}
+.meta dd{margin:2px 0 0;font-size:14px;overflow-wrap:anywhere}
+.verdict{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:16px 0 8px}
+.grade{font-size:20px;font-weight:700;padding:4px 14px;border-radius:5px}
+.g-critical{background:var(--crit-soft);color:var(--crit)} .g-high{background:var(--high-soft);color:var(--high)} .g-caution{background:var(--caut-soft);color:var(--caut)} .g-info{background:var(--info-soft);color:var(--info)}
+.counts{display:flex;gap:6px;flex-wrap:wrap}
+.headline{margin:6px 0 14px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.headline li{font-size:14.5px}
+
+/* 등급 꼬리표 */
+.tag{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;white-space:nowrap;line-height:1.6}
+.t-critical{background:var(--crit);color:#fff} .t-high{background:var(--high);color:#fff} .t-caution{background:var(--caut-soft);color:var(--caut);box-shadow:inset 0 0 0 1px var(--caut)} .t-info{background:var(--info-soft);color:var(--info)}
+:root[data-theme="dark"] .t-critical,:root[data-theme="dark"] .t-high{color:#1a0f0d}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .t-critical,:root:not([data-theme="light"]) .t-high{color:#1a0f0d}}
+.kind{font-size:11.5px;border:1px solid var(--rule-2);color:var(--ink-2);border-radius:4px;padding:0 6px}
+.kind.inf{border-style:dashed}
+
+/* 위험 순위 */
+.scen{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:sc}
+.scen>li{border:1px solid var(--rule);border-radius:5px;padding:12px 14px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 12px}
+.scen .no{font-family:var(--num);font-size:20px;color:var(--ink-3);line-height:1.2}
+.scen h3{font-size:15.5px;font-weight:600}
+.scen .chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px;align-items:center}
+.bar{position:relative;height:6px;width:120px;background:var(--sheet-2);border-radius:3px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--rule)}
+.bar>i{position:absolute;inset:0 auto 0 0;background:var(--accent)}
+.lk-높음{color:var(--crit);font-weight:600} .lk-중간{color:var(--high);font-weight:600} .lk-낮음{color:var(--ink-2)}
+.sig{margin:4px 0;padding-left:18px;font-size:13.5px}
+.sig li{margin:2px 0}
+.cons{font-size:13.5px;margin:6px 0 2px}
+.mit{font-size:13px;color:var(--ink-2)}
+.disclaim{font-size:12.5px;color:var(--ink-3);margin:8px 0 14px}
+
+/* 특이사항 */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.filters button{border:1px solid var(--rule-2);background:var(--sheet);border-radius:999px;padding:3px 10px;font-size:12.5px;cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--ink);font-weight:600}
+.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.flags>li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:4px 12px;padding:12px 0;border-top:1px solid var(--rule)}
+.flags>li:first-child{border-top:0}
+.flags h3{font-size:15px;font-weight:600;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.flags .det{font-size:13px;color:var(--ink-2);margin:2px 0}
+.flags .mean{font-size:14px;margin:4px 0}
+.quote{font-family:var(--doc);font-size:13.5px;background:var(--sheet-2);border-left:0;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;margin:6px 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.checks{margin:4px 0;padding-left:18px;font-size:13.5px;color:var(--ink-2)}
+details.basis{margin:4px 0 0;font-size:13px}
+details.basis summary{cursor:pointer;color:var(--accent);font-size:12.5px}
+details.basis ul{margin:6px 0 2px;padding-left:16px}
+details.basis li{margin:3px 0;color:var(--ink-2)}
+details.basis b{color:var(--ink);font-weight:600}
+.ref{border:0;background:none;padding:0 2px;font:inherit;font-family:var(--num);font-size:12.5px;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+
+/* 시간순 */
+.now{background:var(--accent-soft);border-radius:5px;padding:10px 14px;margin-bottom:14px;font-size:14.5px}
+.now p{margin:2px 0}
+.yr{display:grid;grid-template-columns:64px minmax(0,1fr);gap:0 14px}
+.yr+.yr{margin-top:6px}
+.yr>.y{font-family:var(--num);font-weight:500;color:var(--ink-2);padding-top:9px;font-size:14px}
+.ev{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule-2)}
+.ev li{position:relative;padding:7px 0 7px 16px;font-size:14.5px}
+.ev li::before{content:"";position:absolute;left:-6px;top:14px;width:10px;height:10px;border-radius:50%;background:var(--sheet);border:2px solid var(--ink-3)}
+.ev li.l-critical::before{border-color:var(--crit);background:var(--crit)} .ev li.l-high::before{border-color:var(--high)} .ev li.l-done::before{border-color:var(--rule-2)}
+.ev .d{font-family:var(--num);font-size:12.5px;color:var(--ink-3);margin-right:8px}
+.ev .src{font-size:11.5px;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;padding:0 5px;margin-right:6px}
+.ev li.gone .tx{text-decoration:line-through;text-decoration-color:var(--strike);text-decoration-thickness:1.5px;color:var(--ink-2)}
+.ev .cn{font-size:12px;color:var(--strike);margin-left:6px}
+.toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2);cursor:pointer}
+
+/* 표 */
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:5px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{background:var(--sheet-2);font-weight:600;font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.reg{font-family:var(--doc);white-space:pre-wrap;min-width:180px}
+tr.struck td.reg,tr.struck td.pp{text-decoration:line-through;text-decoration-color:var(--strike);text-decoration-thickness:1.5px;color:var(--ink-2)}
+tr.flash td{animation:fl 1.6s ease-out}
+@keyframes fl{0%{background:var(--caut-soft)}100%{background:transparent}}
+@media (prefers-reduced-motion: reduce){tr.flash td{animation:none;background:var(--caut-soft)}}
+.st{font-size:12px;font-weight:600;white-space:nowrap}
+.st-유효{color:var(--ok)} .st-말소{color:var(--strike)}
+.res{font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;white-space:nowrap}
+.r-소멸{background:var(--ok-soft);color:var(--ok)} .r-인수{background:var(--crit-soft);color:var(--crit)} .r-확인{background:var(--caut-soft);color:var(--caut)}
+
+/* 금액 */
+.money{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:12px}
+.money>div{border:1px solid var(--rule);border-radius:5px;padding:10px 12px}
+.money .v{font-family:var(--num);font-size:18px;font-weight:500}
+.money .k{font-size:12px;color:var(--ink-3)}
+.ratio{margin:6px 0 12px}
+.ratio .track{position:relative;height:10px;border-radius:5px;background:var(--sheet-2);box-shadow:inset 0 0 0 1px var(--rule);overflow:hidden}
+.ratio .track i{position:absolute;inset:0 auto 0 0}
+.ratio .lg{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);margin-top:3px}
+tr.hl td{background:var(--accent-soft);font-weight:600}
+
+/* 사해행위 */
+.fraud{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.fraud>li{border:1px solid var(--rule);border-radius:5px;padding:12px 14px}
+.fraud h3{font-size:15px;font-weight:600;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin-top:6px}
+@media (max-width:600px){.two{grid-template-columns:minmax(0,1fr)}}
+.two h4{margin:0 0 2px;font-size:12px;color:var(--ink-3);font-weight:600;letter-spacing:.03em}
+.two ul{margin:0;padding-left:18px;font-size:13.5px}
+.deadline{font-size:13px;margin-top:8px;color:var(--ink-2)}
+
+/* Claude */
+.ai{border:1px solid var(--rule-2);border-radius:5px;padding:14px}
+.ai .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ai .status{font-size:13px;color:var(--ink-2)}
+.ai-out h3{font-size:14px;margin:16px 0 6px;color:var(--ink-2);font-weight:600}
+.ai-out p{margin:4px 0;font-size:14.5px}
+.ai-out ul{margin:4px 0;padding-left:18px;font-size:14px}
+.ai-out .story{font-size:15px;line-height:1.75;background:var(--sheet-2);border-radius:5px;padding:10px 14px}
+.privacy{font-size:12.5px;color:var(--ink-3);margin-top:8px}
+
+.outside{columns:2 260px;padding-left:18px;margin:0 0 14px;font-size:14px}
+.outside li{break-inside:avoid;margin:2px 0}
+.rel{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:6px}
+.rel>div{border:1px solid var(--rule);border-radius:5px;padding:10px 12px;font-size:13.5px;min-width:0}
+.rel b{display:block;font-size:14.5px}
+.vision{border:1px solid var(--caut);background:var(--caut-soft);border-radius:5px;padding:14px;margin:18px 22px}
+footer{margin-top:18px;font-size:12.5px;color:var(--ink-3)}
+footer p{margin:3px 0;max-width:90ch}
+.spin{display:inline-block;width:12px;height:12px;border:2px solid var(--rule-2);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-1px}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.spin{animation:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="stamp" aria-hidden="true">등기<br>판독</div>
+    <div>
+      <h1>등기부 판독기</h1>
+      <p class="lede">등기사항증명서 PDF에서 표제부·갑구·을구를 복원해 특이사항, 위험 순위, 쉬운 시간순 설명, 사해행위 신호, 경매 권리분석을 정리합니다. 파일은 이 브라우저 안에서만 읽고, Claude 추론 버튼을 누를 때만 판독 결과가 Claude로 전달됩니다.</p>
+    </div>
+  </header>
+
+  <section class="intake" aria-label="등기부 넣기">
+    <label class="drop" id="drop">
+      <input type="file" id="file" multiple accept="application/pdf,.pdf,image/png,image/jpeg,image/webp">
+      <strong>등기부 PDF 넣기</strong>
+      <span>끌어다 놓거나 눌러서 선택합니다. 여러 건을 함께 넣으면 토지·건물, 같은 소유자의 다른 부동산을 교차 분석합니다. 스캔본·사진은 Claude 이미지 판독으로 읽습니다.</span>
+    </label>
+    <div class="controls">
+      <div>
+        <div class="lbl">검토 목적</div>
+        <div class="seg" role="radiogroup" id="purpose" aria-label="검토 목적">
+          <button type="button" role="radio" data-v="general">일반 검토</button>
+          <button type="button" role="radio" data-v="lease">전세·월세 계약</button>
+          <button type="button" role="radio" data-v="buy">매매(매수)</button>
+          <button type="button" role="radio" data-v="auction">경매 입찰</button>
+          <button type="button" role="radio" data-v="credit">담보·채권 회수</button>
+        </div>
+      </div>
+      <details class="opts" id="optsBox">
+        <summary>계약 정보 입력(선택): 상대방 이름, 보증금, 시세, 기준일</summary>
+        <div class="optgrid">
+          <label>계약 상대방 이름<input id="o-party" type="text" placeholder="예: 김가상" autocomplete="off"></label>
+          <label>보증금 또는 매매대금(만원)<input id="o-deposit" type="number" inputmode="numeric" min="0" placeholder="예: 25000"></label>
+          <label>시세 추정(만원)<input id="o-market" type="number" inputmode="numeric" min="0" placeholder="예: 40000"></label>
+          <label>판독 기준일<input id="o-base" type="date"></label>
+        </div>
+      </details>
+      <div class="btnrow" id="samples"></div>
+    </div>
+    <ul class="files" id="files"></ul>
+  </section>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="문서"></nav>
+  <main id="view"></main>
+
+  <footer>
+    <p>판독 결과는 등기부 문구를 규칙과 Claude로 해석한 참고 자료이며, 법률 자문이 아닙니다. 등기부에 나오지 않는 위험(전입한 선순위 임차인, 체납 세금, 유치권, 실제 대출 잔액)은 따로 확인해야 합니다.</p>
+    <p>해설에 붙인 조문·판례는 2026년 11월 15일 국가법령정보 원문으로 확인한 것만 실었습니다. 위험 점수와 비율 구간은 판독기 내부 기준이며 법령 기준이 아닙니다.</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"></script>
+<script>
+__ENGINE__
+</script>
+<script>
+(function () {
+'use strict';
+var SAMPLES = __SAMPLES__;
+var CMAPS = __CMAPS__;
+var $ = function (s, r) { return (r || document).querySelector(s); };
+var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+var LVL = DG.LV_LABEL, TL = DG.TYPE_LABEL;
+var store = { get: function (k, d) { try { var v = localStorage.getItem('dg:' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set: function (k, v) { try { localStorage.setItem('dg:' + k, JSON.stringify(v)); } catch (e) {} } };
+
+var state = { files: [], purpose: store.get('purpose', 'general'), active: null, ai: {}, sampleKey: '', filter: 'all', hideMinor: true, deep: false };
+var sample = null, sampleImages = false, uid = 0;
+
+/* pdf.js: 한글 CMap은 페이지에 내장해 둔다(외부 fetch 차단 환경) */
+var lib = window.pdfjsLib;
+function b64(s) { var bin = atob(s), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; }
+function CMapFactory() {}
+CMapFactory.prototype.fetch = function (o) {
+  var d = CMAPS[o.name];
+  if (!d) return Promise.reject(new Error('CMap 없음: ' + o.name));
+  return Promise.resolve({ cMapData: b64(d), compressionType: lib.CMapCompressionType.BINARY });
+};
+function openPdf(data) { return lib.getDocument({ data: data, isEvalSupported: false, CMapReaderFactory: CMapFactory, cMapUrl: 'cmaps/', cMapPacked: true, useSystemFonts: false }).promise; }
+
+/* ---------------- 입력 ---------------- */
+function opts() {
+  var n = function (id) { var v = parseFloat($(id).value); return isFinite(v) && v > 0 ? Math.round(v * 10000) : 0; };
+  return { purpose: state.purpose, baseDate: $('#o-base').value || DGtoday(), partyName: $('#o-party').value.trim(), deposit: n('#o-deposit'), marketPrice: n('#o-market') };
+}
+function DGtoday() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+
+function setPurpose(v) {
+  state.purpose = v; store.set('purpose', v);
+  Array.prototype.forEach.call(document.querySelectorAll('#purpose button'), function (b) { b.setAttribute('aria-checked', String(b.dataset.v === v)); });
+  reanalyze();
+}
+$('#purpose').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) setPurpose(b.dataset.v); });
+['#o-party', '#o-deposit', '#o-market', '#o-base'].forEach(function (id) { $(id).addEventListener('change', reanalyze); });
+
+var drop = $('#drop');
+['dragenter', 'dragover'].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+['dragleave', 'drop'].forEach(function (t) { drop.addEventListener(t, function () { drop.classList.remove('over'); }); });
+drop.addEventListener('drop', function (e) { e.preventDefault(); addFiles(e.dataTransfer.files); });
+$('#file').addEventListener('change', function (e) { addFiles(e.target.files); e.target.value = ''; });
+
+function clearSample() { if (state.sampleKey) { state.files = []; state.sampleKey = ''; state.ai = {}; } }
+
+function addFiles(list) {
+  clearSample();
+  Array.prototype.forEach.call(list, function (file) {
+    var f = { id: 'd' + (++uid), name: uniqueName(file.name.replace(/\.(pdf|png|jpe?g|webp)$/i, '')), status: 'reading', note: '읽는 중', file: file, isImage: /^image\//.test(file.type) };
+    state.files.push(f);
+    if (!state.active || state.active === 'multi') state.active = f.id;
+    read(f);
+  });
+  render();
+}
+function uniqueName(n) { var base = n || '등기부', k = 1, out = base; while (state.files.some(function (f) { return f.name === out; })) out = base + ' (' + (++k) + ')'; return out; }
+
+function read(f) {
+  if (f.isImage) { f.status = 'vision'; f.note = '이미지: Claude 판독 필요'; render(); return; }
+  f.file.arrayBuffer().then(function (buf) {
+    f.bytes = new Uint8Array(buf);
+    return DG.extractPdf({ getDocument: function (o) { return { promise: openPdf(o.data) }; }, Util: lib.Util, OPS: lib.OPS }, f.bytes.slice(), function (p, n) { f.note = p + '/' + n + '쪽 읽는 중'; renderFiles(); });
+  }).then(function (ex) {
+    f.pageCount = ex.pages.length;
+    if (ex.chars < 30 * ex.pages.length) { f.status = 'vision'; f.note = '글자 없는 스캔본: Claude 판독 필요'; render(); return; }
+    f.pages = ex.pages; f.doc = DG.parseDocument(ex.pages); f.status = 'ok'; f.note = ex.pages.length + '쪽';
+    if (!f.doc.gap.length && !f.doc.eul.length && !f.doc.pyoje.length) { f.status = 'vision'; f.note = '표를 찾지 못함: Claude 판독 권장'; }
+    analyzeOne(f); render();
+  }).catch(function (err) {
+    f.status = 'error'; f.note = /password/i.test(String(err && err.name)) ? '암호가 걸린 PDF입니다' : 'PDF를 열지 못했습니다'; render();
+  });
+}
+
+function analyzeOne(f) { if (f.doc) { try { f.rep = DG.analyze(f.doc, opts()); } catch (e) { console.error(e); f.status = 'error'; f.note = '분석 중 오류: ' + e.message; } } }
+function reanalyze() { state.files.forEach(analyzeOne); render(); }
+
+/* ---------------- 예시 ---------------- */
+function inflate(p) {
+  return { n: p.n, w: p.w, h: p.h, items: p.items.map(function (a) { return { s: a[0], x: a[1], y: a[2], w: a[3], h: a[4] }; }),
+    segs: { strikes: p.segs.strikes.map(function (a) { return { x1: a[0], x2: a[1], y: a[2] }; }), hl: p.segs.hl.map(function (a) { return { x1: a[0], x2: a[1], y: a[2] }; }), vl: p.segs.vl.map(function (a) { return { x: a[0], y1: a[1], y2: a[2] }; }) } };
+}
+function loadSample(key) {
+  var s = SAMPLES.filter(function (x) { return x.key === key; })[0]; if (!s) return;
+  state.files = []; state.ai = {}; state.sampleKey = key;
+  if (key === 'apt' && !$('#o-base').value) {}
+  s.docs.forEach(function (d) {
+    var pages = d.pages.map(inflate);
+    var f = { id: 'd' + (++uid), name: d.name, status: 'ok', note: pages.length + '쪽 · 예시', pages: pages, doc: DG.parseDocument(pages), sample: true };
+    analyzeOne(f); state.files.push(f);
+  });
+  state.active = state.files.length > 1 ? 'multi' : state.files[0].id;
+  render();
+}
+$('#samples').innerHTML = SAMPLES.map(function (s) { return '<button type="button" class="btn" data-k="' + esc(s.key) + '">' + esc(s.label) + '</button>'; }).join('') + '<button type="button" class="btn" id="reset">비우기</button>';
+$('#samples').addEventListener('click', function (e) {
+  var b = e.target.closest('button'); if (!b) return;
+  if (b.id === 'reset') { state.files = []; state.ai = {}; state.sampleKey = ''; state.active = null; render(); return; }
+  loadSample(b.dataset.k);
+});
+
+/* ---------------- 그리기 ---------------- */
+function renderFiles() {
+  var ul = $('#files');
+  var html = state.files.map(function (f) {
+    return '<li><span class="nm" title="' + esc(f.name) + '">' + esc(f.name) + '</span><span class="faint">' + (f.status === 'reading' ? '<span class="spin" aria-hidden="true"></span> ' : '') + esc(f.note || '') + '</span>' + (f.sample ? '' : '<button type="button" data-rm="' + f.id + '" aria-label="' + esc(f.name) + ' 빼기">×</button>') + '</li>';
+  }).join('');
+  if (state.sampleKey) html += '<li class="note-sample" style="border:0">지금 보이는 것은 가상의 예시 등기부입니다. 실제 등기부 PDF를 넣으면 예시는 사라집니다.</li>';
+  ul.innerHTML = html;
+}
+$('#files').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-rm]'); if (!b) return;
+  state.files = state.files.filter(function (f) { return f.id !== b.dataset.rm; });
+  if (state.active === b.dataset.rm) state.active = state.files[0] ? state.files[0].id : null;
+  render();
+});
+
+function ready() { return state.files.filter(function (f) { return f.status === 'ok' && f.rep; }); }
+function renderTabs() {
+  var r = ready(), tabs = [];
+  if (r.length >= 2) tabs.push({ id: 'multi', label: '종합', k: r.length + '건 교차' });
+  state.files.forEach(function (f) { tabs.push({ id: f.id, label: f.name, k: f.doc ? (f.doc.kind || '') : f.status === 'vision' ? '판독 필요' : '' }); });
+  if (state.active && !tabs.some(function (t) { return t.id === state.active; })) state.active = tabs[0] ? tabs[0].id : null;
+  if (!state.active && tabs[0]) state.active = tabs[0].id;
+  $('#tabs').innerHTML = tabs.map(function (t) { return '<button type="button" role="tab" aria-selected="' + (t.id === state.active) + '" data-t="' + t.id + '">' + esc(t.label) + (t.k ? '<span class="k">' + esc(t.k) + '</span>' : '') + '</button>'; }).join('');
+}
+$('#tabs').addEventListener('click', function (e) { var b = e.target.closest('[data-t]'); if (!b) return; state.active = b.dataset.t; render(); window.scrollTo({ top: $('#tabs').offsetTop - 8 }); });
+
+function render() {
+  renderFiles(); renderTabs();
+  var v = $('#view');
+  if (!state.files.length) { v.innerHTML = '<div class="sheet" style="border-top:1px solid var(--rule-2);border-radius:var(--r)"><div class="sec"><p class="empty">등기부 PDF를 넣거나 위의 예시를 눌러 보십시오.</p></div></div>'; return; }
+  if (state.active === 'multi') { v.innerHTML = renderMulti(); return; }
+  var f = state.files.filter(function (x) { return x.id === state.active; })[0];
+  if (!f) { v.innerHTML = ''; return; }
+  v.innerHTML = renderDoc(f);
+}
+
+/* 공통 조각 */
+function tag(level) { return '<span class="tag t-' + level + '">' + esc(LVL[level] || level) + '</span>'; }
+function kindTag(k) { return '<span class="kind' + (k === '추론' ? ' inf' : '') + '">' + esc(k) + '</span>'; }
+function basisHTML(ids) {
+  var list = (ids || []).map(DG.basisOf).filter(Boolean);
+  if (!list.length) return '';
+  return '<details class="basis"><summary>근거 ' + list.length + '건</summary><ul>' + list.map(function (b) { return '<li><b>' + esc(b.cite) + '</b> ' + esc(b.text) + '</li>'; }).join('') + '</ul></details>';
+}
+function refBtn(fid, sec, rank) { return '<button type="button" class="ref" data-ref="' + fid + '-' + sec + '-' + esc(rank) + '">' + (sec === 'gap' ? '갑' : '을') + esc(rank) + '</button>'; }
+function refText(fid, txt) {
+  return esc(txt).replace(/(갑|을)(\d+(?:-\d+)?)/g, function (m, s, r) { return '<button type="button" class="ref" data-ref="' + fid + '-' + (s === '갑' ? 'gap' : 'eul') + '-' + r + '">' + s + r + '</button>'; });
+}
+function secHead(id, title, sub) { return '<header><h2 id="' + id + '">' + esc(title) + '</h2>' + (sub ? '<span class="sub">' + sub + '</span>' : '') + '</header>'; }
+function secNav(items) { return '<nav class="secnav" aria-label="이 문서 안에서 이동">' + items.map(function (i) { return '<button type="button" data-go="' + i[0] + '">' + esc(i[1]) + '</button>'; }).join('') + '</nav>'; }
+document.addEventListener('click', function (e) {
+  var g = e.target.closest('[data-go]');
+  if (g) { var t = document.getElementById(g.dataset.go); if (t) { var y = t.getBoundingClientRect().top + window.scrollY - 54; window.scrollTo({ top: y, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); } return; }
+  var r = e.target.closest('[data-ref]');
+  if (r) {
+    var id = 'row-' + r.dataset.ref, row = document.getElementById(id);
+    if (!row) { var parts = r.dataset.ref.split('-'); if (state.active === 'multi') { state.active = parts[0]; render(); row = document.getElementById(id); } }
+    if (row) { row.scrollIntoView({ block: 'center' }); row.classList.remove('flash'); void row.offsetWidth; row.classList.add('flash'); }
+  }
+});
+
+/* ---------------- 문서 한 건 ---------------- */
+function renderDoc(f) {
+  if (f.status === 'reading') return '<div class="sheet" style="border-top:1px solid var(--rule-2)"><div class="sec"><p class="empty"><span class="spin"></span> ' + esc(f.note) + '</p></div></div>';
+  if (f.status === 'error') return '<div class="sheet" style="border-top:1px solid var(--rule-2)"><div class="sec"><p class="empty">' + esc(f.note) + '. 다른 파일을 넣어 보십시오.</p></div></div>';
+  if (f.status === 'vision') return '<div class="sheet" style="border-top:1px solid var(--rule-2)">' + visionBox(f) + '</div>';
+  var d = f.doc, r = f.rep;
+  var nav = [['s-sum-' + f.id, '요약'], ['s-scen-' + f.id, '위험 순위'], ['s-flag-' + f.id, '특이사항'], ['s-story-' + f.id, '시간순'], ['s-fraud-' + f.id, '사해행위'], ['s-auc-' + f.id, '경매 권리분석'], ['s-money-' + f.id, '금액'], ['s-raw-' + f.id, '등기 원문'], ['s-ai-' + f.id, 'Claude 추론']];
+  if (r.purpose === 'auction') { nav.splice(2, 0, nav.splice(5, 1)[0]); }
+  var secs = {
+    sum: secSummary(f), scen: secScenarios(f.id, r.scenarios, '위험 순위', '가능성과 피해 크기를 함께 따져 큰 것부터'), flag: secFlags(f), story: secStory(f.id, r.story, null),
+    fraud: secFraud(f), auc: secAuction(f), money: secMoney(f), raw: secRaw(f), ai: secAI(f.id, 'doc')
+  };
+  var order = r.purpose === 'auction' ? ['sum', 'scen', 'auc', 'flag', 'story', 'fraud', 'money', 'raw', 'ai'] : ['sum', 'scen', 'flag', 'story', 'fraud', 'auc', 'money', 'raw', 'ai'];
+  return '<div class="sheet">' + secNav(nav) + order.map(function (k) { return secs[k]; }).join('') + '</div>';
+}
+
+function secSummary(f) {
+  var d = f.doc, r = f.rep, viewed = d.viewedAtText || '찾지 못함';
+  var owners = r.owners.map(function (o) { return esc(o.name) + (o.share && o.share !== '단독소유' ? ' <span class="faint">' + esc(o.share) + '</span>' : ''); }).join(', ') || '찾지 못함';
+  var meta = [
+    ['종류', esc(d.kind || '미상') + (d.partial ? ' · 일부증명서' : '') + (d.viewOnly ? ' · 열람용' : '') + (d.vision ? ' · 이미지 판독' : '')],
+    ['소재지', esc(d.address || '찾지 못함')],
+    ['고유번호', '<span class="num">' + esc(d.uniqueNo || '-') + '</span>'],
+    ['열람·발급 일시', esc(viewed)],
+    ['현재 소유자', owners + ' <span class="faint">(' + esc(r.ownersSrc) + ')</span>'],
+    ['용도·면적·대지권', esc([r.use, r.area ? r.area + '㎡' : '', r.daejiType, r.daejiRatio].filter(Boolean).join(' · ') || '-')],
+    ['판독 상태', '갑구 ' + r.stats.gap + '건 · 을구 ' + r.stats.eul + '건 · 말소 ' + r.stats.cancelled + '건' + (r.stats.strikes ? ' (말소 실선 ' + r.stats.strikes + '건 감지)' : '') + (r.stats.summary ? ' · 요약표 대조' : '')]
+  ];
+  var top = r.flags.filter(function (x) { return x.level === 'critical' || x.level === 'high'; }).slice(0, 4);
+  var c = r.counts;
+  return '<section class="sec" aria-labelledby="s-sum-' + f.id + '">' + secHead('s-sum-' + f.id, '판독 요약', esc(r.purposeLabel) + ' 관점 · 기준일 ' + esc(r.base)) +
+    '<dl class="meta">' + meta.map(function (m) { return '<div><dt>' + m[0] + '</dt><dd>' + m[1] + '</dd></div>'; }).join('') + '</dl>' +
+    '<div class="verdict"><span class="grade g-' + r.grade + '">' + esc(r.gradeLabel) + '</span><span class="counts">' + ['critical', 'high', 'caution', 'info'].map(function (l) { return c[l] ? tag(l) + '<span class="num">' + c[l] + '</span>' : ''; }).join(' ') + '</span>' +
+    '<button type="button" class="btn" data-copy="' + f.id + '">판독 결과 복사</button></div>' +
+    (top.length ? '<ul class="headline">' + top.map(function (x) { return '<li>' + tag(x.level) + ' ' + esc(x.title) + '</li>'; }).join('') + '</ul>' : '<p class="muted">위험·높음 등급 특이사항은 없습니다. 등기부 밖 위험은 아래 확인 목록을 보십시오.</p>') +
+    '<p class="lbl" style="margin-top:14px">등기부 밖에서 확인할 것</p><ul class="outside">' + r.outside.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ul>' +
+    (r.purpose === 'lease' ? basisHTML(['tenancy_opposability', 'priority_repay', 'tenancy_info', 'lessor_info']) : '') + '</section>';
+}
+
+function secScenarios(fid, list, title, sub, multi) {
+  var id = 's-scen-' + fid;
+  if (!list || !list.length) return '<section class="sec">' + secHead(id, title, sub) + '<p class="empty">등기부 기준으로 점수가 매겨진 위험 시나리오가 없습니다.</p></section>';
+  return '<section class="sec">' + secHead(id, title, esc(sub)) + '<ol class="scen">' + list.map(function (s, i) {
+    return '<li><span class="no">' + (i + 1) + '</span><div><h3>' + esc(s.title) + (multi && s.doc ? ' <span class="faint" style="font-weight:400;font-size:13px">' + esc(s.doc) + '</span>' : '') + '</h3>' +
+      '<div class="chips">가능성 <span class="lk-' + s.likelihood + '">' + s.likelihood + '</span><span class="bar" role="img" aria-label="점수 ' + s.score + '"><i style="width:' + s.score + '%"></i></span><span class="num faint">' + s.score + '</span> · 피해 <b>' + esc(s.impact) + '</b></div>' +
+      '<ul class="sig">' + s.signals.map(function (g) { return '<li>' + esc(g.text) + (g.ref ? ' ' + refText(fid === 'multi' ? docIdByName(s.doc) : fid, g.ref) : '') + '</li>'; }).join('') + '</ul>' +
+      '<p class="cons">그렇게 되면: ' + esc(s.consequence) + '</p><p class="mit">확인할 것: ' + esc((s.mitigate || []).join(', ')) + '</p></div></li>';
+  }).join('') + '</ol><p class="disclaim">점수는 등기부에 나타난 신호를 더한 판독기 내부 점수입니다. 확률이 아니며, 등기부 밖 사정에 따라 크게 달라질 수 있습니다.</p></section>';
+}
+
+function secFlags(f) {
+  var r = f.rep, flt = state.filter;
+  var list = r.flags.filter(function (x) { return flt === 'all' || x.level === flt || (flt === '추론' && x.kind === '추론'); });
+  var fb = [['all', '전체 ' + r.flags.length], ['critical', '위험'], ['high', '높음'], ['caution', '주의'], ['info', '참고'], ['추론', '추론만']];
+  return '<section class="sec">' + secHead('s-flag-' + f.id, '특이사항', '사실은 등기부에 적힌 그대로, 추론은 여러 등기를 엮어 읽은 것') +
+    '<div class="filters" data-filter-for="' + f.id + '">' + fb.map(function (b) { return '<button type="button" aria-pressed="' + (flt === b[0]) + '" data-f="' + b[0] + '">' + esc(b[1]) + '</button>'; }).join('') + '</div>' +
+    (list.length ? '<ul class="flags">' + list.map(function (x) {
+      return '<li>' + '<div>' + tag(x.level) + '</div><div><h3>' + esc(x.title) + ' ' + kindTag(x.kind) + ' ' + (x.entries || []).map(function (e) { return refBtn(f.id, e.sec, e.rank); }).join('') + '</h3>' +
+        (x.detail ? '<p class="det">' + esc(x.detail) + '</p>' : '') + (x.meaning ? '<p class="mean">' + esc(x.meaning) + '</p>' : '') +
+        (x.quote ? '<details><summary class="faint" style="font-size:12.5px;cursor:pointer">등기 원문 보기</summary><div class="quote">' + esc(x.quote) + '</div></details>' : '') +
+        (x.check && x.check.length ? '<ul class="checks">' + x.check.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul>' : '') + basisHTML(x.basis) + '</div></li>';
+    }).join('') + '</ul>' : '<p class="empty">이 조건에 맞는 항목이 없습니다.</p>') + '</section>';
+}
+document.addEventListener('click', function (e) { var b = e.target.closest('[data-f]'); if (!b) return; state.filter = b.dataset.f; render(); var t = document.getElementById('s-flag-' + state.active); if (t) t.scrollIntoView(); });
+
+function secStory(fid, story, multiTimeline) {
+  var events = multiTimeline ? multiTimeline.map(function (t) { return Object.assign({ doc: t.doc }, t.ev); }) : story.events;
+  var shown = events.filter(function (e) { return !(state.hideMinor && e.minor); });
+  var years = [];
+  shown.forEach(function (e) { var y = e.year || '연도 미상'; var g = years[years.length - 1]; if (!g || g.y !== y) years.push(g = { y: y, list: [] }); g.list.push(e); });
+  var now = story ? '<div class="now">' + story.now.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + '</div>' : '';
+  return '<section class="sec">' + secHead('s-story-' + fid, '쉬운 시간순 설명', '접수 순서대로, 법률 용어를 풀어서') + now +
+    '<label class="toggle"><input type="checkbox" data-minor ' + (state.hideMinor ? 'checked' : '') + '> 주소 변경 같은 사소한 등기 숨기기</label>' +
+    '<div style="margin-top:10px">' + years.map(function (g) {
+      return '<div class="yr"><div class="y">' + esc(g.y) + '</div><ul class="ev">' + g.list.map(function (e) {
+        var fidE = e.doc ? docIdByName(e.doc) : fid;
+        return '<li class="l-' + e.level + (e.cancelled ? ' gone' : '') + '"><span class="d">' + esc(e.date ? e.date.slice(5).replace('-', '.') : '') + '</span>' + (e.doc ? '<span class="src">' + esc(e.doc) + '</span>' : '') + refBtn(fidE, e.sec, e.rank) + ' <span class="tx">' + esc(e.text) + '</span>' + (e.cancelNote ? '<span class="cn">' + esc(e.cancelNote) + '</span>' : '') + '</li>';
+      }).join('') + '</ul></div>';
+    }).join('') + '</div></section>';
+}
+function docIdByName(n) { var f = state.files.filter(function (x) { return x.name === n; })[0]; return f ? f.id : ''; }
+document.addEventListener('change', function (e) { if (e.target.matches('[data-minor]')) { state.hideMinor = e.target.checked; render(); } });
+
+function addYears(d, n) { if (!d) return ''; var p = d.split('-'); return (+p[0] + n) + '-' + p[1] + '-' + p[2]; }
+function secFraud(f) {
+  var r = f.rep, list = r.fraud.filter(function (c) { return c.score >= 20; });
+  var intro = '<p class="muted" style="margin:0 0 12px;font-size:14px">채무가 많은 사람이 재산을 넘기거나 일부 채권자에게만 담보를 잡혀 다른 채권자가 돈을 받기 어려워지면, 채권자는 그 행위를 취소하라고 법원에 청구할 수 있습니다. 등기부로는 채무초과 여부와 당사자가 그 사정을 알았는지를 알 수 없으므로, 아래는 신호와 반대 사정만 보여 줍니다.</p>';
+  if (!list.length) return '<section class="sec">' + secHead('s-fraud-' + f.id, '사해행위 가능성') + intro + '<p class="empty">등기부에서 사해행위로 볼 만한 신호를 찾지 못했습니다.</p>' + basisHTML(['fraud_406']) + '</section>';
+  return '<section class="sec">' + secHead('s-fraud-' + f.id, '사해행위 가능성', '신호 점수 순') + intro + '<ul class="fraud">' + list.map(function (c) {
+    var lvl = c.direct ? 'critical' : c.score >= 60 ? 'high' : c.score >= 30 ? 'caution' : 'info';
+    var dl = addYears(c.act.date, 5), left = dl ? Math.round((Date.parse(dl) - Date.parse(r.base)) / 86400000) : null;
+    return '<li><h3>' + tag(lvl) + esc(c.kind) + ' ' + refBtn(f.id, c.act.sec, c.act.rank) + (c.direct ? ' <span class="kind">사실: 사해행위취소 가처분</span>' : ' ' + kindTag('추론')) + '<span class="faint num" style="font-weight:400">신호 ' + c.score + '</span></h3>' +
+      (c.from.length || c.to.length ? '<p class="det muted" style="margin:2px 0;font-size:13px">' + esc(c.from.join(', ') || '?') + ' → ' + esc(c.to.join(', ') || '?') + ' · ' + esc(c.act.date || '') + '</p>' : '') +
+      '<div class="two"><div><h4>신호</h4><ul>' + c.signals.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div><div><h4>반대 사정·한계</h4><ul>' + (c.counter.length ? c.counter : ['등기부만으로는 반대 사정을 알 수 없음']).map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div></div>' +
+      '<p class="mean" style="font-size:14px;margin:8px 0 4px">' + esc(c.meaning) + '</p>' +
+      (dl ? '<p class="deadline">법률행위가 있은 날부터 5년: <span class="num">' + esc(dl) + '</span>' + (left != null ? (left >= 0 ? ' (기준일부터 ' + left + '일 남음)' : ' (지남)') : '') + '. 채권자가 취소원인을 안 날부터 1년이 먼저 끝날 수 있습니다.</p>' : '') +
+      '<ul class="checks">' + c.check.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' + basisHTML(c.basis) + '</li>';
+  }).join('') + '</ul></section>';
+}
+
+function secAuction(f) {
+  var r = f.rep, a = r.auction, b = a.base;
+  var head = secHead('s-auc-' + f.id, '경매 권리분석', '매각으로 소멸하는 권리와 매수인이 떠안을 수 있는 권리');
+  var baseCard = b ? '<p style="margin:0 0 10px;font-size:14.5px">기준 등기: ' + refBtn(f.id, b.sec, b.rank) + ' <b>' + esc(TL[b.type]) + '</b> <span class="num">' + esc(b.date || '') + '</span>. 가장 앞선 저당권·압류·가압류·담보가등기·경매개시결정입니다(실무에서 말소기준권리라고 부르는 기준). 이보다 뒤의 권리는 대체로 소멸하고, 앞선 전세권·임차권·지상권·가처분·가등기는 매수인에게 남을 수 있습니다.</p>' : '<p style="margin:0 0 10px">기준이 될 저당권·압류·가압류가 없습니다.</p>';
+  var rows = a.rows.map(function (x) {
+    var cls = /소멸/.test(x.result) ? 'r-소멸' : /인수/.test(x.result) ? 'r-인수' : 'r-확인';
+    return '<tr><td>' + refBtn(f.id, x.e.sec, x.e.rank) + (x.isBase ? ' <span class="kind">기준</span>' : '') + '</td><td>' + esc(x.label) + '</td><td class="num">' + esc(x.e.date || '') + '</td><td class="num">' + (x.amount ? esc(DG.won(x.amount)) : '') + '</td><td><span class="res ' + cls + '">' + esc(x.result) + '</span></td><td>' + esc(x.reason) + basisHTML(x.basis) + '</td></tr>';
+  }).join('');
+  return '<section class="sec">' + head + baseCard + (a.rows.length ? '<div class="tbl"><table><thead><tr><th>순위</th><th>권리</th><th>접수일</th><th>금액</th><th>매각 시</th><th>이유</th></tr></thead><tbody>' + rows + '</tbody></table></div>' : '<p class="empty">남아 있는 권리가 없습니다.</p>') +
+    (a.takeover ? '<p style="margin:10px 0 0">등기부상 인수 가능 금액(전세금·임차보증금): <b class="num">' + esc(DG.won(a.takeover)) + '</b></p>' : '') +
+    '<ul class="checks" style="margin-top:10px">' + a.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('') + '</ul>' + basisHTML(a.noteBasis.concat(['sale_mortgage', 'sale_other', 'sale_take'])) + '</section>';
+}
+
+function secMoney(f) {
+  var r = f.rep, m = r.money, cells = [['유효 근저당 채권최고액 합계', m.mortSum, m.mortCount + '건'], ['전세권 전세금', m.jeonSum, ''], ['등기된 임차보증금', m.leaseSum, ''], ['가압류 청구금액 합계', m.attSum, ''], ['압류', null, m.seizureCount + '건']];
+  var html = '<div class="money">' + cells.map(function (c) { return '<div><div class="k">' + esc(c[0]) + '</div><div class="v">' + (c[1] != null ? esc(DG.won(c[1]) || '0원') : esc(c[2])) + '</div>' + (c[1] != null && c[2] ? '<div class="k">' + esc(c[2]) + '</div>' : '') + '</div>'; }).join('') + '</div>';
+  if (m.ratio != null) {
+    var pct = Math.round(m.ratio * 100), sp = Math.min(100, Math.round(m.ratioSenior * 100));
+    html += '<div class="ratio"><p style="margin:0 0 4px;font-size:14px">등기부상 선순위 부담' + (m.deposit ? '과 보증금' : '') + ' 합계가 입력한 시세의 <b class="num">' + pct + '%</b>입니다.</p><div class="track" role="img" aria-label="시세 대비 ' + pct + '%"><i style="width:' + sp + '%;background:var(--high)"></i><i style="left:' + sp + '%;width:' + Math.max(0, Math.min(100, pct) - sp) + '%;background:var(--accent)"></i></div><div class="lg"><span>선순위 ' + sp + '%</span><span>' + (m.deposit ? '보증금 포함 ' + pct + '%' : '') + '</span><span>시세 100%</span></div></div>';
+  } else html += '<p class="muted" style="font-size:13.5px">위 계약 정보에 시세와 보증금을 넣으면 시세 대비 부담 비율을 계산합니다.</p>';
+  html += basisHTML(['mortgage_max', 'rank_order', 'sub_rank']);
+  if (r.purpose === 'lease' || r.purpose === 'auction' || r.purpose === 'credit') {
+    var st = r.smallTenant, t = st.table;
+    html += '<h3 style="font-size:15px;margin:18px 0 6px">소액임차인 최우선변제 기준표</h3>';
+    if (st.before2014) html += '<p class="muted" style="font-size:13.5px">가장 앞선 담보물권 설정일(' + esc(st.earliest) + ')이 2014년 이전이어서 이 판독기에 실린 기준표로는 판단할 수 없습니다. 당시 기준을 따로 확인하십시오.</p>';
+    else if (t) {
+      html += '<p class="muted" style="font-size:13.5px;margin:0 0 6px">' + (st.earliest ? '가장 앞선 담보물권 설정일 ' + esc(st.earliest) + ' 기준으로, ' : '담보물권이 없어 현행 기준으로, ') + '<b>' + esc(t.from) + (t.to ? ' ~ ' + esc(t.to) : ' 이후') + '</b> 시행 기준표를 따질 수 있습니다.' + (st.seoul ? ' 소재지가 서울특별시여서 첫 줄을 강조했습니다.' : ' 지역 구분(과밀억제권역 등)은 직접 확인하십시오.') + '</p>';
+      html += '<div class="tbl"><table><thead><tr><th>지역</th><th>소액임차인 보증금(이하)</th><th>최우선변제 금액(이하)</th></tr></thead><tbody>' + t.rows.map(function (row, i) { return '<tr' + (st.seoul && i === 0 ? ' class="hl"' : '') + '><td>' + esc(row[0]) + '</td><td class="num">' + esc(row[1]) + '</td><td class="num">' + esc(row[2]) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+      html += basisHTML(['small_tenant', 'small_tenant_rule'].concat(f.rep.flags.some(function (x) { return x.id === 'lease_reg'; }) ? ['lease_order_small'] : []).concat(r.purpose === 'lease' ? ['tax_lease_special', 'tax_prev_owner'] : []));
+    }
+  }
+  return '<section class="sec">' + secHead('s-money-' + f.id, '금액 정리', '채권최고액은 한도이며 실제 잔액이 아닙니다') + html + '</section>';
+}
+
+function secRaw(f) {
+  var d = f.doc;
+  function rows(list, sec) {
+    if (!list.length) return '<tr><td colspan="6" class="faint">' + (d.empty[sec] ? '기록사항 없음' : '읽은 항목 없음') + '</td></tr>';
+    return list.map(function (e) {
+      return '<tr id="row-' + f.id + '-' + sec + '-' + esc(e.rank) + '" class="' + (e.cancelled && e.type !== 'cancel' ? 'struck' : '') + '"><td class="num">' + esc(e.rank) + '</td><td><span class="st st-' + e.status + '">' + esc(e.status) + '</span>' + (e.statusWhy ? '<div class="faint" style="font-size:11.5px">' + esc(e.statusWhy) + '</div>' : '') + '</td><td class="pp">' + esc(DG.oneLine(e.purpose)) + '</td><td class="num" style="white-space:pre-line">' + esc(e.receipt) + '</td><td style="white-space:pre-line">' + esc(e.cause) + '</td><td class="reg">' + esc(e.holder) + '</td></tr>';
+    }).join('');
+  }
+  var head = '<thead><tr><th>순위</th><th>상태</th><th>등기목적</th><th>접수</th><th>등기원인</th><th>권리자 및 기타사항</th></tr></thead>';
+  return '<section class="sec">' + secHead('s-raw-' + f.id, '등기 원문(판독 결과)', '말소된 칸은 등기부처럼 빨간 줄로 표시') +
+    (d.pyojeText ? '<details style="margin-bottom:10px"><summary style="cursor:pointer;font-size:13.5px;color:var(--accent)">표제부 보기</summary><div class="quote">' + esc(d.pyojeText) + '</div></details>' : '') +
+    '<h3 style="font-size:14.5px;margin:8px 0 6px">갑구 · 소유권에 관한 사항</h3><div class="tbl"><table>' + head + '<tbody>' + rows(d.gap, 'gap') + '</tbody></table></div>' +
+    '<h3 style="font-size:14.5px;margin:16px 0 6px">을구 · 소유권 이외의 권리에 관한 사항</h3><div class="tbl"><table>' + head + '<tbody>' + rows(d.eul, 'eul') + '</tbody></table></div>' +
+    '<p class="disclaim">판독 결과가 원본과 다르면 원본이 우선합니다. 말소 여부는 말소등기 기재, 빨간 실선, 주요 등기사항 요약을 차례로 대조해 정했습니다.</p></section>';
+}
+
+/* ---------------- 종합 ---------------- */
+function multiItems() { return ready().map(function (f) { return { name: f.name, doc: f.doc, rep: f.rep, fid: f.id }; }); }
+function renderMulti() {
+  var items = multiItems();
+  if (items.length < 2) return '<div class="sheet"><div class="sec"><p class="empty">판독이 끝난 등기부가 2건 이상이면 종합 분석이 열립니다.</p></div></div>';
+  var m = DG.analyzeMulti(items, opts());
+  state.lastMulti = { items: items, m: m };
+  var nav = [['s-rel-multi', '문서 관계'], ['s-cross-multi', '교차 특이사항'], ['s-scen-multi', '통합 위험 순위'], ['s-story-multi', '통합 시간순'], ['s-ai-multi', 'Claude 종합 추론']];
+  var rel = '<section class="sec">' + secHead('s-rel-multi', '문서 관계', '같은 지번·같은 소유자·같은 채권자·공동담보로 연결') + '<div class="rel">' + items.map(function (it) {
+    return '<div><b>' + esc(it.name) + '</b><span class="faint">' + esc(it.doc.kind || '') + ' · 지번 ' + esc(it.jibun || '-') + '</span><br>' + esc(it.doc.address || '') + '<br>소유자 ' + esc(it.rep.owners.map(function (o) { return o.name; }).join(', ') || '-') + '<br><span class="grade g-' + it.rep.grade + '" style="font-size:12.5px;padding:1px 8px;display:inline-block;margin-top:4px">' + esc(it.rep.gradeLabel) + '</span></div>';
+  }).join('') + '</div></section>';
+  var cross = '<section class="sec">' + secHead('s-cross-multi', '교차 특이사항', '한 건씩 볼 때는 보이지 않는 연결') + (m.findings.length ? '<ul class="flags">' + m.findings.map(function (x) {
+    return '<li><div>' + tag(x.level) + '</div><div><h3>' + esc(x.title) + ' ' + kindTag(x.kind) + '</h3><p class="det">' + esc(x.docs.join(' · ')) + '</p>' + (x.detail ? '<div class="quote">' + esc(x.detail) + '</div>' : '') + (x.meaning ? '<p class="mean">' + esc(x.meaning) + '</p>' : '') + (x.check && x.check.length ? '<ul class="checks">' + x.check.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul>' : '') + basisHTML(x.basis) + '</div></li>';
+  }).join('') + '</ul>' : '<p class="empty">문서 사이의 연결 신호를 찾지 못했습니다. 같은 지번의 토지·건물, 같은 소유자의 부동산을 함께 넣으면 교차 분석이 됩니다.</p>') + '</section>';
+  return '<div class="sheet">' + secNav(nav) + rel + cross + secScenarios('multi', m.scenarios, '통합 위험 순위', '문서별 최고 위험과 교차 신호를 함께 정렬', true) + secStory('multi', null, m.timeline) + secAI('multi', 'multi') + '</div>';
+}
+
+/* ---------------- Claude ---------------- */
+function secAI(key, mode) {
+  var a = state.ai[key] || { status: 'idle' };
+  var head = secHead('s-ai-' + key, mode === 'multi' ? 'Claude 종합 추론' : 'Claude 심층 추론', '규칙 판독 결과를 Claude가 다시 읽고 놓친 점·위험 순위·쉬운 설명을 보탭니다');
+  if (!sample) return '<section class="sec">' + head + '<p class="empty">이 화면에서는 Claude를 쓸 수 없습니다. claude.ai에서 열면 사용할 수 있습니다.</p></section>';
+  var btn = a.status === 'running' ? '<button type="button" class="btn" data-ai-stop="' + key + '">멈추기</button>' : '<button type="button" class="btn primary" data-ai="' + key + '" data-mode="' + mode + '">' + (a.status === 'done' ? '다시 추론' : 'Claude로 추론하기') + '</button>';
+  var status = a.status === 'running' ? '<span class="status"><span class="spin"></span> ' + esc(a.progress || '생각하는 중… 길면 1~2분 걸립니다') + '</span>' : a.status === 'error' ? '<span class="status" style="color:var(--crit)">' + esc(a.error) + '</span>' : '';
+  return '<section class="sec">' + head + '<div class="ai"><div class="row">' + btn + '<label class="toggle"><input type="checkbox" data-deep ' + (state.deep ? 'checked' : '') + '> 깊게 생각(더 느림)</label>' + status + '</div>' +
+    '<p class="privacy">누르면 판독한 등기 내용(이름·주소 포함)이 내 Claude 계정으로 전달되고 내 사용량이 쓰입니다. 주민등록번호는 등기부에 가려진 형태 그대로 갑니다.</p>' +
+    (a.data ? aiOut(a.data, key === 'multi' ? '' : key) : a.raw ? '<div class="quote">' + esc(a.raw) + '</div>' : '') + '</div></section>';
+}
+function list(arr, fn) { return arr && arr.length ? '<ul>' + arr.map(fn).join('') + '</ul>' : '<p class="faint">없음</p>'; }
+function aiOut(d, fid) {
+  var basis = function (b) { return (b || []).map(function (x) { return refText(fid, String(x)); }).join(' '); };
+  var h = '';
+  if (d.summary) h += '<h3>총평' + (d.risk ? ' · ' + esc(d.risk) : '') + '</h3><p>' + esc(d.summary) + '</p>';
+  if (d.relations && d.relations.length) h += '<h3>문서 사이 관계</h3>' + list(d.relations, function (r) { return '<li>문서 ' + esc((r.docs || []).join('·')) + ': ' + esc(r.relation) + ' — ' + esc(r.meaning || '') + '</li>'; });
+  if (d.story_easy) h += '<h3>쉬운 말로 본 경과</h3><div class="story">' + esc(d.story_easy) + '</div>';
+  if (d.scenarios && d.scenarios.length) h += '<h3>위험 순위(Claude)</h3><ol class="scen">' + d.scenarios.map(function (s, i) {
+    return '<li><span class="no">' + (i + 1) + '</span><div><h3>' + esc(s.title) + '</h3><div class="chips">가능성 <span class="lk-' + esc(s.likelihood) + '">' + esc(s.likelihood || '') + '</span> · 피해 <b>' + esc(s.impact || '') + '</b> ' + basis(s.basis) + '</div><p class="cons">' + esc(s.why || '') + '</p>' + (s.what_if ? '<p class="cons">그렇게 되면: ' + esc(s.what_if) + '</p>' : '') + (s.how_to_check ? '<p class="mit">확인: ' + esc(s.how_to_check) + '</p>' : '') + '</div></li>';
+  }).join('') + '</ol>';
+  if (d.fraud) h += '<h3>사해행위 판단</h3><p>' + esc(d.fraud.assessment || '') + '</p>' + list(d.fraud.acts, function (a) { return '<li>' + basis(a.basis) + ' ' + esc(a.why || '') + (a.counter ? ' <span class="faint">반대 사정: ' + esc(a.counter) + '</span>' : '') + '</li>'; });
+  if (d.auction) h += '<h3>경매 권리분석(Claude)</h3><p>' + esc(d.auction.base || '') + '</p><p class="faint" style="font-size:13px">인수 가능</p>' + list(d.auction.takeover, function (x) { return '<li>' + refText(fid, x) + '</li>'; }) + '<p class="faint" style="font-size:13px">소멸</p>' + list(d.auction.extinguish, function (x) { return '<li>' + refText(fid, x) + '</li>'; }) + '<p class="faint" style="font-size:13px">등기부 밖 확인</p>' + list(d.auction.cautions, function (x) { return '<li>' + esc(x) + '</li>'; });
+  if (d.missed && d.missed.length) h += '<h3>규칙 판독이 놓친 점</h3>' + list(d.missed, function (m) { return '<li><b>' + esc(m.title) + '</b> ' + basis(m.basis) + ' ' + esc(m.why || '') + '</li>'; });
+  if (d.parse_doubts && d.parse_doubts.length) h += '<h3>판독 오류 의심</h3>' + list(d.parse_doubts, function (m) { return '<li>' + basis(m.basis) + ' ' + esc(m.doubt || '') + '</li>'; });
+  if (d.actions) h += '<h3>지금 할 일</h3>' + list(d.actions, function (x) { return '<li>' + esc(x) + '</li>'; });
+  if (d.questions) h += '<h3>물어볼 질문</h3>' + list(d.questions, function (x) { return '<li>' + esc(x) + '</li>'; });
+  return '<div class="ai-out">' + h + '<p class="disclaim">Claude의 추론은 판독 결과만 근거로 한 참고 의견입니다. 틀릴 수 있으니 근거 순위번호를 원문에서 확인하십시오.</p></div>';
+}
+var aiCtl = {};
+document.addEventListener('change', function (e) { if (e.target.matches('[data-deep]')) state.deep = e.target.checked; });
+document.addEventListener('click', function (e) {
+  var s = e.target.closest('[data-ai-stop]'); if (s) { var c = aiCtl[s.dataset.aiStop]; if (c) c.abort(); return; }
+  var b = e.target.closest('[data-ai]'); if (!b || !sample) return;
+  var key = b.dataset.ai, mode = b.dataset.mode, prompt;
+  if (mode === 'multi') { var lm = state.lastMulti; if (!lm) return; prompt = DG.buildMultiPrompt(lm.items, lm.m, opts()); }
+  else { var f = state.files.filter(function (x) { return x.id === key; })[0]; if (!f || !f.rep) return; prompt = DG.buildAIPrompt(f.doc, f.rep, opts()); }
+  var ctl = new AbortController(); aiCtl[key] = ctl;
+  state.ai[key] = { status: 'running' }; render();
+  sample.json(prompt, { signal: ctl.signal, modelTier: state.deep ? 'complex' : 'default', cache: false, onText: function (u) { var a = state.ai[key]; if (a && a.status === 'running') { a.progress = '작성 중… ' + u.text.length.toLocaleString() + '자'; var st = document.querySelector('#s-ai-' + key) && document.querySelector('#s-ai-' + key).closest('.sec').querySelector('.status'); if (st) st.innerHTML = '<span class="spin"></span> ' + esc(a.progress); } } })
+    .then(function (data) { state.ai[key] = { status: 'done', data: data }; render(); })
+    .catch(function (err) {
+      var code = err && err.code;
+      var msg = { cancelled: '멈췄습니다.', not_granted: 'Claude 사용을 허용하지 않아 추론하지 않았습니다.', rate_limited: '사용량 한도에 걸렸습니다. 잠시 뒤 다시 누르십시오.', invalid_json: '답을 표로 정리하지 못했습니다. 다시 눌러 보십시오.', prompt_too_large: '등기부가 너무 길어 한 번에 보낼 수 없습니다.', refused: 'Claude가 이 요청에 답하지 않았습니다.', session_expired: '다시 로그인해야 합니다.', sampling_disabled: '이 계정에서는 Claude를 쓸 수 없습니다.' }[code] || '추론 중 문제가 생겼습니다. 다시 눌러 보십시오.';
+      state.ai[key] = { status: code === 'cancelled' ? 'idle' : 'error', error: msg, raw: code === 'invalid_json' ? err.text : '' }; render();
+    });
+});
+
+/* ---------------- 이미지 판독 ---------------- */
+function visionBox(f) {
+  var can = sample && sampleImages;
+  var v = state.ai['v-' + f.id] || {};
+  return '<div class="vision"><h2 style="font-size:17px;margin-bottom:6px">' + esc(f.name) + ': 글자를 읽을 수 없는 문서입니다</h2><p style="margin:0 0 10px;font-size:14px">스캔본이나 사진은 PDF 안에 글자 정보가 없어 규칙 판독을 할 수 없습니다. Claude가 쪽 이미지를 보고 갑구·을구를 옮겨 적으면, 그 결과로 같은 분석을 합니다. 빨간 말소 실선도 이미지에서 읽습니다.</p>' +
+    (can ? '<div class="row" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="btn primary" data-vision="' + f.id + '"' + (v.running ? ' disabled' : '') + '>Claude로 이미지 판독</button><span class="status muted" style="font-size:13px">' + (v.running ? '<span class="spin"></span> ' : '') + esc(v.msg || '') + '</span></div><p class="privacy">쪽 이미지가 내 Claude 계정으로 전달되고 사용량이 쓰입니다. 옮겨 적기 오류가 있을 수 있어 등기 원문 표에서 대조해야 합니다.</p>'
+      : '<p class="muted" style="font-size:13.5px">이 화면에서는 Claude 이미지 판독을 쓸 수 없습니다. 인터넷등기소에서 받은 원본 PDF(글자가 선택되는 파일)를 넣어 주십시오.</p>') + '</div>';
+}
+function toJpeg(canvas) { return new Promise(function (res) { canvas.toBlob(function (b) { res(b); }, 'image/jpeg', 0.86); }); }
+async function pageImages(f, onMsg) {
+  if (f.isImage) return [f.file];
+  var pdf = await openPdf(f.bytes.slice()), out = [];
+  for (var p = 1; p <= pdf.numPages; p++) {
+    onMsg(p + '/' + pdf.numPages + '쪽 이미지 만드는 중');
+    var page = await pdf.getPage(p), vp = page.getViewport({ scale: 1.7 }), c = document.createElement('canvas');
+    c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+    await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+    out.push(await toJpeg(c));
+  }
+  return out;
+}
+document.addEventListener('click', async function (e) {
+  var b = e.target.closest('[data-vision]'); if (!b || !sample) return;
+  var f = state.files.filter(function (x) { return x.id === b.dataset.vision; })[0]; if (!f) return;
+  var key = 'v-' + f.id, v = state.ai[key] = { running: true, msg: '준비 중' }; render();
+  var msg = function (t) { v.msg = t; var el = document.querySelector('.vision .status'); if (el) el.innerHTML = '<span class="spin"></span> ' + esc(t); };
+  try {
+    var imgs = await pageImages(f, msg);
+    var lim = await sample.limits().catch(function () { return null; });
+    var per = Math.max(1, Math.min(lim && lim.images ? lim.images.maxCount : 4, 4)), parts = [];
+    for (var i = 0; i < imgs.length; i += per) {
+      var from = i + 1, to = Math.min(imgs.length, i + per);
+      msg(from + '~' + to + '쪽 Claude가 읽는 중');
+      parts.push(await sample.json(DG.buildVisionPrompt(from, to), { images: imgs.slice(i, i + per), modelTier: 'default', cache: false }));
+    }
+    f.doc = DG.docFromVision(parts); f.doc.pages = imgs.length; f.status = 'ok'; f.note = imgs.length + '쪽 · 이미지 판독'; analyzeOne(f);
+    state.ai[key] = { running: false, msg: '' };
+  } catch (err) {
+    state.ai[key] = { running: false, msg: err && err.code === 'not_granted' ? 'Claude 사용을 허용하지 않았습니다.' : err && err.code === 'image_rejected' ? '이미지를 받지 못했습니다. 다른 파일로 시도하십시오.' : '이미지 판독에 실패했습니다. 다시 눌러 보십시오.' };
+  }
+  render();
+});
+
+/* ---------------- 복사 ---------------- */
+function reportText(f) {
+  var d = f.doc, r = f.rep, L = [];
+  L.push('[등기부 판독 결과] ' + (d.address || '') + ' (' + (d.kind || '') + ')');
+  L.push('목적: ' + r.purposeLabel + ' / 기준일: ' + r.base + ' / 열람일시: ' + (d.viewedAtText || '-'));
+  L.push('현재 소유자: ' + (r.owners.map(function (o) { return o.name + (o.share ? '(' + o.share + ')' : ''); }).join(', ') || '-'));
+  L.push('판정: ' + r.gradeLabel);
+  L.push(''); L.push('위험 순위');
+  r.scenarios.forEach(function (s, i) { L.push((i + 1) + '. ' + s.title + ' - 가능성 ' + s.likelihood + ', 피해 ' + s.impact + ': ' + s.signals.map(function (g) { return g.text; }).join(', ')); });
+  L.push(''); L.push('특이사항');
+  r.flags.forEach(function (x) { L.push('- [' + LVL[x.level] + '/' + x.kind + '] ' + x.title + (x.detail ? ' (' + x.detail + ')' : '')); });
+  if (r.fraud.length) { L.push(''); L.push('사해행위 신호'); r.fraud.forEach(function (c) { L.push('- ' + (c.act.sec === 'gap' ? '갑' : '을') + c.act.rank + ' ' + c.kind + ' (신호 ' + c.score + '): ' + c.signals.join(', ')); }); }
+  L.push(''); L.push('쉬운 시간순 설명');
+  r.story.events.filter(function (e) { return !e.minor; }).forEach(function (e) { L.push((e.date || '') + ' ' + e.text + (e.cancelNote ? ' (' + e.cancelNote + ')' : '')); });
+  L.push(''); L.push('등기부 밖 확인: ' + r.outside.join(', '));
+  L.push('※ 판독기 참고 결과이며 법률 자문이 아닙니다. 원본 등기부가 우선합니다.');
+  return L.join('\n');
+}
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-copy]'); if (!b) return;
+  var f = state.files.filter(function (x) { return x.id === b.dataset.copy; })[0]; if (!f) return;
+  var txt = reportText(f), done = function (ok) { b.textContent = ok ? '복사했습니다' : '복사 실패: 길게 눌러 선택'; setTimeout(function () { b.textContent = '판독 결과 복사'; }, 2200); };
+  try { navigator.clipboard.writeText(txt).then(function () { done(true); }, function () { fallbackCopy(txt); done(false); }); } catch (err) { fallbackCopy(txt); done(false); }
+});
+function fallbackCopy(t) { var ta = document.createElement('textarea'); ta.value = t; ta.style.cssText = 'width:100%;height:200px;margin-top:8px'; var s = document.querySelector('.verdict'); if (s) { s.after(ta); ta.select(); } }
+
+/* ---------------- 시작 ---------------- */
+$('#o-base').value = DGtoday();
+Array.prototype.forEach.call(document.querySelectorAll('#purpose button'), function (b) { b.setAttribute('aria-checked', String(b.dataset.v === state.purpose)); });
+loadSample('apt');
+if (window.claude && window.claude.use) {
+  window.claude.use('sample').then(function (s) {
+    sample = s;
+    if (s) s.limits().then(function (l) { sampleImages = !!(l && l.images); render(); }, function () { render(); });
+    else render();
+  }, function () {});
+}
+})();
+</script>

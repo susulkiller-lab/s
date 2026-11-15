@@ -1,0 +1,160 @@
+{
+  "file": "house_clean.pdf",
+  "fictional": true,
+  "document_type": "등기사항전부증명서(말소사항 포함) - 건물",
+  "property_kind": "건물",
+  "address": "경기도 가상시 평화구 고요동 78-9",
+  "address_line": "[건물] 경기도 가상시 평화구 고요동 78-9",
+  "unique_no": "1234-1998-012345",
+  "viewed_at": "2026년11월10일 10시30분15초",
+  "registry_office": "수원가상지방법원 가상등기소",
+  "has_text_layer": true,
+  "pages": {
+    "body_pages": 1,
+    "total_pages": 2
+  },
+  "title_sections": [
+    {
+      "key": "건물의 표시",
+      "heading": "【 표 제 부 】 ( 건물의 표시 )",
+      "columns": [
+        "표시번호",
+        "접 수",
+        "소재지번 및 건물번호",
+        "건 물 내 역",
+        "등기원인 및 기타사항"
+      ],
+      "rows": [
+        {
+          "no": "1",
+          "cells": [
+            "1998년5월20일",
+            "경기도 가상시 평화구 고요동 78-9",
+            "철근콘크리트구조 슬래브지붕\n2층 단독주택\n1층 85.20㎡\n2층 72.40㎡",
+            "도면편철장 제2책 제118장\n부동산등기법 제177조의 6 제1항의 규정에 의하여 2001년 06월 20일 전산이기"
+          ],
+          "cancelled": true,
+          "cancelled_by": "2"
+        },
+        {
+          "no": "2",
+          "cells": [
+            "",
+            "경기도 가상시 평화구 고요동 78-9\n[도로명주소]\n경기도 가상시 평화구 고요로 12",
+            "철근콘크리트구조 슬래브지붕\n2층 단독주택\n1층 85.20㎡\n2층 72.40㎡",
+            "도로명주소\n2013년11월25일 등기"
+          ],
+          "cancelled": false,
+          "cancelled_by": null
+        }
+      ]
+    }
+  ],
+  "has_daejigwon": false,
+  "current_owners": [
+    {
+      "name": "문가온",
+      "role": "소유자",
+      "id_no": "790707-*******",
+      "share": "단독소유",
+      "share_fraction": "1/1",
+      "address": "경기도 가상시 평화구 고요로 12(고요동)",
+      "rank": "4"
+    }
+  ],
+  "entries": [
+    {
+      "section": "갑구",
+      "rank": "1",
+      "purpose": "소유권보존",
+      "receipt_date": "1998년5월20일",
+      "receipt_date_iso": "1998-05-20",
+      "receipt_no": "제12345호",
+      "cause": null,
+      "holder_text": "소유자 오세움 550101-*******\n경기도 가상시 평화구 고요동 78-9\n부동산등기법 제177조의 6 제1항의 규정에 의하여 2001년 06월 20일 전산이기",
+      "cancelled": false,
+      "cancelled_by_rank": null
+    },
+    {
+      "section": "갑구",
+      "rank": "2",
+      "purpose": "소유권이전청구권가등기",
+      "receipt_date": "2019년3월4일",
+      "receipt_date_iso": "2019-03-04",
+      "receipt_no": "제9876호",
+      "cause": "2019년3월2일 매매예약",
+      "holder_text": "가등기권자 서나래 680606-*******\n경기도 가상시 평화구 조용로 8(조용동)",
+      "cancelled": true,
+      "cancelled_by_rank": "3"
+    },
+    {
+      "section": "갑구",
+      "rank": "3",
+      "purpose": "2번가등기말소",
+      "receipt_date": "2019년9월10일",
+      "receipt_date_iso": "2019-09-10",
+      "receipt_no": "제23456호",
+      "cause": "2019년9월9일 해제",
+      "holder_text": "",
+      "cancelled": false,
+      "cancelled_by_rank": null
+    },
+    {
+      "section": "갑구",
+      "rank": "4",
+      "purpose": "소유권이전",
+      "receipt_date": "2021년6월15일",
+      "receipt_date_iso": "2021-06-15",
+      "receipt_no": "제34567호",
+      "cause": "2021년5월10일 매매",
+      "holder_text": "소유자 문가온 790707-*******\n경기도 가상시 평화구 고요로 12(고요동)\n거래가액 금410,000,000원",
+      "cancelled": false,
+      "cancelled_by_rank": null
+    },
+    {
+      "section": "을구",
+      "rank": "1",
+      "purpose": "근저당권설정",
+      "receipt_date": "2021년6월15일",
+      "receipt_date_iso": "2021-06-15",
+      "receipt_no": "제34568호",
+      "cause": "2021년6월15일 설정계약",
+      "holder_text": "채권최고액 금240,000,000원\n채무자 문가온\n경기도 가상시 평화구 고요로 12(고요동)\n근저당권자 가상농업협동조합 124136-0001234\n경기도 가상시 평화구 들판로 3(들판동)\n공동담보 토지 경기도 가상시 평화구 고요동 78-9",
+      "cancelled": true,
+      "cancelled_by_rank": "2"
+    },
+    {
+      "section": "을구",
+      "rank": "2",
+      "purpose": "1번근저당권설정등기말소",
+      "receipt_date": "2025년8월20일",
+      "receipt_date_iso": "2025-08-20",
+      "receipt_no": "제45678호",
+      "cause": "2025년8월19일 해지",
+      "holder_text": "",
+      "cancelled": false,
+      "cancelled_by_rank": null
+    }
+  ],
+  "gap_empty": false,
+  "eul_empty": false,
+  "summary_page": {
+    "owners": [
+      {
+        "등기명의인": "문가온 (소유자)",
+        "(주민)등록번호": "790707-*******",
+        "최종지분": "단독소유",
+        "주소": "경기도 가상시 평화구 고요로 12(고요동)",
+        "순위번호": "4"
+      }
+    ],
+    "gap_non_ownership": [],
+    "eul": []
+  },
+  "entries_split_across_pages": [],
+  "expected_flags": [],
+  "notes": [
+    "유효한 제한물권·처분제한 없음(깨끗한 등기). 말소 이력만 있음: 갑구 2 가등기(3으로 말소), 을구 1 근저당(2로 말소).",
+    "표제부 표시번호 1은 표시번호 2(도로명주소)로 말소 표시됨."
+  ]
+}
