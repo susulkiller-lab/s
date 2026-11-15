@@ -30,6 +30,7 @@ const r1 = v => Math.round(v * 10) / 10;
     }
     out.push({ key: set.key, label: set.label, docs });
   }
+  out.splice(1, 0, { key: 'fraud', label: '예시: 판 다음 날 가족이 산 집(사해행위)', docs: require('./case_fraud.js') });
   const file = path.join(__dirname, '..', 'samples.json');
   fs.writeFileSync(file, JSON.stringify(out));
   console.log(file, fs.statSync(file).size, 'bytes');

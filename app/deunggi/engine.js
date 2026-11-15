@@ -419,7 +419,7 @@
           if (m[3] && !doc.kind) doc.kind = m[3];
           return;
         }
-        if ((m = ns.match(/^\[(집합건물|건물|토지)\](.*)$/))) {
+        if ((m = ns.match(/\[(집합건물|건물|토지)\](.*)$/)) && /^.{0,8}\[(집합건물|건물|토지)\]/.test(ns)) {
           if (!doc.kind) doc.kind = m[1];
           if (!doc.address) doc.address = L.text.replace(/^\s*\[[^\]]*\]\s*/, '').replace(/\s*고\s*유\s*번\s*호.*$/, '').trim();
           var um = ns.match(/고유번호:?([\d\-]+)/); if (um && !doc.uniqueNo) doc.uniqueNo = um[1];
@@ -475,7 +475,7 @@
       b.rows.forEach(function (r) {
         var cells = cellsOf(r.lines, b.cols);
         var firstNS = NS(cells[0].text);
-        var isNew = key === 's_owner' ? !!firstNS : /^\d/.test(firstNS);
+        var isNew = key === 's_owner' ? !!firstNS : (key === 'rights' || key === 's_item') ? RANK_RE.test(firstNS) : /^\d/.test(firstNS);
         var last = target[target.length - 1];
         if (!isNew && last && last._key === key) { mergeCells(last, cells, r); return; }
         if (!isNew && !last) return;
@@ -555,7 +555,7 @@
     ['prohibit', /금지사항/],
     ['preserve', /소유권보존/],
     ['transfer', /소유권이전|소유권일부이전|지분(전부|일부)?이전|공유자전원지분/],
-    ['name_change', /표시변경|표시경정/],
+    ['name_change', /표시변경|표시경정|명칭첨기|관리청/],
     ['m_transfer', /근?저당권(일부)?이전/],
     ['m_change', /근?저당권변경/],
     ['pledge', /질권/],
@@ -598,12 +598,14 @@
       if (m) { role = m[1]; t = t.replace(/^\s*\S+?(자)\s*/, ''); t = t.replace(new RegExp('^' + m[1].split('').join('\\s*') + '\\s*'), ''); }
       var sm = t.match(/지분\s*([0-9]+\s*분의\s*[0-9]+)/);
       if (sm) { pendingShare = NS(sm[1]); t = t.replace(sm[0], '').trim(); }
-      var rg = t.match(/(\d{6}-[\d*]{7})/);
+      var rg = t.replace(/(\d{6})\s*-\s*([\d*]{7})/, '$1-$2').match(/(\d{6}-[\d*]{7})/); if (rg) t = t.replace(/(\d{6})\s*-\s*([\d*]{7})/, '$1-$2');
       if (!role) return;
       var name = rg ? t.slice(0, t.indexOf(rg[1])).trim() : '';
       if (rg && name) {
         out.push({ role: role, name: name.replace(/\s+/g, ' '), regno: rg[1], share: pendingShare, struck: l.k >= 0.5 });
         pendingShare = '';
+      } else if (!rg && t && m && /^(채무자|소유자|공유자|권리자)$/.test(role) && /^([가-힣]{2,5}|국|대한민국)$/.test(NS(t)) && !out.some(function (o) { return o.role === role && NS(o.name) === NS(t); })) {
+        out.push({ role: role, name: NS(t), regno: '', share: pendingShare, struck: l.k >= 0.5 });
       } else if (!rg && t && !out.some(function (o) { return o.role === role; }) && /^(주식회사|유한회사|㈜|\(주\)|[가-힣]+(은행|공단|공사|조합|금고|세무서|시|군|구|도|청|회사|신탁|캐피탈|대부|보험|재단|협회)$)/.test(NS(t))) {
         out.push({ role: role, name: t.replace(/\s+/g, ' '), regno: '', share: pendingShare, struck: l.k >= 0.5 });
       }
@@ -697,11 +699,19 @@
       if (e.type !== 'preserve' && e.type !== 'transfer' && !trustXfer && !(e.type === 'prov_reg' && e.bonDeunggi)) return;
       var holders = e.names.filter(function (n) { return (n.role === '소유자' || n.role === '공유자' || (trustXfer && n.role === '수탁자')) && !n.struck; });
       if (!holders.length) return;
-      var partial = /일부이전|지분/.test(NS(e.purpose));
+      var partial = isPartialXfer(e.purpose);
       if (partial) { owners = owners.concat(holders.map(function (h) { return { name: h.name, regno: h.regno, share: h.share || '지분', rank: e.rank }; })); notes.push('지분 이전 포함'); }
       else owners = holders.map(function (h) { return { name: h.name, regno: h.regno, share: h.share || (holders.length > 1 ? '공유' : '단독소유'), rank: e.rank }; });
     });
     return { owners: owners, approx: notes.length > 0 };
+  }
+  function isPartialXfer(purpose) { var p = NS(purpose); return /일부이전/.test(p) || (/지분/.test(p) && !/공유자전원지분전부이전/.test(p)); }
+  // 주민번호 앞자리로 취득 당시 나이(만)를 구한다. 뒷자리가 가려져 있으면 세기는 취득 연도로 추정.
+  function ageAt(regno, date) {
+    var m = String(regno || '').match(/^(\d{2})(\d{2})(\d{2})-([\d*])/); if (!m || !date) return null;
+    var yy = +m[1], g = m[4], y = /[1256]/.test(g) ? 1900 + yy : /[3478]/.test(g) ? 2000 + yy : /[90]/.test(g) ? 1800 + yy : (yy > +date.slice(2, 4) ? 1900 + yy : 2000 + yy);
+    var age = +date.slice(0, 4) - y; if (date.slice(5, 7) + date.slice(8, 10) < m[2] + m[3]) age--;
+    return age >= 0 && age < 120 ? age : null;
   }
   function rankKey(r) { var p = String(r).split('-'); return (+p[0] || 0) * 1000 + (+p[1] || 0); }
   function dkey(e) { return (e.date || '9999-99-99') + '#' + ('000000000' + (e.no || 0)).slice(-9); }
@@ -718,7 +728,7 @@
   /* ------------------------------------------------------------------ */
   var LV = { critical: 4, high: 3, caution: 2, info: 1 };
   var LV_LABEL = { critical: '위험', high: '높음', caution: '주의', info: '참고' };
-  var PURPOSES = { lease: '전세·월세 계약', buy: '매매(매수)', auction: '경매 입찰', credit: '담보·채권 회수', general: '일반 검토' };
+  var PURPOSES = { lease: '전세·월세 계약', buy: '매매(매수)', auction: '경매 입찰', credit: '채권 회수·사해행위', general: '일반 검토' };
 
   function analyze(doc, opt) {
     opt = opt || {};
@@ -755,7 +765,7 @@
     if (doc.viewOnly) F('viewonly', 'info', '열람용 출력물입니다', { meaning: '문서에 열람용이라는 안내 문구가 인쇄되어 있습니다(문서 자체의 안내이며 법령 근거가 아닙니다). 발급본 등기사항증명서에는 등기기록과 다름없음을 증명하는 증명문과 전자이미지관인이 기록됩니다. 제출용이 필요하면 발급본을 받으십시오.', basis: ['cert_issue'] });
     if (doc.viewedAt) {
       var age = daysBetween(doc.viewedAt, base);
-      if (age >= 1) F('stale', age > 30 ? 'high' : 'caution', '열람 후 ' + age + '일이 지났습니다', { detail: '열람일시 ' + doc.viewedAtText + ', 판독 기준일 ' + base, meaning: '열람 이후 새 등기가 들어왔을 수 있습니다. 계약 당일과 잔금 직전에 다시 열람해 비교하는 것이 안전합니다.', check: ['계약일·잔금일 당일 재열람'] });
+      if (age >= 1) F('stale', purpose === 'lease' || purpose === 'buy' ? (age > 30 ? 'high' : 'caution') : 'info', age > 365 ? Math.floor(age / 365) + '년 전 열람본입니다' : '열람 후 ' + age + '일이 지났습니다', { detail: '열람일시 ' + doc.viewedAtText + ', 판독 기준일 ' + base, meaning: '열람 이후 새 등기가 들어왔을 수 있습니다. 과거 시점을 분석하는 것이라면 문제없지만, 지금 상태를 판단하거나 계약하려면 다시 열람해 비교하십시오.', check: ['계약일·잔금일 당일 재열람'] });
     } else F('noviewdate', 'info', '열람·발급 일시를 찾지 못했습니다', { meaning: '언제 기준의 등기부인지 확인할 수 없습니다.', check: ['최신 등기부 재열람'] });
 
     /* 표제부 */
@@ -1014,7 +1024,7 @@
     aucAcq.forEach(function (e) { var nx = doc.gap.filter(function (x) { return x.type === 'transfer' && x.date && dkey(x) > dkey(e); })[0]; if (nx && daysBetween(e.date, nx.date) <= 365) F('auction_flip', 'info', '경매·공매로 산 뒤 1년 안에 다시 팔렸습니다', { entries: [e, nx], kind: '추론', meaning: '낙찰 후 단기 매도입니다. 매각 당시 정리된 권리와 현재 가격을 비교해 보십시오.' }); });
 
     /* 사해행위 신호 */
-    var fraud = detectFraud(doc, base, purpose);
+    var fraud = detectFraud(doc, base, purpose, opt);
     fraud.forEach(function (c) {
       if (c.score < 30) return;
       F('fraud', c.direct ? 'critical' : c.score >= 60 ? lv({ general: 'high', buy: 'critical', lease: 'high', credit: 'high', auction: 'caution' }) : 'caution',
@@ -1054,6 +1064,7 @@
       stats: { gap: doc.gap.length, eul: doc.eul.length, cancelled: all.filter(function (e) { return e.cancelled; }).length, strikes: all.filter(function (e) { return e.visualStruck; }).length, summary: !!doc.summary }
     };
     rep.story = buildStory(doc, rep);
+    rep.parcel = buildParcelHistory(doc);
     rep.auction = auctionAnalysis(doc, rep);
     rep.scenarios = buildScenarios(doc, rep, { att: att, seiz: seiz, morts: morts, jeon: jeon, leasesAll: leasesAll, xfers: xfers, lastX: lastX, preserve: preserve, opt: opt });
     return rep;
@@ -1088,7 +1099,10 @@
     credit: '채권자 입장에서는 이 처분을 채권자취소 소송으로 되돌릴 수 있는지 검토할 수 있습니다. 취소원인을 안 날부터 1년, 법률행위가 있은 날부터 5년 안에 소송을 제기해야 합니다.',
     auction: '과거 처분이 취소 소송 중이면 소유 관계와 매각 절차에 영향을 줄 수 있어 사건 기록을 확인해야 합니다.'
   };
-  function detectFraud(doc, base, purpose) {
+  function namesOf(v) { return (Array.isArray(v) ? v : String(v || '').split(/[,\s·]+/)).map(NS).filter(Boolean); }
+  function detectFraud(doc, base, purpose, opt) {
+    opt = opt || {};
+    var debtors = namesOf(opt.debtors), related = namesOf(opt.related), since = opt.debtSince || '';
     var gap = doc.gap, eul = doc.eul, all = gap.concat(eul), out = [];
     var debt = all.filter(function (e) { return (e.type === 'attach' || e.type === 'seizure' || e.type === 'auction') && e.date; });
     var owns = gap.filter(function (e) { return (e.type === 'preserve' || e.type === 'transfer' || (e.type === 'trust' && /소유권이전/.test(NS(e.purpose)))) && e.date; }).sort(byKey);
@@ -1145,7 +1159,13 @@
       if (mBefore.length) { sig.push('처분 전 6개월 안에 개인 명의 근저당'); score += 15; }
       var mToSame = eul.filter(function (m) { var h = roleName(m, /저당권자/); return m.type === 'mortgage' && m.date && m.date <= x.date && h && to.some(function (t) { return NS(t.name) === NS(h.name); }); });
       if (mToSame.length) { sig.push('받은 사람이 앞서 근저당권자였음'); score += 20; counter.push('받은 사람이 우선변제권 있는 근저당권자였다면 그에 대한 대물변제는 특별한 사정이 없는 한 사해행위가 되지 않는다는 판례가 있음'); extraBasis.push('p_fraud_substitute'); mBefore = mBefore.concat(mToSame.filter(function (m) { return mBefore.indexOf(m) < 0; })); }
-      if (!before.length && !direct) counter.push('처분 당시 등기부상 가압류·압류·경매 기록 없음');
+      var byDebtor = fromNames.some(function (n) { return debtors.indexOf(NS(n)) >= 0; });
+      if (byDebtor) { sig.push('지정한 채무자의 처분'); score += 40; if (since && x.date >= since) { sig.push('채권 발생일(' + since + ') 뒤의 처분'); score += 20; } else if (since) counter.push('채권 발생일(' + since + ') 전의 처분'); if (/매매/.test(c)) extraBasis.push('p_fraud_sole'); }
+      var toRel = to.filter(function (t) { return related.indexOf(NS(t.name)) >= 0 || debtors.some(function (d) { return sameSurname(d, t.name); }); });
+      if (toRel.length && !byDebtor) { sig.push('지정한 채무자와 관련 있을 수 있는 사람(' + toRel.map(function (t) { return t.name; }).join(', ') + ')의 취득: 자금 출처 확인'); score += 25; kind = kind + '(취득자 자금 출처)'; }
+      var youngTo = (debtors.length || related.length) ? to.filter(function (t) { var a = ageAt(t.regno, x.date); return a != null && a <= 35 && (price || 0) >= 100000000; }) : [];
+      if (youngTo.length && toRel.length) { sig.push('취득 당시 만 ' + ageAt(youngTo[0].regno, x.date) + '세의 고액 취득' + (price ? '(' + won(price) + ')' : '')); score += 10; }
+      if (!before.length && !direct && !byDebtor) counter.push('처분 당시 등기부상 가압류·압류·경매 기록 없음');
       if (kind === '매매' && price && prevPrice && price >= prevPrice * 0.8) counter.push('거래가액이 직전 거래가와 비슷함');
       if (daysBetween(x.causeDate || x.date, base) > 365 * 5) counter.push(x.causeDate ? '등기원인일자부터 5년이 지남' : '등기 접수일부터 5년이 지남(법률행위일은 등기원인일자로 확인)');
       if (!sig.length) return;
@@ -1155,8 +1175,11 @@
       var isM = m.type === 'mortgage', isP = m.type === 'prov_reg' && !m.bonDeunggi, isJ = m.type === 'jeonse';
       if (!(isM || isP || isJ) || !m.date) return;
       var h = roleName(m, isM ? /저당권자/ : isP ? /가등기권자|권리자/ : /전세권자|임차권자/);
-      if (!h || !isPerson(h.name, h.regno)) return;
-      var own = ownerAt(m.date), sig = ['개인 명의 ' + (isM ? '근저당' : isP ? '가등기' : TYPE_LABEL[m.type])], score = 10, counter = [];
+      if (!h) return;
+      var debtorOwned = ownerAt(m.date).some(function (o) { return debtors.indexOf(NS(o.name)) >= 0; });
+      if (!isPerson(h.name, h.regno) && !(debtorOwned && isM && (!since || m.date >= since))) return;
+      var own = ownerAt(m.date), personH = isPerson(h.name, h.regno), sig = [personH ? '개인 명의 ' + (isM ? '근저당' : isP ? '가등기' : TYPE_LABEL[m.type]) : '채무자 소유일 때 ' + h.name + ' 앞 근저당 설정'], score = personH ? 10 : 0, counter = [];
+      if (own.some(function (o) { return debtors.indexOf(NS(o.name)) >= 0; })) { sig.push('지정한 채무자가 소유자일 때 설정'); score += personH ? 30 : 10; if (since && m.date >= since) { sig.push('채권 발생일 뒤 설정'); score += 15; } if (!personH) counter.push('자금난 속 사업을 이어 가려고 신규자금을 받고 담보를 제공한 경우 사해행위가 아닐 수 있다는 판례가 있음'); }
       var fam = own.some(function (o) { return sameSurname(o.name, h.name); });
       if (isJ && !fam) return;
       if (fam) { sig.push('소유자와 성씨가 같음(가족일 수 있음, 추정)'); score += 15; }
@@ -1192,7 +1215,7 @@
       case 'preserve': { var o = ownersOf(e).map(function (x) { return x.name; }).join(', ') || '소유자'; return o + josa(o, '이', '가') + ' ' + thing + '을 처음 자기 이름으로 등기했습니다(소유권보존). 새로 지었거나 처음 등기된 부동산입니다.'; }
       case 'transfer': case 'trust': {
         var to = ownersOf(e).map(function (x) { return x.name; }).join(', ') || '새 소유자', from = ctx.prevOwner || '';
-        var part = /일부이전|지분/.test(NS(e.purpose)) ? '지분 일부가 ' : '';
+        var part = isPartialXfer(e.purpose) ? '지분 일부가 ' : '';
         if (e.type === 'trust') { var tr = who(/수탁자/) || to; return (from ? from + josa(from, '이', '가') + ' ' : '') + tr + '에 신탁했습니다. 이때부터 등기부상 소유자는 ' + tr + '입니다.'; }
         if (/매매/.test(c)) { var p = amt(['거래가액']); return to + josa(to, '이', '가') + ' ' + (part ? '지분 일부를 ' : '') + (p ? won(p) + '에 ' : '') + '샀습니다(매매).'; }
         if (/증여/.test(c)) return (from ? from + josa(from, '이', '가') + ' ' : '') + to + '에게 ' + (part || '') + '증여했습니다(무상으로 넘김).';
@@ -1258,7 +1281,7 @@
       var text = narrate(e, ctx);
       if ((e.type === 'preserve' || e.type === 'transfer' || (e.type === 'trust' && /소유권이전/.test(NS(e.purpose))) || (e.type === 'prov_reg' && e.bonDeunggi)) && !e.cancelled) {
         var os = ownersOf(e).map(function (x) { return x.name; });
-        if (os.length) { prevOwner = owner; owner = /일부이전|지분/.test(NS(e.purpose)) && owner ? owner + ', ' + os.join(', ') : os.join(', '); }
+        if (os.length) { prevOwner = owner; owner = isPartialXfer(e.purpose) && owner ? owner + ', ' + os.join(', ') : os.join(', '); }
       }
       var lvl = { auction: 'critical', injunction: 'critical', prov_reg: 'high', lease: 'high', attach: 'high', seizure: 'high', trust: 'high', public_sale: 'critical', rehab: 'critical' }[e.type] || (e.type === 'cancel' ? 'done' : 'info');
       out.push({ date: e.date, year: e.date ? e.date.slice(0, 4) : '', sec: e.sec, rank: e.rank, text: text, cancelled: !!e.cancelled && e.type !== 'cancel', cancelNote: e.cancelled && e.type !== 'cancel' ? (e.cancelledBy ? '나중에 ' + e.cancelledBy + '번으로 말소' : '나중에 말소') : '', level: e.cancelled && e.type !== 'cancel' ? 'done' : lvl, minor: e.type === 'name_change' || e.type === 'correction', e: e });
@@ -1422,7 +1445,7 @@
   function analyzeMulti(items, opt) {
     opt = opt || {};
     var P = opt.purpose || 'general', findings = [];
-    function F(id, level, title, o) { findings.push({ id: id, level: level, title: title, kind: o.kind || '사실', docs: o.docs || [], detail: o.detail || '', meaning: o.meaning || '', check: o.check || [], basis: o.basis || [], quote: o.quote || '' }); }
+    function F(id, level, title, o) { var f = { id: id, level: level, title: title, kind: o.kind || '사실', docs: o.docs || [], detail: o.detail || '', meaning: o.meaning || '', check: o.check || [], basis: o.basis || [], quote: o.quote || '' }; findings.push(f); return f; }
     items.forEach(function (it, i) { it.idx = i; it.jibun = jibunOf(it.doc.address); });
     // 1) 같은 지번의 토지와 건물
     items.forEach(function (a) {
@@ -1481,6 +1504,47 @@
       });
       if (hits.length) F('cross_debt_disposal', 'critical', a.from.name + josa(a.from.name, '이', '가') + ' 다른 부동산에 ' + (function (t) { return t + josa(t, '이', '가'); })(uniq(hits.map(function (h) { return TYPE_LABEL[h.d.type]; })).join('·')) + ' 걸린 상태에서 ' + a.it.name + josa(a.it.name, '을', '를') + ' 넘겼습니다', { kind: '추론', docs: [a.it.name].concat(uniq(hits.map(function (h) { return h.it.name; }))), detail: a.it.name + ' ' + a.e.date + ' ' + a.e.causeText + ' → ' + a.to.join(', ') + ' / ' + hits.map(function (h) { return h.it.name + ' 갑' + h.d.rank + ' ' + TYPE_LABEL[h.d.type] + ' ' + h.d.date; }).join(', '), meaning: '채무 문제가 드러난 뒤 다른 재산을 넘긴 형태로, 사해행위로 다투어질 수 있는 신호입니다. 처분 당시 남은 재산과 채무 규모는 등기부만으로 알 수 없습니다.', check: ['처분 당시 채무 규모와 남은 재산', '받은 사람과의 관계·대가 지급'], basis: ['fraud_406', 'p_fraud_bad_faith'] });
     });
+    // 3-3) 매도 직후 다른 등기부에서 관련 인물이 취득(매도대금 증여 추정)
+    var debtors = namesOf(opt.debtors), related = namesOf(opt.related), since = opt.debtSince || '';
+    var sales = [], buys = [];
+    items.forEach(function (it) {
+      var owns = it.doc.gap.filter(function (e) { return (e.type === 'transfer' || e.type === 'preserve') && e.date; }).sort(byKey);
+      owns.forEach(function (x, i) {
+        if (x.type !== 'transfer') return;
+        var prev = owns.slice(0, i).filter(function (o) { return !o.cancelled; }).pop();
+        var froms = prev ? ownersOf(prev) : [], shareOf = (NS(x.purpose).match(/\d+번([가-힣]{2,5})지분/) || [])[1];
+        if (shareOf) froms = froms.filter(function (f) { return NS(f.name) === shareOf; });
+        if (/매매|교환/.test(x.causeText)) froms.forEach(function (f) { sales.push({ it: it, e: x, who: f, price: pickAmount(x.amounts, ['거래가액']) }); });
+        ownersOf(x).forEach(function (t) { buys.push({ it: it, e: x, who: t, froms: froms.map(function (f) { return NS(f.name); }), price: pickAmount(x.amounts, ['거래가액']) }); });
+      });
+    });
+    var seenFlow = {};
+    sales.forEach(function (sl) {
+      buys.forEach(function (b) {
+        if (b.it === sl.it || NS(b.who.name) === NS(sl.who.name) || b.froms.indexOf(NS(sl.who.name)) >= 0) return; // 직접 넘겨받은 것은 일괄 처분 규칙이 다룬다
+        var d = daysBetween(sl.e.date, b.e.date);
+        if (d < -14 || d > 90) return;
+        var fam = sameSurname(sl.who.name, b.who.name), rel = related.indexOf(NS(b.who.name)) >= 0, isDebtor = debtors.indexOf(NS(sl.who.name)) >= 0;
+        if (!fam && !rel) return;
+        var key = NS(sl.who.name) + '>' + b.it.idx + b.e.rank + NS(b.who.name);
+        if (seenFlow[key]) { var g = seenFlow[key]; if (g.docs.indexOf(sl.it.name) < 0) { g.docs.unshift(sl.it.name); g.detail = sl.it.name + '도 같은 때 매도 / ' + g.detail; } return; } // 토지·건물을 함께 판 경우 한 건으로 묶는다
+        var age = ageAt(b.who.regno, b.e.date);
+        var mort = b.it.doc.eul.filter(function (m) { return m.type === 'mortgage' && m.date === b.e.date; })[0];
+        var sig = [sl.who.name + josa(sl.who.name, '이', '가') + ' ' + sl.it.name + josa(sl.it.name, '을', '를') + ' 매도(' + sl.e.date + (sl.price ? ', ' + won(sl.price) : ', 거래가액은 매매목록 확인') + ')',
+          (d === 0 ? '같은 날' : d > 0 ? d + '일 뒤' : (-d) + '일 앞서') + ' ' + b.who.name + josa(b.who.name, '이', '가') + ' ' + b.it.name + ' 취득(' + b.e.causeText + (b.price ? ', ' + won(b.price) : '') + ')'];
+        if (fam) sig.push('성씨가 같음(가족일 수 있음, 추정)');
+        if (rel) sig.push('지정한 관련인');
+        if (isDebtor) sig.push('매도인이 지정한 채무자');
+        if (isDebtor && since && sl.e.date >= since) sig.push('채권 발생일(' + since + ') 뒤의 매도');
+        if (age != null) sig.push('취득 당시 만 ' + age + '세');
+        if (mort) sig.push('취득일에 근저당 설정(일부는 대출로 보임, 나머지 자금 출처 확인)');
+        var strong = isDebtor || (fam && d >= 0 && d <= 30);
+        seenFlow[key] = F('proceeds_flow', strong ? 'critical' : 'high', sl.who.name + josa(sl.who.name, '이', '가') + ' 부동산을 판 ' + (d > 0 ? d + '일 뒤' : d === 0 ? '같은 날' : (-d) + '일 앞서') + ' ' + b.who.name + josa(b.who.name, '이', '가') + ' 다른 부동산을 샀습니다', { kind: '추론', docs: [sl.it.name, b.it.name], detail: sig.join(' / '),
+          meaning: '매도대금이 ' + b.who.name + '의 취득자금으로 넘어갔다면 그 돈의 증여가 사해행위로 다투어질 수 있습니다. 등기부에는 돈의 이동이 나오지 않으므로 두 사람의 관계, 취득자의 자금 출처, 매도인의 채무와 다른 재산을 확인해야 합니다. 채무초과 상태의 채무자가 유일한 부동산을 팔아 금전으로 바꾸는 것도 원칙적으로 사해행위가 된다고 본 판례가 있습니다(채무초과·유일 재산 여부는 등기부로 알 수 없음).',
+          check: ['두 사람의 관계(가족관계증명서)', '취득자의 소득·대출 등 자금 출처', '매도인의 채무와 남은 재산', '매도대금의 사용처(계좌 흐름)', '매매목록·거래가액'],
+          basis: ['fraud_406', 'p_fraud_sole', 'p_fraud_bad_faith', 'p_fraud_bad_faith_balance', 'p_fraud_restore_way'] });
+      });
+    });
     // 4) 같은 채권자·권리자(종류가 달라도 같은 이름이면 묶는다)
     var byCred = {};
     items.forEach(function (it) {
@@ -1521,6 +1585,8 @@
     var multiScen = Object.keys(scen).map(function (k) { return scen[k]; });
     var bulk = findings.filter(function (f) { return f.id === 'bulk_disposal'; });
     if (bulk.length) multiScen.push({ id: 'multi_fraud', title: '여러 부동산 일괄 처분이 사해행위로 다투어질 가능성', impact: '큼', score: bulk[0].level === 'critical' ? 75 : 50, likelihood: bulk[0].level === 'critical' ? '높음' : '중간', signals: bulk.map(function (f) { return { text: f.title, w: 50, ref: '' }; }), consequence: '처분이 취소되면 원칙적으로 넘어간 재산 자체를 되돌리는 방식(예: 소유권이전등기 말소)으로 원상회복되어 모든 채권자를 위한 책임재산이 되고, 그것이 불가능하거나 현저히 곤란하면 가액으로 배상하게 됩니다.', mitigate: ['처분 당시 채무 규모', '받은 사람과의 관계'], rank: 2 * (bulk[0].level === 'critical' ? 75 : 50) });
+    var pf = findings.filter(function (f) { return f.id === 'proceeds_flow'; });
+    if (pf.length) multiScen.push({ id: 'multi_proceeds', title: '매도대금 증여가 사해행위로 다투어질 가능성', impact: '큼', score: pf[0].level === 'critical' ? 80 : 55, likelihood: pf[0].level === 'critical' ? '높음' : '중간', signals: pf.map(function (f) { return { text: f.title, w: 50, ref: '' }; }), consequence: '증여가 취소되면 취득자는 받은 돈을 원칙적으로 돌려주거나 그 가액을 배상하게 되고, 그 재산은 모든 채권자를 위한 책임재산이 됩니다.', mitigate: ['두 사람의 관계', '취득자 자금 출처', '매도인의 채무·남은 재산'], rank: 2 * (pf[0].level === 'critical' ? 80 : 55) });
     var lb = findings.filter(function (f) { return f.id === 'land_bldg_owner'; });
     if (lb.length) multiScen.push({ id: 'multi_superficies', title: '토지·건물 소유자 불일치로 철거·지료 분쟁이 생길 가능성', impact: P === 'auction' || P === 'buy' ? '치명' : '큼', score: 55, likelihood: '중간', signals: lb.map(function (f) { return { text: f.detail, w: 55, ref: '' }; }), consequence: '건물의 토지 사용권이 인정되지 않으면 철거 청구로 이어질 수 있고, 법정지상권이 인정되더라도 지료를 두고 다툼이 생길 수 있습니다.', mitigate: ['토지·건물이 갈린 경위', '토지 임대차·지료 약정'], rank: (P === 'auction' || P === 'buy' ? 3 : 2) * 55 });
     multiScen.sort(function (a, b) { return b.rank - a.rank; });
@@ -1528,6 +1594,55 @@
     findings.sort(function (a, b) { return LVn[b.level] - LVn[a.level]; });
     return { items: items, findings: findings, timeline: timeline, scenarios: multiScen };
   }
+
+  /* ------------------------------------------------------------------ */
+  /* 6-7. 땅·건물 표시 이력(표제부)                                         */
+  /* ------------------------------------------------------------------ */
+  var PARCEL_KINDS = [
+    ['분할', /분할/, '토지가 나뉘었습니다(분할).'],
+    ['합병', /합병/, '다른 토지·건물을 합쳤습니다(합병).'],
+    ['지목변경', /지목변경/, '땅의 용도 구분(지목)이 바뀌었습니다.'],
+    ['토지정리', /환지|구획정리|도시개발|토지개발|지적재조사|등록전환|토지이동|축척변경/, '토지 정리 사업 등으로 땅의 표시가 바뀌었습니다.'],
+    ['행정구역', /행정구역|명칭변경|지번변경/, '행정구역·지번 이름이 바뀌었습니다.'],
+    ['도로명주소', /도로명주소/, '도로명주소가 붙었습니다.'],
+    ['멸실', /멸실/, '건물이 없어졌습니다(멸실).'],
+    ['증축·변경', /증축|구조변경|용도변경|개축|일부멸실/, '건물을 늘리거나 구조·용도를 바꿨습니다.'],
+    ['대지권', /대지권/, '대지권(아파트 등 호실의 땅 지분)이 기록됐습니다.'],
+    ['별도등기', /별도등기/, '토지에 따로 등기된 권리가 있다는 표시가 붙었습니다.'],
+    ['경정', /경정/, '기재를 바로잡았습니다(경정).'],
+    ['전산이기', /전산이기/, '종이 등기부를 전산 등기부로 옮겨 적었습니다.']
+  ];
+  function buildParcelHistory(doc) {
+    var rows = doc.pyoje.map(function (r, i) {
+      var cols = r.cols || [], get = function (lab) { var k = cols.indexOf(lab); return k >= 0 && r.cells[k] ? r.cells[k].text : ''; };
+      var all = r.cells.map(function (c) { return c.text; }).join(' | ');
+      var cause = cols.length ? get('등기원인및기타사항') : all;
+      return { i: i, sub: r.sub || '', no: NS(cols.length ? get('표시번호') : '').replace(/\(전.*$/, ''), date: parseDate(cols.length ? get('접수') : '') || parseDate(cause),
+        lot: oneLine(get('소재지번') || get('소재지번,건물명칭및번호') || get('소재지번및건물번호') || get('건물번호')), jimok: oneLine(get('지목')), area: oneLine(get('면적')), desc: oneLine(get('건물내역')), ratio: oneLine(get('대지권비율')),
+        cause: oneLine(cause), struck: r.cells.some(function (c) { return c.struck >= 0.5; }) };
+    });
+    var events = [], last = {}, counts = {};
+    rows.forEach(function (r) {
+      var prev = last[r.sub], ns = NS(r.cause), kinds = PARCEL_KINDS.filter(function (k) { return k[1].test(ns); }), parts = [];
+      kinds.forEach(function (k) { counts[k[0]] = (counts[k[0]] || 0) + 1; if (k[0] !== '전산이기' || kinds.length === 1) parts.push(k[2]); });
+      if (prev) {
+        if (r.lot && prev.lot && NS(r.lot) !== NS(prev.lot)) parts.push('표시: ' + prev.lot + ' → ' + r.lot);
+        if (r.jimok && prev.jimok && r.jimok !== prev.jimok) parts.push('지목: ' + prev.jimok + ' → ' + r.jimok);
+        if (r.area && prev.area && NS(r.area) !== NS(prev.area)) parts.push('면적: ' + prev.area + ' → ' + r.area);
+        if (r.ratio && prev.ratio && NS(r.ratio) !== NS(prev.ratio)) parts.push('대지권 비율: ' + prev.ratio + ' → ' + r.ratio);
+      } else parts.unshift('처음 기록된 표시: ' + [r.lot, r.jimok, r.area, r.desc && r.desc.slice(0, 60), r.ratio].filter(Boolean).join(' · '));
+      var lots = [], m, re = /([가-힣]+(?:동|리|가))\s*(산\s*)?(\d+(?:-\d+)?)/g;
+      if (/분할|합병|이기|전사/.test(ns)) while ((m = re.exec(r.cause))) lots.push(m[1] + ' ' + (m[2] ? '산' : '') + m[3]);
+      events.push({ date: r.date, sub: r.sub, no: r.no, kinds: kinds.map(function (k) { return k[0]; }), text: parts.join(' '), cause: r.cause, lots: uniq(lots), struck: r.struck, minor: kinds.length === 1 && kinds[0][0] === '전산이기' });
+      last[r.sub] = r;
+    });
+    var current = Object.keys(last).map(function (k) { var r = last[k]; return { sub: k, text: [r.lot, r.jimok, r.area, r.desc && r.desc.slice(0, 80), r.ratio].filter(Boolean).join(' · ') }; });
+    return { events: events, counts: counts, current: current };
+  }
+
+  function buildChatContext(doc, rep, opt) { return buildAIPrompt(doc, rep, opt).split('\n지시:')[0]; }
+  function buildMultiChatContext(items, multi, opt) { return buildMultiPrompt(items, multi, opt).split('\n지시:')[0]; }
+  var CHAT_RULES = '위 자료는 등기부 판독 결과입니다. 이어지는 질문에 쉬운 한국어 경어체로, 결론부터 짧게 답하십시오. 자료에 있는 사실과 추정을 구분하고, 자료에 없는 사실(빚, 가족관계, 돈의 흐름, 시세 등)은 추정이라고 밝히십시오. 근거가 된 순위번호(갑3, 을1 등)를 적으십시오. 결과를 보장하거나 단정하지 말고, 법조문·판례 번호는 쓰지 마십시오. 마크다운 기호(별표, 샵 등) 없이 문장으로만 쓰십시오.';
 
   function oneLine(s) { return String(s || '').replace(/\s*\n\s*/g, ' ').trim(); }
 
@@ -1545,10 +1660,13 @@
     if (opt.partyName) L.push('계약 상대방(사용자 입력): ' + opt.partyName);
     if (opt.deposit) L.push('보증금 또는 매매대금(사용자 입력): ' + won(opt.deposit));
     if (opt.marketPrice) L.push('시세(사용자 입력): ' + won(opt.marketPrice));
+    if (namesOf(opt.debtors).length) L.push('사해행위 검토 대상 채무자(사용자 입력): ' + namesOf(opt.debtors).join(', ') + (opt.debtSince ? ' / 채권 발생일 ' + opt.debtSince : ''));
+    if (namesOf(opt.related).length) L.push('채무자의 관련인(사용자 입력): ' + namesOf(opt.related).join(', '));
     L.push('');
     L.push('[문서] ' + (doc.title || '') + ' / 종류 ' + (doc.kind || '미상') + ' / 소재지 ' + (doc.address || '미상') + ' / 고유번호 ' + (doc.uniqueNo || '미상') + ' / 열람일시 ' + (doc.viewedAtText || '미상') + (doc.viewOnly ? ' / 열람용' : ''));
     L.push('[표제부 요약] 용도 ' + (rep.use || '미상') + ', 전유면적 ' + (rep.area ? rep.area + '㎡' : '미상') + ', 대지권 ' + (rep.daejiType || '') + ' ' + (rep.daejiRatio || '표시 없음'));
     L.push('[표제부 원문]\n' + (doc.pyojeText || '(없음)').slice(0, 3000));
+    if (rep.parcel && rep.parcel.events.length) L.push('[땅·건물 표시 이력(판독기 정리)]\n' + rep.parcel.events.filter(function (e) { return !e.minor; }).map(function (e) { return (e.date || '날짜 없음') + ' ' + e.sub + ': ' + e.text + (e.lots.length ? ' (관련 지번 ' + e.lots.join(', ') + ')' : ''); }).join('\n').slice(0, 3000));
     L.push('[현재 소유자(' + rep.ownersSrc + ')] ' + (rep.owners.map(function (o) { return o.name + ' ' + (o.share || ''); }).join(', ') || '미상'));
     L.push('[갑구] 순위 | 상태 | 등기목적 | 접수 | 등기원인 | 권리자 및 기타사항');
     doc.gap.forEach(function (e) { L.push(entryLine(e)); });
@@ -1595,6 +1713,8 @@
     var L = [], purposeLabel = PURPOSES[opt.purpose || 'general'];
     L.push('당신은 한국 부동산 등기사항증명서 권리분석을 돕는 검토자입니다. 서로 관련 있을 수 있는 등기부 ' + items.length + '건을 함께 검토합니다.');
     L.push('목적: ' + purposeLabel + ' / 판독 기준일: ' + (opt.baseDate || ''));
+    if (namesOf(opt.debtors).length) L.push('사해행위 검토 대상 채무자(사용자 입력): ' + namesOf(opt.debtors).join(', ') + (opt.debtSince ? ' / 채권 발생일 ' + opt.debtSince : ''));
+    if (namesOf(opt.related).length) L.push('채무자의 관련인(사용자 입력): ' + namesOf(opt.related).join(', '));
     items.forEach(function (it, i) {
       L.push('');
       L.push('[문서 ' + (i + 1) + ': ' + it.name + '] 종류 ' + (it.doc.kind || '미상') + ' / 소재지 ' + (it.doc.address || '미상') + ' / 지번키 ' + (it.jibun || '-') + ' / 현재 소유자 ' + (it.rep.owners.map(function (o) { return o.name + (o.regno ? '(' + o.regno + ')' : ''); }).join(', ') || '미상'));
@@ -1606,6 +1726,7 @@
     multi.findings.forEach(function (f) { L.push('- [' + LV_LABEL[f.level] + '] ' + f.title + (f.detail ? ' (' + f.detail + ')' : '')); });
     L.push('');
     L.push(AI_RULES(purposeLabel));
+    L.push('9. 한 문서에서 누군가 부동산을 판 직후 다른 문서에서 관련 있어 보이는 사람이 부동산을 산 경우처럼, 등기에 나오지 않는 돈의 흐름(매도대금 증여 등)을 추정할 수 있는지 검토하십시오. 주민등록번호 앞자리로 알 수 있는 취득 당시 나이도 참고하되 추정임을 밝히십시오.');
     L.push('8. 문서 사이의 관계(같은 지번의 토지·건물, 같은 소유자, 같은 채권자, 공동담보, 같은 날 처분)를 찾아 함께 해석하십시오. 근거는 "문서번호-갑3"처럼 적으십시오.');
     L.push('');
     L.push('다음 JSON 하나만 출력하십시오:');
@@ -1669,7 +1790,7 @@
 
   return {
     NS: NS, extractPdf: extractPdf, extractSegments: extractSegments, buildLines: buildLines, parseDocument: parseDocument,
-    analyze: analyze, analyzeMulti: analyzeMulti, jibunOf: jibunOf, buildAIPrompt: buildAIPrompt, buildMultiPrompt: buildMultiPrompt, buildVisionPrompt: buildVisionPrompt, docFromVision: docFromVision,
+    analyze: analyze, analyzeMulti: analyzeMulti, buildParcelHistory: buildParcelHistory, buildChatContext: buildChatContext, buildMultiChatContext: buildMultiChatContext, CHAT_RULES: CHAT_RULES, jibunOf: jibunOf, buildAIPrompt: buildAIPrompt, buildMultiPrompt: buildMultiPrompt, buildVisionPrompt: buildVisionPrompt, docFromVision: docFromVision,
     parseDate: parseDate, won: won, oneLine: oneLine, basisOf: basisOf, SMALL_TENANT: SMALL_TENANT,
     LV: LV, LV_LABEL: LV_LABEL, TYPE_LABEL: TYPE_LABEL, PURPOSES: PURPOSES, RIGHT_TYPES: RIGHT_TYPES
   };

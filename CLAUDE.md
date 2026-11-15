@@ -63,7 +63,7 @@ C. "이 글 검수해줘"(원고 제공) → 4단계만 수행한다.
 - `corpus/posts/<채널>/`: 팀 기존 글 원문(문체·유사도 기준). 채널 미상 글은 `common/`. 사무소 소개·서명 문단은 빼고 저장한다
 - `corpus/lawrewrite/ANALYSIS.md`: 로리라이트 화면 분석
 - `app/`: 팀원용 원고실 아티팩트 원본과 빌드 스크립트
-- `app/deunggi/`: 등기부 판독기 아티팩트(https://claude.ai/artifact/ETugUTYNve54JJJu5Fv2wW) 원본. `engine.js`·`template.html`을 고친 뒤 `python3 app/deunggi/build.py`로 `deunggi.html`을 만들어 같은 URL로 재게시한다. 해설 근거는 `research/verified*.md`에서 원문 확인된 것만 쓴다. 회귀 테스트는 `test/run.js`(가상 등기부 fixtures)
+- `app/deunggi/`: 등기부 판독기 아티팩트(https://claude.ai/artifact/ETugUTYNve54JJJu5Fv2wW) 원본. `engine.js`·`template.html`을 고친 뒤 `python3 app/deunggi/build.py`로 `deunggi.html`을 만들어 같은 URL로 재게시한다. 해설 근거는 `research/verified*.md`에서 원문 확인된 것만 쓴다. 회귀 테스트는 `test/run.js`(가상 등기부 fixtures), `test/case_fraud.test.js`(매도대금 증여형 사해행위), `test/parcel.test.js`(표제부 이력)
 - `kit/wonkosil-kit/`: 팀원 개인 원고실 설치 키트(Claude Code에서 "원고실 설치해줘"), `kit/wonkosil-kit.zip`이 배포본. app/wonkosil.html을 고치면 키트에 복사해 다시 압축한다
 - `skill/jinnsol-blog/`: 팀원 claude.ai에 올리는 스킬 원본, `skill/jinnsol-blog.zip`이 배포본. 규칙·코퍼스를 바꾸면 파일을 복사해 다시 압축한다
 - `data/published.csv`: 발행 기록
