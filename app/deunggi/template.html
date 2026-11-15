@@ -539,12 +539,12 @@ function secFraud(f) {
   if (!list.length) return '<section class="sec">' + secHead('s-fraud-' + f.id, '사해행위 가능성') + intro + '<p class="empty">등기부에서 사해행위로 볼 만한 신호를 찾지 못했습니다.</p>' + basisHTML(['fraud_406']) + '</section>';
   return '<section class="sec">' + secHead('s-fraud-' + f.id, '사해행위 가능성', '신호 점수 순') + intro + '<ul class="fraud">' + list.map(function (c) {
     var lvl = c.direct ? 'critical' : c.score >= 60 ? 'high' : c.score >= 30 ? 'caution' : 'info';
-    var dl = addYears(c.act.date, 5), left = dl ? Math.round((Date.parse(dl) - Date.parse(r.base)) / 86400000) : null;
+    var d0 = c.act.causeDate || c.act.date, dl = addYears(d0, 5), left = dl ? Math.round((Date.parse(dl) - Date.parse(r.base)) / 86400000) : null;
     return '<li><h3>' + tag(lvl) + esc(c.kind) + ' ' + refBtn(f.id, c.act.sec, c.act.rank) + (c.direct ? ' <span class="kind">사실: 사해행위취소 가처분</span>' : ' ' + kindTag('추론')) + '<span class="faint num" style="font-weight:400">신호 ' + c.score + '</span></h3>' +
       (c.from.length || c.to.length ? '<p class="det muted" style="margin:2px 0;font-size:13px">' + esc(c.from.join(', ') || '?') + ' → ' + esc(c.to.join(', ') || '?') + ' · ' + esc(c.act.date || '') + '</p>' : '') +
       '<div class="two"><div><h4>신호</h4><ul>' + c.signals.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div><div><h4>반대 사정·한계</h4><ul>' + (c.counter.length ? c.counter : ['등기부만으로는 반대 사정을 알 수 없음']).map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ul></div></div>' +
       '<p class="mean" style="font-size:14px;margin:8px 0 4px">' + esc(c.meaning) + '</p>' +
-      (dl ? '<p class="deadline">법률행위가 있은 날부터 5년: <span class="num">' + esc(dl) + '</span>' + (left != null ? (left >= 0 ? ' (기준일부터 ' + left + '일 남음)' : ' (지남)') : '') + '. 채권자가 취소원인을 안 날부터 1년이 먼저 끝날 수 있습니다.</p>' : '') +
+      (dl ? '<p class="deadline">' + (c.act.causeDate ? '등기원인일자' : '등기 접수일(법률행위일은 등기원인일자로 확인)') + '부터 5년: <span class="num">' + esc(dl) + '</span>' + (left != null ? (left >= 0 ? ' (기준일부터 ' + left + '일 남음)' : ' (지남)') : '') + '. 채권자가 취소원인을 안 날부터 1년이 먼저 끝날 수 있고, 이 기간 안에 소송을 제기해야 합니다.</p>' : '') +
       '<ul class="checks">' + c.check.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' + basisHTML(c.basis) + '</li>';
   }).join('') + '</ul></section>';
 }

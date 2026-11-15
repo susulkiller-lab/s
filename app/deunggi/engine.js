@@ -40,7 +40,7 @@
     jeonse_auction: ['민법 제318조', '전세금 반환이 지체되면 전세권자는 그 부동산의 경매를 청구할 수 있습니다.'],
     jeonse: ['민법 제303조 제1항', '전세권자는 그 부동산 전부에 대하여 후순위권리자보다 전세금을 먼저 돌려받을 권리를 가집니다.'],
     mortgage_max: ['민법 제357조', '근저당의 채권최고액은 담보되는 최대 한도로, 현재 실제로 남은 채무액과 다를 수 있습니다. 이자도 이 최고액 안에 포함됩니다.'],
-    rank_order: ['부동산등기법 제4조', '같은 구에서는 순위번호로, 갑구와 을구 사이에서는 접수번호로 권리의 선후를 비교합니다.'],
+    rank_order: ['부동산등기법 제4조', '같은 구에서는 순위번호로, 갑구와 을구 사이에서는 접수번호로 권리의 선후를 비교합니다. 다만 법률에 다른 규정이 있으면 그에 따릅니다.'],
     sub_rank: ['부동산등기법 제5조', '부기등기(예: 1-1번)는 주등기의 순위를 따릅니다.'],
     cert_pending: ['부동산등기규칙 제30조 제4항', '증명서에 등기신청사건 처리 중 표시가 있으면 아직 반영되지 않은 등기가 있을 수 있습니다.'],
     trust_reg: ['부동산등기법 제81조', '신탁등기가 있으면 소유자는 수탁자로 바뀐 상태이고, 임대·처분 권한 등은 등기기록의 일부인 신탁원부에 적혀 있습니다.'],
@@ -56,7 +56,7 @@
     prov_security_rank: ['가등기담보 등에 관한 법률 제13조', '경매에서 담보가등기는 가등기를 마친 날 설정된 저당권과 같은 순위로 취급됩니다.'],
     prov_security_end: ['가등기담보 등에 관한 법률 제15조·제16조', '담보가등기는 경매 매각으로 소멸하며, 매각으로 소멸하는 담보가등기권리자는 채권신고를 해야 배당을 받을 수 있습니다.'],
     p_2024da291102: ['대법원 2025. 3. 27. 선고 2024다291102 판결', '담보가등기권리자가 법원이 정한 기간 안에 채권신고를 하지 않으면 배당받을 권리를 잃는다고 본 판결입니다.'],
-    tax_priority: ['국세기본법 제35조 제1항 제3호', '국세는 원칙적으로 다른 채권보다 우선하지만, 세금의 법정기일보다 먼저 설정된 저당권·전세권·확정일자 임차권 등은 국세보다 먼저 변제됩니다.'],
+    tax_priority: ['국세기본법 제35조 제1항 제3호·제3항', '국세는 원칙적으로 다른 채권보다 우선하지만, 세금의 법정기일보다 먼저 설정된 저당권·전세권·확정일자 임차권 등은 국세보다 먼저 변제됩니다. 다만 그 부동산 자체에 부과된 상속세·증여세·종합부동산세는 이보다도 우선하는 것이 원칙이고, 주택 임차인에게는 별도 특례가 있습니다.'],
     tax_date: ['국세기본법 제35조 제2항', '국세와 담보권의 선후는 세금의 법정기일(신고일, 납부고지서 발송일 등)로 비교하며, 등기부의 압류등기일과 다를 수 있습니다.'],
     tax_lease_special: ['국세기본법 제35조 제7항', '2023년 4월 1일 이후 매각(허가)결정되는 경매·공매부터는, 확정일자나 전세권 설정일보다 법정기일이 늦은 그 집의 상속세·증여세·종합부동산세 몫만큼 주택 임차인의 보증금이 먼저 배분될 수 있습니다.'],
     sale_cancel: ['민사집행법 제144조 제1항', '대금 납부 후 법원은 매수인이 인수하지 않는 부담의 등기와 경매개시결정등기를 말소하도록 촉탁합니다. 인수되는 권리는 말소 대상이 아닙니다.'],
@@ -66,10 +66,15 @@
     fraud_trust: ['신탁법 제8조 제1항', '채무자가 채권자를 해하는 줄 알면서 신탁을 설정하면, 수탁자가 그 사정을 몰랐더라도 채권자는 취소와 원상회복을 청구할 수 있습니다. 수익자가 수익권을 취득할 때 몰랐다면 예외입니다.'],
     p_fraud_sole: ['대법원 2017. 11. 29. 선고 2017다241819 판결', '채무자가 유일한 재산인 부동산을 매각해 소비하기 쉬운 금전으로 바꾸는 행위는 원칙적으로 사해행위가 되고 사해의사가 추정되며, 매수인이 몰랐다는 점은 매수인이 증명해야 한다고 보았습니다.'],
     p_fraud_substitute: ['대법원 2008. 2. 14. 선고 2006다33357 판결', '채무 전부를 갚기에 재산이 부족한 채무자가 유일한 재산을 특정 채권자에게 대물변제로 제공하면 특별한 사정이 없는 한 사해행위가 되지만, 우선변제권 있는 채권자에 대한 대물변제는 원칙적으로 그렇지 않다고 보았습니다.'],
-    p_fraud_mortgage: ['대법원 2022. 1. 14. 선고 2018다295103 판결', '재산이 채무 전부를 갚기에 부족한 채무자가 특정 채권자에게 재산을 담보로 제공하면 특별한 사정이 없는 한 다른 채권자에 대한 사해행위가 된다고 보았습니다.'],
+    p_fraud_mortgage: ['대법원 2022. 1. 14. 선고 2018다295103 판결', '재산이 채무 전부를 갚기에 부족한 채무자가 특정 채권자에게 재산을 담보로 제공하면 특별한 사정이 없는 한 다른 채권자에 대한 사해행위가 된다고 보았습니다. 다만 자금난에 처한 채무자가 사업을 계속하려고 부득이 담보를 제공하고 신규자금을 융통받았다면 사해행위에 해당하지 않을 수 있다고 보았습니다.'],
     p_fraud_division: ['대법원 2024. 5. 30. 선고 2024다208315 판결', '상속재산 분할협의는 사해행위취소 대상이 될 수 있고, 채무초과 상태의 상속인이 자기 상속분을 포기하는 협의는 원칙적으로 사해행위에 해당한다고 보았습니다.'],
+    p_fraud_division_limit: ['대법원 2001. 2. 9. 선고 2000다51797 판결', '채무초과 상태의 상속인이 분할협의에서 권리를 포기했더라도 그 결과가 구체적 상속분에 미달하는 과소한 것이 아니면 사해행위로 취소되어야 하는 것은 아니고, 미달하는 경우에도 취소 범위는 그 미달 부분에 한정된다고 보았습니다.'],
     p_fraud_renounce: ['대법원 2011. 6. 9. 선고 2011다29307 판결', '상속의 포기는 사해행위취소의 대상이 되지 않는다고 보았습니다. 협의분할과 구별해야 합니다.'],
     p_fraud_bad_faith: ['대법원 2015. 6. 11. 선고 2014다237192 판결', '채무자의 악의는 채권자가 증명해야 하지만, 재산을 받은 사람(수익자·전득자)은 스스로 몰랐다는 사실을 증명해야 한다고 보았습니다.'],
+    p_fraud_bad_faith_balance: ['대법원 2025. 8. 14. 선고 2024다305384 판결', '수익자의 선의 여부는 채무자와의 관계, 거래의 경위와 조건 등을 종합해 판단하며, 수익자가 채무자의 재산 상황을 적극적으로 조사하지 않았다는 이유만으로 선의 주장을 쉽게 배척해서는 안 된다고 보았습니다.'],
+    p_fraud_restore_way: ['대법원 2009. 3. 26. 선고 2007다63102 판결', '사해행위 취소에 따른 원상회복은 원칙적으로 목적물 자체의 반환에 의하고, 그것이 불가능하거나 현저히 곤란한 경우에 한하여 예외적으로 가액반환에 의한다고 보았습니다.'],
+    p_2017da9121: ['대법원 2022. 3. 31. 선고 2017다9121, 9138 판결', '토지 소유자가 자기 토지 위 채무자 소유 건물의 철거청구권을 보전하려고 건물에 처분금지가처분을 한 경우, 그 가처분등기는 건물에 관한 압류나 근저당권설정등기 뒤에 마쳐졌더라도 매각대금 지급 후 말소되지 않고 남는다고 보았습니다.'],
+    cert_issue: ['부동산등기규칙 제30조 제1항', '등기사항증명서에는 등기기록과 다름없음을 증명하는 증명문, 발급연월일, 전자이미지관인 등이 기록됩니다.'],
     p_fraud_restore: ['대법원 2002. 11. 8. 선고 2002다41589 판결', '사해행위 여부는 처분 당시를 기준으로 판단하고, 저당권이 설정된 부동산이 이전된 경우 사해행위는 부동산 가액에서 저당권 피담보채권액을 뺀 범위에서 성립한다고 보았습니다.'],
     statutory_superficies: ['민법 제366조', '저당권 실행 경매로 토지와 건물의 소유자가 달라지면 토지소유자가 건물소유자에게 지상권을 설정한 것으로 봅니다.'],
     p_custom_superficies: ['대법원 2012. 10. 18. 선고 2010다52140 전원합의체 판결', '동일인 소유였던 토지와 건물이 강제경매·공매 등으로 소유자가 달라진 경우 철거 특약이 없으면 건물소유자는 관습상 법정지상권을 취득한다고 보았습니다(강제경매·공매 사안).'],
@@ -747,7 +752,7 @@
 
     /* 문서 자체 */
     if (doc.partial) F('partial', 'caution', '일부증명서(현재 유효사항)입니다', { meaning: '말소된 등기 이력이 표시되지 않아 과거 가압류·임차권등기 같은 이력을 볼 수 없습니다.', check: ['말소사항 포함 전부증명서로 다시 열람'] });
-    if (doc.viewOnly) F('viewonly', 'info', '열람용 출력물입니다', { meaning: '문서 하단에 "열람용이므로 출력하신 등기사항증명서는 법적인 효력이 없습니다"라고 적혀 있습니다(문서 자체의 안내 문구). 제출용이 필요하면 발급본을 받아야 합니다.' });
+    if (doc.viewOnly) F('viewonly', 'info', '열람용 출력물입니다', { meaning: '문서에 열람용이라는 안내 문구가 인쇄되어 있습니다(문서 자체의 안내이며 법령 근거가 아닙니다). 발급본 등기사항증명서에는 등기기록과 다름없음을 증명하는 증명문과 전자이미지관인이 기록됩니다. 제출용이 필요하면 발급본을 받으십시오.', basis: ['cert_issue'] });
     if (doc.viewedAt) {
       var age = daysBetween(doc.viewedAt, base);
       if (age >= 1) F('stale', age > 30 ? 'high' : 'caution', '열람 후 ' + age + '일이 지났습니다', { detail: '열람일시 ' + doc.viewedAtText + ', 판독 기준일 ' + base, meaning: '열람 이후 새 등기가 들어왔을 수 있습니다. 계약 당일과 잔금 직전에 다시 열람해 비교하는 것이 안전합니다.', check: ['계약일·잔금일 당일 재열람'] });
@@ -767,7 +772,7 @@
     if (/근린생활시설/.test(use)) F('use_neighborhood', lv({ lease: 'high', buy: 'caution', general: 'caution' }), '건물 용도가 근린생활시설로 기재되어 있습니다', { detail: '표제부 용도: ' + use, meaning: P({ lease: '주거용으로 쓰고 있다면 용도와 실제 사용이 다른 경우입니다. 건축물대장의 위반건축물 표시와 전세자금대출·보증보험 가입 가능 여부를 확인해야 합니다.', general: '주거용으로 사용 중인지, 건축물대장에 위반건축물 표시가 있는지 확인이 필요합니다.' }), check: ['건축물대장(위반건축물 표시, 용도)', '전세자금대출·보증보험 가능 여부'] });
     if (use === '오피스텔' || use === '업무시설') F('use_officetel', 'info', '용도가 ' + use + '입니다', { meaning: '주거용으로 쓰는지 업무용인지에 따라 세금·대출·보호 범위가 달라질 수 있어 실제 사용 형태를 확인해야 합니다.', check: ['건축물대장 용도', '전입 가능 여부'] });
     if (use === '다가구주택') F('use_multi', lv({ lease: 'high', general: 'caution' }), '다가구주택입니다(건물 전체가 하나의 등기)', { meaning: '호실별로 등기가 나뉘지 않아 다른 세대 임차인의 보증금과 전입·확정일자 순서가 내 보증금보다 앞설 수 있습니다.', check: ['전입세대 열람', '확정일자 부여 현황(임대인 동의)', '다른 임차인 보증금 합계'] });
-    if (doc.kind === '집합건물' && doc.pyoje.length && !daeji.length) F('no_daeji', lv({ lease: 'caution', buy: 'high', auction: 'high', general: 'caution' }), '집합건물인데 대지권 표시가 없습니다', { meaning: '대지권이 아직 등기되지 않았거나(대지권 미등기) 대지권이 없는 건물일 수 있습니다. 토지 지분 소유 여부가 가격과 경매 결과에 영향을 줍니다.', check: ['토지 등기부', '분양계약서·분양대금 완납 여부', '집합건축물대장'] });
+    if (doc.kind === '집합건물' && doc.pyoje.length && !daeji.length) F('no_daeji', lv({ lease: 'caution', buy: 'high', auction: 'high', general: 'caution' }), '집합건물인데 대지권 표시가 없습니다', { meaning: '대지권이 아직 등기되지 않았거나(대지권 미등기) 대지권이 없는 건물일 수 있습니다. 토지 지분 소유 여부는 가격과 경매 결과에 영향을 줄 수 있어 확인이 필요합니다.', check: ['토지 등기부', '분양계약서·분양대금 완납 여부', '집합건축물대장'] });
     if (/별도등기/.test(pt)) F('land_separate', lv({ lease: 'high', buy: 'high', auction: 'high', general: 'caution' }), '토지에 별도등기가 있다는 표시가 있습니다', { meaning: '대지에 건물과 별개로 근저당 등 권리가 설정되어 있을 수 있습니다. 토지 등기부의 내용과 금액을 따로 확인해야 합니다.', check: ['토지 등기부(별도등기 내용)'] });
 
     /* 소유자 관련 */
@@ -777,7 +782,7 @@
     if (opt.partyName) {
       var pn = NS(opt.partyName);
       var hit = owners.some(function (o) { return NS(o.name).indexOf(pn) >= 0 || pn.indexOf(NS(o.name)) >= 0; });
-      if (!hit && owners.length) F('party_mismatch', 'critical', '계약 상대방이 등기부상 소유자가 아닙니다', { detail: '입력한 상대방: ' + opt.partyName + ' / 등기부상 소유자: ' + owners.map(function (o) { return o.name; }).join(', '), meaning: '대리인이면 위임장과 인감증명서, 신탁이면 수탁자 동의서가 있어야 합니다. 권한 확인 없이 계약하면 안 됩니다.', check: ['소유자 본인 확인', '위임장·인감증명서'] });
+      if (!hit && owners.length) F('party_mismatch', 'critical', '계약 상대방이 등기부상 소유자가 아닙니다', { detail: '입력한 상대방: ' + opt.partyName + ' / 등기부상 소유자: ' + owners.map(function (o) { return o.name; }).join(', '), meaning: '대리인이라면 위임장·인감증명서 등으로 대리권을 확인하십시오. 신탁부동산이라면 임대·처분 권한이 등기기록의 일부인 신탁원부에 정해져 있으므로 신탁원부와 수탁자·우선수익자 동의 여부를 확인하십시오. 권한을 확인하기 전에는 계약을 진행하지 않는 것이 안전합니다.', check: ['소유자 본인 확인', '위임장·인감증명서'], basis: ['trust_reg'] });
     }
 
     /* 소유권 이전 흐름 */
@@ -796,7 +801,7 @@
     }
     transfersOnly.forEach(function (e) {
       var c = e.causeText;
-      if (/경매로인한매각|매각$|공매/.test(c)) F('acq_auction', 'info', '경매·공매로 취득한 이력이 있습니다(' + e.rank + '번)', { entries: [e], meaning: '과거 경매 이력은 당시 채무 문제가 있었다는 뜻입니다. 매각으로 말소된 권리와 인수된 권리가 정리됐는지 확인합니다.' });
+      if (/경매로인한매각|매각$|공매/.test(c)) F('acq_auction', 'info', '경매·공매로 취득한 이력이 있습니다(' + e.rank + '번)', { entries: [e], kind: '추론', meaning: '과거 경매 이력은 당시 채무 문제가 있었을 가능성을 보여 줍니다. 매각으로 말소된 권리와 인수된 권리가 정리됐는지 확인합니다.' });
       if (/판결|진정명의회복|화해|조정/.test(c)) F('acq_judgment', 'caution', '판결·화해 등으로 소유권이 이전된 이력이 있습니다(' + e.rank + '번)', { entries: [e], meaning: '소유권을 두고 다툼이 있었던 이력입니다. 확정 여부와 남은 분쟁을 확인합니다.', check: ['판결문·확정증명'] });
       if (/상속/.test(c)) {
         var next = transfersOnly.filter(function (x) { return dkey(x) > dkey(e); })[0];
@@ -807,7 +812,7 @@
 
     /* 갑구 권리 */
     valid('auction').forEach(function (e) {
-      F('auction', lv({ auction: 'info', general: 'critical', lease: 'critical', buy: 'critical', credit: 'high' }), (/임의/.test(e.purpose) ? '임의' : /강제/.test(e.purpose) ? '강제' : '') + '경매개시결정이 유효합니다' + (e.caseNo ? ' (' + e.caseNo + ')' : ''), { entries: [e], meaning: P({ auction: '입찰 대상 사건의 압류 등기입니다. 이 등기가 말소기준권리가 되는지 아래 계산과 함께 봅니다.', lease: '경매가 진행 중인 부동산입니다. 지금 임대차를 맺으면 매각 후 보증금 회수가 불확실해질 수 있습니다.', buy: '경매가 취하·취소되지 않으면 매각으로 소유권이 넘어갈 수 있습니다. 경매 정리 없이 계약하면 안 됩니다.', credit: '선행 경매가 진행 중입니다. 배당요구 종기와 배당 순위를 확인해야 합니다.', general: '법원이 경매절차를 시작해 압류 효력이 생긴 상태입니다.' }), check: ['법원경매정보 사건 조회(' + (e.caseNo || '사건번호') + ')', '매각기일·배당요구 종기'], basis: purpose === 'auction' ? ['auction', 'sale_mortgage', 'sale_other'] : purpose === 'credit' ? ['auction', 'dividend_end'] : ['auction'] });
+      F('auction', lv({ auction: 'info', general: 'critical', lease: 'critical', buy: 'critical', credit: 'high' }), (/임의/.test(e.purpose) ? '임의' : /강제/.test(e.purpose) ? '강제' : '') + '경매개시결정이 유효합니다' + (e.caseNo ? ' (' + e.caseNo + ')' : ''), { entries: [e], meaning: P({ auction: '입찰 대상 사건의 압류 등기입니다. 이 등기가 인수·소멸을 가르는 기준 등기(저당권·압류·가압류 중 가장 앞선 등기)가 되는지 아래 계산과 함께 봅니다.', lease: '경매가 진행 중인 부동산입니다. 소액임차인 최우선변제는 경매신청의 등기 전에 인도와 전입을 마친 임차인만 받을 수 있어, 지금 계약하면 이 경매에서는 그 요건을 갖추지 못합니다. 매각 후 보증금 회수가 어려워질 수 있습니다.', buy: '경매가 취하·취소되지 않으면 매각으로 소유권이 넘어갈 수 있습니다. 경매가 정리되기 전에는 계약을 미루는 것이 안전합니다.', credit: '선행 경매가 진행 중입니다. 배당요구 종기와 배당 순위를 확인해야 합니다.', general: '법원이 경매절차를 시작해 압류 효력이 생긴 상태입니다.' }), check: ['법원경매정보 사건 조회(' + (e.caseNo || '사건번호') + ')', '매각기일·배당요구 종기'], basis: purpose === 'auction' ? ['auction', 'sale_mortgage', 'sale_other'] : purpose === 'credit' ? ['auction', 'dividend_end'] : purpose === 'lease' ? ['auction', 'small_tenant'] : ['auction'] });
     });
     valid('public_sale').forEach(function (e) { F('public_sale', 'critical', '공매공고 등기가 있습니다', { entries: [e], meaning: '체납처분으로 공매가 진행 중이라는 뜻입니다.', check: ['온비드 공매 공고'] }); });
     valid('injunction').forEach(function (e) {
@@ -817,18 +822,18 @@
       var isSecurity = /담보가등기/.test(NS(e.purpose));
       var maybeSecurity = !isSecurity && /대물반환/.test(NS(e.cause));
       if (e.bonDeunggi) { F('prov_reg_done', 'info', '가등기에 기한 본등기가 이뤄졌습니다(' + e.rank + '번)', { entries: [e], meaning: '본등기 순위는 가등기 때로 올라가고, 그 사이에 들어온 등기는 규칙이 정한 예외를 빼고 직권말소 대상이 됩니다.', basis: ['prov_reg_rank', 'prov_reg_delete_rule'] }); return; }
-      F(isSecurity ? 'prov_reg_security' : 'prov_reg', lv({ general: 'critical', lease: 'critical', buy: 'critical', auction: isSecurity ? 'caution' : 'critical', credit: 'high' }), (isSecurity ? '담보가등기' : '가등기') + '가 유효합니다', { entries: [e], meaning: isSecurity ? '등기목적에 담보가등기로 적혀 있습니다. 경매에서는 이 권리를 가등기를 마친 날 설정된 저당권으로 보고, 매각으로 소멸합니다. 담보가등기권리자가 법원이 정한 기간 안에 채권신고를 하지 않으면 배당받을 권리를 잃는다는 대법원 판결이 있습니다.' : '장래 본등기를 받을 권리를 미리 확보해 둔 등기입니다. 본등기가 되면 순위가 가등기 때로 올라가고, 가등기 뒤에 들어온 권리는 직권 말소될 수 있습니다. 가등기 종류(소유권이전·전세권설정·저당권설정 등)에 따라 말소 범위가 다릅니다.' + (maybeSecurity ? ' 등기원인이 대물반환예약이어서 담보 목적일 가능성도 있으나, 등기 형식만으로 판별할 수는 없습니다.' : ''), check: ['가등기 원인(매매예약·대물반환예약)', '가등기권자와 소유자의 관계'], basis: isSecurity ? (purpose === 'auction' ? ['prov_security_sale', 'prov_security_rank', 'prov_security_end', 'p_2024da291102'] : ['prov_security_sale', 'prov_security_rank']) : ['prov_reg', 'prov_reg_rank', 'prov_reg_delete', 'prov_reg_scope'] });
+      F(isSecurity ? 'prov_reg_security' : 'prov_reg', lv({ general: 'critical', lease: 'critical', buy: 'critical', auction: isSecurity ? 'caution' : 'critical', credit: 'high' }), (isSecurity ? '담보가등기' : '가등기') + '가 유효합니다', { entries: [e], meaning: isSecurity ? '등기목적에 담보가등기로 적혀 있습니다. 담보가등기라면 경매에서는 이 권리를 가등기를 마친 날 설정된 저당권으로 보고, 매각으로 소멸합니다. 담보 목적인지는 등기 형식만으로 확정할 수 없으므로, 경매가 개시되면 법원이 가등기권리자에게 하는 신고 최고와 사건 기록으로 확인하십시오. 담보가등기권리자가 법원이 정한 기간 안에 채권신고를 하지 않으면 배당받을 권리를 잃는다는 대법원 판결이 있습니다.' : '장래 본등기를 받을 권리를 미리 확보해 둔 등기입니다. 본등기가 되면 순위가 가등기 때로 올라가고, 가등기 뒤에 들어온 권리는 직권 말소될 수 있습니다. 가등기 종류(소유권이전·전세권설정·저당권설정 등)에 따라 말소 범위가 다릅니다.' + (maybeSecurity ? ' 등기원인이 대물반환예약이어서 담보 목적일 가능성도 있으나, 등기 형식만으로 판별할 수는 없습니다.' : ''), check: ['가등기 원인(매매예약·대물반환예약)', '가등기권자와 소유자의 관계'], basis: isSecurity ? (purpose === 'auction' ? ['prov_security_sale', 'prov_security_rank', 'prov_security_end', 'p_2024da291102'] : ['prov_security_sale', 'prov_security_rank']) : ['prov_reg', 'prov_reg_rank', 'prov_reg_delete', 'prov_reg_scope'] });
     });
     valid('trust').forEach(function (e) {
       var trustee = e.names.filter(function (n) { return n.role === '수탁자'; }).map(function (n) { return n.name; })[0] || '';
       var tno = (NS(e.holder).match(/신탁원부제?([\d\-]+호)/) || [])[1] || '';
-      F('trust', lv({ general: 'high', lease: 'critical', buy: 'critical', auction: 'high', credit: 'high' }), '신탁등기가 유효합니다' + (trustee ? ' (수탁자 ' + trustee + ')' : ''), { entries: [e], detail: tno ? '신탁원부 ' + tno : '', meaning: P({ lease: '등기부상 소유자는 수탁자(신탁회사 등)이고, 임대·처분 권한은 등기기록의 일부인 신탁원부에 적혀 있습니다. 신탁원부에 적힌 임대 조건은 임차인에게도 효력이 있어, 위탁자와 계약한 경우 보증금 반환 의무자가 신탁원부 내용에 따라 달라질 수 있다는 대법원 판결이 있습니다.', buy: '매도 권한은 신탁원부 약정에 따릅니다. 수탁자가 매도인이 되어야 하는지 확인해야 합니다.', general: '소유권이 신탁회사로 넘어간 상태입니다. 처분·임대 권한은 신탁원부에 정해져 있습니다.' }), check: ['신탁원부 발급(' + (tno || '번호 확인') + ')', '수탁자·우선수익자 동의서'], basis: purpose === 'lease' ? ['trust_reg', 'trust_notice', 'p_2019da300095'] : ['trust_reg', 'trust_notice', 'trust_exec'] });
+      F('trust', lv({ general: 'high', lease: 'critical', buy: 'critical', auction: 'high', credit: 'high' }), '신탁등기가 유효합니다' + (trustee ? ' (수탁자 ' + trustee + ')' : ''), { entries: [e], detail: tno ? '신탁원부 ' + tno : '', meaning: P({ lease: '등기부상 소유자는 수탁자(신탁회사 등)이고, 임대·처분 권한은 등기기록의 일부인 신탁원부에 적혀 있습니다. 신탁원부에 적힌 임대 조건은 임차인에게도 효력이 있어, 위탁자와 계약한 경우 보증금 반환 의무자가 신탁원부 내용에 따라 달라질 수 있다는 대법원 판결이 있습니다.', buy: '매도 권한은 신탁원부 약정에 따릅니다. 수탁자가 매도인이 되어야 하는지 확인해야 합니다.', general: '소유권이 수탁자(신탁회사 등)에게 넘어간 상태입니다. 처분·임대 권한은 신탁원부에 정해져 있습니다.' }), check: ['신탁원부 발급(' + (tno || '번호 확인') + ')', '수탁자·우선수익자 동의서'], basis: purpose === 'lease' ? ['trust_reg', 'trust_notice', 'p_2019da300095'] : ['trust_reg', 'trust_notice', 'trust_exec'] });
     });
     var seiz = valid('seizure');
     seiz.forEach(function (e) {
       var holder = e.names.filter(function (n) { return n.role === '권리자'; }).map(function (n) { return n.name; })[0] || '';
       var ht = seizureHolderType(holder);
-      F('seizure', lv({ auction: 'info', general: 'high', lease: 'high', buy: 'high', credit: 'high' }), '압류가 유효합니다' + (holder ? ' (' + holder + (ht ? ', ' + ht : '') + ')' : ''), { entries: [e], meaning: P({ lease: '세금·보험료 체납 등으로 행정기관이 압류한 상태입니다. 국세와 담보권·확정일자 임차권의 선후는 세금의 법정기일로 비교하므로, 압류등기일보다 앞선 세금이 보증금보다 먼저 배분될 수 있습니다.', buy: '잔금 전에 체납액을 정리하고 압류를 말소하는 조건이 필요합니다.', auction: '말소기준권리 후보입니다.', general: '체납 등으로 압류된 상태입니다.' }), check: ['국세·지방세 완납증명(임대인 동의)', '압류 해제 조건'], basis: purpose === 'lease' ? ['tax_priority', 'tax_date', 'lessor_info'] : ['tax_priority', 'tax_date'] });
+      F('seizure', lv({ auction: 'info', general: 'high', lease: 'high', buy: 'high', credit: 'high' }), '압류가 유효합니다' + (holder ? ' (' + holder + (ht ? ', ' + ht : '') + ')' : ''), { entries: [e], meaning: P({ lease: '세금·보험료 체납 등으로 행정기관이 압류한 상태입니다. 국세와 확정일자 임차권의 선후는 압류등기일이 아니라 세금의 법정기일(신고일, 납부고지서 발송일 등)과 확정일자를 비교해 정하므로, 법정기일이 이 계약의 확정일자보다 앞선 국세는 보증금보다 먼저 배분될 수 있습니다. 법정기일은 등기부에 나오지 않으니 납세증명서로 확인하십시오.', buy: '잔금 전에 체납액을 정리하고 압류를 말소하는 조건이 필요합니다.', auction: '이 압류는 전세권·등기된 임차권 등이 매각 후에도 남는지를 가르는 기준 등기 후보입니다(저당권·압류·가압류에 대항할 수 없는 전세권 등은 매각으로 소멸).', general: '체납 등으로 압류된 상태입니다.' }), check: ['국세·지방세 완납증명(임대인 동의)', '압류 해제 조건'], basis: purpose === 'lease' ? ['tax_priority', 'tax_date', 'tax_lease_special', 'lessor_info'] : purpose === 'auction' ? ['sale_other', 'tax_priority', 'tax_date'] : ['tax_priority', 'tax_date'] });
     });
     if (seiz.length >= 2) F('multi_seizure', lv({ auction: 'caution', general: 'high', lease: 'critical', buy: 'high' }), '압류가 ' + seiz.length + '건 남아 있습니다', { entries: seiz, kind: '추론', meaning: '여러 기관의 체납이 겹친 상태로, 소유자의 자금 사정이 나쁠 가능성이 있습니다.' });
     var att = valid('attach');
@@ -836,7 +841,7 @@
       var amt = pickAmount(e.amounts, ['청구금액']);
       var cred = e.names.filter(function (n) { return n.role === '채권자'; }).map(function (n) { return n.name; })[0] || '';
       var share = /지분/.test(NS(e.purpose));
-      F('attach', lv({ auction: 'info', general: 'high', lease: 'high', buy: 'high', credit: 'caution' }), (share ? '지분 ' : '') + '가압류가 유효합니다' + (amt ? ' (청구금액 ' + won(amt) + ')' : ''), { entries: [e], detail: cred ? '채권자 ' + cred : '', meaning: P({ lease: '금전채권을 가진 채권자가 장래 강제집행을 보전하려고 묶어 둔 상태입니다. 강제경매로 이어지면 보증금 회수 순위 문제가 생길 수 있습니다.', buy: '잔금 전에 해제(말소) 조건이 필요합니다. 가압류가 남은 채로 이전받으면 그 부담을 안게 됩니다.', auction: '말소기준권리 후보이며 원칙적으로 매각으로 소멸 대상입니다.', general: '금전채권을 가진 채권자가 장래 강제집행을 보전하려고 부동산을 미리 묶어 둔 상태입니다.' }), check: ['가압류 사건번호(' + (e.caseNo || '확인') + ')와 본안 진행'], basis: ['attach'] });
+      F('attach', lv({ auction: 'info', general: 'high', lease: 'high', buy: 'high', credit: 'caution' }), (share ? '지분 ' : '') + '가압류가 유효합니다' + (amt ? ' (청구금액 ' + won(amt) + ')' : ''), { entries: [e], detail: cred ? '채권자 ' + cred : '', meaning: P({ lease: '금전채권을 가진 채권자가 장래 강제집행을 보전하려고 묶어 둔 상태입니다. 강제경매로 이어지면 보증금 회수 순위 문제가 생길 수 있습니다.', buy: '잔금 전에 해제(말소) 조건이 필요합니다. 가압류가 남은 채로 이전받으면 그 부담을 안게 됩니다.', auction: '이 가압류는 전세권·등기된 임차권 등이 매각 후에도 남는지를 가르는 기준 등기 후보입니다. 매수인이 인수하지 않는 부담이면 매각대금 납부 뒤 말소 촉탁 대상이 됩니다.', general: '금전채권을 가진 채권자가 장래 강제집행을 보전하려고 부동산을 미리 묶어 둔 상태입니다.' }), check: ['가압류 사건번호(' + (e.caseNo || '확인') + ')와 본안 진행'], basis: purpose === 'auction' ? ['attach', 'sale_other', 'sale_cancel'] : ['attach'] });
     });
     var attEver = ever('attach'), attCancelled = attEver.filter(function (e) { return e.cancelled; });
     if (attCancelled.length >= 2 || (attCancelled.length >= 1 && att.length >= 1)) F('attach_repeat', 'caution', '가압류가 반복된 이력이 있습니다(전체 ' + attEver.length + '건, 말소 ' + attCancelled.length + '건)', { entries: attEver, kind: '추론', meaning: '채무 분쟁이 여러 차례 있었던 소유자일 수 있습니다.' });
@@ -864,10 +869,10 @@
     var mortSum = mortInfo.reduce(function (s, m) { return s + (m.amt || 0); }, 0);
     mortInfo.forEach(function (m) {
       var risky = /대부|유동화|개인/.test(m.tier);
-      F('mortgage', risky ? lv({ general: 'high', lease: 'high', buy: 'high', auction: 'caution', credit: 'caution' }) : lv({ general: 'info', lease: 'caution', buy: 'caution', auction: 'info', credit: 'caution' }), '근저당권 ' + m.e.rank + '번' + (m.amt ? ' 채권최고액 ' + won(m.amt) : '') + (m.holder ? ' (' + m.holder + (m.tier ? ', ' + m.tier : '') + ')' : ''), { entries: [m.e].concat((m.e.subs || []).filter(function (s) { return !s.cancelled; })), meaning: (m.tier === '대부업체' || m.tier === '개인' || m.tier === '채권 유동화·추심 회사' ? '근저당권자가 ' + m.tier + '입니다. 은행권 대출보다 조건이 불리한 자금을 썼거나 채권이 매각됐을 수 있어 소유자 자금 사정을 의심해 볼 만합니다. ' : m.tier === '제2금융권' ? '제2금융권 담보대출입니다. ' : '') + '채권최고액은 실제 대출 잔액이 아니라 담보하는 한도입니다. 실제 잔액은 금융기관 확인이 필요합니다.' + (m.debtor && owners.length && !owners.some(function (o) { return NS(o.name) === NS(m.debtor); }) ? ' 채무자(' + m.debtor + ')가 현재 소유자와 다릅니다.' : ''), check: ['대출 잔액 확인(소유자 협조)', purpose === 'lease' ? '잔금 시 상환·말소 또는 감액 조건' : '말소 조건'].concat(m.joint ? ['공동담보목록 ' + m.joint] : []), basis: ['mortgage_max'], kind: m.tier ? '사실' : '사실' });
+      F('mortgage', risky ? lv({ general: 'high', lease: 'high', buy: 'high', auction: 'caution', credit: 'caution' }) : lv({ general: 'info', lease: 'caution', buy: 'caution', auction: 'info', credit: 'caution' }), '근저당권 ' + m.e.rank + '번' + (m.amt ? ' 채권최고액 ' + won(m.amt) : '') + (m.holder ? ' (' + m.holder + (m.tier ? ', ' + m.tier : '') + ')' : ''), { entries: [m.e].concat((m.e.subs || []).filter(function (s) { return !s.cancelled; })), meaning: (risky ? '근저당권자 이름으로 보아 ' + m.tier + josa(m.tier, '으로', '로') + ' 추정됩니다. 은행권보다 조건이 불리한 자금을 썼거나 채권이 매각됐을 수 있어 소유자 자금 사정을 살펴볼 필요가 있습니다. ' : m.tier === '제2금융권' ? '근저당권자 이름으로 보아 제2금융권 담보대출로 추정됩니다. ' : '') + '채권최고액은 실제 대출 잔액이 아니라 담보하는 한도입니다. 실제 잔액은 금융기관 확인이 필요합니다.' + (m.debtor && owners.length && !owners.some(function (o) { return NS(o.name) === NS(m.debtor); }) ? ' 채무자(' + m.debtor + ')가 현재 소유자와 다릅니다.' : ''), check: ['대출 잔액 확인(소유자 협조)', purpose === 'lease' ? '잔금 시 상환·말소 또는 감액 조건' : '말소 조건'].concat(m.joint ? ['공동담보목록 ' + m.joint] : []), basis: ['mortgage_max'], kind: risky ? '추론' : '사실' });
       if (m.increased) F('mort_increase', 'caution', m.e.rank + '번 근저당 채권최고액이 증액됐습니다', { entries: [m.increased.e], detail: won(m.increased.from) + ' → ' + won(m.increased.to), kind: '추론', meaning: '추가 대출을 받았을 가능성이 있습니다.' });
       if (m.transferred) F('mort_transfer', /확정채권양도/.test(m.transferred.cause) || /대부|유동화|개인/.test(lenderTier(m.transferred.to)) ? 'high' : 'caution', m.e.rank + '번 근저당권이 이전됐습니다', { entries: [m.transferred.e], detail: (m.transferred.from || '') + ' → ' + m.transferred.to + (m.transferred.cause ? ' (' + m.transferred.cause + ')' : ''), kind: '추론', meaning: '대출 채권이 다른 곳에 넘어갔습니다. 확정채권양도나 채권 매입회사·개인으로의 이전은 연체 채권 매각 후 경매로 이어지는 경우가 있어 진행 상황을 확인해야 합니다.', check: ['연체 여부', '경매 신청 여부'] });
-      if (m.joint) F('joint', 'info', m.e.rank + '번 근저당에 공동담보가 있습니다', { entries: [m.e], meaning: '다른 부동산과 함께 담보로 잡혀 있습니다. 경매 시 채권최고액이 부동산별로 나뉘어 배당될 수 있어 공동담보목록을 확인합니다.', check: ['공동담보목록 ' + m.joint] });
+      if (m.joint) F('joint', 'info', m.e.rank + '번 근저당에 공동담보가 있습니다', { entries: [m.e], meaning: '다른 부동산과 함께 담보로 잡혀 있습니다(공동저당). 함께 경매되어 동시에 배당되면 각 부동산의 경매대가에 비례해 채권을 나누어 부담하고, 일부만 먼저 경매되면 그 대가에서 채권 전부를 받을 수 있어 이 부동산이 부담하는 몫이 달라집니다. 공동담보목록을 확인합니다.', check: ['공동담보목록 ' + m.joint], basis: ['joint_mortgage'] });
     });
     if (morts.length >= 3) F('multi_mortgage', lv({ general: 'high', lease: 'high', buy: 'caution', auction: 'info' }), '유효한 근저당이 ' + morts.length + '건입니다', { entries: morts, kind: '추론', meaning: '여러 차례 담보 대출을 받은 상태로, 부채 비율이 높을 수 있습니다.' });
     var pledges = all.filter(function (e) { return e.type === 'pledge' && !e.cancelled; });
@@ -875,13 +880,13 @@
     var jeon = valid('jeonse');
     jeon.forEach(function (e) {
       var amt = pickAmount(e.amounts, ['전세금']);
-      F('jeonse', lv({ general: 'caution', lease: 'high', buy: 'caution', auction: 'caution' }), '전세권이 유효합니다' + (amt ? ' (전세금 ' + won(amt) + ')' : ''), { entries: [e], meaning: P({ lease: '먼저 들어온 전세권자가 있습니다. 그 전세금이 내 보증금보다 앞섭니다.', auction: '말소기준권리보다 앞선 전세권은 매수인이 인수할 수 있습니다(배당요구 여부 확인).', general: '전세권자가 있습니다. 존속기간과 전세금을 확인합니다.' }), check: ['존속기간 만료 여부', '전세금 반환 여부'], basis: purpose === 'auction' ? ['jeonse', 'sale_take'] : ['jeonse'] });
+      F('jeonse', lv({ general: 'caution', lease: 'high', buy: 'caution', auction: 'caution' }), '전세권이 유효합니다' + (amt ? ' (전세금 ' + won(amt) + ')' : ''), { entries: [e], meaning: P({ lease: '먼저 들어온 전세권자가 있습니다. 그 전세금이 내 보증금보다 앞섭니다.', auction: '저당권·압류·가압류보다 앞선 전세권은 매수인이 인수할 수 있습니다. 다만 전세권자가 배당요구를 하면 매각으로 소멸합니다.', general: '전세권자가 있습니다. 존속기간과 전세금을 확인합니다.' }), check: ['존속기간 만료 여부', '전세금 반환 여부'], basis: purpose === 'auction' ? ['jeonse', 'sale_take'] : ['jeonse'] });
     });
     var leasesAll = ever('lease');
     leasesAll.forEach(function (e) {
       var amt = pickAmount(e.amounts, ['임차보증금', '보증금']);
       var isOrder = /임차권등기명령/.test(NS(e.cause));
-      if (!e.cancelled) F('lease_reg', lv({ general: 'critical', lease: 'critical', buy: 'high', auction: 'high', credit: 'high' }), (isOrder ? '임차권등기명령에 따른 임차권' : '임차권') + '등기가 유효합니다' + (amt ? ' (보증금 ' + won(amt) + ')' : ''), { entries: [e], meaning: (isOrder ? '등기원인이 임차권등기명령입니다. 이 제도는 임대차가 끝난 뒤 보증금을 돌려받지 못한 임차인이 신청하는 것이므로, 이 보증금이 아직 남아 있는지 확인이 필요합니다. 그 임차인이 이사해도 이미 갖춘 대항력과 우선변제권은 유지됩니다.' : '등기된 임차권이 있습니다. 등기원인이 임차권등기명령인지 임대인 협력 등기인지 원문으로 확인하십시오.') + (purpose === 'lease' ? ' 이런 임차권등기가 끝난 집을 그 이후에 빌린 임차인은 소액임차인 최우선변제를 받을 수 없습니다.' : ''), check: ['보증금 반환 여부', '임차인 퇴거 여부'], basis: isOrder ? ['lease_order', 'lease_order_effect'].concat(purpose === 'lease' ? ['lease_order_small'] : []) : ['lease_civil', 'lease_civil_effect'] });
+      if (!e.cancelled) F('lease_reg', lv({ general: 'critical', lease: 'critical', buy: 'high', auction: 'high', credit: 'high' }), (isOrder ? '임차권등기명령에 따른 임차권' : '임차권') + '등기가 유효합니다' + (amt ? ' (보증금 ' + won(amt) + ')' : ''), { entries: [e], meaning: (isOrder ? '등기원인이 임차권등기명령입니다. 이 제도는 임대차가 끝난 뒤 보증금을 돌려받지 못한 임차인이 신청하는 것이므로, 이 보증금이 아직 남아 있는지 확인이 필요합니다. 그 임차인이 이사해도 이미 갖춘 대항력과 우선변제권은 유지됩니다.' : '등기된 임차권이 있습니다. 등기원인이 임차권등기명령인지 임대인 협력 등기인지 원문으로 확인하십시오.') + (purpose === 'lease' ? ' 임차권등기가 끝난 주택(주택의 일부에 대한 등기라면 그 부분)을 그 이후에 빌린 임차인은 소액임차인 최우선변제를 받을 수 없습니다.' : ''), check: ['보증금 반환 여부', '임차인 퇴거 여부'], basis: isOrder ? ['lease_order', 'lease_order_effect'].concat(purpose === 'lease' ? ['lease_order_small'] : []) : ['lease_civil', 'lease_civil_effect'] });
       else F('lease_reg_past', lv({ general: 'caution', lease: 'high', buy: 'caution' }), '과거 임차권등기 이력이 있습니다(말소)', { entries: [e], kind: '추론', meaning: (isOrder ? '등기원인이 임차권등기명령이었습니다. 이전 임차인이 임대차 종료 뒤 보증금을 제때 돌려받지 못했던 이력일 수 있습니다. ' : '과거 임차권등기가 있었습니다. ') + '그때와 소유자가 같다면 보증금 반환 능력을 더 꼼꼼히 확인해야 합니다.', check: ['소유자가 그때와 같은지', '이번 계약의 보증보험 가입 가능 여부'] });
     });
     valid('superficies').forEach(function (e) {
@@ -898,7 +903,7 @@
         var sd = sameDay.map(function (e) { return mortInfo.filter(function (m) { return m.e === e; })[0]; }).filter(Boolean);
         var total = sd.reduce(function (s, m) { return s + (m.amt || 0); }, 0);
         var price = pickAmount(lastX.amounts, ['거래가액']);
-        F('sameday_mortgage', price && total && total / price >= 0.8 ? 'high' : 'caution', '소유권 이전과 같은 날 근저당이 설정됐습니다', { entries: [lastX].concat(sameDay), kind: '추론', detail: (price ? '거래가액 ' + won(price) + ', ' : '') + (total ? '같은 날 채권최고액 ' + won(total) : '') + (price && total ? ' (거래가액 대비 ' + Math.round(total / price * 100) + '%)' : ''), meaning: '매수 자금 상당 부분을 대출로 조달한 것으로 보입니다. 채권최고액이 거래가액에 가까우면 자기 자본이 거의 없는 매수일 수 있습니다.' });
+        F('sameday_mortgage', price && total && total / price >= 0.8 ? 'high' : 'caution', '소유권 이전과 같은 날 근저당이 설정됐습니다', { entries: [lastX].concat(sameDay), kind: '추론', detail: (price ? '거래가액 ' + won(price) + ', ' : '') + (total ? '같은 날 채권최고액 ' + won(total) : '') + (price && total ? ' (거래가액 대비 ' + Math.round(total / price * 100) + '%)' : ''), meaning: '소유권 이전과 같은 날 근저당이 설정되어 매수 자금 일부를 대출로 조달했을 수 있습니다. 채권최고액은 담보 한도여서 실제 대출액과 다를 수 있으므로, 거래가액 대비 비율만으로 자기 자본 규모를 판단할 수는 없습니다. 등급을 가른 80% 구간은 판독기 내부 기준입니다.' });
       }
       var sameLease = doc.eul.filter(function (e) { return (e.type === 'jeonse' || e.type === 'lease') && e.date && Math.abs(daysBetween(lastX.date, e.date)) <= 3; });
       if (sameLease.length && lastX.type !== 'preserve') F('gap_pattern', 'high', '소유권 이전과 거의 같은 때 전세권·임차권이 설정됐습니다', { entries: [lastX].concat(sameLease), kind: '추론', meaning: '매매와 전세가 동시에 진행된 형태로, 임차인 보증금으로 매수 대금을 치렀을 수 있습니다. 매수인 자기 자본과 보증금 반환 능력을 확인해야 합니다.' });
@@ -914,7 +919,7 @@
     var baseCand = all.filter(function (e) {
       if (e.cancelled) return false;
       if (e.type === 'mortgage' || e.type === 'seizure' || e.type === 'attach' || e.type === 'auction') return true;
-      if (e.type === 'prov_reg' && !e.bonDeunggi && /담보|대물반환/.test(NS(e.purpose + e.cause))) return true;
+      if (e.type === 'prov_reg' && !e.bonDeunggi && /담보가등기/.test(NS(e.purpose))) return true;
       return false;
     }).sort(function (a, b) { return dkey(a) < dkey(b) ? -1 : dkey(a) > dkey(b) ? 1 : 0; });
     var baseRight = baseCand[0] || null;
@@ -925,11 +930,11 @@
         var before = dkey(e) < dkey(baseRight);
         var item = { e: e, label: TYPE_LABEL[e.type] };
         if (!before) {
-          if (e.type === 'injunction') { item.note = '후순위라도 건물철거·토지인도 청구 가처분이면 인수될 수 있어 원인 확인 필요'; survive.push(item); }
+          if (e.type === 'injunction') { item.note = '후순위라도 토지 소유자의 건물 철거청구권을 보전하려는 건물 처분금지가처분이면 매각 뒤에도 말소되지 않고 남는다고 본 판결이 있어 피보전권리 확인 필요'; survive.push(item); }
           else extinguish.push(item);
         } else {
           if (['injunction', 'prov_reg', 'superficies', 'easement', 'jeonse', 'lease', 'repurchase', 'trust', 'warning'].indexOf(e.type) >= 0) {
-            item.note = e.type === 'jeonse' ? '전세권자가 배당요구하면 소멸, 아니면 인수 가능' : e.type === 'trust' ? '신탁 부동산 경매는 위탁자 채권자의 집행이 제한될 수 있어 사건 확인 필요' : '말소기준권리보다 앞서 인수 가능';
+            item.note = e.type === 'jeonse' ? '전세권자가 배당요구하면 소멸, 아니면 인수 가능' : e.type === 'trust' ? '신탁 부동산 경매는 위탁자 채권자의 집행이 제한될 수 있어 사건 확인 필요' : '기준 등기보다 앞서 인수 가능';
             survive.push(item);
           } else extinguish.push(item);
         }
@@ -955,7 +960,7 @@
     var mgmt = valid('mgmt');
     mgmt.forEach(function (e) { F('mgmt', lv({ general: 'high', lease: 'critical', buy: 'high', auction: 'caution', credit: 'high' }), '강제관리개시결정이 있습니다', { entries: [e], meaning: '법원이 관리인을 정해 부동산 수익(차임 등)으로 채권을 회수하는 절차입니다. 임대 관계의 상대방과 차임 지급처를 확인해야 합니다.', check: ['관리인 지정 여부', '차임 지급처'] }); });
     var aucEver = ever('auction');
-    if (aucEver.length >= 2) F('auction_repeat', aucEver.some(function (e) { return !e.cancelled; }) ? 'high' : 'caution', '경매개시결정이 ' + aucEver.length + '번 있었습니다', { entries: aucEver, kind: '추론', meaning: '경매가 시작됐다가 취하·취소된 뒤 다시 시작된 이력입니다. 채무 문제가 반복된 소유자일 수 있습니다.' });
+    if (aucEver.length >= 2) F('auction_repeat', aucEver.some(function (e) { return !e.cancelled; }) ? 'high' : 'caution', '경매개시결정이 ' + aucEver.length + '번 있었습니다', { entries: aucEver, kind: '추론', meaning: '경매개시결정 등기가 여러 번 있었습니다. 앞선 경매가 취하·취소된 뒤 다시 시작됐는지, 진행 중인 사건에 다른 경매가 더해졌는지 사건 기록으로 확인하십시오. 채무 문제가 반복된 소유자일 수 있습니다.' });
     var aucValid = valid('auction');
     if (aucValid.length) {
       var aStart = aucValid.slice().sort(byKey)[0];
@@ -1004,7 +1009,7 @@
     }
     if (doc.kind === '집합건물' && !daeji.length && preserve && daysBetween(preserve.date, base) > 730) F('no_daeji_long', 'caution', '보존등기 후 2년이 넘도록 대지권 표시가 없습니다', { entries: [preserve], kind: '추론', meaning: '대지권 등기가 오래 지연된 경우 토지 분쟁이나 분양대금 미정산 사정이 있을 수 있습니다.' });
     var leaseHolders = leasesAll.map(function (e) { return NS((roleName(e, /임차권자/) || {}).name); }).filter(Boolean);
-    valid('auction').forEach(function (a) { if (/강제/.test(a.purpose) && leaseHolders.some(function (n) { return NS(a.holder).indexOf(n) >= 0; })) F('tenant_auction', 'high', '임차인이 직접 강제경매를 신청한 것으로 보입니다', { entries: [a], kind: '추론', meaning: '보증금을 돌려받지 못한 임차인이 판결 등을 받아 경매를 신청한 정황입니다.' }); });
+    valid('auction').forEach(function (a) { if (/강제/.test(a.purpose) && leaseHolders.some(function (n) { return NS(a.holder).indexOf(n) >= 0; })) F('tenant_auction', 'high', '임차인이 직접 강제경매를 신청한 것으로 보입니다', { entries: [a], kind: '추론', meaning: '보증금을 돌려받지 못한 임차인이 판결 등을 받아 경매를 신청한 정황일 수 있습니다. 경매신청채권자를 사건 기록에서 확인하십시오.' }); });
     var aucAcq = doc.gap.filter(function (e) { return e.type === 'transfer' && /매각|공매/.test(e.causeText) && e.date; });
     aucAcq.forEach(function (e) { var nx = doc.gap.filter(function (x) { return x.type === 'transfer' && x.date && dkey(x) > dkey(e); })[0]; if (nx && daysBetween(e.date, nx.date) <= 365) F('auction_flip', 'info', '경매·공매로 산 뒤 1년 안에 다시 팔렸습니다', { entries: [e, nx], kind: '추론', meaning: '낙찰 후 단기 매도입니다. 매각 당시 정리된 권리와 현재 가격을 비교해 보십시오.' }); });
 
@@ -1077,10 +1082,10 @@
   /* 6-2. 사해행위 신호                                                    */
   /* ------------------------------------------------------------------ */
   var FRAUD_MEANING = {
-    general: '채무가 많은 소유자가 재산을 처분해 채권자가 돈을 받기 어려워지면, 채권자는 그 처분을 취소하고 원상회복을 법원에 청구할 수 있습니다(채권자취소권). 등기부만으로는 채무초과 여부와 당사자가 그 사정을 알았는지를 알 수 없어 신호만 보여 드립니다.',
+    general: '채무자가 채권자를 해하는 줄 알면서 재산을 처분하면 채권자는 법원에 그 처분의 취소와 원상회복을 청구할 수 있습니다(채권자취소권). 다만 재산을 받은 사람이 당시 그 사정을 몰랐다면 취소되지 않습니다. 등기부만으로는 채무초과 여부와 당사자가 그 사정을 알았는지를 알 수 없어 신호만 보여 드립니다.',
     buy: '매도인의 취득이나 이번 매매가 취소 소송의 대상이 되면 소유권을 되돌려야 하는 분쟁에 휘말릴 수 있습니다. 처분 경위와 매도인 쪽 채무를 확인해야 합니다.',
     lease: '소유권을 두고 취소 소송이 벌어지면 계약 상대방의 지위가 불안정해질 수 있습니다. 소송 진행 여부를 확인해야 합니다.',
-    credit: '채권자 입장에서는 이 처분을 채권자취소 소송으로 되돌릴 수 있는지 검토할 수 있습니다. 취소원인을 안 날부터 1년, 법률행위가 있은 날부터 5년 안에 청구해야 합니다.',
+    credit: '채권자 입장에서는 이 처분을 채권자취소 소송으로 되돌릴 수 있는지 검토할 수 있습니다. 취소원인을 안 날부터 1년, 법률행위가 있은 날부터 5년 안에 소송을 제기해야 합니다.',
     auction: '과거 처분이 취소 소송 중이면 소유 관계와 매각 절차에 영향을 줄 수 있어 사건 기록을 확인해야 합니다.'
   };
   function detectFraud(doc, base, purpose) {
@@ -1097,8 +1102,8 @@
       if (/대물변제/.test(kind)) b.push('p_fraud_substitute');
       if (/신탁/.test(kind)) b.push('fraud_trust');
       if (/근저당/.test(kind)) b.push('p_fraud_mortgage');
-      if (/협의분할/.test(kind)) b.push('p_fraud_division', 'p_fraud_renounce');
-      b.push('p_fraud_bad_faith');
+      if (/협의분할/.test(kind)) b.push('p_fraud_division', 'p_fraud_division_limit', 'p_fraud_renounce');
+      b.push('p_fraud_bad_faith', 'p_fraud_bad_faith_balance');
       if (direct) b.push('p_fraud_restore');
       if (taxDebt) b.push('fraud_tax');
       return b;
@@ -1118,7 +1123,7 @@
       var shareOf = (NS(x.purpose).match(/\d+번([가-힣]{2,5})지분/) || [])[1];
       if (shareOf) from = from.filter(function (f) { return NS(f.name) === shareOf; }).concat(from.length && !from.some(function (f) { return NS(f.name) === shareOf; }) ? [{ name: shareOf, regno: '' }] : []);
       var fromNames = from.map(function (f) { return f.name; });
-      var c = x.causeText, sig = [], counter = [], score = 0, kind;
+      var c = x.causeText, sig = [], counter = [], score = 0, kind, extraBasis = [];
       if (/증여/.test(c)) { sig.push('증여(무상 이전)'); score += 25; kind = '증여'; }
       else if (/협의분할/.test(c)) { sig.push('상속재산 협의분할'); score += 10; kind = '상속재산 협의분할'; }
       else if (/대물변제/.test(c)) { sig.push('대물변제'); score += 20; kind = '대물변제'; }
@@ -1129,7 +1134,7 @@
       owns.slice(0, i).forEach(function (o) { var p = pickAmount(o.amounts, ['거래가액']); if (p) prevPrice = p; });
       var maxMort = 0; eul.forEach(function (m) { if (m.type === 'mortgage' && m.date && m.date <= x.date) { var a = pickAmount(m.amounts, ['채권최고액']); if (a > maxMort) maxMort = a; } });
       if (price && prevPrice && price < prevPrice * 0.5) { sig.push('거래가액 ' + won(price) + '이 직전 거래가 ' + won(prevPrice) + '의 절반 미만'); score += 20; }
-      else if (price && maxMort && price < maxMort * 0.3) { sig.push('거래가액 ' + won(price) + '이 앞서 설정된 근저당 한도 ' + won(maxMort) + '보다 크게 낮음'); score += 20; }
+      else if (price && maxMort && price < maxMort * 0.3) { sig.push('거래가액 ' + won(price) + '이 앞서 설정된 근저당 한도 ' + won(maxMort) + '보다 크게 낮음'); score += 20; counter.push('앞선 근저당의 실제 피담보채권액이 처분 당시 시가를 넘으면 사해행위가 성립하지 않는다는 판례가 있음(채권최고액만으로는 판단 불가)'); extraBasis.push('p_fraud_restore'); }
       if (from.some(function (f) { return to.some(function (t) { return sameSurname(f.name, t.name); }); })) { sig.push('주고받은 사람의 성씨가 같음(가족일 수 있음, 추정)'); score += 10; }
       var before = debt.filter(function (d) { return liveAt(d, x.date) && daysBetween(d.date, x.date) <= 730 && appliesTo(d, fromNames); });
       if (before.length) { sig.push('처분 당시 남아 있던 ' + uniq(before.map(function (d) { return TYPE_LABEL[d.type]; })).join('·') + ' ' + before.length + '건'); score += 30; }
@@ -1139,12 +1144,12 @@
       var mBefore = eul.filter(function (m) { var h = roleName(m, /저당권자/); return m.type === 'mortgage' && m.date && daysBetween(m.date, x.date) >= 0 && daysBetween(m.date, x.date) <= 180 && h && isPerson(h.name, h.regno); });
       if (mBefore.length) { sig.push('처분 전 6개월 안에 개인 명의 근저당'); score += 15; }
       var mToSame = eul.filter(function (m) { var h = roleName(m, /저당권자/); return m.type === 'mortgage' && m.date && m.date <= x.date && h && to.some(function (t) { return NS(t.name) === NS(h.name); }); });
-      if (mToSame.length) { sig.push('받은 사람이 앞서 근저당권자였음'); score += 20; mBefore = mBefore.concat(mToSame.filter(function (m) { return mBefore.indexOf(m) < 0; })); }
+      if (mToSame.length) { sig.push('받은 사람이 앞서 근저당권자였음'); score += 20; counter.push('받은 사람이 우선변제권 있는 근저당권자였다면 그에 대한 대물변제는 특별한 사정이 없는 한 사해행위가 되지 않는다는 판례가 있음'); extraBasis.push('p_fraud_substitute'); mBefore = mBefore.concat(mToSame.filter(function (m) { return mBefore.indexOf(m) < 0; })); }
       if (!before.length && !direct) counter.push('처분 당시 등기부상 가압류·압류·경매 기록 없음');
       if (kind === '매매' && price && prevPrice && price >= prevPrice * 0.8) counter.push('거래가액이 직전 거래가와 비슷함');
-      if (daysBetween(x.date, base) > 365 * 5) counter.push('처분일부터 5년이 지남');
+      if (daysBetween(x.causeDate || x.date, base) > 365 * 5) counter.push(x.causeDate ? '등기원인일자부터 5년이 지남' : '등기 접수일부터 5년이 지남(법률행위일은 등기원인일자로 확인)');
       if (!sig.length) return;
-      out.push({ act: x, kind: kind, score: Math.min(100, score), direct: direct, signals: sig, counter: counter, related: before.concat(inj).concat(mBefore), from: from.map(function (f) { return f.name; }), to: to.map(function (t) { return t.name; }), meaning: FRAUD_MEANING[purpose] || FRAUD_MEANING.general, check: checkFor(direct), basis: basisFor(kind, direct) });
+      out.push({ act: x, kind: kind, score: Math.min(100, score), direct: direct, signals: sig, counter: counter, related: before.concat(inj).concat(mBefore), from: from.map(function (f) { return f.name; }), to: to.map(function (t) { return t.name; }), meaning: FRAUD_MEANING[purpose] || FRAUD_MEANING.general, check: checkFor(direct), basis: uniq(basisFor(kind, direct).concat(extraBasis)) });
     });
     all.forEach(function (m) {
       var isM = m.type === 'mortgage', isP = m.type === 'prov_reg' && !m.bonDeunggi, isJ = m.type === 'jeonse';
@@ -1195,14 +1200,15 @@
         if (/경매로인한매각|매각$/.test(c)) return '경매에서 ' + to + josa(to, '이', '가') + ' 낙찰받아 소유자가 됐습니다.';
         if (/공매/.test(c)) return '공매로 ' + to + josa(to, '이', '가') + ' 소유자가 됐습니다.';
         if (/판결|화해|조정/.test(c)) return '법원의 판결·화해 등에 따라 ' + to + '에게 소유권이 넘어갔습니다.';
-        if (/유증|사인증여/.test(c)) return (from ? from + '의 ' : '') + '유언(유증)으로 ' + to + '에게 넘어갔습니다.';
+        if (/사인증여/.test(c)) return (from ? from + '의 ' : '') + '사망으로 효력이 생기는 증여(사인증여)로 ' + to + '에게 넘어갔습니다.';
+        if (/유증/.test(c)) return (from ? from + '의 ' : '') + '유언(유증)으로 ' + to + '에게 넘어갔습니다.';
         if (/재산분할/.test(c)) return '이혼 등에 따른 재산분할로 ' + to + '에게 넘어갔습니다.';
         if (/공유물분할/.test(c)) return '공유자들이 나누기로 해(공유물분할) ' + to + '에게 넘어갔습니다.';
         if (/명의신탁해지/.test(c)) return '다른 사람 이름으로 해 두었던 명의를 정리해(명의신탁 해지) ' + to + '에게 넘어갔습니다.';
         if (/진정명의회복/.test(c)) return '원래 주인의 명의를 되찾는 방식(진정명의회복)으로 ' + to + '에게 넘어갔습니다.';
         if (/수용/.test(c)) return '공공사업 수용으로 ' + to + '에게 넘어갔습니다.';
         if (/대물변제/.test(c)) return '빚 대신 부동산으로 갚는 방식(대물변제)으로 ' + to + '에게 넘어갔습니다.';
-        if (/신탁재산귀속|신탁종료|신탁해지/.test(c)) return '신탁이 끝나 ' + to + '에게 소유권이 돌아왔습니다.';
+        if (/신탁재산귀속|신탁종료|신탁해지/.test(c)) return '신탁이 끝나(신탁재산 귀속 등) ' + to + '에게 소유권이 넘어갔습니다.';
         return (c ? c + josa(c, '으로', '로') + ' ' : '') + to + '에게 ' + (part || '') + '소유권이 넘어갔습니다.';
       }
       case 'mortgage': {
@@ -1221,8 +1227,8 @@
       case 'public_sale': return '세금 체납으로 공매가 공고됐습니다.';
       case 'mgmt': return '법원이 관리인을 두어 임대 수익 등으로 빚을 갚게 하는 강제관리를 시작했습니다.';
       case 'jeonse_mort': return tgt + '번 전세권을 담보로 전세권자가 돈을 빌렸습니다(전세권부 근저당).';
-      case 'injunction': { var ci = who(/채권자/); return (ci || '누군가') + josa(ci || '누군가', '이', '가') + ' 이 부동산을 다른 사람에게 넘기거나 담보로 잡히지 못하게 가처분했습니다.' + (/사해/.test(NS(e.holder + e.cause)) ? ' 사해행위취소(빼돌린 재산 되돌리기)를 이유로 한 것입니다.' : ''); }
-      case 'prov_reg': { if (e.bonDeunggi) return '가등기에 따라 소유권이 넘어갔습니다(본등기).'; var hp = who(/가등기권자|권리자/); return (hp || '누군가') + josa(hp || '누군가', '이', '가') + ' 나중에 소유권 등을 넘겨받을 권리를 가등기로 확보했습니다' + (/담보가등기/.test(NS(e.purpose)) ? '(돈을 빌려준 담보 목적)' : '') + '.'; }
+      case 'injunction': { var ci = who(/채권자/), it = (NS(e.purpose).match(/(\d+(?:-\d+)?)번/) || [])[1]; return (ci || '누군가') + josa(ci || '누군가', '이', '가') + (it ? ' ' + it + '번 권리를 처분하지 못하게 가처분했습니다.' : ' 이 부동산을 다른 사람에게 넘기거나 담보로 잡히지 못하게 가처분했습니다.') + (/사해/.test(NS(e.holder + e.cause)) ? ' 가처분 기재에 사해행위취소가 원인으로 적혀 있습니다(채권자가 그 처분을 취소해 재산을 되돌리려는 소송).' : ''); }
+      case 'prov_reg': { if (e.bonDeunggi) return '가등기에 따라 소유권이 넘어갔습니다(본등기).'; var hp = who(/가등기권자|권리자/); return (hp || '누군가') + josa(hp || '누군가', '이', '가') + ' 나중에 소유권 등을 넘겨받을 권리를 가등기로 확보했습니다' + (/담보가등기/.test(NS(e.purpose)) ? '(등기목적상 담보가등기)' : '') + '.'; }
       case 'jeonse': { var hj = who(/전세권자/), a4 = amt(['전세금']); return (hj || '전세권자') + josa(hj || '전세권자', '이', '가') + ' 전세권을 등기했습니다' + (a4 ? '(전세금 ' + won(a4) + ')' : '') + '.'; }
       case 'lease': { var hl = who(/임차권자/), a5 = amt(['임차보증금', '보증금']); return /임차권등기명령/.test(NS(e.cause)) ? '임차인' + (hl ? ' ' + hl : '') + josa(hl || '임차인', '이', '가') + ' 보증금' + (a5 ? ' ' + won(a5) : '') + '을 돌려받지 못해 법원 명령으로 임차권등기를 했습니다.' : '임차권이 등기됐습니다' + (a5 ? '(보증금 ' + won(a5) + ')' : '') + '.'; }
       case 'superficies': { var hs = who(/지상권자/); return (hs ? hs + '에게 ' : '') + '지상권(땅 위에 건물 등을 소유할 권리)이 설정됐습니다.'; }
@@ -1278,27 +1284,28 @@
       var before = base ? dkey(e) < dkey(base) : true, isBase = e === base, r = { e: e, label: TYPE_LABEL[e.type], amount: amtOf(e), isBase: isBase, before: before && !isBase };
       var sec = /담보가등기/.test(NS(e.purpose));
       if (e.type === 'mortgage') { r.result = '소멸'; r.reason = '저당권은 순위와 관계없이 매각으로 소멸'; r.basis = ['sale_mortgage']; }
-      else if (e.type === 'prov_reg' && sec) { r.result = '소멸'; r.reason = '담보가등기는 매각으로 소멸, 채권신고 필요'; r.basis = ['prov_security_end']; }
+      else if (e.type === 'prov_reg' && sec) { r.result = '소멸'; r.reason = '등기목적상 담보가등기. 담보가등기라면 매각으로 소멸하고 채권신고를 해야 배당받음(담보 목적 여부는 사건 기록으로 확인)'; r.basis = ['prov_security_end']; }
       else if (e.type === 'attach' || e.type === 'seizure' || e.type === 'auction' || e.type === 'public_sale') { r.result = '소멸'; r.reason = isBase ? '가장 앞선 기준 등기. 매수인이 인수하지 않는 부담으로 말소 촉탁 대상' : '매수인이 인수하지 않는 부담으로 말소 촉탁 대상'; r.basis = ['sale_cancel']; }
       else if (e.type === 'jeonse') {
         if (r.before) { r.result = '인수 가능'; r.reason = '기준 등기보다 앞선 전세권. 전세권자가 배당요구하면 소멸'; r.basis = ['sale_take']; if (r.amount) takeover += r.amount; }
         else { r.result = '소멸'; r.reason = '저당권·압류·가압류에 대항할 수 없는 전세권'; r.basis = ['sale_other']; }
       } else if (e.type === 'lease' || e.type === 'superficies' || e.type === 'easement') {
         if (r.before) { r.result = '인수 가능'; r.reason = '기준 등기보다 앞선 ' + r.label + (e.type === 'lease' ? '. 보증금을 다 받지 못하면 소멸하지 않음' : ''); r.basis = e.type === 'lease' ? ['sale_take', 'tenancy_survive'] : ['sale_take']; if (e.type === 'lease' && r.amount) takeover += r.amount; }
+        else if (e.type === 'lease') { r.result = '확인 필요'; r.reason = '기준 등기보다 늦게 등기된 임차권. 다만 주택 임차권등기 전에 이미 갖춘 대항력은 유지되므로 등기기록의 주민등록일자·점유개시일이 기준 등기보다 앞서면 소멸하지 않을 수 있음'; r.basis = ['lease_order_effect', 'tenancy_survive', 'sale_other']; }
         else { r.result = '소멸'; r.reason = '저당권·압류·가압류에 대항할 수 없는 ' + r.label; r.basis = ['sale_other']; }
       } else if (e.type === 'injunction') {
         if (r.before) { r.result = '인수 위험'; r.reason = '기준 등기보다 앞선 가처분. 가처분채권자가 본안에서 이기면 매수인 권리가 대항하지 못할 수 있음'; r.basis = ['injunction_reg', 'p_2018da276218']; }
-        else { r.result = '확인 필요'; r.reason = '후순위 가처분. 원칙적으로 말소 촉탁 대상이나 피보전권리(예: 건물철거·토지인도)를 확인'; r.basis = ['sale_cancel']; }
+        else { r.result = '확인 필요'; r.reason = '후순위 가처분. 매수인이 인수하지 않는 부담이면 말소 촉탁 대상이나, 토지 소유자의 건물 철거청구권을 보전하려는 건물 처분금지가처분은 압류·근저당 뒤에 등기됐어도 말소되지 않고 남는다고 본 판결이 있어 피보전권리 확인'; r.basis = ['sale_cancel', 'p_2017da9121']; }
       } else if (e.type === 'prov_reg') {
         if (r.before) { r.result = '인수 위험'; r.reason = '기준 등기보다 앞선 가등기. 본등기가 되면 매수인 소유권이 말소될 수 있음'; r.basis = ['prov_reg_rank', 'prov_reg_delete']; }
-        else { r.result = '소멸'; r.reason = '후순위 가등기로 말소 촉탁 대상'; r.basis = ['sale_cancel']; }
+        else { r.result = '소멸'; r.reason = '기준 등기보다 늦은 가등기. 매수인이 인수하지 않는 부담이면 말소 촉탁 대상(담보 목적 여부는 사건 기록으로 확인)'; r.basis = ['sale_cancel']; }
       } else if (e.type === 'trust') { r.result = '확인 필요'; r.reason = '신탁재산에는 원칙적으로 경매·강제집행을 할 수 없어 사건의 집행 근거를 확인'; r.basis = ['trust_exec']; }
       else if (e.type === 'repurchase' || e.type === 'warning' || e.type === 'prohibit' || e.type === 'rehab') { r.result = r.before ? '인수 위험' : '확인 필요'; r.reason = r.label + ' 기록. 내용과 기간 확인'; r.basis = []; }
       else { r.result = '확인 필요'; r.reason = r.label; r.basis = []; }
       rows.push(r);
     });
-    if (!base) notes.push('저당권·압류·가압류·담보가등기·경매개시결정 같은 기준 등기가 없습니다. 이 경우 지상권·지역권·전세권·등기된 임차권은 매수인이 인수하는 쪽으로 봐야 합니다.');
-    notes.push('등기부에 나오지 않는 부담: 전입일이 기준 등기보다 앞선 임차인(대항력)은 보증금을 다 받지 못하면 매수인이 떠안을 수 있습니다. 유치권도 등기부에 나오지 않습니다.');
+    if (!base) notes.push('저당권·압류·가압류·담보가등기·경매개시결정 같은 기준 등기가 없습니다. 이 경우 지상권·지역권·전세권·등기된 임차권은 매수인이 인수하는 쪽으로 봅니다. 다만 전세권자가 배당요구를 하면 전세권은 매각으로 소멸합니다.');
+    notes.push('등기부에 나오지 않는 부담: 주택의 인도와 전입신고를 마친 다음 날부터 생기는 대항력이 기준 등기보다 앞선 임차인은, 보증금을 다 받지 못하면 그 임차권이 매각으로 소멸하지 않아 매수인이 떠안을 수 있습니다. 대항력이 생긴 날과 기준 등기일이 같으면 선후 판단에 확인이 필요합니다. 유치권도 등기부에 나오지 않습니다.');
     notes.push('배당요구 종기(첫 매각기일 이전으로 정해 공고)와 매각물건명세서의 임차인 현황을 확인하십시오.');
     if (rep.owners.length > 1) notes.push('공유 지분만 매각되는 사건이면 다른 공유자가 최고가와 같은 가격으로 우선매수를 신고할 수 있습니다.');
     return { base: base, rows: rows, takeover: takeover, notes: notes, noteBasis: ['tenancy_opposability', 'tenancy_survive', 'lien', 'dividend_end'].concat(rep.owners.length > 1 ? ['share_auction'] : []) };
@@ -1335,7 +1342,7 @@
       lreg.length ? sg('보증금 미반환 임차권등기', 25, refOf(lreg[0])) : null,
       c.morts.length >= 3 ? sg('유효 근저당 ' + c.morts.length + '건', 10) : null,
       ratio >= 0.9 ? sg('선순위 부담이 시세에 근접', 15) : null
-    ], { lease: '매각되면 보증금은 배당 순위에 따라 일부만 돌려받거나 못 받을 수 있습니다.', buy: '계약하더라도 경매가 계속되면 소유권을 얻지 못할 수 있습니다.', credit: '선행 경매에서 배당 순위가 결정됩니다.', general: '소유자가 바뀌고 후순위 권리는 정리됩니다.' }[P] || '소유자가 바뀌고 후순위 권리는 정리됩니다.', ['법원경매정보로 사건 진행 확인', '근저당 실제 잔액 확인'], ['lease', 'buy', 'credit', 'general']);
+    ], { lease: '매각되면 보증금은 배당 순위에 따라 일부만 돌려받거나 못 받을 수 있습니다.', buy: '계약하더라도 경매가 계속되면 소유권을 얻지 못할 수 있습니다.', credit: '선행 경매에서 배당 순위가 결정됩니다.', general: '매각되면 소유자가 바뀌고, 매수인이 인수하지 않는 권리의 등기는 말소 촉탁 대상이 됩니다. 기준 등기보다 앞선 전세권·임차권 등은 매수인이 인수할 수 있습니다.' }[P] || '매각되면 소유자가 바뀌고, 매수인이 인수하지 않는 권리의 등기는 말소 촉탁 대상이 됩니다. 기준 등기보다 앞선 전세권·임차권 등은 매수인이 인수할 수 있습니다.', ['법원경매정보로 사건 진행 확인', '근저당 실제 잔액 확인'], ['lease', 'buy', 'credit', 'general']);
 
     add('deposit', '보증금을 다 돌려받지 못할 가능성', '치명', [
       ratio != null ? sg('선순위 부담+보증금이 시세의 ' + Math.round(ratio * 100) + '%', ratio >= 0.9 ? 50 : ratio >= 0.7 ? 30 : ratio >= 0.5 ? 10 : 0) : null,
@@ -1365,7 +1372,7 @@
       P === 'credit' ? '채권자취소 소송으로 재산을 되돌릴 수 있는지 검토 대상입니다.' : '처분이 취소되면 소유 관계가 원래대로 돌아갈 수 있습니다.', ['처분 당시 채무 규모', '받은 사람과의 관계·대가 지급', '제척기간(안 날부터 1년, 있은 날부터 5년)']);
 
     if (P === 'auction') add('takeover', '매수인이 떠안을 권리가 있을 가능성', '치명', rep.auction.rows.filter(function (r) { return /인수/.test(r.result); }).map(function (r) { return sg(r.label + ' ' + (r.amount ? won(r.amount) : '') + ' (' + r.result + ')', /위험/.test(r.result) ? 50 : 35, (r.e.sec === 'gap' ? '갑' : '을') + r.e.rank); }).concat([sg('등기부 밖 대항력 임차인·유치권은 아직 확인 전', 10)]),
-      '낙찰가 외에 추가로 부담할 금액이나 소유권 상실 위험이 생깁니다.', ['매각물건명세서', '전입세대 열람', '현황조사서']);
+      '낙찰가 외에 추가로 부담할 금액이나 소유권 상실 위험이 생길 수 있습니다.', ['매각물건명세서', '전입세대 열람', '현황조사서']);
 
     add('tax', '세금이 먼저 배분될 가능성', '큼', [
       c.seiz.filter(function (e) { return /국세|지방세/.test(seizureHolderType((roleName(e, /권리자/) || {}).name || '')); }).length ? sg('국세·지방세 압류', 30) : null,
@@ -1386,7 +1393,7 @@
 
     add('authority', '계약 상대방의 권한이 부족할 가능성', '큼', [
       has('party_mismatch').length ? sg('계약 상대방이 등기부상 소유자가 아님', 80) : null,
-      trust.length ? sg('신탁(수탁자 동의 필요)', 40, refOf(trust[0])) : null,
+      trust.length ? sg('신탁(신탁원부상 권한과 수탁자 동의 확인 필요)', 40, refOf(trust[0])) : null,
       has('co_owned').length ? sg('공유 소유', 30) : null,
       has('corp_owner').length ? sg('법인 소유', 15) : null
     ], '권한 없는 사람과 맺은 계약은 효력을 다투게 될 수 있습니다.', ['소유자 신분증 대조', '위임장·인감증명서', '신탁원부·수탁자 동의서'], ['lease', 'buy']);
@@ -1426,7 +1433,7 @@
         if (lo.length && bo.length && !overlap.length) F('land_bldg_owner', P === 'auction' || P === 'buy' ? 'critical' : 'high', '같은 지번의 토지와 건물 소유자가 다릅니다', { docs: [a.name, b.name], detail: '토지: ' + a.rep.owners.map(function (o) { return o.name; }).join(', ') + ' / 건물: ' + b.rep.owners.map(function (o) { return o.name; }).join(', '), meaning: '건물이 토지를 쓸 권리(법정지상권, 토지 임대차 등)가 있는지에 따라 철거·지료 분쟁이 생길 수 있습니다. 토지와 건물이 언제, 어떤 원인으로 다른 사람에게 갈렸는지가 핵심입니다.', check: ['토지·건물이 갈린 원인과 시점', '토지 임대차계약·지료 약정', '건물 철거 소송 여부'], basis: ['statutory_superficies', 'p_custom_superficies'] });
         var bp = b.doc.gap.filter(function (e) { return e.type === 'preserve' && e.date; })[0];
         var lm = a.doc.eul.filter(function (e) { return e.type === 'mortgage' && !e.cancelled && e.date; }).sort(byKey)[0];
-        if (bp && lm && lm.date < bp.date) F('land_mort_before_bldg', P === 'auction' ? 'high' : 'caution', '토지 근저당이 건물 보존등기보다 먼저입니다', { docs: [a.name, b.name], detail: '토지 근저당 ' + lm.date + ' / 건물 보존 ' + bp.date, meaning: '근저당 설정 당시 건물이 없던 토지라면, 토지 경매에서 건물이 함께 매각되거나 건물의 토지 사용권이 문제 될 수 있습니다.', check: ['근저당 설정 당시 건물 존재 여부'], basis: ['bulk_auction', 'statutory_superficies'] });
+        if (bp && lm && lm.date < bp.date) F('land_mort_before_bldg', P === 'auction' ? 'high' : 'caution', '토지 근저당이 건물 보존등기보다 먼저입니다', { docs: [a.name, b.name], detail: '토지 근저당 ' + lm.date + ' / 건물 보존 ' + bp.date, meaning: '토지에 저당권을 설정한 뒤 설정자가 그 토지에 건물을 지었다면 저당권자는 토지와 건물을 함께 경매 청구할 수 있습니다(건물 매각대금에서는 우선변제를 받지 못함). 건물을 지은 사람이 저당권 설정자인지, 토지 경매로 토지와 건물 소유자가 달라질 경우 건물의 토지 사용권이 어떻게 되는지는 원문과 사건 기록으로 확인해야 합니다.', check: ['근저당 설정 당시 건물 존재 여부'], basis: ['bulk_auction', 'statutory_superficies'] });
       });
     });
     // 2) 같은 소유자
@@ -1436,8 +1443,8 @@
       var g = byOwner[k]; if (g.docs.length < 2) return;
       var sum = g.docs.reduce(function (s, it) { return s + (it.rep.money.mortSum || 0); }, 0);
       var att = g.docs.reduce(function (s, it) { return s + it.rep.money.attSum; }, 0);
-      var leaseDocs = g.docs.filter(function (it) { return it.doc.eul.some(function (e) { return e.type === 'lease'; }); });
-      if (leaseDocs.length >= 2) F('multi_lease', 'high', g.name + ' 소유 부동산 ' + leaseDocs.length + '곳에 임차권등기가 있습니다', { kind: '추론', docs: leaseDocs.map(function (it) { return it.name; }), meaning: '같은 임대인의 여러 집에서 임차인이 보증금을 제때 돌려받지 못한 이력입니다. 보증금 반환 능력을 매우 신중히 확인해야 합니다.', basis: ['lease_order'] });
+      var leaseDocs = g.docs.filter(function (it) { return it.doc.eul.some(function (e) { return e.type === 'lease' && /임차권등기명령/.test(NS(e.cause)); }); });
+      if (leaseDocs.length >= 2) F('multi_lease', 'high', g.name + ' 소유 부동산 ' + leaseDocs.length + '곳에 임차권등기명령에 따른 등기가 있습니다', { kind: '추론', docs: leaseDocs.map(function (it) { return it.name; }), meaning: '같은 임대인의 여러 부동산에 임차권등기명령에 따른 등기 기록이 있습니다. 임대차가 끝난 뒤 보증금을 돌려받지 못한 임차인이 신청하는 제도이므로, 각 등기의 말소 여부를 확인하고 보증금 반환 능력을 신중히 확인하십시오.', basis: ['lease_order'] });
       F('same_owner', 'info', g.name + ' 소유 부동산 ' + g.docs.length + '건', { docs: g.docs.map(function (it) { return it.name; }), detail: '근저당 채권최고액 합계 ' + won(sum) + (att ? ', 가압류 청구금액 합계 ' + won(att) : ''), meaning: '한 사람이 여러 부동산을 가진 경우 전체 부채와 담보 상황을 함께 봐야 합니다.' });
     });
     // 3) 짧은 기간 여러 부동산 처분
@@ -1495,7 +1502,7 @@
     items.forEach(function (it) { it.rep.mortInfo.forEach(function (m) { if (m.joint && m.joint !== '있음') (joint[m.joint] = joint[m.joint] || []).push({ it: it, m: m }); }); });
     Object.keys(joint).forEach(function (j) {
       var g = joint[j], docs = uniq(g.map(function (x) { return x.it.name; }));
-      if (docs.length >= 2) F('joint_link', 'info', '공동담보목록 ' + j + '로 묶인 부동산입니다', { docs: docs, detail: g.map(function (x) { return x.it.name + ' 을' + x.m.e.rank + ' ' + won(x.m.amt); }).join(', '), meaning: '한 대출이 여러 부동산을 함께 담보로 잡고 있습니다. 경매 시 채권최고액이 부동산별로 나뉘어 배당될 수 있어 부동산별 부담을 따로 계산해야 합니다.', basis: ['joint_mortgage'] });
+      if (docs.length >= 2) F('joint_link', 'info', '공동담보목록 ' + j + '로 묶인 부동산입니다', { docs: docs, detail: g.map(function (x) { return x.it.name + ' 을' + x.m.e.rank + ' ' + won(x.m.amt); }).join(', '), meaning: '한 근저당이 여러 부동산을 함께 담보로 잡고 있습니다(공동저당). 동시에 배당되면 각 부동산의 경매대가에 비례해 채권을 나누어 부담하고, 일부가 먼저 경매되면 그 대가에서 채권 전부가 변제될 수 있어 부동산별 부담을 따로 계산해야 합니다.', basis: ['joint_mortgage'] });
     });
     items.forEach(function (it) { it.rep.mortInfo.forEach(function (m) { if (m.joint && m.joint !== '있음' && joint[m.joint].length < 2) F('joint_missing', 'info', it.name + ': 공동담보목록 ' + m.joint + '의 다른 부동산 등기부가 없습니다', { docs: [it.name], meaning: '함께 담보로 잡힌 다른 부동산의 등기부를 추가하면 교차 분석할 수 있습니다.', check: ['공동담보목록 발급'] }); }); });
     // 6) 집합건물 대지권과 토지
@@ -1513,9 +1520,9 @@
     items.forEach(function (it) { it.rep.scenarios.forEach(function (s) { if (!scen[s.id] || scen[s.id].rank < s.rank) scen[s.id] = Object.assign({}, s, { doc: it.name }); }); });
     var multiScen = Object.keys(scen).map(function (k) { return scen[k]; });
     var bulk = findings.filter(function (f) { return f.id === 'bulk_disposal'; });
-    if (bulk.length) multiScen.push({ id: 'multi_fraud', title: '여러 부동산 일괄 처분이 사해행위로 다투어질 가능성', impact: '큼', score: bulk[0].level === 'critical' ? 75 : 50, likelihood: bulk[0].level === 'critical' ? '높음' : '중간', signals: bulk.map(function (f) { return { text: f.title, w: 50, ref: '' }; }), consequence: '처분이 취소되면 재산이 원래 소유자에게 돌아가 채권자들의 집행 대상이 됩니다.', mitigate: ['처분 당시 채무 규모', '받은 사람과의 관계'], rank: 2 * (bulk[0].level === 'critical' ? 75 : 50) });
+    if (bulk.length) multiScen.push({ id: 'multi_fraud', title: '여러 부동산 일괄 처분이 사해행위로 다투어질 가능성', impact: '큼', score: bulk[0].level === 'critical' ? 75 : 50, likelihood: bulk[0].level === 'critical' ? '높음' : '중간', signals: bulk.map(function (f) { return { text: f.title, w: 50, ref: '' }; }), consequence: '처분이 취소되면 원칙적으로 넘어간 재산 자체를 되돌리는 방식(예: 소유권이전등기 말소)으로 원상회복되어 모든 채권자를 위한 책임재산이 되고, 그것이 불가능하거나 현저히 곤란하면 가액으로 배상하게 됩니다.', mitigate: ['처분 당시 채무 규모', '받은 사람과의 관계'], rank: 2 * (bulk[0].level === 'critical' ? 75 : 50) });
     var lb = findings.filter(function (f) { return f.id === 'land_bldg_owner'; });
-    if (lb.length) multiScen.push({ id: 'multi_superficies', title: '토지·건물 소유자 불일치로 철거·지료 분쟁이 생길 가능성', impact: P === 'auction' || P === 'buy' ? '치명' : '큼', score: 55, likelihood: '중간', signals: lb.map(function (f) { return { text: f.detail, w: 55, ref: '' }; }), consequence: '건물의 토지 사용권이 인정되지 않으면 철거나 지료 청구로 이어질 수 있습니다.', mitigate: ['토지·건물이 갈린 경위', '토지 임대차·지료 약정'], rank: (P === 'auction' || P === 'buy' ? 3 : 2) * 55 });
+    if (lb.length) multiScen.push({ id: 'multi_superficies', title: '토지·건물 소유자 불일치로 철거·지료 분쟁이 생길 가능성', impact: P === 'auction' || P === 'buy' ? '치명' : '큼', score: 55, likelihood: '중간', signals: lb.map(function (f) { return { text: f.detail, w: 55, ref: '' }; }), consequence: '건물의 토지 사용권이 인정되지 않으면 철거 청구로 이어질 수 있고, 법정지상권이 인정되더라도 지료를 두고 다툼이 생길 수 있습니다.', mitigate: ['토지·건물이 갈린 경위', '토지 임대차·지료 약정'], rank: (P === 'auction' || P === 'buy' ? 3 : 2) * 55 });
     multiScen.sort(function (a, b) { return b.rank - a.rank; });
     var LVn = { critical: 4, high: 3, caution: 2, info: 1 };
     findings.sort(function (a, b) { return LVn[b.level] - LVn[a.level]; });
