@@ -64,6 +64,7 @@ C. "이 글 검수해줘"(원고 제공) → 4단계만 수행한다.
 - `corpus/lawrewrite/ANALYSIS.md`: 로리라이트 화면 분석
 - `app/`: 팀원용 원고실 아티팩트 원본과 빌드 스크립트
 - `kit/wonkosil-kit/`: 팀원 개인 원고실 설치 키트(Claude Code에서 "원고실 설치해줘"), `kit/wonkosil-kit.zip`이 배포본. app/wonkosil.html을 고치면 키트에 복사해 다시 압축한다
+- `kit/consult-log-kit/`: 상담일지 정리 도구(상담 내용 정리·기록 보관·경로별 통계·엑셀 내보내기) 설치 키트(Claude Code에서 "상담일지 설치해줘"), `kit/consult-log-kit.zip`이 배포본. 화면 원본은 kit 안의 consult-log.html이며 고치면 기존 주소를 갱신해 게시하고 다시 압축한다. 상담 기록(개인정보)은 키트에 넣지 않는다. 콘텐츠 작성 흐름과는 별개의 도구다
 - `skill/jinnsol-blog/`: 팀원 claude.ai에 올리는 스킬 원본, `skill/jinnsol-blog.zip`이 배포본. 규칙·코퍼스를 바꾸면 파일을 복사해 다시 압축한다
 - `data/published.csv`: 발행 기록
 - `output/`: 원고 저장 위치

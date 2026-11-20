@@ -1,0 +1,495 @@
+<title>상담일지 정리</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 레이아웃: 작성 탭은 좌측 입력·우측 복사용 결과, 기록·통계 탭은 조회 조건 아래 통계와 기록. 폰 폭에서는 위아래로 쌓음 */
+:root {
+  --bg: #eceff3;
+  --surface: #ffffff;
+  --fg: #19212d;
+  --muted: #5a6577;
+  --line: #d3d9e2;
+  --field: #f7f8fa;
+  --accent: #1d4a73;
+  --on-accent: #ffffff;
+  --accent-soft: #e3edf6;
+  --warn: #8a4b00;
+  --font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11161d; --surface: #1a212b; --fg: #e5e9ef; --muted: #96a1b3; --line: #2d3746;
+    --field: #141a22; --accent: #86b6e0; --on-accent: #0f1a26; --accent-soft: #22303f; --warn: #e0a665;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11161d; --surface: #1a212b; --fg: #e5e9ef; --muted: #96a1b3; --line: #2d3746;
+  --field: #141a22; --accent: #86b6e0; --on-accent: #0f1a26; --accent-soft: #22303f; --warn: #e0a665;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 15px; line-height: 1.6;
+  padding-block: 28px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1040px; margin: 0 auto; }
+header { margin-bottom: 20px; }
+h1 { font-size: 1.5rem; font-weight: 700; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+header p { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
+.tabs { display: flex; gap: 4px; margin: 16px 0 0; border-bottom: 1px solid var(--line); }
+.tabs button {
+  border: 0; border-bottom: 3px solid transparent; border-radius: 0; background: none;
+  padding: 10px 18px; color: var(--muted); font-weight: 500;
+}
+.tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent); font-weight: 700; }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 820px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.stack { display: grid; gap: 20px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+.panel h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 14px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 820px) { .filters { grid-template-columns: minmax(0, 1fr); } }
+.full { grid-column: 1 / -1; }
+.sub {
+  grid-column: 1 / -1; margin: 6px 0 -4px; padding-top: 14px; border-top: 1px solid var(--line);
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; color: var(--muted);
+}
+.sub:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg label { position: relative; margin: 0; color: var(--fg); font-size: 0.95rem; }
+.seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.seg span { display: block; padding: 9px 26px; background: var(--field); cursor: pointer; }
+.seg input:checked + span { background: var(--accent); color: var(--on-accent); font-weight: 700; }
+.seg input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: -3px; }
+label { display: block; font-size: 0.82rem; font-weight: 500; color: var(--muted); margin-bottom: 4px; }
+input, select, textarea {
+  width: 100%; font: inherit; color: var(--fg); background: var(--field);
+  border: 1px solid var(--line); border-radius: 6px; padding: 9px 10px;
+}
+textarea { resize: vertical; line-height: 1.55; }
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 1px;
+}
+::placeholder { color: var(--muted); opacity: 0.7; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+button {
+  font: inherit; font-weight: 500; border-radius: 6px; padding: 9px 18px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+}
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 700; }
+button.mini { padding: 5px 12px; font-size: 0.85rem; }
+button:disabled { opacity: 0.55; cursor: progress; }
+#out { min-height: 22rem; background: var(--accent-soft); border-color: transparent; font-size: 0.95rem; }
+.status { min-height: 1.6em; margin: 10px 0 0; font-size: 0.85rem; color: var(--muted); }
+.status.warn { color: var(--warn); }
+.sum { margin: 0 0 12px; font-weight: 500; }
+.empty { color: var(--muted); font-size: 0.9rem; margin: 8px 0; }
+.bar { display: grid; grid-template-columns: minmax(4.5rem, 9rem) minmax(0, 1fr) auto; gap: 10px; align-items: center; margin: 9px 0; }
+.bl { overflow-wrap: anywhere; }
+.bt { height: 14px; background: var(--accent-soft); border-radius: 3px; overflow: hidden; }
+.bt i { display: block; height: 100%; background: var(--accent); }
+.bn { font-size: 0.85rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+details { border-top: 1px solid var(--line); padding: 8px 0; }
+details:first-child { border-top: 0; }
+summary { cursor: pointer; overflow-wrap: anywhere; }
+.rec {
+  white-space: pre-wrap; overflow-wrap: anywhere; background: var(--accent-soft);
+  border-radius: 6px; padding: 12px; margin: 10px 0 0; font-size: 0.9rem;
+}
+.rec-actions { display: flex; gap: 8px; margin-top: 8px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>상담일지 정리</h1>
+    <p>칸을 채우고 정리하기를 누르면 원문 표현은 살리고 군말만 덜어낸 일지 텍스트가 나오며, 상담 기록은 자동으로 보관됩니다.</p>
+    <div class="tabs" role="tablist">
+      <button id="tab-write" type="button" role="tab" aria-selected="true">작성</button>
+      <button id="tab-log" type="button" role="tab" aria-selected="false">기록·통계</button>
+    </div>
+  </header>
+
+  <div id="view-write" class="cols">
+    <section class="panel" aria-labelledby="h-in">
+      <h2 id="h-in">상담 내용 입력</h2>
+      <div class="grid">
+        <div class="sub">상담 정보</div>
+        <div class="full">
+          <div class="seg" role="radiogroup" aria-label="상담 방식">
+            <label><input type="radio" name="m" id="m1" value="전화 상담" checked><span>전화</span></label>
+            <label><input type="radio" name="m" id="m2" value="대면 상담"><span>대면</span></label>
+          </div>
+        </div>
+        <div><label for="d">날짜</label><input id="d" type="date"></div>
+        <div><label for="t">시간</label><input id="t" type="time"></div>
+        <div>
+          <label for="r">경로</label>
+          <select id="r">
+            <option>네이버</option>
+            <option>구글</option>
+            <option>AI 툴(챗GPT 등)</option>
+            <option>홈페이지</option>
+            <option>지인 소개</option>
+            <option>기타</option>
+          </select>
+        </div>
+        <div id="r2box" hidden><label for="r2">경로 직접 입력</label><input id="r2" type="text" placeholder="예: 유튜브"></div>
+        <div class="sub">당사자 정보</div>
+        <div><label for="n">이름</label><input id="n" type="text" placeholder="예: 김OO" autocomplete="off"></div>
+        <div><label for="p">전화번호</label><input id="p" type="tel" inputmode="tel" placeholder="예: 010-0000-0000" autocomplete="off"></div>
+        <div><label for="j">직업</label><input id="j" type="text" placeholder="예: 자영업" autocomplete="off"></div>
+        <div><label for="h">거주지</label><input id="h" type="text" placeholder="예: 서울 강남구" autocomplete="off"></div>
+        <div class="full"><label for="x">기타 당사자 정보</label><textarea id="x" rows="3" placeholder="연령, 가족관계, 상대방과의 관계 등 참고사항을 적으십시오."></textarea></div>
+        <div class="sub">상담 내용</div>
+        <div class="full"><label for="q">질의내용</label><textarea id="q" rows="6" placeholder="상담자가 말한 내용을 있는 그대로 적으십시오."></textarea></div>
+        <div class="full"><label for="a">답변내용</label><textarea id="a" rows="6" placeholder="안내한 내용을 있는 그대로 적으십시오."></textarea></div>
+      </div>
+      <div class="actions">
+        <button id="go" class="primary" type="button">정리하기</button>
+        <button id="reset" type="button">새 상담</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-out">
+      <h2 id="h-out">복사용 텍스트</h2>
+      <textarea id="out" rows="16" placeholder="정리하기를 누르면 여기에 일지 텍스트가 나옵니다. 내용은 직접 고칠 수 있고, 고친 내용도 기록에 반영됩니다."></textarea>
+      <div class="actions"><button id="copy" type="button">복사</button></div>
+      <p id="st" class="status" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <div id="view-log" class="stack" hidden>
+    <section class="panel" aria-labelledby="h-f">
+      <h2 id="h-f">조회 조건</h2>
+      <div class="filters">
+        <div><label for="f1">시작일</label><input id="f1" type="date"></div>
+        <div><label for="f2">종료일</label><input id="f2" type="date"></div>
+        <div><label for="fq">검색 (이름, 전화번호, 내용)</label><input id="fq" type="search" autocomplete="off"></div>
+      </div>
+      <div class="actions">
+        <button id="pm" class="mini" type="button">이번 달</button>
+        <button id="py" class="mini" type="button">올해</button>
+        <button id="pa" class="mini" type="button">전체</button>
+        <button id="xl" class="mini primary" type="button" disabled>엑셀로 내보내기</button>
+      </div>
+      <p id="xs" class="status" role="status" aria-live="polite"></p>
+    </section>
+    <div class="cols">
+      <section class="panel" aria-labelledby="h-s">
+        <h2 id="h-s">경로별 접근</h2>
+        <p id="sum" class="sum">기록을 불러오는 중입니다.</p>
+        <div id="bars"></div>
+      </section>
+      <section class="panel" aria-labelledby="h-l">
+        <h2 id="h-l">상담 기록</h2>
+        <div id="list"></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, ...kids) => { const e = document.createElement(tag); if (cls) e.className = cls; e.append(...kids); return e; };
+const pad = (n) => String(n).padStart(2, "0");
+const ymd = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const method = () => document.querySelector('input[name="m"]:checked').value;
+
+function setNow() {
+  const x = new Date();
+  if (!$("d").value) $("d").value = ymd(x);
+  if (!$("t").value) $("t").value = `${pad(x.getHours())}:${pad(x.getMinutes())}`;
+}
+function say(msg, warn) { $("st").textContent = msg; $("st").classList.toggle("warn", !!warn); }
+
+// 방식·일시·경로·이름·연락처·직업·거주지는 AI를 거치지 않고 입력값 그대로 조립한다.
+function build(q, a, x) {
+  const d = $("d").value;
+  const wd = d ? new Date(d + "T00:00").toLocaleDateString("ko-KR", { weekday: "short" }) : "";
+  const when = [d && d.replaceAll("-", ".") + (wd ? `(${wd})` : ""), $("t").value].filter(Boolean).join(" ") || "-";
+  const route = $("r").value === "기타" ? ($("r2").value.trim() || "기타") : $("r").value;
+  return [
+    "[상담일지]",
+    `방식: ${method()}`,
+    `일시: ${when}`,
+    `경로: ${route}`,
+    `이름: ${$("n").value.trim() || "-"}`,
+    `연락처: ${$("p").value.trim() || "-"}`,
+    `직업: ${$("j").value.trim() || "-"}`,
+    `거주지: ${$("h").value.trim() || "-"}`,
+    ...(x ? ["", "[기타 당사자 정보]", x] : []),
+    "",
+    "[질의]", q || "-",
+    "",
+    "[답변]", a || "-",
+  ].join("\n");
+}
+
+const buildPrompt = (q, a, x) => `법률사무소 사무장이 변호사님께 보고하는 상담 일지입니다. 아래 질의내용, 답변내용, 기타 당사자 정보를 각각 가볍게 다듬어 주십시오. 요약이 아니라 교정에 가깝습니다.
+규칙:
+- 원문의 단어, 어순, 말투(문체와 어미)를 그대로 살립니다. 원문 분량의 70% 안팎을 남기는 것을 목표로 하고, 남기는 부분은 원문 표현 그대로 씁니다.
+- 덜어내는 것은 반복, 군말, 같은 내용의 중복, 의미 없는 추임새뿐입니다. 의미가 있는 문장은 지우지 않습니다. 원문이 짧으면 줄이지 않습니다.
+- 문장을 새로 쓰거나 다른 말로 바꿔 말하거나 순서를 재배열하지 않습니다. 개조식이나 명사형으로 바꾸지 않습니다.
+- 호칭과 존칭은 원문 그대로 둡니다. '변호사님'을 '변호사'로, '~께서'를 '~가'로, '~하셨'을 '~했'으로 바꾸지 않습니다.
+- 입력에 있는 사실만 사용합니다. 추측, 보충, 법적 판단을 덧붙이지 않습니다.
+- 이름, 금액, 날짜, 기간, 사건번호 등 수치와 고유명사는 원문 그대로 둡니다.
+- 오탈자와 띄어쓰기만 바로잡고, 줄바꿈과 문단 구분은 유지합니다.
+- 별표 등 마크다운 강조는 쓰지 않습니다.
+- 입력이 비어 있는 항목은 빈 문자열로 둡니다.
+출력은 JSON 객체 하나만: {"질의": "...", "답변": "...", "당사자": "..."}
+
+[질의내용]
+${q}
+
+[답변내용]
+${a}
+
+[기타 당사자 정보]
+${x}`;
+
+const FAIL = {
+  not_granted: "Claude 사용이 허용되지 않아",
+  sampling_disabled: "이 계정에서는 Claude를 쓸 수 없어",
+  rate_limited: "요청이 많아 잠시 후 다시 시도하셔야 하며, 우선",
+  unavailable: "AI 정리를 쓸 수 없어",
+};
+const SAVED = {
+  new: ["기록함에 저장했습니다. 다음 상담은 새 상담을 눌러 시작하십시오."],
+  upd: ["같은 상담의 기록을 갱신했습니다."],
+  unavailable: ["기록 보관 기능을 쓸 수 없어 저장하지 못했습니다.", true],
+  invalid_argument: ["보기 전용 계정이라 기록을 저장하지 못했습니다.", true],
+};
+
+// 호칭('님')이 하나라도 줄었거나 큰 글이 절반 아래로 줄면 AI 결과를 버리고 원문을 쓴다.
+const honorifics = (s) => (s.match(/님/g) || []).length;
+const overEdited = (t, src) => honorifics(t) < honorifics(src) || (src.length > 80 && t.length < src.length * 0.5);
+
+// ---- 기록 보관 (db) ----
+const dbp = (window.claude?.use("db") ?? Promise.resolve(null)).catch(() => null);
+let dbOk = null, loaded = false, all = [], cur = null, chain = Promise.resolve();
+const openIds = new Set();
+
+const rec = () => ({
+  date: $("d").value, time: $("t").value, when: `${$("d").value} ${$("t").value}`,
+  method: method(), route: $("r").value, routeEtc: $("r2").value.trim(),
+  name: $("n").value.trim(), phone: $("p").value.trim(), job: $("j").value.trim(), area: $("h").value.trim(),
+  extra: $("x").value.trim(), q: $("q").value.trim(), a: $("a").value.trim(), text: $("out").value,
+});
+
+// 같은 상담은 계속 같은 문서에 덮어쓴다. 이름·전화번호가 달라지면 다른 상담으로 보고 새 문서를 만든다. 쓰기는 한 번에 하나씩 이어 붙인다.
+const save = () => (chain = chain.then(async () => {
+  const d = await dbp;
+  if (!d) return "unavailable";
+  try {
+    const r = rec(), who = r.name + "|" + r.phone, now = Date.now();
+    if (cur && cur.who !== who) cur = null;
+    const was = !!cur, ref = cur ? d.collection("consults").doc(cur.id) : d.collection("consults").doc();
+    const createdAt = cur ? cur.createdAt : now;
+    await ref.set({ ...r, createdAt, updatedAt: now });
+    cur = { id: ref.id, createdAt, who };
+    return was ? "upd" : "new";
+  } catch (e) { return e?.code || "error"; }
+}));
+const savedMsg = (code) => SAVED[code] || [`기록을 저장하지 못했습니다(${code}).`, true];
+
+dbp.then((d) => {
+  dbOk = !!d;
+  if (!d) { renderLog(); return; }
+  d.collection("consults").onSnapshot((s) => {
+    all = s.docs.map((x) => ({ id: x.id, ...x.data() })).sort((a, b) => (b.when || "").localeCompare(a.when || ""));
+    loaded = true;
+    renderLog();
+  }, () => { dbOk = false; renderLog(); });
+});
+
+// ---- 작성 ----
+$("r").onchange = () => { $("r2box").hidden = $("r").value !== "기타"; };
+
+$("go").onclick = async () => {
+  const q = $("q").value.trim(), a = $("a").value.trim(), x = $("x").value.trim();
+  if (!q && !a) { say("질의내용이나 답변내용을 입력해 주십시오.", true); return; }
+  $("go").disabled = true;
+  say("정리 중입니다. 원문 표현을 살리는 방식이라 잠시 걸릴 수 있습니다.");
+  let qq = q, aa = a, xx = x, msg = "", warn = false;
+  try {
+    const sample = await window.claude?.use("sample");
+    if (!sample) throw { code: "unavailable" };
+    const r = await sample.json(buildPrompt(q, a, x), { modelTier: "default" });
+    const kept = [];
+    const pick = (v, src, label) => {
+      const t = typeof v === "string" ? v.replace(/\*\*/g, "").trim() : "";
+      if (!src || !t) return src;
+      if (overEdited(t, src)) { kept.push(label); return src; }
+      return t;
+    };
+    qq = pick(r?.질의, q, "질의");
+    aa = pick(r?.답변, a, "답변");
+    xx = pick(r?.당사자, x, "당사자 정보");
+    msg = kept.length ? `정리했습니다. 호칭이 바뀌었거나 과하게 줄어든 항목(${kept.join(", ")})은 원문 그대로 두었습니다.` : "정리했습니다. 내용을 확인한 뒤 복사하십시오.";
+    warn = kept.length > 0;
+  } catch (e) {
+    msg = `${FAIL[e?.code] || "AI 정리에 실패해"} 입력 원문을 그대로 넣었습니다.`;
+    warn = true;
+  }
+  $("out").value = build(qq, aa, xx);
+  const [sm, sw] = savedMsg(await save());
+  say(`${msg} ${sm}`, warn || sw);
+  $("go").disabled = false;
+};
+
+// 직접 고친 내용은 입력창을 벗어날 때 한 번 반영한다.
+$("out").onchange = async () => { if (cur) { const [sm, sw] = savedMsg(await save()); say(`고친 내용을 반영했습니다. ${sm}`, sw); } };
+
+$("copy").onclick = async () => {
+  const o = $("out");
+  if (!o.value) { say("복사할 내용이 없습니다.", true); return; }
+  try { await navigator.clipboard.writeText(o.value); say("복사했습니다."); }
+  catch { o.select(); say("자동 복사가 막혀 전체를 선택했습니다. Ctrl+C로 복사해 주십시오.", true); }
+  if (cur) save();
+};
+
+$("reset").onclick = () => {
+  for (const id of ["d", "t", "r2", "n", "p", "j", "h", "x", "q", "a", "out"]) $(id).value = "";
+  $("r").selectedIndex = 0;
+  $("m1").checked = true;
+  $("r2box").hidden = true;
+  cur = null;
+  setNow();
+  say("");
+};
+
+// ---- 기록·통계 ----
+const routeKey = (r) => (r.route === "기타" ? r.routeEtc || "기타" : r.route || "미상");
+
+function filtered() {
+  const f1 = $("f1").value, f2 = $("f2").value, k = $("fq").value.trim().toLowerCase();
+  return all.filter((r) =>
+    (!f1 || (r.date || "") >= f1) && (!f2 || (r.date || "") <= f2) &&
+    (!k || [r.name, r.phone, r.job, r.area, routeKey(r), r.text].join(" ").toLowerCase().includes(k)));
+}
+
+async function copyText(text, btn) {
+  try { await navigator.clipboard.writeText(text); btn.textContent = "복사됨"; }
+  catch { btn.textContent = "복사 막힘"; }
+  setTimeout(() => { btn.textContent = "복사"; }, 1500);
+}
+
+let armed = null;
+function row(r) {
+  const d = el("details");
+  d.open = openIds.has(r.id);
+  d.ontoggle = () => (d.open ? openIds.add(r.id) : openIds.delete(r.id));
+  const kind = r.method === "대면 상담" ? "대면" : "전화";
+  d.append(el("summary", "", `${(r.date || "").replaceAll("-", ".")} ${r.time || ""} · ${kind} · ${routeKey(r)} · ${r.name || "이름 미기재"}`));
+  d.append(el("div", "rec", r.text || ""));
+  const cp = el("button", "mini", "복사"), del = el("button", "mini", "삭제");
+  cp.type = del.type = "button";
+  cp.onclick = () => copyText(r.text || "", cp);
+  del.onclick = async () => {
+    if (armed !== r.id) {
+      armed = r.id; del.textContent = "한 번 더 누르면 삭제";
+      setTimeout(() => { if (armed === r.id) { armed = null; del.textContent = "삭제"; } }, 4000);
+      return;
+    }
+    armed = null;
+    try { await (await dbp).collection("consults").doc(r.id).delete(); if (cur && cur.id === r.id) cur = null; }
+    catch { del.textContent = "삭제 실패"; }
+  };
+  d.append(el("div", "rec-actions", cp, del));
+  return d;
+}
+
+const tally = (rows) => {
+  const g = new Map();
+  for (const r of rows) g.set(routeKey(r), (g.get(routeKey(r)) || 0) + 1);
+  return [...g].sort((a, b) => b[1] - a[1]);
+};
+
+function renderLog() {
+  const bars = $("bars"), list = $("list"), sum = $("sum");
+  bars.replaceChildren(); list.replaceChildren();
+  $("xl").disabled = true;
+  if (dbOk === false) { sum.textContent = "기록 보관 기능을 쓸 수 없는 화면입니다. 작성과 복사는 그대로 쓸 수 있습니다."; return; }
+  if (!loaded) { sum.textContent = "기록을 불러오는 중입니다."; return; }
+  const rows = filtered();
+  const tel = rows.filter((r) => r.method !== "대면 상담").length;
+  sum.textContent = `총 ${rows.length}건 · 전화 ${tel}건 · 대면 ${rows.length - tel}건`;
+  if (!rows.length) {
+    const none = all.length ? "조건에 맞는 기록이 없습니다." : "아직 보관된 상담이 없습니다. 작성 탭에서 정리하기를 누르면 자동으로 쌓입니다.";
+    bars.append(el("p", "empty", none));
+    return;
+  }
+  $("xl").disabled = false;
+  $("xl").textContent = `엑셀로 내보내기 (${rows.length}건)`;
+  const t = tally(rows), top = t[0][1];
+  for (const [k, n] of t) {
+    const fill = el("i");
+    fill.style.width = `${(n / top) * 100}%`;
+    bars.append(el("div", "bar", el("span", "bl", k), el("span", "bt", fill), el("span", "bn", `${n}건 · ${Math.round((n / rows.length) * 100)}%`)));
+  }
+  for (const r of rows.slice(0, 100)) list.append(row(r));
+  if (rows.length > 100) list.append(el("p", "empty", "최근 100건만 표시했습니다. 기간이나 검색어로 좁혀 주십시오."));
+}
+
+// ---- 엑셀 내보내기: 조회 조건에 맞는 기록을 오래된 순으로, 경로별 통계는 둘째 시트로 ----
+const XLSX_URL = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+const loadXlsx = () => window.XLSX ? Promise.resolve(window.XLSX) : new Promise((ok, no) => {
+  const s = el("script");
+  s.src = XLSX_URL; s.onload = () => ok(window.XLSX); s.onerror = () => no({ code: "lib" });
+  document.head.append(s);
+});
+const XFAIL = {
+  lib: "엑셀 라이브러리를 불러오지 못했습니다. 잠시 후 다시 눌러 주십시오.",
+  declined: "저장을 취소하셨습니다.",
+  unavailable: "이 화면에서는 파일 저장을 쓸 수 없습니다.",
+};
+const HEAD = ["날짜", "시간", "방식", "경로", "이름", "전화번호", "직업", "거주지", "기타 당사자 정보", "질의내용(입력)", "답변내용(입력)", "일지(정리본)"];
+
+$("xl").onclick = async () => {
+  const rows = filtered().reverse();
+  if (!rows.length) return;
+  $("xl").disabled = true;
+  const xs = (m, w) => { $("xs").textContent = m; $("xs").classList.toggle("warn", !!w); };
+  xs("엑셀 파일을 만드는 중입니다.");
+  try {
+    const [X, dl] = await Promise.all([loadXlsx(), window.claude?.use("downloads")]);
+    if (!dl) throw { code: "unavailable" };
+    const body = rows.map((r) => [r.date, r.time, r.method === "대면 상담" ? "대면" : "전화", routeKey(r), r.name, r.phone, r.job, r.area, r.extra, r.q, r.a, r.text].map((v) => v ?? ""));
+    const ws1 = X.utils.aoa_to_sheet([HEAD, ...body]);
+    ws1["!cols"] = [11, 7, 6, 14, 10, 15, 12, 14, 30, 40, 40, 60].map((wch) => ({ wch }));
+    const t = tally(rows);
+    const ws2 = X.utils.aoa_to_sheet([["경로", "건수", "비율"], ...t.map(([k, n]) => [k, n, n / rows.length]), ["합계", rows.length, 1]]);
+    ws2["!cols"] = [18, 8, 8].map((wch) => ({ wch }));
+    for (let i = 2; i <= t.length + 2; i++) ws2["C" + i].z = "0%";
+    const wb = X.utils.book_new();
+    X.utils.book_append_sheet(wb, ws1, "상담기록");
+    X.utils.book_append_sheet(wb, ws2, "경로별 통계");
+    await dl.save({ filename: `상담기록_${ymd(new Date())}.xlsx`, data: X.write(wb, { bookType: "xlsx", type: "array" }) });
+    xs(`${rows.length}건을 엑셀 파일로 저장했습니다.`);
+  } catch (e) { xs(XFAIL[e?.code] || `내보내지 못했습니다(${e?.code || "error"}).`, true); }
+  $("xl").disabled = false;
+};
+
+function showTab(name) {
+  for (const t of ["write", "log"]) {
+    $("tab-" + t).setAttribute("aria-selected", String(t === name));
+    $("view-" + t).hidden = t !== name;
+  }
+}
+$("tab-write").onclick = () => showTab("write");
+$("tab-log").onclick = () => { showTab("log"); renderLog(); };
+for (const id of ["f1", "f2", "fq"]) $(id).oninput = renderLog;
+const period = (a, b) => { $("f1").value = a; $("f2").value = b; renderLog(); };
+$("pm").onclick = () => { const x = new Date(); period(ymd(new Date(x.getFullYear(), x.getMonth(), 1)), ymd(new Date(x.getFullYear(), x.getMonth() + 1, 0))); };
+$("py").onclick = () => { const y = new Date().getFullYear(); period(`${y}-01-01`, `${y}-12-31`); };
+$("pa").onclick = () => period("", "");
+
+setNow();
+</script>
