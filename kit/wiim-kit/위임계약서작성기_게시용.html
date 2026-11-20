@@ -1,0 +1,1352 @@
+<title>위임계약서 작성기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  /* 레이아웃: 왼쪽 입력, 오른쪽 A4 3장 미리보기, 하단 고정 저장줄 */
+  :root {
+    --bg: #eceff2;
+    --panel: #ffffff;
+    --ink: #1b2430;
+    --muted: #596577;
+    --line: #d3d9e0;
+    --field: #f7f8fa;
+    --accent: #1d3a5c;
+    --accent-ink: #ffffff;
+    --ok: #2b6b4a;
+    --warn: #b1500f;
+    --warn-bg: #fbeee2;
+    --paper: #ffffff;
+    --paper-ink: #111111;
+    --shadow: 0 1px 2px rgba(20, 30, 45, .12), 0 6px 18px rgba(20, 30, 45, .10);
+    --ui: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+    --doc: 'Nanum Myeongjo', 'NanumMyeongjo', 'Batang', '바탕', 'Noto Serif KR', serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12161c; --panel: #1b212a; --ink: #e5e9ef; --muted: #9ba6b5; --line: #2e3744;
+      --field: #232b36; --accent: #9dbbe6; --accent-ink: #0d1b2e; --ok: #7fcaa0; --warn: #f0a46a; --warn-bg: #3a2a1d;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 6px 18px rgba(0, 0, 0, .4);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12161c; --panel: #1b212a; --ink: #e5e9ef; --muted: #9ba6b5; --line: #2e3744;
+    --field: #232b36; --accent: #9dbbe6; --accent-ink: #0d1b2e; --ok: #7fcaa0; --warn: #f0a46a; --warn-bg: #3a2a1d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 6px 18px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--ui); font-size: 14px; line-height: 1.5;
+    padding-inline: 16px; padding-block: 20px 96px;
+  }
+  .app { max-width: 1280px; margin: 0 auto; }
+  header.top { margin-bottom: 18px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: flex-end; justify-content: space-between; }
+  .tools { display: flex; gap: 4px; }
+  button.link { font: inherit; font-size: 13px; background: none; border: 0; color: var(--accent); padding: 6px 8px; min-height: 36px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  h1 { font-family: var(--doc); font-weight: 800; font-size: 26px; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+  .sub { margin: 4px 0 0; color: var(--muted); }
+
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
+  @media (min-width: 1000px) { .layout { grid-template-columns: minmax(340px, 430px) minmax(0, 1fr); } }
+
+  /* 입력 */
+  form.form { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 6px 18px 18px; }
+  fieldset { border: 0; margin: 0; padding: 14px 0 6px; min-width: 0; }
+  fieldset + fieldset { border-top: 1px solid var(--line); }
+  legend { padding: 0; font-weight: 700; font-size: 13px; letter-spacing: .02em; color: var(--accent); margin-bottom: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 12px; }
+  .grid .full { grid-column: 1 / -1; }
+  @media (max-width: 420px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+  .f { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .f > label, .lab { font-size: 12.5px; color: var(--muted); font-weight: 500; }
+  input[type=text], input[type=date], textarea {
+    width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--field);
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; min-height: 38px;
+  }
+  textarea { resize: vertical; min-height: 76px; line-height: 1.5; }
+  input:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 1px;
+  }
+  input::placeholder, textarea::placeholder { color: var(--muted); opacity: .75; }
+  .hint { font-size: 12px; color: var(--muted); min-height: 18px; font-variant-numeric: tabular-nums; }
+  .hint.ok { color: var(--ok); } .hint.bad { color: var(--warn); }
+  .row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+  .row > .f { flex: 1 1 150px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--field); flex: 0 0 auto; }
+  .seg button { font: inherit; font-size: 13px; padding: 8px 12px; border: 0; background: transparent; color: var(--muted); cursor: pointer; min-height: 38px; }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 500; }
+  .seg.lg { display: flex; width: 100%; }
+  .seg.lg button { flex: 1 1 0; font-size: 15px; padding: 10px 12px; font-weight: 500; }
+  .sub2 { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; align-items: end; }
+  .sub2 .check { padding-bottom: 9px; white-space: nowrap; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .chip { font: inherit; font-size: 12.5px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--ink); cursor: pointer; }
+  .chip:hover { border-color: var(--accent); }
+  .chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .check { display: flex; gap: 8px; align-items: center; font-size: 13.5px; }
+  .check input { width: 16px; height: 16px; accent-color: var(--accent); }
+  details { padding: 12px 0 0; }
+  summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+  .note { font-size: 12px; color: var(--muted); margin: 14px 0 0; }
+
+  /* 미리보기 */
+  .preview { min-width: 0; }
+  .status { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; margin-bottom: 10px; }
+  .pill { font-size: 12.5px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .pill.ok { color: var(--ok); }
+  .pill.bad { color: var(--warn); border-color: var(--warn); background: var(--warn-bg); font-weight: 500; }
+  .alert { font-size: 13px; color: var(--warn); background: var(--warn-bg); border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; }
+  .miss { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; }
+  .pages { --z: 1; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+  .sheet-wrap { width: calc(793.7px * var(--z)); height: calc(1122.5px * var(--z)); flex: 0 0 auto; }
+  .sheet {
+    position: relative; width: 595.3pt; height: 841.9pt; background: var(--paper); color: var(--paper-ink);
+    font-family: var(--doc); box-shadow: var(--shadow); overflow: hidden;
+    transform: scale(var(--z)); transform-origin: 0 0;
+  }
+  .sheet.over { outline: 2px solid var(--warn); }
+  .sheet .body, .sheet .box { position: absolute; }
+  .sx { transform: scaleX(var(--sx)); transform-origin: 0 0; }
+  .blk { margin: 0; word-break: keep-all; overflow-wrap: break-word; }
+  .cols { display: flex; align-items: flex-start; word-break: keep-all; overflow-wrap: break-word; }
+  .cols2 { display: flex; align-items: flex-start; gap: var(--cg); }
+  .colc { flex: 0 0 var(--cw); width: var(--cw); min-width: 0; }
+  .cell { display: block; min-width: 0; white-space: pre-wrap; }
+  .b { font-weight: 800; }
+  .u { text-decoration: underline; text-underline-offset: 2.5pt; text-decoration-thickness: .6pt; }
+  .s { text-decoration: line-through; text-decoration-thickness: .6pt; }
+  .u.s { text-decoration: underline line-through; text-decoration-thickness: .6pt; }
+  .tbl4 { border-collapse: collapse; width: 100%; table-layout: fixed; font-size: 9pt; color: var(--paper-ink); }
+  .tbl4 th, .tbl4 td { color: var(--paper-ink); border: .6pt solid #000; height: 24pt; padding: 2pt 5pt; vertical-align: middle; font-weight: 400; word-break: keep-all; overflow-wrap: anywhere; }
+  .tbl4 th { text-align: center; font-size: 10pt; }
+  .tbl4 td { text-align: left; }
+  .sheet .box { border: 4.5pt double #000; }
+  .sheet .boxin { padding: 0 5pt; }
+  .foot { position: absolute; left: 70.9pt; right: 70.9pt; bottom: 42pt; display: flex; justify-content: space-between; font-size: 9pt; }
+
+  /* 저장줄 */
+  .actions {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: var(--panel); border-top: 1px solid var(--line);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+  .actions .in { max-width: 1280px; margin: 0 auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .actions .msg { flex: 1 1 160px; font-size: 13px; color: var(--muted); min-width: 0; }
+  .actions .msg.ok { color: var(--ok); } .actions .msg.bad { color: var(--warn); }
+  button.btn { font: inherit; font-size: 14px; padding: 9px 16px; min-height: 40px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+  button.btn:hover { border-color: var(--accent); }
+  button.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; padding-inline: 20px; }
+  button.btn:disabled { opacity: .5; cursor: not-allowed; }
+  @media (prefers-reduced-motion: no-preference) { .pill, .chip, .seg button, button.btn { transition: background-color .12s, border-color .12s, color .12s; } }
+</style>
+
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>위임계약서 작성기</h1>
+      <p class="sub">형사, 민사·행정 양식을 골라 빈칸만 입력하면 계약서 2쪽과 동의서 1쪽(A4 3장) 워드 파일로 저장됩니다.</p>
+    </div>
+    <div class="tools">
+      <button type="button" class="link" id="btn-sample">예시 입력</button>
+      <button type="button" class="link" id="btn-clear">모두 지우기</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <form class="form" id="form" autocomplete="off" onsubmit="return false">
+
+      <fieldset>
+        <legend>양식</legend>
+        <div class="seg lg" data-seg="type" role="group" aria-label="양식 선택"><button type="button" data-v="crim">형사</button><button type="button" data-v="civil">민사·행정</button></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>위임인(갑)</legend>
+        <div class="grid">
+          <div class="f full"><label for="f-name">성명 (상단 위임인 줄에만 인쇄, 하단 서명란은 자필)</label><input type="text" id="f-name" data-k="name"></div>
+          <div class="f full"><label class="check"><input type="checkbox" id="f-sigFill" data-k="sigFill"><span>하단 서명란에 주민등록번호·연락처·주소도 인쇄</span></label></div>
+        </div>
+        <div class="grid" id="sigFields" style="margin-top:10px" hidden>
+          <div class="f"><label for="f-rrn">주민등록번호(사업자등록번호)</label><input type="text" id="f-rrn" data-k="rrn" inputmode="numeric"></div>
+          <div class="f"><label for="f-tel">전화</label><input type="text" id="f-tel" data-k="tel" inputmode="tel"></div>
+          <div class="f"><label for="f-mail">이메일</label><input type="text" id="f-mail" data-k="mail" inputmode="email"></div>
+          <div class="f"><label for="f-addr">주소</label><input type="text" id="f-addr" data-k="addr"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>사건의 표시</legend>
+        <div class="grid">
+          <div class="f"><label for="f-caseno">사건번호</label><input type="text" id="f-caseno" data-k="caseno" placeholder="예: 2026고단1234"></div>
+          <div class="f"><label for="f-casename">사건명</label><input type="text" id="f-casename" data-k="casename"></div>
+          <div class="f"><label for="f-party">당사자</label><input type="text" id="f-party" data-k="party"></div>
+          <div class="f"><label for="f-opp">상대방</label><input type="text" id="f-opp" data-k="opp"></div>
+          <div class="f full" data-for="crim">
+            <label for="f-scope">수임범위</label>
+            <input type="text" id="f-scope" data-k="scope" placeholder="예: 제1심">
+            <div class="chips" data-chips="scope">
+              <button type="button" class="chip" data-v="수사단계">수사단계</button>
+              <button type="button" class="chip" data-v="제1심">제1심</button>
+              <button type="button" class="chip" data-v="항소심">항소심</button>
+              <button type="button" class="chip" data-v="상고심">상고심</button>
+            </div>
+          </div>
+          <div class="f full" data-for="civil" hidden>
+            <label for="f-scopeC">수임범위</label>
+            <input type="text" id="f-scopeC" data-k="scopeC" placeholder="예: 1심 사건">
+            <div class="chips" data-chips="scopeC">
+              <button type="button" class="chip" data-v="1심 사건">1심 사건</button>
+              <button type="button" class="chip" data-v="항소심 사건">항소심 사건</button>
+              <button type="button" class="chip" data-v="상고심 사건">상고심 사건</button>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>착수금·비용</legend>
+        <div class="grid">
+          <div class="f full">
+            <div class="row">
+              <div class="f"><label for="f-fee">착수금</label><input type="text" id="f-fee" data-k="fee" data-money inputmode="text" placeholder="예: 3,000,000 또는 300만"></div>
+              <div class="seg" data-seg="feeVat" role="group" aria-label="착수금 부가가치세"><button type="button" data-v="별도">부가세 별도</button><button type="button" data-v="포함">포함</button></div>
+            </div>
+            <div class="hint" data-hint="fee"></div>
+          </div>
+          <div class="f full" data-for="crim">
+            <label class="check"><input type="checkbox" id="f-feeAll" data-k="feeAll"><span>착수금 전액을 착수와 동시에 지급</span></label>
+          </div>
+          <div class="f full" id="feeNowWrap" data-for="crim">
+            <label for="f-feeNow">착수와 동시에 지급하는 금액</label>
+            <input type="text" id="f-feeNow" data-k="feeNow" data-money placeholder="예: 150만">
+            <div class="hint" data-hint="feeNow"></div>
+          </div>
+          <div class="f full" data-for="crim">
+            <span class="lab">다항(성공보수 문구, 지급 조건은 특약의 선택을 따름)</span>
+            <div class="seg" data-seg="clause3" role="group" aria-label="다항 표시"><button type="button" data-v="strike">전체 삭선</button><button type="button" data-v="plain">삭선 없이</button><button type="button" data-v="hide">넣지 않음</button></div>
+          </div>
+          <div class="f full" data-for="crim"><label for="f-note">참고사항</label><input type="text" id="f-note" data-k="note"></div>
+          <div class="f full" data-for="civil" hidden>
+            <span class="lab">제7조 성과보수</span>
+            <div class="seg" data-seg="success" role="group" aria-label="성과보수 처리"><button type="button" data-v="on">적용</button><button type="button" data-v="strike">전체 삭선</button></div>
+          </div>
+          <div class="f full" id="successWrap" data-for="civil" hidden>
+            <div class="sub2">
+              <div class="f"><label for="f-rateDiv">가항 ① 재산분할 성과보수율</label><input type="text" id="f-rateDiv" data-k="rateDiv" placeholder="예: 10"></div>
+              <label class="check"><input type="checkbox" id="f-sDiv" data-k="sDiv"><span>① 삭선</span></label>
+              <div class="f"><label for="f-rateWin">가항 ② 승소 성과보수율</label><input type="text" id="f-rateWin" data-k="rateWin" placeholder="예: 10"></div>
+              <label class="check"><input type="checkbox" id="f-sWin" data-k="sWin"><span>② 삭선</span></label>
+              <div class="hint">숫자만 쓰면 %가 붙습니다. 비워 두면 빈칸으로 남습니다.</div>
+              <label class="check"><input type="checkbox" id="f-sApp" data-k="sApp"><span>③ 삭선</span></label>
+            </div>
+          </div>
+          <div class="f"><label for="f-deposit">예치금</label><input type="text" id="f-deposit" data-k="deposit" data-money placeholder="예: 50만"><div class="hint" data-hint="deposit"></div></div>
+          <div class="f"><label for="f-perdiem">출장 일당 (1일)</label><input type="text" id="f-perdiem" data-k="perdiem" data-money placeholder="예: 30만"><div class="hint" data-hint="perdiem"></div></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>특약사항</legend>
+        <div class="grid">
+          <div class="f full">
+            <div class="row">
+              <div class="f"><label for="f-succ">성공보수</label><input type="text" id="f-succ" data-k="succ" data-money placeholder="예: 1,000만"></div>
+              <div class="seg" data-seg="succVat" role="group" aria-label="성공보수 부가가치세"><button type="button" data-v="별도">부가세 별도</button><button type="button" data-v="포함">포함</button></div>
+            </div>
+            <div class="hint" data-hint="succ"></div>
+          </div>
+          <div class="f full" data-for="crim">
+            <span class="lab">성공보수 지급 조건 (여러 개 선택 가능)</span>
+            <div class="chips" id="outcome-chips">
+              <button type="button" class="chip" data-flag="oNo">무혐의 시</button>
+              <button type="button" class="chip" data-flag="oAcq">무죄 시</button>
+              <button type="button" class="chip" data-flag="oSus">집행유예 시</button>
+              <button type="button" class="chip" data-flag="oFine">벌금 시</button>
+            </div>
+          </div>
+          <div class="f full"><label for="f-succCond" id="lab-succCond">성공보수 지급 조건</label><input type="text" id="f-succCond" data-k="succCond" placeholder="예: 무혐의 시"></div>
+          <div class="f full"><label for="f-special">기타 특약 (한 줄에 한 항목)</label><textarea id="f-special" data-k="special" rows="3"></textarea></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>작성일·동의서</legend>
+        <div class="grid">
+          <div class="f"><label for="f-date">계약서 작성일</label><input type="date" id="f-date" data-k="date"></div>
+          <div class="f"><label for="f-date2">동의서 작성일</label><input type="date" id="f-date2" data-k="date2"></div>
+          <div class="f full"><label class="check"><input type="checkbox" id="f-dateSame" data-k="dateSame"><span>동의서 날짜를 계약서와 같게</span></label></div>
+          <div class="f full"><label for="f-csText">동의서의 사건 표기</label><input type="text" id="f-csText" data-k="csText" placeholder="비우면 사건번호와 사건명을 씁니다"></div>
+          <div class="f full"><label for="f-client">동의서의 의뢰인</label><input type="text" id="f-client" data-k="client" placeholder="비우면 위임인 성명을 씁니다"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <details>
+          <summary>수임인(을) 표기</summary>
+          <div class="grid" style="margin-top:10px">
+            <div class="f"><label for="f-office">사무소</label><input type="text" id="f-office" data-k="office"></div>
+            <div class="f"><label for="f-lawyer">변호사</label><input type="text" id="f-lawyer" data-k="lawyer"></div>
+          </div>
+        </details>
+        <p class="note">입력한 내용은 이 화면 안에서만 처리되고 서버에 저장되지 않습니다. 비워 둔 칸은 문서에 빈칸으로 남습니다.</p>
+      </fieldset>
+    </form>
+
+    <section class="preview" aria-label="미리보기">
+      <div class="status" id="status"></div>
+      <div id="alerts"></div>
+      <div class="miss" id="miss"></div>
+      <div class="pages" id="pages"></div>
+    </section>
+  </div>
+</div>
+
+<div class="actions">
+  <div class="in">
+    <button type="button" class="btn primary" id="btn-save" disabled>워드 파일 저장</button>
+    <button type="button" class="btn" id="btn-copy">본문 복사</button>
+    <span class="msg" id="msg" role="status" aria-live="polite"></span>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+<script>
+/* 사건위임계약서(형사 / 민사·행정) 코어: 입력값 -> 문서 모델 -> (화면 HTML | 워드 docx) */
+(function (root) {
+  'use strict';
+
+  var NB = ' ';
+  var FONT = '바탕';
+  var BODY = 9.5;          // 본문 글자 크기(pt)
+  var SC = 86;             // 본문 장평(%): 원본 서식의 글자 폭에 맞춤
+  var PAGE = { w: 595.3, h: 841.9, mt: 80, mb: 56, ml: 70.9, mr: 70.9 };
+  var TEXT_W = PAGE.w - PAGE.ml - PAGE.mr;      // 453.5pt
+  var AVAIL = PAGE.h - PAGE.mt - PAGE.mb;       // 705.9pt
+  var BOX = { w: 424, h: 659, top: 97 };
+  var COLGAP = 20, COLW = (TEXT_W - COLGAP) / 2;  // 민사·행정 2단 조판
+
+  // 쪽 맞춤 단계: 0 기본, 1 조밀, 2 최조밀
+  var LEVELS = [
+    { pitch: 17.5, gap: 8, sig: 19, dateBefore: 34 },
+    { pitch: 16.5, gap: 5, sig: 18, dateBefore: 22 },
+    { pitch: 15.5, gap: 3, sig: 17, dateBefore: 12 }
+  ];
+  var LEVELS_CIVIL = [
+    { pitch: 14.4, gap: 6, sig: 21, dateBefore: 12 },
+    { pitch: 13.6, gap: 4, sig: 19, dateBefore: 8 },
+    { pitch: 12.8, gap: 3, sig: 17, dateBefore: 6 }
+  ];
+
+  var TYPES = {
+    crim: { title: '사건위임계약서(형사)', file: '사건위임계약서(형사)' },
+    civil: { title: '사건위임계약서(민사, 행정)', file: '사건위임계약서(민사·행정)' }
+  };
+
+  /* ---------- 값 정리 ---------- */
+  function str(v) { return (v == null ? '' : String(v)).replace(/\s+/g, ' ').trim(); }
+
+  function parseSmall(t) {
+    if (!t) return 0;
+    if (/^\d+$/.test(t)) return +t;
+    var m = t.match(/^(?:(\d+)천)?(?:(\d+)백)?(?:(\d+)십)?(\d+)?$/);
+    if (!m) return NaN;
+    return (+(m[1] || 0)) * 1000 + (+(m[2] || 0)) * 100 + (+(m[3] || 0)) * 10 + (+(m[4] || 0));
+  }
+  // "300만", "3,000,000", "1억5천만" 등을 원 단위 정수로. 해석 실패 시 null
+  function parseWon(input) {
+    var s = str(input).replace(/[,\s]/g, '').replace(/^금/, '').replace(/원$/, '');
+    if (!s) return null;
+    if (/^\d+$/.test(s)) return parseInt(s, 10);
+    var eok = 0, rest = s, i = s.indexOf('억'), man = 0, rem = 0, j;
+    if (i >= 0) { eok = parseSmall(s.slice(0, i)); rest = s.slice(i + 1); }
+    j = rest.indexOf('만');
+    if (j >= 0) { man = parseSmall(rest.slice(0, j)); rem = parseSmall(rest.slice(j + 1)); }
+    else if (i >= 0) { man = parseSmall(rest); }
+    else return null;
+    var n = eok * 1e8 + man * 1e4 + rem;
+    return isNaN(n) ? null : n;
+  }
+
+  function fmtNum(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+  function wonText(n) {
+    if (n % 10000 !== 0) return fmtNum(n) + '원';
+    var eok = Math.floor(n / 1e8), man = (n % 1e8) / 1e4;
+    if (eok && !man) return eok + '억원';
+    if (eok) return eok + '억 ' + fmtNum(man) + '만원';
+    return fmtNum(man) + '만원';
+  }
+
+  // 금액 입력 -> {text, state:'empty'|'ok'|'bad'}
+  function money(input) {
+    var s = str(input);
+    if (!s) return { text: '', state: 'empty' };
+    var n = parseWon(s);
+    if (n == null || n <= 0) return { text: s, state: 'bad' };
+    return { text: wonText(n), state: 'ok' };
+  }
+
+  // 비율 입력: 숫자만 쓰면 %를 붙이고, 그 밖의 표기는 입력한 그대로 쓴다
+  function rate(input) {
+    var s = str(input);
+    if (!s) return { text: '', state: 'empty' };
+    var m = /^(\d+(?:\.\d+)?)\s*(%|퍼센트|프로)?$/.exec(s);
+    if (m) return { text: m[1] + '%', state: 'ok' };
+    return { text: s, state: 'text' };
+  }
+
+  function rep(ch, n) { return new Array(n + 1).join(ch); }
+
+  function dateParts(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!m) return null;
+    return { y: m[1], m: String(+m[2]), d: String(+m[3]) };
+  }
+  function dateText(iso) {
+    var p = dateParts(iso);
+    if (!p) return '2026.' + rep(NB, 3) + '.' + rep(NB, 4) + '.';
+    return p.y + '.' + NB + NB + p.m + '.' + NB + NB + p.d + '.';
+  }
+
+  /* ---------- 문서 모델 ---------- */
+  function R(x, f) {
+    f = f || '';
+    return { x: x, b: f.indexOf('b') >= 0, u: f.indexOf('u') >= 0, s: f.indexOf('s') >= 0 };
+  }
+
+  function defaults() {
+    return {
+      type: 'crim',
+      name: '', sigFill: false, rrn: '', tel: '', mail: '', addr: '',
+      caseno: '', casename: '', party: '', opp: '', scope: '', scopeC: '',
+      fee: '', feeVat: '', feeAll: true, feeNow: '',
+      clause3: 'strike',
+      success: 'on', rateDiv: '', rateWin: '', sDiv: false, sWin: false, sApp: false,
+      note: '', deposit: '', perdiem: '',
+      succ: '', succVat: '별도', succCond: '', oNo: false, oAcq: false, oSus: false, oFine: false, special: '',
+      date: '', dateSame: true, date2: '',
+      csText: '', client: '',
+      office: '진앤솔 법률사무소', lawyer: '변호사 강 정 한'
+    };
+  }
+
+  function amtRuns(m) { return m.state === 'empty' ? '금' + rep(NB, 6) + '만원' : '금 ' + m.text; }
+
+  // 블록 생성 도구
+  function tools(L) {
+    function P(runs, o) {
+      o = o || {};
+      return {
+        k: 'p', runs: runs, size: o.size || BODY, scale: o.scale || SC,
+        align: o.align || 'both', left: o.left || 0, first: o.first || 0,
+        before: o.before || 0, after: o.after || 0, pitch: o.pitch || L.pitch,
+        pageBreak: !!o.pageBreak
+      };
+    }
+    return {
+      P: P,
+      art: function (no, title, runs) {
+        return P([R('제' + no + '조【' + title + '】', 'b')].concat(runs || []), { left: 17, first: -17, before: L.gap });
+      },
+      head: function (no, title) {
+        return P([R('제' + no + '조【' + title + '】', 'b')], { before: L.gap, align: 'left' });
+      },
+      item: function (mark, runs, o) { return P([R(mark + ' ', o && o.mark || '')].concat(runs), { left: 25, first: -13 }); }
+    };
+  }
+
+  // 갑·을 서명란: 위임인 이름은 넣지 않고(자필), 연락처는 선택 시에만 채운다
+  function sigBlocks(v, L, eul) {
+    var fill = !!v.sigFill;
+    var rrn = fill ? str(v.rrn) : '', tel = fill ? str(v.tel) : '', mail = fill ? str(v.mail) : '', addr = fill ? str(v.addr) : '';
+    function row(cols, o) { o = o || {}; return { k: 'cols', cols: cols, pitch: L.sig, before: o.before || 0, size: 11, scale: 90 }; }
+    return [
+      row([{ w: 40, runs: [R('갑 :')] }, { w: 0, runs: [R('위임인', 'b')] }]),
+      row([{ w: 40, runs: [] }, { w: 0, runs: [R('주민등록번호(사업자등록번호)' + (rrn ? '  ' + rrn : ''))] }]),
+      row([{ w: 40, runs: [] }, { w: 54, runs: [R('전  화', 'b')] }, { w: 160, runs: [R(tel)] },
+        { w: 0, runs: [R('(이메일' + (mail ? '  ' + mail + ' ' : rep(NB, 18)) + ')')] }]),
+      row([{ w: 40, runs: [] }, { w: 54, runs: [R('주  소', 'b')] }, { w: 0, runs: [R(addr)] }]),
+      row([{ w: 40, runs: [R('을 :')] }, { w: 0, runs: [R('수임인 ' + eul, 'b')] }], { before: L.sig })
+    ];
+  }
+
+  // 형사 성공보수 지급 조건: 직접 입력이 있으면 그 문구, 없으면 선택한 결과(무혐의·무죄·집행유예·벌금)
+  var OUTCOMES = [['oNo', '무혐의'], ['oAcq', '무죄'], ['oSus', '집행유예'], ['oFine', '벌금']];
+  function condText(v) {
+    var custom = str(v.succCond);
+    if (custom) return custom;
+    if (v.type === 'civil') return '';
+    var s = OUTCOMES.filter(function (o) { return v[o[0]]; }).map(function (o) { return o[1]; });
+    if (!s.length) return '';
+    if (s.length === 1) return s[0] + ' 시';
+    return s.slice(0, -1).join(', ') + ' 또는 ' + s[s.length - 1] + ' 시';
+  }
+
+  function specialBlocks(v, P) {
+    var sp = [];
+    var succ = money(v.succ);
+    if (succ.state !== 'empty') {
+      var cond = condText(v);
+      sp.push(P([R('성공보수 : ' + (cond ? cond + ' ' : '')), R('금 ' + succ.text + '(부가가치세 ' + (v.succVat === '포함' ? '포함' : '별도') + ')', 'bu'), R('을 지급한다.')], { left: 12, first: 0, align: 'left' }));
+    }
+    String(v.special || '').split(/\r?\n/).forEach(function (ln) {
+      ln = ln.replace(/\s+$/, '');
+      if (ln.trim()) sp.push(P([R(ln.trim())], { left: 12, first: 0, align: 'left' }));
+    });
+    return sp;
+  }
+
+  // 동의서(3쪽): 두 양식은 끝줄 표기와 문장 일부가 다르다
+  function consentBox(v, kind, office) {
+    var cs = str(v.csText) || [str(v.caseno), str(v.casename)].filter(Boolean).join(' ');
+    var client = str(v.client) || str(v.name);
+    var d2 = v.dateSame ? v.date : v.date2;
+    function Q(runs, o) { o = o || {}; o.size = o.size || 12; o.scale = o.scale || 92; o.pitch = o.pitch || 30; return tools({ pitch: 30, gap: 0 }).P(runs, o); }
+    var civil = kind === 'civil';
+    var box = [];
+    box.push(Q([R('동 의 서', 'b')], { size: 23, scale: 100, align: 'center', pitch: 34, before: 52 }));
+    box.push({ k: 'cols', cols: [{ w: 100, runs: [R('사    건')] }, { w: 0, runs: [R(cs)] }], pitch: 30, before: 30, size: 12, scale: 92, box: true, lead: 30 });
+    box.push({ k: 'cols', cols: [{ w: 100, runs: [R('의 뢰 인')] }, { w: 0, runs: [R(client)] }], pitch: 30, before: 0, size: 12, scale: 92, box: true, lead: 30 });
+    box.push(Q([R('상기 본인은 ' + office + '에 위임한 위 사건에 관하여 사건이 종결된 날로부터 6개월 이내에 본인이 제공한 자료 및 사건 기록 반환을 요청하지 않을 경우, ' + office + '가 임의로 폐기함에 동의합니다.')], { first: 40, before: 30 }));
+    box.push(Q([R(civil
+      ? '위 기한이 경과 함에 따라 ' + office + '가 본인이 제공한 자료 및 사건 기록 일체를 폐기하더라도 어떠한 민·형사상 책임을 묻지 않을 것을 확인합니다.'
+      : '위 기한이 경과함에 따라 ' + office + '가 본인이 제공한 자료 및 사건 기록 일체를 폐기하더라도 어떠한 민·형사상 책임을 묻지 않을 것임을 확인합니다.')], { first: 40 }));
+    box.push(Q([R(dateText(d2))], { align: 'center', before: 85, scale: 100 }));
+    box.push(Q([R('의 뢰 인 : ' + client + (civil ? '    (인)' : '    (인 또는 서명)'))], { align: 'center', before: 30, scale: 100 }));
+    return [{ k: 'box', blocks: box }];
+  }
+
+  /* ===== 형사 ===== */
+  function buildCrim(v, lvl) {
+    var L = LEVELS[lvl];
+    var T = tools(L), P = T.P, art = T.art, item = T.item;
+    function sub(mark, runs, mf) { return P([R(mark + ' ', mf || '')].concat(runs), { left: 39, first: -14.4 }); }
+
+    var office = str(v.office) || '진앤솔 법률사무소';
+    var lawyer = str(v.lawyer) || '변호사 강 정 한';
+    var eul = office + ' ' + lawyer;
+
+    var vat = v.feeVat || '별도';
+    var fee = money(v.fee), vatFee = '(부가가치세 ' + (vat === '포함' ? '포함' : '별도') + ')';
+    var now = v.feeAll ? fee : money(v.feeNow);
+
+    var dep = money(v.deposit), per = money(v.perdiem);
+    var depRuns = dep.state === 'empty'
+      ? [R('갑은 제1항의 비용에 충당하기 위하여 금 '), R(rep(NB, 14), 'u'), R('원을 예치한다.')]
+      : [R('갑은 제1항의 비용에 충당하기 위하여 금 ' + dep.text + '을 예치한다.')];
+    var perRuns = per.state === 'empty'
+      ? [R('출장 일당으로 1일 금 '), R(rep(NB, 14), 'u'), R('원을 비용 발생 때 지급한다.')]
+      : [R('출장 일당으로 1일 금 ' + per.text + '을 비용 발생 때 지급한다.')];
+
+    var scope = str(v.scope);
+    var scopeRuns = scope ? [R(scope, 'bu')] : [R('제' + NB + NB + '심', 'bu')];
+
+    /* ===== 1쪽 ===== */
+    var p1 = [];
+    p1.push(P([R(TYPES.crim.title, 'b')], { size: 16, scale: 100, align: 'center', pitch: 26, after: 12 }));
+    p1.push(P([R('위임인(갑) : ' + str(v.name))], { size: 11, scale: 90, align: 'left', pitch: 18 }));
+    p1.push(P([R('수임인(을) : '), R(eul, 'b')], { size: 11, scale: 90, align: 'left', pitch: 18 }));
+    p1.push(P([R('사건의 표시')], { size: 10, scale: 90, align: 'left', pitch: 18, before: 2, after: 3 }));
+    p1.push({
+      k: 'tbl4', cols: [84, 132, 61, 176.5], rowH: 24, labelSize: 10,
+      rows: [
+        [['사건번호', str(v.caseno)], ['사건명', str(v.casename)]],
+        [['당 사 자', str(v.party)], ['상대방', str(v.opp)]]
+      ]
+    });
+    p1.push(P([R('위 당사자들은 위 표시 사건의 ')].concat(scopeRuns, [R('에 있어 사건처리에 관한 위임계약을 다음과 같이 체결한다.')]), { before: 9, align: 'left' }));
+
+    p1.push(art(1, '목 적', [R('갑은 을에게 위 표시 사건의 처리(이하 “위임사무”라 한다)를 위임하고, 을은 이를 수임한다.')]));
+    p1.push(art(2, '수임인의 의무', [R('을은 변호사로서 법령에 정한 권리와 의무에 입각하여 위임의 내용에 따라 선량한 관리자의 주의를 다하여 위임사무를 처리한다.')]));
+    p1.push(art(3, '자료제공 등', [R('을이 위임사무를 처리하는데 필요하다고 인정하여 요구한 자료 또는 조회한 사항에 대하여 갑은 지체 없이 이에 응하여야 한다.')]));
+
+    p1.push(T.head(4, '착수보수'));
+    p1.push(item('①', [R('갑은 을에게 다음과 같이 착수보수를 지급한다.')]));
+    p1.push(sub('가.', [R('위임계약에 따른 변호사 착수금은 '), R(amtRuns(fee) + vatFee, 'bu'), R('으로 한다.')]));
+    p1.push(sub('나.', [R('위임 사건의 착수와 동시', 'bu'), R('에 위 착수금 중 '), R(amtRuns(now) + vatFee, 'bu'), R('을 지급한다.')]));
+    if (v.clause3 !== 'hide') {
+      var sk = v.clause3 === 'plain' ? '' : 's';   // 다항: 전체 삭선(기본) 또는 삭선 없이
+      p1.push(sub('다.', [R(condText(v) || '무혐의 시', 'bu' + sk), R(' 위 성공보수로 중 ', sk), R('금' + rep(NB, 6) + '만원(부가가치세 포함)', 'bu' + sk), R('을 지급한다.', sk)], sk));
+    }
+    p1.push(item('②', [
+      R('제1항의 착수보수는 '),
+      R('을이 접견, 위임사무에 관한 연구, 조사, 서면작성을 하는 등 위임사무에 착수한 후, 또는 상소의 취하, 고소의 취하, 당사자의 사망, 당사자의 변심, 제6조에 의한 해지 등 을에게 책임 없는 사유로 인하여 계약이 해지', 'bu'),
+      R('되는 경우에는 갑이 그 반환을 청구할 수 없다.')
+    ]));
+    p1.push(P([R('※ 참고사항 :', 'b'), R(str(v.note) ? ' ' + str(v.note) : '')], { left: 12, first: 0, align: 'left' }));
+
+    p1.push(T.head(5, '비용부담'));
+    p1.push(item('①', [
+      R('을이 위임사무를 처리하는데 필요한 인지대, 송달료, 감정료, 예납금, 보증, '),
+      R('등사료(수사단계 및 법원 기록 복사비용)', 'bu'), R(', 여비 기타 '),
+      R('필요한 실비는 그 전액을 갑이 부담', 'bu'), R('한다.')
+    ]));
+    p1.push(item('②', depRuns));
+    p1.push(item('③', perRuns));
+    p1.push(item('④', [R('전항의 비용은 제2항의 예치금 중에서 충당할 수 있다.')]));
+
+    p1.push(art(6, '계약해지', [
+      R('갑이 이 위임계약에 정한 의무를 이행하지 아니하거나 '),
+      R('위임사무의 내용에 관하여 진술한 사실이 허위인 때', 'bu'),
+      R('에는, 고의가 아닌 경우라도 을은 이 계약을 해지하고 사임할 수 있다. 을의 고의 중과실이 있는 경우에 한하여 을은 갑에게 배상책임이 있고, 그 배상한도는 을의 본 건 위임계약을 통한 이익을 초과할 수 없다.')
+    ]));
+    p1.push(art(7, '통지의무', [R('을은 위임사무의 중요한 처리상황 및 그 결과를 갑에게 통지하고, 위임이 종료한 때에는 그 결과를 갑에게 지체 없이 통지하여야 한다.')]));
+
+    /* ===== 2쪽 ===== */
+    var p2 = [];
+    var first8 = art(8, '보수지급의 지체', []);
+    first8.pageBreak = true; first8.before = 0; first8.align = 'left';
+    p2.push(first8);
+    p2.push(item('①', [R('갑이 이 위임계약에 정한 비용 또는 보수의 지불을 지체한 때에는, 을은 위임사무에 착수하지 않거나 그 위임사무의 처리를 중단하거나 사임할 수 있다.')]));
+    p2.push(item('②', [R('전항의 경우 을은 신속하게 갑에게 그 취지를 통지하여야 한다.')]));
+    p2.push(art(9, '자료 및 사건기록 보관책임', [R('을은 위임사무를 처리하기 위하여 갑으로부터 제공받은 자료 및 사건기록 일체를 사건이 종결된 날로부터 6개월 이내에 갑의 반환요청이 없을 경우 임의로 폐기할 수 있다.')]));
+    p2.push(T.head(10, '지급보장'));
+    p2.push(item('①', [R('을은 이 위임계약에 정한 비용 또는 보수의 지급을 확실하게 보장하기 위하여 갑에게 필요한 조치를 요구할 수 있다.')]));
+    p2.push(item('②', [R('을은 갑이 제1항의 비용 또는 보수의 지급의무를 이행하지 아니하는 때에는, 위임사무의 처리에 관련하여 보관하게 된 금전, 문서 또는 자료 등을 유치하거나 상계처리 할 수 있다.')]));
+    p2.push(item('③', [R('전항의 경우 을은 신속하게 갑에게 그 취지를 통지하여야 한다.')]));
+    p2.push(item('④', [R('본 위임계약이 양당사자 합의하에 종료되는 경우라도, 정산은 계약체결시부터 계약종료시까지 시간당 각 50만원의 보수가 발생함을 기준으로 정산된다.')]));
+    p2.push(art(11, '인장조각', [R('이 위임계약의 수행 상 필요한 경우, 을은 갑 또는 당사자의 인장을 조각하여 사용할 수 있다. 단, 을은 사후에 인장조각 및 사용사실을 통지하여야 한다.')]));
+    p2.push(art(12, '비밀유지', [R('을은 업무상 취득한 갑의 모든 비밀정보를 비밀로 유지하고, 업무수행상 필요하거나 법적으로 공개가 요구되는 경우 이외에는 갑의 동의 없이 제3자에게 공개하지 아니한다.')]));
+    p2.push(art(13, '민법과의 관계', [R('기타 위임사항에 관하여 이 위임계약서에 특별히 규정되어 있는 사항을 제외하고는 민법상 위임에 관한 규정이 정한 바에 의한다.')]));
+
+    var sp = specialBlocks(v, P);
+    var tail = sp.length ? [] : [R(rep(NB, 8), 'u')];
+    p2.push(P([R('*', 'u'), R('특약사항', 'bu'), R(':', 'u')].concat(tail), { before: 4, align: 'left' }));
+    sp.forEach(function (b) { p2.push(b); });
+
+    p2.push(P([R(dateText(v.date))], { size: 11, scale: 100, align: 'center', pitch: 19, before: L.dateBefore, after: L.dateBefore * 0.6 }));
+    sigBlocks(v, L, eul).forEach(function (b) { p2.push(b); });
+
+    return { type: 'crim', level: lvl, pages: [p1, p2, consentBox(v, 'crim', office)], office: office, title: TYPES.crim.title };
+  }
+
+  /* ===== 민사·행정 ===== */
+  function buildCivil(v, lvl) {
+    var L = LEVELS_CIVIL[lvl];
+    var T = tools(L), P = T.P, art = T.art, item = T.item;
+
+    var office = str(v.office) || '진앤솔 법률사무소';
+    var lawyer = str(v.lawyer) || '변호사 강 정 한';
+    var eul = office + ' ' + lawyer;
+
+    var vat = v.feeVat || '포함';
+    var fee = money(v.fee), vatFee = '(부가가치세 ' + (vat === '별도' ? '별도' : '포함') + ')';
+
+    var dep = money(v.deposit), per = money(v.perdiem);
+    var depRuns = dep.state === 'empty'
+      ? [R('갑은 제1항의 비용에 충당하기 위하여 금 '), R(rep(NB, 14), 'u'), R('원을 예치한다.')]
+      : [R('갑은 제1항의 비용에 충당하기 위하여 금 ' + dep.text + '을 예치한다.')];
+    var perRuns = per.state === 'empty'
+      ? [R('출장 일당으로 1일 금 '), R(rep(NB, 14), 'u'), R('원을 비용 발생 때 지급한다.')]
+      : [R('출장 일당으로 1일 금 ' + per.text + '을 비용 발생 때 지급한다.')];
+
+    var scope = str(v.scopeC);
+    var scopeRuns = scope ? [R(scope, 'bu')] : [R(rep(NB, 3) + '심 사건', 'bu')];
+
+    /* ---- 머리(1쪽 상단, 전폭) ---- */
+    var head = [];
+    head.push(P([R(TYPES.civil.title, 'b')], { size: 14.3, scale: 100, align: 'center', pitch: 24, after: 8 }));
+    head.push(P([R('위임인(갑) : ' + str(v.name))], { size: 11, scale: 90, align: 'left', pitch: 19 }));
+    head.push(P([R('수임인(을) : '), R(eul, 'b')], { size: 11, scale: 90, align: 'left', pitch: 19 }));
+    head.push(P([R('사건의 표시')], { size: 10, scale: 90, align: 'left', pitch: 19, before: 1, after: 2 }));
+    head.push({
+      k: 'tbl4', cols: [56, 136, 56, 205.5], rowH: 33.6, labelSize: 11,
+      rows: [
+        [['사건번호', str(v.caseno)], ['사 건 명', str(v.casename)]],
+        [['당 사 자', str(v.party)], ['상 대 방', str(v.opp)]]
+      ]
+    });
+    head.push(P([R('위 당사자들은 위 표시 사건의 ')].concat(scopeRuns, [R('에 있어서의 사건처리에 관한 위임계약을 다음과 같이 체결한다.')]), { before: 8, align: 'left' }));
+
+    /* ---- 제7조 성과보수: 전체 삭선 또는 항목별 삭선 ---- */
+    var all = v.success === 'strike';
+    function rr(x, f, own) { return R(x, (f || '') + ((all || own) ? 's' : '')); }
+    function sItem(mark, runs, own, w) {
+      return P([rr(mark + ' ', '', own)].concat(runs), { left: w ? w.left : 26, first: w ? w.first : -14 });
+    }
+    function sSub(mark, runs) { return P([rr(mark + ' ', '')].concat(runs), { left: 17, first: -5 }); }
+    function sText(text) { return P([rr(text, '')], { left: 17, first: 0 }); }
+    var rd = rate(v.rateDiv), rw = rate(v.rateWin);
+    var rdText = rd.state === 'empty' ? rep(NB, 6) + '%' : rd.text;
+    var rwText = rw.state === 'empty' ? rep(NB, 8) : rw.text;
+
+    /* ---- 단 구성 단위: 한 단위는 쪼개지 않고 한 단에 둔다 ---- */
+    var U = [];
+    U.push([art(1, '목적', [R('갑은 을에게 위 표시 사건의 처리(이하 “위임사무”라 한다)를 위임하고, 을은 이를 수임한다.')])]);
+    U.push([art(2, '위임한계', [R('갑이 을에게 위임하는 위임사무의 한계는 당해 심급에 한하고, 파기 환송된 사건이나 상소의 제기, 강제집행, 강제집행정지, 보전처분 등 부수적 절차에 관한 사항은 따로 정한다. 보전처분 사건의 경우, 이의사건 또는 취소사건은 별개의 위임사무로 한다.')])]);
+    U.push([art(3, '수권범위', [R('갑은 을에게 따로 작성하여 교부하는 위임장 또는 선임서에 적은 자격과 권한을 수여한다.')])]);
+    U.push([art(4, '수임인의 의무', [R('을은 변호사로서 법령에 정한 권리와 의무에 입각하여, 위임의 내용에 따라 선량한 관리자의 주의를 다하여 위임사무를 처리한다.')])]);
+    U.push([art(5, '자료제공 등', [R('을이 위임사무를 처리하는데 필요하다고 인정하여 요구한 자료 또는 조회한 사항에 대하여 갑은 지체 없이 이에 응하여야 한다.')])]);
+    U.push([T.head(6, '착수보수'),
+      item('①', [R('갑은 을에게 위임계약의 성립과 동시에 착수보수로 ', 'b'), R(amtRuns(fee) + vatFee, 'bu'), R('을 지급한다(출장료 포함).', 'b')], { mark: 'b' })]);
+    U.push([item('②', [R('제1항의 착수보수는 을이 위임사무에 관한 연구, 조사, 서면작성을 하는 등 위임사무에 착수한 후, 을에게 책임 없는 사유로 인한 당사자의 소의 부제기 또는 취하, 상소의 부제기 또는 취하, 청구의 포기, 인낙, 소송상 화해, 조정, 소송물의 양도, 당사자의 사망 등의 경우에는 갑이 그 반환을 청구하지 못하는 것을 원칙으로 하되, 필요한 경우 갑과 을의 협의하에 이를 조정할 수 있다.')])]);
+    U.push([item('③', [R('을이 위임사무를 착수하기 이전이라도 을에게 책임 없는 사유로 인한 갑의 일방적인 위임계약 해지, 또는 제9조에 의한 위임계약의 해지 등의 사유가 발생한 경우에는 이로 인하여 을이 입거나 입게 되는 손해 혹은 손실에 해당하는 금액을 공제한 나머지 금액을 반환하기로 한다.')])]);
+    U.push([item('④', [R('갑과 을이 합의로 위임계약을 해지 또는 을이 부득이한 사유로 위임계약을 해지하는 경우에는, 당시까지 을의 변호사 및 전문보조인력들이 갑을 위하여 일한 일체의 시간(수임을 위하여 상담하거나 연구한 시간 포함)에 을이 정하고 있는 시간당 보수율을 곱하여 산출된 금액을 착수보수에서 공제하고 잔액이 있을 경우 이를 반환한다.')])]);
+
+    U.push([P([rr('제7조【성과보수】', 'b')], { before: L.gap, align: 'left' }),
+      sSub('가.', [rr('성과보수')]),
+      sText('위임사무가 판결, 재판상 내지 재판외 화해(화해권고결정 포함), 조정(조정에 갈음한 결정 포함), 당사자간 합의 등으로 성공한 때에는 다음 구분에 의하여 성과보수를 지급하기로 한다.')]);
+    U.push([sItem('①', [rr('재산분할로 얻는 경제적 이익가액의 ' + rdText + '에 해당하는 금액(부가가치세 별도)', '', v.sDiv)], v.sDiv)]);
+    U.push([sItem('②', [rr('승소로 얻은 경제적 이익가액의 ' + rwText + '에 해당하는 금액(부가가치세 별도)', '', v.sWin)], v.sWin)]);
+    U.push([sItem('③', [rr('상소심의 경우 달리 정함이 없는 한 상소심의 심판의 대상 전부를 기준으로 하여 승소 비율을 정한다.', '', v.sApp)], v.sApp)]);
+    U.push([P([rr('나. 승소로 보는 경우 : 다음의 경우에는 승소로 보고, 위 가항에 정한 성과보수액을 지급하여야 한다.')], { left: 17, first: -5, before: 3 })]);
+    U.push([sItem('①', [rr('을이 위임사무처리를 위하여 상당한 노력을 투입한 후 갑이 임의로 청구의 포기 또는 인낙, 소의 취하, 상소를 취하한 경우')])]);
+    U.push([sItem('②', [rr('을의 소송수행 결과로 인하여 상대방이 청구의 포기 또는 인낙, 소의 취하, 상소를 취하한 경우 (상대방이 이러한 사정으로 청구취지 또는 항소취지를 감축하는 경우에도 감축된 부분에 관하여 성공한 것으로 본다.)')])]);
+    U.push([sItem('③', [rr('을의 소송수행 결과로 인하여 소송대상인 행정처분이 직권취소되거나 경정처분된 경우')])]);
+    U.push([sItem('④', [rr('을이 위임사무 처리를 위하여 상당한 노력을 투입한 후 갑이 정당한 사유 없이 위임계약을 해지하거나, 제9조에 따라 을이 위임계약을 해지한 경우')])]);
+    U.push([P([rr('다. 전항 제1호 사유 중 갑이 아무런 경제적인 이득 또는 기타 이득이 없이 청구의 포기, 소의 취하, 인낙, 상소를 취하한 때에는 을의 노력 및 업무 수행 경과를 감안, 갑과 을이 상호 협의하여 성과보수를 조정할 수 있다.')], { left: 17, first: -5, before: 3 })]);
+
+    U.push([T.head(8, '비용부담'),
+      item('①', [R('을이 위임사무를 처리하는데 필요한 인지대, 송달료, 감정료, 예납금, 보증금, 등사료, 여비, 기타 필요한 실비는 그 전액을 갑이 부담한다.')])]);
+    U.push([item('②', [R('위임장의 경유비용을 을이 부담할 시 인지 및 송달료 환급분을 갑에게 반환하지 아니한다.')])]);
+    U.push([item('③', depRuns)]);
+    U.push([item('④', perRuns)]);
+    U.push([item('⑤', [R('전항의 비용은 제2항의 예치금 중에서 충당할 수 있다.')])]);
+    U.push([art(9, '계약해지', [R('갑이 이 위임계약에 정한 의무를 이행하지 아니하거나 위임사무의 내용에 관하여 진술한 사실이 허위인 때에는, 고의가 아닌 경우라도 을은 이 계약을 해지하고 사임할 수 있다.')])]);
+    U.push([art(10, '통지의무', [R('을은 위임사무의 중요한 처리상황 및 그 결과를 갑에게 통지하고, 위임이 종료한 때에는 그 결과를 갑에게 지체 없이 통지하여야 한다.')])]);
+    U.push([T.head(11, '보수지급의 지체'),
+      item('①', [R('갑이 이 위임계약에 정한 비용 또는 보수의 지급을 지체한 때에는, 을은 위임사무에 착수하지 않거나 그 위임사무의 처리를 중단하거나 사임할 수 있다.')])]);
+    U.push([item('②', [R('전항의 경우 을은 신속하게 갑에게 그 취지를 통지하여야 한다.')])]);
+    U.push([art(12, '자료 및 사건기록 보관책임', [R('을은 위임사무를 처리하기 위하여 갑으로부터 제공받은 자료 및 사건기록 일체를 사건이 종결된 날로부터 6개월 이내 갑의 반환요청이 없을 경우 임의로 폐기할 수 있다.')])]);
+    U.push([T.head(13, '지급보장'),
+      item('①', [R('을은 이 위임계약에 정한 비용 또는 보수의 지급을 확실하게 보장하기 위하여 갑에게 필요한 조치를 요구할 수 있다.')])]);
+    U.push([item('②', [R('을은 갑이 제1항의 비용 또는 보수의 지급의무를 이행하지 아니하는 때에는, 위임사무의 처리에 관련하여 보관하게 된 금전, 문서 또는 자료 등을 유치하거나 상계처리 할 수 있다.')])]);
+    U.push([item('③', [R('전항의 경우 을은 신속하게 갑에게 그 취지를 통지하여야 한다.')])]);
+    U.push([art(14, '인장조각', [R('이 위임계약의 수행 상 필요한 경우, 을은 갑 또는 당사자의 인장을 조각하여 사용할 수 있다. 단, 을은 사후에 인장조각 및 사용사실을 통지하여야 한다.')])]);
+    U.push([art(15, '비밀유지', [R('을은 업무상 취득한 갑의 모든 비밀정보를 비밀로 유지하고, 업무수행상 필요하거나 법적으로 공개가 요구되는 경우 이외에는 갑의 동의 없이 제3자에게 공개하지 아니한다.')])]);
+    U.push([art(16, '민법과의 관계', [R('기타 위임사항에 관하여 이 위임계약서에 특별히 규정되어 있는 사항을 제외하고는 민법상 위임에 관한 규정이 정한 바에 의한다.')])]);
+    var sp = specialBlocks(v, P);
+    U.push([P([R('* 특약사항 :')], { before: 6, align: 'left' })].concat(sp));
+
+    /* ---- 맺음(2쪽 하단, 전폭) ---- */
+    var closing = [];
+    closing.push(P([R('이 계약의 성립을 증명하기 위하여 이 계약서 1통을 작성하고, 갑이 요구할 시 사본 1통을 교부한다.', 'b')], { align: 'center', before: 10, pitch: 18 }));
+    closing.push(P([R(dateText(v.date))], { size: 11, scale: 100, align: 'center', pitch: 19, before: L.dateBefore, after: 4 }));
+    sigBlocks(v, L, eul).forEach(function (b) { closing.push(b); });
+
+    return { type: 'civil', level: lvl, head: head, units: U, closing: closing, box: consentBox(v, 'civil', office), office: office, title: TYPES.civil.title };
+  }
+
+  function build(v, lvl) {
+    lvl = lvl || 0;
+    return v.type === 'civil' ? buildCivil(v, lvl) : buildCrim(v, lvl);
+  }
+
+  /* ---------- 줄 수 추정(쪽 맞춤용) ---------- */
+  function cw(ch) {
+    var c = ch.charCodeAt(0);
+    if (c === 32 || c === 160) return 0.5;
+    if (c >= 48 && c <= 57) return 0.55;
+    if (c < 128) {
+      if ('.,:;\'()[]|!'.indexOf(ch) >= 0) return 0.4;
+      if (/[A-Z@%&]/.test(ch)) return 0.7;
+      return 0.58;
+    }
+    if (c === 0x201C || c === 0x201D) return 0.5;
+    return 1;
+  }
+  function textOf(runs) { return runs.map(function (r) { return r.x; }).join(''); }
+  function countLines(text, width, em, first) {
+    // 어절 단위로 채우고, 한 어절이 한 줄보다 길면 글자 단위로 나눈다(보수적 추정)
+    var lines = 1, x = (first || 0);
+    var tokens = text.match(/\S+\s*|\s+/g) || [''];
+    for (var i = 0; i < tokens.length; i++) {
+      var t = tokens[i], w = 0, k;
+      for (k = 0; k < t.length; k++) w += cw(t.charAt(k)) * em;
+      var core = 0, trimmed = t.replace(/\s+$/, '');
+      for (k = 0; k < trimmed.length; k++) core += cw(t.charAt(k)) * em;
+      if (x + core <= width) { x += w; continue; }
+      if (core <= width) { lines++; x = w; continue; }
+      if (x > 0) { lines++; x = 0; }
+      for (k = 0; k < t.length; k++) {
+        var cwid = cw(t.charAt(k)) * em;
+        if (x + cwid > width) { lines++; x = 0; }
+        x += cwid;
+      }
+    }
+    return lines;
+  }
+
+  function blockHeight(b, W) {
+    W = W || TEXT_W;
+    if (b.k === 'p') {
+      var em = b.size * b.scale / 100;
+      var n = countLines(textOf(b.runs), W - b.left, em, b.first);
+      return n * b.pitch + b.before + b.after;
+    }
+    if (b.k === 'cols') return b.pitch + (b.before || 0);
+    if (b.k === 'tbl4') {
+      var h = 0;
+      b.rows.forEach(function (row) {
+        var lines = 1;
+        row.forEach(function (c, i) {
+          lines = Math.max(lines, countLines(c[1], b.cols[i * 2 + 1] - 12, 10 * 0.9, 0));
+        });
+        h += Math.max(b.rowH, lines * 14 + 10);
+      });
+      return h;
+    }
+    return 0;
+  }
+  function pageHeight(blocks, W) { return blocks.reduce(function (s, b) { return s + blockHeight(b, W); }, 0); }
+
+  // 민사·행정: 단위를 4개 단(1쪽 좌·우, 2쪽 좌·우)에 차례로 채운다
+  function placeCivil(v) {
+    var best = null;
+    for (var lvl = 0; lvl < LEVELS_CIVIL.length; lvl++) {
+      var b = buildCivil(v, lvl);
+      var slack = 8;
+      var headH = pageHeight(b.head), closeH = pageHeight(b.closing);
+      var caps = [AVAIL - headH - slack, AVAIL - headH - slack, AVAIL - closeH - slack, AVAIL - closeH - slack];
+      var cols = [[], [], [], []], hs = [0, 0, 0, 0], ci = 0, over = false;
+      b.units.forEach(function (unit) {
+        var h = pageHeight(unit, COLW);
+        while (ci < 3 && hs[ci] > 0 && hs[ci] + h > caps[ci]) ci++;
+        var u = unit;
+        if (hs[ci] === 0) {   // 단의 맨 위에서는 조 사이 간격을 두지 않는다
+          u = unit.slice(); u[0] = Object.assign({}, u[0], { before: 0 }); h = pageHeight(u, COLW);
+        }
+        if (hs[ci] + h > caps[ci]) over = true;
+        u.forEach(function (x) { cols[ci].push(x); });
+        hs[ci] += h;
+      });
+      b.pages = [
+        b.head.concat([{ k: 'cols2', cols: [cols[0], cols[1]] }]),
+        [{ k: 'cols2', cols: [cols[2], cols[3]], pageStart: true }].concat(b.closing),
+        b.box
+      ];
+      b.h = [headH + Math.max(hs[0], hs[1]), closeH + Math.max(hs[2], hs[3])];
+      b.over = [false, over];
+      b.free = [0, (caps[2] - hs[2]) + (caps[3] - hs[3])];
+      b.freeLines = [0, Math.max(0, Math.floor(b.free[1] / LEVELS_CIVIL[lvl].pitch))];
+      best = b;
+      if (!over) break;
+    }
+    return best;
+  }
+
+  // 쪽 맞춤: 줄 간격 단계를 올려 계약서 2쪽이 한 장씩에 들어가는 첫 단계를 고른다
+  function fit(v) {
+    if (v.type === 'civil') return placeCivil(v);
+    var best = null;
+    for (var lvl = 0; lvl < LEVELS.length; lvl++) {
+      var m = buildCrim(v, lvl);
+      var h1 = pageHeight(m.pages[0]), h2 = pageHeight(m.pages[1]);
+      var margin = 10;
+      m.h = [h1, h2];
+      m.free = [AVAIL - margin - h1, AVAIL - margin - h2];
+      m.over = [m.free[0] < 0, m.free[1] < 0];
+      best = m;
+      if (!m.over[0] && !m.over[1]) break;
+    }
+    best.freeLines = best.free.map(function (f) { return Math.floor(f / LEVELS[best.level].pitch); });
+    return best;
+  }
+
+  /* ---------- 점검: 비어 있는 핵심 항목 ---------- */
+  function missing(v) {
+    var out = [];
+    if (!str(v.name)) out.push('위임인 성명');
+    if (!str(v.caseno)) out.push('사건번호');
+    if (!str(v.casename)) out.push('사건명');
+    if (!str(v.party)) out.push('당사자');
+    if (!str(v.opp)) out.push('상대방');
+    if (!str(v.type === 'civil' ? v.scopeC : v.scope)) out.push('수임범위');
+    if (money(v.fee).state === 'empty') out.push('착수금');
+    return out;
+  }
+
+  /* ---------- 본문 텍스트(복사용) ---------- */
+  function plain(m) {
+    var lines = [];
+    function walk(b) {
+      if (b.k === 'p') lines.push((b.pageBreak ? '\n' : '') + textOf(b.runs).replace(/ /g, ' '));
+      else if (b.k === 'cols') lines.push(b.cols.map(function (c) { return textOf(c.runs); }).join('  ').replace(/ /g, ' ').trim());
+      else if (b.k === 'tbl4') b.rows.forEach(function (r) { lines.push(r[0][0] + ': ' + r[0][1] + '   ' + r[1][0] + ': ' + r[1][1]); });
+      else if (b.k === 'cols2') b.cols.forEach(function (c) { c.forEach(walk); });
+      else if (b.k === 'box') { lines.push('\n──── 동의서 ────'); b.blocks.forEach(walk); }
+    }
+    m.pages.forEach(function (pg, i) { if (i === 1 && m.type === 'civil') lines.push(''); pg.forEach(walk); });
+    return lines.join('\n').replace(/[ ]+\n/g, '\n');
+  }
+
+  /* ---------- 화면(HTML) 렌더 ---------- */
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function runsHtml(runs) {
+    return runs.map(function (r) {
+      if (!r.x) return '';
+      var cls = (r.b ? ' b' : '') + (r.u ? ' u' : '') + (r.s ? ' s' : '');
+      var t = esc(r.x);
+      return cls ? '<span class="' + cls.trim() + '">' + t + '</span>' : t;
+    }).join('');
+  }
+  function pStyle(b) {
+    var k = 100 / b.scale;     // 장평 보정: 가로 축소 후에도 pt 값이 그대로 보이도록 역보정
+    var st = 'font-size:' + b.size + 'pt;line-height:' + b.pitch + 'pt;text-align:' + (b.align === 'both' ? 'justify' : b.align) + ';' +
+      'margin:' + b.before + 'pt 0 ' + b.after + 'pt 0;';
+    var left = b.left * k, first = b.first * k;
+    if (left) st += 'padding-left:' + left + 'pt;';
+    if (first) st += 'text-indent:' + first + 'pt;';
+    return st;
+  }
+  function scaleWrap(inner, scale) {
+    var s = scale / 100;
+    return '<div class="sx" style="--sx:' + s + ';width:' + (100 / s) + '%">' + inner + '</div>';
+  }
+  function blockHtml(b) {
+    if (b.k === 'p') {
+      return scaleWrap('<p class="blk" style="' + pStyle(b) + '">' + (runsHtml(b.runs) || '&nbsp;') + '</p>', b.scale);
+    }
+    if (b.k === 'cols') {
+      var k = 100 / b.scale;
+      var cells = b.cols.map(function (c, i) {
+        var w = c.w && b.box && i === 0 ? c.w - b.lead : c.w;
+        var st = c.w ? 'flex:0 0 ' + (w * k) + 'pt;' : 'flex:1 1 0;min-width:0;';
+        return '<span class="cell" style="' + st + '">' + (runsHtml(c.runs) || '') + '</span>';
+      }).join('');
+      var pad = b.box ? 'padding-left:' + (b.lead * k) + 'pt;' : '';
+      return scaleWrap('<div class="cols" style="font-size:' + b.size + 'pt;line-height:' + b.pitch + 'pt;margin-top:' + (b.before || 0) + 'pt;' + pad + '">' + cells + '</div>', b.scale);
+    }
+    if (b.k === 'tbl4') {
+      var rows = b.rows.map(function (row) {
+        return '<tr style="height:' + b.rowH + 'pt">' + row.map(function (c) {
+          return '<th style="font-size:' + b.labelSize + 'pt">' + esc(c[0]) + '</th><td>' + esc(c[1]) + '</td>';
+        }).join('') + '</tr>';
+      }).join('');
+      var cg = b.cols.map(function (w) { return '<col style="width:' + (w / TEXT_W * 100) + '%">'; }).join('');
+      return '<table class="tbl4"><colgroup>' + cg + '</colgroup>' + rows + '</table>';
+    }
+    if (b.k === 'cols2') {
+      return '<div class="cols2" style="--cw:' + COLW + 'pt;--cg:' + COLGAP + 'pt">' +
+        b.cols.map(function (c) { return '<div class="colc">' + c.map(blockHtml).join('') + '</div>'; }).join('') + '</div>';
+    }
+    return '';
+  }
+  function footHtml(n, total, title) {
+    return '<div class="foot"><span>' + esc(title) + '</span><span>' + n + ' / ' + total + '</span></div>';
+  }
+  function pageHtml(blocks, n, total, m) {
+    if (n === 3) {
+      var inner = blocks[0].blocks.map(blockHtml).join('');
+      return '<section class="sheet" data-n="3"><div class="box" style="left:' + ((PAGE.w - BOX.w) / 2) + 'pt;top:' + BOX.top + 'pt;width:' + BOX.w + 'pt;height:' + BOX.h + 'pt">' +
+        '<div class="boxin">' + inner + '</div></div>' + footHtml(n, total, m.title) + '</section>';
+    }
+    var body = blocks.map(blockHtml).join('');
+    return '<section class="sheet' + (m.over[n - 1] ? ' over' : '') + '" data-n="' + n + '"><div class="body" style="left:' + PAGE.ml + 'pt;top:' + PAGE.mt + 'pt;width:' + TEXT_W + 'pt">' +
+      body + '</div>' + footHtml(n, total, m.title) + '</section>';
+  }
+  function toHtml(m) {
+    return m.pages.map(function (pg, i) { return '<div class="sheet-wrap">' + pageHtml(pg, i + 1, 3, m) + '</div>'; }).join('');
+  }
+
+  /* ---------- 워드(docx) 렌더 ---------- */
+  function tw(pt) { return Math.round(pt * 20); }
+
+  function toDocx(docx, m) {
+    var D = docx;
+    var fontSpec = { ascii: FONT, hAnsi: FONT, eastAsia: FONT, cs: FONT };
+
+    function runs(rs, size, scale) {
+      var out = [];
+      rs.forEach(function (r) {
+        if (!r.x) return;
+        var o = { text: r.x, font: fontSpec, size: Math.round(size * 2), scale: scale };
+        if (r.b) o.bold = true;
+        if (r.u) o.underline = { type: D.UnderlineType.SINGLE };
+        if (r.s) o.strike = true;
+        out.push(new D.TextRun(o));
+      });
+      return out;
+    }
+    function para(b) {
+      var o = {
+        children: runs(b.runs, b.size, b.scale),
+        spacing: { before: tw(b.before), after: tw(b.after), line: tw(b.pitch), lineRule: D.LineRuleType.EXACT },
+        alignment: b.align === 'center' ? D.AlignmentType.CENTER : (b.align === 'both' ? D.AlignmentType.JUSTIFIED : D.AlignmentType.LEFT),
+        autoSpaceEastAsianText: false
+      };
+      var ind = {};
+      if (b.left) ind.left = tw(b.left);
+      if (b.first < 0) ind.hanging = tw(-b.first);
+      else if (b.first > 0) ind.firstLine = tw(b.first);
+      if (Object.keys(ind).length) o.indent = ind;
+      if (b.pageBreak) o.pageBreakBefore = true;
+      return new D.Paragraph(o);
+    }
+    function colsPara(b) {
+      var children = [], stops = [], x = 0, lead = b.lead || 0;
+      b.cols.forEach(function (c, i) {
+        if (i > 0) children.push(new D.TextRun({ children: [new D.Tab()], font: fontSpec, size: Math.round(b.size * 2), scale: b.scale }));
+        children = children.concat(runs(c.runs, b.size, b.scale));
+        if (c.w) { x += c.w; stops.push({ type: D.TabStopType.LEFT, position: tw(x) }); }
+      });
+      var o = {
+        children: children,
+        tabStops: stops,
+        autoSpaceEastAsianText: false,
+        spacing: { before: tw(b.before || 0), after: 0, line: tw(b.pitch), lineRule: D.LineRuleType.EXACT }
+      };
+      if (x > 0) o.indent = { left: tw(x), hanging: tw(x - lead) };
+      else if (lead) o.indent = { left: tw(lead) };
+      return new D.Paragraph(o);
+    }
+    var thin = { style: D.BorderStyle.SINGLE, size: 4, color: '000000' };
+    var none = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
+    var noBorders = { top: none, bottom: none, left: none, right: none };
+    function spacer(pageBreak) {
+      var o = { spacing: { before: 0, after: 0, line: 20, lineRule: D.LineRuleType.EXACT }, children: [] };
+      if (pageBreak) o.pageBreakBefore = true;
+      return new D.Paragraph(o);
+    }
+    function cellP(text, o) {
+      return new D.Paragraph({
+        alignment: o.center ? D.AlignmentType.CENTER : D.AlignmentType.LEFT,
+        autoSpaceEastAsianText: false,
+        spacing: { before: 0, after: 0, line: tw(14), lineRule: D.LineRuleType.EXACT },
+        children: runs([R(text)], o.size, o.scale)
+      });
+    }
+    function tbl4(b) {
+      var widths = b.cols.map(tw);
+      var total = widths.reduce(function (a, c) { return a + c; }, 0);
+      var rows = b.rows.map(function (row) {
+        var cells = [];
+        row.forEach(function (c, i) {
+          cells.push(new D.TableCell({
+            width: { size: widths[i * 2], type: D.WidthType.DXA }, verticalAlign: D.VerticalAlign.CENTER,
+            margins: { top: 40, bottom: 40, left: 60, right: 60 },
+            children: [cellP(c[0], { center: true, size: b.labelSize, scale: 90 })]
+          }));
+          cells.push(new D.TableCell({
+            width: { size: widths[i * 2 + 1], type: D.WidthType.DXA }, verticalAlign: D.VerticalAlign.CENTER,
+            margins: { top: 40, bottom: 40, left: 100, right: 100 },
+            children: [cellP(c[1], { size: 10, scale: 90 })]
+          }));
+        });
+        return new D.TableRow({ height: { value: tw(b.rowH), rule: D.HeightRule.ATLEAST }, cantSplit: true, children: cells });
+      });
+      return new D.Table({
+        width: { size: total, type: D.WidthType.DXA }, columnWidths: widths, layout: D.TableLayoutType.FIXED,
+        borders: { top: thin, bottom: thin, left: thin, right: thin, insideHorizontal: thin, insideVertical: thin },
+        rows: rows
+      });
+    }
+    function twoCols(b) {
+      var cw2 = tw(COLW), gap = tw(COLGAP), total = cw2 * 2 + gap;
+      function cell(blocks, w) {
+        var kids = blocks.map(function (x) { return x.k === 'cols' ? colsPara(x) : para(x); });
+        if (!kids.length) kids = [spacer(false)];
+        return new D.TableCell({
+          width: { size: w, type: D.WidthType.DXA }, verticalAlign: D.VerticalAlign.TOP,
+          margins: { top: 0, bottom: 0, left: 0, right: 0 }, borders: noBorders, children: kids
+        });
+      }
+      return new D.Table({
+        width: { size: total, type: D.WidthType.DXA }, columnWidths: [cw2, gap, cw2], layout: D.TableLayoutType.FIXED,
+        borders: { top: none, bottom: none, left: none, right: none, insideHorizontal: none, insideVertical: none },
+        rows: [new D.TableRow({ cantSplit: false, children: [cell(b.cols[0], cw2), cell([], gap), cell(b.cols[1], cw2)] })]
+      });
+    }
+    function boxTable(blocks) {
+      var kids = blocks.map(function (b) { return b.k === 'cols' ? colsPara(b) : para(b); });
+      var boxLine = { style: D.BorderStyle.THICK_THIN_SMALL_GAP, size: 18, color: '000000' };
+      var w = tw(BOX.w);
+      return new D.Table({
+        width: { size: w, type: D.WidthType.DXA }, columnWidths: [w], layout: D.TableLayoutType.FIXED,
+        alignment: D.AlignmentType.CENTER,
+        borders: { top: boxLine, bottom: boxLine, left: boxLine, right: boxLine, insideHorizontal: none, insideVertical: none },
+        rows: [new D.TableRow({
+          height: { value: tw(BOX.h), rule: D.HeightRule.EXACT }, cantSplit: true,
+          children: [new D.TableCell({
+            width: { size: w, type: D.WidthType.DXA }, verticalAlign: D.VerticalAlign.TOP,
+            margins: { top: 0, bottom: 0, left: 100, right: 100 },
+            children: kids
+          })]
+        })]
+      });
+    }
+    function footer() {
+      var f = { font: fontSpec, size: 18 };
+      return new D.Footer({
+        children: [new D.Paragraph({
+          tabStops: [{ type: D.TabStopType.RIGHT, position: tw(TEXT_W) }],
+          children: [
+            new D.TextRun(Object.assign({ text: m.title }, f)),
+            new D.TextRun(Object.assign({ children: [new D.Tab(), D.PageNumber.CURRENT, ' / ', D.PageNumber.TOTAL_PAGES] }, f))
+          ]
+        })]
+      });
+    }
+
+    var body1 = [];
+    m.pages[0].concat(m.pages[1]).forEach(function (b) {
+      if (b.k === 'p') body1.push(para(b));
+      else if (b.k === 'cols') body1.push(colsPara(b));
+      else if (b.k === 'tbl4') body1.push(tbl4(b));
+      else if (b.k === 'cols2') {
+        if (b.pageStart) body1.push(spacer(true));
+        body1.push(twoCols(b));
+        if (!b.pageStart) { /* 표 다음 문단은 2쪽 시작 표 앞의 spacer가 맡는다 */ }
+      }
+    });
+    var body3 = [boxTable(m.pages[2][0].blocks), spacer(false)];
+
+    var size = { width: 11906, height: 16838 };
+    return new D.Document({
+      creator: m.office,
+      title: m.title,
+      styles: { default: { document: { run: { font: fontSpec, size: Math.round(BODY * 2) } } } },
+      sections: [
+        { properties: { page: { size: size, margin: { top: tw(PAGE.mt), bottom: tw(PAGE.mb), left: tw(PAGE.ml), right: tw(PAGE.mr), footer: 840, header: 600 } } },
+          footers: { default: footer() }, children: body1 },
+        { properties: { type: D.SectionType.NEXT_PAGE, page: { size: size, margin: { top: tw(BOX.top), bottom: tw(PAGE.mb), left: tw(PAGE.ml), right: tw(PAGE.mr), footer: 840, header: 600 } } },
+          footers: { default: footer() }, children: body3 }
+      ]
+    });
+  }
+
+  function fileName(v) {
+    var who = str(v.name).replace(/[\\/:*?"<>|]/g, '') || '위임인';
+    var p = dateParts(v.date);
+    var ymd = p ? p.y + ('0' + p.m).slice(-2) + ('0' + p.d).slice(-2) : '';
+    return (TYPES[v.type] || TYPES.crim).file + '_' + who + (ymd ? '_' + ymd : '') + '.docx';
+  }
+
+  root.Wiim = {
+    defaults: defaults, build: build, fit: fit, missing: missing, money: money, rate: rate,
+    toHtml: toHtml, toDocx: toDocx, fileName: fileName, plain: plain,
+    PAGE: PAGE, TEXT_W: TEXT_W, SC: SC, LEVELS: LEVELS, TYPES: TYPES
+  };
+  if (typeof module !== 'undefined' && module.exports) module.exports = root.Wiim;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+(function () {
+  'use strict';
+  var W = window.Wiim;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+  function fresh() { var s = W.defaults(); s.date = today(); return s; }
+  var S = fresh();
+  var last = null;
+
+  /* ---- 입력 <-> 상태 ---- */
+  function pull() {
+    $$('[data-k]').forEach(function (el) {
+      var k = el.getAttribute('data-k');
+      if (el.type === 'checkbox') el.checked = !!S[k]; else el.value = S[k] == null ? '' : S[k];
+    });
+    $$('[data-seg]').forEach(function (g) {
+      var k = g.getAttribute('data-seg');
+      var cur = k === 'feeVat' ? effVat() : S[k];
+      $$('button', g).forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-v') === cur)); });
+    });
+    syncChips(); syncToggles();
+  }
+  function syncFlags() {
+    $$('[data-flag]').forEach(function (c) { c.setAttribute('aria-pressed', String(!!S[c.getAttribute('data-flag')])); });
+  }
+  function syncChips() {
+    syncFlags();
+    $$('[data-chips]').forEach(function (g) {
+      var k = g.getAttribute('data-chips');
+      $$('.chip', g).forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-v') === S[k])); });
+    });
+  }
+  function syncToggles() {
+    $$('[data-for]').forEach(function (el) { el.hidden = el.getAttribute('data-for') !== S.type; });
+    if (S.type === 'crim') $('#feeNowWrap').hidden = !!S.feeAll;
+    if (S.type === 'civil') $('#successWrap').hidden = S.success === 'strike';
+    $('#sigFields').hidden = !S.sigFill;
+    $('#lab-succCond').textContent = S.type === 'civil' ? '성공보수 지급 조건' : '지급 조건 직접 입력 (쓰면 위 선택 대신 이 문구를 씁니다)';
+    $('#f-date2').disabled = !!S.dateSame;
+    $('#f-date2').closest('.f').style.opacity = S.dateSame ? '.5' : '1';
+  }
+  function effVat() { return S.feeVat || (S.type === 'civil' ? '포함' : '별도'); }
+  $$('[data-k]').forEach(function (el) {
+    var k = el.getAttribute('data-k');
+    var ev = el.type === 'checkbox' ? 'change' : 'input';
+    el.addEventListener(ev, function () {
+      S[k] = el.type === 'checkbox' ? el.checked : el.value;
+      if (k === 'scope' || k === 'scopeC') syncChips();
+      if (k === 'feeAll' || k === 'dateSame' || k === 'sigFill') syncToggles();
+      schedule();
+    });
+  });
+  $$('[data-money]').forEach(function (el) {
+    el.addEventListener('blur', function () {
+      var r = W.money(el.value);
+      if (r.state === 'ok' && /^[\d,\s원]+$/.test(el.value)) {
+        var n = el.value.replace(/[^\d]/g, '');
+        var f = n.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        if (f !== el.value) { el.value = f; S[el.getAttribute('data-k')] = f; schedule(); }
+      }
+    });
+  });
+  $$('[data-seg]').forEach(function (g) {
+    g.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      S[g.getAttribute('data-seg')] = b.getAttribute('data-v');
+      pull(); schedule();
+    });
+  });
+  $('#outcome-chips').addEventListener('click', function (e) {
+    var c = e.target.closest('[data-flag]'); if (!c) return;
+    var k = c.getAttribute('data-flag'); S[k] = !S[k]; syncFlags(); schedule();
+  });
+  $$('[data-chips]').forEach(function (g) {
+    g.addEventListener('click', function (e) {
+      var c = e.target.closest('.chip'); if (!c) return;
+      var k = g.getAttribute('data-chips');
+      S[k] = c.getAttribute('data-v'); $('#f-' + k).value = S[k]; syncChips(); schedule();
+    });
+  });
+
+  /* ---- 렌더 ---- */
+  var raf = 0;
+  function schedule() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; render(); }); }
+
+  function hints() {
+    ['fee', 'feeNow', 'deposit', 'perdiem', 'succ'].forEach(function (k) {
+      var el = $('[data-hint="' + k + '"]'); if (!el) return;
+      var r = W.money(S[k]);
+      el.className = 'hint';
+      if (r.state === 'ok') { el.textContent = '금 ' + r.text; el.classList.add('ok'); }
+      else if (r.state === 'bad') { el.textContent = '금액을 읽을 수 없습니다. 예: 3,000,000 또는 300만'; el.classList.add('bad'); }
+      else el.textContent = k === 'succ' ? '비워 두면 특약에 넣지 않습니다' : '비워 두면 문서에 빈칸으로 남습니다';
+    });
+  }
+
+  function status(m) {
+    var el = $('#status'), al = $('#alerts');
+    var pills = [], msgs = [];
+    if (m.type === 'civil') {
+      var ov = m.over[1];
+      pills.push('<span class="pill ' + (ov ? 'bad' : 'ok') + '">계약서 2쪽 ' + (ov ? '넘칠 수 있음' : '여유 ' + m.freeLines[1] + '줄') + '</span>');
+      if (ov) msgs.push('계약서가 2쪽을 넘칠 수 있습니다. 특약사항이나 사건 표시 칸의 글을 줄이면 3장으로 맞춰집니다.');
+    } else {
+      for (var i = 0; i < 2; i++) {
+        var over = m.over[i];
+        pills.push('<span class="pill ' + (over ? 'bad' : 'ok') + '">' + (i + 1) + '쪽 ' + (over ? '넘칠 수 있음' : '여유 ' + Math.max(0, m.freeLines[i]) + '줄') + '</span>');
+      }
+      if (m.over[0]) msgs.push('1쪽이 한 장을 넘칠 수 있습니다. 참고사항이나 사건 표시 칸의 글을 줄이면 3장으로 맞춰집니다.');
+      if (m.over[1]) msgs.push('2쪽이 한 장을 넘칠 수 있습니다. 특약사항을 줄이면 3장으로 맞춰집니다.');
+    }
+    pills.push('<span class="pill ok">3쪽 동의서</span>');
+    if (m.level > 0 && !m.over[0] && !m.over[1]) pills.push('<span class="pill">줄 간격 자동 조정 ' + m.level + '단계</span>');
+    el.innerHTML = pills.join('');
+    al.innerHTML = msgs.map(function (t) { return '<div class="alert">' + t + '</div>'; }).join('');
+    var miss = W.missing(S);
+    $('#miss').textContent = miss.length ? '비어 있는 항목: ' + miss.join(', ') + ' (문서에는 빈칸으로 남습니다)' : '핵심 항목이 모두 채워졌습니다.';
+  }
+
+  function scalePages() {
+    var pg = $('#pages');
+    var w = pg.clientWidth || 800;
+    pg.style.setProperty('--z', String(Math.min(1, w / 793.7)));
+  }
+  if (window.ResizeObserver) new ResizeObserver(scalePages).observe($('#pages'));
+  window.addEventListener('resize', scalePages);
+
+  function render() {
+    last = W.fit(S);
+    $('#pages').innerHTML = W.toHtml(last);
+    scalePages(); status(last); hints();
+  }
+
+  /* ---- 동작 ---- */
+  var msgEl = $('#msg'), msgT = 0;
+  function say(t, cls) {
+    msgEl.textContent = t; msgEl.className = 'msg' + (cls ? ' ' + cls : '');
+    clearTimeout(msgT); msgT = setTimeout(function () { msgEl.textContent = ''; msgEl.className = 'msg'; }, 6000);
+  }
+
+  var dlP = null;
+  function downloads() {
+    if (!dlP) dlP = (window.claude && window.claude.use) ? window.claude.use('downloads').catch(function () { return null; }) : Promise.resolve(null);
+    return dlP;
+  }
+  function ready() {
+    var btn = $('#btn-save');
+    downloads().then(function (dl) {
+      var okLib = !!(window.docx && window.docx.Packer);
+      if (!okLib) { say('워드 라이브러리를 불러오지 못했습니다. 새로고침 후 다시 시도해 주세요.', 'bad'); return; }
+      if (!dl) { say('이 화면에서는 파일 저장을 쓸 수 없습니다. 본문 복사를 이용해 주세요.', 'bad'); return; }
+      btn.disabled = false;
+    });
+  }
+
+  $('#btn-save').addEventListener('click', function () {
+    var btn = this;
+    btn.disabled = true;
+    var m = W.fit(S);
+    var blob;
+    Promise.resolve().then(function () {
+      return window.docx.Packer.toBlob(W.toDocx(window.docx, m));
+    }).then(function (b) {
+      blob = b; return downloads();
+    }).then(function (dl) {
+      return dl.save({ filename: W.fileName(S), data: blob });
+    }).then(function () {
+      say('저장했습니다.' + ((m.over[0] || m.over[1]) ? ' 쪽 수가 3장을 넘을 수 있으니 워드에서 확인해 주세요.' : ''), 'ok');
+    }).catch(function (e) {
+      var c = e && e.code;
+      if (c === 'declined') say('저장을 취소했습니다.');
+      else if (c === 'rate_limited') say('잠시 뒤에 다시 눌러 주세요.', 'bad');
+      else say('저장하지 못했습니다. ' + ((e && e.message) || ''), 'bad');
+    }).then(function () { btn.disabled = false; });
+  });
+
+  $('#btn-copy').addEventListener('click', function () {
+    var text = W.plain(W.fit(S));
+    function fallback() {
+      var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      say(ok ? '본문을 복사했습니다.' : '복사하지 못했습니다.', ok ? 'ok' : 'bad');
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { say('본문을 복사했습니다.', 'ok'); }, fallback);
+    } else fallback();
+  });
+
+  $('#btn-sample').addEventListener('click', function () {
+    var d = fresh();
+    d.type = S.type;
+    Object.assign(d, {
+      name: '홍길동', rrn: '800101-1******', tel: '010-0000-0000', mail: 'sample@example.com', addr: '서울특별시 서초구 서초대로 000',
+      deposit: '500,000', perdiem: '300,000'
+    });
+    if (d.type === 'civil') {
+      Object.assign(d, { caseno: '2026가합0000', casename: '대여금', party: '원고 홍길동', opp: '피고 김철수', scopeC: '1심 사건', fee: '3,000,000', rateDiv: '', rateWin: '10', sDiv: true });
+    } else {
+      Object.assign(d, { caseno: '2026고단0000', casename: '사기', party: '피고인 홍길동', opp: '피해자 김철수', scope: '제1심', fee: '3,000,000', feeAll: false, feeNow: '1,500,000', succ: '10,000,000', oNo: true, oAcq: true });
+    }
+    S = d; pull(); render(); say('예시를 채웠습니다. 실제 값으로 바꿔 쓰세요.');
+  });
+
+  var clearT = 0;
+  $('#btn-clear').addEventListener('click', function () {
+    var b = this;
+    if (!b.dataset.arm) {
+      b.dataset.arm = '1'; b.textContent = '한 번 더 누르면 지웁니다';
+      clearT = setTimeout(function () { delete b.dataset.arm; b.textContent = '모두 지우기'; }, 3000);
+      return;
+    }
+    clearTimeout(clearT); delete b.dataset.arm; b.textContent = '모두 지우기';
+    var keep = S.type; S = fresh(); S.type = keep; pull(); render(); say('모두 지웠습니다.');
+  });
+
+  pull(); render(); ready();
+})();
+</script>
