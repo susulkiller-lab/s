@@ -3,6 +3,7 @@
 사용법: python3 finorder/build.py
 - dist/finorder.html            아티팩트 게시용 조각(doctype·head·body 없음)
 - dist/finorder.standalone.html 로컬 시험용(doctype 포함)
+- dist/finorder.kit.html        키트 배포용. DOCX 라이브러리를 내장하지 않고 jsDelivr(실패 시 unpkg)에서 불러와 크기를 줄인다
 기관 데이터는 data/institutions.json을 쓴다. 없으면 빈 목록으로 만든다.
 """
 import json
@@ -12,6 +13,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
+
+DOCX_VERSION = "8.5.0"
+CDN_TAGS = (
+    f'<script src="https://cdn.jsdelivr.net/npm/docx@{DOCX_VERSION}/build/index.iife.js"></script>\n'
+    f'<script>window.docx||document.write(\'<script src="https://unpkg.com/docx@{DOCX_VERSION}/build/index.iife.js"><\\/script>\')</script>'
+)
 
 
 def read(p: Path, default: str = "") -> str:
@@ -40,11 +47,17 @@ def main() -> int:
     else:
         data = {"schema": 1, "asOf": "", "categories": [], "institutions": []}
         print("경고: data/institutions.json이 없어 빈 목록으로 빌드합니다", file=sys.stderr)
-    data_js = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    data_js = json.dumps(data, ensure_ascii=False, indent=1).replace("</", "<\\/")
 
     out = tpl
     for mark, val in (("/*__CSS__*/", css), ("/*__DOCX__*/", docx), ("/*__DATA__*/", data_js), ("/*__APP__*/", app)):
         out = out.replace(mark, val)
+
+    # 키트용: 라이브러리를 내장하지 않는다. 게시 허용 목록의 CDN(jsDelivr의 npm 미러)에서 정확한 버전을 불러오고,
+    # 실패하면 unpkg에서 다시 불러온다. 전역 이름(docx)은 내장본과 같다.
+    kit = tpl.replace("<script>/*__DOCX__*/</script>", CDN_TAGS)
+    for mark, val in (("/*__CSS__*/", css), ("/*__DATA__*/", data_js), ("/*__APP__*/", app)):
+        kit = kit.replace(mark, val)
 
     dist = ROOT / "dist"
     dist.mkdir(exist_ok=True)
@@ -56,8 +69,10 @@ def main() -> int:
         + "</body></html>"
     )
     (dist / "finorder.standalone.html").write_text(standalone, encoding="utf-8")
+    (dist / "finorder.kit.html").write_text(kit, encoding="utf-8")
     n = len(data.get("institutions", []))
     print(f"dist/finorder.html ({len(out.encode()):,} bytes, 기관 {n}곳)")
+    print(f"dist/finorder.kit.html ({len(kit.encode()):,} bytes, 라이브러리 CDN 로드)")
     return 0
 
 

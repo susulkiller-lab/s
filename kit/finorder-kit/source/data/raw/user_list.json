@@ -1,0 +1,637 @@
+{
+ "title": "금융기관 본점 및 본사 주소",
+ "asOf": "2026-10-02",
+ "provider": "사용자 제공 목록(docx). 기관별 공식 홈페이지·공개 공시자료 기준으로 정리된 것이라고 문서에 적혀 있음. 우편번호 열 없음.",
+ "institutions": [
+  {
+   "no": 1,
+   "id": "kookmin",
+   "short": "국민은행",
+   "name": "주식회사 국민은행",
+   "addr": "서울특별시 영등포구 국제금융로8길 26",
+   "note": "여의도동",
+   "link": "https://www.kbstar.com/"
+  },
+  {
+   "no": 2,
+   "id": "shinhan",
+   "short": "신한은행",
+   "name": "주식회사 신한은행",
+   "addr": "서울특별시 중구 세종대로9길 20",
+   "note": "태평로2가",
+   "link": "https://www.shinhangroup.com/kr/about/map"
+  },
+  {
+   "no": 3,
+   "id": "woori",
+   "short": "우리은행",
+   "name": "주식회사 우리은행",
+   "addr": "서울특별시 중구 소공로 51",
+   "note": "회현동1가",
+   "link": "https://spot.wooribank.com/pot/Dream?withyou=CMCOM0154"
+  },
+  {
+   "no": 4,
+   "id": "hana",
+   "short": "하나은행",
+   "name": "주식회사 하나은행",
+   "addr": "서울특별시 중구 을지로 35",
+   "note": "을지로1가",
+   "link": "https://hanabank.com/cont/customer/customer03/customer0301/index.jsp"
+  },
+  {
+   "no": 5,
+   "id": "sc",
+   "short": "SC제일은행",
+   "name": "주식회사 한국스탠다드차타드은행",
+   "addr": "서울특별시 종로구 종로 47",
+   "note": "공평동",
+   "link": "https://www.sc.co.kr/"
+  },
+  {
+   "no": 6,
+   "id": "citi",
+   "short": "한국씨티은행",
+   "name": "주식회사 한국씨티은행",
+   "addr": "서울특별시 종로구 새문안로 50",
+   "note": "신문로2가",
+   "link": "https://www.citibank.co.kr/download/cms/ir/AUDIT_REPORT_TBL/2022%20YE_Consolidated%20Audit%20Report_Kor.pdf"
+  },
+  {
+   "no": 7,
+   "id": "nonghyup",
+   "short": "농협은행",
+   "name": "농협은행 주식회사",
+   "addr": "서울특별시 중구 통일로 120",
+   "note": "충정로1가",
+   "link": "https://www.nhbank.com/nhmn/KO_NHMN_01.do"
+  },
+  {
+   "no": 8,
+   "id": "suhyup",
+   "short": "수협은행",
+   "name": "수협은행",
+   "addr": "서울특별시 송파구 오금로 62",
+   "note": "신천동",
+   "link": "https://www.suhyup-bank.com/ib20/mnu/PBM01055?boardGroup=0&boardTable=0&num=2030"
+  },
+  {
+   "no": 9,
+   "id": "ibk",
+   "short": "IBK기업은행",
+   "name": "중소기업은행",
+   "addr": "서울특별시 중구 을지로 79",
+   "note": "을지로2가",
+   "link": "https://research.ibk.co.kr/research/introduce/location"
+  },
+  {
+   "no": 10,
+   "id": "kdb",
+   "short": "KDB산업은행",
+   "name": "한국산업은행",
+   "addr": "서울특별시 영등포구 은행로 14",
+   "note": "여의도동",
+   "link": "https://www.kdb.co.kr/wcmscontents/pdf/1-2_KDB_External_Review_K_Green_Bond_2025.pdf"
+  },
+  {
+   "no": 11,
+   "id": "busan",
+   "short": "부산은행",
+   "name": "주식회사 부산은행",
+   "addr": "부산광역시 남구 문현금융로 30",
+   "note": "문현동",
+   "link": "https://www.busanbank.co.kr/ib20/mnu/BHPBKI445001102?SEQ=020"
+  },
+  {
+   "no": 12,
+   "id": "kyongnam",
+   "short": "경남은행",
+   "name": "주식회사 경남은행",
+   "addr": "경상남도 창원시 마산회원구 3·15대로 642",
+   "note": "석전동",
+   "link": "https://www.bnkfg.com/download?seq=6011"
+  },
+  {
+   "no": 13,
+   "id": "im",
+   "short": "iM뱅크",
+   "name": "주식회사 아이엠뱅크",
+   "addr": "대구광역시 수성구 달구벌대로 2310",
+   "note": "수성동2가",
+   "link": "https://www.imbank.co.kr/hlp_ebz_sm_31020_brfind.act"
+  },
+  {
+   "no": 14,
+   "id": "kwangju",
+   "short": "광주은행",
+   "name": "주식회사 광주은행",
+   "addr": "광주광역시 동구 제봉로 225",
+   "note": "대인동",
+   "link": "https://www.kjbank.com/banking/homepage/kj_info/infor/bank08_01.jsp"
+  },
+  {
+   "no": 15,
+   "id": "jeonbuk",
+   "short": "전북은행",
+   "name": "주식회사 전북은행",
+   "addr": "전북특별자치도 전주시 덕진구 백제대로 566",
+   "note": "금암동",
+   "link": "https://kind.krx.co.kr/external/2024/06/28/000623/20240628001483/2023%20JB%EA%B8%88%EC%9C%B5%EA%B7%B8%EB%A3%B9%20%ED%86%B5%ED%95%A9%EC%97%B0%EC%B0%A8%EB%B3%B4%EA%B3%A0%EC%84%9C%28%EA%B5%AD%EB%AC%B8%29.pdf"
+  },
+  {
+   "no": 16,
+   "id": "jeju",
+   "short": "제주은행",
+   "name": "주식회사 제주은행",
+   "addr": "제주특별자치도 제주시 1100로 3351",
+   "note": "노형동",
+   "link": "https://kind.krx.co.kr/external/2026/02/26/001564/20260226003478/00591.htm"
+  },
+  {
+   "no": 17,
+   "id": "koreapost",
+   "short": "우체국",
+   "name": "우정사업본부 우체국예금",
+   "addr": "세종특별자치시 도움5로 19",
+   "note": "어진동, 정부세종청사 8동",
+   "link": "https://www.koreapost.go.kr/kpost/subIndex/4328.do"
+  },
+  {
+   "no": 18,
+   "id": "kakaobank",
+   "short": "카카오뱅크",
+   "name": "주식회사 카카오뱅크",
+   "addr": "경기도 성남시 분당구 분당내곡로 131, 15층",
+   "note": "백현동, 판교테크원",
+   "link": "https://www.kakaobank.com/Corp/About/Contacts"
+  },
+  {
+   "no": 19,
+   "id": "kbank",
+   "short": "케이뱅크",
+   "name": "주식회사 케이뱅크",
+   "addr": "서울특별시 중구 을지로 170, 동관 6층",
+   "note": "을지로4가, 을지트윈타워",
+   "link": "https://www.kbanknow.com/web/about/kbank/info?tab=location"
+  },
+  {
+   "no": 20,
+   "id": "tossbank",
+   "short": "토스뱅크",
+   "name": "주식회사 토스뱅크",
+   "addr": "서울특별시 강남구 테헤란로 131, 13층",
+   "note": "역삼동, 한국지식재산센터",
+   "link": "https://tossbank.com/"
+  },
+  {
+   "no": 21,
+   "id": "saemaeul-center",
+   "short": "새마을금고중앙회",
+   "name": "새마을금고중앙회",
+   "addr": "서울특별시 강남구 봉은사로114길 20",
+   "note": "삼성동",
+   "link": "https://www.kfcc.co.kr/federation/fed0701.do"
+  },
+  {
+   "no": 22,
+   "id": "cu-center",
+   "short": "신협중앙회",
+   "name": "신용협동조합중앙회",
+   "addr": "대전광역시 서구 한밭대로 745",
+   "note": "둔산동",
+   "link": "https://www.cu.co.kr/cu/ad/biz/selectBizList.do?mi=100028"
+  },
+  {
+   "no": 23,
+   "id": "nonghyup-center",
+   "short": "농협중앙회",
+   "name": "농업협동조합중앙회",
+   "addr": "서울특별시 중구 새문안로 16",
+   "note": "충정로1가",
+   "link": "https://nonghyup.ttmap.co.kr/list_etc.jsp?menu=5&s_menu=1"
+  },
+  {
+   "no": 24,
+   "id": "suhyup-center",
+   "short": "수협중앙회",
+   "name": "수산업협동조합중앙회",
+   "addr": "서울특별시 송파구 오금로 62",
+   "note": "신천동",
+   "link": "https://www.suhyup.co.kr/suhyup/198/subview.do"
+  },
+  {
+   "no": 25,
+   "id": "nfcf-center",
+   "short": "산림조합중앙회",
+   "name": "산림조합중앙회",
+   "addr": "서울특별시 송파구 석촌호수로 166",
+   "note": "삼전동",
+   "link": "https://www.nfcf.or.kr/forest/user.tdf?a=common.HtmlApp&c=6001&page=%2Fkor%2Fintro%2FMember02.html"
+  },
+  {
+   "no": 26,
+   "id": "sbi-savings",
+   "short": "SBI저축은행",
+   "name": "주식회사 에스비아이저축은행",
+   "addr": "서울특별시 중구 을지로5길 26, 동관 9층",
+   "note": "수하동, 미래에셋센터원빌딩",
+   "link": "https://www.sbisb.co.kr/itd0010500.act"
+  },
+  {
+   "no": 27,
+   "id": "ok-savings",
+   "short": "OK저축은행",
+   "name": "주식회사 오케이저축은행",
+   "addr": "서울특별시 중구 세종대로 39, 10층",
+   "note": "남대문로4가, 대한상공회의소",
+   "link": "https://play.google.com/store/apps/details?hl=ko&id=com.cabsoft.oksavingbank"
+  },
+  {
+   "no": 28,
+   "id": "welcome-savings",
+   "short": "웰컴저축은행",
+   "name": "웰컴저축은행 주식회사",
+   "addr": "서울특별시 용산구 한강대로 148",
+   "note": "한강로2가, 웰컴금융타워",
+   "link": "https://www.welcomebank.co.kr/ib20/mnu/IBNBKI000000"
+  },
+  {
+   "no": 29,
+   "id": "koreainvest-savings",
+   "short": "한국투자저축은행",
+   "name": "주식회사 한국투자저축은행",
+   "addr": "경기도 성남시 분당구 서현로 184",
+   "note": "서현동",
+   "link": "https://www.fsb.or.kr/view/comm/file/FileDown.jsp?DSTC1=fsbpbnf&ORCP_FILE_NM=%ED%95%9C%EA%B5%AD%ED%88%AC%EC%9E%90%EC%A0%80%EC%B6%95%EC%9D%80%ED%96%89_%ED%86%B5%EC%9D%BC%EA%B2%BD%EC%98%81%EA%B3%B5%EC%8B%9C_FY2023.4Q.pdf&SAVE_FILE_NM=fb0732024132983746726.pdf"
+  },
+  {
+   "no": 30,
+   "id": "acuon-savings",
+   "short": "애큐온저축은행",
+   "name": "주식회사 애큐온저축은행",
+   "addr": "서울특별시 강남구 선릉로 514",
+   "note": "삼성동, 성원타워",
+   "link": "https://www.acuonsb.co.kr/sv_inq7103101.act"
+  },
+  {
+   "no": 31,
+   "id": "daol-savings",
+   "short": "다올저축은행",
+   "name": "주식회사 다올저축은행",
+   "addr": "서울특별시 강남구 테헤란로 504",
+   "note": "대치동, 해성1빌딩",
+   "link": "https://www.daolsb.com/file/fileDownload.do?fileName=%EC%A0%9C53%EA%B8%B0+%EB%8B%A4%EC%98%AC%EC%A0%80%EC%B6%95%EC%9D%80%ED%96%89+%ED%86%B5%EC%9D%BC%EA%B2%BD%EC%98%81%EA%B3%B5%EC%8B%9C_%EC%84%9C%EB%AA%85%ED%9B%84.pdf&file_cours_web=%2Fupload%2Ftbl%2F2024%2F3%2F29%2F34215b48-0f99-46b0-acba-7a058241dc0d.pdf"
+  },
+  {
+   "no": 32,
+   "id": "db-savings",
+   "short": "DB저축은행",
+   "name": "주식회사 디비저축은행",
+   "addr": "서울특별시 중구 남대문로 113",
+   "note": "다동, DB저축은행빌딩",
+   "link": "https://m.dbgroup.co.kr/pages/contact/contactus_detail.jsp?cidx=25"
+  },
+  {
+   "no": 33,
+   "id": "shinhan-savings",
+   "short": "신한저축은행",
+   "name": "주식회사 신한저축은행",
+   "addr": "서울특별시 중구 청계천로 54",
+   "note": "삼각동, 광교빌딩",
+   "link": "https://www.shinhansavings.com/"
+  },
+  {
+   "no": 34,
+   "id": "hana-savings",
+   "short": "하나저축은행",
+   "name": "주식회사 하나저축은행",
+   "addr": "서울특별시 강남구 테헤란로 127",
+   "note": "역삼동, 하나금융그룹 강남사옥",
+   "link": "https://www.hanasavings.com/CUS/CUS0205"
+  },
+  {
+   "no": 35,
+   "id": "jt-chinae-savings",
+   "short": "JT친애저축은행",
+   "name": "제이티친애저축은행 주식회사",
+   "addr": "서울특별시 강남구 테헤란로 317, 4층·5층·6층",
+   "note": "역삼동, 동훈빌딩",
+   "link": "https://sign.jtchinae-bank.co.kr/guide/internetbanking.do"
+  },
+  {
+   "no": 36,
+   "id": "pepper-savings",
+   "short": "페퍼저축은행",
+   "name": "주식회사 페퍼저축은행",
+   "addr": "경기도 성남시 분당구 황새울로 340",
+   "note": "서현동, 페퍼존빌딩",
+   "link": "https://pepperbank.kr/"
+  },
+  {
+   "no": 37,
+   "id": "samsung-securities",
+   "short": "삼성증권",
+   "name": "삼성증권 주식회사",
+   "addr": "서울특별시 서초구 서초대로74길 11",
+   "note": "서초동, 삼성전자빌딩",
+   "link": "https://www.samsungsecurities.co.kr/kor/main.do"
+  },
+  {
+   "no": 38,
+   "id": "miraeasset-securities",
+   "short": "미래에셋증권",
+   "name": "미래에셋증권 주식회사",
+   "addr": "서울특별시 중구 을지로5길 26",
+   "note": "수하동, 미래에셋센터원빌딩 이스트타워",
+   "link": "https://kind.krx.co.kr/external/2026/07/21/000112/20260721000224/10800.htm"
+  },
+  {
+   "no": 39,
+   "id": "korea-investment-securities",
+   "short": "한국투자증권",
+   "name": "한국투자증권 주식회사",
+   "addr": "서울특별시 영등포구 의사당대로 88",
+   "note": "여의도동",
+   "link": "https://www.koreainvestment-event.com/"
+  },
+  {
+   "no": 40,
+   "id": "nh-investment-securities",
+   "short": "NH투자증권",
+   "name": "NH투자증권 주식회사",
+   "addr": "서울특별시 영등포구 여의대로 108",
+   "note": "여의도동, 파크원 타워2",
+   "link": "https://nhfngroup.com/user/indexSub.do?codyMenuSeq=884094574&siteId=nhfngroup"
+  },
+  {
+   "no": 41,
+   "id": "kb-securities",
+   "short": "KB증권",
+   "name": "KB증권 주식회사",
+   "addr": "서울특별시 영등포구 여의나루로 50",
+   "note": "여의도동",
+   "link": "https://www.kbsec.com/util/introduction/jsp/UTIL_02_0002.jsp"
+  },
+  {
+   "no": 42,
+   "id": "kiwoom-securities",
+   "short": "키움증권",
+   "name": "키움증권 주식회사",
+   "addr": "서울특별시 영등포구 의사당대로 96",
+   "note": "여의도동, TP타워",
+   "link": "https://www3.kiwoom.com/h/main?dummyVal=0"
+  },
+  {
+   "no": 43,
+   "id": "shinhan-investment-securities",
+   "short": "신한투자증권",
+   "name": "신한투자증권 주식회사",
+   "addr": "서울특별시 영등포구 의사당대로 96",
+   "note": "여의도동, TP타워",
+   "link": "https://file.shinhansec.com/filedoc/mtscon/fy2023esg.pdf"
+  },
+  {
+   "no": 44,
+   "id": "hana-securities",
+   "short": "하나증권",
+   "name": "하나증권 주식회사",
+   "addr": "서울특별시 영등포구 의사당대로 82",
+   "note": "여의도동",
+   "link": "https://openhanafn.ttmap.co.kr/content_dt.jsp"
+  },
+  {
+   "no": 45,
+   "id": "daishin-securities",
+   "short": "대신증권",
+   "name": "대신증권 주식회사",
+   "addr": "서울특별시 중구 삼일대로 343",
+   "note": "저동1가, 대신파이낸스센터",
+   "link": "https://company.daishin.com/E5/WTS/Company/DW_BranchRouteList.aspx"
+  },
+  {
+   "no": 46,
+   "id": "toss-securities",
+   "short": "토스증권",
+   "name": "토스증권 주식회사",
+   "addr": "서울특별시 강남구 테헤란로 133, 7층",
+   "note": "역삼동, 한국타이어빌딩",
+   "link": "https://corp.tossinvest.com/ko/corporate-info"
+  },
+  {
+   "no": 47,
+   "id": "kakaopay-securities",
+   "short": "카카오페이증권",
+   "name": "카카오페이증권 주식회사",
+   "addr": "경기도 성남시 분당구 판교역로 166, B동 8층",
+   "note": "백현동, 카카오 판교아지트",
+   "link": "https://kakaopaysec.com/company/about/dynamicPage.do"
+  },
+  {
+   "no": 48,
+   "id": "meritz-securities",
+   "short": "메리츠증권",
+   "name": "메리츠증권 주식회사",
+   "addr": "서울특별시 영등포구 국제금융로 10",
+   "note": "여의도동, Three IFC",
+   "link": "https://www.imeritz.com/main/ir/com_0100.html"
+  },
+  {
+   "no": 49,
+   "id": "ksd",
+   "short": "한국예탁결제원",
+   "name": "한국예탁결제원",
+   "addr": "부산광역시 남구 문현금융로 40",
+   "note": "문현동, 부산국제금융센터",
+   "link": "https://www.ksd.or.kr/ko/"
+  },
+  {
+   "no": 50,
+   "id": "samsung-life",
+   "short": "삼성생명",
+   "name": "삼성생명보험 주식회사",
+   "addr": "서울특별시 서초구 서초대로74길 11",
+   "note": "서초동",
+   "link": "https://family.samsunglife.com/simms/main.do"
+  },
+  {
+   "no": 51,
+   "id": "hanwha-life",
+   "short": "한화생명",
+   "name": "한화생명보험 주식회사",
+   "addr": "서울특별시 영등포구 63로 50",
+   "note": "여의도동, 63 한화생명빌딩",
+   "link": "https://company.hanwhalife.com/ko"
+  },
+  {
+   "no": 52,
+   "id": "kyobo-life",
+   "short": "교보생명",
+   "name": "교보생명보험 주식회사",
+   "addr": "서울특별시 종로구 종로 1",
+   "note": "종로1가",
+   "link": "https://www.kyobobldg.co.kr/"
+  },
+  {
+   "no": 53,
+   "id": "shinhan-life",
+   "short": "신한라이프",
+   "name": "신한라이프생명보험 주식회사",
+   "addr": "서울특별시 중구 삼일대로 358",
+   "note": "을지로2가, 신한L타워",
+   "link": "https://www.shinhanlife.co.kr/hp/cdha0010.do"
+  },
+  {
+   "no": 54,
+   "id": "nh-life",
+   "short": "NH농협생명",
+   "name": "농협생명보험 주식회사",
+   "addr": "서울특별시 서대문구 통일로 87",
+   "note": "미근동, NH농협생명빌딩",
+   "link": "https://with.nonghyup.com/jbnf/jbnfDtl.do?jbnfSqno=83664"
+  },
+  {
+   "no": 55,
+   "id": "heungkuk-life",
+   "short": "흥국생명",
+   "name": "흥국생명보험 주식회사",
+   "addr": "서울특별시 종로구 새문안로 68",
+   "note": "신문로1가",
+   "link": "https://www.heungkuklife.co.kr/jsps/front/trustproduct/trustproduct-process.jsp"
+  },
+  {
+   "no": 56,
+   "id": "samsung-fire",
+   "short": "삼성화재",
+   "name": "삼성화재해상보험 주식회사",
+   "addr": "서울특별시 서초구 서초대로74길 14",
+   "note": "서초동",
+   "link": "https://www.samsungfire.com/publication/pdf/ZPB302070_0_20230915_file1.pdf?X-SFMI-INTLOG=N41014-004607%5E%5EY%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E"
+  },
+  {
+   "no": 57,
+   "id": "hyundai-marine",
+   "short": "현대해상",
+   "name": "현대해상화재보험 주식회사",
+   "addr": "서울특별시 종로구 세종대로 163",
+   "note": "세종로, 현대해상빌딩",
+   "link": "https://car.hi.co.kr/service.do?m=0pz7088wup"
+  },
+  {
+   "no": 58,
+   "id": "db-insurance",
+   "short": "DB손해보험",
+   "name": "DB손해보험 주식회사",
+   "addr": "서울특별시 강남구 테헤란로 432",
+   "note": "대치동, DB금융센터",
+   "link": "https://www.idbins.com/FWCUSV1278.do"
+  },
+  {
+   "no": 59,
+   "id": "kb-insurance",
+   "short": "KB손해보험",
+   "name": "KB손해보험 주식회사",
+   "addr": "서울특별시 강남구 테헤란로 117",
+   "note": "역삼동, KB손해보험빌딩",
+   "link": "https://www.kbinsure.co.kr/CU601040001.ec"
+  },
+  {
+   "no": 60,
+   "id": "meritz-fire",
+   "short": "메리츠화재",
+   "name": "메리츠화재해상보험 주식회사",
+   "addr": "서울특별시 강남구 강남대로 382",
+   "note": "역삼동, 메리츠타워",
+   "link": "https://recruit.meritzfire.com/new/company/company03.do?idx=all"
+  },
+  {
+   "no": 61,
+   "id": "hanwha-general-insurance",
+   "short": "한화손해보험",
+   "name": "한화손해보험 주식회사",
+   "addr": "서울특별시 영등포구 여의대로 56",
+   "note": "여의도동",
+   "link": "https://mall.hwgeneralins.com/index.do"
+  },
+  {
+   "no": 62,
+   "id": "lotte-insurance",
+   "short": "롯데손해보험",
+   "name": "롯데손해보험 주식회사",
+   "addr": "서울특별시 중구 소월로 3",
+   "note": "남창동, 롯데손해보험빌딩",
+   "link": "https://www.lotteins.co.kr/web/C/D/I/cdi600.jsp"
+  },
+  {
+   "no": 63,
+   "id": "samsung-card",
+   "short": "삼성카드",
+   "name": "삼성카드 주식회사",
+   "addr": "서울특별시 중구 세종대로 67",
+   "note": "태평로2가",
+   "link": "https://bill.samsungcard.com/company/main/UHPPCI0198M0.jsp?click=main_footer_IR"
+  },
+  {
+   "no": 64,
+   "id": "shinhan-card",
+   "short": "신한카드",
+   "name": "주식회사 신한카드",
+   "addr": "서울특별시 중구 을지로 100",
+   "note": "을지로2가, 파인에비뉴 A동",
+   "link": "https://www.shinhancard.com/pconts/download/company/SHC_2025_Sustainability_Report_KOR.pdf"
+  },
+  {
+   "no": 65,
+   "id": "kb-card",
+   "short": "KB국민카드",
+   "name": "주식회사 케이비국민카드",
+   "addr": "서울특별시 종로구 새문안로3길 30",
+   "note": "내수동",
+   "link": "https://card.kbcard.com/CRD/DVIEW/HCAMCXPRICACR0001?mainCC=a"
+  },
+  {
+   "no": 66,
+   "id": "hyundai-card",
+   "short": "현대카드",
+   "name": "현대카드 주식회사",
+   "addr": "서울특별시 영등포구 의사당대로 3",
+   "note": "여의도동, 현대카드빌딩 1관",
+   "link": "https://www.hyundaicard.com/csa/mb/STOREMAIN.hc"
+  },
+  {
+   "no": 67,
+   "id": "lotte-card",
+   "short": "롯데카드",
+   "name": "롯데카드 주식회사",
+   "addr": "서울특별시 종로구 새문안로 76",
+   "note": "신문로1가",
+   "link": "https://www.lottecard.co.kr/app/LPCOIAB_V100.lc"
+  },
+  {
+   "no": 68,
+   "id": "hana-card",
+   "short": "하나카드",
+   "name": "하나카드 주식회사",
+   "addr": "서울특별시 중구 을지로 66",
+   "note": "을지로2가",
+   "link": "https://www.hanacard.co.kr/OPP35150010D.web?_frame=no&mID=OPP35150000D&schID=ncd"
+  },
+  {
+   "no": 69,
+   "id": "woori-card",
+   "short": "우리카드",
+   "name": "주식회사 우리카드",
+   "addr": "서울특별시 종로구 종로1길 50",
+   "note": "중학동, 더케이트윈타워",
+   "link": "https://nm.wooricard.com/"
+  },
+  {
+   "no": 70,
+   "id": "bc-card",
+   "short": "BC카드",
+   "name": "비씨카드 주식회사",
+   "addr": "서울특별시 중구 을지로 170",
+   "note": "을지로4가, 을지트윈타워",
+   "link": "https://www.bccard.com/app/card/html/company/kr/company/location/head/location.jsp"
+  }
+ ]
+}

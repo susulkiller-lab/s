@@ -4,14 +4,24 @@
 const { chromium } = require("playwright-core");
 const fs = require("fs");
 const path = require("path");
+function chromePath() {
+  if (process.env.CHROME_PATH) return process.env.CHROME_PATH;
+  const base = "/opt/pw-browsers";
+  const dirs = fs.existsSync(base) ? fs.readdirSync(base).filter((d) => /^chromium-\d+$/.test(d)).sort().reverse() : [];
+  for (const d of dirs) for (const sub of ["chrome-linux64", "chrome-linux"]) {
+    const p = path.join(base, d, sub, "chrome");
+    if (fs.existsSync(p)) return p;
+  }
+  return undefined;
+}
 const OUT = path.join(__dirname, "e2e-out");
 fs.mkdirSync(OUT, { recursive: true });
-const URL = "file:///home/user/s/finorder/dist/finorder.standalone.html";
+const URL = "file://" + path.resolve(__dirname, "..", "dist", "finorder.standalone.html");
 let pass = 0, fail = 0;
 const ok = (c, m, extra) => { if (c) { pass++; console.log("PASS", m); } else { fail++; console.log("FAIL", m, extra !== undefined ? JSON.stringify(extra) : ""); } };
 
 (async () => {
-  const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome", args: ["--no-sandbox"] });
+  const browser = await chromium.launch({ executablePath: chromePath(), args: ["--no-sandbox"] });
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, acceptDownloads: true, locale: "ko-KR" });
   const page = await ctx.newPage();
   const errors = [];
