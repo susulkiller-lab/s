@@ -225,8 +225,27 @@
             <div class="hint" data-hint="feeNow"></div>
           </div>
           <div class="f full" data-for="crim">
-            <span class="lab">다항(성공보수 문구, 지급 조건은 특약의 선택을 따름)</span>
+            <span class="lab">다항(성공보수 문구)</span>
             <div class="seg" data-seg="clause3" role="group" aria-label="다항 표시"><button type="button" data-v="strike">전체 삭선</button><button type="button" data-v="plain">삭선 없이</button><button type="button" data-v="hide">넣지 않음</button></div>
+          </div>
+          <div class="f full" id="succ3Wrap" data-for="crim">
+            <div class="row">
+              <div class="f"><label for="f-succ3">다항 성공보수 금액</label><input type="text" id="f-succ3" data-k="succ3" data-money placeholder="예: 1,000만"></div>
+              <div class="seg" data-seg="succ3Vat" role="group" aria-label="다항 부가가치세"><button type="button" data-v="포함">부가세 포함</button><button type="button" data-v="별도">별도</button></div>
+            </div>
+            <div class="hint" data-hint="succ3"></div>
+          </div>
+          <div class="f full" data-for="crim">
+            <span class="lab">성공보수 지급 조건 (다항과 특약에 같이 쓰입니다. 여러 개 선택 가능)</span>
+            <div class="chips" id="outcome-chips">
+              <button type="button" class="chip" data-flag="oNo">무혐의</button>
+              <button type="button" class="chip" data-flag="oAcq">무죄</button>
+              <button type="button" class="chip" data-flag="oSus">집행유예</button>
+              <button type="button" class="chip" data-flag="oFine">벌금</button>
+              <button type="button" class="chip" data-flag="oWar">영장기각</button>
+            </div>
+            <input type="text" id="f-succEtc" data-k="succEtc" style="margin-top:8px" placeholder="기타 조건 직접 입력 (예: 공소기각 시)">
+            <div class="hint" id="condPreview"></div>
           </div>
           <div class="f full" data-for="crim"><label for="f-note">참고사항</label><input type="text" id="f-note" data-k="note"></div>
           <div class="f full" data-for="civil" hidden>
@@ -258,16 +277,7 @@
             </div>
             <div class="hint" data-hint="succ"></div>
           </div>
-          <div class="f full" data-for="crim">
-            <span class="lab">성공보수 지급 조건 (여러 개 선택 가능)</span>
-            <div class="chips" id="outcome-chips">
-              <button type="button" class="chip" data-flag="oNo">무혐의 시</button>
-              <button type="button" class="chip" data-flag="oAcq">무죄 시</button>
-              <button type="button" class="chip" data-flag="oSus">집행유예 시</button>
-              <button type="button" class="chip" data-flag="oFine">벌금 시</button>
-            </div>
-          </div>
-          <div class="f full"><label for="f-succCond" id="lab-succCond">성공보수 지급 조건</label><input type="text" id="f-succCond" data-k="succCond" placeholder="예: 무혐의 시"></div>
+          <div class="f full" data-for="civil" hidden><label for="f-succCond">성공보수 지급 조건</label><input type="text" id="f-succCond" data-k="succCond" placeholder="예: 승소 시"></div>
           <div class="f full"><label for="f-special">기타 특약 (한 줄에 한 항목)</label><textarea id="f-special" data-k="special" rows="3"></textarea></div>
         </div>
       </fieldset>
@@ -426,7 +436,8 @@
       clause3: 'strike',
       success: 'on', rateDiv: '', rateWin: '', sDiv: false, sWin: false, sApp: false,
       note: '', deposit: '', perdiem: '',
-      succ: '', succVat: '별도', succCond: '', oNo: false, oAcq: false, oSus: false, oFine: false, special: '',
+      succ: '', succVat: '별도', succCond: '', succ3: '', succ3Vat: '포함', succEtc: '',
+      oNo: false, oAcq: false, oSus: false, oFine: false, oWar: false, special: '',
       date: '', dateSame: true, date2: '',
       csText: '', client: '',
       office: '진앤솔 법률사무소', lawyer: '변호사 강 정 한'
@@ -473,16 +484,17 @@
     ];
   }
 
-  // 형사 성공보수 지급 조건: 직접 입력이 있으면 그 문구, 없으면 선택한 결과(무혐의·무죄·집행유예·벌금)
-  var OUTCOMES = [['oNo', '무혐의'], ['oAcq', '무죄'], ['oSus', '집행유예'], ['oFine', '벌금']];
+  // 형사 성공보수 지급 조건: 선택한 결과(무혐의·무죄·집행유예·벌금·영장기각)에 기타 직접 입력을 덧붙인다.
+  // 민사·행정은 특약의 지급 조건 입력칸 문구를 그대로 쓴다.
+  var OUTCOMES = [['oNo', '무혐의'], ['oAcq', '무죄'], ['oSus', '집행유예'], ['oFine', '벌금'], ['oWar', '영장기각']];
   function condText(v) {
-    var custom = str(v.succCond);
-    if (custom) return custom;
-    if (v.type === 'civil') return '';
+    if (v.type === 'civil') return str(v.succCond);
     var s = OUTCOMES.filter(function (o) { return v[o[0]]; }).map(function (o) { return o[1]; });
+    var etc = str(v.succEtc), closed = false;   // 기타 문구가 이미 '시·때·경우'로 끝나면 '시'를 덧붙이지 않는다
+    if (etc) { s.push(etc); closed = /(시|때|경우)$/.test(etc); }
     if (!s.length) return '';
-    if (s.length === 1) return s[0] + ' 시';
-    return s.slice(0, -1).join(', ') + ' 또는 ' + s[s.length - 1] + ' 시';
+    var j = s.length === 1 ? s[0] : s.slice(0, -1).join(', ') + ' 또는 ' + s[s.length - 1];
+    return closed ? j : j + ' 시';
   }
 
   function specialBlocks(v, P) {
@@ -569,7 +581,8 @@
     p1.push(sub('나.', [R('위임 사건의 착수와 동시', 'bu'), R('에 위 착수금 중 '), R(amtRuns(now) + vatFee, 'bu'), R('을 지급한다.')]));
     if (v.clause3 !== 'hide') {
       var sk = v.clause3 === 'plain' ? '' : 's';   // 다항: 전체 삭선(기본) 또는 삭선 없이
-      p1.push(sub('다.', [R(condText(v) || '무혐의 시', 'bu' + sk), R(' 위 성공보수로 중 ', sk), R('금' + rep(NB, 6) + '만원(부가가치세 포함)', 'bu' + sk), R('을 지급한다.', sk)], sk));
+      var c3 = condText(v), m3 = money(v.succ3), vat3 = '(부가가치세 ' + (v.succ3Vat === '별도' ? '별도' : '포함') + ')';
+      p1.push(sub('다.', [R(c3 || rep(NB, 12) + ' 시', 'bu' + sk), R(' 위 성공보수로 중 ', sk), R((m3.state === 'empty' ? '금' + rep(NB, 6) + '만원' : '금 ' + m3.text) + vat3, 'bu' + sk), R('을 지급한다.', sk)], sk));
     }
     p1.push(item('②', [
       R('제1항의 착수보수는 '),
@@ -1116,7 +1129,7 @@
   }
 
   root.Wiim = {
-    defaults: defaults, build: build, fit: fit, missing: missing, money: money, rate: rate,
+    defaults: defaults, build: build, fit: fit, missing: missing, money: money, rate: rate, condText: condText,
     toHtml: toHtml, toDocx: toDocx, fileName: fileName, plain: plain,
     PAGE: PAGE, TEXT_W: TEXT_W, SC: SC, LEVELS: LEVELS, TYPES: TYPES
   };
@@ -1167,7 +1180,7 @@
     if (S.type === 'crim') $('#feeNowWrap').hidden = !!S.feeAll;
     if (S.type === 'civil') $('#successWrap').hidden = S.success === 'strike';
     $('#sigFields').hidden = !S.sigFill;
-    $('#lab-succCond').textContent = S.type === 'civil' ? '성공보수 지급 조건' : '지급 조건 직접 입력 (쓰면 위 선택 대신 이 문구를 씁니다)';
+    if (S.type === 'crim') $('#succ3Wrap').hidden = S.clause3 === 'hide';
     $('#f-date2').disabled = !!S.dateSame;
     $('#f-date2').closest('.f').style.opacity = S.dateSame ? '.5' : '1';
   }
@@ -1216,14 +1229,21 @@
   function schedule() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; render(); }); }
 
   function hints() {
-    ['fee', 'feeNow', 'deposit', 'perdiem', 'succ'].forEach(function (k) {
+    ['fee', 'feeNow', 'deposit', 'perdiem', 'succ', 'succ3'].forEach(function (k) {
       var el = $('[data-hint="' + k + '"]'); if (!el) return;
       var r = W.money(S[k]);
       el.className = 'hint';
       if (r.state === 'ok') { el.textContent = '금 ' + r.text; el.classList.add('ok'); }
       else if (r.state === 'bad') { el.textContent = '금액을 읽을 수 없습니다. 예: 3,000,000 또는 300만'; el.classList.add('bad'); }
-      else el.textContent = k === 'succ' ? '비워 두면 특약에 넣지 않습니다' : '비워 두면 문서에 빈칸으로 남습니다';
+      else el.textContent = k === 'succ' ? '비워 두면 특약에 넣지 않습니다' + (S.type === 'crim' ? '. 지급 조건은 착수금·비용의 선택을 따릅니다.' : '') : '비워 두면 문서에 빈칸으로 남습니다';
     });
+  }
+
+  function condHint() {
+    var el = $('#condPreview'); if (!el) return;
+    var ct = W.condText(S);
+    el.className = 'hint' + (ct ? ' ok' : '');
+    el.textContent = ct ? '문서 표기: ' + ct : '선택하지 않으면 다항에는 빈칸으로, 특약에는 조건 없이 금액만 들어갑니다.';
   }
 
   function status(m) {
@@ -1260,7 +1280,7 @@
   function render() {
     last = W.fit(S);
     $('#pages').innerHTML = W.toHtml(last);
-    scalePages(); status(last); hints();
+    scalePages(); status(last); hints(); condHint();
   }
 
   /* ---- 동작 ---- */
@@ -1330,7 +1350,7 @@
     if (d.type === 'civil') {
       Object.assign(d, { caseno: '2026가합0000', casename: '대여금', party: '원고 홍길동', opp: '피고 김철수', scopeC: '1심 사건', fee: '3,000,000', rateDiv: '', rateWin: '10', sDiv: true });
     } else {
-      Object.assign(d, { caseno: '2026고단0000', casename: '사기', party: '피고인 홍길동', opp: '피해자 김철수', scope: '제1심', fee: '3,000,000', feeAll: false, feeNow: '1,500,000', succ: '10,000,000', oNo: true, oAcq: true });
+      Object.assign(d, { caseno: '2026고단0000', casename: '사기', party: '피고인 홍길동', opp: '피해자 김철수', scope: '제1심', fee: '3,000,000', feeAll: false, feeNow: '1,500,000', succ: '10,000,000', succ3: '10,000,000', oNo: true, oAcq: true });
     }
     S = d; pull(); render(); say('예시를 채웠습니다. 실제 값으로 바꿔 쓰세요.');
   });
