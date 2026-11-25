@@ -121,7 +121,7 @@
   .s { text-decoration: line-through; text-decoration-thickness: .6pt; }
   .u.s { text-decoration: underline line-through; text-decoration-thickness: .6pt; }
   .tbl4 { border-collapse: collapse; width: 100%; table-layout: fixed; font-size: 9pt; color: var(--paper-ink); }
-  .tbl4 th, .tbl4 td { color: var(--paper-ink); border: .6pt solid #000; height: 24pt; padding: 2pt 5pt; vertical-align: middle; font-weight: 400; word-break: keep-all; overflow-wrap: anywhere; }
+  .tbl4 th, .tbl4 td { color: var(--paper-ink); border: 1pt solid #000; height: 24pt; padding: 2pt 5pt; vertical-align: middle; font-weight: 800; word-break: keep-all; overflow-wrap: anywhere; }
   .tbl4 th { text-align: center; font-size: 10pt; }
   .tbl4 td { text-align: left; }
   .sheet .box { border: 4.5pt double #000; }
@@ -559,9 +559,9 @@
     /* ===== 1쪽 ===== */
     var p1 = [];
     p1.push(P([R(TYPES.crim.title, 'b')], { size: 16, scale: 100, align: 'center', pitch: 26, after: 12 }));
-    p1.push(P([R('위임인(갑) : ' + str(v.name))], { size: 11, scale: 90, align: 'left', pitch: 18 }));
-    p1.push(P([R('수임인(을) : '), R(eul, 'b')], { size: 11, scale: 90, align: 'left', pitch: 18 }));
-    p1.push(P([R('사건의 표시')], { size: 10, scale: 90, align: 'left', pitch: 18, before: 2, after: 3 }));
+    p1.push(P([R('위임인(갑) : ' + str(v.name), 'b')], { size: 11, scale: 90, align: 'left', pitch: 18 }));
+    p1.push(P([R('수임인(을) : ', 'b'), R(eul, 'b')], { size: 11, scale: 90, align: 'left', pitch: 18 }));
+    p1.push(P([R('사건의 표시', 'b')], { size: 10, scale: 90, align: 'left', pitch: 18, before: 2, after: 3 }));
     p1.push({
       k: 'tbl4', cols: [84, 132, 61, 176.5], rowH: 24, labelSize: 10,
       rows: [
@@ -662,9 +662,9 @@
     /* ---- 머리(1쪽 상단, 전폭) ---- */
     var head = [];
     head.push(P([R(TYPES.civil.title, 'b')], { size: 14.3, scale: 100, align: 'center', pitch: 24, after: 8 }));
-    head.push(P([R('위임인(갑) : ' + str(v.name))], { size: 11, scale: 90, align: 'left', pitch: 19 }));
-    head.push(P([R('수임인(을) : '), R(eul, 'b')], { size: 11, scale: 90, align: 'left', pitch: 19 }));
-    head.push(P([R('사건의 표시')], { size: 10, scale: 90, align: 'left', pitch: 19, before: 1, after: 2 }));
+    head.push(P([R('위임인(갑) : ' + str(v.name), 'b')], { size: 11, scale: 90, align: 'left', pitch: 19 }));
+    head.push(P([R('수임인(을) : ', 'b'), R(eul, 'b')], { size: 11, scale: 90, align: 'left', pitch: 19 }));
+    head.push(P([R('사건의 표시', 'b')], { size: 10, scale: 90, align: 'left', pitch: 19, before: 1, after: 2 }));
     head.push({
       k: 'tbl4', cols: [56, 136, 56, 205.5], rowH: 33.6, labelSize: 11,
       rows: [
@@ -1006,7 +1006,7 @@
       else if (lead) o.indent = { left: tw(lead) };
       return new D.Paragraph(o);
     }
-    var thin = { style: D.BorderStyle.SINGLE, size: 4, color: '000000' };
+    var thin = { style: D.BorderStyle.SINGLE, size: 8, color: '000000' };
     var none = { style: D.BorderStyle.NONE, size: 0, color: 'FFFFFF' };
     var noBorders = { top: none, bottom: none, left: none, right: none };
     function spacer(pageBreak) {
@@ -1019,7 +1019,7 @@
         alignment: o.center ? D.AlignmentType.CENTER : D.AlignmentType.LEFT,
         autoSpaceEastAsianText: false,
         spacing: { before: 0, after: 0, line: tw(14), lineRule: D.LineRuleType.EXACT },
-        children: runs([R(text)], o.size, o.scale)
+        children: runs([R(text, 'b')], o.size, o.scale)
       });
     }
     function tbl4(b) {
